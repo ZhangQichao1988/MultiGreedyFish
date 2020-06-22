@@ -9,11 +9,11 @@ public class CameraFollow : MonoBehaviour
 
     public Transform target;
 	public Vector3 offsetPos;
-	Camera camera;
+	//Camera camera;
 
 	private void Awake()
 	{
-		camera = Camera.main;
+		//camera = Camera.main;
 	}
 	// Update is called once per frame
 	void LateUpdate()
