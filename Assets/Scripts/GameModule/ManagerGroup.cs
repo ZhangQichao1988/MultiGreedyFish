@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class ManagerGroup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public EnemyManager enemyManager = null;
+
+	private void Awake()
+	{
+        enemyManager.Init(this);
+    }
+	// Start is called before the first frame update
+	void Start()
     {
         
     }

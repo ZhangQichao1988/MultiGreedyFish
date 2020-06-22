@@ -6,12 +6,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InGameUIPanel : MonoBehaviour
 {
-    static readonly Vector2 bound = new Vector2(43, 40);
+    
 
     public Transform TouchTF;
     public Transform TouchStickTF;
-    public Transform Character;
-    public Animator ChAnimator;
+    public PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
     // Start is called before the first frame update
@@ -29,14 +28,15 @@ public class InGameUIPanel : MonoBehaviour
         TouchTF.gameObject.SetActive(true);
         TouchTF.localPosition = GetUIPos(((PointerEventData)data).position);
         TouchStickTF.localPosition = Vector3.zero;
-        Dir = Vector3.zero;
+        Player.TouchDown(data);
     }
     public void TouchUp(BaseEventData data)
     {
         TouchTF.gameObject.SetActive(false);
-        curDir = Dir;
-        Dir = Vector3.zero;
-        moveDir = Vector3.zero;
+        Player.TouchUp( data );
+        //curDir = Dir;
+        //Dir = Vector3.zero;
+        //moveDir = Vector3.zero;
     }
     public void TouchDrag(BaseEventData data)
     {
@@ -47,15 +47,7 @@ public class InGameUIPanel : MonoBehaviour
             pos = pos * MaxLength / length;
         }
         TouchStickTF.localPosition = pos;
-        Dir = pos / MaxLength;
-        Dir.z = 0;
-        //Dir.y = 0;
-        if (Dir.x != 0 || Dir.z != 0)
-        {
-            Dir = (0.9f * Dir.sqrMagnitude + 0.101f) * Dir.normalized;
-            if (curDir.sqrMagnitude < 0.001f)
-                curDir = Character.forward;
-        }
+        Player.TouchDrag(data, pos, MaxLength);
     }
 
     public Vector2 GetUIPos(Vector2 pos)
@@ -64,42 +56,45 @@ public class InGameUIPanel : MonoBehaviour
         pos.y = (pos.y / Screen.height - 0.5f) * SelfRectTF.rect.height;
         return pos;
     }
-    Vector3 Dir;
+    //Vector3 Dir;
 
-    Vector3 curDir;
-    Vector3 moveDir;
-    Vector3 pos;
+    //Vector3 curDir;
+    //Vector3 moveDir;
+    //Vector3 pos;
     public void Update()
     {
-        pos = Character.position;
-        if (Dir.sqrMagnitude > 0)
-        {
-            float angle = Vector3.Angle(curDir.normalized, Dir.normalized);
-            curDir = Vector3.Slerp(curDir.normalized, Dir.normalized, 520 / angle * Time.deltaTime);
-            moveDir = Vector3.Lerp(moveDir, Dir, 360 / angle * Time.deltaTime);
-            pos += moveDir * 10 * Time.deltaTime;
-            pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
-            ChAnimator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude, 0.101f, 1f));
-        }
-        else
-        {
-            curDir = Vector3.Lerp(curDir, Dir, 5 * Time.deltaTime);
-            if (curDir.sqrMagnitude > 0.001f)
-            {
-                pos += curDir * 10 * Time.deltaTime;
-                pos = ObstacleGrid.ObstacleClamp(pos, curDir);
-            }
-            ChAnimator.SetFloat("Speed", curDir.magnitude);
-        }
-        if (curDir.sqrMagnitude > 0.001f)
-            Character.rotation = Quaternion.LookRotation(curDir);
+        Player.CustomUpdate();
+        //FishBase.Transformation(Character, ChAnimator,ref moveDir, curDir, Dir);
+        //pos = Character.position;
+        //if (Dir.sqrMagnitude > 0)
+        //{
+        //    float angle = Vector3.Angle(curDir.normalized, Dir.normalized);
+        //    curDir = Vector3.Slerp(curDir.normalized, Dir.normalized, 520 / angle * Time.deltaTime);
+        //    moveDir = Vector3.Lerp(moveDir, Dir, 360 / angle * Time.deltaTime);
+        //    pos += moveDir * 10 * Time.deltaTime;
+        //    pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
+        //    ChAnimator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude, 0.101f, 1f));
+        //}
+        //else
+        //{
+        //    curDir = Vector3.Lerp(curDir, Dir, 5 * Time.deltaTime);
+        //    if (curDir.sqrMagnitude > 0.001f)
+        //    {
+        //        pos += curDir * 10 * Time.deltaTime;
+        //        pos = ObstacleGrid.ObstacleClamp(pos, curDir);
+        //    }
+        //    ChAnimator.SetFloat("Speed", curDir.magnitude);
+        //}
+        //if (curDir.sqrMagnitude > 0.001f)
+        //    Character.rotation = Quaternion.LookRotation(curDir);
 
-        // 界限限制
-        if (pos.x < 0) { pos.x = Math.Max(pos.x, -bound.x); }
-        else if (pos.x > 0) { pos.x = Math.Min(pos.x, bound.x); }
-        if (pos.y < 0) { pos.y = Math.Max(pos.y, -bound.y); }
-        else if (pos.y > 0) { pos.y = Math.Min(pos.y, bound.y); }
+        ////Debug.Log("curDir:" + curDir);
+        //// 界限限制
+        //if (pos.x < 0) { pos.x = Math.Max(pos.x, -bound.x); }
+        //else if (pos.x > 0) { pos.x = Math.Min(pos.x, bound.x); }
+        //if (pos.y < 0) { pos.y = Math.Max(pos.y, -bound.y); }
+        //else if (pos.y > 0) { pos.y = Math.Min(pos.y, bound.y); }
 
-        Character.position = pos;
+        //Character.position = pos;
     }
 }
