@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 2341724910268730151, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: offsetPos.z
-      value: -60
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 8174601731216184587, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
