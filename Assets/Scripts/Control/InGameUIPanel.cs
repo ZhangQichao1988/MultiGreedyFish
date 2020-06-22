@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InGameUIPanel : MonoBehaviour
 {
+    static readonly Vector2 bound = new Vector2(43, 40);
+
     public Transform TouchTF;
     public Transform TouchStickTF;
     public Transform Character;
@@ -90,6 +93,13 @@ public class InGameUIPanel : MonoBehaviour
         }
         if (curDir.sqrMagnitude > 0.001f)
             Character.rotation = Quaternion.LookRotation(curDir);
+
+        // 界限限制
+        if (pos.x < 0) { pos.x = Math.Max(pos.x, -bound.x); }
+        else if (pos.x > 0) { pos.x = Math.Min(pos.x, bound.x); }
+        if (pos.y < 0) { pos.y = Math.Max(pos.y, -bound.y); }
+        else if (pos.y > 0) { pos.y = Math.Min(pos.y, bound.y); }
+
         Character.position = pos;
     }
 }
