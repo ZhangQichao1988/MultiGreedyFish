@@ -5,8 +5,33 @@ using UnityEngine;
 
 public class FishBase : MonoBehaviour
 {
+    static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
+    Dictionary<int, string> fishData = new Dictionary<int, string>()
+    {
+        { 0, "clown_fish" },
+        { 1, "yellow_fish" },
+    };
+    public struct Data
+    {
+        public int uid;
+        public int fishId;
+        public int life;
+        public float size;
 
+        public Data(int fishId, int life, float size)
+        {
+            uid = -1;
+            this.fishId = fishId;
+            this.life = life;
+            this.size = size;
+        }
+    }
+    static protected int uidCnt = 0;
+
+    protected Data data;
     protected Animator animator = null;
+    protected Transform transModel = null;
+   // protected MeshFilter meshFilter = null;
 
     protected Vector3 Dir;
     protected Vector3 curDir;
@@ -14,7 +39,20 @@ public class FishBase : MonoBehaviour
     //Vector3 pos;
     protected virtual void Awake()
     {
-        animator = GetComponent<Animator>();
+        
+    }
+
+    public virtual void Init(Data data)
+    {
+        data.uid = uidCnt++;
+        this.data = data;
+        UnityEngine.Object enemyObj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
+        GameObject go = Wrapper.CreateGameObject(enemyObj, transform) as GameObject;
+        transModel = go.transform;
+        transform.localScale = Vector3.one * data.size;
+
+        //meshFilter = go.GetComponent<MeshFilter>();
+        animator = transModel.GetComponent<Animator>();
     }
 
     public void SetMoveDir(Vector3 moveDir)
@@ -44,7 +82,7 @@ public class FishBase : MonoBehaviour
             animator.SetFloat("Speed", curDir.magnitude);
         }
         if (curDir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(curDir);
+            transModel.rotation = Quaternion.LookRotation(curDir);
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制

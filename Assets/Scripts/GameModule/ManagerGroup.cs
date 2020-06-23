@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class ManagerGroup : MonoBehaviour
 {
-
+    static ManagerGroup instance = null;
     public EnemyManager enemyManager = null;
 
 	private void Awake()
 	{
+        instance = this;
         enemyManager.Init(this);
     }
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    static public ManagerGroup GetInstance()
+    { return instance; }
 }

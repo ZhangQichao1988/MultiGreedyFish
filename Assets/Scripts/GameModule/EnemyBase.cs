@@ -5,28 +5,28 @@ using UnityEngine;
 
 public class EnemyBase : FishBase
 {
-    Vector3 moveDir;
-    EnemyManager enemyManager = null;
-    int uid = 0;
-
-
-	public void Init(EnemyManager enemyManager, int uid)
+	public override void Init(Data data)
     {
-        this.enemyManager = enemyManager;
-        this.uid = uid;
+        base.Init(data);
         transform.position = new Vector3( Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x), Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
     }
 
     // Update is called once per frame
     public override void CustomUpdate()
     {
-        float moveVec = (float)Math.Sin((Time.time + uid) * enemyManager.FlipFrequency) * enemyManager.MoveSpeed;
+        float moveVec = (float)Math.Sin((Time.time + data.uid) * EnemyManager.FlipFrequency) * EnemyManager.MoveSpeed;
         Dir = new Vector3(moveVec, 0, 0);
-       // transform.rotation = Quaternion.LookRotation(moveDir);
-        //float moveSpeed = Math.Abs(moveVec) * enemyManager.MoveSpeed;
-        //SetMoveDir(moveDir);
-        //FishBase.Transformation(transform, animator,ref moveDir, curDir, Dir);
-        //animator.SetFloat("Speed", moveSpeed);
+
         base.CustomUpdate();
+    }
+
+    public bool EatCheck(Vector3 mouthPos, float range)
+    {
+        return Vector3.Distance(transform.position, mouthPos) < range;
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
 	public int enemyNum = 50;
-	public float FlipFrequency = 2f;
-	public float MoveSpeed = 0.2f;
-	static readonly string enemyPath = "ArtResources/Models/Prefabs/fish/yellow_fish";
+	static public float FlipFrequency = 2f;
+	static public float MoveSpeed = 0.2f;
 	int uidCnt = 0;
 	List<EnemyBase> listEnemy = new List<EnemyBase>();
 
@@ -17,13 +16,13 @@ public class EnemyManager : MonoBehaviour
 	}
 	public void Init(ManagerGroup managerGroup)
 	{
-		Object enemyObj = Resources.Load(enemyPath);
+		
 		GameObject goEnemy;
 		for (int i = 0; i < enemyNum; ++i)
 		{
-			goEnemy = Wrapper.AssetLoad(enemyObj, transform) as GameObject;
+			goEnemy = Wrapper.CreateGameObject(new GameObject(), transform, "Enemy_" + uidCnt );
 			EnemyBase eb = goEnemy.AddComponent<EnemyBase>();
-			eb.Init(this, uidCnt++);
+			eb.Init(new FishBase.Data( 1, 1, 1));
 			listEnemy.Add(eb);
 		}
 		
@@ -36,4 +35,24 @@ public class EnemyManager : MonoBehaviour
 			eb.CustomUpdate();
 		}
 	}
+
+	public void EatCheck(PlayerBase player, Vector3 mouthPos, float range)
+	{
+		EnemyBase eb;
+		int eatNum = 0;
+		for ( int i = listEnemy.Count -1; i >= 0; --i )
+		{
+			eb = listEnemy[i];
+			if (eb.EatCheck(mouthPos, range))
+			{
+				eb.Die();
+				listEnemy.Remove(eb);
+				++eatNum;
+				continue;
+			}
+		}
+		player.Eat(eatNum);
+
+	}
+
 }

@@ -10,7 +10,8 @@ public class InGameUIPanel : MonoBehaviour
 
     public Transform TouchTF;
     public Transform TouchStickTF;
-    public PlayerBase Player;
+    public GameObject GoPlayer;
+    private PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
     // Start is called before the first frame update
@@ -18,9 +19,12 @@ public class InGameUIPanel : MonoBehaviour
     {
         SelfRectTF = GetComponent<RectTransform>();
         TouchTF.gameObject.SetActive(false);
+
+        //GameObject go = Wrapper.CreateGameObject(new GameObject(), transform, "Player");
+        Player = GoPlayer.AddComponent<PlayerBase>();
+        Player.Init(new FishBase.Data( 0, 1, 2));
     }
 
-    // Update is called once per frame
 
 
     public void TouchDown(BaseEventData data)
@@ -64,37 +68,5 @@ public class InGameUIPanel : MonoBehaviour
     public void Update()
     {
         Player.CustomUpdate();
-        //FishBase.Transformation(Character, ChAnimator,ref moveDir, curDir, Dir);
-        //pos = Character.position;
-        //if (Dir.sqrMagnitude > 0)
-        //{
-        //    float angle = Vector3.Angle(curDir.normalized, Dir.normalized);
-        //    curDir = Vector3.Slerp(curDir.normalized, Dir.normalized, 520 / angle * Time.deltaTime);
-        //    moveDir = Vector3.Lerp(moveDir, Dir, 360 / angle * Time.deltaTime);
-        //    pos += moveDir * 10 * Time.deltaTime;
-        //    pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
-        //    ChAnimator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude, 0.101f, 1f));
-        //}
-        //else
-        //{
-        //    curDir = Vector3.Lerp(curDir, Dir, 5 * Time.deltaTime);
-        //    if (curDir.sqrMagnitude > 0.001f)
-        //    {
-        //        pos += curDir * 10 * Time.deltaTime;
-        //        pos = ObstacleGrid.ObstacleClamp(pos, curDir);
-        //    }
-        //    ChAnimator.SetFloat("Speed", curDir.magnitude);
-        //}
-        //if (curDir.sqrMagnitude > 0.001f)
-        //    Character.rotation = Quaternion.LookRotation(curDir);
-
-        ////Debug.Log("curDir:" + curDir);
-        //// 界限限制
-        //if (pos.x < 0) { pos.x = Math.Max(pos.x, -bound.x); }
-        //else if (pos.x > 0) { pos.x = Math.Min(pos.x, bound.x); }
-        //if (pos.y < 0) { pos.y = Math.Max(pos.y, -bound.y); }
-        //else if (pos.y > 0) { pos.y = Math.Min(pos.y, bound.y); }
-
-        //Character.position = pos;
     }
 }
