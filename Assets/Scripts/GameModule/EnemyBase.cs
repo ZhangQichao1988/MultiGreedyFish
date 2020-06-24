@@ -16,7 +16,7 @@ public class EnemyBase : FishBase
     // Update is called once per frame
     public override void CustomUpdate()
     {
-        float moveVec = (float)Math.Sin((Time.time + data.uid) * EnemyManager.FlipFrequency) * EnemyManager.MoveSpeed;
+        float moveVec = (float)Math.Sin((Time.time + data.uid) * FishManager.FlipFrequency) * FishManager.MoveSpeed;
         Dir = new Vector3(moveVec, 0, 0);
 
         base.CustomUpdate();

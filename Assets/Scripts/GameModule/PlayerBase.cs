@@ -68,7 +68,7 @@ public class PlayerBase : FishBase
 		base.CustomUpdate();
 
 		// 吞噬
-		ManagerGroup.GetInstance().enemyManager.EatCheck(this, transMouth.position, 0.3f * data.size);
+		ManagerGroup.GetInstance().fishManager.EatCheck(this, transMouth.position, 0.3f * data.size);
 	}
 
 	public void Eat(int num)

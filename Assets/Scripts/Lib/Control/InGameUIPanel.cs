@@ -10,7 +10,7 @@ public class InGameUIPanel : MonoBehaviour
 
     public Transform TouchTF;
     public Transform TouchStickTF;
-    public GameObject GoPlayer;
+    public CameraFollow cameraFollow;
     private PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
@@ -21,8 +21,8 @@ public class InGameUIPanel : MonoBehaviour
         TouchTF.gameObject.SetActive(false);
 
         //GameObject go = Wrapper.CreateGameObject(new GameObject(), transform, "Player");
-        Player = GoPlayer.AddComponent<PlayerBase>();
-        Player.Init(new FishBase.Data( 0, 1, 2));
+        Player = ManagerGroup.GetInstance().fishManager.CreatePlayer();
+        cameraFollow.target = Player.transform;
     }
 
 

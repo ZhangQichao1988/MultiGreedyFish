@@ -5,12 +5,12 @@ using UnityEngine;
 public class ManagerGroup : MonoBehaviour
 {
     static ManagerGroup instance = null;
-    public EnemyManager enemyManager = null;
+    public FishManager fishManager = null;
 
 	private void Awake()
 	{
         instance = this;
-        enemyManager.Init(this);
+        fishManager.CreateEnemy();
     }
     static public ManagerGroup GetInstance()
     { return instance; }
