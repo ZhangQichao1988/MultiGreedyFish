@@ -10,6 +10,9 @@ public class PlayerBase : FishBase
 	string boneNameMouth = "head_end";
 	Transform transMouth = null;
 	Slider lifeGauge = null;
+
+	public override FishType fishType { get { return FishType.Player; } }
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -31,6 +34,8 @@ public class PlayerBase : FishBase
 		GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
 		lifeGauge = go.GetComponentInChildren<Slider>();
 		Debug.Assert(lifeGauge, "lifeGauge is not found.");
+		lifeGauge.maxValue = data.life;
+		lifeGauge.value = data.life;
 	}
 
 	public void TouchUp(BaseEventData data)

@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class EnemyBase : FishBase
 {
-	public override void Init(Data data)
+    public override FishType fishType { get { return FishType.Enemy; } }
+
+    public override void Init(Data data)
     {
         base.Init(data);
-        transform.position = new Vector3( Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x), Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
+        
     }
 
     // Update is called once per frame
@@ -20,13 +22,5 @@ public class EnemyBase : FishBase
         base.CustomUpdate();
     }
 
-    public bool EatCheck(Vector3 mouthPos, float range)
-    {
-        return Vector3.Distance(transform.position, mouthPos) < range;
-    }
-
-    public void Die()
-    {
-        Destroy(this.gameObject);
-    }
+    
 }

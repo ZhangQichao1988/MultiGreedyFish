@@ -11,6 +11,14 @@ public class FishBase : MonoBehaviour
         { 0, "clown_fish" },
         { 1, "yellow_fish" },
     };
+
+    public enum FishType
+    { 
+        None,
+        Player,
+        PlayerRobot,
+        Enemy,
+    }
     public struct Data
     {
         public int uid;
@@ -36,23 +44,29 @@ public class FishBase : MonoBehaviour
     protected Vector3 Dir;
     protected Vector3 curDir;
     protected Vector3 moveDir;
+
+    public virtual FishType fishType { get { return FishType.None; } }
+
+
     //Vector3 pos;
     protected virtual void Awake()
     {
-        
     }
+
 
     public virtual void Init(Data data)
     {
         data.uid = uidCnt++;
         this.data = data;
-        UnityEngine.Object enemyObj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
-        GameObject go = Wrapper.CreateGameObject(enemyObj, transform) as GameObject;
+        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
+        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         transform.localScale = Vector3.one * data.size;
+        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x), Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
 
         //meshFilter = go.GetComponent<MeshFilter>();
         animator = transModel.GetComponent<Animator>();
+
     }
 
     public void SetMoveDir(Vector3 moveDir)
@@ -86,11 +100,19 @@ public class FishBase : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        if (pos.x < 0) { pos.x = Math.Max(pos.x, -GameConst.bound.x); }
-        else if (pos.x > 0) { pos.x = Math.Min(pos.x, GameConst.bound.x); }
-        if (pos.y < 0) { pos.y = Math.Max(pos.y, -GameConst.bound.y); }
-        else if (pos.y > 0) { pos.y = Math.Min(pos.y, GameConst.bound.y); }
+        pos.x = Mathf.Clamp(pos.x, -GameConst.bound.x, GameConst.bound.x);
+        pos.y = Mathf.Clamp(pos.y, -GameConst.bound.y, GameConst.bound.y);
 
         transform.position = pos;
+    }
+
+    public bool EatCheck(Vector3 mouthPos, float range)
+    {
+        return Vector3.Distance(transform.position, mouthPos) < range;
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }
