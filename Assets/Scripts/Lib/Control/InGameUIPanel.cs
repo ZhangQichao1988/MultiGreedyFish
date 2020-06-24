@@ -22,7 +22,7 @@ public class InGameUIPanel : MonoBehaviour
 
         //GameObject go = Wrapper.CreateGameObject(new GameObject(), transform, "Player");
         Player = ManagerGroup.GetInstance().fishManager.CreatePlayer();
-        cameraFollow.target = Player.transform;
+        cameraFollow.Target = Player.transform;
     }
 
 

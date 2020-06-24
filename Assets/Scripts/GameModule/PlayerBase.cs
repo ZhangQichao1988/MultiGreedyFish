@@ -53,8 +53,8 @@ public class PlayerBase : FishBase
 	public void TouchDrag(BaseEventData data, Vector3 pos, float maxLength)
 	{
 		Dir = pos / maxLength;
-		Dir.z = 0;
-		//Dir.y = 0;
+		Dir.z = Dir.y;
+		Dir.y = 0;
 		if (Dir.x != 0 || Dir.z != 0)
 		{
 			Dir = (0.9f * Dir.sqrMagnitude + 0.101f) * Dir.normalized;

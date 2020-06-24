@@ -62,7 +62,9 @@ public class FishBase : MonoBehaviour
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         transform.localScale = Vector3.one * data.size;
-        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x), Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
+        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x),
+                                                                0,
+                                                                Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
 
         //meshFilter = go.GetComponent<MeshFilter>();
         animator = transModel.GetComponent<Animator>();

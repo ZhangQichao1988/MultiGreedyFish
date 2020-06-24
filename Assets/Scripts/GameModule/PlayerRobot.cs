@@ -27,7 +27,7 @@ public class PlayerRobot : PlayerBase
             {
                 Vector3 pos = transform.position;
                 pos.x = Mathf.Clamp(transform.position.x, -GameConst.bound.x + 5, GameConst.bound.x - 5);
-                pos.y = Mathf.Clamp(transform.position.y, -GameConst.bound.y + 5, GameConst.bound.y - 5);
+                pos.z = Mathf.Clamp(transform.position.y, -GameConst.bound.y + 5, GameConst.bound.y - 5);
                 if (transform.position != pos)
                 {
                     Dir = -Dir;
@@ -38,7 +38,7 @@ public class PlayerRobot : PlayerBase
             // 让它不走直线
             else if (Wrapper.GetRandom(0, 1) > 0.95f)
             {
-                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), Wrapper.GetRandom(-0.1f, 0.1f), 0);
+                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
                 Dir.Normalize();
             }
 
@@ -48,14 +48,14 @@ public class PlayerRobot : PlayerBase
         // 改变方向
         Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1, 1), Wrapper.GetRandom(-1, 1));
         moveVec.Normalize();
-        Dir = new Vector3(moveVec.x, moveVec.y, 0);
+        Dir = new Vector3(moveVec.x, 0, moveVec.y);
 
         // 设置下次更改方向的剩余时间
         changeVectorRemainingTime = Wrapper.GetRandom(1, 3);
     }
     void CalcMoveAction()
     {
-        // 侦察附近是否有杂鱼
+        // 侦察附近是否有比自己小的鱼
         //if(  )
         Idle();
 
