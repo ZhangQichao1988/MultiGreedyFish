@@ -107,6 +107,12 @@ public class CameraFollow : MonoBehaviour
 			}
 			TargetPos = ChangePos + Offset * Vector3.up + FixOffsetPos;
 			transform.position = TargetPos + new Vector3(0, Distance * Mathf.Sin(Angle * Mathf.Deg2Rad), -Distance * Mathf.Cos(Angle * Mathf.Deg2Rad));
+
+			// 界限限制
+			//float x = Mathf.Clamp(transform.position.x, -GameConst.cameraBound.x, GameConst.cameraBound.x);
+			//float z = Mathf.Clamp(transform.position.z, -GameConst.cameraBound.y, GameConst.cameraBound.y);
+			//transform.position = new Vector3(x, transform.position.y, z);
+
 			transform.LookAt(TargetPos);
 		}
 	}

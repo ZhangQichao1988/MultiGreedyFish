@@ -62,9 +62,9 @@ public class FishBase : MonoBehaviour
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         transform.localScale = Vector3.one * data.size;
-        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bound.x, GameConst.bound.x),
+        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bgBound.x, GameConst.bgBound.x),
                                                                 0,
-                                                                Wrapper.GetRandom(-GameConst.bound.y, GameConst.bound.y));
+                                                                Wrapper.GetRandom(-GameConst.bgBound.y, GameConst.bgBound.y));
 
         //meshFilter = go.GetComponent<MeshFilter>();
         animator = transModel.GetComponent<Animator>();
@@ -102,8 +102,8 @@ public class FishBase : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -GameConst.bound.x, GameConst.bound.x);
-        pos.y = Mathf.Clamp(pos.y, -GameConst.bound.y, GameConst.bound.y);
+        pos.x = Mathf.Clamp(pos.x, -GameConst.bgBound.x, GameConst.bgBound.x);
+        pos.z = Mathf.Clamp(pos.z, -GameConst.bgBound.y, GameConst.bgBound.y);
 
         transform.position = pos;
     }

@@ -26,8 +26,8 @@ public class PlayerRobot : PlayerBase
             if (hitWallCoolTime < 0)
             {
                 Vector3 pos = transform.position;
-                pos.x = Mathf.Clamp(transform.position.x, -GameConst.bound.x + 5, GameConst.bound.x - 5);
-                pos.z = Mathf.Clamp(transform.position.y, -GameConst.bound.y + 5, GameConst.bound.y - 5);
+                pos.x = Mathf.Clamp(transform.position.x, -GameConst.bgBound.x + 5, GameConst.bgBound.x - 5);
+                pos.z = Mathf.Clamp(transform.position.y, -GameConst.bgBound.y + 5, GameConst.bgBound.y - 5);
                 if (transform.position != pos)
                 {
                     Dir = -Dir;

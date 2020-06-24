@@ -13,7 +13,7 @@ public class InGameUIPanel : MonoBehaviour
     public CameraFollow cameraFollow;
     private PlayerBase Player;
     private RectTransform SelfRectTF;
-    private float MaxLength = 60;
+    private float MaxLength = 120;
     // Start is called before the first frame update
     void Start()
     {
