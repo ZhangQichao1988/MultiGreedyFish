@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class FishManager : MonoBehaviour
 {
-	public int enemyNum = 50;
-	public int robotNum = 9;
 	static public float FlipFrequency = 2f;
 	static public float MoveSpeed = 0.2f;
-	int uidCnt = 0;
 	List<FishBase> listFish = new List<FishBase>();
 
 	private void Awake()
@@ -20,6 +17,7 @@ public class FishManager : MonoBehaviour
 	{
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
+		listFish.Add(player);
 		player.Init(new FishBase.Data(0, 1, 2));
 		return player;
 	}
@@ -30,18 +28,18 @@ public class FishManager : MonoBehaviour
 		GameObject goEnemy;
 		FishBase fb;
 		// 杂鱼
-		for (int i = 0; i < enemyNum; ++i)
+		for (int i = 0; i < GameConst.EnemyNum; ++i)
 		{
-			goEnemy = Wrapper.CreateEmptyGameObject(transform, "Enemy_" + uidCnt );
+			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
 			fb.Init(new FishBase.Data( 1, 1, 1));
 			listFish.Add(fb);
 		}
 
 		// 机器人
-		for (int i = 0; i < robotNum; ++i)
+		for (int i = 0; i < GameConst.RobotNum; ++i)
 		{
-			goEnemy = Wrapper.CreateEmptyGameObject( transform, "Robot_" + uidCnt);
+			goEnemy = Wrapper.CreateEmptyGameObject( transform);
 			fb = goEnemy.AddComponent<PlayerRobot>();
 			fb.Init(new FishBase.Data(0, 100, 2));
 			listFish.Add(fb);
@@ -74,6 +72,23 @@ public class FishManager : MonoBehaviour
 		}
 		player.Eat(eatNum);
 
+	}
+
+	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
+	{
+		List<FishBase> enemies = new List<FishBase>();
+		for (int i = 0; i < listFish.Count; ++i)
+		{
+			if (me == listFish[i]) { continue; }
+			if (pos.x + range.x > listFish[i].transform.position.x &&
+				pos.x - range.x < listFish[i].transform.position.x &&
+				pos.z + range.y > listFish[i].transform.position.z &&
+				pos.z - range.y < listFish[i].transform.position.z)
+			{
+				enemies.Add(listFish[i]);
+			}
+		}
+		return enemies;
 	}
 
 }

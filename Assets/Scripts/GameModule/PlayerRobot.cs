@@ -13,7 +13,11 @@ public class PlayerRobot : PlayerBase
 
     public override FishType fishType { get { return FishType.PlayerRobot; } }
 
-    void Idle()
+	public override void Init(Data data)
+	{
+		base.Init(data);
+    }
+	void Idle()
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
@@ -55,9 +59,22 @@ public class PlayerRobot : PlayerBase
     }
     void CalcMoveAction()
     {
-        // 侦察附近是否有比自己小的鱼
-        //if(  )
-        Idle();
+        // 追踪附近比自己小的离最近的鱼
+        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange( this, transform.position, GameConst.RobotFindFishRange );
+        if (listFish.Count > 0)
+        {
+            listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
+            FishBase target = listFish[0];
+            Dir = target.transform.position - transform.position;
+            Dir.Normalize();
+        }
+        else
+        {
+            Idle();
+        }
+        
+
+        
 
 
     }

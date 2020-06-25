@@ -10,7 +10,6 @@ public class EnemyBase : FishBase
     public override void Init(Data data)
     {
         base.Init(data);
-        
     }
 
     // Update is called once per frame

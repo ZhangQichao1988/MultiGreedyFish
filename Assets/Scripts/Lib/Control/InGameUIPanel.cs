@@ -32,12 +32,18 @@ public class InGameUIPanel : MonoBehaviour
         TouchTF.gameObject.SetActive(true);
         TouchTF.localPosition = GetUIPos(((PointerEventData)data).position);
         TouchStickTF.localPosition = Vector3.zero;
-        Player.TouchDown(data);
+        if (Player != null)
+        {
+            Player.TouchDown(data);
+        }
     }
     public void TouchUp(BaseEventData data)
     {
         TouchTF.gameObject.SetActive(false);
-        Player.TouchUp( data );
+        if (Player != null)
+        {
+            Player.TouchUp(data);
+        }
         //curDir = Dir;
         //Dir = Vector3.zero;
         //moveDir = Vector3.zero;
@@ -51,7 +57,10 @@ public class InGameUIPanel : MonoBehaviour
             pos = pos * MaxLength / length;
         }
         TouchStickTF.localPosition = pos;
-        Player.TouchDrag(data, pos, MaxLength);
+        if (Player != null) 
+        {
+            Player.TouchDrag(data, pos, MaxLength);
+        }
     }
 
     public Vector2 GetUIPos(Vector2 pos)
@@ -60,13 +69,5 @@ public class InGameUIPanel : MonoBehaviour
         pos.y = (pos.y / Screen.height - 0.5f) * SelfRectTF.rect.height;
         return pos;
     }
-    //Vector3 Dir;
 
-    //Vector3 curDir;
-    //Vector3 moveDir;
-    //Vector3 pos;
-    public void Update()
-    {
-        Player.CustomUpdate();
-    }
 }

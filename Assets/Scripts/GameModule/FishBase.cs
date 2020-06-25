@@ -19,12 +19,23 @@ public class FishBase : MonoBehaviour
         PlayerRobot,
         Enemy,
     }
+
+    public enum ActionType
+    { 
+        None,
+        Born,
+        Idle,
+        Runaway,
+        Die,
+    }
+
     public struct Data
     {
         public int uid;
         public int fishId;
         public int life;
         public float size;
+        public ActionType actionStep;
 
         public Data(int fishId, int life, float size)
         {
@@ -32,6 +43,7 @@ public class FishBase : MonoBehaviour
             this.fishId = fishId;
             this.life = life;
             this.size = size;
+            actionStep = ActionType.Idle;
         }
     }
     static protected int uidCnt = 0;
@@ -58,6 +70,7 @@ public class FishBase : MonoBehaviour
     {
         data.uid = uidCnt++;
         this.data = data;
+        transform.name = fishType.ToString() + this.data.uid;
         UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
