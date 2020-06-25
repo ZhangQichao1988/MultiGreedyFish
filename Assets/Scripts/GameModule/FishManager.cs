@@ -6,7 +6,7 @@ public class FishManager : MonoBehaviour
 {
 	static public float FlipFrequency = 2f;
 	static public float MoveSpeed = 0.2f;
-	List<FishBase> listFish = new List<FishBase>();
+	public List<FishBase> listFish = new List<FishBase>();
 
 	private void Awake()
 	{
@@ -18,7 +18,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(new FishBase.Data(0, 1, 2));
+		player.Init(new FishBase.Data(0, 100, 2, 5));
 		return player;
 	}
 
@@ -32,7 +32,7 @@ public class FishManager : MonoBehaviour
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
-			fb.Init(new FishBase.Data( 1, 1, 1));
+			fb.Init(new FishBase.Data( 1, 1, 1, 0));
 			listFish.Add(fb);
 		}
 
@@ -41,7 +41,7 @@ public class FishManager : MonoBehaviour
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject( transform);
 			fb = goEnemy.AddComponent<PlayerRobot>();
-			fb.Init(new FishBase.Data(0, 100, 2));
+			fb.Init(new FishBase.Data(0, 100, 2, 5));
 			listFish.Add(fb);
 		}
 
@@ -58,21 +58,18 @@ public class FishManager : MonoBehaviour
 	public void EatCheck(PlayerBase player, Vector3 mouthPos, float range)
 	{
 		FishBase fb;
-		int eatNum = 0;
 		for ( int i = listFish.Count -1; i >= 0; --i )
 		{
 			fb = listFish[i];
 			if (fb.EatCheck(mouthPos, range))
 			{
-				fb.Die();
-				listFish.Remove(fb);
-				++eatNum;
+				player.Atk(fb);
 				continue;
 			}
 		}
-		player.Eat(eatNum);
 
 	}
+
 
 	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
 	{
@@ -80,6 +77,9 @@ public class FishManager : MonoBehaviour
 		for (int i = 0; i < listFish.Count; ++i)
 		{
 			if (me == listFish[i]) { continue; }
+			if (listFish[i].actionStep == FishBase.ActionType.Die ||
+				listFish[i].actionStep == FishBase.ActionType.Born) { continue; }
+
 			if (pos.x + range.x > listFish[i].transform.position.x &&
 				pos.x - range.x < listFish[i].transform.position.x &&
 				pos.z + range.y > listFish[i].transform.position.z &&

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishBase : MonoBehaviour
 {
@@ -34,31 +35,54 @@ public class FishBase : MonoBehaviour
         public int uid;
         public int fishId;
         public int life;
+        public int lifeMax;
         public float size;
-        public ActionType actionStep;
+        public int atk;
 
-        public Data(int fishId, int life, float size)
+        public Data(int fishId, int life, float size, int atk)
         {
             uid = -1;
             this.fishId = fishId;
             this.life = life;
+            this.lifeMax = life;
             this.size = size;
-            actionStep = ActionType.Idle;
+            this.atk = atk;
         }
     }
     static protected int uidCnt = 0;
 
-    protected Data data;
+    public Data data;
     protected Animator animator = null;
     protected Transform transModel = null;
-   // protected MeshFilter meshFilter = null;
+    public ActionType actionStep;
+
+    // idle相关
+    float changeVectorRemainingTime = 0f;
+    static readonly float hitWallCoolTimeMax = 1f;
+    float hitWallCoolTime = 0f;
+
+    // 伤害相关
+    public float dmgCoolTime = 0;
 
     protected Vector3 Dir;
     protected Vector3 curDir;
     protected Vector3 moveDir;
 
+    static readonly string lifeGaugePath = "Prefabs/PlayerLifeGauge";
+    protected Slider lifeGauge = null;
+
+    protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
+    public int life
+    {
+        get { return data.life; }
+        set
+        {
+            data.life = value;
+            if (lifeGauge != null) { lifeGauge.value = value; }
+        }
+    }
 
     //Vector3 pos;
     protected virtual void Awake()
@@ -68,6 +92,7 @@ public class FishBase : MonoBehaviour
 
     public virtual void Init(Data data)
     {
+        actionStep = ActionType.Idle;
         data.uid = uidCnt++;
         this.data = data;
         transform.name = fishType.ToString() + this.data.uid;
@@ -75,22 +100,35 @@ public class FishBase : MonoBehaviour
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         transform.localScale = Vector3.one * data.size;
-        transform.position = new Vector3(Wrapper.GetRandom(-GameConst.bgBound.x, GameConst.bgBound.x),
-                                                                0,
-                                                                Wrapper.GetRandom(-GameConst.bgBound.y, GameConst.bgBound.y));
+        transform.position = GetBornPosition();
 
         //meshFilter = go.GetComponent<MeshFilter>();
         animator = transModel.GetComponent<Animator>();
 
+        if (showLifeGauge)
+        {
+            CreateLifeGuage();
+        }
+    }
+
+    protected Vector3 GetBornPosition()
+    {
+        return new Vector3(Wrapper.GetRandom(-GameConst.bgBound.x, GameConst.bgBound.x), 0, Wrapper.GetRandom(-GameConst.bgBound.y, GameConst.bgBound.y));
     }
 
     public void SetMoveDir(Vector3 moveDir)
     {
         Dir = moveDir;
     }
-    public virtual void CustomUpdate()
+
+    protected void MoveUpdate()
     {
         Vector3 pos = transform.position;
+
+        // 速度计算
+        float spd = Mathf.Sqrt(data.size);
+        Vector3 dir = Dir * spd;
+
         if (Dir.sqrMagnitude > 0)
         {
             float angle = Vector3.Angle(curDir.normalized, Dir.normalized);
@@ -120,14 +158,77 @@ public class FishBase : MonoBehaviour
 
         transform.position = pos;
     }
+    public virtual void CustomUpdate()
+    {
+        if (dmgCoolTime > 0) { dmgCoolTime -= Time.deltaTime; }
+
+        MoveUpdate();
+    }
 
     public bool EatCheck(Vector3 mouthPos, float range)
     {
-        return Vector3.Distance(transform.position, mouthPos) < range;
+        return dmgCoolTime <= 0 &&
+        actionStep != ActionType.Born &&
+        actionStep != ActionType.Die &&
+        actionStep != ActionType.None &&
+        Vector3.Distance(transform.position, mouthPos) < range;
     }
 
-    public void Die()
+    public virtual void Die()
     {
-        Destroy(this.gameObject);
+        ManagerGroup.GetInstance().fishManager.listFish.Remove( this );
+        Destroy( gameObject );
+    }
+
+    protected virtual void EnemyIdle()
+    {
+        // 过一段时间改变一下方向
+        changeVectorRemainingTime -= Time.deltaTime;
+
+        // 更改方向的倒计时还有
+        if (changeVectorRemainingTime > 0)
+        {
+            // 撞墙前改变方向
+            hitWallCoolTime -= Time.deltaTime;
+            if (hitWallCoolTime < 0)
+            {
+                Vector3 pos = transform.position;
+                pos.x = Mathf.Clamp(transform.position.x, -GameConst.bgBound.x + 5, GameConst.bgBound.x - 5);
+                pos.z = Mathf.Clamp(transform.position.y, -GameConst.bgBound.y + 5, GameConst.bgBound.y - 5);
+                if (transform.position != pos)
+                {
+                    Dir = -Dir;
+                    hitWallCoolTime = hitWallCoolTimeMax;
+                }
+            }
+
+            // 让它不走直线
+            else if (Wrapper.GetRandom(0, 1) > 0.95f)
+            {
+                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
+                Dir.Normalize();
+            }
+
+            return;
+        }
+
+        // 改变方向
+        Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1, 1), Wrapper.GetRandom(-1, 1));
+        moveVec.Normalize();
+        Dir = new Vector3(moveVec.x, 0, moveVec.y);
+
+        // 设置下次更改方向的剩余时间
+        changeVectorRemainingTime = Wrapper.GetRandom(1, 3);
+    }
+
+    protected void CreateLifeGuage()
+    { 
+        // 生命条
+		UnityEngine.Object obj = Resources.Load(lifeGaugePath);
+        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
+        lifeGauge = go.GetComponentInChildren<Slider>();
+        Debug.Assert(lifeGauge, "lifeGauge is not found.");
+        lifeGauge.maxValue = data.lifeMax;
+        lifeGauge.value = data.life;
     }
 }

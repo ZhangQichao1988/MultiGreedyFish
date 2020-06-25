@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,20 +7,16 @@ using UnityEngine.UI;
 
 public class PlayerBase : FishBase
 {
-	static readonly string lifeGaugePath = "Prefabs/PlayerLifeGauge";
 	string boneNameMouth = "head_end";
 	Transform transMouth = null;
-	Slider lifeGauge = null;
+
+	protected override bool showLifeGauge { get { return true; } }
 
 	public override FishType fishType { get { return FishType.Player; } }
 
 	protected override void Awake()
 	{
 		base.Awake();
-
-
-
-
 	}
 	public override void Init(Data data)
 	{
@@ -29,13 +26,6 @@ public class PlayerBase : FishBase
 		transMouth = GameObjectUtil.FindGameObjectByName(boneNameMouth, gameObject).transform;
 		Debug.Assert(transMouth, "transMouth is not found.");
 
-		// 生命条
-		Object obj = Resources.Load(lifeGaugePath);
-		GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
-		lifeGauge = go.GetComponentInChildren<Slider>();
-		Debug.Assert(lifeGauge, "lifeGauge is not found.");
-		lifeGauge.maxValue = data.life;
-		lifeGauge.value = data.life;
 	}
 
 	public void TouchUp(BaseEventData data)
@@ -71,9 +61,22 @@ public class PlayerBase : FishBase
 		ManagerGroup.GetInstance().fishManager.EatCheck(this, transMouth.position, 0.3f * data.size);
 	}
 
-	public void Eat(int num)
+
+
+	public void Atk(FishBase fish)
 	{
-		data.size += GameConst.PlayerSizeUpRate * num;
+		fish.dmgCoolTime = GameConst.EnemyDmgCoolTime;
+		fish.life -= data.atk;
+		if (fish.data.life <= 0)
+		{
+			fish.Die();
+			Eat();
+		}
+	}
+		public void Eat()
+	{
+		data.size += GameConst.PlayerSizeUpRate;
+		data.size = Math.Min(GameConst.FishMaxScale, data.size);
 		ApplySize();
 	}
 

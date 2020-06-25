@@ -60,7 +60,7 @@ public class CameraFollow : MonoBehaviour
 					ChangePos = Vector3.Lerp(ChangePos, RadiusCenter + OffsetPos, lerp);
 					if (Mathf.Abs(Angle - 42.2f) < 0.05f)
 					{
-						Angle = 42.2f;
+						Angle = 28f;
 						Distance = 90f;
 						Offset = 0;
 						ChangePos = RadiusCenter + OffsetPos;
