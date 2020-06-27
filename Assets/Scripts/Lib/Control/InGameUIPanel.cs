@@ -19,15 +19,15 @@ public class InGameUIPanel : MonoBehaviour
     {
         SelfRectTF = GetComponent<RectTransform>();
         TouchTF.gameObject.SetActive(false);
+    }
 
-        //GameObject go = Wrapper.CreateGameObject(new GameObject(), transform, "Player");
+	public void Init()
+	{
         Player = ManagerGroup.GetInstance().fishManager.CreatePlayer();
         cameraFollow.Target = Player.transform;
     }
 
-
-
-    public void TouchDown(BaseEventData data)
+	public void TouchDown(BaseEventData data)
     {
         TouchTF.gameObject.SetActive(true);
         TouchTF.localPosition = GetUIPos(((PointerEventData)data).position);

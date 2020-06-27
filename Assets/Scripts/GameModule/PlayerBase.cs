@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerBase : FishBase
 {
-	string boneNameMouth = "head_end";
-	Transform transMouth = null;
+	static readonly string boneNameMouth = "head_end";
+	public BoxCollider colliderMouth = null;
 
 	protected override bool showLifeGauge { get { return true; } }
 
@@ -23,9 +23,10 @@ public class PlayerBase : FishBase
 		base.Init(data);
 
 		// 嘴巴位置获得
-		transMouth = GameObjectUtil.FindGameObjectByName(boneNameMouth, gameObject).transform;
-		Debug.Assert(transMouth, "transMouth is not found.");
-
+		 GameObject go= GameObjectUtil.FindGameObjectByName(boneNameMouth, gameObject);
+		Debug.Assert(go, "transMouth is not found.");
+		colliderMouth = go.GetComponent<BoxCollider>();
+		Debug.Assert(colliderMouth, "colliderMouth is not found.");
 	}
 
 	public void TouchUp(BaseEventData data)
@@ -55,34 +56,72 @@ public class PlayerBase : FishBase
 
 	public override void CustomUpdate()
 	{
+		switch (actionStep)
+		{
+			case ActionType.Idle:
+				Idle();
+				break;
+			case ActionType.Eatting:
+				Eatting();
+				break;
+		}
+	}
+
+	public void Eatting()
+	{
+		if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("eat"))
+		{
+			data.moveSpeed = originalData.moveSpeed;
+			actionStep = ActionType.Idle;
+		}
+		
+		base.CustomUpdate();
+	}
+	public void Idle()
+	{
 		base.CustomUpdate();
 
 		// 吞噬
-		ManagerGroup.GetInstance().fishManager.EatCheck(this, transMouth.position, 0.3f * data.size);
+		ManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
 	}
 
 
 
 	public void Atk(FishBase fish)
 	{
-		fish.dmgCoolTime = GameConst.EnemyDmgCoolTime;
-		fish.life -= data.atk;
+		animator.SetTrigger("Eat");
+		actionStep = ActionType.Eatting;
+		data.moveSpeed = 0f;
+
+		fish.life -= (int)((float)data.atk * transform.localScale.x);
 		if (fish.data.life <= 0)
 		{
 			fish.Die();
-			Eat();
+			Eat(fish);
 		}
 	}
-		public void Eat()
+	public void Eat(FishBase fish)
 	{
-		data.size += GameConst.PlayerSizeUpRate;
-		data.size = Math.Min(GameConst.FishMaxScale, data.size);
-		ApplySize();
+		life += (int)(fish.lifeMax * GameConst.HealLifeFromEatRate);
+
+		if (fishType == FishType.Player)
+		{
+			if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1)
+			{
+				ManagerGroup.GetInstance().GotoResult(1);
+			}
+		}
+		
 	}
 
-	private void ApplySize()
+	public override void Die()
 	{
-		transform.localScale = Vector3.one * data.size;
+		base.Die();
+		if (fishType == FishType.Player)
+		{
+			ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
+		}
 	}
+
 
 }

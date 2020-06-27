@@ -18,10 +18,18 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(new FishBase.Data(0, 100, 2, 5));
+		player.Init(new FishBase.Data(0, 100, 20, 1f));
 		return player;
 	}
 
+	public void Clean()
+	{
+		for (int i = 0; i < listFish.Count; ++i)
+		{
+			Destroy(listFish[i].gameObject);
+		}
+		listFish.Clear();
+	}
 		public void CreateEnemy()
 	{
 		
@@ -32,7 +40,7 @@ public class FishManager : MonoBehaviour
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
-			fb.Init(new FishBase.Data( 1, 1, 1, 0));
+			fb.Init(new FishBase.Data( 1, 20, 0, 0.5f));
 			listFish.Add(fb);
 		}
 
@@ -41,7 +49,7 @@ public class FishManager : MonoBehaviour
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject( transform);
 			fb = goEnemy.AddComponent<PlayerRobot>();
-			fb.Init(new FishBase.Data(0, 100, 2, 5));
+			fb.Init(new FishBase.Data(0, 100, 10, 1f));
 			listFish.Add(fb);
 		}
 
@@ -55,13 +63,15 @@ public class FishManager : MonoBehaviour
 		}
 	}
 
-	public void EatCheck(PlayerBase player, Vector3 mouthPos, float range)
+	public void EatCheck(PlayerBase player, BoxCollider atkCollider)
 	{
 		FishBase fb;
+		List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, GameConst.RobotFindFishRange);
 		for ( int i = listFish.Count -1; i >= 0; --i )
 		{
 			fb = listFish[i];
-			if (fb.EatCheck(mouthPos, range))
+			if (player == fb) { continue; }
+			if (fb.EatCheck(atkCollider))
 			{
 				player.Atk(fb);
 				continue;
@@ -89,6 +99,19 @@ public class FishManager : MonoBehaviour
 			}
 		}
 		return enemies;
+	}
+
+	public List<FishBase> GetAlivePlayer()
+	{
+		List<FishBase> listPlayer = new List<FishBase>();
+		for (int i = 0; i < listFish.Count; ++i)
+		{
+			if (listFish[i].fishType != FishBase.FishType.Enemy && listFish[i].actionStep != FishBase.ActionType.Die)
+			{
+				listPlayer.Add(listFish[i]);
+			}
+		}
+		return listPlayer;
 	}
 
 }

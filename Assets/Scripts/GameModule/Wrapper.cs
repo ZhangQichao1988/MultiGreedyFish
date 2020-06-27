@@ -28,4 +28,9 @@ public class Wrapper
     {
         return UnityEngine.Random.Range(min, max);
     }
+
+    static public float GetRandom(int min, int max)
+    {
+        return UnityEngine.Random.Range(min, max);
+    }
 }

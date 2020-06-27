@@ -27,6 +27,7 @@ public class FishBase : MonoBehaviour
         Born,
         Idle,
         Runaway,
+        Eatting,
         Die,
     }
 
@@ -36,41 +37,45 @@ public class FishBase : MonoBehaviour
         public int fishId;
         public int life;
         public int lifeMax;
-        public float size;
         public int atk;
+        public float moveSpeed;
 
-        public Data(int fishId, int life, float size, int atk)
+        public Data(int fishId, int life, int atk, float moveSpeed)
         {
             uid = -1;
             this.fishId = fishId;
             this.life = life;
             this.lifeMax = life;
-            this.size = size;
             this.atk = atk;
+            this.moveSpeed = moveSpeed;
         }
     }
     static protected int uidCnt = 0;
 
     public Data data;
+    public Data originalData;
     protected Animator animator = null;
     protected Transform transModel = null;
+    protected BoxCollider colliderBody;
     public ActionType actionStep;
 
     // idle相关
-    float changeVectorRemainingTime = 0f;
-    static readonly float hitWallCoolTimeMax = 1f;
-    float hitWallCoolTime = 0f;
-
-    // 伤害相关
-    public float dmgCoolTime = 0;
+    protected float changeVectorRemainingTime = 0f;
+    protected static readonly float hitWallCoolTimeMax = 1f;
+    protected float hitWallCoolTime = 0f;
 
     protected Vector3 Dir;
     protected Vector3 curDir;
     protected Vector3 moveDir;
 
     static readonly string lifeGaugePath = "Prefabs/PlayerLifeGauge";
-    protected Slider lifeGauge = null;
+    static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
+    
+    public Slider lifeGauge = null;
+    public Text lifeText = null;
 
+    // 水泡粒子
+    protected ParticleSystem particleBlister;
     protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
@@ -79,8 +84,40 @@ public class FishBase : MonoBehaviour
         get { return data.life; }
         set
         {
+            if (value >= lifeMax)
+            {
+                lifeMax = value;
+            }
             data.life = value;
-            if (lifeGauge != null) { lifeGauge.value = value; }
+            if (lifeGauge != null) { lifeGauge.value = data.life; }
+            UpdateLifeText();
+        }
+    }
+
+    public int lifeMax
+    {
+        get { return data.lifeMax; }
+        set
+        {
+            data.lifeMax = value;
+            if (lifeGauge != null) { lifeGauge.maxValue = data.lifeMax; }
+            UpdateLifeText();
+            ApplySize();
+        }
+    }
+
+    public float lifeRate 
+    {
+        get 
+        {
+            return (float)life / (float)lifeMax;
+        }
+    }
+    void UpdateLifeText()
+    {
+        if (lifeText != null)
+        {
+            lifeText.text = string.Format("{0}/{1}", life, lifeMax);
         }
     }
 
@@ -95,20 +132,24 @@ public class FishBase : MonoBehaviour
         actionStep = ActionType.Idle;
         data.uid = uidCnt++;
         this.data = data;
+        this.originalData = data;
         transform.name = fishType.ToString() + this.data.uid;
         UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
-        transform.localScale = Vector3.one * data.size;
         transform.position = GetBornPosition();
 
-        //meshFilter = go.GetComponent<MeshFilter>();
+        colliderBody = transModel.gameObject.GetComponent<BoxCollider>();
+        
+
         animator = transModel.GetComponent<Animator>();
 
         if (showLifeGauge)
         {
             CreateLifeGuage();
         }
+        life = data.life;
+        lifeMax = data.lifeMax;
     }
 
     protected Vector3 GetBornPosition()
@@ -126,21 +167,21 @@ public class FishBase : MonoBehaviour
         Vector3 pos = transform.position;
 
         // 速度计算
-        float spd = Mathf.Sqrt(data.size);
-        Vector3 dir = Dir * spd;
+        float spd = Mathf.Sqrt( transform.localScale.x );
+        Vector3 dir = Dir / spd * data.moveSpeed;
 
-        if (Dir.sqrMagnitude > 0)
+        if (dir.sqrMagnitude > 0)
         {
-            float angle = Vector3.Angle(curDir.normalized, Dir.normalized);
-            curDir = Vector3.Slerp(curDir.normalized, Dir.normalized, 520 / angle * Time.deltaTime);
-            moveDir = Vector3.Lerp(moveDir, Dir, 360 / angle * Time.deltaTime);
+            float angle = Vector3.Angle(curDir.normalized, dir.normalized);
+            curDir = Vector3.Slerp(curDir.normalized, dir.normalized, 520 / angle * Time.deltaTime);
+            moveDir = Vector3.Lerp(moveDir, dir, 360 / angle * Time.deltaTime);
             pos += moveDir * 10 * Time.deltaTime;
             pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
             animator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude, 0.101f, 1f));
         }
         else
         {
-            curDir = Vector3.Lerp(curDir, Dir, 5 * Time.deltaTime);
+            curDir = Vector3.Lerp(curDir, dir, 5 * Time.deltaTime);
             if (curDir.sqrMagnitude > 0.001f)
             {
                 pos += curDir * 10 * Time.deltaTime;
@@ -160,65 +201,28 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
-        if (dmgCoolTime > 0) { dmgCoolTime -= Time.deltaTime; }
-
         MoveUpdate();
     }
 
-    public bool EatCheck(Vector3 mouthPos, float range)
+    public bool EatCheck(BoxCollider atkCollider)
     {
-        return dmgCoolTime <= 0 &&
-        actionStep != ActionType.Born &&
-        actionStep != ActionType.Die &&
-        actionStep != ActionType.None &&
-        Vector3.Distance(transform.position, mouthPos) < range;
+        if (actionStep == ActionType.Born ||
+            actionStep == ActionType.Die ||
+            actionStep == ActionType.None)
+        {
+            return false;
+        }
+
+        //float dis = BoundsBody.SqrDistance(mouthPos);
+        //range = (float)Math.Pow(range, 2);
+        
+        return colliderBody.bounds.Intersects(atkCollider.bounds);
     }
 
     public virtual void Die()
     {
         ManagerGroup.GetInstance().fishManager.listFish.Remove( this );
         Destroy( gameObject );
-    }
-
-    protected virtual void EnemyIdle()
-    {
-        // 过一段时间改变一下方向
-        changeVectorRemainingTime -= Time.deltaTime;
-
-        // 更改方向的倒计时还有
-        if (changeVectorRemainingTime > 0)
-        {
-            // 撞墙前改变方向
-            hitWallCoolTime -= Time.deltaTime;
-            if (hitWallCoolTime < 0)
-            {
-                Vector3 pos = transform.position;
-                pos.x = Mathf.Clamp(transform.position.x, -GameConst.bgBound.x + 5, GameConst.bgBound.x - 5);
-                pos.z = Mathf.Clamp(transform.position.y, -GameConst.bgBound.y + 5, GameConst.bgBound.y - 5);
-                if (transform.position != pos)
-                {
-                    Dir = -Dir;
-                    hitWallCoolTime = hitWallCoolTimeMax;
-                }
-            }
-
-            // 让它不走直线
-            else if (Wrapper.GetRandom(0, 1) > 0.95f)
-            {
-                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
-                Dir.Normalize();
-            }
-
-            return;
-        }
-
-        // 改变方向
-        Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1, 1), Wrapper.GetRandom(-1, 1));
-        moveVec.Normalize();
-        Dir = new Vector3(moveVec.x, 0, moveVec.y);
-
-        // 设置下次更改方向的剩余时间
-        changeVectorRemainingTime = Wrapper.GetRandom(1, 3);
     }
 
     protected void CreateLifeGuage()
@@ -228,7 +232,28 @@ public class FishBase : MonoBehaviour
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         lifeGauge = go.GetComponentInChildren<Slider>();
         Debug.Assert(lifeGauge, "lifeGauge is not found.");
-        lifeGauge.maxValue = data.lifeMax;
-        lifeGauge.value = data.life;
+        //lifeGauge.maxValue = data.lifeMax;
+        //lifeGauge.value = data.life;
+
+        lifeText = go.GetComponentInChildren<Text>();
+        Debug.Assert(lifeText, "lifeText is not found.");
+    }
+
+    // 水泡
+    protected void CreateBlisterParticle()
+    {
+        
+        UnityEngine.Object obj = Resources.Load(blisterParticlePath);
+        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
+        particleBlister = go.GetComponent<ParticleSystem>();
+        particleBlister.Stop();
+    }
+
+    private void ApplySize()
+    {
+        float size = ((float)lifeMax - (float)originalData.lifeMax) / (float)originalData.lifeMax;
+        size = 1 + (float)Math.Sqrt(size) * GameConst.PlayerSizeUpRate;
+        size = Math.Min(GameConst.FishMaxScale, size);
+        transform.localScale = new Vector3(size, size, size);
     }
 }
