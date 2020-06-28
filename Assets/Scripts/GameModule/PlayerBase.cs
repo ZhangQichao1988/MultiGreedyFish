@@ -65,6 +65,7 @@ public class PlayerBase : FishBase
 				Eatting();
 				break;
 		}
+
 	}
 
 	public void Eatting()

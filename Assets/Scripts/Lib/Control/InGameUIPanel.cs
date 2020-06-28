@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InGameUIPanel : MonoBehaviour
 {
-    
+    public float curveWorldStrength = 0f;
 
     public Transform TouchTF;
     public Transform TouchStickTF;
@@ -70,4 +70,10 @@ public class InGameUIPanel : MonoBehaviour
         return pos;
     }
 
+	public void Update()
+	{
+        Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
+        Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
+
+    }
 }

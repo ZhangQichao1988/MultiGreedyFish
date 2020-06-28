@@ -35,8 +35,8 @@ public class CameraFollow : MonoBehaviour
         Radius = 1f;
         BaseRadius = 90;
         curState = State.MovingTop;
-        OffsetPos = Vector3.zero;
-        FixOffsetPos = Vector3.forward * 1.6f;
+        //OffsetPos = Vector3.zero;
+        //FixOffsetPos = Vector3.forward * 1.6f;
     }
     public void SetTarget(Transform target)
     {
@@ -54,8 +54,8 @@ public class CameraFollow : MonoBehaviour
 			switch (curState)
 			{
 				case State.MovingTop:
-					Angle = Mathf.Lerp(Angle, 42.2f, lerp);
-					Distance = Mathf.Lerp(Distance, 36.6f, lerp);
+					Angle = Mathf.Lerp(Angle, 38f, lerp);
+					Distance = Mathf.Lerp(Distance, 90f, lerp);
 					Offset = Mathf.Lerp(Offset, 0, lerp);
 					ChangePos = Vector3.Lerp(ChangePos, RadiusCenter + OffsetPos, lerp);
 					if (Mathf.Abs(Angle - 42.2f) < 0.05f)
