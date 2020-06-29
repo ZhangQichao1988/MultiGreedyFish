@@ -56,6 +56,7 @@ public class FishBase : MonoBehaviour
     public Data originalData;
     protected Animator animator = null;
     protected Transform transModel = null;
+    protected Renderer[] renderers = null;
     protected BoxCollider colliderBody;
     public ActionType actionStep;
 
@@ -63,6 +64,10 @@ public class FishBase : MonoBehaviour
     protected float changeVectorRemainingTime = 0f;
     protected static readonly float hitWallCoolTimeMax = 1f;
     protected float hitWallCoolTime = 0f;
+
+    protected bool beforeInPoisonRing = false;
+    protected float inPoisonRingTime = 0f;
+    protected int inPoisonRingDmgCnt = 0;
 
     protected Vector3 Dir;
     protected Vector3 curDir;
@@ -91,6 +96,11 @@ public class FishBase : MonoBehaviour
             data.life = value;
             if (lifeGauge != null) { lifeGauge.value = data.life; }
             UpdateLifeText();
+
+            if (data.life <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -137,6 +147,7 @@ public class FishBase : MonoBehaviour
         UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
+        renderers = transModel.GetComponentsInChildren<Renderer>();
         transform.position = GetBornPosition();
 
         colliderBody = transModel.gameObject.GetComponent<BoxCollider>();
@@ -201,6 +212,7 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
+        PoisonRingCheck();
         MoveUpdate();
     }
 
@@ -255,5 +267,41 @@ public class FishBase : MonoBehaviour
         size = 1 + (float)Math.Sqrt(size) * GameConst.PlayerSizeUpRate;
         size = Math.Min(GameConst.FishMaxScale, size);
         transform.localScale = new Vector3(size, size, size);
+    }
+
+    protected void SetAlpha(float alpha)
+    {
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.GetPropertyBlock( mpb );
+            mpb.SetFloat("_Alpha", alpha);
+            renderer.SetPropertyBlock(mpb);
+        }
+    }
+
+    // 毒圈判定
+    protected void PoisonRingCheck()
+    {
+        if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
+        {
+            if (!beforeInPoisonRing)
+            {
+                inPoisonRingDmgCnt = 0;
+            }
+            beforeInPoisonRing = true;
+            inPoisonRingTime += Time.deltaTime;
+        }
+        else
+        {
+
+            inPoisonRingTime = 0;
+            beforeInPoisonRing = false;
+        }
+
+        if (inPoisonRingTime >= inPoisonRingDmgCnt * GameConst.PoisonRingDmgCoolTime)
+        {
+            life -= GameConst.PoisonRingDmg * inPoisonRingDmgCnt++;
+        }
     }
 }

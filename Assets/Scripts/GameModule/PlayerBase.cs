@@ -95,11 +95,11 @@ public class PlayerBase : FishBase
 		data.moveSpeed = 0f;
 
 		fish.life -= (int)((float)data.atk * transform.localScale.x);
-		if (fish.data.life <= 0)
+		if (fish.life <= 0)
 		{
-			fish.Die();
 			Eat(fish);
 		}
+
 	}
 	public void Eat(FishBase fish)
 	{

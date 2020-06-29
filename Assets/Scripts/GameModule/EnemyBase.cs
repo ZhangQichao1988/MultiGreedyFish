@@ -13,7 +13,7 @@ public class EnemyBase : FishBase
     {
         base.Init(data);
 
-        CreateBlisterParticle();
+        //CreateBlisterParticle();
     }
 
     // Update is called once per frame
@@ -45,11 +45,13 @@ public class EnemyBase : FishBase
         if (remainingTime <= 0)
         {
             actionStep = ActionType.Born;
-            particleBlister.Play();
+            if(particleBlister!= null) particleBlister.Play();
             transModel.gameObject.SetActive(true);
-            transform.position = GetBornPosition() + Vector3.up * GameConst.EnemyResurrectionY;
+            remainingTime = 1f;
+            SetAlpha(0f);
         }
     }
+
 
     protected void EnemyIdle()
     {
@@ -91,30 +93,41 @@ public class EnemyBase : FishBase
 
     protected void Born()
     {
-        EnemyIdle();
-        Dir.y = -0.2f;
+        //EnemyIdle();
+        //Dir.y = -0.2f;
 
-        base.MoveUpdate();
+        //base.MoveUpdate();
 
-        if (!isCastShadow && transform.position.y <= 1f)
+        //if (!isCastShadow && transform.position.y <= 1f)
+        //{
+        //    SetCastShadowMode(true);
+        //}
+        //if (transform.position.y <= 0)
+        //{
+        //    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        //    Dir.y = 0;
+        //    curDir.y = 0;
+        //    moveDir.y = 0;
+        //    changeVectorRemainingTime = 0f;
+        //    particleBlister.Stop();
+        //    actionStep = ActionType.Idle;
+        //}
+        remainingTime -= Time.deltaTime;
+        if (remainingTime <= 0f)
         {
-            SetCastShadowMode(true);
-        }
-        if (transform.position.y <= 0)
-        {
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-            Dir.y = 0;
-            curDir.y = 0;
-            moveDir.y = 0;
-            changeVectorRemainingTime = 0f;
-            particleBlister.Stop();
+            remainingTime = 0f;
             actionStep = ActionType.Idle;
         }
+        SetAlpha((1-remainingTime));
+
+
+        EnemyIdle();
+        base.MoveUpdate();
     }
 
     public override void Die()
     {
-        SetCastShadowMode(false);
+        //SetCastShadowMode(false);
         transModel.gameObject.SetActive(false);
         actionStep = ActionType.Die;
         remainingTime = GameConst.EnemyResurrectionRemainingTime;
