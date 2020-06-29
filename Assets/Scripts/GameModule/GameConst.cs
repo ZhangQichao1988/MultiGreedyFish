@@ -7,7 +7,10 @@ public class GameConst
 	static readonly public int EnemyNum = 50;                                                                       // 杂鱼数量
 	static readonly public int RobotNum = 9;                                                                            // 机器人数量
 
-	static readonly public Vector2 bgBound = new Vector2(48, 48);                                       // 鱼可游动范围
+	static readonly public Vector2 BgBound = new Vector2(48, 48);                                       // 鱼可游动范围
+	static readonly public float PoisonRingScaleSpeed = 0.1f;                                             // 毒圈缩小速度
+	static readonly public float PoisonRingRadiusMin = 5f;														// 毒圈的最小半径
+	static readonly public float PoisonRingRadiusMax = 50f;                                                 // 毒圈的最大半径
 
 	static readonly public float PlayerSizeUpRate = 0.3f;                                                         // 吃一条鱼变大倍率
 	static readonly public float FishMaxScale = 3f;                                                                 // 鱼最大体积倍率

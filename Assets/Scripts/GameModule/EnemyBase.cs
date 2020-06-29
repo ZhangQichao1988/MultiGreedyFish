@@ -17,7 +17,7 @@ public class EnemyBase : FishBase
     }
 
     // Update is called once per frame
-    public override void CustomUpdate()
+    protected override void MoveUpdate()
     {
         
 
@@ -28,7 +28,7 @@ public class EnemyBase : FishBase
                 break;
             case ActionType.Idle:
                 EnemyIdle();
-                base.CustomUpdate();
+                base.MoveUpdate();
                 break;
             case ActionType.Die:
                 DieWait();
@@ -63,10 +63,7 @@ public class EnemyBase : FishBase
             hitWallCoolTime -= Time.deltaTime;
             if (hitWallCoolTime < 0)
             {
-                Vector3 pos = transform.position;
-                pos.x = Mathf.Clamp(transform.position.x, -GameConst.bgBound.x + 5, GameConst.bgBound.x - 5);
-                pos.z = Mathf.Clamp(transform.position.z, -GameConst.bgBound.y + 5, GameConst.bgBound.y - 5);
-                if (transform.position != pos)
+                if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2) - 5)
                 {
                     Dir = -Dir;
                     hitWallCoolTime = hitWallCoolTimeMax;
@@ -97,7 +94,7 @@ public class EnemyBase : FishBase
         EnemyIdle();
         Dir.y = -0.2f;
 
-        base.CustomUpdate();
+        base.MoveUpdate();
 
         if (!isCastShadow && transform.position.y <= 1f)
         {

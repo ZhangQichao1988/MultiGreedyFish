@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 822543520}
   - component: {fileID: 822543519}
   - component: {fileID: 822543518}
+  - component: {fileID: 822543522}
   m_Layer: 9
   m_Name: PoisonRing
   m_TagString: Untagged
@@ -668,6 +669,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &822543522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822543517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2838b2854b4f84409afff81779c8d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1665226536
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +716,7 @@ MonoBehaviour:
   titleBtn: {fileID: 1759142873}
   resultRoot: {fileID: 407078261}
   resultText: {fileID: 407078264}
+  poisonRing: {fileID: 822543522}
 --- !u!4 &1665226538
 Transform:
   m_ObjectHideFlags: 0

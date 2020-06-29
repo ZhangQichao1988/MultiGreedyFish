@@ -54,7 +54,7 @@ public class PlayerBase : FishBase
 		}
 	}
 
-	public override void CustomUpdate()
+	protected override void MoveUpdate()
 	{
 		switch (actionStep)
 		{
@@ -76,11 +76,11 @@ public class PlayerBase : FishBase
 			actionStep = ActionType.Idle;
 		}
 		
-		base.CustomUpdate();
+		base.MoveUpdate();
 	}
 	public void Idle()
 	{
-		base.CustomUpdate();
+		base.MoveUpdate();
 
 		// 吞噬
 		ManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);

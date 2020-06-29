@@ -14,14 +14,17 @@ public class ManagerGroup : MonoBehaviour
         Result,
     }
     static ManagerGroup instance = null;
+
     public InGameUIPanel inGameUIPanel = null;
     public FishManager fishManager = null;
     public GameObject battleControl = null;
+    public PoisonRing poisonRing = null;
+
     public GameObject titleBtn = null;
     public GameObject resultRoot = null;
     public Text resultText = null;
 
-	private void Awake()
+    private void Awake()
 	{
         instance = this;
         battleControl.SetActive(false);
@@ -35,6 +38,7 @@ public class ManagerGroup : MonoBehaviour
         resultRoot.SetActive(false);
         titleBtn.SetActive(false);
         battleControl.SetActive(true) ;
+        poisonRing.Init();
 
         fishManager.Clean();
         inGameUIPanel.Init();

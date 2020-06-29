@@ -154,7 +154,7 @@ public class FishBase : MonoBehaviour
 
     protected Vector3 GetBornPosition()
     {
-        return new Vector3(Wrapper.GetRandom(-GameConst.bgBound.x, GameConst.bgBound.x), 0, Wrapper.GetRandom(-GameConst.bgBound.y, GameConst.bgBound.y));
+       return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
     }
 
     public void SetMoveDir(Vector3 moveDir)
@@ -162,7 +162,7 @@ public class FishBase : MonoBehaviour
         Dir = moveDir;
     }
 
-    protected void MoveUpdate()
+    protected virtual void MoveUpdate()
     {
         Vector3 pos = transform.position;
 
@@ -194,8 +194,8 @@ public class FishBase : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -GameConst.bgBound.x, GameConst.bgBound.x);
-        pos.z = Mathf.Clamp(pos.z, -GameConst.bgBound.y, GameConst.bgBound.y);
+        pos.x = Mathf.Clamp(pos.x, -GameConst.BgBound.x, GameConst.BgBound.x);
+        pos.z = Mathf.Clamp(pos.z, -GameConst.BgBound.y, GameConst.BgBound.y);
 
         transform.position = pos;
     }
