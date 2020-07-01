@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 474824}
   - component: {fileID: 13774806}
   m_Layer: 8
-  m_Name: clown_fin
+  m_Name: fin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

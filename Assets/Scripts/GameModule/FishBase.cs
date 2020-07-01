@@ -73,10 +73,10 @@ public class FishBase : MonoBehaviour
     protected Vector3 curDir;
     protected Vector3 moveDir;
 
-    static readonly string lifeGaugePath = "Prefabs/PlayerLifeGauge";
+    static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
     
-    public Slider lifeGauge = null;
+    public LifeGauge lifeGauge = null;
     public Text lifeText = null;
 
     // 水泡粒子
@@ -93,9 +93,12 @@ public class FishBase : MonoBehaviour
             {
                 lifeMax = value;
             }
+            if (value < data.life)
+            {
+                Damge();
+            }
             data.life = value;
-            if (lifeGauge != null) { lifeGauge.value = data.life; }
-            UpdateLifeText();
+            if (lifeGauge != null) { lifeGauge.SetValue(data.life, data.lifeMax); }
 
             if (data.life <= 0)
             {
@@ -110,8 +113,6 @@ public class FishBase : MonoBehaviour
         set
         {
             data.lifeMax = value;
-            if (lifeGauge != null) { lifeGauge.maxValue = data.lifeMax; }
-            UpdateLifeText();
             ApplySize();
         }
     }
@@ -121,13 +122,6 @@ public class FishBase : MonoBehaviour
         get 
         {
             return (float)life / (float)lifeMax;
-        }
-    }
-    void UpdateLifeText()
-    {
-        if (lifeText != null)
-        {
-            lifeText.text = string.Format("{0}/{1}", life, lifeMax);
         }
     }
 
@@ -242,13 +236,9 @@ public class FishBase : MonoBehaviour
         // 生命条
 		UnityEngine.Object obj = Resources.Load(lifeGaugePath);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
-        lifeGauge = go.GetComponentInChildren<Slider>();
+        lifeGauge = go.GetComponentInChildren<LifeGauge>();
         Debug.Assert(lifeGauge, "lifeGauge is not found.");
-        //lifeGauge.maxValue = data.lifeMax;
-        //lifeGauge.value = data.life;
 
-        lifeText = go.GetComponentInChildren<Text>();
-        Debug.Assert(lifeText, "lifeText is not found.");
     }
 
     // 水泡
@@ -303,5 +293,10 @@ public class FishBase : MonoBehaviour
         {
             life -= GameConst.PoisonRingDmg * inPoisonRingDmgCnt++;
         }
+    }
+
+    public void Damge()
+    {
+        animator.SetTrigger("Damage");
     }
 }

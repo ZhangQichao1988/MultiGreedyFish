@@ -88,7 +88,7 @@ public class EnemyBase : FishBase
         Dir = new Vector3(moveVec.x, 0, moveVec.y);
 
         // 设置下次更改方向的剩余时间
-        changeVectorRemainingTime = Wrapper.GetRandom(1, 7f);
+        changeVectorRemainingTime = Wrapper.GetRandom(1f, 7f);
     }
 
     protected void Born()
