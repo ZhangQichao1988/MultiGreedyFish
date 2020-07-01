@@ -38,6 +38,7 @@ public class ManagerGroup : MonoBehaviour
         resultRoot.SetActive(false);
         titleBtn.SetActive(false);
         battleControl.SetActive(true) ;
+        poisonRing.gameObject.SetActive(true);
         poisonRing.Init();
 
         fishManager.Clean();

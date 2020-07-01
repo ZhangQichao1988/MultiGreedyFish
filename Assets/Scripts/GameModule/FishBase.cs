@@ -133,7 +133,7 @@ public class FishBase : MonoBehaviour
 
     public virtual void Init(Data data)
     {
-        actionStep = ActionType.Idle;
+        actionStep = ActionType.Born;
         data.uid = uidCnt++;
         this.data = data;
         this.originalData = data;

@@ -58,6 +58,9 @@ public class PlayerBase : FishBase
 	{
 		switch (actionStep)
 		{
+			case ActionType.Born:
+				Born();
+				break;
 			case ActionType.Idle:
 				Idle();
 				break;
@@ -66,6 +69,10 @@ public class PlayerBase : FishBase
 				break;
 		}
 
+	}
+	void Born()
+	{
+		actionStep = ActionType.Idle;
 	}
 
 	public void Eatting()

@@ -35,7 +35,6 @@ public class EnemyBase : FishBase
                 break;
         }
         
-        
     }
 
 
@@ -93,25 +92,6 @@ public class EnemyBase : FishBase
 
     protected void Born()
     {
-        //EnemyIdle();
-        //Dir.y = -0.2f;
-
-        //base.MoveUpdate();
-
-        //if (!isCastShadow && transform.position.y <= 1f)
-        //{
-        //    SetCastShadowMode(true);
-        //}
-        //if (transform.position.y <= 0)
-        //{
-        //    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        //    Dir.y = 0;
-        //    curDir.y = 0;
-        //    moveDir.y = 0;
-        //    changeVectorRemainingTime = 0f;
-        //    particleBlister.Stop();
-        //    actionStep = ActionType.Idle;
-        //}
         remainingTime -= Time.deltaTime;
         if (remainingTime <= 0f)
         {
