@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameConst
 {
+	static readonly public float JoyDefaultPosY = -350f;															// 默认遥感纵坐标位置
+
 	static readonly public int EnemyNum = 50;                                                                       // 杂鱼数量
 	static readonly public int RobotNum = 9;                                                                            // 机器人数量
 

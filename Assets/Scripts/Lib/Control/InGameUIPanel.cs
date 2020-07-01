@@ -18,7 +18,9 @@ public class InGameUIPanel : MonoBehaviour
     void Start()
     {
         SelfRectTF = GetComponent<RectTransform>();
-        TouchTF.gameObject.SetActive(false);
+        TouchTF.transform.localPosition = new Vector3(0f, GameConst.JoyDefaultPosY, 0);
+        TouchStickTF.transform.localPosition = Vector3.zero;
+        //TouchTF.gameObject.SetActive(false);
     }
 
 	public void Init()
@@ -29,7 +31,7 @@ public class InGameUIPanel : MonoBehaviour
 
 	public void TouchDown(BaseEventData data)
     {
-        TouchTF.gameObject.SetActive(true);
+        //TouchTF.gameObject.SetActive(true);
         TouchTF.localPosition = GetUIPos(((PointerEventData)data).position);
         TouchStickTF.localPosition = Vector3.zero;
         if (Player != null)
@@ -39,7 +41,9 @@ public class InGameUIPanel : MonoBehaviour
     }
     public void TouchUp(BaseEventData data)
     {
-        TouchTF.gameObject.SetActive(false);
+        TouchTF.transform.localPosition = new Vector3(0f, GameConst.JoyDefaultPosY, 0);
+        TouchStickTF.transform.localPosition = Vector3.zero;
+        //TouchTF.gameObject.SetActive(false);
         if (Player != null)
         {
             Player.TouchUp(data);

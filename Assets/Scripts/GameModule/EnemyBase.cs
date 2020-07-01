@@ -48,6 +48,7 @@ public class EnemyBase : FishBase
             transModel.gameObject.SetActive(true);
             remainingTime = 1f;
             SetAlpha(0f);
+            transform.position = GetBornPosition();
         }
     }
 
