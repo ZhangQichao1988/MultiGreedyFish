@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyBase : FishBase
 {
-    protected float remainingTime = 0f;
     protected bool isCastShadow = true;
     public override FishType fishType { get { return FishType.Enemy; } }
 
@@ -27,8 +26,7 @@ public class EnemyBase : FishBase
                 Born();
                 break;
             case ActionType.Idle:
-                EnemyIdle();
-                base.MoveUpdate();
+                Idle();
                 break;
             case ActionType.Die:
                 DieWait();
@@ -53,13 +51,13 @@ public class EnemyBase : FishBase
     }
 
 
-    protected void EnemyIdle()
+    protected void Idle()
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 更改方向的倒计时还有
-        if (changeVectorRemainingTime > 0)
+        if (changeVectorRemainingTime > 0 || hitWallCoolTime > 0)
         {
             // 撞墙前改变方向
             hitWallCoolTime -= Time.deltaTime;
@@ -79,16 +77,20 @@ public class EnemyBase : FishBase
                 Dir.Normalize();
             }
 
-            return;
+        }
+        else
+        {
+
+            // 改变方向
+            Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1f, 1f), Wrapper.GetRandom(-1f, 1f));
+            moveVec.Normalize();
+            Dir = new Vector3(moveVec.x, 0, moveVec.y);
+
+            // 设置下次更改方向的剩余时间
+            changeVectorRemainingTime = Wrapper.GetRandom(1f, 7f);
         }
 
-        // 改变方向
-        Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1f, 1f), Wrapper.GetRandom(-1f, 1f));
-        moveVec.Normalize();
-        Dir = new Vector3(moveVec.x, 0, moveVec.y);
-
-        // 设置下次更改方向的剩余时间
-        changeVectorRemainingTime = Wrapper.GetRandom(1f, 7f);
+        base.MoveUpdate();
     }
 
     protected void Born()
@@ -102,11 +104,11 @@ public class EnemyBase : FishBase
         SetAlpha((1-remainingTime));
 
 
-        EnemyIdle();
+        Idle();
         base.MoveUpdate();
     }
 
-    public override void Die()
+    public override void Die(Transform eatFishTrans)
     {
         //SetCastShadowMode(false);
         transModel.gameObject.SetActive(false);

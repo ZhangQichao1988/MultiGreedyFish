@@ -19,6 +19,7 @@ public class ManagerGroup : MonoBehaviour
     public FishManager fishManager = null;
     public GameObject battleControl = null;
     public PoisonRing poisonRing = null;
+    public CameraFollow cameraFollow = null;
 
     public GameObject titleBtn = null;
     public GameObject resultRoot = null;
@@ -40,6 +41,7 @@ public class ManagerGroup : MonoBehaviour
         battleControl.SetActive(true) ;
         poisonRing.gameObject.SetActive(true);
         poisonRing.Init();
+        cameraFollow.Init();
 
         fishManager.Clean();
         inGameUIPanel.Init();

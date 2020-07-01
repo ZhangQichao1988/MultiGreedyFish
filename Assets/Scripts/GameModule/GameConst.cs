@@ -19,6 +19,7 @@ public class GameConst
 	static readonly public float PlayerSizeUpRate = 0.3f;                                                         // 吃一条鱼变大倍率
 	static readonly public float FishMaxScale = 3f;                                                                 // 鱼最大体积倍率
 	static readonly public float HealLifeFromEatRate = 1f;                                                    // 吃一条鱼可恢复对方体力上线的比例
+	static readonly public float EatFishTime = 0.2f;																		// 鱼被吃掉的时候缩小的时间
 
 	// 机器人相关
 	static readonly public float RobotFollowBigFishLifeRate = 0.8f;										// 当体力大于多少比例，会去追踪大型鱼

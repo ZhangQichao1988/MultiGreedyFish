@@ -187,6 +187,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &102564476 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2341724910268730151, guid: bf7fde4b542327d43af696863d8c3dec,
+    type: 3}
+  m_PrefabInstance: {fileID: 2341724911044903859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d06b5bc3b774b47bacc24dd73283c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &116237929
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +733,7 @@ MonoBehaviour:
   fishManager: {fileID: 116237931}
   battleControl: {fileID: 450762899}
   poisonRing: {fileID: 822543522}
+  cameraFollow: {fileID: 102564476}
   titleBtn: {fileID: 1759142873}
   resultRoot: {fileID: 407078261}
   resultText: {fileID: 407078264}
@@ -1103,7 +1116,7 @@ PrefabInstance:
     - target: {fileID: 8174601731216184587, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: near clip plane
-      value: 60
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8174601731924902290, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}

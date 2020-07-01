@@ -76,8 +76,17 @@ public class InGameUIPanel : MonoBehaviour
 
 	public void Update()
 	{
+        // TODO:不要弯曲的话可以删除
         Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
         Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
 
+        if (Player.actionStep == FishBase.ActionType.Die)
+        {
+            ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
+        }
+        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1)
+        {
+            ManagerGroup.GetInstance().GotoResult(1);
+        }
     }
 }

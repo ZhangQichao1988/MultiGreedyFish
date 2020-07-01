@@ -10,6 +10,11 @@ public class PlayerBase : FishBase
 	static readonly string boneNameMouth = "head_end";
 	public BoxCollider colliderMouth = null;
 
+	// 被吃掉鱼的Trans
+	private Transform eatFishTrans = null;
+	// 用来记录被吃掉时候的缩放值
+	private float localScaleBackup = 0f;
+
 	protected override bool showLifeGauge { get { return true; } }
 
 	public override FishType fishType { get { return FishType.Player; } }
@@ -67,8 +72,29 @@ public class PlayerBase : FishBase
 			case ActionType.Eatting:
 				Eatting();
 				break;
+			case ActionType.Die:
+				DieWait();
+				break;
 		}
 
+	}
+
+	void DieWait()
+	{
+		remainingTime -= Time.deltaTime;
+		if (remainingTime <= 0)
+		{
+			ManagerGroup.GetInstance().fishManager.listFish.Remove(this);
+			Destroy(gameObject);
+		}
+		else
+		{
+			float progress = remainingTime / GameConst.EatFishTime;
+			transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
+
+			if (eatFishTrans != null)
+			{ transform.position = Vector3.Lerp(eatFishTrans.position, transform.position, progress); }
+		}
 	}
 	void Born()
 	{
@@ -111,24 +137,15 @@ public class PlayerBase : FishBase
 	public void Eat(FishBase fish)
 	{
 		life += (int)(fish.lifeMax * GameConst.HealLifeFromEatRate);
-
-		if (fishType == FishType.Player)
-		{
-			if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1)
-			{
-				ManagerGroup.GetInstance().GotoResult(1);
-			}
-		}
-		
+		fish.Die(colliderMouth.transform);
 	}
 
-	public override void Die()
+	public override void Die( Transform eatFishTrans )
 	{
-		base.Die();
-		if (fishType == FishType.Player)
-		{
-			ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
-		}
+		actionStep = ActionType.Die;
+		localScaleBackup = transform.localScale.x;
+		remainingTime = GameConst.EatFishTime;
+		this.eatFishTrans = eatFishTrans;
 	}
 
 

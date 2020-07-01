@@ -6,11 +6,13 @@ using UnityEngine.Rendering.Universal;
 public class CameraFollow : MonoBehaviour
 {
     public static CameraFollow instance { get; private set; }
-    public static void Init()
+
+    public void Init()
     {
-        instance = GameObject.Find("Main Camera").AddComponent<CameraFollow>();
-    }
-    public Transform Target;
+		currentRate = 0f;
+
+	}
+	public Transform Target;
     public float Angle;
     public float Distance;
     public float Offset;
@@ -25,12 +27,14 @@ public class CameraFollow : MonoBehaviour
     private Vector3 oldPos;
     private const float thinkingTime = 7;
 
+	private float currentRate = 0f;
+
     void Start()
     {
         SelfCamera = GetComponent<Camera>();
         SelfCamera.fieldOfView = 22.5f;
         Angle = 42.2f;
-        Distance = 90f;
+        Distance = 45f;
         Offset = 0f;
         Radius = 1f;
         BaseRadius = 90;
@@ -38,6 +42,7 @@ public class CameraFollow : MonoBehaviour
         //OffsetPos = Vector3.zero;
         //FixOffsetPos = Vector3.forward * 1.6f;
     }
+
     public void SetTarget(Transform target)
     {
         Target = target;
@@ -61,7 +66,7 @@ public class CameraFollow : MonoBehaviour
 					if (Mathf.Abs(Angle - 42.2f) < 0.05f)
 					{
 						Angle = 28f;
-						Distance = 90f;
+						Distance = 45f;
 						Offset = 0;
 						ChangePos = RadiusCenter + OffsetPos;
 						ChangeStateTime = 0;
@@ -89,6 +94,14 @@ public class CameraFollow : MonoBehaviour
 		}
 		if (Target)
 		{
+			float rate = (Target.transform.localScale.x - 1f) / (GameConst.FishMaxScale - 1f);
+			if (currentRate < rate)
+			{
+				currentRate += Time.deltaTime * 0.1f;
+			}
+			Distance = Mathf.Lerp(55f, 90f, currentRate);
+			FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
+
 			TargetPos = Target.position;
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)
 			{

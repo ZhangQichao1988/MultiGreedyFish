@@ -73,6 +73,8 @@ public class FishBase : MonoBehaviour
     protected Vector3 curDir;
     protected Vector3 moveDir;
 
+    protected float remainingTime = 0f;
+
     static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
     
@@ -99,11 +101,6 @@ public class FishBase : MonoBehaviour
             }
             data.life = value;
             if (lifeGauge != null) { lifeGauge.SetValue(data.life, data.lifeMax); }
-
-            if (data.life <= 0)
-            {
-                Die();
-            }
         }
     }
 
@@ -225,10 +222,9 @@ public class FishBase : MonoBehaviour
         return colliderBody.bounds.Intersects(atkCollider.bounds);
     }
 
-    public virtual void Die()
+    public virtual void Die(Transform eatFishTrans)
     {
-        ManagerGroup.GetInstance().fishManager.listFish.Remove( this );
-        Destroy( gameObject );
+        
     }
 
     protected void CreateLifeGuage()
@@ -292,6 +288,10 @@ public class FishBase : MonoBehaviour
         if (inPoisonRingTime >= inPoisonRingDmgCnt * GameConst.PoisonRingDmgCoolTime)
         {
             life -= GameConst.PoisonRingDmg * inPoisonRingDmgCnt++;
+            if (data.life <= 0)
+            {
+                Die(null);
+            }
         }
     }
 
