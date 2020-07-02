@@ -35,15 +35,17 @@ public class FishBase : MonoBehaviour
     {
         public int uid;
         public int fishId;
+        public string name;
         public int life;
         public int lifeMax;
         public int atk;
         public float moveSpeed;
 
-        public Data(int fishId, int life, int atk, float moveSpeed)
+        public Data(int fishId, string name, int life, int atk, float moveSpeed)
         {
             uid = -1;
             this.fishId = fishId;
+            this.name = name;
             this.life = life;
             this.lifeMax = life;
             this.atk = atk;
@@ -74,6 +76,12 @@ public class FishBase : MonoBehaviour
     protected Vector3 moveDir;
 
     protected float remainingTime = 0f;
+
+    // 被吃掉鱼的Trans
+    protected Transform eatFishTrans = null;
+    // 用来记录被吃掉时候的缩放值
+    protected float localScaleBackup = 0f;
+
 
     static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
@@ -154,9 +162,10 @@ public class FishBase : MonoBehaviour
         lifeMax = data.lifeMax;
     }
 
-    protected Vector3 GetBornPosition()
+    protected virtual Vector3 GetBornPosition()
     {
-       return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
+        Debug.LogError("GetBornPosition()");
+       return Vector3.zero;
     }
 
     public void SetMoveDir(Vector3 moveDir)
@@ -269,6 +278,7 @@ public class FishBase : MonoBehaviour
     // 毒圈判定
     protected void PoisonRingCheck()
     {
+        if (actionStep == ActionType.Die) { return; }
         if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
         {
             if (!beforeInPoisonRing)
@@ -285,7 +295,7 @@ public class FishBase : MonoBehaviour
             beforeInPoisonRing = false;
         }
 
-        if (inPoisonRingTime >= inPoisonRingDmgCnt * GameConst.PoisonRingDmgCoolTime)
+        if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * GameConst.PoisonRingDmgCoolTime)
         {
             life -= GameConst.PoisonRingDmg * inPoisonRingDmgCnt++;
             if (data.life <= 0)

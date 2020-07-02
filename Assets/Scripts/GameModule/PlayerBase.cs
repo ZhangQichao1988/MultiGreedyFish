@@ -8,12 +8,11 @@ using UnityEngine.UI;
 public class PlayerBase : FishBase
 {
 	static readonly string boneNameMouth = "head_end";
+	static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/PlayerNameplate";
+	static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/RobotNameplate";
+
 	public BoxCollider colliderMouth = null;
 
-	// 被吃掉鱼的Trans
-	private Transform eatFishTrans = null;
-	// 用来记录被吃掉时候的缩放值
-	private float localScaleBackup = 0f;
 
 	protected override bool showLifeGauge { get { return true; } }
 
@@ -32,6 +31,19 @@ public class PlayerBase : FishBase
 		Debug.Assert(go, "transMouth is not found.");
 		colliderMouth = go.GetComponent<BoxCollider>();
 		Debug.Assert(colliderMouth, "colliderMouth is not found.");
+
+		CreateNameplate(data.name);
+	}
+
+	protected void CreateNameplate(string playerName)
+	{
+		// 生命条
+		string prefabPath = fishType == FishType.Player ? playerNameplatePrefabPath : robotNameplatePrefabPath;
+		UnityEngine.Object obj = Resources.Load(prefabPath);
+		GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
+		Text textName = go.GetComponentInChildren<Text>();
+		textName.text = playerName;
+
 	}
 
 	public void TouchUp(BaseEventData data)
@@ -119,7 +131,10 @@ public class PlayerBase : FishBase
 		ManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
 	}
 
-
+	protected override Vector3 GetBornPosition()
+	{
+		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
+	}
 
 	public void Atk(FishBase fish)
 	{

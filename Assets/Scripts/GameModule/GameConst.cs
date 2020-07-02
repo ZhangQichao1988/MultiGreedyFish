@@ -28,7 +28,21 @@ public class GameConst
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
 	//static readonly public float EnemyResurrectionY = 30f;                                                      // 杂鱼复活后的出生Y坐标
 
-	static readonly public string ResultText = "第{0}名";															// 结算文字
+	static readonly public string ResultText = "第{0}名";                                                         // 结算文字
+
+	static readonly public string PlayerName = "江小鱼";                                                         // 玩家名
+	static readonly public List<string> RobotName = new List<string>()								 // 机器人名
+	{
+		"阿超",
+		"Ferya",
+		"HUSKY",
+		"DIAMOND DRAGON",
+		"Mr.L  - Jiayin",
+		"Asura",
+		"睡在梦里，醒在梦境",
+		"Rebecca",
+		"༄༠་Yོiིnྀgོ་༠࿐"
+	};                                                        
 
 
 }

@@ -12,6 +12,8 @@ public class EnemyBase : FishBase
     {
         base.Init(data);
 
+        // 一开始不要一起出生
+        remainingTime = Wrapper.GetRandom(0f, 5f);
         //CreateBlisterParticle();
     }
 
@@ -35,7 +37,10 @@ public class EnemyBase : FishBase
         
     }
 
-
+    protected override Vector3 GetBornPosition()
+    {
+        return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
+    }
     protected void DieWait()
     {
         remainingTime -= Time.deltaTime;
@@ -43,10 +48,19 @@ public class EnemyBase : FishBase
         {
             actionStep = ActionType.Born;
             if(particleBlister!= null) particleBlister.Play();
-            transModel.gameObject.SetActive(true);
-            remainingTime = 1f;
+            //transModel.gameObject.SetActive(true);
+            remainingTime = 3f;
             SetAlpha(0f);
             transform.position = GetBornPosition();
+            transform.localScale = Vector3.one * localScaleBackup;
+        }
+        else
+        {
+            float progress = remainingTime / GameConst.EatFishTime;
+            transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
+
+            if (eatFishTrans != null)
+            { transform.position = Vector3.Lerp(eatFishTrans.position, transform.position, progress); }
         }
     }
 
@@ -111,9 +125,11 @@ public class EnemyBase : FishBase
     public override void Die(Transform eatFishTrans)
     {
         //SetCastShadowMode(false);
-        transModel.gameObject.SetActive(false);
+        localScaleBackup = transform.localScale.x;
+        this.eatFishTrans = eatFishTrans;
+        //transModel.gameObject.SetActive(false);
         actionStep = ActionType.Die;
-        remainingTime = GameConst.EnemyResurrectionRemainingTime;
+        remainingTime = GameConst.EatFishTime;
     }
 
 

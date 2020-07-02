@@ -14,6 +14,8 @@ public class PlayerRobot : PlayerBase
 	public override void Init(Data data)
 	{
 		base.Init(data);
+
+
     }
 	
     void CalcMoveAction()

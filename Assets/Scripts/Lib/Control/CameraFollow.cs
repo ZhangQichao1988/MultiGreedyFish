@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
 		currentRate = 0f;
 
 	}
+
 	public Transform Target;
     public float Angle;
     public float Distance;
@@ -99,8 +100,11 @@ public class CameraFollow : MonoBehaviour
 			{
 				currentRate += Time.deltaTime * 0.1f;
 			}
+
 			Distance = Mathf.Lerp(55f, 90f, currentRate);
 			FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
+			SelfCamera.nearClipPlane = Mathf.Lerp(40f, 70f, rate);
+			SelfCamera.farClipPlane = Mathf.Lerp(80f, 150f, rate);
 
 			TargetPos = Target.position;
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)

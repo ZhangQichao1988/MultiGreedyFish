@@ -18,7 +18,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(new FishBase.Data(0, 100, 20, 1f));
+		player.Init(new FishBase.Data(0, GameConst.PlayerName, 100, 10, 0.6f));
 		return player;
 	}
 
@@ -35,21 +35,21 @@ public class FishManager : MonoBehaviour
 		
 		GameObject goEnemy;
 		FishBase fb;
+		// 机器人
+		for (int i = 0; i < GameConst.RobotNum; ++i)
+		{
+			goEnemy = Wrapper.CreateEmptyGameObject(transform);
+			fb = goEnemy.AddComponent<PlayerRobot>();
+			fb.Init(new FishBase.Data(0, GameConst.RobotName[i], 100, 10, 0.6f));
+			listFish.Add(fb);
+		}
+
 		// 杂鱼
 		for (int i = 0; i < GameConst.EnemyNum; ++i)
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
-			fb.Init(new FishBase.Data( 1, 20, 0, 0.5f));
-			listFish.Add(fb);
-		}
-
-		// 机器人
-		for (int i = 0; i < GameConst.RobotNum; ++i)
-		{
-			goEnemy = Wrapper.CreateEmptyGameObject( transform);
-			fb = goEnemy.AddComponent<PlayerRobot>();
-			fb.Init(new FishBase.Data(0, 100, 10, 1f));
+			fb.Init(new FishBase.Data( 1, "", 10, 0, 0.4f));
 			listFish.Add(fb);
 		}
 
