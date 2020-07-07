@@ -7,11 +7,7 @@ using UnityEngine.UI;
 public class FishBase : MonoBehaviour
 {
     static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
-    Dictionary<int, string> fishData = new Dictionary<int, string>()
-    {
-        { 0, "clown_fish" },
-        { 1, "yellow_fish" },
-    };
+
 
     public enum FishType
     { 
@@ -143,14 +139,17 @@ public class FishBase : MonoBehaviour
         this.data = data;
         this.originalData = data;
         transform.name = fishType.ToString() + this.data.uid;
-        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishData[data.fishId]);
+        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + GameConst.FishBaseData[data.fishId]);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         renderers = transModel.GetComponentsInChildren<Renderer>();
         transform.position = GetBornPosition();
 
-        colliderBody = transModel.gameObject.GetComponent<BoxCollider>();
-        
+        // 嘴巴位置获得
+        go = GameObjectUtil.FindGameObjectByName("body", gameObject);
+        Debug.Assert(go, "body is not found.");
+        colliderBody = go.GetComponent<BoxCollider>();
+        Debug.Assert(colliderBody, "colliderBody is not found.");        
 
         animator = transModel.GetComponent<Animator>();
 
@@ -270,7 +269,9 @@ public class FishBase : MonoBehaviour
         foreach (Renderer renderer in renderers)
         {
             renderer.GetPropertyBlock( mpb );
-            mpb.SetFloat("_Alpha", alpha);
+            Color color = mpb.GetColor("_BaseColor");
+            color.a = alpha;
+            mpb.SetColor("_Alpha", color);
             renderer.SetPropertyBlock(mpb);
         }
     }

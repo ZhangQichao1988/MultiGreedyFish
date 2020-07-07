@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerBase : FishBase
 {
-	static readonly string boneNameMouth = "head_end";
+	static readonly string boneNameMouth = "eye";
 	static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/PlayerNameplate";
 	static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/RobotNameplate";
 

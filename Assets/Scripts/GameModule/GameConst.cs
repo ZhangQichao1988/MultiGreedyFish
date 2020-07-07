@@ -26,9 +26,16 @@ public class GameConst
 	static readonly public Vector2 RobotFindFishRange = new Vector2(10, 20);                    // 机器人发现目标范围
 
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
-	//static readonly public float EnemyResurrectionY = 30f;                                                      // 杂鱼复活后的出生Y坐标
+																									//static readonly public float EnemyResurrectionY = 30f;                                                      // 杂鱼复活后的出生Y坐标
 
-	static readonly public string ResultText = "第{0}名";                                                         // 结算文字
+
+	static readonly public Dictionary<int, string> FishBaseData = new Dictionary<int, string>()
+	{
+		// 杂鱼
+		{ 0, "FishNpc_01" },
+		// 玩家鱼
+		{ 10, "FishPlayer_01" },
+	};
 
 	static readonly public string PlayerName = "江小鱼";                                                         // 玩家名
 	static readonly public List<string> RobotName = new List<string>()								 // 机器人名
@@ -42,7 +49,8 @@ public class GameConst
 		"睡在梦里，醒在梦境",
 		"Rebecca",
 		"༄༠་Yོiིnྀgོ་༠࿐"
-	};                                                        
+	};
 
+	static readonly public string ResultText = "第{0}名";                                                         // 结算文字
 
 }
