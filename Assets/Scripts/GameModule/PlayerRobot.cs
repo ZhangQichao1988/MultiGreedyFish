@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerRobot : PlayerBase
 {
-
+    protected List<FishBase> listFindedFish;
 
     protected override bool showLifeGauge { get { return false; } }
 
@@ -25,6 +25,20 @@ public class PlayerRobot : PlayerBase
 
         // 追踪附近比自己小的离最近的鱼
         List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange( this, transform.position, GameConst.RobotFindFishRange );
+
+        // 把新发现的，隐身的鱼排除
+        for (int i = listFish.Count - 1; i >= 0 ; --i)
+        {
+            // 新发现的鱼
+            if (!listFindedFish.Contains(listFish[i]))
+            {
+                if (listFish[i].isStealth)
+                {
+                    listFish.RemoveAt(i);
+                }
+            }
+        }
+        listFindedFish = listFish;
         if (listFish.Count > 0)
         {
             // 按距离升序排序

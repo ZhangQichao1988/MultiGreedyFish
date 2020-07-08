@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyBase : FishBase
 {
-    protected bool isCastShadow = true;
     public override FishType fishType { get { return FishType.Enemy; } }
 
     public override void Init(Data data)
@@ -130,17 +129,6 @@ public class EnemyBase : FishBase
         //transModel.gameObject.SetActive(false);
         actionStep = ActionType.Die;
         remainingTime = GameConst.EatFishTime;
-    }
-
-
-    void SetCastShadowMode(bool isEnable)
-    {
-        isCastShadow = isEnable;
-        SkinnedMeshRenderer[] meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer mr in meshRenderers)
-        {
-            mr.shadowCastingMode = isEnable? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
-    }
+    }    
 
 }

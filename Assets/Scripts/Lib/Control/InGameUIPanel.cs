@@ -84,7 +84,7 @@ public class InGameUIPanel : MonoBehaviour
         {
             ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
         }
-        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1)
+        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1 && !GameConst.FreeMode)
         {
             ManagerGroup.GetInstance().GotoResult(1);
         }

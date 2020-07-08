@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GameConst
 {
-	static readonly public float JoyDefaultPosY = -350f;															// 默认遥感纵坐标位置
+	static readonly public float JoyDefaultPosY = -350f;                                                            // 默认遥感纵坐标位置
 
+	static readonly public bool FreeMode = true;																	// 只剩自己也不会胜利
 	static readonly public int EnemyNum = 50;                                                                       // 杂鱼数量
 	static readonly public int RobotNum = 9;                                                                            // 机器人数量
 
-	static readonly public Vector2 BgBound = new Vector2(48, 48);                                       // 鱼可游动范围
-	static readonly public float PoisonRingScaleSpeed = 0.1f;                                             // 毒圈缩小速度
+	static readonly public Vector2 BgBound = new Vector2(96, 96);                                       // 鱼可游动范围
+	static readonly public float PoisonRingScaleSpeed = 0.2f;                                             // 毒圈缩小速度
 	static readonly public float PoisonRingRadiusMin = 5f;														// 毒圈的最小半径
-	static readonly public float PoisonRingRadiusMax = 50f;                                                 // 毒圈的最大半径
+	static readonly public float PoisonRingRadiusMax = 100f;                                                 // 毒圈的最大半径
 	static readonly public int PoisonRingDmg = 10;															// 毒圈伤害量
 	static readonly public float PoisonRingDmgCoolTime = 1f;                                                 // 毒圈伤害间隙
 
@@ -26,7 +27,8 @@ public class GameConst
 	static readonly public Vector2 RobotFindFishRange = new Vector2(10, 20);                    // 机器人发现目标范围
 
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
-																									//static readonly public float EnemyResurrectionY = 30f;                                                      // 杂鱼复活后的出生Y坐标
+
+	static readonly public float AquaticRange = 2f;																	// 水草的范围
 
 
 	static readonly public Dictionary<int, string> FishBaseData = new Dictionary<int, string>()

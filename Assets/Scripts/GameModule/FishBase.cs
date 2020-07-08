@@ -78,6 +78,8 @@ public class FishBase : MonoBehaviour
     // 用来记录被吃掉时候的缩放值
     protected float localScaleBackup = 0f;
 
+     
+
 
     static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
@@ -126,6 +128,9 @@ public class FishBase : MonoBehaviour
         }
     }
 
+    // 是否隐身
+    public bool isStealth { get; set; }
+
     //Vector3 pos;
     protected virtual void Awake()
     {
@@ -135,6 +140,7 @@ public class FishBase : MonoBehaviour
     public virtual void Init(Data data)
     {
         actionStep = ActionType.Born;
+        isStealth = false;
         data.uid = uidCnt++;
         this.data = data;
         this.originalData = data;
@@ -211,6 +217,7 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
+        AquaticCheck();
         PoisonRingCheck();
         MoveUpdate();
     }
@@ -265,15 +272,33 @@ public class FishBase : MonoBehaviour
 
     protected void SetAlpha(float alpha)
     {
+        alpha = Mathf.Clamp(alpha, 0f, 1f);
+        SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
         foreach (Renderer renderer in renderers)
         {
             renderer.GetPropertyBlock( mpb );
             Color color = mpb.GetColor("_BaseColor");
             color.a = alpha;
-            mpb.SetColor("_Alpha", color);
+            mpb.SetColor("_BaseColor", color);
             renderer.SetPropertyBlock(mpb);
         }
+    }
+
+    void SetCastShadowMode(bool isEnable)
+    {
+        SkinnedMeshRenderer[] meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (SkinnedMeshRenderer mr in meshRenderers)
+        {
+            mr.shadowCastingMode = isEnable ? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+    }
+
+    protected void AquaticCheck()
+    {
+        isStealth = ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this);
+        float stealthAlpha = fishType == FishType.Player ? 0.3f : 0f;
+        SetAlpha(isStealth ? stealthAlpha : 1f);
     }
 
     // 毒圈判定
