@@ -137,15 +137,17 @@ public class FishBase : MonoBehaviour
     }
 
 
-    public virtual void Init(Data data)
+    public virtual void Init(int fishId, string playerName)
     {
+        
         actionStep = ActionType.Born;
         isStealth = false;
+        FishData.FishBaseData fishBaseData = FishData.listFishBaseData[fishId];
+        this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
         data.uid = uidCnt++;
-        this.data = data;
         this.originalData = data;
         transform.name = fishType.ToString() + this.data.uid;
-        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + GameConst.FishBaseData[data.fishId]);
+        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishBaseData.prefabPath);
         GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         transModel = go.transform;
         renderers = transModel.GetComponentsInChildren<Renderer>();
@@ -270,7 +272,7 @@ public class FishBase : MonoBehaviour
         transform.localScale = new Vector3(size, size, size);
     }
 
-    protected void SetAlpha(float alpha)
+    protected virtual float SetAlpha(float alpha)
     {
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         SetCastShadowMode(alpha > 0.8f);
@@ -283,6 +285,7 @@ public class FishBase : MonoBehaviour
             mpb.SetColor("_BaseColor", color);
             renderer.SetPropertyBlock(mpb);
         }
+        return alpha;
     }
 
     void SetCastShadowMode(bool isEnable)

@@ -12,7 +12,7 @@ public class PlayerBase : FishBase
 	static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/RobotNameplate";
 
 	public BoxCollider colliderMouth = null;
-
+	public GameObject goNamepalte = null;
 
 	protected override bool showLifeGauge { get { return true; } }
 
@@ -22,9 +22,9 @@ public class PlayerBase : FishBase
 	{
 		base.Awake();
 	}
-	public override void Init(Data data)
+	public override void Init(int fishId, string playerName)
 	{
-		base.Init(data);
+		base.Init(fishId, playerName);
 
 		// 嘴巴位置获得
 		 GameObject go= GameObjectUtil.FindGameObjectByName(boneNameMouth, gameObject);
@@ -40,13 +40,20 @@ public class PlayerBase : FishBase
 		// 生命条
 		string prefabPath = fishType == FishType.Player ? playerNameplatePrefabPath : robotNameplatePrefabPath;
 		UnityEngine.Object obj = Resources.Load(prefabPath);
-		GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
-		Text textName = go.GetComponentInChildren<Text>();
+		goNamepalte = Wrapper.CreateGameObject(obj, transform) as GameObject;
+		Text textName = goNamepalte.GetComponentInChildren<Text>();
 		textName.text = playerName;
 
 	}
 
-	public void TouchUp(BaseEventData data)
+	protected override float SetAlpha(float alpha)
+	{
+		alpha = base.SetAlpha(alpha);
+		goNamepalte.SetActive(alpha > 0.8);
+		return alpha;
+	}
+
+		public void TouchUp(BaseEventData data)
 	{
 		curDir = Dir;
 		Dir = Vector3.zero;

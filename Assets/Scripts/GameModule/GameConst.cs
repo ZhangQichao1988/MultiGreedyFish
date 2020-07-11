@@ -8,7 +8,7 @@ public class GameConst
 
 	static readonly public bool FreeMode = true;																	// 只剩自己也不会胜利
 	static readonly public int EnemyNum = 50;                                                                       // 杂鱼数量
-	static readonly public int RobotNum = 9;                                                                            // 机器人数量
+	//static readonly public int RobotNum = 9;                                                                            // 机器人数量
 
 	static readonly public Vector2 BgBound = new Vector2(96, 96);                                       // 鱼可游动范围
 	static readonly public float PoisonRingScaleSpeed = 0.2f;                                             // 毒圈缩小速度
@@ -28,30 +28,18 @@ public class GameConst
 
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
 
-	static readonly public float AquaticRange = 2f;																	// 水草的范围
+	static readonly public float AquaticRange = 2f;                                                                 // 水草的范围
 
 
-	static readonly public Dictionary<int, string> FishBaseData = new Dictionary<int, string>()
-	{
-		// 杂鱼
-		{ 0, "FishNpc_01" },
-		// 玩家鱼
-		{ 10, "FishPlayer_01" },
-	};
+
+	
+
+
+
+
 
 	static readonly public string PlayerName = "江小鱼";                                                         // 玩家名
-	static readonly public List<string> RobotName = new List<string>()								 // 机器人名
-	{
-		"阿超",
-		"Ferya",
-		"HUSKY",
-		"DIAMOND DRAGON",
-		"Mr.L  - Jiayin",
-		"Asura",
-		"睡在梦里，醒在梦境",
-		"Rebecca",
-		"༄༠་Yོiིnྀgོ་༠࿐"
-	};
+	
 
 	static readonly public string ResultText = "第{0}名";                                                         // 结算文字
 

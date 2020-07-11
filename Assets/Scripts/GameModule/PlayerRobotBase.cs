@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRobot : PlayerBase
+public class PlayerRobotBase : PlayerBase
 {
     protected List<FishBase> listFindedFish;
 
@@ -11,14 +11,8 @@ public class PlayerRobot : PlayerBase
 
     public override FishType fishType { get { return FishType.PlayerRobot; } }
 
-	public override void Init(Data data)
-	{
-		base.Init(data);
-
-
-    }
 	
-    void CalcMoveAction()
+    protected virtual void CalcMoveAction()
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
@@ -30,7 +24,7 @@ public class PlayerRobot : PlayerBase
         for (int i = listFish.Count - 1; i >= 0 ; --i)
         {
             // 新发现的鱼
-            if (!listFindedFish.Contains(listFish[i]))
+            if (listFindedFish!= null && !listFindedFish.Contains(listFish[i]))
             {
                 if (listFish[i].isStealth)
                 {
@@ -55,14 +49,7 @@ public class PlayerRobot : PlayerBase
             }
             
             FishBase target = listFish[0];
-            Dir = target.transform.position - transform.position;
-            Dir.Normalize();
-
-            if (changeVectorRemainingTime <= 0)
-            {
-                changeVectorRemainingTime = Wrapper.GetRandom(1f, 2f);
-                Dir = Quaternion.AngleAxis(Wrapper.GetRandom(-20f, 20f), Vector3.up) * Dir;
-            }
+            MoveToTarget(target.transform.position);
 
         }
         else
@@ -70,6 +57,18 @@ public class PlayerRobot : PlayerBase
             EnemyIdle();
         }
         
+    }
+
+    protected void MoveToTarget(Vector3 targetPos)
+    {
+        Dir = targetPos - transform.position;
+        Dir.Normalize();
+
+        if (changeVectorRemainingTime <= 0)
+        {
+            changeVectorRemainingTime = Wrapper.GetRandom(1f, 2f);
+            Dir = Quaternion.AngleAxis(Wrapper.GetRandom(-20f, 20f), Vector3.up) * Dir;
+        }
     }
 
     protected void EnemyIdle()
