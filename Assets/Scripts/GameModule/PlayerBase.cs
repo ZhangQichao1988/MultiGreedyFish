@@ -49,7 +49,6 @@ public class PlayerBase : FishBase
 	protected override float SetAlpha(float alpha)
 	{
 		alpha = base.SetAlpha(alpha);
-		goNamepalte.SetActive(alpha > 0.8);
 		return alpha;
 	}
 
