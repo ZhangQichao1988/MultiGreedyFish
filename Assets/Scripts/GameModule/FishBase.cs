@@ -67,6 +67,11 @@ public class FishBase : MonoBehaviour
     protected float inPoisonRingTime = 0f;
     protected int inPoisonRingDmgCnt = 0;
 
+    public bool beforeInAquatic = false;
+    protected float inAquaticTime = 0f;
+    protected int inAquaticHealCnt = 0;
+
+
     protected Vector3 Dir;
     protected Vector3 curDir;
     protected Vector3 moveDir;
@@ -97,7 +102,7 @@ public class FishBase : MonoBehaviour
         get { return data.life; }
         set
         {
-            if (value >= lifeMax)
+            if (value > lifeMax)
             {
                 lifeMax = value;
             }
@@ -141,7 +146,6 @@ public class FishBase : MonoBehaviour
     {
         
         actionStep = ActionType.Born;
-        isStealth = false;
         FishData.FishBaseData fishBaseData = FishData.listFishBaseData[fishId];
         this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
         data.uid = uidCnt++;
@@ -290,8 +294,8 @@ public class FishBase : MonoBehaviour
 
     void SetCastShadowMode(bool isEnable)
     {
-        SkinnedMeshRenderer[] meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
-        foreach (SkinnedMeshRenderer mr in meshRenderers)
+        Renderer[] meshRenderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer mr in meshRenderers)
         {
             mr.shadowCastingMode = isEnable ? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.Off;
         }
@@ -299,9 +303,33 @@ public class FishBase : MonoBehaviour
 
     protected void AquaticCheck()
     {
-        isStealth = ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this);
+        // 在水草里恢复血量
+        if (ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this))
+        {
+            if (!beforeInAquatic)
+            {
+                inAquaticHealCnt = 0;
+            }
+            beforeInAquatic = true;
+            inAquaticTime += Time.deltaTime;
+        }
+        else
+        {
+
+            inAquaticTime = 0;
+            beforeInAquatic = false;
+        }
+
+        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * GameConst.AquaticHealCoolTime)
+        {
+            int healLife = GameConst.AquaticHeal * inAquaticHealCnt++;
+            healLife = Math.Min(lifeMax - life, healLife);
+            life += healLife;
+        }
+
+        // 在水草里透明
         float stealthAlpha = fishType == FishType.Player ? 0.3f : 0f;
-        SetAlpha(isStealth ? stealthAlpha : 1f);
+        SetAlpha(beforeInAquatic ? stealthAlpha : 1f);
     }
 
     // 毒圈判定

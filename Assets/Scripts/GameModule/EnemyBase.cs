@@ -118,7 +118,6 @@ public class EnemyBase : FishBase
 
 
         Idle();
-        base.MoveUpdate();
     }
 
     public override void Die(Transform eatFishTrans)

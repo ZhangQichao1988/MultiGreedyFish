@@ -5,28 +5,36 @@ using UnityEngine;
 
 public class PlayerRobotBase : PlayerBase
 {
+    protected float aiParamRobotFollowBigFishLifeRate = 0f;
+    protected float aiParamRobotGotoAquaticLifeRate = 0f;
+
     protected List<FishBase> listFindedFish;
 
     protected override bool showLifeGauge { get { return false; } }
 
     public override FishType fishType { get { return FishType.PlayerRobot; } }
 
-	
-    protected virtual void CalcMoveAction()
+    public void SetAI(PlayerRobotData.PlayerRobotAiBaseData aiData)
+    {
+        aiParamRobotFollowBigFishLifeRate = aiData.aryParam[0];
+        aiParamRobotGotoAquaticLifeRate = aiData.aryParam[1];
+    }
+
+    protected void Attack()
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 追踪附近比自己小的离最近的鱼
-        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange( this, transform.position, GameConst.RobotFindFishRange );
+        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, GameConst.RobotFindFishRange);
 
         // 把新发现的，隐身的鱼排除
-        for (int i = listFish.Count - 1; i >= 0 ; --i)
+        for (int i = listFish.Count - 1; i >= 0; --i)
         {
             // 新发现的鱼
-            if (listFindedFish!= null && !listFindedFish.Contains(listFish[i]))
+            if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
             {
-                if (listFish[i].isStealth)
+                if (listFish[i].beforeInAquatic)
                 {
                     listFish.RemoveAt(i);
                 }
@@ -39,7 +47,7 @@ public class PlayerRobotBase : PlayerBase
             listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
 
             // 当体力较多时，追踪大鱼
-            if (lifeRate > GameConst.RobotFollowBigFishLifeRate)
+            if (lifeRate > aiParamRobotFollowBigFishLifeRate)
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
             }
@@ -47,7 +55,7 @@ public class PlayerRobotBase : PlayerBase
             {
                 listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
             }
-            
+
             FishBase target = listFish[0];
             MoveToTarget(target.transform.position);
 
@@ -56,7 +64,27 @@ public class PlayerRobotBase : PlayerBase
         {
             EnemyIdle();
         }
-        
+    }
+
+    protected void GotoAquatic()
+    {
+        List<Transform> listTransAquatic = ManagerGroup.GetInstance().aquaticManager.listTransAquatic;
+        if (listTransAquatic.Count <= 0) { return; }
+        listTransAquatic.Sort((a, b) => { return (int)(Vector3.Distance(transform.position, a.position) - Vector3.Distance(transform.position, b.position)); });
+        MoveToTarget(listTransAquatic[0].transform.position);
+    }
+
+    protected virtual void CalcMoveAction()
+    {
+        if (lifeRate > aiParamRobotGotoAquaticLifeRate)
+        {   // 吃鱼模式
+            Attack();
+        }
+        else
+        {   //  恢复模式
+            GotoAquatic();
+        }
+
     }
 
     protected void MoveToTarget(Vector3 targetPos)
@@ -111,5 +139,12 @@ public class PlayerRobotBase : PlayerBase
         CalcMoveAction();
 
         base.MoveUpdate();
+    }
+
+    protected override float SetAlpha(float alpha)
+    {
+        alpha = base.SetAlpha(alpha);
+        goNamepalte.SetActive(alpha > 0.8);
+        return alpha;
     }
 }
