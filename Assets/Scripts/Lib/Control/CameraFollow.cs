@@ -102,7 +102,7 @@ public class CameraFollow : MonoBehaviour
 			}
 
 			Distance = Mathf.Lerp(55f, 90f, currentRate);
-			FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
+			//FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
 			SelfCamera.nearClipPlane = Mathf.Lerp(40f, 70f, currentRate);
 			SelfCamera.farClipPlane = Mathf.Lerp(80f, 150f, currentRate);
 
