@@ -40,11 +40,14 @@ public static partial class ProtocolReflection {
           "BGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoHcG93ZXJBdBgJIAEoAxIR",
           "CglmaWdodEZpc2gYCiABKAUqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQ",
           "EAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4Q",
-          "AhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEANCMAogY29tLmNoYW8uZmlzaC5z",
-          "ZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2FnZYgBAA=="));
+          "AhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJP",
+          "SxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tf",
+          "T1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9S",
+          "EAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVz",
+          "c2FnZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MessageId), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "Mask" }, null, null, null, null),
@@ -68,6 +71,15 @@ public enum MessageId {
   [pbr::OriginalName("MID_LOGIN_WITH_PLATFORM")] MidLoginWithPlatform = 1,
   [pbr::OriginalName("MID_LOGIN")] MidLogin = 2,
   [pbr::OriginalName("MID_GET_PLAYER_INFO")] MidGetPlayerInfo = 3,
+}
+
+public enum StatusCode {
+  [pbr::OriginalName("OK")] Ok = 0,
+  [pbr::OriginalName("FAILED")] Failed = 1,
+  [pbr::OriginalName("SIGNATURE_ERROR")] SignatureError = 2,
+  [pbr::OriginalName("KICK_OUT_LOGIN_USER")] KickOutLoginUser = 3,
+  [pbr::OriginalName("CAUTION")] Caution = 4,
+  [pbr::OriginalName("CLIENT_ERROR")] ClientError = 5,
 }
 
 #endregion
