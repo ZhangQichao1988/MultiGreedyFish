@@ -11,8 +11,9 @@ public class PlayerRobotBase : PlayerBase
     protected List<FishBase> listFindedFish;
 
     protected override bool showLifeGauge { get { return false; } }
-
+    protected bool isGotoAquatic { get; set; }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
+    
 
     public void SetAI(PlayerRobotData.PlayerRobotAiBaseData aiData)
     {
@@ -71,17 +72,22 @@ public class PlayerRobotBase : PlayerBase
         List<Transform> listTransAquatic = ManagerGroup.GetInstance().aquaticManager.listTransAquatic;
         if (listTransAquatic.Count <= 0) { return; }
         listTransAquatic.Sort((a, b) => { return (int)(Vector3.Distance(transform.position, a.position) - Vector3.Distance(transform.position, b.position)); });
-        MoveToTarget(listTransAquatic[0].transform.position);
+        MoveToTarget(new Vector3( listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z));
     }
 
     protected virtual void CalcMoveAction()
     {
-        if (lifeRate > aiParamRobotGotoAquaticLifeRate)
+        if (lifeRate > aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
         {   // 吃鱼模式
             Attack();
         }
+        else if (lifeRate >= 1f)
+        {
+            isGotoAquatic = false;
+        }
         else
         {   //  恢复模式
+            isGotoAquatic = true;
             GotoAquatic();
         }
 
@@ -146,5 +152,11 @@ public class PlayerRobotBase : PlayerBase
         alpha = base.SetAlpha(alpha);
         goNamepalte.SetActive(alpha > 0.8);
         return alpha;
+    }
+
+	public override void Damge()
+	{
+		base.Damge();
+        isGotoAquatic = false;
     }
 }

@@ -40,25 +40,48 @@ public class PlayerRobotData
 
 	static readonly public List<PlayerRobotDataBaseData> baseDatas = new List<PlayerRobotDataBaseData>()
 	{
-		{new PlayerRobotDataBaseData(10, "阿超", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "Ferya", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "HUSKY", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "Asura", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "Rebecca", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(10, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 0) },
+		{new PlayerRobotDataBaseData(10, "阿超", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "Ferya", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "HUSKY", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "Asura", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(10, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
 	};
 
 	static readonly public List<PlayerRobotAiBaseData> aiBaseDatas = new List<PlayerRobotAiBaseData>()
 	{
+		// 普通型
 		{
 			new PlayerRobotAiBaseData(0, PlayerRobotType.PlayerRobotBase, new float[]{ 
-			0.8f,/*不吃杂鱼，吃玩家鱼血量*/
-			0.2f,/*躲到草丛里回血的血量*/
+			0.7f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
+			0.2f,/*血量低于这个比例躲到草丛里回血*/
 			})
 		},
+		// 勇敢型
+		{
+			new PlayerRobotAiBaseData(1, PlayerRobotType.PlayerRobotBase, new float[]{
+			0.2f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
+			0.2f,/*血量低于这个比例躲到草丛里回血*/
+			})
+		},
+		// 发育型
+		{
+			new PlayerRobotAiBaseData(2, PlayerRobotType.PlayerRobotBase, new float[]{
+			0.95f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
+			0.9f,/*血量低于这个比例躲到草丛里回血*/
+			})
+		},
+		//// 潜行者
+		//{
+		//	new PlayerRobotAiBaseData(2, PlayerRobotType.PlayerRobotStayAquatic, new float[]{
+		//	0.95f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
+		//	0.4f,/*血量低于这个比例躲到草丛里回血*/
+		//	1.5f,/*scale低于这个数吃杂鱼，高于则躲水草*/
+		//	})
+		//},
 	};
 
 	static public PlayerRobotAiBaseData GetPlayerRobotAiBaseData(int id)

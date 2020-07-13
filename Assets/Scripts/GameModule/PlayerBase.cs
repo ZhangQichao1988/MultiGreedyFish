@@ -147,6 +147,7 @@ public class PlayerBase : FishBase
 		animator.SetTrigger("Eat");
 		actionStep = ActionType.Eatting;
 		data.moveSpeed = 0f;
+		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
 
 		fish.life -= (int)((float)data.atk * transform.localScale.x);
 		if (fish.life <= 0)

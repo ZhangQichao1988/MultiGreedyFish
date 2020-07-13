@@ -63,6 +63,7 @@ public class FishBase : MonoBehaviour
     protected static readonly float hitWallCoolTimeMax = 1f;
     protected float hitWallCoolTime = 0f;
 
+    protected float canStealthRemainingTime = 0f;
     protected bool beforeInPoisonRing = false;
     protected float inPoisonRingTime = 0f;
     protected int inPoisonRingDmgCnt = 0;
@@ -303,8 +304,9 @@ public class FishBase : MonoBehaviour
 
     protected void AquaticCheck()
     {
+        canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
         // 在水草里恢复血量
-        if (ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this))
+        if (ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
         {
             if (!beforeInAquatic)
             {
@@ -362,8 +364,9 @@ public class FishBase : MonoBehaviour
         }
     }
 
-    public void Damge()
+    public virtual void Damge()
     {
         animator.SetTrigger("Damage");
+        canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
     }
 }
