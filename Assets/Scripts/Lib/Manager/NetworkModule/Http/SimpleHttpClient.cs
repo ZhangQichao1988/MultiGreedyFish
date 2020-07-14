@@ -59,6 +59,8 @@ namespace NetWorkModule
                 request.uploadHandler = upLoaderHandler;
                 yield return request.SendWebRequest();
 
+
+                HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, msg, body);
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
                     ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data);
@@ -66,7 +68,7 @@ namespace NetWorkModule
                 else
                 {
                     // error
-                    HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HTTP_ERROR, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
+                    HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpError, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
                 }
             }
         }

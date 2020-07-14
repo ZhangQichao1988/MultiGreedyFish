@@ -21,7 +21,7 @@ namespace NetWorkModule
         }
 
         public delegate void DgtServerEvent(EventType type, string msg, System.Object obj);
-        public DgtServerEvent OnServeEvent;
+        public event DgtServerEvent OnServeEvent;
 
 
         public delegate void DgtMessage(NodeMsg msg);
@@ -60,7 +60,9 @@ namespace NetWorkModule
             KickOutLoginUser = 2,
             Caution = 3,
             Failed = 4,
-            HTTP_ERROR = 5
+            HttpError = 5,
+            HttpRequestSend = 16,
+            HttpRecieve = 32
         }
         public class NodeEvent
         {
