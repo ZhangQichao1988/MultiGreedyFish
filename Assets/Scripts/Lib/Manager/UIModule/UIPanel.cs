@@ -22,7 +22,7 @@ public class UIPanel
         cachedPrefab = BlSceneManager.GetCachedPrefab(rootPath);
         if (cachedPrefab == null)
         {
-            cachedPrefab = ResourceManager.LoadSync(rootPath, typeof(GameObject)) as GameObject;
+            cachedPrefab = ResourceManager.LoadSync(rootPath, typeof(GameObject)).Asset as GameObject;
         }
         
         UIRootObject = GameObjectUtil.InstantiatePrefab(cachedPrefab, parentObject);

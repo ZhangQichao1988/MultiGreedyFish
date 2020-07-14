@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-/// <summary>
-/// 用于通过反射机制把请求到的对象返回
-/// </summary>
+    /// <summary>
+    /// 用于通过反射机制把请求到的对象返回
+    /// </summary>
 public class RequestNodeReflection : RequestNode
 {
     private object _propertyOwner;
@@ -17,7 +17,7 @@ public class RequestNodeReflection : RequestNode
 
         if (resInfo.type != null)
         {
-            _propertyInfo = _propertyOwner.GetType().GetProperty(propertyName, resInfo.type);
+            _propertyInfo = _propertyOwner.GetType().GetProperty(propertyName, typeof(AssetRef<>).MakeGenericType(resInfo.type));
         }
         else
         {
@@ -25,7 +25,7 @@ public class RequestNodeReflection : RequestNode
         }
     }
 
-    public override void AssignLoaded(int groupHandle, int nodeHandle, UnityEngine.Object loaded)
+    public override void AssignLoaded(int groupHandle, int nodeHandle, AssetRef loaded)
     {
         if (_propertyOwner != null && _propertyInfo != null)
         {

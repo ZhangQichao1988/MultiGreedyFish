@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c21de74cb847e6ae35982d6e8e215, type: 3}
+  m_Name: UISettings 1
+  m_EditorClassIdentifier: 
+  renderMode: 0
+  orthographic: 0
+  uiScaleMode: 0
+  referenceResolution: {x: 0, y: 0}
+  screenMathMode: 0
+  matchWidthOrHeight: 0
+  layers: []

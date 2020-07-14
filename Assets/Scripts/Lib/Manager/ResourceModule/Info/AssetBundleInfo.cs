@@ -1,4 +1,6 @@
+﻿
 using System.Collections.Generic;
+
 
 public class AssetBundleInfo : ResourceBundleInfo
 {
@@ -12,17 +14,17 @@ public class AssetBundleInfo : ResourceBundleInfo
 
     public override string GetFilePath()
     {
-        return "";
+        return string.Format("AssetBundles/{1}", Name + PathUtility.ASSETBUNDLE_EXTENSION);
     }
 
     public string GetFilePathNoLang()
     {
-        return "";
+        return "AssetBundles/" + Name + PathUtility.ASSETBUNDLE_EXTENSION;
     }
 
     public override string GetDownloadPath(string version, string part)
     {
-        return "";
+        return string.Format("{0}/{1}/{2}", version, PathUtility.GetPlatformName(), part);
     }
     
 }

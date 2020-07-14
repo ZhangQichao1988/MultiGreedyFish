@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+
 public class BundlesManifest
 {
     public Dictionary<string, AssetBundleInfo> AssetBundleInfos
@@ -26,7 +27,7 @@ public class BundlesManifest
 
     public bool Exist(string assetBundleName)
     {
-        return AssetBundleInfos.Keys.Contains(assetBundleName);
+        return AssetBundleInfos.ContainsKey(assetBundleName);
     }
 
     public string[] GetAllAssetBundles()
@@ -36,34 +37,22 @@ public class BundlesManifest
 
     public string[] GetAllLocalAssetBundles()
     {
-        return AssetBundleInfos.Values.Where(info =>
-        {
-            return info.HasFlag(eResBundleFlags.local);
-        }).Select(info => info.Name).ToArray();
+        return AssetBundleInfos.Values.Select(info => info.Name).ToArray();
     }
 
     public string[] GetAllRemoteAssetBundles()
     {
-        return AssetBundleInfos.Values.Where(info =>
-        {
-            return info.HasFlag(eResBundleFlags.remote);
-        }).Select(info => info.Name).ToArray();
+        return AssetBundleInfos.Values.Select(info => info.Name).ToArray();
     }
 
     public string[] GetAllPreloadAssetBundles()
     {
-        return AssetBundleInfos.Values.Where(info =>
-        {
-            return info.HasFlag(eResBundleFlags.preload);
-        }).Select(info => info.Name).ToArray();
+        return AssetBundleInfos.Values.Select(info => info.Name).ToArray();
     }
 
     public string[] GetAllOptionalAssetBundles()
     {
-        return AssetBundleInfos.Values.Where(info =>
-        {
-            return info.HasFlag(eResBundleFlags.optional);
-        }).Select(info => info.Name).ToArray();
+        return AssetBundleInfos.Values.Select(info => info.Name).ToArray();
     }
 
     public string GetAssetBundleFileName(string assetBundleName)
@@ -99,30 +88,16 @@ public class BundlesManifest
         if (AssetBundleInfos.TryGetValue(assetBundleName, out assetBundleInfo))
         {
 #if UNITY_ANDROID
-            return PathUtility.GetPersistentDataPath();
+            return PathUtil.GetPersistentDataPath();
 #else
 
             if (resrve)
             {
-                if (assetBundleInfo.HasFlag(eResBundleFlags.local))
-                {
-                    return PathUtility.GetPersistentDataPath();
-                }
-                else if (assetBundleInfo.HasFlag(eResBundleFlags.remote))
-                {
-                    return PathUtility.GetStreamingAssetsPath();
-                }
+                return PathUtility.GetStreamingAssetsPath();
             }
             else
             {
-                if (assetBundleInfo.HasFlag(eResBundleFlags.local))
-                {
-                    return PathUtility.GetStreamingAssetsPath();
-                }
-                else if (assetBundleInfo.HasFlag(eResBundleFlags.remote))
-                {
-                    return PathUtility.GetPersistentDataPath();
-                }
+                return PathUtility.GetPersistentDataPath();
             }
 #endif
         }
@@ -153,14 +128,16 @@ public class BundlesManifest
 
     public string[] GetAllDependencies(string assetBundleName)
     {
-        HashSet<string> allDependencies = new HashSet<string>();
+        return GetDirectDependencies(assetBundleName);
 
-        GetAllDependencies(assetBundleName, ref allDependencies);
+        //HashSet<string> allDependencies = new HashSet<string>();
 
-        return allDependencies.ToArray();
+        //GetAllDependencies(assetBundleName, allDependencies);
+
+        //return allDependencies.ToArray();
     }
 
-    private void GetAllDependencies(string assetBundleName, ref HashSet<string> allDependencies)
+    private void GetAllDependencies(string assetBundleName, HashSet<string> allDependencies)
     {
         string[] directDependencies = GetDirectDependencies(assetBundleName);
 
@@ -170,7 +147,7 @@ public class BundlesManifest
             {
                 allDependencies.Add(directDependency);
 
-                GetAllDependencies(directDependency, ref allDependencies);
+                GetAllDependencies(directDependency, allDependencies);
             }
         }
     }

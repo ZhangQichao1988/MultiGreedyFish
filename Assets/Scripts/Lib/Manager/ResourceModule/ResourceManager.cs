@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+[ExecuteInEditMode]
 public class ResourceManager : MonoBehaviour
 {
     private static ResourceManager Instance { get; set; }
@@ -12,7 +14,7 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 最大同时执行的加载请求数量
     /// </summary>
-    private static int maxLoadingRequest = 4;
+    private static uint maxLoadingRequest = 4;
 
     /// <summary>
     /// 正在接受注册请求的组
@@ -37,9 +39,12 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// AssetBundle加载器
     /// </summary>
-    private static AssetBundleLoader _assetBundleLoader;
+    private static AssetBundleLoader m_AssetBundleLoader;
 
-    private static List<string> _assetBundleToUnload;
+    /// <summary>
+    /// 资源缓存器
+    /// </summary>
+    private static AssetsCacher m_AssetCacher;
 
     private void Awake()
     {
@@ -52,22 +57,27 @@ public class ResourceManager : MonoBehaviour
         _groups = new List<RequestGroup>();
         _requestsToLoad = new Dictionary<RequestInfo, Request>();
         _loadingRequests = new Dictionary<int, Request>();
-        _assetBundleToUnload = new List<string>();
 
-        _assetBundleLoader = new AssetBundleLoader();
+        m_AssetBundleLoader = new AssetBundleLoader();
+        m_AssetCacher = new AssetsCacher();
     }
 
     private void OnDestroy()
     {
-        if(_assetBundleLoader != null)
+        if (m_AssetCacher != null)
         {
-            _assetBundleLoader.Destroy();
+            m_AssetCacher.Clear();
         }
+
+        if (m_AssetBundleLoader != null)
+        {
+            m_AssetBundleLoader.Destroy();
+        }
+
         _loadingRequests.Clear();
         _requestsToLoad.Clear();
         _groups.Clear();
         _acceptingRequestGroups.Clear();
-        _assetBundleToUnload.Clear();
 
         if (Instance != null)
         {
@@ -77,6 +87,11 @@ public class ResourceManager : MonoBehaviour
 
     private void Update()
     {
+        if (m_AssetCacher != null)
+        {
+            m_AssetCacher.Update();
+        }
+
         //当存在还未开始加载的请求，并且正在加载的请求数小于最大允许数量
         while (_requestsToLoad.Count > 0 && _loadingRequests.Count < maxLoadingRequest)
         {
@@ -98,34 +113,37 @@ public class ResourceManager : MonoBehaviour
             {
                 RequestGroup requestGroup = _groups[i];
 
-                if (requestGroup.IsEmpty)
+                if (requestGroup.IsComplete)
                 {
-                    ClockRecorder.GetRecord();
                     requestGroup.OnComplete();
 
                     _groups.RemoveAt(i);
+                }
+                else if(requestGroup.IsEmpty)
+                {
+                    requestGroup.IsComplete = true;
                 }
             }
         }
     }
 
+    /// <summary>
+    /// 使用资源清单文件初始化资源管理器
+    /// </summary>
+    /// <param name="manifest"></param>
+    /// <returns></returns>
     public static IEnumerator Initialize(ResourceBundleManifest manifest)
     {
-        yield return _assetBundleLoader.Initialize(manifest);
+        yield return m_AssetBundleLoader.Initialize(manifest);
     }
 
-    public static void UnloadAssetBundles()
+    public static void SetMaxCoroutine(uint n)
     {
-        for(int i = 0; i < _assetBundleToUnload.Count; i++)
-        {
-            _assetBundleLoader.UnloadAssetBundle(_assetBundleToUnload[i]);                
-        }
-        _assetBundleToUnload.Clear();
+        maxLoadingRequest = System.Math.Max(n, 1);
     }
 
     ////========== - SyncLoad - 同步加载============
-    ///
-    public static Object LoadSync(string resourcesPath, System.Type type)
+    private static Object SyncLoad(string resourcesPath, System.Type type)
     {
         Object loaded = null;
 
@@ -142,23 +160,26 @@ public class ResourceManager : MonoBehaviour
 
             if (PathUtility.ResourcePathToBundlePath(resourcesPath, out assetBundleName, out assetName))
             {
-                if (_assetBundleLoader.ExistAssetBundleName(assetBundleName))
+                if (m_AssetBundleLoader.ExistAssetBundleName(assetBundleName))
                 {
-                    AssetBundleRef assetBundle = _assetBundleLoader.LoadAssetBundle(assetBundleName);
+                    AssetBundleRef assetBundleRef = m_AssetBundleLoader.LoadAssetBundle(assetBundleName);
 
-                    if(assetBundle != null && assetBundle.Bundle != null)
+                    if (assetBundleRef != null && assetBundleRef.Bundle != null)
                     {
-                        _assetBundleToUnload.Add(assetBundleName);
-
                         if (type != null)
                         {
-                            loaded = _assetBundleLoader.LoadAssetSync(assetBundleName, assetName, type);
+                            loaded = m_AssetBundleLoader.LoadAssetSync(assetBundleName, assetName, type);
                         }
                         else
                         {
-                            loaded = _assetBundleLoader.LoadAssetSync(assetBundleName, assetName, typeof(GameObject));
+                            loaded = m_AssetBundleLoader.LoadAssetSync(assetBundleName, assetName, typeof(GameObject));
                         }
-                    }                       
+
+                        if (loaded == null)
+                        {
+                            m_AssetBundleLoader.UnloadAssetBundle(assetBundleName);
+                        }
+                    }
                 }
             }
         }
@@ -181,19 +202,75 @@ public class ResourceManager : MonoBehaviour
             }
         }
         return loaded;
-
     }
 
-    public static T LoadSync<T>(string resourcesPath) where T : Object
+    /// <summary>
+    /// 同步加载指定路径的资源
+    /// </summary>
+    /// <param name="resourcesPath">Resources目录相对路径</param>
+    /// <param name="type">资源类型</param>
+    /// <returns>AssetRef资源引用器</returns>
+    public static AssetRef LoadSync(string resourcesPath, System.Type type)
     {
-        return LoadSync(resourcesPath, typeof(T)) as T;
+        RequestInfo info = new RequestInfo(resourcesPath, type);
+        if (m_AssetCacher == null) return null;
+        //先尝试从缓存中取资源
+        AssetRef cached = m_AssetCacher.GetFromCache(info);
+
+        if (cached != null)
+        {
+            return cached;
+        }
+
+        //缓存中取不到正常加载
+        Object loaded = SyncLoad(info.path, info.type);
+
+        //加载成功放入缓存
+        if (loaded != null)
+        {
+            m_AssetCacher.PutIntoCache(info, loaded);
+
+            return m_AssetCacher.GetFromCache(info);
+        }
+        return null;
     }
+
+    /// <summary>
+    /// 同步加载指定路径的资源
+    /// </summary>
+    /// <typeparam name="T">资源类型</typeparam>
+    /// <param name="resourcesPath">Resources目录相对路径</param>
+    /// <returns>AssetRef<T>资源引用器</returns>
+    public static AssetRef<T> LoadSync<T>(string resourcesPath) where T : Object
+    {
+        return LoadSync(resourcesPath, typeof(T)) as AssetRef<T>;
+    }
+
 
     ////========== - AsyncLoad - 异步加载============
 
     IEnumerator AsyncLoad(Request request)
     {
         RequestInfo assetInfo = request.ResInfo;
+
+        //先尝试从缓存中取资源
+
+        if(m_AssetCacher.IsCached(assetInfo))
+        {
+            foreach (RequestNode node in request.Nodes)
+            {
+                AssetRef cached = m_AssetCacher.GetFromCache(assetInfo);
+
+                node.OnComplete(cached);
+            }
+            request.Nodes.Clear();
+
+            _loadingRequests.Remove(request.Handle);
+
+            yield break;
+        }
+
+        //缓存中取不到正常加载
 
         Object loaded = null;
 
@@ -203,33 +280,39 @@ public class ResourceManager : MonoBehaviour
 
         if (AppConst.BundleMode && loaded == null)
         {
-            string assetBundleName;
-            string assetName;
-
-            if (PathUtility.ResourcePathToBundlePath(assetInfo.path, out assetBundleName, out assetName))
+            if (loaded == null)
             {
-                if (_assetBundleLoader.ExistAssetBundleName(assetBundleName))
+                string assetBundleName;
+                string assetName;
+
+                if (PathUtility.ResourcePathToBundlePath(assetInfo.path, out assetBundleName, out assetName))
                 {
-                    AssetBundleRef assetBundleRef = _assetBundleLoader.LoadAssetBundle(assetBundleName);
-
-                    if(assetBundleRef != null && assetBundleRef.Bundle != null)
+                    if (m_AssetBundleLoader.ExistAssetBundleName(assetBundleName))
                     {
-                        _assetBundleToUnload.Add(assetBundleName);
+                        AssetBundleRef assetBundleRef = m_AssetBundleLoader.LoadAssetBundle(assetBundleName);
 
-                        AssetBundleRequest abr = _assetBundleLoader.LoadAssetAsync(assetBundleName, assetName, assetInfo.type);
-
-                        if (abr != null)
+                        if (assetBundleRef != null && assetBundleRef.Bundle != null)
                         {
-                            yield return abr;
+                            AssetBundleRequest abr = m_AssetBundleLoader.LoadAssetAsync(assetBundleName, assetName, assetInfo.type);
 
-                            loaded = abr.asset;
-                        }
-                    }                     
+                            if (abr != null)
+                            {
+                                yield return abr;
+
+                                loaded = abr.asset;
+                            }
+
+                            if (loaded == null)
+                            {
+                                m_AssetBundleLoader.UnloadAssetBundle(assetBundleName);
+                            }
+                        }                           
+                    }
                 }
-            }
-            else
-            {
-                Debug.LogError("Invaild resource path: " + assetInfo.path);
+                else
+                {
+                    Debug.LogError("Invaild resource path: " + assetInfo.path);
+                }
             }
         }
         if (loaded == null)
@@ -246,8 +329,26 @@ public class ResourceManager : MonoBehaviour
                 }
             }
         }
-        request.OnComplete(loaded);
 
+        //加载成功放入缓存
+
+        if (loaded != null)
+        {
+            m_AssetCacher.PutIntoCache(assetInfo, loaded);
+        }
+        else
+        {
+            Debug.LogError("Load resource failed, please check: " + assetInfo.path + " with type: " + assetInfo.type);
+        }
+
+        foreach (RequestNode node in request.Nodes)
+        {
+            AssetRef cached = m_AssetCacher.GetFromCache(assetInfo);
+
+            node.OnComplete(cached);
+        }
+        request.Nodes.Clear();
+        
         _loadingRequests.Remove(request.Handle);
     }
 
@@ -256,8 +357,10 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 开启一个新的资源加载请求组用于接受加载请求
     /// </summary>
-    /// <param name="onGroupComplete"></param>
-    /// <returns></returns>
+    /// <param name="onGroupComplete">资源加载请求组加载完成回调</param>
+    /// <param name="onProgress">资源加载进度回调</param>
+    /// <returns>资源加载请求组句柄</returns>
+    /// <summary>
     public static int Begin(UnityAction<int> onGroupComplete, UnityAction<int, float> onProgress = null)
     {
         RequestGroup group = new RequestGroup(onProgress, onGroupComplete);
@@ -278,7 +381,6 @@ public class ResourceManager : MonoBehaviour
 
             group.Prepare(_requestsToLoad);
 
-            ClockRecorder.StartRecord();
             _groups.Add(group);
         }
         else
@@ -290,41 +392,50 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 取消一个请求组
     /// </summary>
-    /// <param name="groupHandle"></param>
+    /// <param name="groupHandle">资源加载请求组句柄</param>
     public static void Cancel(int groupHandle)
     {
-        foreach (Request request in _requestsToLoad.Values.ToArray())
+        if(_requestsToLoad != null)
         {
-            request.RemoveNodes(groupHandle);
-
-            if (request.IsEmpty)
+            foreach (Request request in _requestsToLoad.Values.ToArray())
             {
-                _requestsToLoad.Remove(request.ResInfo);
+                request.RemoveNodes(groupHandle);
+
+                if (request.IsEmpty)
+                {
+                    _requestsToLoad.Remove(request.ResInfo);
+                }
             }
         }
 
-        foreach (Request request in _loadingRequests.Values.ToArray())
+        if(_loadingRequests != null)
         {
-            request.RemoveNodes(groupHandle);
-
-            if (request.IsEmpty)
+            foreach (Request request in _loadingRequests.Values.ToArray())
             {
-                Instance.StopCoroutine(request.coroutine);
+                request.RemoveNodes(groupHandle);
 
-                _loadingRequests.Remove(request.Handle);
+                if (request.IsEmpty)
+                {
+                    Instance.StopCoroutine(request.coroutine);
+
+                    _loadingRequests.Remove(request.Handle);
+                }
             }
         }
 
-        _groups.RemoveAll((RequestGroup group) => group.Handle == groupHandle);
+        if(_groups != null)
+        {
+            _groups.RemoveAll((RequestGroup group) => group.Handle == groupHandle);
+        }
     }
 
     /// <summary>
     /// 请求加载
     /// </summary>
-    /// <param name="resourcesPath"></param>
-    /// <param name="type"></param>
-    /// <param name="onComplete"></param>
-    public static int Request(string resourcesPath, System.Type type, UnityAction<int, int, Object> onComplete)
+    /// <param name="resourcesPath">Resources目录相对路径</param>
+    /// <param name="type">资源类型</param>
+    /// <param name="onComplete">资源加载完成回调</param>
+    public static int Request(string resourcesPath, System.Type type, UnityAction<int, int, AssetRef> onComplete)
     {
         if (_acceptingRequestGroups.Count > 0)
         {
@@ -347,11 +458,11 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 请求加载
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="resourcesPath"></param>
-    /// <param name="onComplete"></param>
-    /// <returns></returns>
-    public static int Request<T>(string resourcesPath, UnityAction<int, int, Object> onComplete)
+    /// <typeparam name="T">资源类型</typeparam>
+    /// <param name="resourcesPath">Resources目录相对路径</param>
+    /// <param name="onComplete">资源加载完成回调</param>
+    /// <returns>资源加载请求句柄</returns>
+    public static int Request<T>(string resourcesPath, UnityAction<int, int, AssetRef<T>> onComplete) where T : Object
     {
         if (_acceptingRequestGroups.Count > 0)
         {
@@ -374,10 +485,12 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 请求加载
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="resourcesPath"></param>
-    /// <param name="propertyOwner"></param>
-    /// <param name="propertyName"></param>
+    /// <typeparam name="T">资源类型</typeparam>
+    /// <param name="resourcesPath">Resources目录相对路径</param>
+    /// <param name="propertyOwner">资源反射对象</param>
+    /// <param name="propertyName">反射对象属性名</param>
+    /// <param name="propertyIndex">反射对象属性索引</param>
+    /// <returns>资源加载请求句柄</returns>
     public static int Request<T>(string resourcesPath, object propertyOwner, string propertyName, object propertyIndex = null)
     {
         if (_acceptingRequestGroups.Count > 0)
@@ -399,11 +512,42 @@ public class ResourceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 是否处于接受加载请求状态
+    /// 卸载一个资源
+    /// 如果是AssetBundle模式，则会为不再需要的AssetBundle包调用AssetBundle.Unload(true)
     /// </summary>
-    /// <returns></returns>
-    public static bool IsAcceptRequest()
+    /// <param name="assetRef">资源引用器</param>
+    public static void Unload(AssetRef assetRef)
     {
-        return _acceptingRequestGroups.Count > 0;
+        if (m_AssetCacher.RemoveFromCache(assetRef))
+        {
+            if (AppConst.BundleMode)
+            {
+                if (PathUtility.ResourcePathToBundlePath(assetRef.Info.path, out string assetBundleName, out string assetName))
+                {
+                    m_AssetBundleLoader.UnloadAssetBundle(assetBundleName, true);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 卸载所有资源
+    /// 如果是AssetBundle模式,则会为所有已经加载的AssetBundle包调用AssetBundle.Unload(false)
+    /// </summary>
+    public static void UnloadAll()
+    {
+        if (AppConst.BundleMode)
+        {
+            Dictionary<RequestInfo, AssetRef> cachedAssets = m_AssetCacher.GetAllCachedAssets();
+
+            foreach (RequestInfo info in cachedAssets.Keys)
+            {
+                if (PathUtility.ResourcePathToBundlePath(info.path, out string assetBundleName, out string assetName))
+                {
+                    m_AssetBundleLoader.UnloadAssetBundle(assetBundleName, false);
+                }
+            }
+        }
+        m_AssetCacher.Clear();
     }
 }
