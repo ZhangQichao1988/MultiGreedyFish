@@ -20,7 +20,7 @@ public class LoadingRepeat
         {
             if (_ui == null)
             {
-                var prefab = ResourceManager.LoadSync<GameObject>("LoadingRepeat/LoadingRepeat");
+                var prefab = ResourceManager.LoadSync<GameObject>("ArtResources/UI/Effect/LoadingRepeat/LoadingRepeat").Asset;
                 _ui = GameObjectUtil.InstantiatePrefab(prefab, _root);
             }
         }

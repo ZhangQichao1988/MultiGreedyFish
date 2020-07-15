@@ -136,6 +136,17 @@ public class EventDispatch
         OnListenerAdding(eventType, handler);
         mEventTable[eventType] = (Callback<T, U, V, X,Y>)mEventTable[eventType] + handler;
     }
+
+
+    public void RemoveListener(string eventType)
+    {
+        if (mEventTable.ContainsKey(eventType))
+        {
+            mEventTable[eventType] = null;
+            OnListenerRemoved(eventType);
+        }
+    }
+
     //No parameters
     public void RemoveListener(string eventType, Callback handler)
     {
@@ -144,7 +155,6 @@ public class EventDispatch
             mEventTable[eventType] = (Callback)mEventTable[eventType] - handler;
             OnListenerRemoved(eventType);
         }
-
     }
     //Single parameter
     public void RemoveListener<T>(string eventType, Callback<T> handler)

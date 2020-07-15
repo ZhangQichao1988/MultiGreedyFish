@@ -1,7 +1,11 @@
 
 public class GameEvent
 {
-    public static string ACTOR_MOVE = "ACTOR_MOVE";
-    public static string ACTOR_MOVE_STOP = "ACTOR_MOVE_STOP";
-    public static string ACTOR_ACTION = "ACTOR_ACTION";
+    public static string RECIEVE_P0_REQUEST = "RECIEVE_P0_REQUEST";
+    
+    public static string RECIEVE_P1_REQUEST = "RECIEVE_P1_REQUEST";
+
+    public static string RECIEVE_P2_REQUEST = "RECIEVE_P2_REQUEST";
+
+    public static string RECIEVE_P3_REQUEST = "RECIEVE_P3_REQUEST";
 }

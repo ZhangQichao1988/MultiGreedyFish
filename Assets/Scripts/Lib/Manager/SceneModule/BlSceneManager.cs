@@ -137,7 +137,7 @@ public class BlSceneManager : MonoBehaviour
 
         Resources.UnloadUnusedAssets();
 
-        ResourceManager.UnloadAssetBundles();
+        ResourceManager.UnloadAll();
 
 		// on scene unloaded call
         if (preloadInfo != null)

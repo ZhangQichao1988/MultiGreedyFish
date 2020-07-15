@@ -1,5 +1,7 @@
 ﻿using System;
 
+
+
 public class RequestInfo
 {
     public string path
@@ -12,8 +14,6 @@ public class RequestInfo
         get;
         private set;
     }
-
-    public bool isLoading;
 
     public RequestInfo(string path, Type type)
     {
@@ -42,4 +42,3 @@ public class RequestInfo
         }
     }
 }
-

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class RequestGroup
 {
     static int handleCount;
@@ -38,6 +39,12 @@ public class RequestGroup
         }
     }
 
+    public bool IsComplete
+    {
+        get;
+        set;
+    }
+
     /// <summary>
     /// 总请求数
     /// </summary>
@@ -63,7 +70,7 @@ public class RequestGroup
         _onProgress = onProgress;
         _onComplete = onComplete;
         Handle = ++handleCount;
-
+        IsComplete = false;
         _requestNodes = new Dictionary<int, RequestNode>();
     }
 
@@ -84,9 +91,18 @@ public class RequestGroup
         _totalRequest = _requestNodes.Count;
     }
 
-    public int AddRequestNode(RequestInfo resInfo, UnityAction<int, int, Object> callback)
+    public int AddRequestNode(RequestInfo resInfo, UnityAction<int, int, AssetRef> callback)
     {
         RequestNode requestNode = new RequestCallbackNode(this, resInfo, callback);
+
+        _requestNodes.Add(requestNode.Handle, requestNode);
+
+        return requestNode.Handle;
+    }
+
+    public int AddRequestNode<T>(RequestInfo resInfo, UnityAction<int, int, AssetRef<T>> callback) where T : Object
+    {
+        RequestNode requestNode = new RequestCallbackNode<T>(this, resInfo, callback);
 
         _requestNodes.Add(requestNode.Handle, requestNode);
 

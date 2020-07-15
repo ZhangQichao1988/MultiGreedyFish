@@ -207,21 +207,21 @@ public static class UIBehaviourUtil
     /// <param name="spritePath"></param>
     public static void SetImageSprite(Image image, string spritePath)
 	{
-		Sprite sprite = ResourceManager.LoadSync<Sprite>(spritePath);
+		AssetRef<Sprite> sprite = ResourceManager.LoadSync<Sprite>(spritePath);
 
 		if(sprite != null)
 		{
-			SetImageSprite(image, sprite);
+			SetImageSprite(image, sprite.Asset);
 		}
 	}
 
     public static void SetImageOverrideSprite(Image image, string spritePath)
     {
-        Sprite sprite = ResourceManager.LoadSync<Sprite>(spritePath);
+        AssetRef<Sprite> sprite = ResourceManager.LoadSync<Sprite>(spritePath);
 
         if (sprite != null)
         {
-            SetImageOverrideSprite(image, sprite);
+            SetImageOverrideSprite(image, sprite.Asset);
         }
     }
 
@@ -283,10 +283,10 @@ public static class UIBehaviourUtil
     /// <param name="material"></param>
     public static void SetImageMaterial(Image image, string materialPath)
     {
-        Material material = ResourceManager.LoadSync<Material>(materialPath);
+        AssetRef<Material> material = ResourceManager.LoadSync<Material>(materialPath);
         if (material != null)
         {
-            image.material = material;
+            image.material = material.Asset;
         }
         else
         {
@@ -310,8 +310,8 @@ public static class UIBehaviourUtil
     {
         if (isGray == 1)
         {
-            Material mat = ResourceManager.LoadSync<Material>("UI/Materials/GrayMat");
-            image.material = mat;
+            AssetRef<Material> mat = ResourceManager.LoadSync<Material>("UI/Materials/GrayMat");
+            image.material = mat.Asset;
         }
         else
         {
@@ -336,10 +336,10 @@ public static class UIBehaviourUtil
 
     public static void SetRawImageTexture(RawImage rawImage, string texturePath)
     {
-        Texture texture = ResourceManager.LoadSync<Texture>(texturePath);
+        AssetRef<Texture> texture = ResourceManager.LoadSync<Texture>(texturePath);
         if (texture != null)
         {
-            SetRawImageTexture(rawImage, texture);
+            SetRawImageTexture(rawImage, texture.Asset);
         }
     }
 
@@ -363,10 +363,10 @@ public static class UIBehaviourUtil
 
     public static void SetRawImageMaterial(RawImage rawImage, string materialPath)
     {
-        Material material = ResourceManager.LoadSync<Material>(materialPath);
+        AssetRef<Material> material = ResourceManager.LoadSync<Material>(materialPath);
         if (material != null)
         {
-            rawImage.material = material;
+            rawImage.material = material.Asset;
         }
     }
 

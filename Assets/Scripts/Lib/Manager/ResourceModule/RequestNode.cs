@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+
+
 public class RequestNode
 {
     static int handleCount;
@@ -29,14 +31,14 @@ public class RequestNode
         ResInfo = resInfo;
     }
 
-    public void OnComplete(Object loaded)
+    public void OnComplete(AssetRef loaded)
     {
         AssignLoaded(Group.Handle, Handle, loaded);
 
         Group.OnRequestNodeComplete(Handle);
     }
 
-    public virtual void AssignLoaded(int groupHandle, int nodeHandle, Object loaded)
+    public virtual void AssignLoaded(int groupHandle, int nodeHandle, AssetRef loaded)
     {
 
     }

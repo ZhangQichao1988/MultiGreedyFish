@@ -1,4 +1,4 @@
-using ICSharpCode.SharpZipLib.GZip;
+﻿using ICSharpCode.SharpZipLib.GZip;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,8 +7,15 @@ using System.Security.Cryptography;
 using System.Xml;
 using UnityEngine;
 
+
 public class ResourceBundleManifest
 {
+    public string AppVersion
+    {
+        get;
+        private set;
+    }
+
     private string _version;
 
     public string Version
@@ -46,6 +53,13 @@ public class ResourceBundleManifest
         PackageInfos = new Dictionary<string, ResourceBundleInfo>();
     }
 
+    public ResourceBundleManifest(string appVersion, string resVersion)
+    {
+        AppVersion = appVersion;
+        Version = resVersion;
+        PackageInfos = new Dictionary<string, ResourceBundleInfo>();
+    }
+
     public void SetVersion(string resVersion)
     {
         Version = resVersion;
@@ -60,6 +74,7 @@ public class ResourceBundleManifest
             doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
 
             XmlElement elementVersion = doc.CreateElement("Version");
+            elementVersion.SetAttribute("App", AppVersion);
             elementVersion.SetAttribute("Res", Version.ToString());
             doc.AppendChild(elementVersion);
 
@@ -70,23 +85,11 @@ public class ResourceBundleManifest
             {
                 XmlElement elementInfo = doc.CreateElement("Info");
 
-                if(resourceBundleInfo is SoundBankInfo)
-                {
-                    elementInfo.SetAttribute("Type", "SoundBank");
-                }
-                else if(resourceBundleInfo is AssetBundleInfo)
-                {
-                    elementInfo.SetAttribute("Type", "AssetBundle");
-                }
-                else if(resourceBundleInfo is MasterDataInfo)
-                {
-                    elementInfo.SetAttribute("Type", "MasterData");
-                }
+                elementInfo.SetAttribute("Type", "AssetBundle");
 
                 elementInfo.SetAttribute("Name", resourceBundleInfo.Name);
                 elementInfo.SetAttribute("Size", resourceBundleInfo.Size.ToString());
                 elementInfo.SetAttribute("Hash", resourceBundleInfo.Hash);
-                elementInfo.SetAttribute("Flags", resourceBundleInfo.Flags.ToString());
                 elementInfo.SetAttribute("Version", resourceBundleInfo.Version);
 
                 AssetBundleInfo assetBundleInfo = resourceBundleInfo as AssetBundleInfo;
@@ -115,6 +118,11 @@ public class ResourceBundleManifest
         return true;
     }
 
+    public void SetAppVersion(string appVersion)
+    {
+        AppVersion = appVersion;
+    }
+
     public bool WriteToStream(Stream stream)
     {
         try
@@ -123,6 +131,7 @@ public class ResourceBundleManifest
             doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
 
             XmlElement elementVersion = doc.CreateElement("Version");
+            elementVersion.SetAttribute("App", AppVersion);
             elementVersion.SetAttribute("Res", Version.ToString());
             doc.AppendChild(elementVersion);
 
@@ -133,23 +142,11 @@ public class ResourceBundleManifest
             {
                 XmlElement elementInfo = doc.CreateElement("Info");
 
-                if(resourceBundleInfo is SoundBankInfo)
-                {
-                    elementInfo.SetAttribute("Type", "SoundBank");
-                }
-                else if(resourceBundleInfo is AssetBundleInfo)
-                {
-                    elementInfo.SetAttribute("Type", "AssetBundle");
-                }
-                else if(resourceBundleInfo is MasterDataInfo)
-                {
-                    elementInfo.SetAttribute("Type", "MasterData");
-                }
+                elementInfo.SetAttribute("Type", "AssetBundle");
 
                 elementInfo.SetAttribute("Name", resourceBundleInfo.Name);
                 elementInfo.SetAttribute("Size", resourceBundleInfo.Size.ToString());
                 elementInfo.SetAttribute("Hash", resourceBundleInfo.Hash);
-                elementInfo.SetAttribute("Flags", resourceBundleInfo.Flags.ToString());
                 elementInfo.SetAttribute("Version", resourceBundleInfo.Version);
 
                 AssetBundleInfo assetBundleInfo = resourceBundleInfo as AssetBundleInfo;
@@ -167,9 +164,19 @@ public class ResourceBundleManifest
                 elementInfos.AppendChild(elementInfo);
             }
 
-            using (GZipOutputStream gzipStream = new GZipOutputStream(stream))
+            RijndaelManaged rijndaelCipher = new RijndaelManaged();
+            rijndaelCipher.Mode = CipherMode.CBC;
+            rijndaelCipher.Padding = PaddingMode.PKCS7;
+            rijndaelCipher.KeySize = 128;
+            rijndaelCipher.BlockSize = 128;
+            // rijndaelCipher.Key = AppConst.rgbKey;
+            // rijndaelCipher.IV = AppConst.rgbIV;
+            using (CryptoStream encrypStream = new CryptoStream(stream, rijndaelCipher.CreateEncryptor(), CryptoStreamMode.Write))
             {
-                doc.Save(gzipStream);
+                using (GZipOutputStream gzipStream = new GZipOutputStream(encrypStream))
+                {
+                    doc.Save(gzipStream);
+                }
             }
         }
         catch (Exception e)
@@ -187,14 +194,34 @@ public class ResourceBundleManifest
         {
             XmlDocument doc = new XmlDocument();
 
-            using (GZipInputStream decompressStream = new GZipInputStream(stream))
+            RijndaelManaged rijndaelCipher = new RijndaelManaged();
+            rijndaelCipher.Mode = CipherMode.CBC;
+            rijndaelCipher.Padding = PaddingMode.PKCS7;
+            rijndaelCipher.KeySize = 128;
+            rijndaelCipher.BlockSize = 128;
+            // rijndaelCipher.Key = AppConst.rgbKey;
+            // rijndaelCipher.IV = AppConst.rgbIV;
+            using (CryptoStream decryptStream = new CryptoStream(stream, rijndaelCipher.CreateDecryptor(), CryptoStreamMode.Read))
             {
-                doc.Load(decompressStream);
+                using (GZipInputStream decompressStream = new GZipInputStream(decryptStream))
+                {
+                    doc.Load(decompressStream);
+                }
             }
 
             XmlNode node_root = doc.SelectSingleNode("Version");
             if (node_root != null)
             {
+                XmlAttribute appVersionAttribute = node_root.Attributes["App"];
+                if (appVersionAttribute != null)
+                {
+                    AppVersion = appVersionAttribute.Value;
+                }
+                else
+                {
+                    return false;
+                }
+
                 XmlAttribute resVersionAttribute = node_root.Attributes["Res"];
                 if (resVersionAttribute != null)
                 {
@@ -218,51 +245,33 @@ public class ResourceBundleManifest
                             XmlAttribute typeAttribute = node.Attributes["Type"];
                             if(typeAttribute != null)
                             {
-                                ResourceBundleInfo resourceBundleInfo;
 
-                                if (typeAttribute.Value == "AssetBundle")
+                                AssetBundleInfo assetBundleInfo = new AssetBundleInfo();
+                                ResourceBundleInfo resourceBundleInfo = assetBundleInfo;
+
+                                XmlAttribute EncAttribute = node.Attributes["EncKey"];
+                                if (EncAttribute != null)
                                 {
-                                    AssetBundleInfo assetBundleInfo = new AssetBundleInfo();
-                                    resourceBundleInfo = assetBundleInfo;
+                                    assetBundleInfo.EncryptKey = int.Parse(EncAttribute.Value);
+                                }
 
-                                    XmlAttribute EncAttribute = node.Attributes["EncKey"];
-                                    if (EncAttribute != null)
+                                XmlNodeList dependenciesNodeList = node.SelectNodes("Dependency");
+                                if (dependenciesNodeList != null && dependenciesNodeList.Count > 0)
+                                {
+                                    string[] dependencies = new string[dependenciesNodeList.Count];
+                                    for (int n = 0; n < dependenciesNodeList.Count; n++)
                                     {
-                                        assetBundleInfo.EncryptKey = int.Parse(EncAttribute.Value);
-                                    }
-
-                                    XmlNodeList dependenciesNodeList = node.SelectNodes("Dependency");
-                                    if (dependenciesNodeList != null && dependenciesNodeList.Count > 0)
-                                    {
-                                        string[] dependencies = new string[dependenciesNodeList.Count];
-                                        for (int n = 0; n < dependenciesNodeList.Count; n++)
+                                        XmlNode dependencyNode = dependenciesNodeList[n];
+                                        if (dependencyNode != null)
                                         {
-                                            XmlNode dependencyNode = dependenciesNodeList[n];
-                                            if (dependencyNode != null)
+                                            XmlAttribute dependencyAttribute = dependencyNode.Attributes["Name"];
+                                            if (dependencyAttribute != null)
                                             {
-                                                XmlAttribute dependencyAttribute = dependencyNode.Attributes["Name"];
-                                                if (dependencyAttribute != null)
-                                                {
-                                                    dependencies[n] = dependencyAttribute.Value;
-                                                }
+                                                dependencies[n] = dependencyAttribute.Value;
                                             }
                                         }
-                                        assetBundleInfo.Dependencies = dependencies;
                                     }
-                                }
-                                else if(typeAttribute.Value == "SoundBank")
-                                {
-                                    resourceBundleInfo = new SoundBankInfo();
-                                }
-                                else if(typeAttribute.Value == "MasterData")
-                                {
-                                    resourceBundleInfo = new MasterDataInfo();
-                                }
-                                else
-                                {
-                                    Debug.LogError("Unknown resource bundle type!");
-
-                                    return false;
+                                    assetBundleInfo.Dependencies = dependencies;
                                 }
 
                                 XmlAttribute PathAttribute = node.Attributes["Name"];
@@ -280,11 +289,7 @@ public class ResourceBundleManifest
                                 {
                                     resourceBundleInfo.Hash = HashAttribute.Value;
                                 }
-                                XmlAttribute FlagsAttribute = node.Attributes["Flags"];
-                                if (FlagsAttribute != null)
-                                {
-                                    resourceBundleInfo.Flags = int.Parse(FlagsAttribute.Value);
-                                }
+                                
                                 XmlAttribute VersionAttribute = node.Attributes["Version"];
                                 if (VersionAttribute != null)
                                 {
@@ -361,41 +366,5 @@ public class ResourceBundleManifest
         packageFilePath = string.Empty;
 
         return false;
-    }
-
-    public string GetPackageLoadPath(string packageName, bool resver = false)
-    {
-        ResourceBundleInfo packageInfo;
-
-        if (PackageInfos.TryGetValue(packageName, out packageInfo))
-        {
-#if UNITY_ANDROID
-            return PathUtility.GetPersistentDataPath();
-#elif UNITY_IOS || UNITY_EDITOR
-            if (resver)
-            {
-                if (packageInfo.HasFlag(eResBundleFlags.local))
-                {
-                    return PathUtility.GetPersistentDataPath();
-                }
-                else if (packageInfo.HasFlag(eResBundleFlags.remote))
-                {
-                    return PathUtility.GetStreamingAssetsPath();
-                }
-            }
-            else
-            {
-                if (packageInfo.HasFlag(eResBundleFlags.local))
-                {
-                    return PathUtility.GetStreamingAssetsPath();
-                }
-                else if (packageInfo.HasFlag(eResBundleFlags.remote))
-                {
-                    return PathUtility.GetPersistentDataPath();
-                }
-            }
-#endif
-        }
-        return string.Empty;
     }
 }

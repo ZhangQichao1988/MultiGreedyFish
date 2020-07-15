@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using System.IO;
 using UnityEngine;
 
 public class PathUtility
@@ -201,5 +202,30 @@ public class PathUtility
             transform = transform.parent;
         }
         return path;
+    }
+
+    public static string GetExistAssetPath(string persistentPath, ref string assetPath, bool isAssetBundle = true)
+    {
+        if (File.Exists(persistentPath)) 
+        {
+            return persistentPath;
+        }
+        else
+        {
+            string pathInner = Path.Combine(GetStreamingAssetsPath(), assetPath);
+            if (File.Exists(pathInner))
+            {
+                return pathInner;
+            }
+            else if (isAssetBundle)
+            {
+                // get the base resource path\
+                return Path.Combine(GetStreamingAssetsPath(), assetPath);
+            }
+            else
+            {
+                return pathInner;
+            }
+        }
     }
 }

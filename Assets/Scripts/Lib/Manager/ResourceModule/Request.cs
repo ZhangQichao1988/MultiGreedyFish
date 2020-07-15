@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Request
 {
     static int handleCount;
@@ -22,55 +23,55 @@ public class Request
     {
         get
         {
-            return _nodes.Count <= 0;
+            return Nodes.Count <= 0;
         }
     }
 
     public Coroutine coroutine;
 
-    private List<RequestNode> _nodes;
+    public List<RequestNode> Nodes;
 
     public Request(RequestInfo info)
     {
         Handle = ++handleCount;
         ResInfo = info;
 
-        _nodes = new List<RequestNode>();
+        Nodes = new List<RequestNode>();
     }
 
     public void AddNode(RequestNode node)
     {
-        _nodes.Add(node);
+        Nodes.Add(node);
     }
 
     public void RemoveNode(int groupHandle, RequestNode node)
     {
-        _nodes.Remove(node);
+        Nodes.Remove(node);
     }
 
     public void RemoveNodes(int groupHandle)
     {
-        for(int i = _nodes.Count - 1; i >= 0; i--)
+        for(int i = Nodes.Count - 1; i >= 0; i--)
         {
-            RequestNode requestNode = _nodes[i];
+            RequestNode requestNode = Nodes[i];
 
             if (requestNode.Group.Handle == groupHandle)
             {
-                _nodes.RemoveAt(i);
+                Nodes.RemoveAt(i);
             }
         }
     }
 
-    public void OnComplete(Object loaded)
+    public void OnComplete(AssetRef loaded)
     {
         if (loaded == null)
         {
             Debug.LogError("Load resource failed, please check: " + ResInfo.path + " with type: " + ResInfo.type);
         }
-        foreach (RequestNode node in _nodes)
+        foreach (RequestNode node in Nodes)
         {
             node.OnComplete(loaded);
         }
-        _nodes.Clear();
+        Nodes.Clear();
     }
 }

@@ -27,10 +27,10 @@ public class BaseScene
 
     }
 
-    void OnLoaded(int block, int resHandle, UnityEngine.Object obj)
+    void OnLoaded(int block, int resHandle, AssetRef obj)
     {
         string resPath = cachedDic[block][resHandle];
-        cachedObject[resPath] = obj;
+        cachedObject[resPath] = obj.Asset;
     }
 
     public virtual void Cache(int block)
