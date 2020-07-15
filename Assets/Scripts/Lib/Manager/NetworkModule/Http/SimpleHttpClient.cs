@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -44,7 +45,8 @@ namespace NetWorkModule
             byte[] data = m_protocol.Pack(msg, PID++, body);
             int msgId = int.Parse(msg.Substring(1, msg.IndexOf("_") - 1));
             string err = null;
-            string signStr = GetRequestSign(data, needAuth, msgId, ref err);
+            byte[] combinedData = GetCombineData(msgId, data, m_playerId, m_platform);
+            string signStr = GetRequestSign(combinedData, needAuth, msgId, ref err);
             
             using (UnityWebRequest request = new UnityWebRequest(AppConst.HttpEndPoint, UnityWebRequest.kHttpVerbPOST))
             {
@@ -71,6 +73,54 @@ namespace NetWorkModule
                     HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpError, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
                 }
             }
+        }
+
+        byte[] GetCombineData(int msgId, byte[] data)
+        {
+            byte[] numByte = BitConverter.GetBytes(msgId);
+            byte[] result;
+            Array.Reverse(numByte);
+            if (data != null)
+            {
+                result = new byte[numByte.Length + data.Length];
+                Array.Copy(numByte, 0, result, 0, numByte.Length);
+                Array.Copy(data, 0, result, numByte.Length, data.Length);
+            }
+            else
+            {
+                result = new byte[numByte.Length];
+                Array.Copy(numByte, 0, result, 0, numByte.Length);
+            }
+            
+            return result;
+        }
+
+        byte[] GetCombineData(int msgId, byte[] data, long playerId, string platform)
+        {
+            byte[] numByte = BitConverter.GetBytes(msgId);
+            byte[] result;
+            byte[] playerBytes = BitConverter.GetBytes(playerId);
+            byte[] platformBytes = Encoding.UTF8.GetBytes(platform);
+            Array.Reverse(numByte);
+            Array.Reverse(playerBytes);
+            int currLen = 0;
+            if (data != null)
+            {
+                result = new byte[numByte.Length + data.Length + playerBytes.Length + platformBytes.Length];
+                Array.Copy(numByte, 0, result, 0, numByte.Length);
+                Array.Copy(data, 0, result, numByte.Length, data.Length);
+                currLen = numByte.Length + data.Length;
+            }
+            else
+            {
+                result = new byte[numByte.Length + playerBytes.Length + platformBytes.Length];
+                Array.Copy(numByte, 0, result, 0, numByte.Length);
+                currLen = numByte.Length;
+            }
+            Array.Copy(playerBytes, 0, result, currLen, playerBytes.Length);
+            Array.Copy(platformBytes, 0, result, currLen + playerBytes.Length, platformBytes.Length);
+            
+            return result;
         }
 
         void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res)
@@ -113,7 +163,8 @@ namespace NetWorkModule
                     if (AppConst.EnableProtocolEncrypt)
                     {
                         string err = null;
-                        string signatureData = GetRequestSign(data.pbData, !noAuthMsg.Contains(data.msgId), data.msgId, ref err);
+                        byte[] combinedData = GetCombineData(data.msgId, data.pbData);
+                        string signatureData = GetRequestSign(combinedData, !noAuthMsg.Contains(data.msgId), data.msgId, ref err);
                         if (signatureData != serverSign || err != null)
                         {
                             HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.SignatureError, "client signature not equal with server");
