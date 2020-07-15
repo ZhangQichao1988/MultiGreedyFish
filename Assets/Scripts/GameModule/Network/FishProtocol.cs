@@ -18,7 +18,6 @@ public class FishProtocol : AbstractProtocol
 
 		//Length uint32 4
 		//Cmd    uint32 4
-		//Sn     uint64 8
 		//Pid    uint64 8
 
 		public override byte[] Pack(string msg, long pid, byte[] body)

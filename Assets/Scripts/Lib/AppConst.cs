@@ -12,6 +12,7 @@ public class AppConst
     public static int ApiPort = 8088;
 
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
+    public static string ApiPath = "/fishgame/call";
 
     public static string HttpEndPoint
     {
@@ -23,7 +24,7 @@ public class AppConst
                 httpProtocol = "http://";
             }
 
-            return httpProtocol + Host + ":" + ApiPort;
+            return httpProtocol + Host + ":" + ApiPort + ApiPath;
         }
     }
 }
