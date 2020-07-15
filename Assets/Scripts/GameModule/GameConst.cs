@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class GameConst
 {
-	static readonly public float JoyDefaultPosY = -350f;																									// 默认遥感纵坐标位置
-
 	static readonly public bool FreeMode = true;																											// 只剩自己也不会胜利
 	static readonly public int EnemyNum = 100;																													// 杂鱼数量
 
-	static readonly public float PoisonRingScaleSpeed = 0f/*0.6f*/;                                                                                         // 毒圈缩小速度
+	static readonly public float PoisonRingScaleSpeed = 0.6f;                                                                                         // 毒圈缩小速度
 	static readonly public float PoisonRingRadiusMin = 5f;																								// 毒圈的最小半径
 	static readonly public float PoisonRingRadiusMax = 100f;																	                    // 毒圈的最大半径
 	static readonly public int PoisonRingDmg = 10;																										// 毒圈伤害量
