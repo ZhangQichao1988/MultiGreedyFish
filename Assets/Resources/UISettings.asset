@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 334c21de74cb847e6ae35982d6e8e215, type: 3}
-  m_Name: UISettings 1
+  m_Name: UISettings
   m_EditorClassIdentifier: 
-  renderMode: 0
-  orthographic: 0
+  renderMode: 1
+  orthographic: 1
   uiScaleMode: 0
-  referenceResolution: {x: 0, y: 0}
-  screenMathMode: 0
+  referenceResolution: {x: 1920, y: 1080}
+  screenMathMode: 1
   matchWidthOrHeight: 0
-  layers: []
+  layers:
+  - DEFAULT
+  - OVERLAY
+  - POPUP
+  - LOADING

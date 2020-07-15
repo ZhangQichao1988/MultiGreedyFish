@@ -162,15 +162,13 @@ public class CryptographyUtil
 			return null;
 		}
 	}
-
-	static string rsaPublicKey = "";
 	static RSACryptoServiceProvider rsa = CreateRSAProvider();
 	static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
 
 	static RSACryptoServiceProvider CreateRSAProvider()
 	{
 		var p = new RSACryptoServiceProvider(1024);
-		p.FromXmlString(rsaPublicKey);
+		p.FromXmlString(AppConst.RsaPublicKey);
 		return p;
 	}
 

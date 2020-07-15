@@ -12,6 +12,17 @@ public class Intro : MonoBehaviour
     }
     
     private ClickEffect ClickEffect;
+
+    static BlUIManager uiManager;
+
+    public static BlUIManager UIManager
+    {
+        get
+        {
+            return uiManager;
+        }
+    }
+
     public void Awake()
     {
         if (Instance == null)
@@ -24,7 +35,7 @@ public class Intro : MonoBehaviour
 
         gameObject.AddComponent<NetWorkManager>();
         gameObject.AddComponent<ResourceManager>();
-        gameObject.AddComponent<BlUIManager>();
+        uiManager = gameObject.AddComponent<BlUIManager>();
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
         
@@ -42,7 +53,13 @@ public class Intro : MonoBehaviour
     IEnumerator Start()
     {
         ClickEffect.Initialize();
+        NetWorkHandler.InitHttpNetWork();
+#if CONSOLE_ENABLE 
+		DebugMenu.Instance.StartDebug();
+#endif
+
         yield return new WaitForEndOfFrame();
+        UIManager.Init();
         UIBase.Open("ArtResources/UI/Prefabs/Title");
     }
     
@@ -59,7 +76,7 @@ public class Intro : MonoBehaviour
     {
         Destroy(gameObject);
         System.GC.Collect();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
     }
 
     /// <summary>

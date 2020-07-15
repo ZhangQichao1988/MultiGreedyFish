@@ -34,24 +34,29 @@ public class NetWorkHandler
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
     {
+        string errMsg = "";
         switch (type)
         {
             case HttpDispatcher.EventType.HttpError:
             case HttpDispatcher.EventType.SignatureError:
             case HttpDispatcher.EventType.Failed:
             case HttpDispatcher.EventType.KickOutLoginUser:
-                Debug.LogWarning("got server error " + type);
+                errMsg = "got server error " + type;
+                Debug.LogWarning(errMsg);
+                MsgBox.Open("网络错误", errMsg);
                 break;
             case HttpDispatcher.EventType.Caution:
-                Debug.LogWarning("got a warning");
+                errMsg = "got a warning";
+                Debug.LogWarning(errMsg);
+                MsgBox.Open("网络错误", errMsg);
                 break;
             case HttpDispatcher.EventType.HttpRequestSend:
                 // http request send 
-
+                LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
                 break;
             case HttpDispatcher.EventType.HttpRecieve:
                 // http request recieve 
-
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 break;
             default:
                 break;

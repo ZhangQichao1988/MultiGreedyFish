@@ -583,7 +583,10 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: CONSOLE_ENABLE
+    4: CONSOLE_ENABLE
+    7: CONSOLE_ENABLE
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1
