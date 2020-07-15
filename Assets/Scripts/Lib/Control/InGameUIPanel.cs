@@ -8,9 +8,11 @@ public class InGameUIPanel : MonoBehaviour
 {
     public float curveWorldStrength = 0f;
 
-    public Transform TouchTF;
+    public RectTransform TouchTF;
     public Transform TouchStickTF;
     public CameraFollow cameraFollow;
+    public Image skillGuage;
+    public Button skillBtn;
     private PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 120;
@@ -18,7 +20,7 @@ public class InGameUIPanel : MonoBehaviour
     void Start()
     {
         SelfRectTF = GetComponent<RectTransform>();
-        TouchTF.transform.localPosition = new Vector3(0f, GameConst.JoyDefaultPosY, 0);
+        TouchTF.anchoredPosition = new Vector2(200f, 200f);
         TouchStickTF.transform.localPosition = Vector3.zero;
         //TouchTF.gameObject.SetActive(false);
     }
@@ -32,7 +34,7 @@ public class InGameUIPanel : MonoBehaviour
 	public void TouchDown(BaseEventData data)
     {
         //TouchTF.gameObject.SetActive(true);
-        TouchTF.localPosition = GetUIPos(((PointerEventData)data).position);
+        TouchTF.position = ((PointerEventData)data).position;
         TouchStickTF.localPosition = Vector3.zero;
         if (Player != null)
         {
@@ -41,7 +43,7 @@ public class InGameUIPanel : MonoBehaviour
     }
     public void TouchUp(BaseEventData data)
     {
-        TouchTF.transform.localPosition = new Vector3(0f, GameConst.JoyDefaultPosY, 0);
+        TouchTF.anchoredPosition = new Vector2(200f, 200f);
         TouchStickTF.transform.localPosition = Vector3.zero;
         //TouchTF.gameObject.SetActive(false);
         if (Player != null)
@@ -54,7 +56,7 @@ public class InGameUIPanel : MonoBehaviour
     }
     public void TouchDrag(BaseEventData data)
     {
-        Vector2 pos = GetUIPos(((PointerEventData)data).position) - (Vector2)TouchTF.localPosition;
+        Vector2 pos = ((PointerEventData)data).position - (Vector2)TouchTF.position;
         float length = pos.magnitude;
         if (length > MaxLength)
         {
@@ -88,5 +90,12 @@ public class InGameUIPanel : MonoBehaviour
         {
             ManagerGroup.GetInstance().GotoResult(1);
         }
+
+        skillGuage.fillAmount = Player.fishSkill.currentGauge;
+        skillBtn.interactable = Player.fishSkill.currentGauge >= 1f;
+    }
+    public void PlayerRunSkill()
+    {
+        Player.fishSkill.RunSkill();
     }
 }

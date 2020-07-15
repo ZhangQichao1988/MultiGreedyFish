@@ -11,12 +11,16 @@ public class PlayerBase : FishBase
 	static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/PlayerNameplate";
 	static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/RobotNameplate";
 
+
 	public BoxCollider colliderMouth = null;
 	public GameObject goNamepalte = null;
 
 	protected override bool showLifeGauge { get { return true; } }
 
 	public override FishType fishType { get { return FishType.Player; } }
+
+	public FishSkillBase fishSkill { get; private set; }
+
 
 	protected override void Awake()
 	{
@@ -25,6 +29,8 @@ public class PlayerBase : FishBase
 	public override void Init(int fishId, string playerName)
 	{
 		base.Init(fishId, playerName);
+
+		fishSkill = FishSkillBase.SetFishSkill(this, fishBaseData.skillId);
 
 		// 嘴巴位置获得
 		 GameObject go= GameObjectUtil.FindGameObjectByName(boneNameMouth, gameObject);
@@ -148,7 +154,7 @@ public class PlayerBase : FishBase
 		actionStep = ActionType.Eatting;
 		data.moveSpeed = 0f;
 		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
-
+		fishSkill.CbAttack();
 		fish.life -= (int)((float)data.atk * transform.localScale.x);
 		if (fish.life <= 0)
 		{

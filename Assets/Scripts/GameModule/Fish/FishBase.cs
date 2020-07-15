@@ -50,6 +50,7 @@ public class FishBase : MonoBehaviour
     }
     static protected int uidCnt = 0;
 
+    protected FishData.FishBaseData fishBaseData;
     public Data data;
     public Data originalData;
     protected Animator animator = null;
@@ -147,7 +148,7 @@ public class FishBase : MonoBehaviour
     {
         
         actionStep = ActionType.Born;
-        FishData.FishBaseData fishBaseData = FishData.listFishBaseData[fishId];
+        fishBaseData = FishData.listFishBaseData[fishId];
         this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
         data.uid = uidCnt++;
         this.originalData = data;
