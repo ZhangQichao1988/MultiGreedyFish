@@ -65,7 +65,7 @@ namespace NetWorkModule
                 HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, msg, body);
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler == null ? null : request.downloadHandler.data);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace NetWorkModule
             string sign = headers[X_SIGNATURE];
             int stateCode = (int)StatusCode.Failed;
             int.TryParse(headers[X_STATUS_CODE], out stateCode);
-            var output = m_protocol.ParserOutput(res, res.Length);
+            PackData output = res == null ? null : m_protocol.ParserOutput(res, res.Length);
 
             //status code 处理
             bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);
