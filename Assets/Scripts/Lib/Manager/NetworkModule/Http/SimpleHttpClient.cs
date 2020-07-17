@@ -45,7 +45,7 @@ namespace NetWorkModule
             byte[] data = m_protocol.Pack(msg, PID++, body);
             int msgId = int.Parse(msg.Substring(1, msg.IndexOf("_") - 1));
             string err = null;
-            byte[] combinedData = GetCombineData(msgId, data, m_playerId, m_platform);
+            byte[] combinedData = GetCombineData(msgId, body, m_playerId, m_platform);
             string signStr = GetRequestSign(combinedData, needAuth, msgId, ref err);
             
             using (UnityWebRequest request = new UnityWebRequest(AppConst.HttpEndPoint, UnityWebRequest.kHttpVerbPOST))
@@ -65,7 +65,7 @@ namespace NetWorkModule
                 HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, msg, body);
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler == null ? null : request.downloadHandler.data);
                 }
                 else
                 {
@@ -120,6 +120,7 @@ namespace NetWorkModule
             Array.Copy(playerBytes, 0, result, currLen, playerBytes.Length);
             Array.Copy(platformBytes, 0, result, currLen + playerBytes.Length, platformBytes.Length);
             
+            Debug.Log(result.Length);
             return result;
         }
 
@@ -128,7 +129,7 @@ namespace NetWorkModule
             string sign = headers[X_SIGNATURE];
             int stateCode = (int)StatusCode.Failed;
             int.TryParse(headers[X_STATUS_CODE], out stateCode);
-            var output = m_protocol.ParserOutput(res, res.Length);
+            PackData output = res == null ? null : m_protocol.ParserOutput(res, res.Length);
 
             //status code 处理
             bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);

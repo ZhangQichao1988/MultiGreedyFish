@@ -66,10 +66,10 @@ public class NetWorkHandler
     static byte[] GetStreamBytes(IMessage pbMsg)
     {
         byte[] bytesDatas;
-        using (var mem = new MemoryStream())
+        using (MemoryStream stream = new MemoryStream())
         {
-            pbMsg.WriteTo(new CodedOutputStream(mem));
-            bytesDatas = mem.ToArray();
+            pbMsg.WriteTo(stream);
+            bytesDatas = stream.ToArray();
         }
         return bytesDatas;
     }
