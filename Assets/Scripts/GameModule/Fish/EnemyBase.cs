@@ -12,7 +12,8 @@ public class EnemyBase : FishBase
         base.Init(fishId, playerName);
 
         // 一开始不要一起出生
-        remainingTime = Wrapper.GetRandom(0f, 5f);
+        remainingTime = Wrapper.GetRandom(0f, 10f);
+        SetAlpha((1 - remainingTime));
         //CreateBlisterParticle();
     }
 
@@ -24,7 +25,9 @@ public class EnemyBase : FishBase
         switch (actionStep)
         {
             case ActionType.Born:
-                Born();
+                Bornning();
+                break;
+            case ActionType.BornWaitting:
                 break;
             case ActionType.Idle:
                 Idle();
@@ -45,13 +48,7 @@ public class EnemyBase : FishBase
         remainingTime -= Time.deltaTime;
         if (remainingTime <= 0)
         {
-            actionStep = ActionType.Born;
-            if(particleBlister!= null) particleBlister.Play();
-            //transModel.gameObject.SetActive(true);
-            remainingTime = 3f;
-            SetAlpha(0f);
-            transform.position = GetBornPosition();
-            transform.localScale = Vector3.one * localScaleBackup;
+            actionStep = ActionType.BornWaitting;
         }
         else
         {
@@ -63,6 +60,14 @@ public class EnemyBase : FishBase
         }
     }
 
+    public void Born()
+    {
+        actionStep = ActionType.Born;
+        remainingTime = 3f;
+        SetAlpha(0f);
+        transform.position = GetBornPosition();
+        transform.localScale = Vector3.one * localScaleBackup;
+    }
 
     protected void Idle()
     {
@@ -106,7 +111,7 @@ public class EnemyBase : FishBase
         base.MoveUpdate();
     }
 
-    protected void Born()
+    protected void Bornning()
     {
         remainingTime -= Time.deltaTime;
         if (remainingTime <= 0f)

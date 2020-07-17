@@ -26,10 +26,13 @@ public class ManagerGroup : MonoBehaviour
     public GameObject resultRoot = null;
     public Text resultText = null;
 
+    public Animator animator = null;
+    private bool isPause = false;
     private void Awake()
 	{
         instance = this;
         battleControl.SetActive(false);
+        animator = GetComponent<Animator>();
 
     }
     static public ManagerGroup GetInstance()
@@ -47,7 +50,8 @@ public class ManagerGroup : MonoBehaviour
         fishManager.Clean();
         inGameUIPanel.Init();
         fishManager.CreateEnemy();
-
+        this.isPause = true;
+        animator.SetTrigger("ReadyStart");
     }
 
     public void GotoResult(int rank)
@@ -55,5 +59,17 @@ public class ManagerGroup : MonoBehaviour
         resultRoot.SetActive(true);
         battleControl.SetActive(false);
         resultText.text = string.Format( GameConst.ResultText, rank.ToString() );
+    }
+
+    public void SetBattleStart()
+    {
+        this.isPause = false;
+    }
+
+	private void Update()
+	{
+        if (isPause) { return; }
+        fishManager.CustomUpdate();
+        poisonRing.CustomUpdate();
     }
 }

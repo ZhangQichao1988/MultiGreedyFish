@@ -23,7 +23,7 @@ public class PoisonRing : MonoBehaviour
 		meshRenderer = GetComponent<MeshRenderer>();
 		meshRenderer.GetPropertyBlock(materialBlock);
 	}
-	public void Update()
+	public void CustomUpdate()
 	{
 		poisonRange -= Time.deltaTime * GameConst.PoisonRingScaleSpeed;
 		if (beforePoisonRange - poisonRange > 0.03f)

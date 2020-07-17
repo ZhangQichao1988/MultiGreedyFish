@@ -21,6 +21,7 @@ public class FishBase : MonoBehaviour
     { 
         None,
         Born,
+        BornWaitting,
         Idle,
         Runaway,
         Eatting,

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,6 +14,7 @@ public class CameraFollow : MonoBehaviour
 
 	}
 
+	public Transform CameraTrans;
 	public Transform Target;
     public float Angle;
     public float Distance;
@@ -101,12 +103,13 @@ public class CameraFollow : MonoBehaviour
 				currentRate += Time.deltaTime * 0.1f;
 			}
 
-			Distance = Mathf.Lerp(55f, 90f, currentRate);
+			Distance = Mathf.Lerp(45f, 50f, currentRate);
 			//FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
-			SelfCamera.nearClipPlane = Mathf.Lerp(40f, 70f, currentRate);
-			SelfCamera.farClipPlane = Mathf.Lerp(80f, 150f, currentRate);
+			SelfCamera.nearClipPlane = Mathf.Lerp(30f, 35f, currentRate);
+			SelfCamera.farClipPlane = Mathf.Lerp(80f, 90f, currentRate);
 
-			TargetPos = Target.position;
+			TargetPos = Vector3.Lerp(Vector3.zero, Target.position, CameraTrans.localPosition.x);
+
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)
 			{
 

@@ -127,7 +127,7 @@ public class PlayerBase : FishBase
 
 	public void Eatting()
 	{
-		if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("eat"))
+		if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("attack"))
 		{
 			data.moveSpeed = originalData.moveSpeed;
 			actionStep = ActionType.Idle;
@@ -150,7 +150,7 @@ public class PlayerBase : FishBase
 
 	public void Atk(FishBase fish)
 	{
-		animator.SetTrigger("Eat");
+		animator.SetTrigger("Attack");
 		actionStep = ActionType.Eatting;
 		data.moveSpeed = 0f;
 		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
@@ -166,6 +166,7 @@ public class PlayerBase : FishBase
 	{
 		life += (int)(fish.lifeMax * GameConst.HealLifeFromEatRate);
 		fish.Die(colliderMouth.transform);
+		animator.SetTrigger("Eat");
 	}
 
 	public override void Die( Transform eatFishTrans )

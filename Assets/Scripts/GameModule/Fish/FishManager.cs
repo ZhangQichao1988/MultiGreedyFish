@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,6 @@ public class FishManager : MonoBehaviour
 	static public float MoveSpeed = 0.2f;
 	public List<FishBase> listFish = new List<FishBase>();
 
-	private void Awake()
-	{
-		
-	}
 
 	public PlayerBase CreatePlayer()
 	{
@@ -60,7 +57,7 @@ public class FishManager : MonoBehaviour
 
 		FishBase fb = null;
 		// 杂鱼
-		for (int i = 0; i < GameConst.EnemyNum; ++i)
+		for (int i = 0; i < GameConst.EnemyNumMax; ++i)
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
@@ -69,12 +66,33 @@ public class FishManager : MonoBehaviour
 		}
 
 	}
-
-	private void Update()
+	public void CustomUpdate()
 	{
+		List<EnemyBase> bornWaittingEnemies = new List<EnemyBase>();
+		int aliveEnemyNum = 0;
 		for( int i = 0; i < listFish.Count; ++i )
 		{
 			listFish[i].CustomUpdate();
+
+			// 活着的鱼数量统计
+			if (listFish[i].actionStep == FishBase.ActionType.BornWaitting)
+			{
+				bornWaittingEnemies.Add(listFish[i] as EnemyBase);
+			}
+			else
+			{ ++aliveEnemyNum; }
+		}
+
+		// 能活着的杂鱼数量计算
+		int enemyNum = (int)Mathf.Lerp(GameConst.EnemyNumMin, GameConst.EnemyNumMax, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() / GameConst.PoisonRingRadiusMax);
+
+		// 当活着的鱼比能活着的鱼数量少的时候，复活鱼
+		if (enemyNum > aliveEnemyNum)
+		{
+			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum + i; ++i)
+			{
+				bornWaittingEnemies[i].actionStep = FishBase.ActionType.Born;
+			}
 		}
 	}
 
