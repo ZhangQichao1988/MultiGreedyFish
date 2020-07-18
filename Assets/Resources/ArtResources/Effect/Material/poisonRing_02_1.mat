@@ -20,12 +20,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: water_ripple_01
-  m_Shader: {fileID: -6465566751694194690, guid: 91cd92d65d408d740aba79e65cf5cb42,
+  m_Name: poisonRing_02_1
+  m_Shader: {fileID: -6465566751694194690, guid: f58f2e1d0c74ce74f891ad2d82517003,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2999
   stringTagMap: {}
@@ -34,23 +34,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_507FF98C:
-        m_Texture: {fileID: 2800000, guid: 0da6cb8a8ce57da40a3e6804d2e24570, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2b9b26dc2db60944280855e8ff182e8e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_819DFA64:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_82F3D7DB:
-        m_Texture: {fileID: 2800000, guid: 36e2de03a70fbe441ad4051c44aa53bf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_8CB6BF2D:
-        m_Texture: {fileID: 2800000, guid: 0da6cb8a8ce57da40a3e6804d2e24570, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_B201129:
-        m_Texture: {fileID: 2800000, guid: e12061a8de0d7f84bbeb375d76bbb3c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: f2c09db697d482c49a54be00c9389dab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: a70b0214dfdfc6b48b7b187d875225e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 36e2de03a70fbe441ad4051c44aa53bf, type: 3}
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -62,18 +58,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b96ac695b8b9a6e4b8a3febb5d6fda27, type: 3}
-        m_Scale: {x: 8, y: 16}
-        m_Offset: {x: -5.3, y: -20.35}
+        m_Texture: {fileID: 2800000, guid: a70b0214dfdfc6b48b7b187d875225e6, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2DLOD_C099C696_Texture_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -86,31 +78,46 @@ Material:
     - Vector1_6B0B5B9B: 37.7
     - Vector1_6DD45EBB: 0.01
     - Vector1_8BF0285F: 0.01
-    - Vector1_905A828F: 14.41
-    - Vector1_DB485C0: 150
-    - Vector1_F140229F: 0.05
+    - Vector1_905A828F: 1.5
+    - Vector1_DB485C0: 0.87
+    - Vector1_F140229F: 0.1
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlendOp: 0
     - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossinessSource: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SafeAreaRange: 100
-    - _SafeGradAreaRange: 93.51
+    - _SafeGradAreaRange: 93.5
     - _SampleGI: 0
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -119,20 +126,18 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_3E180B24: {r: 1, g: 1, b: 1, a: 0}
-    - Color_5C43AAFF: {r: 0.7971698, g: 0.9252312, b: 1, a: 0}
-    - Color_C1EDFF25: {r: 1, g: 1, b: 1, a: 0}
-    - Vector2_54C95536: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_7F0B80A6: {r: 0.05, g: 0.05, b: 0, a: 0}
-    - Vector2_9234525A: {r: 0.1, g: 0.05, b: 0, a: 0}
-    - Vector2_974E3934: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_9F191979: {r: 0.0125, g: 0.00625, b: 0, a: 0}
-    - Vector2_AB76A667: {r: 25, g: 25, b: 0, a: 0}
-    - Vector2_B31A26FB: {r: 30, g: 30, b: 0, a: 0}
-    - Vector2_D9E6C2E6: {r: 0, g: 0, b: 0, a: 0}
+    - Color_C1EDFF25: {r: 0.21435374, g: 0.4245283, b: 0, a: 0}
+    - Color_DDBCEF29: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_5732D335: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_7F0B80A6: {r: -0.025, g: -0.125, b: 0, a: 0}
+    - Vector2_9F191979: {r: 0.01, g: 0.02, b: 0, a: 0}
+    - Vector2_AB76A667: {r: 25, g: 50, b: 0, a: 0}
+    - Vector2_B9FEC38D: {r: 25, g: 25, b: 0, a: 0}
     - Vector2_E2C44ACA: {r: 0, g: 0, b: 0, a: 0}
-    - Vector3_177F9B62: {r: 0, g: 0, b: 0, a: 0}
-    - Vector3_6377E580: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.1448469, g: 0.65370464, b: 0.990566, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
