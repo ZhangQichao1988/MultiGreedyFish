@@ -8114,11 +8114,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: fx_Poisoncircle
       objectReference: {fileID: 0}
-    - target: {fileID: 4159695324695538866, guid: 4675f21345076ad46bc132a0c6c6795f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4675f21345076ad46bc132a0c6c6795f, type: 3}
 --- !u!1001 &1475224075
