@@ -119,15 +119,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_3E180B24: {r: 1, g: 1, b: 1, a: 0}
-    - Color_5C43AAFF: {r: 1, g: 1, b: 1, a: 0}
-    - Color_C1EDFF25: {r: 0.6839622, g: 0.87562364, b: 1, a: 0}
+    - Color_5C43AAFF: {r: 0.7971698, g: 0.9252312, b: 1, a: 0}
+    - Color_C1EDFF25: {r: 1, g: 1, b: 1, a: 0}
     - Vector2_54C95536: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_7F0B80A6: {r: 0.1, g: 0.05, b: 0, a: 0}
     - Vector2_9234525A: {r: 0.2, g: 0.1, b: 0, a: 0}
     - Vector2_974E3934: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_9F191979: {r: 0.25, g: 0.12, b: 0, a: 0}
+    - Vector2_9F191979: {r: 0.2, g: 0.1, b: 0, a: 0}
     - Vector2_AB76A667: {r: 10, g: 10, b: 0, a: 0}
-    - Vector2_B31A26FB: {r: 10, g: 10, b: 0, a: 0}
+    - Vector2_B31A26FB: {r: 5, g: 5, b: 0, a: 0}
     - Vector2_D9E6C2E6: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_E2C44ACA: {r: 0, g: 0, b: 0, a: 0}
     - Vector3_177F9B62: {r: 0, g: 0, b: 0, a: 0}
