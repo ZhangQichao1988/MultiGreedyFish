@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using NetWorkModule;
 using Google.Protobuf;
@@ -10,6 +12,7 @@ using Google.Protobuf;
 /// </summary>
 public class NetWorkHandler
 {
+    private static Dictionary<string, MessageParser> pbParserRef;
     private static EventDispatch dispatch;
 
     public static EventDispatch GetDispatch()
@@ -23,6 +26,13 @@ public class NetWorkHandler
 
     public static void InitHttpNetWork()
     {
+        pbParserRef = new Dictionary<string, MessageParser>(){
+            {"P0_Request", P0_Request.Parser},
+            {"P1_Request", P1_Request.Parser},
+            {"P0_Response", P0_Response.Parser},
+            {"P1_Response", P1_Response.Parser}
+        };
+
         NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
 
         //register
@@ -43,20 +53,24 @@ public class NetWorkHandler
             case HttpDispatcher.EventType.KickOutLoginUser:
                 errMsg = "got server error " + type;
                 Debug.LogWarning(errMsg);
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 MsgBox.Open("网络错误", errMsg);
                 break;
             case HttpDispatcher.EventType.Caution:
                 errMsg = "got a warning";
                 Debug.LogWarning(errMsg);
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 MsgBox.Open("网络错误", errMsg);
                 break;
             case HttpDispatcher.EventType.HttpRequestSend:
                 // http request send 
                 LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+                TraceLog("Request", msg, obj as byte[]);
                 break;
             case HttpDispatcher.EventType.HttpRecieve:
                 // http request recieve 
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                TraceLog("Response", msg, obj as byte[]);
                 break;
             default:
                 break;
@@ -74,7 +88,9 @@ public class NetWorkHandler
         return bytesDatas;
     }
 
-    //request method
+    /// <summary>
+    /// P0 STARTUP
+    /// </summary>
     public static void RequestStartUp()
     {
         var request = new P0_Request();
@@ -89,6 +105,10 @@ public class NetWorkHandler
         NetWorkManager.Request("P0_Request", requestByteData , false);
     }
 
+    /// <summary>
+    /// P1 Login
+    /// </summary>
+    /// <param name="authToken"></param>
     public static void Login(string authToken)
     {
         var request = new P1_Request();
@@ -123,5 +143,16 @@ public class NetWorkHandler
     static void OnRecvGetPlayerInfo(HttpDispatcher.NodeMsg msg)
     {
 
+    }
+
+    static void TraceLog(string tag, string msg, byte[] data)
+    {
+#if CONSOLE_ENABLE 
+        MessageParser parser = pbParserRef[msg];
+        var msgData = parser.ParseFrom(ByteString.CopyFrom(data));
+        string color = tag == "Request" ? "green" : "yellow";
+        string logData = string.Format("<color='{3}'>[{0}]</color> {1} \n{2}", tag, msg, JsonFormatter.ToDiagnosticString(msgData), color);
+        Debug.Log(logData);
+#endif
     }
 }

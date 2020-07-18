@@ -59,13 +59,11 @@ namespace NetWorkModule
                 var upLoaderHandler = new UploadHandlerRaw(data);
                 upLoaderHandler.contentType = "application/proto";
                 request.uploadHandler = upLoaderHandler;
+                request.downloadHandler = new DownloadHandlerBuffer();
                 yield return request.SendWebRequest();
-
-
-                HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, msg, body);
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler == null ? null : request.downloadHandler.data);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data);
                 }
                 else
                 {
@@ -120,7 +118,6 @@ namespace NetWorkModule
             Array.Copy(playerBytes, 0, result, currLen, playerBytes.Length);
             Array.Copy(platformBytes, 0, result, currLen + playerBytes.Length, platformBytes.Length);
             
-            Debug.Log(result.Length);
             return result;
         }
 
@@ -131,6 +128,11 @@ namespace NetWorkModule
             int.TryParse(headers[X_STATUS_CODE], out stateCode);
             PackData output = res == null ? null : m_protocol.ParserOutput(res, res.Length);
 
+            if (output != null)
+            {
+                HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, string.Format("P{0}_Response", output.msgId), output.pbData);
+            }
+            
             //status code 处理
             bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);
             if (statuOk)
