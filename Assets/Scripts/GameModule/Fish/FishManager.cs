@@ -15,7 +15,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(10, GameConst.PlayerName);
+		player.Init(1, GameConst.PlayerName);
 		return player;
 	}
 
@@ -121,7 +121,8 @@ public class FishManager : MonoBehaviour
 		{
 			if (me == listFish[i]) { continue; }
 			if (listFish[i].actionStep == FishBase.ActionType.Die ||
-				listFish[i].actionStep == FishBase.ActionType.Born) { continue; }
+				listFish[i].actionStep == FishBase.ActionType.Born ||
+				listFish[i].actionStep == FishBase.ActionType.BornWaitting) { continue; }
 
 			if (pos.x + range.x > listFish[i].transform.position.x &&
 				pos.x - range.x < listFish[i].transform.position.x &&
