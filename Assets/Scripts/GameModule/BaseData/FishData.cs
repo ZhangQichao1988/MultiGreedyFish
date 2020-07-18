@@ -26,6 +26,6 @@ public class FishData
 		// 杂鱼
 		{ 0, new FishBaseData( "FishNpc_01", 0, 20, 0.4f, -1) },
 		// 玩家鱼
-		{10,  new FishBaseData( "FishPlayer_01", 20, 100, 0.6f, 1) },
+		{1,  new FishBaseData( "FishPlayer_01", 20, 100, 0.6f, 1) },
 	};
 }

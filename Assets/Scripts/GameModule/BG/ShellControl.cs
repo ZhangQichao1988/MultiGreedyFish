@@ -55,7 +55,7 @@ public class ShellControl : MonoBehaviour
 
     public bool PearlEatenCheck()
     {
-        if (shellStatus == ShellStatus.Open)
+        if (shellStatus == ShellStatus.Open && goPearl.activeSelf)
         {
             goPearl.SetActive(false);
             return true;
