@@ -24,36 +24,37 @@ public static partial class ProtocolReflection {
         string.Concat(
           "Cg5wcm90b2NvbC5wcm90byJtCgpQMF9SZXF1ZXN0EhAKCGRldmljZUlkGAEg",
           "AigJEhYKDmRldmljZVBsYXRmb3JtGAIgAigJEhIKCmRldmljZU5hbWUYAyAC",
-          "KAkSEwoLYWNjZXNzdG9rZW4YBCABKAkSDAoEbWFzaxgFIAIoCSI7CgtQMF9S",
+          "KAkSEwoLYWNjZXNzdG9rZW4YBCABKAkSDAoEbWFzaxgFIAIoCSJMCgtQMF9S",
           "ZXNwb25zZRIZCgZyZXN1bHQYASACKAsyCS5QQlJlc3VsdBIRCglhdXRoVG9r",
-          "ZW4YAiABKAkiLwoKUDFfUmVxdWVzdBITCgthY2Nlc3N0b2tlbhgBIAIoCRIM",
-          "CgRtYXNrGAIgAigJIjsKC1AxX1Jlc3BvbnNlEhkKBnJlc3VsdBgBIAEoCzIJ",
-          "LlBCUmVzdWx0EhEKCWF1dGhUb2tlbhgCIAEoCSItCgpQMl9SZXF1ZXN0EhEK",
-          "CWF1dGhUb2tlbhgBIAIoCRIMCgRtYXNrGAIgASgJImMKC1AyX1Jlc3BvbnNl",
-          "EhkKBnJlc3VsdBgBIAEoCzIJLlBCUmVzdWx0EhAKCHBsYXllcklkGAIgASgD",
-          "EhMKC3Nlc3Npb25fa2V5GAMgASgJEhIKCnNlcnZlclRpbWUYBCABKAMiQwoL",
-          "UDNfUmVzcG9uc2USGQoGcmVzdWx0GAEgASgLMgkuUEJSZXN1bHQSGQoGcGxh",
-          "eWVyGAIgASgLMgkuUEJQbGF5ZXIiJgoIUEJSZXN1bHQSDAoEY29kZRgBIAEo",
-          "BRIMCgRkZXNjGAIgASgJIrMBCghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEo",
-          "AxIQCghuaWNrbmFtZRgCIAEoCRIMCgRyYW5rGAMgASgFEg8KB3JlZ1RpbWUY",
-          "BCABKAMSEgoKbG9nb3V0VGltZRgFIAEoAxIPCgdkaWFtb25kGAYgASgFEgwK",
-          "BGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoHcG93ZXJBdBgJIAEoAxIR",
-          "CglmaWdodEZpc2gYCiABKAUqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQ",
-          "EAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4Q",
-          "AhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJP",
-          "SxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tf",
-          "T1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9S",
-          "EAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVz",
-          "c2FnZYgBAA=="));
+          "ZW4YAiABKAkSDwoHYXV0aEtleRgDIAEoCSIvCgpQMV9SZXF1ZXN0EhMKC2Fj",
+          "Y2Vzc3Rva2VuGAEgAigJEgwKBG1hc2sYAiACKAkiTAoLUDFfUmVzcG9uc2US",
+          "GQoGcmVzdWx0GAEgASgLMgkuUEJSZXN1bHQSEQoJYXV0aFRva2VuGAIgASgJ",
+          "Eg8KB2F1dGhLZXkYAyABKAkiLQoKUDJfUmVxdWVzdBIRCglhdXRoVG9rZW4Y",
+          "ASACKAkSDAoEbWFzaxgCIAEoCSKEAQoLUDJfUmVzcG9uc2USGQoGcmVzdWx0",
+          "GAEgASgLMgkuUEJSZXN1bHQSEAoIcGxheWVySWQYAiABKAMSEwoLc2Vzc2lv",
+          "bl9rZXkYAyABKAkSEgoKc2VydmVyVGltZRgEIAEoAxIfChdpc1BsYXRmb3Jt",
+          "U2VydmljZUxpbmtlZBgFIAEoCCJDCgtQM19SZXNwb25zZRIZCgZyZXN1bHQY",
+          "ASABKAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciIm",
+          "CghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiswEKCFBC",
+          "UGxheWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEgwK",
+          "BHJhbmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxISCgpsb2dvdXRUaW1lGAUg",
+          "ASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dlchgI",
+          "IAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBSphCglN",
+          "ZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9Q",
+          "TEFURk9STRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lO",
+          "Rk8QAyptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lH",
+          "TkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NB",
+          "VVRJT04QBBIQCgxDTElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNoLnNl",
+          "cnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "Mask" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "Mask" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P1_Response), global::P1_Response.Parser, new[]{ "Result", "AuthToken" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P1_Response), global::P1_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Request), global::P2_Request.Parser, new[]{ "AuthToken", "Mask" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P2_Response), global::P2_Response.Parser, new[]{ "Result", "PlayerId", "SessionKey", "ServerTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P2_Response), global::P2_Response.Parser, new[]{ "Result", "PlayerId", "SessionKey", "ServerTime", "IsPlatformServiceLinked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P3_Response), global::P3_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LogoutTime", "Diamond", "Gold", "Power", "PowerAt", "FightFish" }, null, null, null, null)
@@ -431,6 +432,7 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
   public P0_Response(P0_Response other) : this() {
     result_ = other.result_ != null ? other.result_.Clone() : null;
     authToken_ = other.authToken_;
+    authKey_ = other.authKey_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -479,6 +481,32 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
     authToken_ = null;
   }
 
+  /// <summary>Field number for the "authKey" field.</summary>
+  public const int AuthKeyFieldNumber = 3;
+  private readonly static string AuthKeyDefaultValue = "";
+
+  private string authKey_;
+  /// <summary>
+  ///交换密钥 给login使用
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string AuthKey {
+    get { return authKey_ ?? AuthKeyDefaultValue; }
+    set {
+      authKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "authKey" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAuthKey {
+    get { return authKey_ != null; }
+  }
+  /// <summary>Clears the value of the "authKey" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAuthKey() {
+    authKey_ = null;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as P0_Response);
@@ -494,6 +522,7 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
     }
     if (!object.Equals(Result, other.Result)) return false;
     if (AuthToken != other.AuthToken) return false;
+    if (AuthKey != other.AuthKey) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -502,6 +531,7 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
     int hash = 1;
     if (result_ != null) hash ^= Result.GetHashCode();
     if (HasAuthToken) hash ^= AuthToken.GetHashCode();
+    if (HasAuthKey) hash ^= AuthKey.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -523,6 +553,10 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
       output.WriteRawTag(18);
       output.WriteString(AuthToken);
     }
+    if (HasAuthKey) {
+      output.WriteRawTag(26);
+      output.WriteString(AuthKey);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -536,6 +570,9 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
     }
     if (HasAuthToken) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthToken);
+    }
+    if (HasAuthKey) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthKey);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -557,6 +594,9 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
     if (other.HasAuthToken) {
       AuthToken = other.AuthToken;
     }
+    if (other.HasAuthKey) {
+      AuthKey = other.AuthKey;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -577,6 +617,10 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
         }
         case 18: {
           AuthToken = input.ReadString();
+          break;
+        }
+        case 26: {
+          AuthKey = input.ReadString();
           break;
         }
       }
@@ -802,6 +846,7 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
   public P1_Response(P1_Response other) : this() {
     result_ = other.result_ != null ? other.result_.Clone() : null;
     authToken_ = other.authToken_;
+    authKey_ = other.authKey_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -847,6 +892,32 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
     authToken_ = null;
   }
 
+  /// <summary>Field number for the "authKey" field.</summary>
+  public const int AuthKeyFieldNumber = 3;
+  private readonly static string AuthKeyDefaultValue = "";
+
+  private string authKey_;
+  /// <summary>
+  ///交换密钥 给login使用
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string AuthKey {
+    get { return authKey_ ?? AuthKeyDefaultValue; }
+    set {
+      authKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "authKey" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAuthKey {
+    get { return authKey_ != null; }
+  }
+  /// <summary>Clears the value of the "authKey" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAuthKey() {
+    authKey_ = null;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as P1_Response);
@@ -862,6 +933,7 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
     }
     if (!object.Equals(Result, other.Result)) return false;
     if (AuthToken != other.AuthToken) return false;
+    if (AuthKey != other.AuthKey) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -870,6 +942,7 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
     int hash = 1;
     if (result_ != null) hash ^= Result.GetHashCode();
     if (HasAuthToken) hash ^= AuthToken.GetHashCode();
+    if (HasAuthKey) hash ^= AuthKey.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -891,6 +964,10 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
       output.WriteRawTag(18);
       output.WriteString(AuthToken);
     }
+    if (HasAuthKey) {
+      output.WriteRawTag(26);
+      output.WriteString(AuthKey);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -904,6 +981,9 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
     }
     if (HasAuthToken) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthToken);
+    }
+    if (HasAuthKey) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthKey);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -925,6 +1005,9 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
     if (other.HasAuthToken) {
       AuthToken = other.AuthToken;
     }
+    if (other.HasAuthKey) {
+      AuthKey = other.AuthKey;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -945,6 +1028,10 @@ public sealed partial class P1_Response : pb::IMessage<P1_Response> {
         }
         case 18: {
           AuthToken = input.ReadString();
+          break;
+        }
+        case 26: {
+          AuthKey = input.ReadString();
           break;
         }
       }
@@ -1174,6 +1261,7 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     playerId_ = other.playerId_;
     sessionKey_ = other.sessionKey_;
     serverTime_ = other.serverTime_;
+    isPlatformServiceLinked_ = other.isPlatformServiceLinked_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1275,6 +1363,33 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     _hasBits0 &= ~2;
   }
 
+  /// <summary>Field number for the "isPlatformServiceLinked" field.</summary>
+  public const int IsPlatformServiceLinkedFieldNumber = 5;
+  private readonly static bool IsPlatformServiceLinkedDefaultValue = false;
+
+  private bool isPlatformServiceLinked_;
+  /// <summary>
+  ///是否关联 gs or gc
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool IsPlatformServiceLinked {
+    get { if ((_hasBits0 & 4) != 0) { return isPlatformServiceLinked_; } else { return IsPlatformServiceLinkedDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      isPlatformServiceLinked_ = value;
+    }
+  }
+  /// <summary>Gets whether the "isPlatformServiceLinked" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasIsPlatformServiceLinked {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "isPlatformServiceLinked" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearIsPlatformServiceLinked() {
+    _hasBits0 &= ~4;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as P2_Response);
@@ -1292,6 +1407,7 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     if (PlayerId != other.PlayerId) return false;
     if (SessionKey != other.SessionKey) return false;
     if (ServerTime != other.ServerTime) return false;
+    if (IsPlatformServiceLinked != other.IsPlatformServiceLinked) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1302,6 +1418,7 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     if (HasPlayerId) hash ^= PlayerId.GetHashCode();
     if (HasSessionKey) hash ^= SessionKey.GetHashCode();
     if (HasServerTime) hash ^= ServerTime.GetHashCode();
+    if (HasIsPlatformServiceLinked) hash ^= IsPlatformServiceLinked.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1331,6 +1448,10 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
       output.WriteRawTag(32);
       output.WriteInt64(ServerTime);
     }
+    if (HasIsPlatformServiceLinked) {
+      output.WriteRawTag(40);
+      output.WriteBool(IsPlatformServiceLinked);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1350,6 +1471,9 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     }
     if (HasServerTime) {
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTime);
+    }
+    if (HasIsPlatformServiceLinked) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1376,6 +1500,9 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
     }
     if (other.HasServerTime) {
       ServerTime = other.ServerTime;
+    }
+    if (other.HasIsPlatformServiceLinked) {
+      IsPlatformServiceLinked = other.IsPlatformServiceLinked;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1405,6 +1532,10 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
         }
         case 32: {
           ServerTime = input.ReadInt64();
+          break;
+        }
+        case 40: {
+          IsPlatformServiceLinked = input.ReadBool();
           break;
         }
       }

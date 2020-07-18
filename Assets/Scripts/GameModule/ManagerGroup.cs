@@ -27,7 +27,7 @@ public class ManagerGroup : MonoBehaviour
     public GameObject resultRoot = null;
     public Text resultText = null;
 
-    public Animator animator = null;
+    Animator animator = null;
     private bool isPause = false;
     private void Awake()
 	{

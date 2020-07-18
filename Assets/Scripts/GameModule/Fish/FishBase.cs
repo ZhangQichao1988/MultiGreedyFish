@@ -160,7 +160,7 @@ public class FishBase : MonoBehaviour
         renderers = transModel.GetComponentsInChildren<Renderer>();
         transform.position = GetBornPosition();
 
-        // 嘴巴位置获得
+        // 身体判定范围取得
         go = GameObjectUtil.FindGameObjectByName("body", gameObject);
         Debug.Assert(go, "body is not found.");
         colliderBody = go.GetComponent<BoxCollider>();
