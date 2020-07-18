@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameConst
 {
-	static readonly public bool FreeMode = false;																											// 只剩自己也不会胜利
+	static readonly public bool FreeMode = true;																											// 只剩自己也不会胜利
 	static readonly public int EnemyNumMax = 100;                                                                                                                   // 杂鱼最多数量
 	static readonly public int EnemyNumMin = 5;																														// 杂鱼最少数量
 
@@ -32,8 +32,12 @@ public class GameConst
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
 
 	static readonly public float AquaticRange = 2f;                                                                 // 水草的范围
-	static readonly public float CanStealthTimeFromDmg = 2f;												// 受伤之后多久不能隐身&恢复生命
+	static readonly public float CanStealthTimeFromDmg = 2f;                                                // 受伤之后多久不能隐身&恢复生命
 
+	static readonly public float EatPearlRange = 3f;                                                                 // 吃珍珠的判定半径
+	static readonly public Vector2 OpenShellRemainingTimeRange = new Vector2(1f, 5f);   // 打开贝壳的时间差范围
+	static readonly public float ShellOpenningTime = 1f;                                                        // 贝壳开着的时间
+	static readonly public int PearlRecoverLife = 100;																 // 珍珠恢复血量
 
 
 

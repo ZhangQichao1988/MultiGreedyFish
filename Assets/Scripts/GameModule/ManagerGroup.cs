@@ -18,6 +18,7 @@ public class ManagerGroup : MonoBehaviour
     public InGameUIPanel inGameUIPanel = null;
     public FishManager fishManager = null;
     public AquaticManager aquaticManager = null;
+    public ShellManager shellManager = null;
     public GameObject battleControl = null;
     public PoisonRing poisonRing = null;
     public CameraFollow cameraFollow = null;

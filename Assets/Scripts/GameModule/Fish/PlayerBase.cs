@@ -141,6 +141,9 @@ public class PlayerBase : FishBase
 
 		// 吞噬
 		ManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
+
+		// 吃珍珠判定
+		EatPearlCheck();
 	}
 
 	protected override Vector3 GetBornPosition()
@@ -148,6 +151,10 @@ public class PlayerBase : FishBase
 		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
 	}
 
+	protected void EatPearlCheck()
+	{
+		ManagerGroup.GetInstance().shellManager.EatPearl(this);
+	}
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");

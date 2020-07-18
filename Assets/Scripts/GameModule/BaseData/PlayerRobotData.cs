@@ -40,15 +40,15 @@ public class PlayerRobotData
 
 	static readonly public List<PlayerRobotDataBaseData> baseDatas = new List<PlayerRobotDataBaseData>()
 	{
-		{new PlayerRobotDataBaseData(10, "阿超", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "Ferya", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "HUSKY", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "Asura", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(10, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "阿超", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "Ferya", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "HUSKY", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "Asura", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(10, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
 	};
 
 	static readonly public List<PlayerRobotAiBaseData> aiBaseDatas = new List<PlayerRobotAiBaseData>()
