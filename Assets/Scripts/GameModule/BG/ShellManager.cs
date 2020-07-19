@@ -28,9 +28,8 @@ public class ShellManager : MonoBehaviour
 			if (distance <= GameConst.EatPearlRange)
 			{
 				// 根据开合状态来判定吃了珍珠还是被夹
-				if(listShell[i].PearlEatenCheck())
+				if(listShell[i].PearlEatenCheck(fish))
 				{
-					fish.life += GameConst.PearlRecoverLife;
 					return;
 				}
 			}

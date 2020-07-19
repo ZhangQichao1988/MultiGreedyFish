@@ -127,10 +127,15 @@ public class PlayerBase : FishBase
 
 	public void Eatting()
 	{
-		if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("attack"))
+		remainingTime -= Time.deltaTime;
+		if (remainingTime <= 0)
 		{
 			data.moveSpeed = originalData.moveSpeed;
 			actionStep = ActionType.Idle;
+		}
+		else
+		{
+			data.moveSpeed = 0f;
 		}
 		
 		base.MoveUpdate();
@@ -148,7 +153,7 @@ public class PlayerBase : FishBase
 
 	protected override Vector3 GetBornPosition()
 	{
-		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 5f);
+		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 35f);
 	}
 
 	protected void EatPearlCheck()
@@ -158,6 +163,7 @@ public class PlayerBase : FishBase
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
+		remainingTime = GameConst.AttackHardTime;
 		actionStep = ActionType.Eatting;
 		data.moveSpeed = 0f;
 		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;

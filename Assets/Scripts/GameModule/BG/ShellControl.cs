@@ -16,11 +16,12 @@ public class ShellControl : MonoBehaviour
     ShellStatus shellStatus = ShellStatus.Closed;
     float openReminingTime;
     float openReminingTimedefault;
+    List<FishBase> listDamagedFish = new List<FishBase>();
 
     void Awake()
     {
-        openReminingTime = Wrapper.GetRandom( GameConst.OpenShellRemainingTimeRange.x, GameConst.OpenShellRemainingTimeRange.y);
-        openReminingTimedefault = openReminingTime;
+        openReminingTime = Wrapper.GetRandom( 1f, 5f);
+        openReminingTimedefault = GameConst.OpenShellRemainingTime;
 
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ShellControl.Awake()_1");
@@ -37,10 +38,13 @@ public class ShellControl : MonoBehaviour
                     animator.SetTrigger("open");
                     shellStatus = ShellStatus.Open;
                     openReminingTime = GameConst.ShellOpenningTime;
+                    if (Wrapper.GetRandom(0f, 1f) < GameConst.ShellPearlResetRate)
+                    {
+                        goPearl.SetActive(true);
+                    }
                     break;
                 case ShellStatus.Open:
                     animator.SetTrigger("close");
-                    shellStatus = ShellStatus.Closing;
                     openReminingTime = openReminingTimedefault;
                     break;
             }
@@ -50,15 +54,28 @@ public class ShellControl : MonoBehaviour
 
     void Closed()
     {
+        
+        listDamagedFish.Clear();
         shellStatus = ShellStatus.Closed;
     }
+    void Closing()
+    {
+        shellStatus = ShellStatus.Closing;
+    }
 
-    public bool PearlEatenCheck()
+    public bool PearlEatenCheck(FishBase fish)
     {
         if (shellStatus == ShellStatus.Open && goPearl.activeSelf)
         {
             goPearl.SetActive(false);
+            fish.life += GameConst.PearlRecoverLife;
             return true;
+        }
+        else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
+        {
+            fish.life -= GameConst.ShellCloseDmg;
+            listDamagedFish.Add(fish);
+            return false;
         }
         return false;
     }

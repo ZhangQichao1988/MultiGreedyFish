@@ -287,9 +287,7 @@ public class FishBase : MonoBehaviour
         foreach (Renderer renderer in renderers)
         {
             renderer.GetPropertyBlock( mpb );
-            Color color = mpb.GetColor("_BaseColor");
-            color.a = alpha;
-            mpb.SetColor("_BaseColor", color);
+            mpb.SetFloat("_Alpha", alpha);
             renderer.SetPropertyBlock(mpb);
         }
         return alpha;

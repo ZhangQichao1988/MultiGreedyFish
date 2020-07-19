@@ -114,7 +114,7 @@ public class PlayerRobotBase : PlayerBase
             hitWallCoolTime -= Time.deltaTime;
             if (hitWallCoolTime < 0)
             {
-                if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2) - 5)
+                if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2) - 35)
                 {
                     Dir = -Dir;
                     hitWallCoolTime = hitWallCoolTimeMax;

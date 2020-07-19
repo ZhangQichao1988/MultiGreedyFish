@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PoisonRing : MonoBehaviour
 {
 	//Material material = null;
-	MaterialPropertyBlock materialBlock = null;
-	MeshRenderer meshRenderer = null;
+	List<MaterialPropertyBlock> listMaterialBlock = new List<MaterialPropertyBlock>();
+	MeshRenderer[] aryMeshRenderer = null;
 
 	float poisonRange = GameConst.PoisonRingRadiusMax;
 	float beforePoisonRange = GameConst.PoisonRingRadiusMax;
@@ -19,9 +20,15 @@ public class PoisonRing : MonoBehaviour
 
 	private void Awake()
 	{
-		materialBlock = new MaterialPropertyBlock();
-		meshRenderer = GetComponent<MeshRenderer>();
-		meshRenderer.GetPropertyBlock(materialBlock);
+		listMaterialBlock.Clear();
+		aryMeshRenderer = GetComponentsInChildren<MeshRenderer>();
+		MaterialPropertyBlock materialProperty;
+		foreach (MeshRenderer mr in aryMeshRenderer)
+		{
+			materialProperty = new MaterialPropertyBlock();
+			mr.GetPropertyBlock(materialProperty);
+			listMaterialBlock.Add(materialProperty);
+		}
 	}
 	public void CustomUpdate()
 	{
@@ -36,9 +43,12 @@ public class PoisonRing : MonoBehaviour
 	{
 		poisonRange = Math.Max(value, GameConst.PoisonRingRadiusMin);
 		beforePoisonRange = poisonRange;
-		materialBlock.SetFloat("_SafeAreaRange", poisonRange);
-		materialBlock.SetFloat("_SafeGradAreaRange", poisonRange - 3f);
-		meshRenderer.SetPropertyBlock(materialBlock);
+		for (int i =0; i < listMaterialBlock.Count; ++i)
+		{
+			listMaterialBlock[i].SetFloat("_SafeAreaRange", poisonRange);
+			listMaterialBlock[i].SetFloat("_SafeGradAreaRange", poisonRange - 3f);
+			aryMeshRenderer[i].SetPropertyBlock(listMaterialBlock[i]);
+		}
 	}
 
 	public float GetPoisonRange()

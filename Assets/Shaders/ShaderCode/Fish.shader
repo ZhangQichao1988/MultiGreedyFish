@@ -4,7 +4,8 @@ Shader "Custom/Fish"
     {
         _BaseMap("Texture", 2D) = "white" {}
         _BaseColor("Color", Color) = (1, 1, 1, 1)
-        _Cutoff("AlphaCutout", Range(0.0, 1.0)) = 0.5
+        _Alpha("Alpha", Range(0.0, 1.0)) = 1
+        _Cutoff("AlphaCutout", Range(0.0, 1.0)) = 0.1
 
         // BlendMode
         [HideInInspector] _Surface("__surface", Float) = 0.0
@@ -70,6 +71,8 @@ Shader "Custom/Fish"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
+            half _Alpha;
+
             Varyings vert(Attributes input)
             {
                 Varyings output = (Varyings)0;
@@ -94,7 +97,7 @@ Shader "Custom/Fish"
                 half2 uv = input.uv;
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
                 half3 color = texColor.rgb + _BaseColor.rgb;
-                half alpha = texColor.a * _BaseColor.a;
+                half alpha = texColor.a * _BaseColor.a * _Alpha;
                 AlphaDiscard(alpha, _Cutoff);
 
 #ifdef _ALPHAPREMULTIPLY_ON
