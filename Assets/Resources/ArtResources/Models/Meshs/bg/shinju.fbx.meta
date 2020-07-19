@@ -3,9 +3,14 @@ guid: c3c610f0fff7b4137920b30107274f1c
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kai1
+    second: {fileID: 2100000, guid: ced988056bbeee94ea276a4c123d7072, type: 2}
   materials:
-    materialImportMode: 0
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
