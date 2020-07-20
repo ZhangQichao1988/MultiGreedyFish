@@ -89,6 +89,8 @@ namespace NetWorkModule
             public byte[] Body;
             public long Pid;
             public int state;
+
+            public System.Object CachedData;
             
             public NodeMsg(int _key, int _state)
             {
@@ -96,12 +98,13 @@ namespace NetWorkModule
                 state = _state;
             }
 
-            public NodeMsg(int key, byte[] body, long pid)
+            public NodeMsg(int key, byte[] body, long pid, System.Object cachedData)
             {
                 Key = key;
                 Body = body;
                 Pid = pid;
                 state = 0;
+                CachedData = cachedData;
             }
         }
         List<NodeMsg> m_node_msg = new List<NodeMsg>();
@@ -123,11 +126,11 @@ namespace NetWorkModule
             }
         }
 
-        public void PushMsg(int k, byte[] param, long pid)
+        public void PushMsg(int k, byte[] param, long pid, System.Object cachedData)
         {
             lock (m_lock_node_msg)
             {
-                m_node_msg.Add(new NodeMsg(k, param, pid));
+                m_node_msg.Add(new NodeMsg(k, param, pid, cachedData));
             }
         }
 

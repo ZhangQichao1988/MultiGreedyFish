@@ -9,7 +9,7 @@ namespace NetWorkModule
     {
         public static NetWorkManager Instance { get; set; }
         static SimpleHttpClient httpClient;
-        private static SimpleHttpClient HttpClient
+        public static SimpleHttpClient HttpClient
         {
             get
             {
@@ -57,14 +57,14 @@ namespace NetWorkModule
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="data"></param>
-        public static void Request(string msg, byte[] data, bool needAuth = true)
+        public static void Request(string msg, byte[] data, System.Object cachedData = null, bool needAuth = true)
         {
             HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRequestSend, msg, data);
-            Instance.StartCoroutine(RequestHttpOneInternal(msg, data, needAuth));
+            Instance.StartCoroutine(RequestHttpOneInternal(msg, data, cachedData, needAuth));
         }
-        static IEnumerator RequestHttpOneInternal(string msg, byte[] data, bool needAuth)
+        static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
         {
-            yield return httpClient.RequestHttp(msg, data, needAuth);
+            yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);
         }
         
     }
