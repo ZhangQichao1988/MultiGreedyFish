@@ -153,7 +153,7 @@ public class PlayerBase : FishBase
 
 	protected override Vector3 GetBornPosition()
 	{
-		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 35f);
+		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (GetSafeRudius() - 5f);
 	}
 
 	protected void EatPearlCheck()

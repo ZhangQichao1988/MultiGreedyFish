@@ -26,13 +26,11 @@ public class PlayerRobotData
 
 	public struct PlayerRobotAiBaseData
 	{
-		public int id;
 		public PlayerRobotType playerRobotType;
 		public float[] aryParam;
 
-		public PlayerRobotAiBaseData(int id, PlayerRobotType playerRobotType, float[] aryParam)
+		public PlayerRobotAiBaseData(PlayerRobotType playerRobotType, float[] aryParam)
 		{
-			this.id = id;
 			this.playerRobotType = playerRobotType;
 			this.aryParam = aryParam;
 		}
@@ -40,36 +38,39 @@ public class PlayerRobotData
 
 	static readonly public List<PlayerRobotDataBaseData> baseDatas = new List<PlayerRobotDataBaseData>()
 	{
-		{new PlayerRobotDataBaseData(1, "阿超", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "Ferya", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "HUSKY", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "Asura", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 2) },
+		{new PlayerRobotDataBaseData(1, "阿超", PlayerRobotType.PlayerRobotBase, 1) },
+		{new PlayerRobotDataBaseData(1, "Ferya", PlayerRobotType.PlayerRobotBase, 1) },
+		{new PlayerRobotDataBaseData(1, "HUSKY", PlayerRobotType.PlayerRobotBase, 1) },
+		{new PlayerRobotDataBaseData(1, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 0) },
+		{new PlayerRobotDataBaseData(1, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 0) },
+		{new PlayerRobotDataBaseData(1, "Asura", PlayerRobotType.PlayerRobotBase, 0) },
+		{new PlayerRobotDataBaseData(1, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 0) },
 		{new PlayerRobotDataBaseData(1, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
 		{new PlayerRobotDataBaseData(1, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
 	};
 
-	static readonly public List<PlayerRobotAiBaseData> aiBaseDatas = new List<PlayerRobotAiBaseData>()
+	static readonly Dictionary<int, PlayerRobotAiBaseData> dicAiBaseData = new Dictionary<int, PlayerRobotAiBaseData>()
 	{
 		// 普通型
 		{
-			new PlayerRobotAiBaseData(0, PlayerRobotType.PlayerRobotBase, new float[]{ 
-			0.7f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
+			0,
+			new PlayerRobotAiBaseData(PlayerRobotType.PlayerRobotBase, new float[]{ 
+			0.5f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
 			0.2f,/*血量低于这个比例躲到草丛里回血*/
 			})
 		},
 		// 勇敢型
 		{
-			new PlayerRobotAiBaseData(1, PlayerRobotType.PlayerRobotBase, new float[]{
+			1,
+			new PlayerRobotAiBaseData( PlayerRobotType.PlayerRobotBase, new float[]{
 			0.2f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
 			0.2f,/*血量低于这个比例躲到草丛里回血*/
 			})
 		},
 		// 发育型
 		{
-			new PlayerRobotAiBaseData(2, PlayerRobotType.PlayerRobotBase, new float[]{
+			2, 
+			new PlayerRobotAiBaseData(PlayerRobotType.PlayerRobotBase, new float[]{
 			0.95f,/*血量低于这个比例吃杂鱼，高于则吃玩家*/
 			0.9f,/*血量低于这个比例躲到草丛里回血*/
 			})
@@ -86,14 +87,6 @@ public class PlayerRobotData
 
 	static public PlayerRobotAiBaseData GetPlayerRobotAiBaseData(int id)
 	{
-		foreach (PlayerRobotAiBaseData playerRobotAiBaseData in aiBaseDatas)
-		{
-			if (playerRobotAiBaseData.id == id)
-			{
-				return playerRobotAiBaseData;
-			}
-		}
-		Debug.LogError("PlayerRobotData.GetPlayerRobotAiBaseData()_1");
-		return new PlayerRobotAiBaseData();
+		return dicAiBaseData[id];
 	}
 }

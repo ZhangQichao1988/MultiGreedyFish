@@ -28,7 +28,7 @@ public class GameConst
 	static readonly public float AttackHardTime = 0.35f;															// 攻击鱼之后的硬直时间
 
 	// 机器人相关
-	static readonly public Vector2 RobotFindFishRange = new Vector2(10, 20);                    // 机器人发现目标范围
+	static readonly public Vector2 RobotVision = new Vector2(20, 10);										// 机器人视野
 
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
 
@@ -43,17 +43,4 @@ public class GameConst
 	static readonly public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
 
 
-
-
-
-
-
-
-	static readonly public string PlayerName = "江小鱼";                                                         // 玩家名
-	
-
-	static readonly public string ResultText = "第{0}名";                                                         // 结算文字
-	static readonly public string LanguageAddLifeMax = "+{0}Max";										// 增加血量上限的显示文字
-	static readonly public string LanguageAddLife = "+{0}";													// 增加血量上限的显示文字
-	static readonly public string LanguageDamage = "-{0}";													// 增加血量上限的显示文字
 }

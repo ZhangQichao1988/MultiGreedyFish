@@ -149,7 +149,7 @@ public class FishBase : MonoBehaviour
     {
         
         actionStep = ActionType.Born;
-        fishBaseData = FishData.listFishBaseData[fishId];
+        fishBaseData = FishData.GetFishBaseData(fishId);
         this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
         data.uid = uidCnt++;
         this.originalData = data;
@@ -277,6 +277,10 @@ public class FishBase : MonoBehaviour
         size = 1 + (float)Math.Sqrt(size) * GameConst.PlayerSizeUpRate;
         size = Math.Min(GameConst.FishMaxScale, size);
         transform.localScale = new Vector3(size, size, size);
+    }
+    protected float GetSafeRudius()
+    {
+        return Mathf.Min(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), GameConst.BgBound.x);
     }
 
     protected virtual float SetAlpha(float alpha)

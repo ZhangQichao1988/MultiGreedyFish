@@ -27,4 +27,7 @@ public class AppConst
             return httpProtocol + Host + ":" + ApiPort + ApiPath;
         }
     }
+
+    // µ±«∞”Ô—‘
+    public static LanguageData.LanguageMode languageMode = LanguageData.LanguageMode.CN;
 }

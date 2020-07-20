@@ -15,7 +15,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(1, GameConst.PlayerName);
+		player.Init(1, LanguageData.GetText("PlayerName"));
 		return player;
 	}
 
@@ -91,7 +91,7 @@ public class FishManager : MonoBehaviour
 		{
 			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum + i; ++i)
 			{
-				bornWaittingEnemies[i].actionStep = FishBase.ActionType.Born;
+				bornWaittingEnemies[i].Born();
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class FishManager : MonoBehaviour
 	public void EatCheck(PlayerBase player, BoxCollider atkCollider)
 	{
 		FishBase fb;
-		List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, GameConst.RobotFindFishRange);
+		List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, GameConst.RobotVision);
 		for ( int i = listFish.Count -1; i >= 0; --i )
 		{
 			fb = listFish[i];

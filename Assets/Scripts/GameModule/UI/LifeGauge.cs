@@ -67,15 +67,15 @@ public class LifeGauge : MonoBehaviour
         switch (nd.numberType)
         {
             case NumberType.MaxLife:
-                text.text = string.Format(GameConst.LanguageAddLifeMax, nd.value);
+                text.text = string.Format(LanguageData.GetText("LanguageAddLifeMax"), nd.value);
                 text.color = new Color(1f, 0.6f, 0f);
                 break;
             case NumberType.Damage:
-                text.text = string.Format(GameConst.LanguageDamage, nd.value);
+                text.text = string.Format(LanguageData.GetText("LanguageDamage"), nd.value);
                 text.color = Color.red;
                 break;
             case NumberType.Life:
-                text.text = string.Format(GameConst.LanguageAddLife, nd.value);
+                text.text = string.Format(LanguageData.GetText("LanguageAddLife"), nd.value);
                 text.color = Color.green;
                 break;
         }

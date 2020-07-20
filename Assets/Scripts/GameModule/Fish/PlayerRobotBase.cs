@@ -27,7 +27,7 @@ public class PlayerRobotBase : PlayerBase
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 追踪附近比自己小的离最近的鱼
-        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, GameConst.RobotFindFishRange);
+        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, GameConst.RobotVision);
 
         // 把新发现的，隐身的鱼排除
         for (int i = listFish.Count - 1; i >= 0; --i)
@@ -41,12 +41,11 @@ public class PlayerRobotBase : PlayerBase
                 }
             }
         }
+        // 按距离升序排序
+        listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
         listFindedFish = listFish;
         if (listFish.Count > 0)
         {
-            // 按距离升序排序
-            listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
-
             // 当体力较多时，追踪大鱼
             if (lifeRate > aiParamRobotFollowBigFishLifeRate)
             {
@@ -69,7 +68,23 @@ public class PlayerRobotBase : PlayerBase
 
     protected void GotoAquatic()
     {
+		foreach (FishBase fb in listFindedFish)
+		{
+			if (fb.fishType == FishType.Player || fb.fishType == FishType.PlayerRobot)
+			{
+                return;
+			}
+
+		}
+        isGotoAquatic = true;
         List<Transform> listTransAquatic = ManagerGroup.GetInstance().aquaticManager.listTransAquatic;
+        for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
+        {
+            if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow( GetSafeRudius(), 2))
+            {
+                listTransAquatic.RemoveAt(i);
+            }
+        }
         if (listTransAquatic.Count <= 0) { return; }
         listTransAquatic.Sort((a, b) => { return (int)(Vector3.Distance(transform.position, a.position) - Vector3.Distance(transform.position, b.position)); });
         MoveToTarget(new Vector3( listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z));
@@ -77,20 +92,31 @@ public class PlayerRobotBase : PlayerBase
 
     protected virtual void CalcMoveAction()
     {
-        if (lifeRate > aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
-        {   // 吃鱼模式
-            Attack();
-        }
-        else if (lifeRate >= 1f)
-        {
-            isGotoAquatic = false;
+        // 躲草丛
+        //if (lifeRate > aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
+        //{   // 吃鱼模式
+        //    Attack();
+        //}
+        //else if (lifeRate >= 1f)
+        //{
+        //    isGotoAquatic = false;
+        //}
+        //else
+        //{
+        //    //  恢复模式
+        //    GotoAquatic();
+        //}
+
+        var shell = ManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, GameConst.RobotVision);
+        if (shell)
+        {   // 吃珍珠
+            MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));
         }
         else
-        {   //  恢复模式
-            isGotoAquatic = true;
-            GotoAquatic();
+        {
+            // 吃鱼
+            Attack();
         }
-
     }
 
     protected void MoveToTarget(Vector3 targetPos)
@@ -114,7 +140,7 @@ public class PlayerRobotBase : PlayerBase
             hitWallCoolTime -= Time.deltaTime;
             if (hitWallCoolTime < 0)
             {
-                if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2) - 35)
+                if (transform.position.sqrMagnitude >= Math.Pow(GetSafeRudius(), 2) - 5)
                 {
                     Dir = -Dir;
                     hitWallCoolTime = hitWallCoolTimeMax;

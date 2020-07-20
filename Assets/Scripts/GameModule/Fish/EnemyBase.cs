@@ -41,7 +41,7 @@ public class EnemyBase : FishBase
 
     protected override Vector3 GetBornPosition()
     {
-        return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() - 35f);
+        return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, GetSafeRudius() - 5f);
     }
     protected void DieWait()
     {
@@ -81,7 +81,7 @@ public class EnemyBase : FishBase
             hitWallCoolTime -= Time.deltaTime;
             if (hitWallCoolTime < 0)
             {
-                if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2) - 5)
+                if (transform.position.sqrMagnitude >= Math.Pow(GetSafeRudius(), 2) - 5)
                 {
                     Dir = -Dir;
                     hitWallCoolTime = hitWallCoolTimeMax;

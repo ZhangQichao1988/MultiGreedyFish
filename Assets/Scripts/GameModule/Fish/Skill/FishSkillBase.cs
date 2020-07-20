@@ -11,7 +11,7 @@ public class FishSkillBase
 	static public FishSkillBase SetFishSkill(PlayerBase playerBase, int id)
 	{
 		
-		var baseData = FishSkillData.dicFishSkillBaseData[id];
+		var baseData = FishSkillData.GetFishSkillBaseData(id);
 		FishSkillBase fishSkill = null;
 		switch (baseData.skillType)
 		{

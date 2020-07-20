@@ -13,7 +13,7 @@ public class ShellControl : MonoBehaviour
     public GameObject goPearl = null;
 
     Animator animator;
-    ShellStatus shellStatus = ShellStatus.Closed;
+    public ShellStatus shellStatus = ShellStatus.Closed;
     float openReminingTime;
     float openReminingTimedefault;
     List<FishBase> listDamagedFish = new List<FishBase>();
@@ -36,7 +36,6 @@ public class ShellControl : MonoBehaviour
             {
                 case ShellStatus.Closed:
                     animator.SetTrigger("open");
-                    shellStatus = ShellStatus.Open;
                     openReminingTime = GameConst.ShellOpenningTime;
                     if (Wrapper.GetRandom(0f, 1f) < GameConst.ShellPearlResetRate)
                     {
@@ -62,10 +61,13 @@ public class ShellControl : MonoBehaviour
     {
         shellStatus = ShellStatus.Closing;
     }
-
+    void Openning()
+    {
+        shellStatus = ShellStatus.Open;
+    }
     public bool PearlEatenCheck(FishBase fish)
     {
-        if (shellStatus == ShellStatus.Open && goPearl.activeSelf)
+        if (CanEatPearl())
         {
             goPearl.SetActive(false);
             fish.life += GameConst.PearlRecoverLife;
@@ -78,5 +80,10 @@ public class ShellControl : MonoBehaviour
             return false;
         }
         return false;
+    }
+
+    public bool CanEatPearl()
+    {
+        return shellStatus == ShellStatus.Open && goPearl.activeSelf;
     }
 }

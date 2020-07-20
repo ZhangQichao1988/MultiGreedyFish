@@ -59,7 +59,7 @@ public class ManagerGroup : MonoBehaviour
     {
         resultRoot.SetActive(true);
         battleControl.SetActive(false);
-        resultText.text = string.Format( GameConst.ResultText, rank.ToString() );
+        resultText.text = string.Format( LanguageData.GetText("ResultText"), rank.ToString() );
     }
 
     public void SetBattleStart()
