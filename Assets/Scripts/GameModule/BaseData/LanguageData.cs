@@ -38,6 +38,7 @@ public class LanguageData
 			{ "BattleReadyStart_1", new LangaugeBaseData("躲避周圍污染的海水", "躲避周圍污染的海水", "躲避周圍污染的海水", "躲避周圍污染的海水")},
 			{ "BattleReadyStart_2", new LangaugeBaseData("吃掉其他玩家的魚\n成爲海底霸主！", "吃掉其他玩家的魚\n成爲海底霸主！", "吃掉其他玩家的魚\n成爲海底霸主！", "吃掉其他玩家的魚\n成爲海底霸主！")},
 			{ "BattleReadyStart_3", new LangaugeBaseData("去剛吧！", "去剛吧！", "去剛吧！", "去剛吧！")},
+			{ "BattlePlayPoint", new LangaugeBaseData("生死决战！", "生死决战！", "生死决战！", "生死决战！")},
 		};
 
 	static public string GetText(string Id)

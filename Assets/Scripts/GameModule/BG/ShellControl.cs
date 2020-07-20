@@ -76,6 +76,10 @@ public class ShellControl : MonoBehaviour
         else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
         {
             fish.life -= GameConst.ShellCloseDmg;
+            if (fish.life <= 0)
+            {
+                fish.Die(null);
+            }
             listDamagedFish.Add(fish);
             return false;
         }

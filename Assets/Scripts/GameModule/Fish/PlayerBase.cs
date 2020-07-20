@@ -133,10 +133,6 @@ public class PlayerBase : FishBase
 			data.moveSpeed = originalData.moveSpeed;
 			actionStep = ActionType.Idle;
 		}
-		else
-		{
-			data.moveSpeed = 0f;
-		}
 		
 		base.MoveUpdate();
 	}
@@ -165,7 +161,7 @@ public class PlayerBase : FishBase
 		animator.SetTrigger("Attack");
 		remainingTime = GameConst.AttackHardTime;
 		actionStep = ActionType.Eatting;
-		data.moveSpeed = 0f;
+		data.moveSpeed = 0.1f;
 		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
 		fish.life -= (int)((float)data.atk * transform.localScale.x);

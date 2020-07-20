@@ -147,5 +147,11 @@ public class FishManager : MonoBehaviour
 		}
 		return listPlayer;
 	}
+	public List<FishBase> GetAlivePlayerSort(Vector3 pos)
+	{
+		List<FishBase> listPlayer = GetAlivePlayer();
+		listPlayer.Sort((a,b)=> { return (int)(Vector3.Distance(pos, a.transform.position) - Vector3.Distance(pos, b.transform.position)); });
+		return listPlayer;
+	}
 
 }

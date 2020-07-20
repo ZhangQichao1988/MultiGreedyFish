@@ -78,6 +78,7 @@ public class InGameUIPanel : MonoBehaviour
 
 	public void Update()
 	{
+        if (!Player) { return; }
         // TODO:不要弯曲的话可以删除
         Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
         Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
@@ -85,10 +86,16 @@ public class InGameUIPanel : MonoBehaviour
         if (Player.actionStep == FishBase.ActionType.Die)
         {
             ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
+            var listPlayer = ManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
+            cameraFollow.SetTarget(listPlayer[0].transform);
         }
         else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1 && !GameConst.FreeMode)
         {
             ManagerGroup.GetInstance().GotoResult(1);
+        }
+        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count == 2)
+        {
+            ManagerGroup.GetInstance().SetPlayPoint();
         }
 
         skillGuage.fillAmount = Player.fishSkill.currentGauge;

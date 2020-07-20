@@ -19,12 +19,9 @@ public class ManagerGroup : MonoBehaviour
     public FishManager fishManager = null;
     public AquaticManager aquaticManager = null;
     public ShellManager shellManager = null;
-    public GameObject battleControl = null;
     public PoisonRing poisonRing = null;
     public CameraFollow cameraFollow = null;
 
-    public GameObject titleBtn = null;
-    public GameObject resultRoot = null;
     public Text resultText = null;
 
     Animator animator = null;
@@ -32,7 +29,6 @@ public class ManagerGroup : MonoBehaviour
     private void Awake()
 	{
         instance = this;
-        battleControl.SetActive(false);
         animator = GetComponent<Animator>();
 
     }
@@ -41,9 +37,11 @@ public class ManagerGroup : MonoBehaviour
 
     public void GotoBattle()
     {
-        resultRoot.SetActive(false);
-        titleBtn.SetActive(false);
-        battleControl.SetActive(true) ;
+        //resultRoot.SetActive(false);
+        //titleBtn.SetActive(false);
+        //battleControl.SetActive(true) ;
+        animator.SetTrigger("ReadyStart");
+
         poisonRing.gameObject.SetActive(true);
         poisonRing.Init();
         cameraFollow.Init();
@@ -52,13 +50,24 @@ public class ManagerGroup : MonoBehaviour
         inGameUIPanel.Init();
         fishManager.CreateEnemy();
         this.isPause = true;
-        animator.SetTrigger("ReadyStart");
     }
-
+    public void SetPlayPoint()
+    {
+        animator.SetTrigger("PlayPoint");
+    }
     public void GotoResult(int rank)
     {
-        resultRoot.SetActive(true);
-        battleControl.SetActive(false);
+        if (rank == 1)
+        {
+            this.isPause = true;
+            animator.SetTrigger("Win");
+        }
+        else
+        {
+            animator.SetTrigger("Lose");
+        }
+        //resultRoot.SetActive(true);
+        //battleControl.SetActive(false);
         resultText.text = string.Format( LanguageData.GetText("ResultText"), rank.ToString() );
     }
 
