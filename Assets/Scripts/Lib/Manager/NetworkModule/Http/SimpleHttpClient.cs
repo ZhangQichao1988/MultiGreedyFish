@@ -40,7 +40,7 @@ namespace NetWorkModule
             m_platform = platform;
         }
 
-        public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, bool needAuth)
+        public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)
         {
             byte[] data = m_protocol.Pack(msg, PID++, body);
             int msgId = int.Parse(msg.Substring(1, msg.IndexOf("_") - 1));
@@ -63,7 +63,7 @@ namespace NetWorkModule
                 yield return request.SendWebRequest();
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData);
                 }
                 else
                 {
@@ -72,6 +72,19 @@ namespace NetWorkModule
                 }
             }
         }
+
+        public void SaveSessionKey(string resKey, byte[] randomBytes, bool isCached)
+		{
+            byte[] byteKey = CryptographyUtil.XorBytes(randomBytes, Convert.FromBase64String(resKey));
+			if (isCached)
+            {
+                PlayerPrefs.SetString(NetworkConst.SESSION_KEY_FOR_LOGIN, Convert.ToBase64String(byteKey));
+                cachedSession = byteKey;
+            }
+            gSessionKey = byteKey;
+
+            Debug.LogWarning("Saved Session key : " + Convert.ToBase64String(gSessionKey));
+		}
 
         byte[] GetCombineData(int msgId, byte[] data)
         {
@@ -121,7 +134,7 @@ namespace NetWorkModule
             return result;
         }
 
-        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res)
+        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData)
         {
             string sign = headers[X_SIGNATURE];
             int stateCode = (int)StatusCode.Failed;
@@ -137,7 +150,7 @@ namespace NetWorkModule
             bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);
             if (statuOk)
             {
-                HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid);
+                HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid, cachedData);
             }
         }
 

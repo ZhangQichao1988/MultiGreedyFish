@@ -102,23 +102,23 @@ public class NetWorkHandler
         request.Mask = CryptographyUtil.GetMakData(randomKey);
 
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P0_Request", requestByteData , false);
+        NetWorkManager.Request("P0_Request", requestByteData , randomKey, false);
     }
 
     /// <summary>
     /// P1 Login
     /// </summary>
     /// <param name="authToken"></param>
-    public static void Login(string authToken)
+    public static void Login()
     {
         var request = new P1_Request();
-        request.Accesstoken = authToken;
+        request.Accesstoken = PlayerPrefs.GetString(NetworkConst.AUTH_KEY);
         
         var randomKey = CryptographyUtil.RandomBytes(32);
         request.Mask = CryptographyUtil.GetMakData(randomKey);
 
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P1_Request", requestByteData , false);
+        NetWorkManager.Request("P1_Request", requestByteData , randomKey, false);
     }
 
 
@@ -126,13 +126,16 @@ public class NetWorkHandler
     static void OnRecvStartup(HttpDispatcher.NodeMsg msg)
     {
         var response = P0_Response.Parser.ParseFrom(msg.Body);
+        PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
+        byte[] randKey = msg.CachedData as byte[];
+        NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
         GetDispatch().Dispatch<P0_Response>(GameEvent.RECIEVE_P0_REQUEST, response);
     }
 
     static void OnRecvLogin(HttpDispatcher.NodeMsg msg)
     {
         var response = P1_Response.Parser.ParseFrom(msg.Body);
-        GetDispatch().Dispatch<P1_Response>(GameEvent.RECIEVE_P0_REQUEST, response);
+        GetDispatch().Dispatch<P1_Response>(GameEvent.RECIEVE_P1_REQUEST, response);
     }
 
     static void OnRecvLoginWithThirdPlatform(HttpDispatcher.NodeMsg msg)
