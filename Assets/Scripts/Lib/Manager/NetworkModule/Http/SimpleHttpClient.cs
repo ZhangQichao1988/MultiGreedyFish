@@ -42,6 +42,11 @@ namespace NetWorkModule
             cachedProtocolId = protocolID;
             m_version = version;
             m_platform = platform;
+            string sessionStr = PlayerPrefs.GetString(NetworkConst.SESSION_KEY_FOR_LOGIN, null);
+            if (sessionStr != null)
+            {
+                cachedSession = Convert.FromBase64String(sessionStr);
+            }
         }
 
         public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)

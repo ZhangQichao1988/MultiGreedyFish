@@ -139,6 +139,7 @@ public class NetWorkHandler
     {
         var response = P0_Response.Parser.ParseFrom(msg.Body);
         PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
+        PlayerPrefs.Save();
         byte[] randKey = msg.CachedData as byte[];
         NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
         GetDispatch().Dispatch<P0_Response>(GetDispatchKey(msg.Key), response);
