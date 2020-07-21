@@ -24,13 +24,25 @@ public class NetWorkHandler
         return dispatch;
     }
 
+    public static void Dispose()
+    {
+        if (dispatch != null)
+        {
+            dispatch.RemoveAll();
+            dispatch = null;
+        }
+    }
+
     public static void InitHttpNetWork()
     {
         pbParserRef = new Dictionary<string, MessageParser>(){
             {"P0_Request", P0_Request.Parser},
             {"P1_Request", P1_Request.Parser},
+            {"P2_Request", P2_Request.Parser},
             {"P0_Response", P0_Response.Parser},
-            {"P1_Response", P1_Response.Parser}
+            {"P1_Response", P1_Response.Parser},
+            {"P2_Response", P2_Response.Parser},
+            {"P3_Response", P3_Response.Parser}
         };
 
         NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
@@ -106,19 +118,19 @@ public class NetWorkHandler
     }
 
     /// <summary>
-    /// P1 Login
+    /// P2 Login
     /// </summary>
     /// <param name="authToken"></param>
-    public static void Login()
+    public static void RequestLogin()
     {
-        var request = new P1_Request();
-        request.Accesstoken = PlayerPrefs.GetString(NetworkConst.AUTH_KEY);
+        var request = new P2_Request();
+        request.AuthToken = PlayerPrefs.GetString(NetworkConst.AUTH_KEY);
         
         var randomKey = CryptographyUtil.RandomBytes(32);
         request.Mask = CryptographyUtil.GetMakData(randomKey);
 
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P1_Request", requestByteData , randomKey, false);
+        NetWorkManager.Request("P2_Request", requestByteData , randomKey, false);
     }
 
 
@@ -129,13 +141,33 @@ public class NetWorkHandler
         PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
         byte[] randKey = msg.CachedData as byte[];
         NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
-        GetDispatch().Dispatch<P0_Response>(GameEvent.RECIEVE_P0_REQUEST, response);
+        GetDispatch().Dispatch<P0_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvLogin(HttpDispatcher.NodeMsg msg)
     {
-        var response = P1_Response.Parser.ParseFrom(msg.Body);
-        GetDispatch().Dispatch<P1_Response>(GameEvent.RECIEVE_P1_REQUEST, response);
+        var response = P2_Response.Parser.ParseFrom(msg.Body);
+
+        if (response.Result.Code == NetworkConst.CODE_OK)
+        {
+            NetWorkManager.HttpClient.SaveSessionKey(response.SessionKey, msg.CachedData as byte[], false);
+            NetWorkManager.HttpClient.SetPlayerId(response.PlayerId);
+        }
+
+        GetDispatch().Dispatch<P2_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    /// <summary>
+    /// P3 获取玩家信息
+    /// </summary>
+    public static void RequestGetPlayer()
+    {
+        NetWorkManager.Request("P3_Request", null);
+    }
+
+    static string GetDispatchKey(int msgId)
+    {
+        return string.Format(GameEvent.RECIEVE_COMMON_RESPONSE, msgId);
     }
 
     static void OnRecvLoginWithThirdPlatform(HttpDispatcher.NodeMsg msg)
@@ -151,10 +183,15 @@ public class NetWorkHandler
     static void TraceLog(string tag, string msg, byte[] data)
     {
 #if CONSOLE_ENABLE 
-        MessageParser parser = pbParserRef[msg];
-        var msgData = parser.ParseFrom(ByteString.CopyFrom(data));
+        string requestData = "";
         string color = tag == "Request" ? "green" : "yellow";
-        string logData = string.Format("<color='{3}'>[{0}]</color> {1} \n{2}", tag, msg, JsonFormatter.ToDiagnosticString(msgData), color);
+        if (data != null)
+        {
+            MessageParser parser = pbParserRef[msg];
+            var msgData = parser.ParseFrom(ByteString.CopyFrom(data));
+            requestData = JsonFormatter.ToDiagnosticString(msgData);
+        }
+        string logData = string.Format("<color='{3}'>[{0}]</color> {1} \n{2}", tag, msg, requestData, color);
         Debug.Log(logData);
 #endif
     }

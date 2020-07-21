@@ -26,6 +26,10 @@ namespace NetWorkModule
         string m_version;
         string m_platform;
         Int64 m_playerId;
+        public void SetPlayerId(Int64 playerId)
+        {
+            m_playerId = playerId;
+        }
         public long PID = 1;
 
         AbstractProtocol m_protocol;
