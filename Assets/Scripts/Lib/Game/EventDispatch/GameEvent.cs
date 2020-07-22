@@ -1,11 +1,12 @@
 
 public class GameEvent
 {
-    public static string RECIEVE_P0_REQUEST = "RECIEVE_P0_REQUEST";
+    public static string RECIEVE_COMMON_RESPONSE = "RECIEVE_P{0}_RESPONSE";
+    public static string RECIEVE_P0_RESPONSE = "RECIEVE_P0_RESPONSE";
     
-    public static string RECIEVE_P1_REQUEST = "RECIEVE_P1_REQUEST";
+    public static string RECIEVE_P1_RESPONSE = "RECIEVE_P1_RESPONSE";
 
-    public static string RECIEVE_P2_REQUEST = "RECIEVE_P2_REQUEST";
+    public static string RECIEVE_P2_RESPONSE = "RECIEVE_P2_RESPONSE";
 
-    public static string RECIEVE_P3_REQUEST = "RECIEVE_P3_REQUEST";
+    public static string RECIEVE_P3_RESPONSE = "RECIEVE_P3_RESPONSE";
 }

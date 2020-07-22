@@ -26,6 +26,10 @@ namespace NetWorkModule
         string m_version;
         string m_platform;
         Int64 m_playerId;
+        public void SetPlayerId(Int64 playerId)
+        {
+            m_playerId = playerId;
+        }
         public long PID = 1;
 
         AbstractProtocol m_protocol;
@@ -38,6 +42,11 @@ namespace NetWorkModule
             cachedProtocolId = protocolID;
             m_version = version;
             m_platform = platform;
+            string sessionStr = PlayerPrefs.GetString(NetworkConst.SESSION_KEY_FOR_LOGIN, null);
+            if (sessionStr != null)
+            {
+                cachedSession = Convert.FromBase64String(sessionStr);
+            }
         }
 
         public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)
