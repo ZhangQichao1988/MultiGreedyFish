@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameConst
+public class BattleConst
 {
 	static readonly public bool FreeMode = false;																											// 只剩自己也不会胜利
 	static readonly public int EnemyNumMax = 100;                                                                                                                   // 杂鱼最多数量

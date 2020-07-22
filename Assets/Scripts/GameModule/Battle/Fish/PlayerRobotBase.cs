@@ -27,7 +27,7 @@ public class PlayerRobotBase : PlayerBase
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 追踪附近比自己小的离最近的鱼
-        List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, GameConst.RobotVision);
+        List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.RobotVision);
 
         // 把新发现的，隐身的鱼排除
         for (int i = listFish.Count - 1; i >= 0; --i)
@@ -77,7 +77,7 @@ public class PlayerRobotBase : PlayerBase
 
 		}
         isGotoAquatic = true;
-        List<Transform> listTransAquatic = ManagerGroup.GetInstance().aquaticManager.listTransAquatic;
+        List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
         for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
         {
             if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow( GetSafeRudius(), 2))
@@ -107,7 +107,7 @@ public class PlayerRobotBase : PlayerBase
         //    GotoAquatic();
         //}
 
-        var shell = ManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, GameConst.RobotVision);
+        var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.RobotVision);
         if (shell)
         {   // 吃珍珠
             MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));
@@ -118,6 +118,7 @@ public class PlayerRobotBase : PlayerBase
             Attack();
         }
     }
+
 
     protected void MoveToTarget(Vector3 targetPos)
     {
@@ -183,6 +184,7 @@ public class PlayerRobotBase : PlayerBase
 	public override void Damge()
 	{
 		base.Damge();
+        animator.SetTrigger("Damage");
         isGotoAquatic = false;
     }
 }

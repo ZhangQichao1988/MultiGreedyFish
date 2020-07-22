@@ -97,7 +97,7 @@ public class CameraFollow : MonoBehaviour
 		}
 		if (Target)
 		{
-			float rate = (Target.transform.localScale.x - 1f) / (GameConst.FishMaxScale - 1f);
+			float rate = (Target.transform.localScale.x - 1f) / (BattleConst.FishMaxScale - 1f);
 			if (currentRate < rate)
 			{
 				currentRate += Time.deltaTime * 0.1f;
@@ -137,7 +137,11 @@ public class CameraFollow : MonoBehaviour
 		}
 		else
 		{
-			Target = ManagerGroup.GetInstance().fishManager.GetAlivePlayer()[0].transform;
+			var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
+			if (listPlayer.Count > 0)
+			{
+				Target = listPlayer[0].transform;
+			}
 		}
 	}
 

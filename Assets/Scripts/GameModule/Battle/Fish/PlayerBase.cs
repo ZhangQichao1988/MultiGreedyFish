@@ -108,12 +108,12 @@ public class PlayerBase : FishBase
 		remainingTime -= Time.deltaTime;
 		if (remainingTime <= 0)
 		{
-			ManagerGroup.GetInstance().fishManager.listFish.Remove(this);
+			BattleManagerGroup.GetInstance().fishManager.listFish.Remove(this);
 			Destroy(gameObject);
 		}
 		else
 		{
-			float progress = remainingTime / GameConst.EatFishTime;
+			float progress = remainingTime / BattleConst.EatFishTime;
 			transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
 
 			if (eatFishTrans != null)
@@ -141,7 +141,7 @@ public class PlayerBase : FishBase
 		base.MoveUpdate();
 
 		// 吞噬
-		ManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
+		BattleManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
 
 		// 吃珍珠判定
 		EatPearlCheck();
@@ -154,15 +154,15 @@ public class PlayerBase : FishBase
 
 	protected void EatPearlCheck()
 	{
-		ManagerGroup.GetInstance().shellManager.EatPearl(this);
+		BattleManagerGroup.GetInstance().shellManager.EatPearl(this);
 	}
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
-		remainingTime = GameConst.AttackHardTime;
+		remainingTime = BattleConst.AttackHardTime;
 		actionStep = ActionType.Eatting;
 		data.moveSpeed = 0f;
-		canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
+		canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
 		fish.life -= (int)((float)data.atk * transform.localScale.x);
 		if (fish.life <= 0)
@@ -173,7 +173,7 @@ public class PlayerBase : FishBase
 	}
 	public void Eat(FishBase fish)
 	{
-		life += (int)(fish.lifeMax * GameConst.HealLifeFromEatRate);
+		life += (int)(fish.lifeMax * BattleConst.HealLifeFromEatRate);
 		fish.Die(colliderMouth.transform);
 		animator.SetTrigger("Eat");
 	}
@@ -182,7 +182,7 @@ public class PlayerBase : FishBase
 	{
 		actionStep = ActionType.Die;
 		localScaleBackup = transform.localScale.x;
-		remainingTime = GameConst.EatFishTime;
+		remainingTime = BattleConst.EatFishTime;
 		this.eatFishTrans = eatFishTrans;
 	}
 

@@ -1,9 +1,19 @@
-Shader "Universal Render Pipeline/Particles/Unlit"
+Shader "Custom/ParticlesUnlit"
 {
     Properties
     {
         [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
         [MainColor]   _BaseColor("Base Color", Color) = (1,1,1,1)
+        _BaseColorPower("BaseColorPower", Float) = 1.0
+
+        _BaseMapUVScroll("BaseMap UV Scroll", Vector) = (0,0,0,0)
+
+        _NoiseMap("Noise Map", 2D) = "white" {}
+        _NoiseMapUVScroll("NoiseMap UV Scroll", Vector) = (0,0,0,0)
+        _NoisePower("NoisePower", Float) = 0.0
+
+        _AlphaMap("Alpha Map", 2D) = "white" {}
+        _AlphaMapUVScroll("AlphaMap UV Scroll", Vector) = (0,0,0,0)
 
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -11,6 +21,13 @@ Shader "Universal Render Pipeline/Particles/Unlit"
 
         _EmissionColor("Color", Color) = (0,0,0)
         _EmissionMap("Emission", 2D) = "white" {}
+
+        // 溶解
+        _DissolveMap("DissolveMap", 2D) = "white" {}
+        _DissSize("DissSize", Range(0, 1)) = 0.1 //溶解阈值，小于阈值才属于溶解带
+        _DissColor("DissColor", Color) = (1,0,0,1)//溶解带的渐变颜色，与_AddColor配合形成渐变色
+        _DissAddColor("DissAddColor", Color) = (1,1,0,1)
+        _DissProcess("DissProcess", Range(0,1)) = 0.5 
 
         // -------------------------------------
         // Particle specific
@@ -30,6 +47,7 @@ Shader "Universal Render Pipeline/Particles/Unlit"
         [HideInInspector] _SrcBlend("__src", Float) = 1.0
         [HideInInspector] _DstBlend("__dst", Float) = 0.0
         [HideInInspector] _ZWrite("__zw", Float) = 1.0
+        [HideInInspector] _ZTest("__zt", Float) = 1.0
         [HideInInspector] _Cull("__cull", Float) = 2.0
         // Particle specific
         [HideInInspector] _ColorMode("_ColorMode", Float) = 0.0
@@ -68,9 +86,10 @@ Shader "Universal Render Pipeline/Particles/Unlit"
             BlendOp[_BlendOp]
             Blend[_SrcBlend][_DstBlend]
             ZWrite[_ZWrite]
+            ZTest[_ZTest]
             Cull[_Cull]
             ColorMask RGB
-
+             
             HLSLPROGRAM
             // Required to compile gles 2.0 with standard SRP library
             // All shaders must be compiled with HLSLcc and currently only gles is not using HLSLcc by default
@@ -82,7 +101,13 @@ Shader "Universal Render Pipeline/Particles/Unlit"
             // Material Keywords
             #pragma shader_feature _NORMALMAP
             #pragma shader_feature _EMISSION
-
+            #pragma shader_feature _ALPHAMAP
+            #pragma multi_compile _BASECOLOR_POWER
+             #pragma shader_feature _DISSOLVE
+             #pragma shader_feature _NOISE
+        
+           
+            
             // -------------------------------------
             // Particle Keywords
             #pragma shader_feature _ _ALPHAPREMULTIPLY_ON _ALPHAMODULATE_ON
@@ -106,5 +131,5 @@ Shader "Universal Render Pipeline/Particles/Unlit"
             ENDHLSL
         }
     }
-    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.ParticlesUnlitShader"
+    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.Custom.ParticlesUnlitShader"
 }

@@ -25,7 +25,7 @@ public class ShellManager : MonoBehaviour
 		for (int i = 0; i < listShell.Count; ++i)
 		{
 			float distance = Vector3.Distance(listShell[i].transform.position, fish.transform.position);
-			if (distance <= GameConst.EatPearlRange)
+			if (distance <= BattleConst.EatPearlRange)
 			{
 				// 根据开合状态来判定吃了珍珠还是被夹
 				if (listShell[i].PearlEatenCheck(fish))

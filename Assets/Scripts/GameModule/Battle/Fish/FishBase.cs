@@ -219,8 +219,8 @@ public class FishBase : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -GameConst.BgBound.x, GameConst.BgBound.x);
-        pos.z = Mathf.Clamp(pos.z, -GameConst.BgBound.y, GameConst.BgBound.y);
+        pos.x = Mathf.Clamp(pos.x, -BattleConst.BgBound.x, BattleConst.BgBound.x);
+        pos.z = Mathf.Clamp(pos.z, -BattleConst.BgBound.y, BattleConst.BgBound.y);
 
         transform.position = pos;
     }
@@ -274,13 +274,13 @@ public class FishBase : MonoBehaviour
     private void ApplySize()
     {
         float size = ((float)lifeMax - (float)originalData.lifeMax) / (float)originalData.lifeMax;
-        size = 1 + (float)Math.Sqrt(size) * GameConst.PlayerSizeUpRate;
-        size = Math.Min(GameConst.FishMaxScale, size);
+        size = 1 + (float)Math.Sqrt(size) * BattleConst.PlayerSizeUpRate;
+        size = Math.Min(BattleConst.FishMaxScale, size);
         transform.localScale = new Vector3(size, size, size);
     }
     protected float GetSafeRudius()
     {
-        return Mathf.Min(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), GameConst.BgBound.x);
+        return Mathf.Min(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), BattleConst.BgBound.x);
     }
 
     protected virtual float SetAlpha(float alpha)
@@ -310,7 +310,7 @@ public class FishBase : MonoBehaviour
     {
         canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
         // 在水草里恢复血量
-        if (ManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
+        if (BattleManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
         {
             if (!beforeInAquatic)
             {
@@ -326,9 +326,9 @@ public class FishBase : MonoBehaviour
             beforeInAquatic = false;
         }
 
-        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * GameConst.AquaticHealCoolTime)
+        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.AquaticHealCoolTime)
         {
-            int healLife = GameConst.AquaticHeal * inAquaticHealCnt++;
+            int healLife = BattleConst.AquaticHeal * inAquaticHealCnt++;
             healLife = Math.Min(lifeMax - life, healLife);
             life += healLife;
         }
@@ -342,7 +342,7 @@ public class FishBase : MonoBehaviour
     protected void PoisonRingCheck()
     {
         if (actionStep == ActionType.Die) { return; }
-        if (transform.position.sqrMagnitude >= Math.Pow(ManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
+        if (transform.position.sqrMagnitude >= Math.Pow(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
         {
             if (!beforeInPoisonRing)
             {
@@ -358,9 +358,9 @@ public class FishBase : MonoBehaviour
             beforeInPoisonRing = false;
         }
 
-        if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * GameConst.PoisonRingDmgCoolTime)
+        if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.PoisonRingDmgCoolTime)
         {
-            life -= GameConst.PoisonRingDmg * inPoisonRingDmgCnt++;
+            life -= BattleConst.PoisonRingDmg * inPoisonRingDmgCnt++;
             if (data.life <= 0)
             {
                 Die(null);
@@ -370,7 +370,6 @@ public class FishBase : MonoBehaviour
 
     public virtual void Damge()
     {
-        animator.SetTrigger("Damage");
-        canStealthRemainingTime = GameConst.CanStealthTimeFromDmg;
+        canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
     }
 }

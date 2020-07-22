@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManagerGroup : MonoBehaviour
+public class BattleManagerGroup : MonoBehaviour
 {
 
     enum GameStep 
@@ -13,7 +13,7 @@ public class ManagerGroup : MonoBehaviour
         Battle,
         Result,
     }
-    static ManagerGroup instance = null;
+    static BattleManagerGroup instance = null;
 
     public InGameUIPanel inGameUIPanel = null;
     public FishManager fishManager = null;
@@ -32,7 +32,7 @@ public class ManagerGroup : MonoBehaviour
         animator = GetComponent<Animator>();
 
     }
-    static public ManagerGroup GetInstance()
+    static public BattleManagerGroup GetInstance()
     { return instance; }
 
     public void GotoBattle()
