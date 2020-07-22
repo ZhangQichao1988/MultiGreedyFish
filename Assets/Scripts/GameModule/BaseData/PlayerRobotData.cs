@@ -40,13 +40,13 @@ public class PlayerRobotData
 	{
 		{new PlayerRobotDataBaseData(1, "阿超", PlayerRobotType.PlayerRobotBase, 1) },
 		{new PlayerRobotDataBaseData(1, "Ferya", PlayerRobotType.PlayerRobotBase, 1) },
-		{new PlayerRobotDataBaseData(1, "HUSKY", PlayerRobotType.PlayerRobotBase, 1) },
-		{new PlayerRobotDataBaseData(1, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(1, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(1, "Asura", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(1, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 0) },
-		{new PlayerRobotDataBaseData(1, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
-		{new PlayerRobotDataBaseData(1, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(1, "HUSKY", PlayerRobotType.PlayerRobotBase, 1) },
+		//{new PlayerRobotDataBaseData(1, "DIAMOND DRAGON", PlayerRobotType.PlayerRobotBase, 0) },
+		//{new PlayerRobotDataBaseData(1, "Mr.L  - Jiayin", PlayerRobotType.PlayerRobotBase, 0) },
+		//{new PlayerRobotDataBaseData(1, "Asura", PlayerRobotType.PlayerRobotBase, 0) },
+		//{new PlayerRobotDataBaseData(1, "睡在梦里，醒在梦境", PlayerRobotType.PlayerRobotBase, 0) },
+		//{new PlayerRobotDataBaseData(1, "Rebecca", PlayerRobotType.PlayerRobotBase, 2) },
+		//{new PlayerRobotDataBaseData(1, "༄༠་Yོiིnྀgོ་༠࿐", PlayerRobotType.PlayerRobotBase, 2) },
 	};
 
 	static readonly Dictionary<int, PlayerRobotAiBaseData> dicAiBaseData = new Dictionary<int, PlayerRobotAiBaseData>()

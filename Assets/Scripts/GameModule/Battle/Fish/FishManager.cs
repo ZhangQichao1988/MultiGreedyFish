@@ -57,7 +57,7 @@ public class FishManager : MonoBehaviour
 
 		FishBase fb = null;
 		// 杂鱼
-		for (int i = 0; i < GameConst.EnemyNumMax; ++i)
+		for (int i = 0; i < BattleConst.EnemyNumMax; ++i)
 		{
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			fb = goEnemy.AddComponent<EnemyBase>();
@@ -84,7 +84,7 @@ public class FishManager : MonoBehaviour
 		}
 
 		// 能活着的杂鱼数量计算
-		int enemyNum = (int)Mathf.Lerp(GameConst.EnemyNumMin, GameConst.EnemyNumMax, ManagerGroup.GetInstance().poisonRing.GetPoisonRange() / GameConst.PoisonRingRadiusMax);
+		int enemyNum = (int)Mathf.Lerp(BattleConst.EnemyNumMin, BattleConst.EnemyNumMax, BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.PoisonRingRadiusMax);
 
 		// 当活着的鱼比能活着的鱼数量少的时候，复活鱼
 		if (enemyNum > aliveEnemyNum)
@@ -99,7 +99,7 @@ public class FishManager : MonoBehaviour
 	public void EatCheck(PlayerBase player, BoxCollider atkCollider)
 	{
 		FishBase fb;
-		List<FishBase> listFish = ManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, GameConst.RobotVision);
+		List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, BattleConst.RobotVision);
 		for ( int i = listFish.Count -1; i >= 0; --i )
 		{
 			fb = listFish[i];

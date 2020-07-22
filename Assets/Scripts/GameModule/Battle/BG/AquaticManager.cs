@@ -25,7 +25,7 @@ public class AquaticManager : MonoBehaviour
 		for (int i = 0; i < listTransAquatic.Count; ++i)
 		{
 			float distance = Vector3.Distance(listTransAquatic[i].position, fish.transform.position);
-			if (distance <= GameConst.AquaticRange)
+			if (distance <= BattleConst.AquaticRange)
 			{
 				return true;
 			}

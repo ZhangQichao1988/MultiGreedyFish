@@ -27,7 +27,7 @@ public class InGameUIPanel : MonoBehaviour
 
 	public void Init()
 	{
-        Player = ManagerGroup.GetInstance().fishManager.CreatePlayer();
+        Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
         cameraFollow.Target = Player.transform;
     }
 
@@ -85,17 +85,17 @@ public class InGameUIPanel : MonoBehaviour
 
         if (Player.actionStep == FishBase.ActionType.Die)
         {
-            ManagerGroup.GetInstance().GotoResult(ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
-            var listPlayer = ManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
+            BattleManagerGroup.GetInstance().GotoResult(BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
+            var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
             cameraFollow.SetTarget(listPlayer[0].transform);
         }
-        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1 && !GameConst.FreeMode)
+        else if (BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1 && !BattleConst.FreeMode)
         {
-            ManagerGroup.GetInstance().GotoResult(1);
+            BattleManagerGroup.GetInstance().GotoResult(1);
         }
-        else if (ManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count == 2)
+        else if (BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count == 2)
         {
-            ManagerGroup.GetInstance().SetPlayPoint();
+            BattleManagerGroup.GetInstance().SetPlayPoint();
         }
 
         skillGuage.fillAmount = Player.fishSkill.currentGauge;

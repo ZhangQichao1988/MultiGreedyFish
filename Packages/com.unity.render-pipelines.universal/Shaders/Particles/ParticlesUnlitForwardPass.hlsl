@@ -41,8 +41,10 @@ struct VaryingsParticle
     float4 projectedPosition        : TEXCOORD6;
 #endif
 
-    float3 vertexSH                 : TEXCOORD8; // SH
-    float4 clipPos                  : SV_POSITION;
+    float3 vertexSH                     : TEXCOORD8; // SH
+    float4 clipPos                        : SV_POSITION;
+    float2 texcoordAlphaMap     : TEXCOORD9;
+    float2 texcoordNoiseMap     : TEXCOORD10;
     UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
 };
@@ -109,8 +111,19 @@ VaryingsParticle vertParticleUnlit(AttributesParticle input)
     output.normalWS = normalInput.normalWS;
     output.viewDirWS = viewDirWS;
 #endif
+    output.texcoord = TRANSFORM_TEX(input.texcoords, _BaseMap);
+    output.texcoord += half2(_BaseMapUVScroll.x * _Time.x, _BaseMapUVScroll.y * _Time.x);
 
-    output.texcoord = input.texcoords.xy;
+#if defined (_ALPHAMAP)
+    output.texcoordAlphaMap = TRANSFORM_TEX(input.texcoords, _AlphaMap);
+    output.texcoordAlphaMap += half2(_AlphaMapUVScroll.x * _Time.x, _AlphaMapUVScroll.y * _Time.x);
+#endif
+
+#if defined (_NOISE)
+    output.texcoordNoiseMap = TRANSFORM_TEX(input.texcoords, _NoiseMap);
+    output.texcoordNoiseMap += half2(_NoiseMapUVScroll.x * _Time.x, _NoiseMapUVScroll.y * _Time.x);
+#endif
+
 #ifdef _FLIPBOOKBLENDING_ON
     output.texcoord2AndBlend.xy = input.texcoords.zw;
     output.texcoord2AndBlend.z = input.texcoordBlend;
@@ -139,7 +152,11 @@ half4 fragParticleUnlit(VaryingsParticle input) : SV_Target
     projectedPosition = input.projectedPosition;
 #endif
 
-    half4 albedo = SampleAlbedo(uv, blendUv, _BaseColor, input.color, projectedPosition, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
+#if defined (_NOISE)
+    half uvOffset = BlendTexture(TEXTURE2D_ARGS(_NoiseMap, sampler_NoiseMap), input.texcoordNoiseMap, blendUv).r - 0.5;
+    uv += uvOffset * _NoisePower;
+#endif
+    half4 albedo = SampleAlbedo(uv, input.texcoordAlphaMap, blendUv, _BaseColor, input.color, projectedPosition, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
     half3 normalTS = SampleNormalTS(uv, blendUv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap));
 
 #if defined (_DISTORTION_ON)
@@ -155,6 +172,21 @@ half4 fragParticleUnlit(VaryingsParticle input) : SV_Target
     half3 result = albedo.rgb + emission;
     half fogFactor = input.positionWS.w;
     result = MixFogColor(result, half3(0, 0, 0), fogFactor);
+
+#if defined(_DISSOLVE)
+    half dissolveValue = BlendTexture(TEXTURE2D_ARGS(_DissolveMap, sampler_DissolveMap), uv, blendUv).r;
+    half clipValue = dissolveValue - _DissProcess;
+    clip(clipValue);
+    if (clipValue > 0 && clipValue < _DissSize)
+    {
+        //ÈÜ½â´ø½¥±ä
+        half4 dissolveColor = lerp(_DissColor, _DissAddColor, clipValue / _DissSize) * 2;
+        result *= dissolveColor;
+    }
+#endif
+
+    //albedo.a = OutputAlpha(albedo.a);
+
     return half4(result, albedo.a);
 }
 
