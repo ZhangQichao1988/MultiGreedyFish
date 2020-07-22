@@ -88,7 +88,7 @@ public class BundlesManifest
         if (AssetBundleInfos.TryGetValue(assetBundleName, out assetBundleInfo))
         {
 #if UNITY_ANDROID
-            return PathUtil.GetPersistentDataPath();
+            return PathUtility.GetPersistentDataPath();
 #else
 
             if (resrve)

@@ -54,6 +54,7 @@ public class Intro : MonoBehaviour
     {
         ClickEffect.Initialize();
         NetWorkHandler.InitHttpNetWork();
+        GameServiceController.Init();
 #if CONSOLE_ENABLE 
 		DebugMenu.Instance.StartDebug();
 #endif
