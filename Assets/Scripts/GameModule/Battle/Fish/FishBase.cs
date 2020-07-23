@@ -60,6 +60,8 @@ public class FishBase : MonoBehaviour
     protected BoxCollider colliderBody;
     public ActionType actionStep;
 
+    protected List<BuffBase> listBuff = new List<BuffBase>();
+
     // idle相关
     protected float changeVectorRemainingTime = 0f;
     protected static readonly float hitWallCoolTimeMax = 1f;
@@ -147,7 +149,10 @@ public class FishBase : MonoBehaviour
 
     public virtual void Init(int fishId, string playerName)
     {
-        
+        foreach (BuffBase bb in listBuff)
+        { bb.Destory(); }
+        listBuff.Clear();
+
         actionStep = ActionType.Born;
         fishBaseData = FishData.GetFishBaseData(fishId);
         this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
@@ -226,11 +231,25 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
+        BuffUpdate();
         AquaticCheck();
         PoisonRingCheck();
         MoveUpdate();
     }
+    void BuffUpdate()
+    { 
+        data.moveSpeed = originalData.moveSpeed;
 
+        for(int i = listBuff.Count - 1; i >= 0; --i)
+        {
+            listBuff[i].Update();
+            if (listBuff[i].IsDestory())
+            {
+                listBuff[i].Destory();
+                listBuff.RemoveAt(i);
+            }
+        }
+    }
     public bool EatCheck(BoxCollider atkCollider)
     {
         if (actionStep == ActionType.Born ||
@@ -371,5 +390,6 @@ public class FishBase : MonoBehaviour
     public virtual void Damge()
     {
         canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
+        listBuff.Add( BuffData.SetBuff(0, this));
     }
 }
