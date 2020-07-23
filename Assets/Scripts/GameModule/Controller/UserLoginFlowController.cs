@@ -5,8 +5,11 @@ using UnityEngine;
 /// </summary>
 public class UserLoginFlowController
 {
-    public static void ProcessLoginLogic()
+    public static void ProcessLoginLogic(string platformToken)
     {
+        Debug.LogFormat("[GetPlatform token]{0}", platformToken);
+        Debug.LogFormat(PlayerModel.Instance.testStr);
+
         if (string.IsNullOrEmpty( PlayerPrefs.GetString(NetworkConst.AUTH_KEY) ) )
         {
             NetWorkHandler.GetDispatch().AddListener<P0_Response>(GameEvent.RECIEVE_P0_RESPONSE, OnRecvStartUp);

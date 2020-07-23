@@ -6,7 +6,9 @@ public class Title : UIBase
     public void OnClickTitle()
     {
         Debug.Log("Click ");
-        UserLoginFlowController.ProcessLoginLogic();
+        GameServiceController.GetPlatformToken((token)=>{
+            UserLoginFlowController.ProcessLoginLogic(token);
+        });
     }
     
 }
