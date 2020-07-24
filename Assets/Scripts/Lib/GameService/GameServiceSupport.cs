@@ -27,7 +27,7 @@ public class GameServiceSupport
             PlayGamesClientConfiguration config = builder.Build();
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.Activate();
-#else
+#elif UNITY_IOS
             GameCenterPlatform.ShowDefaultAchievementCompletionBanner(isShowDefaultBanner);
 #endif
     }
