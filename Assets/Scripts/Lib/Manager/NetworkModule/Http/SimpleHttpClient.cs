@@ -72,7 +72,7 @@ namespace NetWorkModule
                 yield return request.SendWebRequest();
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData, body);
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace NetWorkModule
             return result;
         }
 
-        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData)
+        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData, byte[] req)
         {
             string sign = headers[X_SIGNATURE];
             int stateCode = (int)StatusCode.Failed;
@@ -159,7 +159,7 @@ namespace NetWorkModule
             bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);
             if (statuOk)
             {
-                HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid, cachedData);
+                HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid, cachedData, req);
             }
         }
 
@@ -185,7 +185,7 @@ namespace NetWorkModule
                     result = false;
                     break;
                 default:
-                    if (AppConst.EnableProtocolEncrypt)
+                    if (AppConst.EnableProtocolEncrypt && data.msgId != (int)MessageId.MidLogin)
                     {
                         string err = null;
                         byte[] combinedData = GetCombineData(data.msgId, data.pbData);

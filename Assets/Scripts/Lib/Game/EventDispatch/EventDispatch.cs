@@ -227,10 +227,6 @@ public class EventDispatch
             {
                 callback();
             }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
-            }
         }
     }
     
@@ -246,10 +242,6 @@ public class EventDispatch
             if (callback != null)
             {
                 callback(arg1);
-            }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
             }
         }
     }
@@ -267,10 +259,6 @@ public class EventDispatch
             {
                 callback(arg1, arg2);
             }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
-            }
         }
     }
 
@@ -286,10 +274,6 @@ public class EventDispatch
             if (callback != null)
             {
                 callback(arg1, arg2, arg3);
-            }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
             }
         }
     }
@@ -307,10 +291,6 @@ public class EventDispatch
             {
                 callback(arg1, arg2, arg3, arg4);
             }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
-            }
         }
     }
     //Five
@@ -325,10 +305,6 @@ public class EventDispatch
             if (callback != null)
             {
                 callback(arg1, arg2, arg3, arg4,arg5);
-            }
-            else
-            {
-                throw CreateDispatchSignatureException(eventType);
             }
         }
     }

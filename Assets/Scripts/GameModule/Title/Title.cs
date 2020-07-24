@@ -7,6 +7,7 @@ public class Title : UIBase
     {
         Debug.Log("Click ");
         GameServiceController.GetPlatformToken((token)=>{
+            token = "tesadfasfa";
             UserLoginFlowController.ProcessLoginLogic(token);
         });
     }

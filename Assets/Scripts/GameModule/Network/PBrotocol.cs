@@ -22,36 +22,40 @@ public static partial class ProtocolReflection {
   static ProtocolReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg5wcm90b2NvbC5wcm90byJtCgpQMF9SZXF1ZXN0EhAKCGRldmljZUlkGAEg",
-          "AigJEhYKDmRldmljZVBsYXRmb3JtGAIgAigJEhIKCmRldmljZU5hbWUYAyAC",
-          "KAkSEwoLYWNjZXNzdG9rZW4YBCABKAkSDAoEbWFzaxgFIAIoCSJMCgtQMF9S",
-          "ZXNwb25zZRIZCgZyZXN1bHQYASACKAsyCS5QQlJlc3VsdBIRCglhdXRoVG9r",
-          "ZW4YAiABKAkSDwoHYXV0aEtleRgDIAEoCSIvCgpQMV9SZXF1ZXN0EhMKC2Fj",
-          "Y2Vzc3Rva2VuGAEgAigJEgwKBG1hc2sYAiACKAkiTAoLUDFfUmVzcG9uc2US",
-          "GQoGcmVzdWx0GAEgASgLMgkuUEJSZXN1bHQSEQoJYXV0aFRva2VuGAIgASgJ",
-          "Eg8KB2F1dGhLZXkYAyABKAkiLQoKUDJfUmVxdWVzdBIRCglhdXRoVG9rZW4Y",
-          "ASACKAkSDAoEbWFzaxgCIAEoCSKEAQoLUDJfUmVzcG9uc2USGQoGcmVzdWx0",
-          "GAEgASgLMgkuUEJSZXN1bHQSEAoIcGxheWVySWQYAiABKAMSEwoLc2Vzc2lv",
-          "bl9rZXkYAyABKAkSEgoKc2VydmVyVGltZRgEIAEoAxIfChdpc1BsYXRmb3Jt",
-          "U2VydmljZUxpbmtlZBgFIAEoCCJDCgtQM19SZXNwb25zZRIZCgZyZXN1bHQY",
-          "ASABKAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciIm",
-          "CghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiswEKCFBC",
-          "UGxheWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEgwK",
-          "BHJhbmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxISCgpsb2dvdXRUaW1lGAUg",
-          "ASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dlchgI",
-          "IAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBSphCglN",
-          "ZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9Q",
-          "TEFURk9STRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lO",
-          "Rk8QAyptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lH",
-          "TkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NB",
-          "VVRJT04QBBIQCgxDTElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNoLnNl",
-          "cnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
+          "Cg5wcm90b2NvbC5wcm90byKYAQoKUDBfUmVxdWVzdBIQCghkZXZpY2VJZBgB",
+          "IAIoCRIWCg5kZXZpY2VQbGF0Zm9ybRgCIAIoCRISCgpkZXZpY2VOYW1lGAMg",
+          "AigJEhMKC2FjY2Vzc3Rva2VuGAQgASgJEikKC3NlcnZpY2VUeXBlGAUgASgO",
+          "MhQuRGF0YUxpbmtTZXJ2aWNlVHlwZRIMCgRtYXNrGAYgAigJIkwKC1AwX1Jl",
+          "c3BvbnNlEhkKBnJlc3VsdBgBIAIoCzIJLlBCUmVzdWx0EhEKCWF1dGhUb2tl",
+          "bhgCIAEoCRIPCgdhdXRoS2V5GAMgASgJIloKClAxX1JlcXVlc3QSEwoLYWNj",
+          "ZXNzdG9rZW4YASACKAkSKQoLc2VydmljZVR5cGUYAiACKA4yFC5EYXRhTGlu",
+          "a1NlcnZpY2VUeXBlEgwKBG1hc2sYAyACKAkiTAoLUDFfUmVzcG9uc2USGQoG",
+          "cmVzdWx0GAEgASgLMgkuUEJSZXN1bHQSEQoJYXV0aFRva2VuGAIgASgJEg8K",
+          "B2F1dGhLZXkYAyABKAkiLQoKUDJfUmVxdWVzdBIRCglhdXRoVG9rZW4YASAC",
+          "KAkSDAoEbWFzaxgCIAEoCSKEAQoLUDJfUmVzcG9uc2USGQoGcmVzdWx0GAEg",
+          "ASgLMgkuUEJSZXN1bHQSEAoIcGxheWVySWQYAiABKAMSEwoLc2Vzc2lvbl9r",
+          "ZXkYAyABKAkSEgoKc2VydmVyVGltZRgEIAEoAxIfChdpc1BsYXRmb3JtU2Vy",
+          "dmljZUxpbmtlZBgFIAEoCCJDCgtQM19SZXNwb25zZRIZCgZyZXN1bHQYASAB",
+          "KAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciImCghQ",
+          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiswEKCFBCUGxh",
+          "eWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEgwKBHJh",
+          "bmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxISCgpsb2dvdXRUaW1lGAUgASgD",
+          "Eg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dlchgIIAEo",
+          "BRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBSpQChNEYXRh",
+          "TGlua1NlcnZpY2VUeXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8K",
+          "C2dvb2dsZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8K",
+          "C01JRF9TVEFSVFVQEAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARIN",
+          "CglNSURfTE9HSU4QAhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3Rh",
+          "dHVzQ29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJP",
+          "UhACEhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoM",
+          "Q0xJRU5UX0VSUk9SEAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdh",
+          "bWUucGJCCVBCTWVzc2FnZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "Mask" }, null, null, null, null),
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "Mask" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P1_Response), global::P1_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Request), global::P2_Request.Parser, new[]{ "AuthToken", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Response), global::P2_Response.Parser, new[]{ "Result", "PlayerId", "SessionKey", "ServerTime", "IsPlatformServiceLinked" }, null, null, null, null),
@@ -64,6 +68,13 @@ public static partial class ProtocolReflection {
 
 }
 #region Enums
+public enum DataLinkServiceType {
+  [pbr::OriginalName("none")] None = 0,
+  [pbr::OriginalName("game_center")] GameCenter = 1,
+  [pbr::OriginalName("google_play")] GooglePlay = 2,
+  [pbr::OriginalName("app_lovin")] AppLovin = 3,
+}
+
 /// <summary>
 ///消息枚举编号
 /// </summary>
@@ -92,6 +103,7 @@ public enum StatusCode {
 public sealed partial class P0_Request : pb::IMessage<P0_Request> {
   private static readonly pb::MessageParser<P0_Request> _parser = new pb::MessageParser<P0_Request>(() => new P0_Request());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pb::MessageParser<P0_Request> Parser { get { return _parser; } }
 
@@ -114,10 +126,12 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public P0_Request(P0_Request other) : this() {
+    _hasBits0 = other._hasBits0;
     deviceId_ = other.deviceId_;
     devicePlatform_ = other.devicePlatform_;
     deviceName_ = other.deviceName_;
     accesstoken_ = other.accesstoken_;
+    serviceType_ = other.serviceType_;
     mask_ = other.mask_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -231,8 +245,35 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
     accesstoken_ = null;
   }
 
+  /// <summary>Field number for the "serviceType" field.</summary>
+  public const int ServiceTypeFieldNumber = 5;
+  private readonly static global::DataLinkServiceType ServiceTypeDefaultValue = global::DataLinkServiceType.None;
+
+  private global::DataLinkServiceType serviceType_;
+  /// <summary>
+  ///平台类型
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::DataLinkServiceType ServiceType {
+    get { if ((_hasBits0 & 1) != 0) { return serviceType_; } else { return ServiceTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      serviceType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "serviceType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasServiceType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "serviceType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearServiceType() {
+    _hasBits0 &= ~1;
+  }
+
   /// <summary>Field number for the "mask" field.</summary>
-  public const int MaskFieldNumber = 5;
+  public const int MaskFieldNumber = 6;
   private readonly static string MaskDefaultValue = "";
 
   private string mask_;
@@ -274,6 +315,7 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
     if (DevicePlatform != other.DevicePlatform) return false;
     if (DeviceName != other.DeviceName) return false;
     if (Accesstoken != other.Accesstoken) return false;
+    if (ServiceType != other.ServiceType) return false;
     if (Mask != other.Mask) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -285,6 +327,7 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
     if (HasDevicePlatform) hash ^= DevicePlatform.GetHashCode();
     if (HasDeviceName) hash ^= DeviceName.GetHashCode();
     if (HasAccesstoken) hash ^= Accesstoken.GetHashCode();
+    if (HasServiceType) hash ^= ServiceType.GetHashCode();
     if (HasMask) hash ^= Mask.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -315,8 +358,12 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
       output.WriteRawTag(34);
       output.WriteString(Accesstoken);
     }
+    if (HasServiceType) {
+      output.WriteRawTag(40);
+      output.WriteEnum((int) ServiceType);
+    }
     if (HasMask) {
-      output.WriteRawTag(42);
+      output.WriteRawTag(50);
       output.WriteString(Mask);
     }
     if (_unknownFields != null) {
@@ -338,6 +385,9 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
     }
     if (HasAccesstoken) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Accesstoken);
+    }
+    if (HasServiceType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ServiceType);
     }
     if (HasMask) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Mask);
@@ -364,6 +414,9 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
     }
     if (other.HasAccesstoken) {
       Accesstoken = other.Accesstoken;
+    }
+    if (other.HasServiceType) {
+      ServiceType = other.ServiceType;
     }
     if (other.HasMask) {
       Mask = other.Mask;
@@ -395,7 +448,11 @@ public sealed partial class P0_Request : pb::IMessage<P0_Request> {
           Accesstoken = input.ReadString();
           break;
         }
-        case 42: {
+        case 40: {
+          ServiceType = (global::DataLinkServiceType) input.ReadEnum();
+          break;
+        }
+        case 50: {
           Mask = input.ReadString();
           break;
         }
@@ -635,6 +692,7 @@ public sealed partial class P0_Response : pb::IMessage<P0_Response> {
 public sealed partial class P1_Request : pb::IMessage<P1_Request> {
   private static readonly pb::MessageParser<P1_Request> _parser = new pb::MessageParser<P1_Request>(() => new P1_Request());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pb::MessageParser<P1_Request> Parser { get { return _parser; } }
 
@@ -657,7 +715,9 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public P1_Request(P1_Request other) : this() {
+    _hasBits0 = other._hasBits0;
     accesstoken_ = other.accesstoken_;
+    serviceType_ = other.serviceType_;
     mask_ = other.mask_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -693,14 +753,38 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
     accesstoken_ = null;
   }
 
+  /// <summary>Field number for the "serviceType" field.</summary>
+  public const int ServiceTypeFieldNumber = 2;
+  private readonly static global::DataLinkServiceType ServiceTypeDefaultValue = global::DataLinkServiceType.None;
+
+  private global::DataLinkServiceType serviceType_;
+  /// <summary>
+  ///平台类型
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::DataLinkServiceType ServiceType {
+    get { if ((_hasBits0 & 1) != 0) { return serviceType_; } else { return ServiceTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      serviceType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "serviceType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasServiceType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "serviceType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearServiceType() {
+    _hasBits0 &= ~1;
+  }
+
   /// <summary>Field number for the "mask" field.</summary>
-  public const int MaskFieldNumber = 2;
+  public const int MaskFieldNumber = 3;
   private readonly static string MaskDefaultValue = "";
 
   private string mask_;
-  /// <summary>
-  ///客户端randomkey
-  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public string Mask {
     get { return mask_ ?? MaskDefaultValue; }
@@ -733,6 +817,7 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
       return true;
     }
     if (Accesstoken != other.Accesstoken) return false;
+    if (ServiceType != other.ServiceType) return false;
     if (Mask != other.Mask) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -741,6 +826,7 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
   public override int GetHashCode() {
     int hash = 1;
     if (HasAccesstoken) hash ^= Accesstoken.GetHashCode();
+    if (HasServiceType) hash ^= ServiceType.GetHashCode();
     if (HasMask) hash ^= Mask.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -759,8 +845,12 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
       output.WriteRawTag(10);
       output.WriteString(Accesstoken);
     }
+    if (HasServiceType) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) ServiceType);
+    }
     if (HasMask) {
-      output.WriteRawTag(18);
+      output.WriteRawTag(26);
       output.WriteString(Mask);
     }
     if (_unknownFields != null) {
@@ -773,6 +863,9 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
     int size = 0;
     if (HasAccesstoken) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Accesstoken);
+    }
+    if (HasServiceType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ServiceType);
     }
     if (HasMask) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Mask);
@@ -790,6 +883,9 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
     }
     if (other.HasAccesstoken) {
       Accesstoken = other.Accesstoken;
+    }
+    if (other.HasServiceType) {
+      ServiceType = other.ServiceType;
     }
     if (other.HasMask) {
       Mask = other.Mask;
@@ -809,7 +905,11 @@ public sealed partial class P1_Request : pb::IMessage<P1_Request> {
           Accesstoken = input.ReadString();
           break;
         }
-        case 18: {
+        case 16: {
+          ServiceType = (global::DataLinkServiceType) input.ReadEnum();
+          break;
+        }
+        case 26: {
           Mask = input.ReadString();
           break;
         }

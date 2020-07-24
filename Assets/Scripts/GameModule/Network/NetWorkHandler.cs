@@ -103,12 +103,18 @@ public class NetWorkHandler
     /// <summary>
     /// P0 STARTUP
     /// </summary>
-    public static void RequestStartUp()
+    public static void RequestStartUp(string authToken = null, DataLinkServiceType serviceType = DataLinkServiceType.None)
     {
         var request = new P0_Request();
         request.DeviceId = UnityEngine.SystemInfo.deviceUniqueIdentifier;
         request.DeviceName = UnityEngine.SystemInfo.deviceName;
         request.DevicePlatform = Application.platform.ToString();
+
+        if (authToken != null)
+        {
+            request.Accesstoken = authToken;
+            request.ServiceType = serviceType;
+        }
 
         var randomKey = CryptographyUtil.RandomBytes(32);
         request.Mask = CryptographyUtil.GetMakData(randomKey);
@@ -131,6 +137,18 @@ public class NetWorkHandler
 
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P2_Request", requestByteData , randomKey, false);
+    }
+
+    public static void RequestLoginWithThirdPlatform(string authToken, DataLinkServiceType serviceType)
+    {
+        var request = new P1_Request();
+        request.Accesstoken = authToken;
+        request.ServiceType = serviceType;
+        var randomKey = CryptographyUtil.RandomBytes(32);
+        request.Mask = CryptographyUtil.GetMakData(randomKey);
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P1_Request", requestByteData , randomKey, false);
     }
 
 
@@ -173,12 +191,22 @@ public class NetWorkHandler
 
     static void OnRecvLoginWithThirdPlatform(HttpDispatcher.NodeMsg msg)
     {
-
+        var response = P1_Response.Parser.ParseFrom(msg.Body);
+        if (response.Result.Code == NetworkConst.CODE_OK)
+        {
+            PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
+            PlayerPrefs.Save();
+            byte[] randKey = msg.CachedData as byte[];
+            NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
+        }
+        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P1_Request;
+        GetDispatch().Dispatch<P1_Response, P1_Request>(GetDispatchKey(msg.Key), response, request);
     }
 
     static void OnRecvGetPlayerInfo(HttpDispatcher.NodeMsg msg)
     {
-
+        var response = P3_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P3_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void TraceLog(string tag, string msg, byte[] data)

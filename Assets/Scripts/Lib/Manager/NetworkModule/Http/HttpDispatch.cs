@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Google.Protobuf;
 
 namespace NetWorkModule
 {
@@ -92,19 +93,22 @@ namespace NetWorkModule
 
             public System.Object CachedData;
             
+            public byte[] ReqMsg;
+            
             public NodeMsg(int _key, int _state)
             {
                 Key = _key;
                 state = _state;
             }
 
-            public NodeMsg(int key, byte[] body, long pid, System.Object cachedData)
+            public NodeMsg(int key, byte[] body, long pid, System.Object cachedData, byte[] reqMsg)
             {
                 Key = key;
                 Body = body;
                 Pid = pid;
                 state = 0;
                 CachedData = cachedData;
+                ReqMsg = reqMsg;
             }
         }
         List<NodeMsg> m_node_msg = new List<NodeMsg>();
@@ -126,11 +130,11 @@ namespace NetWorkModule
             }
         }
 
-        public void PushMsg(int k, byte[] param, long pid, System.Object cachedData)
+        public void PushMsg(int k, byte[] param, long pid, System.Object cachedData, byte[] req)
         {
             lock (m_lock_node_msg)
             {
-                m_node_msg.Add(new NodeMsg(k, param, pid, cachedData));
+                m_node_msg.Add(new NodeMsg(k, param, pid, cachedData, req));
             }
         }
 
