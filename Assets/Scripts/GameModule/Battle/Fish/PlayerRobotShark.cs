@@ -6,6 +6,10 @@ public class PlayerRobotShark : PlayerRobotBase
 {
     public override FishType fishType { get { return FishType.Boss; } }
 
+	protected override Vector3 GetBornPosition()
+	{
+		return Vector3.zero;
+	}
 	protected override void ApplySize()
 	{
 		//transform.localScale = Vector3.one;

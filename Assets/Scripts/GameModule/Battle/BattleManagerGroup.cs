@@ -21,6 +21,7 @@ public class BattleManagerGroup : MonoBehaviour
     public ShellManager shellManager = null;
     public PoisonRing poisonRing = null;
     public CameraFollow cameraFollow = null;
+    public EffectManager effectManager = null;
 
     public Text resultText = null;
 
@@ -41,7 +42,6 @@ public class BattleManagerGroup : MonoBehaviour
         //titleBtn.SetActive(false);
         //battleControl.SetActive(true) ;
         animator.SetTrigger("ReadyStart");
-
         poisonRing.gameObject.SetActive(true);
         poisonRing.Init();
         cameraFollow.Init();

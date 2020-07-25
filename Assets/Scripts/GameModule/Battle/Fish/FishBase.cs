@@ -116,6 +116,10 @@ public class FishBase : MonoBehaviour
             {
                 Damge();
             }
+            else if (value > data.life)
+            {
+                Heal();
+            }
             data.life = value;
             if (lifeGauge != null) { lifeGauge.SetValue(data.life, data.lifeMax); }
         }
@@ -392,5 +396,10 @@ public class FishBase : MonoBehaviour
     {
         canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
         listBuff.Add( BuffData.SetBuff(0, this));
+    }
+
+    public virtual void Heal()
+    {
+        BattleEffectManager.CreateEffect(0, transform);
     }
 }

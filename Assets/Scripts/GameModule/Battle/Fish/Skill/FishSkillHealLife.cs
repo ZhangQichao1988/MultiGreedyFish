@@ -10,6 +10,8 @@ public class FishSkillHeadLife : FishSkillBase
 		{ return false; }
 		int healLife = (int)((float)playerBase.lifeMax * baseData.aryParam[0]);
 		playerBase.life += System.Math.Min(healLife, playerBase.lifeMax - playerBase.life);
+		
+
 		return true;
 	}
 	public override void CbAttack()

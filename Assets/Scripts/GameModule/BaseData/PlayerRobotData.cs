@@ -39,7 +39,6 @@ public class PlayerRobotData
 
 	static readonly public List<PlayerRobotDataBaseData> baseDatas = new List<PlayerRobotDataBaseData>()
 	{
-		{new PlayerRobotDataBaseData(2, "Boss", 3) },
 		{new PlayerRobotDataBaseData(1, "阿超", 1) },
 		{new PlayerRobotDataBaseData(1, "Ferya", 1) },
 		{new PlayerRobotDataBaseData(1, "HUSKY", 1) },
@@ -49,6 +48,9 @@ public class PlayerRobotData
 		{new PlayerRobotDataBaseData(1, "睡在梦里，醒在梦境", 0) },
 		{new PlayerRobotDataBaseData(1, "Rebecca", 2) },
 		{new PlayerRobotDataBaseData(1, "༄༠་Yོiིnྀgོ་༠࿐", 2) },
+
+		{new PlayerRobotDataBaseData(2, "Boss", 3) },
+
 	};
 
 	static readonly Dictionary<int, PlayerRobotAiBaseData> dicAiBaseData = new Dictionary<int, PlayerRobotAiBaseData>()
