@@ -53,7 +53,7 @@ public class BattleManagerGroup : MonoBehaviour
     }
     public void SetPlayPoint()
     {
-        animator.SetBool("PlayPoint", true);
+        animator.SetTrigger("PlayPoint");
     }
     public void GotoResult(int rank)
     {

@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     public void Init()
     {
 		currentRate = 0f;
+		firstUpdate = true;
 
 	}
 
@@ -37,6 +38,7 @@ public class CameraFollow : MonoBehaviour
 
 	private Vector3 currentPlayerPos;
 	private Vector3 targetPlayerPos;
+	private bool firstUpdate;
 
 	void Start()
     {
@@ -115,7 +117,10 @@ public class CameraFollow : MonoBehaviour
 			SelfCamera.farClipPlane = Mathf.Lerp(90f, 110f, currentRate);
 
 			targetPlayerPos = Vector3.Lerp(Vector3.zero, Target.position, CameraTrans.localPosition.x);
-			currentPlayerPos = currentPlayerPos + (targetPlayerPos - currentPlayerPos) / 20f;
+			if (firstUpdate)
+			{ currentPlayerPos = targetPlayerPos; }
+			else
+			{ currentPlayerPos = currentPlayerPos + (targetPlayerPos - currentPlayerPos) / 20f; }
 			PlayerPos = currentPlayerPos;
 
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)

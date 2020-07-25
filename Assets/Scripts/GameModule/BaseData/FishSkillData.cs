@@ -25,7 +25,7 @@ public class FishSkillData
 	static readonly Dictionary<int, FishSkillBaseData> dicFishSkillBaseData = new Dictionary<int, FishSkillBaseData>()
 	{
 		// 玩家鱼
-		{1,  new FishSkillBaseData( SkillType.HealLife, 0, new float[]{ 0.5f,/*恢复血量百分比*/1/*0.1f*/,/*吃一条鱼加能量值的比例*/ }) },
+		{1,  new FishSkillBaseData( SkillType.HealLife, 0, new float[]{ 0.5f,/*恢复血量百分比*/0.1f,/*吃一条鱼加能量值的比例*/ }) },
 	};
 	static public FishSkillBaseData GetFishSkillBaseData(int id)
 	{
