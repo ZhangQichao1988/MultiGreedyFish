@@ -49,15 +49,14 @@ public class EnemyBase : FishBase
         if (remainingTime <= 0)
         {
             actionStep = ActionType.BornWaitting;
+            transModel.gameObject.SetActive(false);
         }
-        else
-        {
-            float progress = remainingTime / BattleConst.EatFishTime;
-            transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
 
-            if (eatFishTrans != null)
-            { transform.position = Vector3.Lerp(eatFishTrans.position, transform.position, progress); }
-        }
+        float progress = remainingTime / BattleConst.EatFishTime;
+        transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
+
+        if (eatFishTrans != null)
+        { transform.position = Vector3.Lerp(eatFishTrans.position, transform.position, progress); }
     }
 
     public void Born()
@@ -67,6 +66,7 @@ public class EnemyBase : FishBase
         SetAlpha(0f);
         transform.position = GetBornPosition();
         transform.localScale = Vector3.one * localScaleBackup;
+        transModel.gameObject.SetActive(true);
     }
 
     protected void Idle()
