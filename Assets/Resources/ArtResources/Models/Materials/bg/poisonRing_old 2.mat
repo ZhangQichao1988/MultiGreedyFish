@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: poisonRing_old
+  m_Name: poisonRing_old 2
   m_Shader: {fileID: -6465566751694194690, guid: 68285a4e17a74b14392937ba7dc1692c,
     type: 3}
   m_ShaderKeywords: 
@@ -73,9 +73,9 @@ Material:
     - Vector1_30442003: 35.58
     - Vector1_6B0B5B9B: 37.7
     - Vector1_6DD45EBB: 0.01
-    - Vector1_8BF0285F: -0.01
+    - Vector1_8BF0285F: -0.015
     - Vector1_905A828F: 1.4
-    - Vector1_9A52D060: 0.01
+    - Vector1_9A52D060: -0.01
     - Vector1_DB485C0: 1000
     - Vector1_F140229F: 0.1
     - _AlphaClip: 0
@@ -108,7 +108,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_3E180B24: {r: 1, g: 1, b: 1, a: 0}
-    - Color_C1EDFF25: {r: 0, g: 0.24528295, b: 0.00022848147, a: 0}
+    - Color_C1EDFF25: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_7F0B80A6: {r: 0.01, g: 0.01, b: 0, a: 0}
     - Vector2_9F191979: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_AB76A667: {r: 0.1, g: 0.1, b: 0, a: 0}

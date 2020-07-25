@@ -53,14 +53,15 @@ public class BattleManagerGroup : MonoBehaviour
     }
     public void SetPlayPoint()
     {
-        animator.SetTrigger("PlayPoint");
+        animator.SetBool("PlayPoint", true);
     }
     public void GotoResult(int rank)
     {
         if (rank == 1)
         {
-            this.isPause = true;
+            //this.isPause = true;
             animator.SetTrigger("Win");
+            animator.SetTrigger("BattleEnd");
         }
         else
         {
@@ -71,10 +72,20 @@ public class BattleManagerGroup : MonoBehaviour
         resultText.text = string.Format( LanguageData.GetText("ResultText"), rank.ToString() );
     }
 
-    public void SetBattleStart()
+    public void BattleEnd()
+    {
+        animator.SetTrigger("BattleEnd");
+    }
+
+	public void SetBattleStart()
     {
         this.isPause = false;
     }
+
+	public void SetBattlePause()
+	{
+		this.isPause = true;
+	}
 
 	private void Update()
 	{

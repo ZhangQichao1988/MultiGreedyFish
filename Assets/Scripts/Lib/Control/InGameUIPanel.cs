@@ -83,17 +83,22 @@ public class InGameUIPanel : MonoBehaviour
         Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
         Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
 
+        int alivePlayerNum = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count;
         if (Player.actionStep == FishBase.ActionType.Die)
         {
-            BattleManagerGroup.GetInstance().GotoResult(BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count + 1);
+            BattleManagerGroup.GetInstance().GotoResult(alivePlayerNum + 1);
             var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
             cameraFollow.SetTarget(listPlayer[0].transform);
-        }
-        else if (BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count <= 1 && !BattleConst.FreeMode)
+            if (alivePlayerNum == 1)
+            {
+                BattleManagerGroup.GetInstance().BattleEnd();
+            }
+		}
+        else if (alivePlayerNum <= 1 && !BattleConst.FreeMode)
         {
             BattleManagerGroup.GetInstance().GotoResult(1);
         }
-        else if (BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count == 2)
+        else if (alivePlayerNum == 2)
         {
             BattleManagerGroup.GetInstance().SetPlayPoint();
         }

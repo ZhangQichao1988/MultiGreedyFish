@@ -32,7 +32,13 @@ public class CameraFollow : MonoBehaviour
 
 	private float currentRate = 0f;
 
-    void Start()
+	//private Vector3 currentPos;
+	//private Vector3 targetPos;
+
+	private Vector3 currentPlayerPos;
+	private Vector3 targetPlayerPos;
+
+	void Start()
     {
         SelfCamera = GetComponent<Camera>();
         SelfCamera.fieldOfView = 22.5f;
@@ -42,9 +48,9 @@ public class CameraFollow : MonoBehaviour
         Radius = 1f;
         BaseRadius = 90;
         curState = State.MovingTop;
-        //OffsetPos = Vector3.zero;
-        //FixOffsetPos = Vector3.forward * 1.6f;
-    }
+		//OffsetPos = Vector3.zero;
+		//FixOffsetPos = Vector3.forward * 1.6f;
+	}
 
     public void SetTarget(Transform target)
     {
@@ -52,7 +58,7 @@ public class CameraFollow : MonoBehaviour
         if (Target != null)
             RadiusCenter = Target.position;
     }
-    Vector3 TargetPos;
+    Vector3 PlayerPos;
     Vector3 ChangePos;
     void LateUpdate()
     {
@@ -108,32 +114,31 @@ public class CameraFollow : MonoBehaviour
 			SelfCamera.nearClipPlane = Mathf.Lerp(15f, 25f, currentRate);
 			SelfCamera.farClipPlane = Mathf.Lerp(90f, 110f, currentRate);
 
-			TargetPos = Vector3.Lerp(Vector3.zero, Target.position, CameraTrans.localPosition.x);
+			targetPlayerPos = Vector3.Lerp(Vector3.zero, Target.position, CameraTrans.localPosition.x);
+			currentPlayerPos = currentPlayerPos + (targetPlayerPos - currentPlayerPos) / 20f;
+			PlayerPos = currentPlayerPos;
 
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)
 			{
 
-				if (Vector3.Distance(TargetPos, RadiusCenter) > Radius && oldPos != TargetPos)
+				if (Vector3.Distance(PlayerPos, RadiusCenter) > Radius && oldPos != PlayerPos)
 				{
-					var offsetDir = (TargetPos - RadiusCenter);
-					RadiusCenter = TargetPos - offsetDir.normalized * Radius;
+					var offsetDir = (PlayerPos - RadiusCenter);
+					RadiusCenter = PlayerPos - offsetDir.normalized * Radius;
 
 					OffsetPos += offsetDir * 0.5f * Time.deltaTime;
 					if (OffsetPos.magnitude > Radius)
 						OffsetPos.Normalize();
 				}
 				ChangePos = RadiusCenter + OffsetPos;
-				oldPos = TargetPos;
+				oldPos = PlayerPos;
 			}
-			TargetPos = ChangePos + Offset * Vector3.up + FixOffsetPos;
-			transform.position = TargetPos + new Vector3(0, Distance * Mathf.Sin(Angle * Mathf.Deg2Rad), -Distance * Mathf.Cos(Angle * Mathf.Deg2Rad));
+			PlayerPos = ChangePos + Offset * Vector3.up + FixOffsetPos;
+			transform.position = PlayerPos + new Vector3(0, Distance * Mathf.Sin(Angle * Mathf.Deg2Rad), -Distance * Mathf.Cos(Angle * Mathf.Deg2Rad));
+			
 
-			// 界限限制
-			//float x = Mathf.Clamp(transform.position.x, -GameConst.cameraBound.x, GameConst.cameraBound.x);
-			//float z = Mathf.Clamp(transform.position.z, -GameConst.cameraBound.y, GameConst.cameraBound.y);
-			//transform.position = new Vector3(x, transform.position.y, z);
 
-			transform.LookAt(TargetPos);
+			transform.LookAt(PlayerPos);
 		}
 		else
 		{

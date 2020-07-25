@@ -14,6 +14,7 @@ public class FishBase : MonoBehaviour
         None,
         Player,
         PlayerRobot,
+        Boss,
         Enemy,
     }
 
@@ -290,7 +291,7 @@ public class FishBase : MonoBehaviour
         particleBlister.Stop();
     }
 
-    private void ApplySize()
+    protected virtual void ApplySize()
     {
         float size = ((float)lifeMax - (float)originalData.lifeMax) / (float)originalData.lifeMax;
         size = 1 + (float)Math.Sqrt(size) * BattleConst.PlayerSizeUpRate;

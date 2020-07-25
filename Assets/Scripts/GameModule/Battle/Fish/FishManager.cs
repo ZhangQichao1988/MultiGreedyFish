@@ -46,6 +46,9 @@ public class FishManager : MonoBehaviour
 				case PlayerRobotData.PlayerRobotType.PlayerRobotStayAquatic:
 					prb = goEnemy.AddComponent<PlayerRobotStayAquatic>();
 					break;
+				case PlayerRobotData.PlayerRobotType.Shark:
+					prb = goEnemy.AddComponent<PlayerRobotShark>();
+					break;
 				default:
 					Debug.LogError("FishManager.CreateEnemy()_1");
 					break;
@@ -64,7 +67,6 @@ public class FishManager : MonoBehaviour
 			fb.Init(0, "");
 			listFish.Add(fb);
 		}
-
 	}
 	public void CustomUpdate()
 	{
@@ -140,7 +142,8 @@ public class FishManager : MonoBehaviour
 		List<FishBase> listPlayer = new List<FishBase>();
 		for (int i = 0; i < listFish.Count; ++i)
 		{
-			if (listFish[i].fishType != FishBase.FishType.Enemy && listFish[i].actionStep != FishBase.ActionType.Die)
+			if ((	listFish[i].fishType == FishBase.FishType.PlayerRobot || listFish[i].fishType == FishBase.FishType.Player)
+					 && listFish[i].actionStep != FishBase.ActionType.Die)
 			{
 				listPlayer.Add(listFish[i]);
 			}
