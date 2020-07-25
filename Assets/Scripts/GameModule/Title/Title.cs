@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Google.Protobuf;
 
 public class Title : UIBase

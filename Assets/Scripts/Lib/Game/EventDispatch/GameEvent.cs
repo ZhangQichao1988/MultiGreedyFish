@@ -1,4 +1,4 @@
-
+﻿
 public class GameEvent
 {
     public static string RECIEVE_COMMON_RESPONSE = "RECIEVE_P{0}_RESPONSE";

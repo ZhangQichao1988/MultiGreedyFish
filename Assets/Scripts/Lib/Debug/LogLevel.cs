@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Jackpot
  * Copyright(c) 2014 KLab, Inc. All Rights Reserved.
  * Proprietary and Confidential - This source code is not for redistribution

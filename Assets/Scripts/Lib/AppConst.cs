@@ -1,4 +1,4 @@
-using System.Text;
+ï»¿using System.Text;
 
 public class AppConst
 {
@@ -28,6 +28,6 @@ public class AppConst
         }
     }
 
-    // µ±Ç°ÓïÑÔ
+    // ÂµÂ±Ã‡Â°Ã“Ã¯Ã‘Ã”
     public static LanguageData.LanguageMode languageMode = LanguageData.LanguageMode.CN;
 }
