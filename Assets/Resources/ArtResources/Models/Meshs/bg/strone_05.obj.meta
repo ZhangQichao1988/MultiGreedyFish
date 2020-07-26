@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: strone_05Mat
+    second: {fileID: 2100000, guid: 128098eb4d3df4f44a1fed3ecddde2bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: strone_05_group14Mat
     second: {fileID: 2100000, guid: 128098eb4d3df4f44a1fed3ecddde2bc, type: 2}
   materials:
