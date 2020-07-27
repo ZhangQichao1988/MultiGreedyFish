@@ -14,7 +14,8 @@ public class Title : UIBase
     public void OnClickBattle()
     {
         UIBase.Destroy(this.gameObject);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+        BlSceneManager.LoadSceneAsync("BattleScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
     }
 
 }

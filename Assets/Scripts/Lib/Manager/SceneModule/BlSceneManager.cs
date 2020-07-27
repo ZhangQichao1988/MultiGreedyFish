@@ -31,7 +31,7 @@ public class BlSceneManager : MonoBehaviour
             cls = sceneClass,
             parms = data
         };
-        LoadSceneAsync(name, (int)LoadSceneMode.Single);
+        LoadSceneAsync(name, LoadSceneMode.Single);
     }
 
     public static GameObject GetCachedPrefab(string path)
@@ -48,9 +48,9 @@ public class BlSceneManager : MonoBehaviour
     /// </summary>
     /// <param name="sceneName">场景名</param>
     /// <param name="mode">0:Single,1:Additive</param>
-    public static void LoadSceneAsync(string sceneName, int mode)
+    public static void LoadSceneAsync(string sceneName, LoadSceneMode mode)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName, (LoadSceneMode)mode);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName, mode);
     }
 
     /// <summary>
