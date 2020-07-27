@@ -21,7 +21,6 @@ public class BattleManagerGroup : MonoBehaviour
     public ShellManager shellManager = null;
     public PoisonRing poisonRing = null;
     public CameraFollow cameraFollow = null;
-    public EffectManager effectManager = null;
 
     public Text resultText = null;
 
@@ -32,9 +31,12 @@ public class BattleManagerGroup : MonoBehaviour
         instance = this;
         animator = GetComponent<Animator>();
 
+        GotoBattle();
     }
     static public BattleManagerGroup GetInstance()
     { return instance; }
+
+    
 
     public void GotoBattle()
     {
@@ -51,7 +53,12 @@ public class BattleManagerGroup : MonoBehaviour
         fishManager.CreateEnemy();
         this.isPause = true;
     }
-    public void SetPlayPoint()
+
+    public void GotoHome()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
+    }
+        public void SetPlayPoint()
     {
         animator.SetTrigger("PlayPoint");
     }

@@ -3,7 +3,7 @@ using Google.Protobuf;
 
 public class Title : UIBase
 {
-    public void OnClickTitle()
+    public void OnClickLogin()
     {
         Debug.Log("Click ");
         GameServiceController.GetPlatformToken((token)=>{
@@ -11,5 +11,10 @@ public class Title : UIBase
             UserLoginFlowController.ProcessLoginLogic(token);
         });
     }
-    
+    public void OnClickBattle()
+    {
+        UIBase.Destroy(this.gameObject);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+    }
+
 }

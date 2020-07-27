@@ -147,16 +147,20 @@ public class BlUIManager : MonoBehaviour
 
     private void CreateScreenSpaceCamera(bool orthographic)
     {
-        GameObject uiCamera = new GameObject("UICamera");
+        UnityEngine.Object obj = Resources.Load("ArtResources/UI/Prefabs/UICamera");
+        GameObject uiCamera = Wrapper.CreateGameObject(obj, transform, "UICamera") as GameObject;
+
+        //GameObject uiCamera = new GameObject("UICamera");
         uiCamera.transform.SetParent(transform, false);
 
-        _uiCamera = uiCamera.AddComponent<Camera>();
+        _uiCamera = uiCamera.GetComponent<Camera>();
         _uiCamera.cullingMask = 1 << LayerMask.NameToLayer("UI");
-        _uiCamera.depth = 1000;
+        _uiCamera.depth = 1;
         _uiCamera.allowHDR = false;
         _uiCamera.allowMSAA = false;
         _uiCamera.clearFlags = CameraClearFlags.Depth;
         _uiCamera.orthographic = orthographic;
+        //_uiCamera.shad
 
         RootCanvas.worldCamera = _uiCamera;
     }

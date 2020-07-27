@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334c21de74cb847e6ae35982d6e8e215, type: 3}
   m_Name: UISettings
   m_EditorClassIdentifier: 
-  renderMode: 1
+  renderMode: 0
   orthographic: 1
   uiScaleMode: 0
   referenceResolution: {x: 1920, y: 1080}

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10418,7 +10418,6 @@ GameObject:
   - component: {fileID: 1665226538}
   - component: {fileID: 1665226537}
   - component: {fileID: 1665226539}
-  - component: {fileID: 1665226540}
   m_Layer: 0
   m_Name: ManagerGroup
   m_TagString: Untagged
@@ -10444,7 +10443,6 @@ MonoBehaviour:
   shellManager: {fileID: 1792283078}
   poisonRing: {fileID: 6192394490587602777}
   cameraFollow: {fileID: 102564476}
-  effectManager: {fileID: 0}
   resultText: {fileID: 407078264}
 --- !u!4 &1665226538
 Transform:
@@ -10481,18 +10479,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1665226540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665226536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23c3d5313be2f940821463757b76021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1667620941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8180735549453772380, guid: 84aa5c68b7243ad4791874fa0e7546a8,
@@ -14077,6 +14063,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3469269670322235724, guid: bf7fde4b542327d43af696863d8c3dec,
+        type: 3}
+      propertyPath: m_Text
+      value: Home
+      objectReference: {fileID: 0}
     - target: {fileID: 4398880413600562256, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -14195,7 +14186,7 @@ PrefabInstance:
     - target: {fileID: 5195661628263553631, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GotoBattle
+      value: GotoHome
       objectReference: {fileID: 0}
     - target: {fileID: 5507292297370181488, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
