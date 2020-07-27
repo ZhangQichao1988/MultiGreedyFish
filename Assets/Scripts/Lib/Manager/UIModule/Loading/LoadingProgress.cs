@@ -17,7 +17,7 @@ public class LoadingProgress
     {
         if (_ui == null)
         {
-            var prefab = ResourceManager.LoadSync<GameObject>("LoadingBase/LoadingProgress").Asset;
+            var prefab = ResourceManager.LoadSync<GameObject>("ArtResources/UI/Effect/LoadingProgress/LoadingProgress").Asset;
             _ui = GameObjectUtil.InstantiatePrefab(prefab, _root);
             _imgProgress = GameObjectUtil.FindChildComponent(prefab, "Img_ProgressBar/Img_ProgressSlot/Progress", "Image") as Image;
         }

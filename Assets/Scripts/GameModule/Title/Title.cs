@@ -11,11 +11,11 @@ public class Title : UIBase
             UserLoginFlowController.ProcessLoginLogic(token);
         });
     }
+
     public void OnClickBattle()
     {
-        UIBase.Destroy(this.gameObject);
-        BlSceneManager.LoadSceneAsync("BattleScene", UnityEngine.SceneManagement.LoadSceneMode.Single);
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
+        Close();
+        BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
     }
 
 }

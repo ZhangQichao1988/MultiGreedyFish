@@ -21,7 +21,6 @@ public class BlSceneManager : MonoBehaviour
 
     public static void LoadSceneByClass(string name, Type sceneClass, System.Object data = null)
     {
-        LoadingMgr.Show(LoadingMgr.LoadingType.Progress);
         if (currentScene != null)
         {
             currentScene.Destory();
@@ -50,6 +49,7 @@ public class BlSceneManager : MonoBehaviour
     /// <param name="mode">0:Single,1:Additive</param>
     public static void LoadSceneAsync(string sceneName, LoadSceneMode mode)
     {
+        LoadingMgr.Show(LoadingMgr.LoadingType.Progress);
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName, mode);
     }
 
@@ -115,13 +115,19 @@ public class BlSceneManager : MonoBehaviour
 	{
         // on scene loaded call
         int block = ResourceManager.Begin(OnSceneAssetLoaded, OnSceneAssetProgress);
-        currentScene.Cache(block);
+        if (currentScene != null)
+        {
+            currentScene.Cache(block);
+        }
         ResourceManager.End();
 	}
     
     void OnSceneAssetLoaded(int block)
     {
-        currentScene.Create();
+        if (currentScene != null)
+        {
+            currentScene.Create();
+        }
         LoadingMgr.Hide(LoadingMgr.LoadingType.Progress);
     }
     
