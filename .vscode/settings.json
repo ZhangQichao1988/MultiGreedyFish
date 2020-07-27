@@ -52,5 +52,7 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-    }
+    },
+    "files.encoding": "utf8bom",
+    "files.autoGuessEncoding": true
 }
