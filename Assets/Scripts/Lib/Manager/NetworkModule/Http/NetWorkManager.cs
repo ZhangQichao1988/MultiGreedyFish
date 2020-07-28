@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using NetWorkModule.Dummy;
 
 namespace NetWorkModule
 {
     public class NetWorkManager : MonoBehaviour
     {
         public static NetWorkManager Instance { get; set; }
+        
+        private IDummyData dummyData;
         static SimpleHttpClient httpClient;
         public static SimpleHttpClient HttpClient
         {
@@ -17,8 +19,9 @@ namespace NetWorkModule
             }
         }
 
-        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb)
+        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb, IDummyData dummy)
         {
+            dummyData = dummy;
             httpClient = new SimpleHttpClient(protocol, Application.version, Application.platform == RuntimePlatform.Android ? "a" : "i", loginMsgId);
             HttpDispatcher.CreateInstance();
             HttpDispatcher.Instance.OnServeEvent += serverCb;
@@ -64,7 +67,11 @@ namespace NetWorkModule
         }
         static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
         {
+#if DUMMY_DATA
+            yield return dummyData.RequestHttp(msg, data);
+#else
             yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);
+#endif
         }
         
     }
