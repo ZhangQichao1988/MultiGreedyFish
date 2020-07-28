@@ -45,7 +45,7 @@ public class NetWorkHandler
             {"P3_Response", P3_Response.Parser}
         };
 
-        NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
+        NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent, new FishDummy(pbParserRef));
 
         //register
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartup, OnRecvStartup);
@@ -184,7 +184,7 @@ public class NetWorkHandler
         NetWorkManager.Request("P3_Request", null);
     }
 
-    static string GetDispatchKey(int msgId)
+    public static string GetDispatchKey(int msgId)
     {
         return string.Format(GameEvent.RECIEVE_COMMON_RESPONSE, msgId);
     }
