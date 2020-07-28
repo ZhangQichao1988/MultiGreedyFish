@@ -30,6 +30,7 @@ public class BaseScene
     void OnLoaded(int block, int resHandle, AssetRef obj)
     {
         string resPath = cachedDic[block][resHandle];
+        Debug.Assert(obj != null, resPath + " is not found.");
         cachedObject[resPath] = obj.Asset;
     }
 

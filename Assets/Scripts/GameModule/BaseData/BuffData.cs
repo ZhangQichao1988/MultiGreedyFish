@@ -20,7 +20,7 @@ public class BuffData
 	}
 	static readonly Dictionary<int, BuffBaseData> dicBuffBaseData = new Dictionary<int, BuffBaseData>()
 		{
-			{ 0, new BuffBaseData(BuffType.SpeedUp, new float[]{ 0.5f/*持续时间*/, 2f/*初始速度倍率*/ }) }
+			{ 0, new BuffBaseData(BuffType.SpeedUp, new float[]{ 1f/*持续时间*/, 2f/*初始速度倍率*/ }) }
 		};
 
 	static public BuffBase SetBuff(int id, FishBase fish)

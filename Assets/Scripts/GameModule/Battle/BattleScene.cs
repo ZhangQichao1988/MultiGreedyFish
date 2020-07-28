@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class BattleScene : BaseScene
 {
@@ -11,10 +12,43 @@ public class BattleScene : BaseScene
     /// <param name="parms">外部传入的参数</param>
     public override void Init(object parms)
     {
-        // m_sceneData.Add(new SceneData(){
-        //     Resource = "UI/ABC/bbb",
-        //     ResType = typeof(GameObject)
-        // });
+        // Other
+        m_sceneData.Add(new SceneData(){ Resource = Path.Combine(AssetPathConst.lifeGaugePath), ResType = typeof(GameObject) });
+        m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.playerNameplatePrefabPath), ResType = typeof(GameObject) });
+        m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.robotNameplatePrefabPath), ResType = typeof(GameObject) });
+
+        // 鱼
+        List<int> listFishIds = new List<int>();
+
+        // 玩家鱼ID
+        listFishIds.Add(1); // TODO:从Response获取玩家鱼ID
+
+        // 杂鱼ID,一般都是固定的
+        listFishIds.AddRange(new int[] { 0 });
+
+        // AI鱼
+        listFishIds.AddRange(PlayerRobotData.GetAllRobotFishIds());
+        FishData.FishBaseData fishBaseData;
+        FishSkillData.FishSkillBaseData fishSkillBaseData;
+        EffectData.EffectBaseData effectBaseData;
+        foreach (int fishId in listFishIds)
+        {
+            fishBaseData = FishData.GetFishBaseData(fishId);
+            // 鱼本体
+            m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), ResType = typeof(GameObject) });
+
+            if (fishBaseData.skillId > 0)
+            {
+                // 技能特效
+                fishSkillBaseData = FishSkillData.GetFishSkillBaseData(fishBaseData.skillId);
+                if (fishSkillBaseData.effectId > 0)
+                {
+                    effectBaseData = EffectData.GetEffectData(fishSkillBaseData.effectId);
+                    m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.effectRootPath + effectBaseData.prefabPath), ResType = typeof(GameObject) });
+                }
+            }
+        }
+
     }
 
     //场景加载完毕
@@ -23,7 +57,7 @@ public class BattleScene : BaseScene
         //初始化资源等
         Debug.Log("OnSceneLoaded Do Something");
 
-        //GameObject.Instantiate(cachedObject["UI/ABC/BBB"]);
+        //GameObject.Instantiate(cachedObject[Path.Combine(UIPathRoot, "BattleControl")]);
     }
 
     public override void Destory()

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class FishBase : MonoBehaviour
 {
-    static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
 
 
     public enum FishType
@@ -92,7 +91,6 @@ public class FishBase : MonoBehaviour
      
 
 
-    static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
     
     public LifeGauge lifeGauge = null;
@@ -164,8 +162,8 @@ public class FishBase : MonoBehaviour
         data.uid = uidCnt++;
         this.originalData = data;
         transform.name = fishType.ToString() + this.data.uid;
-        UnityEngine.Object obj = Resources.Load(fishPrefabRootPath + fishBaseData.prefabPath);
-        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
+        GameObject go = ResourceManager.LoadSync(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath, typeof(GameObject)).Asset as GameObject;
+        go = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
         transModel = go.transform;
         renderers = transModel.GetComponentsInChildren<Renderer>();
         transform.position = GetBornPosition();
@@ -276,23 +274,15 @@ public class FishBase : MonoBehaviour
     }
 
     protected void CreateLifeGuage()
-    { 
+    {
         // 生命条
-		UnityEngine.Object obj = Resources.Load(lifeGaugePath);
-        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
+        //UnityEngine.Object obj = Resources.Load(AssetPathConst.lifeGaugePath);
+        GameObject go = ResourceManager.LoadSync(AssetPathConst.lifeGaugePath, typeof(GameObject)).Asset as GameObject;
+        go = GameObjectUtil.InstantiatePrefab(go,  gameObject, false);
+        //GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         lifeGauge = go.GetComponentInChildren<LifeGauge>();
         Debug.Assert(lifeGauge, "lifeGauge is not found.");
 
-    }
-
-    // 水泡
-    protected void CreateBlisterParticle()
-    {
-        
-        UnityEngine.Object obj = Resources.Load(blisterParticlePath);
-        GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
-        particleBlister = go.GetComponent<ParticleSystem>();
-        particleBlister.Stop();
     }
 
     protected virtual void ApplySize()
@@ -309,8 +299,9 @@ public class FishBase : MonoBehaviour
 
     protected virtual float SetAlpha(float alpha)
     {
+        transModel.gameObject.SetActive(alpha > 0);
         alpha = Mathf.Clamp(alpha, 0f, 1f);
-        SetCastShadowMode(alpha > 0.8f);
+        //SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
         foreach (Renderer renderer in renderers)
         {

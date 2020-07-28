@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class PlayerBase : FishBase
 {
 	static readonly string boneNameMouth = "eye";
-	static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/PlayerNameplate";
-	static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/RobotNameplate";
 
 
 	public BoxCollider colliderMouth = null;
@@ -44,9 +42,11 @@ public class PlayerBase : FishBase
 	protected void CreateNameplate(string playerName)
 	{
 		// 生命条
-		string prefabPath = fishType == FishType.Player ? playerNameplatePrefabPath : robotNameplatePrefabPath;
-		UnityEngine.Object obj = Resources.Load(prefabPath);
-		goNamepalte = Wrapper.CreateGameObject(obj, transform) as GameObject;
+		string prefabPath = fishType == FishType.Player ? AssetPathConst.playerNameplatePrefabPath : AssetPathConst.robotNameplatePrefabPath;
+		GameObject go = ResourceManager.LoadSync(prefabPath, typeof(GameObject)).Asset as GameObject;
+		goNamepalte = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
+		//UnityEngine.Object obj = Resources.Load(prefabPath);
+		//goNamepalte = Wrapper.CreateGameObject(obj, transform) as GameObject;
 		Text textName = goNamepalte.GetComponentInChildren<Text>();
 		textName.text = playerName;
 

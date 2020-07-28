@@ -63,10 +63,10 @@ public static class GameObjectUtil
     /// <param name="prefab">预制</param>
     /// <param name="parent">父节点对象</param>
     /// <returns>返回实例化出的游戏对象</returns>
-    public static GameObject InstantiatePrefab(GameObject prefab, GameObject parent)
+    public static GameObject InstantiatePrefab(GameObject prefab, GameObject parent, bool resetTransform = true)
     {
         GameObject gameObject = Object.Instantiate(prefab);
-        AttachGameObject(gameObject, parent, true);
+        AttachGameObject(gameObject, parent, resetTransform);
 
         return gameObject;
     }

@@ -33,11 +33,13 @@ public class FishManager : MonoBehaviour
 		GameObject goEnemy;
 		PlayerRobotBase prb = null;
 		PlayerRobotData.PlayerRobotAiBaseData playerRobotAiBaseData;
+		PlayerRobotData.PlayerRobotDataBaseData playerRobotBaseData;
 		// 机器人
-		for (int i = 0; i < PlayerRobotData.baseDatas.Count; ++i)
+		for (int i = 0; i < PlayerRobotData.GetRobotCount(); ++i)
 		{
-			goEnemy = Wrapper.CreateEmptyGameObject(transform);
-			playerRobotAiBaseData = PlayerRobotData.GetPlayerRobotAiBaseData(PlayerRobotData.baseDatas[i].aiId);
+			playerRobotBaseData = PlayerRobotData.GetBaseDatas()[i];
+				goEnemy = Wrapper.CreateEmptyGameObject(transform);
+			playerRobotAiBaseData = PlayerRobotData.GetPlayerRobotAiBaseData(playerRobotBaseData.aiId);
 			switch (playerRobotAiBaseData.playerRobotType)
 			{
 				case PlayerRobotData.PlayerRobotType.PlayerRobotBase:
@@ -53,7 +55,7 @@ public class FishManager : MonoBehaviour
 					Debug.LogError("FishManager.CreateEnemy()_1");
 					break;
 			}
-			prb.Init(PlayerRobotData.baseDatas[i].fishId, PlayerRobotData.baseDatas[i].name);
+			prb.Init(playerRobotBaseData.fishId, playerRobotBaseData.name);
 			prb.SetAI(playerRobotAiBaseData);
 			listFish.Add(prb);
 		}
