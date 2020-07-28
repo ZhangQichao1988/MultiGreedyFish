@@ -10,7 +10,7 @@ public class PlayerRobotBase : PlayerBase
 
     protected List<FishBase> listFindedFish;
 
-    protected override bool showLifeGauge { get { return false; } }
+    protected override bool showLifeGauge { get { return true; } }
     protected bool isGotoAquatic { get; set; }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
@@ -21,7 +21,7 @@ public class PlayerRobotBase : PlayerBase
         aiParamRobotGotoAquaticLifeRate = aiData.aryParam[1];
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;

@@ -278,7 +278,7 @@ public class FishBase : MonoBehaviour
         // 生命条
         //UnityEngine.Object obj = Resources.Load(AssetPathConst.lifeGaugePath);
         GameObject go = ResourceManager.LoadSync(AssetPathConst.lifeGaugePath, typeof(GameObject)).Asset as GameObject;
-        go = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
+        go = GameObjectUtil.InstantiatePrefab(go,  gameObject, false);
         //GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         lifeGauge = go.GetComponentInChildren<LifeGauge>();
         Debug.Assert(lifeGauge, "lifeGauge is not found.");
