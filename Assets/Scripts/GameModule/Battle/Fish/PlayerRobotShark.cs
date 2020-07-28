@@ -15,7 +15,6 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 		transform.localScale = Vector3.one * 3;
 	}
-
 	public override void Damge()
 	{
 		canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
@@ -31,7 +30,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	protected override void CalcMoveAction()
 	{
 		// 过一段时间改变一下方向
-		changeVectorRemainingTime -= Time.deltaTime;
+		//changeVectorRemainingTime -= Time.deltaTime;
 
 		// 追踪最近的玩家
 		List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(transform.position);
@@ -59,5 +58,12 @@ public class PlayerRobotShark : PlayerRobotBase
 			EnemyIdle();
 		}
 
+	}
+
+
+	public override void Eat(FishBase fish)
+	{
+		fish.Die(colliderMouth.transform);
+		animator.SetTrigger("Eat");
 	}
 }

@@ -101,7 +101,7 @@ public class FishBase : MonoBehaviour
     protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
-    public int life
+    public virtual int life
     {
         get { return data.life; }
         set
@@ -300,6 +300,7 @@ public class FishBase : MonoBehaviour
     protected virtual float SetAlpha(float alpha)
     {
         transModel.gameObject.SetActive(alpha > 0);
+        if (lifeGauge) { lifeGauge.gameObject.SetActive(alpha > 0); }
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
