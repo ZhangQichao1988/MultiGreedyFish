@@ -10,8 +10,8 @@ namespace NetWorkModule.Dummy
     /// </summary>
     public class BaseDummyData : IDummyData 
     {
-        Dictionary<string, IDummyResponseProcesser> pbResProcesssInst;
-        protected Dictionary<string, System.Type> pbResProcesss;
+        Dictionary<string, IDummyResponseProcesser> pbResProcesssInst = new Dictionary<string, IDummyResponseProcesser>();
+        protected Dictionary<string, System.Type> pbResProcesss = new Dictionary<string, Type>();
         protected Dictionary<string, MessageParser> pbParserDic;
         public BaseDummyData(Dictionary<string, MessageParser> parser)
         {
