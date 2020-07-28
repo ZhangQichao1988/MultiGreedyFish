@@ -53,6 +53,26 @@ public class PlayerRobotData
 
 	};
 
+	static public int GetRobotCount()
+	{
+		return baseDatas.Count;
+	}
+
+	static public List<PlayerRobotDataBaseData> GetBaseDatas()
+	{
+		return baseDatas;
+	}
+
+	static public int[] GetAllRobotFishIds()
+	{
+		List<int> retList = new List<int>();
+		foreach (PlayerRobotDataBaseData prdbd in baseDatas)
+		{
+			retList.Add(prdbd.fishId);
+		}
+		return retList.ToArray();
+	}
+
 	static readonly Dictionary<int, PlayerRobotAiBaseData> dicAiBaseData = new Dictionary<int, PlayerRobotAiBaseData>()
 	{
 		// 普通型

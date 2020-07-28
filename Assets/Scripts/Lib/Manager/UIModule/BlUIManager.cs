@@ -147,10 +147,7 @@ public class BlUIManager : MonoBehaviour
 
     private void CreateScreenSpaceCamera(bool orthographic)
     {
-        UnityEngine.Object obj = Resources.Load("ArtResources/UI/Prefabs/UICamera");
-        GameObject uiCamera = Wrapper.CreateGameObject(obj, transform, "UICamera") as GameObject;
-
-        //GameObject uiCamera = new GameObject("UICamera");
+        GameObject uiCamera = new GameObject("UICamera");
         uiCamera.transform.SetParent(transform, false);
 
         _uiCamera = uiCamera.GetComponent<Camera>();

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Wrapper
 {
-    static public GameObject CreateGameObject(Object original, Transform parent, string name = null)
+    static public GameObject CreateGameObject(string assetPath, GameObject parent, string name = null)
     {
-        GameObject go = ResourceManager.Instantiate(original, parent) as GameObject;
-        if (name != null)
-        {
-            go.name = name;
-        }
+        GameObject go = ResourceManager.LoadSync(assetPath, typeof(GameObject)).Asset as GameObject;
+        go = GameObjectUtil.InstantiatePrefab(go, parent, false);
+        go.name = name;
         return go;
     }
 

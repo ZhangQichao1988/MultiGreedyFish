@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Microsoft.SqlServer.Server;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ public class FishSkillData
 	};
 	static public FishSkillBaseData GetFishSkillBaseData(int id)
 	{
+		Debug.Assert(dicFishSkillBaseData.ContainsKey(id), string.Format("Skill Id:{0} is not found.", id.ToString()));
 		return dicFishSkillBaseData[id];
 	}
 }

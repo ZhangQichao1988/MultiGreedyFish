@@ -39,7 +39,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: BattleControl/Main Camera/CameraTrans
+    path: BattleCamera/CameraTrans
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -363,7 +363,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BattleControl/Main Camera/CameraTrans
+    path: BattleCamera/CameraTrans
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -569,7 +569,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: BattleControl/Main Camera/CameraTrans
+    path: BattleCamera/CameraTrans
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1196,7 +1196,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BattleControl/Main Camera/CameraTrans
+    path: BattleCamera/CameraTrans
     classID: 1
     script: {fileID: 0}
   - curve:
