@@ -179,9 +179,12 @@ public class FishBase : MonoBehaviour
         if (showLifeGauge)
         {
             CreateLifeGuage();
+            lifeGauge.slider.maxValue = data.lifeMax;
+            lifeGauge.slider.value = data.life;
         }
-        life = data.life;
+        
         lifeMax = data.lifeMax;
+        life = data.life;
     }
 
     protected virtual Vector3 GetBornPosition()
@@ -310,7 +313,7 @@ public class FishBase : MonoBehaviour
             mpb.SetFloat("_Alpha", alpha);
             renderer.SetPropertyBlock(mpb);
         }
-        return alpha;
+        return alpha; 
     }
 
     void SetCastShadowMode(bool isEnable)

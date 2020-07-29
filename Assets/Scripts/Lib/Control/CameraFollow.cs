@@ -113,14 +113,17 @@ public class CameraFollow : MonoBehaviour
 
 			Distance = Mathf.Lerp(45f, 50f, currentRate);
 			//FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
-			SelfCamera.nearClipPlane = Mathf.Lerp(15f, 25f, currentRate);
+			SelfCamera.nearClipPlane = Mathf.Lerp(0.1f, 0.1f, currentRate);
 			SelfCamera.farClipPlane = Mathf.Lerp(90f, 110f, currentRate);
 
 			targetPlayerPos = Vector3.Lerp(Vector3.zero, Target.position, CameraTrans.localPosition.x);
 			if (firstUpdate)
-			{ currentPlayerPos = targetPlayerPos; }
+			{
+				firstUpdate = false;
+				currentPlayerPos = targetPlayerPos; 
+			}
 			else
-			{ currentPlayerPos = currentPlayerPos + (targetPlayerPos - currentPlayerPos) / 20f; }
+			{ currentPlayerPos = currentPlayerPos + (targetPlayerPos - currentPlayerPos) * Time.deltaTime * 3f; }
 			PlayerPos = currentPlayerPos;
 
 			if (curState == State.MovingTop && Time.time > ChangeStateTime)
