@@ -100,11 +100,10 @@ public class FishManager : MonoBehaviour
 		}
 	}
 
-	public void EatCheck(PlayerBase player, BoxCollider atkCollider)
+	void EatCheck(PlayerBase player, BoxCollider atkCollider, List<FishBase> listFish)
 	{
 		FishBase fb;
-		List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(player, player.transform.position, BattleConst.RobotVision);
-		for ( int i = listFish.Count -1; i >= 0; --i )
+		for (int i = listFish.Count - 1; i >= 0; --i)
 		{
 			fb = listFish[i];
 			if (player == fb) { continue; }
@@ -114,11 +113,35 @@ public class FishManager : MonoBehaviour
 				continue;
 			}
 		}
+	}
+	public void EatEnemyCheck(PlayerBase player, BoxCollider atkCollider)
+	{
+		
+		List<FishBase> listFish = GetEnemiesInRange(player, player.transform.position, BattleConst.RobotVision);
+		EatCheck(player, atkCollider, listFish);
+	}
 
+	public void EatPlayerCheck(PlayerBase player, BoxCollider atkCollider)
+	{
+		List<FishBase> listFish = GetAlivePlayerInRange(player, player.transform.position, BattleConst.RobotVision);
+		EatCheck(player, atkCollider, listFish);
 	}
 
 
-	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
+	public List<FishBase> GetAlivePlayerInRange(FishBase me, Vector3 pos, Vector2 range)
+	{
+		List<FishBase> listFish = GetEnemiesInRange(me, pos, range);
+		for (int i = listFish.Count - 1; i >= 0; --i)
+		{
+			if (listFish[i].fishType == FishBase.FishType.PlayerRobot || listFish[i].fishType == FishBase.FishType.Player)
+			{
+				continue;
+			}
+			listFish.RemoveAt(i);
+		}
+		return listFish;
+	}
+		public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
 	{
 		List<FishBase> enemies = new List<FishBase>();
 		for (int i = 0; i < listFish.Count; ++i)

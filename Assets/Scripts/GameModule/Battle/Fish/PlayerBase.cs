@@ -136,12 +136,12 @@ public class PlayerBase : FishBase
 		
 		base.MoveUpdate();
 	}
-	public void Idle()
+	public virtual void Idle()
 	{
 		base.MoveUpdate();
 
 		// 吞噬
-		BattleManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth);
+		BattleManagerGroup.GetInstance().fishManager.EatEnemyCheck(this, colliderMouth);
 
 		// 吃珍珠判定
 		EatPearlCheck();
@@ -171,7 +171,7 @@ public class PlayerBase : FishBase
 		}
 
 	}
-	public void Eat(FishBase fish)
+	public virtual void Eat(FishBase fish)
 	{
 		life += (int)(fish.lifeMax * BattleConst.HealLifeFromEatRate);
 		fish.Die(colliderMouth.transform);

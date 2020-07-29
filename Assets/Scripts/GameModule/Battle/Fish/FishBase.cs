@@ -101,7 +101,7 @@ public class FishBase : MonoBehaviour
     protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
-    public int life
+    public virtual int life
     {
         get { return data.life; }
         set
@@ -179,9 +179,12 @@ public class FishBase : MonoBehaviour
         if (showLifeGauge)
         {
             CreateLifeGuage();
+            lifeGauge.slider.maxValue = data.lifeMax;
+            lifeGauge.slider.value = data.life;
         }
-        life = data.life;
+        
         lifeMax = data.lifeMax;
+        life = data.life;
     }
 
     protected virtual Vector3 GetBornPosition()
@@ -300,6 +303,7 @@ public class FishBase : MonoBehaviour
     protected virtual float SetAlpha(float alpha)
     {
         transModel.gameObject.SetActive(alpha > 0);
+        if (lifeGauge) { lifeGauge.gameObject.SetActive(alpha > 0); }
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
@@ -309,7 +313,7 @@ public class FishBase : MonoBehaviour
             mpb.SetFloat("_Alpha", alpha);
             renderer.SetPropertyBlock(mpb);
         }
-        return alpha;
+        return alpha; 
     }
 
     void SetCastShadowMode(bool isEnable)
