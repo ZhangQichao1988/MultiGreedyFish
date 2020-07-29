@@ -7,15 +7,20 @@ using UnityEngine;
 /// </summary>
 public class ProcesserP1Res : IDummyResponseProcesser
 {
-    public void ProcessRequest(int resId, IMessage pbData)
+    public IMessage ProcessRequest(int resId, IMessage pbData)
     {
         var request = pbData as P1_Request;
         var response = GetResponseData();
         PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
         PlayerPrefs.Save();
 
-        NetWorkHandler.GetDispatch().Dispatch<P1_Response, P1_Request>(NetWorkHandler.GetDispatchKey(resId), response, request);
+        return response;
     } 
+
+    public void DispatchRes(int resId, IMessage request, IMessage response)
+    {
+        NetWorkHandler.GetDispatch().Dispatch<P1_Response, P1_Request>(NetWorkHandler.GetDispatchKey(resId), response as P1_Response, request as P1_Request);
+    }
 
     P1_Response GetResponseData()
     {

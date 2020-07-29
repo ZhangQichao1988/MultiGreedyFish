@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using UnityEngine;
 using System;
+using System.IO;
 
 namespace NetWorkModule.Dummy
 {
@@ -10,8 +11,8 @@ namespace NetWorkModule.Dummy
     /// </summary>
     public class BaseDummyData : IDummyData 
     {
-        Dictionary<string, IDummyResponseProcesser> pbResProcesssInst;
-        protected Dictionary<string, System.Type> pbResProcesss;
+        Dictionary<string, IDummyResponseProcesser> pbResProcesssInst = new Dictionary<string, IDummyResponseProcesser>();
+        protected Dictionary<string, System.Type> pbResProcesss = new Dictionary<string, Type>();
         protected Dictionary<string, MessageParser> pbParserDic;
         public BaseDummyData(Dictionary<string, MessageParser> parser)
         {
@@ -26,7 +27,7 @@ namespace NetWorkModule.Dummy
                 pbMsg = pbParserDic[msg].ParseFrom(data);
             }
             
-            var resMsgId = msg.Split('_')[0] + "Response";
+            var resMsgId = msg.Split('_')[0] + "_Response";
             ProcessResponse(resMsgId, pbMsg);
         }
 
@@ -45,8 +46,24 @@ namespace NetWorkModule.Dummy
                 }
             }
 
-            int msgId = int.Parse(resMsg.Substring(1, resMsg.IndexOf("_")));
-            pbResProcesssInst[resMsg].ProcessRequest(msgId, pbMsg);
+            int msgId = int.Parse(resMsg.Substring(1, resMsg.IndexOf("_") - 1));
+
+            IMessage resData = pbResProcesssInst[resMsg].ProcessRequest(msgId, pbMsg);
+
+            HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, string.Format("P{0}_Response", msgId), GetStreamBytes(resData));
+
+            pbResProcesssInst[resMsg].DispatchRes(msgId, pbMsg, resData);
+        }
+
+        byte[] GetStreamBytes(IMessage pbMsg)
+        {
+            byte[] bytesDatas;
+            using (MemoryStream stream = new MemoryStream())
+            {
+                pbMsg.WriteTo(stream);
+                bytesDatas = stream.ToArray();
+            }
+            return bytesDatas;
         }
     }
 }

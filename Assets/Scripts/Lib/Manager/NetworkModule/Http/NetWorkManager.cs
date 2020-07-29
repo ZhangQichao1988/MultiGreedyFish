@@ -9,7 +9,7 @@ namespace NetWorkModule
     {
         public static NetWorkManager Instance { get; set; }
         
-        private IDummyData dummyData;
+        private static IDummyData dummyData;
         static SimpleHttpClient httpClient;
         public static SimpleHttpClient HttpClient
         {
@@ -19,7 +19,7 @@ namespace NetWorkModule
             }
         }
 
-        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb, IDummyData dummy)
+        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb, IDummyData dummy = null)
         {
             dummyData = dummy;
             httpClient = new SimpleHttpClient(protocol, Application.version, Application.platform == RuntimePlatform.Android ? "a" : "i", loginMsgId);
@@ -68,7 +68,8 @@ namespace NetWorkModule
         static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
         {
 #if DUMMY_DATA
-            yield return dummyData.RequestHttp(msg, data);
+            dummyData.Recieve(msg, data);
+            yield break;
 #else
             yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);
 #endif

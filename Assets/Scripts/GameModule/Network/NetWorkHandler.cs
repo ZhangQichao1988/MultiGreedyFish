@@ -45,8 +45,11 @@ public class NetWorkHandler
             {"P3_Response", P3_Response.Parser}
         };
 
+#if DUMMY_DATA
         NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent, new FishDummy(pbParserRef));
-
+#else
+        NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
+#endif
         //register
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartup, OnRecvStartup);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLogin , OnRecvLogin);
