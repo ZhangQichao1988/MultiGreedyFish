@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BuffSpeedUp : BuffBase
 {
-    public BuffSpeedUp(FishBase fish, float[] aryParam) : base(fish, aryParam)
+    public BuffSpeedUp(FishBase Initiator, FishBase fish, float[] aryParam) : base(Initiator, fish, aryParam)
     {
     }
     public override void ApplyStatus()

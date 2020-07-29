@@ -55,7 +55,7 @@ public class FishBase : MonoBehaviour
     public Data data;
     public Data originalData;
     protected Animator animator = null;
-    protected Transform transModel = null;
+    public Transform transModel = null;
     protected Renderer[] renderers = null;
     protected BoxCollider colliderBody;
     public ActionType actionStep;
@@ -390,11 +390,16 @@ public class FishBase : MonoBehaviour
     public virtual void Damge()
     {
         canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
-        listBuff.Add( BuffData.SetBuff(0, this));
+        AddBuff(this, 0);
     }
 
     public virtual void Heal()
     {
         BattleEffectManager.CreateEffect(0, transform);
+    }
+
+    public void AddBuff(FishBase Initiator, int buffId)
+    {
+        listBuff.Add(BuffData.SetBuff(Initiator, buffId, this));
     }
 }

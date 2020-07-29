@@ -6,10 +6,12 @@ public class BuffBase
 {
     public float[] aryParam;
     public float remainingTime { get; private set; }
+    public FishBase Initiator { get; private set; }
     public FishBase fish { get; private set; }
 
-    public BuffBase(FishBase fish, float[] aryParam)
+    public BuffBase(FishBase Initiator, FishBase fish, float[] aryParam)
     {
+        this.Initiator = Initiator;
         this.fish = fish;
         this.aryParam = aryParam;
         remainingTime = aryParam[0];

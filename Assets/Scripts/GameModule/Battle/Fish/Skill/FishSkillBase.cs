@@ -18,6 +18,9 @@ public class FishSkillBase
 			case FishSkillData.SkillType.HealLife:
 				fishSkill = new FishSkillHeadLife();
 				break;
+			case FishSkillData.SkillType.Suck:
+				fishSkill = new FishSkillSuck();
+				break;
 			default:
 				Debug.LogError("FishSkillBase.SetFishSkill()_1");
 				break;
