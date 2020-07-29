@@ -7,11 +7,18 @@ using UnityEngine;
 /// </summary>
 public class ProcesserP3Res : IDummyResponseProcesser
 {
-    public void ProcessRequest(int resId, IMessage pbData)
+    public IMessage ProcessRequest(int resId, IMessage pbData)
     {
         var response = GetResponseData();
-        NetWorkHandler.GetDispatch().Dispatch<P3_Response>(NetWorkHandler.GetDispatchKey(resId), response);
+
+        return response;
+        
     } 
+
+    public void DispatchRes(int resId, IMessage request, IMessage response)
+    {
+        NetWorkHandler.GetDispatch().Dispatch<P3_Response>(NetWorkHandler.GetDispatchKey(resId), response as P3_Response);
+    }
 
     P3_Response GetResponseData()
     {
