@@ -5,6 +5,8 @@ public class Title : UIBase
 {
     public void OnClickLogin()
     {
+        FunctionDataTableProxy.Instance.Cached();
+        
         Debug.Log("Click ");
         GameServiceController.GetPlatformToken((token)=>{
             token = "tesadfasfa";
