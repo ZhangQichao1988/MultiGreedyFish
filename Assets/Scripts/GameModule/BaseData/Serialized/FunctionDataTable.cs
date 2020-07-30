@@ -6,9 +6,8 @@ public class FunctionDataTable : BaseDataTable<FunctionData>{}
 
 
 [Serializable]
-public class FunctionData
+public class FunctionData : IQueryById
 {
-    public int ID;
     public float Function;
     public string Desc;
 }

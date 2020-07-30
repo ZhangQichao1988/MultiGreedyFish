@@ -7,7 +7,7 @@ using UnityEngine;
 /// <typeparam name="T">基表基础类型集合</typeparam>
 /// <typeparam name="V">基表基础数据类</typeparam>
 /// <typeparam name="U">子类实现单例</typeparam>
-public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTable<V> where U : IDataTableProxy, new() 
+public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTable<V> where U : IDataTableProxy, new() where V : IQueryById
 {
     //基表内容
     protected List<V> content;
@@ -45,6 +45,11 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
     public List<V> GetAll()
     {
         return content;
+    }
+
+    public V GetDataById(int id)
+    {
+        return content.Find(t=>t.ID == id);
     }
 
     public void Destory()

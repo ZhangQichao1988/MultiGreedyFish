@@ -11,9 +11,4 @@ using System.Collections.Generic;
 public class FishDataTableProxy : BaseDataTableProxy<FishDataTable, FishDataInfo, FishDataTableProxy>
 {
     public FishDataTableProxy() : base("JsonData/FishData"){}
-
-    public FishDataInfo GetDataById(int id)
-    {
-        return content.Find(t=>t.ID == id);
-    }
 }

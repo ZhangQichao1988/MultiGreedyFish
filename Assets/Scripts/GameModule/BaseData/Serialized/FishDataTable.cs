@@ -6,9 +6,8 @@ public class FishDataTable : BaseDataTable<FishDataInfo>{}
 
 
 [Serializable]
-public class FishDataInfo
+public class FishDataInfo : IQueryById
 {
-    public int ID;
     public string name;
     public string prefabPath;
     public int atk;
