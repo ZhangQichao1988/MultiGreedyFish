@@ -1,4 +1,4 @@
-
+﻿
 namespace NetWorkModule.Dummy
 {
     public interface IDummyData
