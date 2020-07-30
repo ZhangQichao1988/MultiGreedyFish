@@ -29,11 +29,11 @@ public class FishData
 		//{1,  new FishBaseData( "FishPlayer_01", 20, 100, 0.6f, 1) },
 		{1,  new FishBaseData( "FishPlayer_01", 20, 100, 0.6f, 2) },
 		// 鲨鱼
-		{2,  new FishBaseData( "FishNpc_02", 20, 1000, 0.4f, 1) },
+		{2,  new FishBaseData( "FishNpc_02", 20, 1000, 0.4f, -1) },
 	};
 
-	static public FishBaseData GetFishBaseData(int id)
+	static public FishDataInfo GetFishBaseData(int id)
 	{
-		return dicFishBaseData[id];
+		return FishDataTableProxy.Instance.GetDataById(id);
 	}
 }

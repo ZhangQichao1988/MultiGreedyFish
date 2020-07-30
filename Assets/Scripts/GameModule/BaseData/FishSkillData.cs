@@ -6,7 +6,8 @@ using UnityEngine;
 public class FishSkillData
 {
 	public enum SkillType
-	{ 
+	{
+		None,
 		HealLife,
 		Suck,
 
@@ -33,7 +34,10 @@ public class FishSkillData
 	};
 	static public FishSkillBaseData GetFishSkillBaseData(int id)
 	{
-		Debug.Assert(dicFishSkillBaseData.ContainsKey(id), string.Format("Skill Id:{0} is not found.", id.ToString()));
+		if (!dicFishSkillBaseData.ContainsKey(id))
+		{
+			return new FishSkillBaseData(SkillType.None, -1, null);
+		}
 		return dicFishSkillBaseData[id];
 	}
 }

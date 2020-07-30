@@ -15,6 +15,9 @@ public class FishSkillBase
 		FishSkillBase fishSkill = null;
 		switch (baseData.skillType)
 		{
+			case FishSkillData.SkillType.None:
+				fishSkill = new FishSkillBase();
+				break;
 			case FishSkillData.SkillType.HealLife:
 				fishSkill = new FishSkillHeadLife();
 				break;

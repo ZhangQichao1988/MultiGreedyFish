@@ -29,7 +29,7 @@ public class Title : UIBase
 
     public void OnClickLogin()
     {
-        SampleBaseData();
+        //SampleBaseData();
         return;
         GameServiceController.GetPlatformToken((token)=>{
             token = "tesadfasfa";

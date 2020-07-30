@@ -28,7 +28,7 @@ public class BattleScene : BaseScene
 
         // AI鱼
         listFishIds.AddRange(PlayerRobotData.GetAllRobotFishIds());
-        FishData.FishBaseData fishBaseData;
+        FishDataInfo fishBaseData;
         FishSkillData.FishSkillBaseData fishSkillBaseData;
         EffectData.EffectBaseData effectBaseData;
         foreach (int fishId in listFishIds)

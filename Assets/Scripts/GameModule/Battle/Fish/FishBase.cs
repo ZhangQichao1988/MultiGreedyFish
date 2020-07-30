@@ -51,7 +51,7 @@ public class FishBase : MonoBehaviour
     }
     static protected int uidCnt = 0;
 
-    protected FishData.FishBaseData fishBaseData;
+    protected FishDataInfo fishBaseData;
     public Data data;
     public Data originalData;
     protected Animator animator = null;

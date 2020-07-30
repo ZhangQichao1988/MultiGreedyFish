@@ -10,6 +10,7 @@ public class FishDataInfo
 {
     public int ID;
     public string name;
+    public string prefabPath;
     public int atk;
     public int life;
     public float moveSpeed;
