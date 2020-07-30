@@ -16,7 +16,7 @@ public class FishSkillSuck : FishSkillBase
 			distance = playerToTargetDir.magnitude;
 			playerToTargetDir = Vector3.Normalize(playerToTargetDir);
 			dot = Vector3.Dot(playerBase.transModel.transform.forward, playerToTargetDir);
-			if (dot > 0.5f && distance <= 10f)
+			if (dot > 0.5f && distance <= listParam[0])
 			{
 				listFish[i].AddBuff(playerBase, 1);
 
@@ -27,6 +27,6 @@ public class FishSkillSuck : FishSkillBase
 	}
 	public override void CbAttack()
 	{
-		currentGauge += baseData.aryParam[1];
+		currentGauge += listParam[1];
 	}
 }

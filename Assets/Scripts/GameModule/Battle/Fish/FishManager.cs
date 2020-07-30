@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +15,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(1, LanguageData.GetText("PlayerName"));
+		player.Init(1, LanguageDataTableProxy.GetText(0));
 		return player;
 	}
 
@@ -32,29 +32,16 @@ public class FishManager : MonoBehaviour
 		
 		GameObject goEnemy;
 		PlayerRobotBase prb = null;
-		PlayerRobotData.PlayerRobotAiBaseData playerRobotAiBaseData;
-		PlayerRobotData.PlayerRobotDataBaseData playerRobotBaseData;
+		RobotAiDataInfo playerRobotAiBaseData;
+		RobotDataInfo playerRobotBaseData;
 		// 机器人
-		for (int i = 0; i < PlayerRobotData.GetRobotCount(); ++i)
+		int robotCount = RobotDataTableProxy.Instance.GetRobotCount();
+		for (int i = 0; i < robotCount; ++i)
 		{
-			playerRobotBaseData = PlayerRobotData.GetBaseDatas()[i];
+			playerRobotBaseData = RobotDataTableProxy.Instance.GetDataById(i);
 				goEnemy = Wrapper.CreateEmptyGameObject(transform);
-			playerRobotAiBaseData = PlayerRobotData.GetPlayerRobotAiBaseData(playerRobotBaseData.aiId);
-			switch (playerRobotAiBaseData.playerRobotType)
-			{
-				case PlayerRobotData.PlayerRobotType.PlayerRobotBase:
-					prb = goEnemy.AddComponent<PlayerRobotBase>();
-					break;
-				case PlayerRobotData.PlayerRobotType.PlayerRobotStayAquatic:
-					prb = goEnemy.AddComponent<PlayerRobotStayAquatic>();
-					break;
-				case PlayerRobotData.PlayerRobotType.Shark:
-					prb = goEnemy.AddComponent<PlayerRobotShark>();
-					break;
-				default:
-					Debug.LogError("FishManager.CreateEnemy()_1");
-					break;
-			}
+			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(playerRobotBaseData.aiId);
+			prb = (PlayerRobotBase)goEnemy.AddComponent(RobotAiDataTableProxy.Instance.GetRobotClassType(playerRobotAiBaseData.aiType));
 			prb.Init(playerRobotBaseData.fishId, playerRobotBaseData.name);
 			prb.SetAI(playerRobotAiBaseData);
 			listFish.Add(prb);

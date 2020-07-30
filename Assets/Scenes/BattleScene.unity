@@ -13637,6 +13637,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1665226538}
     m_Modifications:
+    - target: {fileID: 596915235986384027, guid: bf7fde4b542327d43af696863d8c3dec,
+        type: 3}
+      propertyPath: m_Text
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123370728437965831, guid: bf7fde4b542327d43af696863d8c3dec,
+        type: 3}
+      propertyPath: m_Text
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5195661628263553631, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13647,6 +13657,11 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 496363088986302784}
+    - target: {fileID: 6289429970758131576, guid: bf7fde4b542327d43af696863d8c3dec,
+        type: 3}
+      propertyPath: m_Text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8174601731924902290, guid: bf7fde4b542327d43af696863d8c3dec,
         type: 3}
       propertyPath: m_Name
@@ -13706,6 +13721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9019658828187944798, guid: bf7fde4b542327d43af696863d8c3dec,
+        type: 3}
+      propertyPath: m_Text
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf7fde4b542327d43af696863d8c3dec, type: 3}

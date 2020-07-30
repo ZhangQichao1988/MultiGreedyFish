@@ -7,7 +7,7 @@ public class BattleEffectManager
 {
 	static public void CreateEffect(int id, Transform parent)
 	{
-		EffectData.EffectBaseData effectBaseData = EffectData.GetEffectData(id);
+		var effectBaseData = EffectDataTableProxy.Instance.GetDataById(id);
 		GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, effectBaseData.prefabPath), typeof(GameObject)).Asset as GameObject;
 		EffectManager.Alloc(go, parent, effectBaseData.duration);
 	}

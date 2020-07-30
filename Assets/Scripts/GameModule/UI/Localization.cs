@@ -9,6 +9,6 @@ public class Localization : MonoBehaviour
 	{
 		Text text = GetComponent<Text>();
 		Debug.Assert(text != null, "LoLocalization.Awake()_1");
-		text.text = LanguageData.GetText(text.text);
+		text.text = LanguageDataTableProxy.GetText(int.Parse(text.text));
 	}
 }

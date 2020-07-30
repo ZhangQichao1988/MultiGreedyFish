@@ -76,7 +76,7 @@ public class BattleManagerGroup : MonoBehaviour
         }
         //resultRoot.SetActive(true);
         //battleControl.SetActive(false);
-        resultText.text = string.Format( LanguageData.GetText("ResultText"), rank.ToString() );
+        resultText.text = string.Format( LanguageDataTableProxy.GetText(1), rank.ToString() );
     }
 
     public void BattleEnd()

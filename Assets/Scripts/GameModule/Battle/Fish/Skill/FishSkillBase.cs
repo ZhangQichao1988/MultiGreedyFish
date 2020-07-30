@@ -1,27 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FishSkillBase
 {
 	protected PlayerBase playerBase;
-	protected FishSkillData.FishSkillBaseData baseData;
+	protected FishSkillDataInfo baseData;
+	protected float[] listParam;
 	public float currentGauge { get; protected set; }
 
 	static public FishSkillBase SetFishSkill(PlayerBase playerBase, int id)
 	{
 		
-		var baseData = FishSkillData.GetFishSkillBaseData(id);
+		var baseData = FishSkillDataTableProxy.Instance.GetDataById(id);
+		if (baseData == null) { return new FishSkillBase(); }
+
 		FishSkillBase fishSkill = null;
 		switch (baseData.skillType)
 		{
-			case FishSkillData.SkillType.None:
-				fishSkill = new FishSkillBase();
-				break;
-			case FishSkillData.SkillType.HealLife:
+			case "HealLife":
 				fishSkill = new FishSkillHeadLife();
 				break;
-			case FishSkillData.SkillType.Suck:
+			case "Suck":
 				fishSkill = new FishSkillSuck();
 				break;
 			default:
@@ -32,11 +33,12 @@ public class FishSkillBase
 
 		return fishSkill;
 	}
-	public void Init(PlayerBase playerBase, FishSkillData.FishSkillBaseData baseData)
+	public void Init(PlayerBase playerBase, FishSkillDataInfo baseData)
 	{
 		this.playerBase = playerBase;
 		this.baseData = baseData;
-
+		listParam = Wrapper.GetParamFromString(baseData.aryParam);
+		
 		currentGauge = 0f;
 	}
 

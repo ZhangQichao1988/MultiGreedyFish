@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,6 +60,9 @@ public class PlayerRobotShark : PlayerRobotBase
 
 	}
 
+	public override void SetAI(RobotAiDataInfo aiData)
+	{
+	}
 
 	public override void Eat(FishBase fish)
 	{

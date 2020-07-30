@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,23 +27,23 @@ public class BattleScene : BaseScene
         listFishIds.AddRange(new int[] { 0 });
 
         // AI鱼
-        listFishIds.AddRange(PlayerRobotData.GetAllRobotFishIds());
+        listFishIds.AddRange(RobotDataTableProxy.Instance.GetAllRobotFishIds());
         FishDataInfo fishBaseData;
-        FishSkillData.FishSkillBaseData fishSkillBaseData;
-        EffectData.EffectBaseData effectBaseData;
+        FishSkillDataInfo fishSkillBaseData;
+        EffectDataInfo effectBaseData;
         foreach (int fishId in listFishIds)
         {
-            fishBaseData = FishData.GetFishBaseData(fishId);
+            fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
             // 鱼本体
             m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), ResType = typeof(GameObject) });
 
             if (fishBaseData.skillId > 0)
             {
                 // 技能特效
-                fishSkillBaseData = FishSkillData.GetFishSkillBaseData(fishBaseData.skillId);
+                fishSkillBaseData = FishSkillDataTableProxy.Instance.GetDataById(fishBaseData.skillId);
                 if (fishSkillBaseData.effectId > 0)
                 {
-                    effectBaseData = EffectData.GetEffectData(fishSkillBaseData.effectId);
+                    effectBaseData = EffectDataTableProxy.Instance.GetDataById(fishSkillBaseData.effectId);
                     m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.effectRootPath + effectBaseData.prefabPath), ResType = typeof(GameObject) });
                 }
             }

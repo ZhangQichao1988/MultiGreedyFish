@@ -31,4 +31,15 @@ public class Wrapper
     {
         return UnityEngine.Random.Range(min, max);
     }
+
+    public static float[] GetParamFromString(string param)
+    {
+        List<float> listParam = new List<float>();
+        string[] aryStr = param.Split(',');
+        foreach (string str in aryStr)
+        {
+            listParam.Add(float.Parse(str));
+        }
+        return listParam.ToArray();
+    }
 }

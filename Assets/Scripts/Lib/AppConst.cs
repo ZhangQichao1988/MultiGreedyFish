@@ -29,5 +29,5 @@ public class AppConst
     }
 
     // 本地化
-    public static LanguageData.LanguageMode languageMode = LanguageData.LanguageMode.CN;
+    public static LanguageDataTableProxy.LanguageMode languageMode = LanguageDataTableProxy.LanguageMode.CN;
 }

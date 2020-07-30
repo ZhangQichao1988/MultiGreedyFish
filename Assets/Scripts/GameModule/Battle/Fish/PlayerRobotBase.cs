@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerRobotBase : PlayerBase
 {
     protected float aiParamRobotFollowBigFishLifeRate = 0f;
-    protected float aiParamRobotGotoAquaticLifeRate = 0f;
 
     protected List<FishBase> listFindedFish;
 
@@ -15,10 +14,10 @@ public class PlayerRobotBase : PlayerBase
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
 
-    public void SetAI(PlayerRobotData.PlayerRobotAiBaseData aiData)
+    public virtual void SetAI(RobotAiDataInfo aiData)
     {
-        aiParamRobotFollowBigFishLifeRate = aiData.aryParam[0];
-        aiParamRobotGotoAquaticLifeRate = aiData.aryParam[1];
+        float[] aryParam = Wrapper.GetParamFromString(aiData.aryParam);
+        aiParamRobotFollowBigFishLifeRate = aryParam[0];
     }
 
     protected virtual void Attack()

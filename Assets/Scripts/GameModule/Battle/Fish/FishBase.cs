@@ -157,7 +157,7 @@ public class FishBase : MonoBehaviour
         listBuff.Clear();
 
         actionStep = ActionType.Born;
-        fishBaseData = FishData.GetFishBaseData(fishId);
+        fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
         this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
         data.uid = uidCnt++;
         this.originalData = data;
@@ -400,6 +400,6 @@ public class FishBase : MonoBehaviour
 
     public void AddBuff(FishBase Initiator, int buffId)
     {
-        listBuff.Add(BuffData.SetBuff(Initiator, buffId, this));
+        listBuff.Add(FishBuffDataTableProxy.Instance.SetBuff(Initiator, buffId, this));
     }
 }

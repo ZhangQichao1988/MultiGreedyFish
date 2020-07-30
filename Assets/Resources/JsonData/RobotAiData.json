@@ -1,0 +1,6 @@
+{"Items":[
+	{"ID":"0.0","aiType":"PlayerRobotBase","aryParam":"0.5"},
+	{"ID":"1.0","aiType":"PlayerRobotBase","aryParam":"0.2"},
+	{"ID":"2.0","aiType":"PlayerRobotBase","aryParam":"0.95"},
+	{"ID":"3.0","aiType":"Shark","aryParam":""}
+]}
