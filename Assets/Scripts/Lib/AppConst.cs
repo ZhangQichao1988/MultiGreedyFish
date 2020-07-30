@@ -28,6 +28,6 @@ public class AppConst
         }
     }
 
-    // µ±Ç°ÓïÑÔ
+    // 本地化
     public static LanguageData.LanguageMode languageMode = LanguageData.LanguageMode.CN;
 }

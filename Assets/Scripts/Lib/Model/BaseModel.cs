@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// 基础Model层 
+/// ??model
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class BaseModel<T> where T : class, new()

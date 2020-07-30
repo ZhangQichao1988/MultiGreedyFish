@@ -10,9 +10,5 @@ using System.Collections.Generic;
 /// </summary>
 public class FunctionDataTableProxy : BaseDataTableProxy<FunctionDataTable, FunctionData, FunctionDataTableProxy>
 {
-    public FunctionDataTableProxy()
-    {
-        tableName = "JsonData/FunctionData";
-        
-    }
+    public FunctionDataTableProxy() : base("JsonData/FunctionData"){}
 }

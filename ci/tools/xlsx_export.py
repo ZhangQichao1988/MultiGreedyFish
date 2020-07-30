@@ -7,7 +7,7 @@ import codecs
 import os
 import sys
 import time
-
+import shutil
 import xlrd
 
 try:  # python3
@@ -18,7 +18,7 @@ except:  # python2
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-PATH_JSON_DATA = "JsonData/"
+PATH_JSON_DATA = "Assets/Resources/JsonData/"
 PATH_XLSX = "xlsx/"
 
 
@@ -52,6 +52,9 @@ def parse_exl(exl_path, table_name):
         f.write(u"\t{")
 
         for n in range(0, len(temp)):
+            if list_head[n] == "":
+                continue
+
             f.write(u"\"" + list_head[n] + "\":\"" + temp[n] + "\"")
             if n < len(temp) - 1:
                 f.write(u",")
@@ -87,7 +90,7 @@ if __name__ == '__main__':
     xlsx_input = os.path.join(_repository_root, PATH_XLSX)
     try:
         if os.path.exists(json_output):
-            os.remove(json_output)
+            shutil.rmtree(json_output)
 
         os.makedirs(json_output)
     except Exception as e:
@@ -95,7 +98,8 @@ if __name__ == '__main__':
 
     for root, dirs, files in os.walk(xlsx_input):
         for file in files:
-            parse_exl(os.path.join(root, file), file.split(".")[0])
+            if ".xlsx" in file:
+                parse_exl(os.path.join(root, file), file.split(".")[0])
 
     # if outputAll == 0:
     #     for i in range(len(a)):
