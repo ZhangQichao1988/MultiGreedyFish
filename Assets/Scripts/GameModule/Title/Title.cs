@@ -12,8 +12,13 @@ public class Title : UIBase
         {
             Debug.Log(JsonUtility.ToJson(item));
         }
+
+        //通过id获取 api需要自己实现 
         FishDataInfo fishInfo = FishDataTableProxy.Instance.GetDataById(1);
         Debug.Log(JsonUtility.ToJson(fishInfo));
+
+        //读取基表(缓存) 默认会自动缓存 如果有性能问题的话 可以在加载场景读条时 把基表cache 放在 scene cache中
+        FishDataTableProxy.Instance.Cached();
 
         //销毁单个基表
         BaseDataTableProxyMgr.Destory(FishDataTableProxy.Instance.TableName);
