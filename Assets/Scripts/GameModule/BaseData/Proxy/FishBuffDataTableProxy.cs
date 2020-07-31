@@ -1,8 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-
+using System;
 
 /// <summary>
 /// 基表代理
@@ -17,15 +16,9 @@ public class FishBuffDataTableProxy : BaseDataTableProxy<FishBuffDataTable, Fish
 	{
 		FishBuffDataInfo bbd = GetDataById(id);
 		float[] aryParam = Wrapper.GetParamFromString(bbd.aryParam);
-		switch (bbd.buffType)
-		{
-			case "SpeedUp":
-				return new BuffSpeedUp(Initiator, fish, aryParam);
-			case "BeSucked":
-				return new BuffBeSucked(Initiator, fish, aryParam);
-		}
-		Debug.LogError("BuffData.GetBuff()_2");
-		return null;
+		System.Type type = Type.GetType(bbd.buffType);
+		BuffBase bb = Activator.CreateInstance(type, new object[] { Initiator, fish, aryParam }) as BuffBase;
+		return bb;
 	}
 
 

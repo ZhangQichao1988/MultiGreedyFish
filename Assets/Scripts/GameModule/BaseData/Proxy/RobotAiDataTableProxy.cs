@@ -12,17 +12,4 @@ public class RobotAiDataTableProxy : BaseDataTableProxy<RobotAiDataTable, RobotA
 
     public RobotAiDataTableProxy() : base("JsonData/RobotAiData") {}
 
-    public System.Type GetRobotClassType(string aiType)
-    {
-        switch (aiType)
-        {
-            case "PlayerRobotBase":
-                return typeof(PlayerRobotBase);
-            case "Shark":
-                return typeof(PlayerRobotShark);
-        }
-        return null;
-    }
-
-
 }

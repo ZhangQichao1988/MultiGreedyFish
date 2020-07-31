@@ -41,7 +41,7 @@ public class FishManager : MonoBehaviour
 			playerRobotBaseData = RobotDataTableProxy.Instance.GetDataById(i);
 				goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(playerRobotBaseData.aiId);
-			prb = (PlayerRobotBase)goEnemy.AddComponent(RobotAiDataTableProxy.Instance.GetRobotClassType(playerRobotAiBaseData.aiType));
+			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
 			prb.Init(playerRobotBaseData.fishId, playerRobotBaseData.name);
 			prb.SetAI(playerRobotAiBaseData);
 			listFish.Add(prb);
