@@ -1,4 +1,4 @@
-﻿
+
 public class NetworkConst
 {
     public static string AUTH_KEY = "FISHGAME_AUTHKEY";

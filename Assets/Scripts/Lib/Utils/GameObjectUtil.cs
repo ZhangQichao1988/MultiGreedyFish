@@ -1,4 +1,4 @@
-﻿using Oz.Framework;
+using Oz.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 

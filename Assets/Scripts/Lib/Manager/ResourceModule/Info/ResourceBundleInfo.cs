@@ -1,4 +1,4 @@
-﻿
+
 public class ResourceBundleInfo
 {
     public string Version;

@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class UIEmpty4Raycast : MaskableGraphic
 {

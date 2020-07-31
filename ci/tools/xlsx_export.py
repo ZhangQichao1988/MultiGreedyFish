@@ -52,7 +52,7 @@ def parse_exl(exl_path, table_name):
         f.write(u"\t{")
 
         for n in range(0, len(temp)):
-            if list_head[n] == "":
+            if list_head[n].strip() == "" or list_head[n] == "ID" and temp[n].strip() == "":
                 continue
 
             f.write(u"\"" + list_head[n] + "\":\"" + temp[n] + "\"")

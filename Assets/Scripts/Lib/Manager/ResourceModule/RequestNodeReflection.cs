@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 
     /// <summary>
     /// 用于通过反射机制把请求到的对象返回

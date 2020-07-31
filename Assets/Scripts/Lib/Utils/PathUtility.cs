@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using System.IO;
 using UnityEngine;
 
