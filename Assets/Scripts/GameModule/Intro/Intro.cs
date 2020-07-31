@@ -61,7 +61,10 @@ public class Intro : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         UIManager.Init();
-        UIBase.Open("ArtResources/UI/Prefabs/Title");
+        var assetHome = ResourceManager.LoadSync("ArtResources/UI/Prefabs/Home", typeof(GameObject));
+        yield return assetHome.Asset;
+        GameObjectUtil.InstantiatePrefab(assetHome.Asset as GameObject, null);
+        //UIBase.Open("ArtResources/UI/Prefabs/Title");
     }
     
 
