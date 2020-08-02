@@ -28,7 +28,8 @@ public class BattleConst
 	static readonly public float AttackHardTime = 0.35f;															// 攻击鱼之后的硬直时间
 
 	// 机器人相关
-	static readonly public Vector2 RobotVision = new Vector2(20, 10);										// 机器人视野
+	static readonly public Vector2 RobotVision = new Vector2(20, 10);                                 // 机器人视野（矩形）
+	static readonly public float RobotVisionRange = 557f;					                                    // 机器人视野半径平方（圆型）
 
 	static readonly public float EnemyResurrectionRemainingTime = 3f;                               // 杂鱼死亡后的复活间隙
 

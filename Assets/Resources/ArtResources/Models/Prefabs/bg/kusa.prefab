@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8180735549453772380}
   - component: {fileID: 5055312807316498937}
   - component: {fileID: 7047257652174642483}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: kusa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8180735549453772380}
     m_Modifications:
+    - target: {fileID: 5991407918736686684, guid: 06fa2c130e27a284e8a817f48dd0088a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5991407918736686689, guid: 06fa2c130e27a284e8a817f48dd0088a,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
@@ -131,6 +136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fx_blister
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991407918872998880, guid: 06fa2c130e27a284e8a817f48dd0088a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5991407918872998887, guid: 06fa2c130e27a284e8a817f48dd0088a,
         type: 3}

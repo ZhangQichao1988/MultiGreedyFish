@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
 	//private Vector3 targetPos;
 
 	private Vector3 currentPlayerPos;
-	private Vector3 targetPlayerPos;
+	public Vector3 targetPlayerPos;
 	private bool firstUpdate;
 
 	void Start()

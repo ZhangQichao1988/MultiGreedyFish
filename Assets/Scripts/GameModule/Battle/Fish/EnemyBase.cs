@@ -7,6 +7,7 @@ public class EnemyBase : FishBase
 {
     public override FishType fishType { get { return FishType.Enemy; } }
 
+
     public override void Init(int fishId, string playerName)
     {
         base.Init(fishId, playerName);
@@ -15,6 +16,15 @@ public class EnemyBase : FishBase
         remainingTime = Wrapper.GetRandom(0f, 10f);
         SetAlpha((1 - remainingTime));
         //CreateBlisterParticle();
+    }
+
+    public override void CustomUpdate()
+    {
+        // 计算离相机目标的距离太远的话就不要动了（优化）
+        if (BattleConst.RobotVisionRange < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position))
+        { return; }
+
+        base.CustomUpdate();
     }
 
     // Update is called once per frame
@@ -71,6 +81,7 @@ public class EnemyBase : FishBase
 
     protected void Idle()
     {
+
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
 
