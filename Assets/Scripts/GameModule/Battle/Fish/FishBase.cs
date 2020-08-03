@@ -87,8 +87,9 @@ public class FishBase : MonoBehaviour
     protected Transform eatFishTrans = null;
     // 用来记录被吃掉时候的缩放值
     protected float localScaleBackup = 0f;
+    // 是否在屏幕内
+    protected bool isBecameInvisible = true;
 
-     
 
 
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";

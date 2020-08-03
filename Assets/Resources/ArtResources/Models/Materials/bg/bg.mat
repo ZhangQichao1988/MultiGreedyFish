@@ -21,8 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: bg
-  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
-  m_ShaderKeywords: _SPECULAR_COLOR
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -46,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 81cec2a607810e8429e65a1c8de285b4, type: 3}
+        m_Texture: {fileID: 2800000, guid: f2e2956cd015f5646870cfc833771cb8, type: 3}
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -58,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 81cec2a607810e8429e65a1c8de285b4, type: 3}
+        m_Texture: {fileID: 2800000, guid: f2e2956cd015f5646870cfc833771cb8, type: 3}
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -110,7 +110,7 @@ Material:
     - Vector2_9F191979: {r: 0.01, g: 0.01, b: 0, a: 0}
     - Vector2_AB76A667: {r: 5, g: 5, b: 0, a: 0}
     - Vector2_D9E6C2E6: {r: 0.1, g: 0, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999674, g: 0.19999674, b: 0.19999674, a: 0}

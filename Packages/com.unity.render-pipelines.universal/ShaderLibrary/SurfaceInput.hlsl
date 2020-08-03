@@ -8,6 +8,15 @@
 TEXTURE2D(_BaseMap);            SAMPLER(sampler_BaseMap);
 TEXTURE2D(_BumpMap);            SAMPLER(sampler_BumpMap);
 TEXTURE2D(_EmissionMap);        SAMPLER(sampler_EmissionMap);
+#ifdef _EFFECT1
+TEXTURE2D(_EffectMap1);            SAMPLER(sampler_EffectMap1);
+#endif
+#ifdef _EFFECT2
+TEXTURE2D(_EffectMap2);            SAMPLER(sampler_EffectMap2);
+#endif
+#ifdef _NOISE
+TEXTURE2D(_NoiseMap);            SAMPLER(sampler_NoiseMap);
+#endif
 
 // Must match Universal ShaderGraph master node
 struct SurfaceData
