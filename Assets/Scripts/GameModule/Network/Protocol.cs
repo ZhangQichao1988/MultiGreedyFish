@@ -37,19 +37,19 @@ public static partial class ProtocolReflection {
           "ZXkYAyABKAkSEgoKc2VydmVyVGltZRgEIAEoAxIfChdpc1BsYXRmb3JtU2Vy",
           "dmljZUxpbmtlZBgFIAEoCCJDCgtQM19SZXNwb25zZRIZCgZyZXN1bHQYASAB",
           "KAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciImCghQ",
-          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiswEKCFBCUGxh",
+          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkisgEKCFBCUGxh",
           "eWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEgwKBHJh",
-          "bmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxISCgpsb2dvdXRUaW1lGAUgASgD",
-          "Eg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dlchgIIAEo",
-          "BRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBSpQChNEYXRh",
-          "TGlua1NlcnZpY2VUeXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8K",
-          "C2dvb2dsZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8K",
-          "C01JRF9TVEFSVFVQEAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARIN",
-          "CglNSURfTE9HSU4QAhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3Rh",
-          "dHVzQ29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJP",
-          "UhACEhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoM",
-          "Q0xJRU5UX0VSUk9SEAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdh",
-          "bWUucGJCCVBCTWVzc2FnZYgBAA=="));
+          "bmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxIRCglsb2dpbkxhc3QYBSABKAMS",
+          "DwoHZGlhbW9uZBgGIAEoBRIMCgRnb2xkGAcgASgFEg0KBXBvd2VyGAggASgF",
+          "Eg8KB3Bvd2VyQXQYCSABKAMSEQoJZmlnaHRGaXNoGAogASgFKlAKE0RhdGFM",
+          "aW5rU2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVyEAESDwoL",
+          "Z29vZ2xlX3BsYXkQAhINCglhcHBfbG92aW4QAyphCglNZXNzYWdlSWQSDwoL",
+          "TUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0K",
+          "CU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAyptCgpTdGF0",
+          "dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9S",
+          "EAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxD",
+          "TElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2Ft",
+          "ZS5wYkIJUEJNZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -61,7 +61,7 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Response), global::P2_Response.Parser, new[]{ "Result", "PlayerId", "SessionKey", "ServerTime", "IsPlatformServiceLinked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P3_Response), global::P3_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LogoutTime", "Diamond", "Gold", "Power", "PowerAt", "FightFish" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish" }, null, null, null, null)
         }));
   }
   #endregion
@@ -2043,7 +2043,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     nickname_ = other.nickname_;
     rank_ = other.rank_;
     regTime_ = other.regTime_;
-    logoutTime_ = other.logoutTime_;
+    loginLast_ = other.loginLast_;
     diamond_ = other.diamond_;
     gold_ = other.gold_;
     power_ = other.power_;
@@ -2164,30 +2164,30 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     _hasBits0 &= ~4;
   }
 
-  /// <summary>Field number for the "logoutTime" field.</summary>
-  public const int LogoutTimeFieldNumber = 5;
-  private readonly static long LogoutTimeDefaultValue = 0L;
+  /// <summary>Field number for the "loginLast" field.</summary>
+  public const int LoginLastFieldNumber = 5;
+  private readonly static long LoginLastDefaultValue = 0L;
 
-  private long logoutTime_;
+  private long loginLast_;
   /// <summary>
-  ///上次登出时间
+  ///上次登入时间
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public long LogoutTime {
-    get { if ((_hasBits0 & 8) != 0) { return logoutTime_; } else { return LogoutTimeDefaultValue; } }
+  public long LoginLast {
+    get { if ((_hasBits0 & 8) != 0) { return loginLast_; } else { return LoginLastDefaultValue; } }
     set {
       _hasBits0 |= 8;
-      logoutTime_ = value;
+      loginLast_ = value;
     }
   }
-  /// <summary>Gets whether the "logoutTime" field is set</summary>
+  /// <summary>Gets whether the "loginLast" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool HasLogoutTime {
+  public bool HasLoginLast {
     get { return (_hasBits0 & 8) != 0; }
   }
-  /// <summary>Clears the value of the "logoutTime" field</summary>
+  /// <summary>Clears the value of the "loginLast" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void ClearLogoutTime() {
+  public void ClearLoginLast() {
     _hasBits0 &= ~8;
   }
 
@@ -2343,7 +2343,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (Nickname != other.Nickname) return false;
     if (Rank != other.Rank) return false;
     if (RegTime != other.RegTime) return false;
-    if (LogoutTime != other.LogoutTime) return false;
+    if (LoginLast != other.LoginLast) return false;
     if (Diamond != other.Diamond) return false;
     if (Gold != other.Gold) return false;
     if (Power != other.Power) return false;
@@ -2359,7 +2359,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasNickname) hash ^= Nickname.GetHashCode();
     if (HasRank) hash ^= Rank.GetHashCode();
     if (HasRegTime) hash ^= RegTime.GetHashCode();
-    if (HasLogoutTime) hash ^= LogoutTime.GetHashCode();
+    if (HasLoginLast) hash ^= LoginLast.GetHashCode();
     if (HasDiamond) hash ^= Diamond.GetHashCode();
     if (HasGold) hash ^= Gold.GetHashCode();
     if (HasPower) hash ^= Power.GetHashCode();
@@ -2394,9 +2394,9 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
       output.WriteRawTag(32);
       output.WriteInt64(RegTime);
     }
-    if (HasLogoutTime) {
+    if (HasLoginLast) {
       output.WriteRawTag(40);
-      output.WriteInt64(LogoutTime);
+      output.WriteInt64(LoginLast);
     }
     if (HasDiamond) {
       output.WriteRawTag(48);
@@ -2438,8 +2438,8 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasRegTime) {
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(RegTime);
     }
-    if (HasLogoutTime) {
-      size += 1 + pb::CodedOutputStream.ComputeInt64Size(LogoutTime);
+    if (HasLoginLast) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(LoginLast);
     }
     if (HasDiamond) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Diamond);
@@ -2479,8 +2479,8 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (other.HasRegTime) {
       RegTime = other.RegTime;
     }
-    if (other.HasLogoutTime) {
-      LogoutTime = other.LogoutTime;
+    if (other.HasLoginLast) {
+      LoginLast = other.LoginLast;
     }
     if (other.HasDiamond) {
       Diamond = other.Diamond;
@@ -2525,7 +2525,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
           break;
         }
         case 40: {
-          LogoutTime = input.ReadInt64();
+          LoginLast = input.ReadInt64();
           break;
         }
         case 48: {
