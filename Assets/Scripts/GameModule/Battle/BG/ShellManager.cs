@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShellManager : MonoBehaviour
 {
 	public List<ShellControl> listShell = new List<ShellControl>();
-
+	private uint updateCnt = 0;
 	private void Awake()
 	{
 		Transform transTmp = null;
@@ -20,7 +20,27 @@ public class ShellManager : MonoBehaviour
 		}
 	}
 
-	public void EatPearl(PlayerBase fish)
+    private void Update()
+    {
+
+		++updateCnt;
+		if (updateCnt >= int.MaxValue) { updateCnt = 0; }
+		if (updateCnt % 10 != 1) { return; }
+
+		for (int i = 0; i < listShell.Count; ++i)
+        {
+            // 不在视野范围内就不显示
+            if (BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listShell[i].transform.position))
+            {
+                if (!listShell[i].gameObject.activeSelf) { listShell[i].gameObject.SetActive(true); }
+            }
+            else
+            {
+                if (listShell[i].gameObject.activeSelf) { listShell[i].gameObject.SetActive(false); }
+            }
+        }
+    }
+    public void EatPearl(PlayerBase fish)
 	{
 		for (int i = 0; i < listShell.Count; ++i)
 		{

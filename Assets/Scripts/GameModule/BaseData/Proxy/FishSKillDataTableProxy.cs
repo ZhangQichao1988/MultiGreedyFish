@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class FishSkillDataTableProxy : BaseDataTableProxy<FishSkillDataTable, FishSkillDataInfo, FishSkillDataTableProxy>
 {
 
-    public FishSkillDataTableProxy() : base("JsonData/FishSkillData") {}
+    public FishSkillDataTableProxy() : base("JsonData/sc_FishSkillData") {}
 
 
 }

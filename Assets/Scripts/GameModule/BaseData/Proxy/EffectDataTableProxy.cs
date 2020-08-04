@@ -11,6 +11,6 @@ using System.Collections.Generic;
 public class EffectDataTableProxy : BaseDataTableProxy<EffectDataTable, EffectDataInfo, EffectDataTableProxy>
 {
 
-    public EffectDataTableProxy() : base("JsonData/EffectData") {}
+    public EffectDataTableProxy() : base("JsonData/c_EffectData") {}
 
 }

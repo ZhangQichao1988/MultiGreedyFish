@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// </summary>
 public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, LanguageDataInfo, LanguageDataTableProxy>
 {
-    public LanguageDataTableProxy() : base("JsonData/LanguageData"){}
+    public LanguageDataTableProxy() : base("JsonData/sc_LanguageData"){}
 
 	public enum LanguageMode
 	{

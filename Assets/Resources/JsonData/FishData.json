@@ -1,5 +1,0 @@
-{"Items":[
-	{"ID":"0.0","prefabPath":"FishNpc_01","atk":"0.0","life":"20","moveSpeed":"0.4","skillId":"-1.0"},
-	{"ID":"1.0","prefabPath":"FishPlayer_01","atk":"20.0","life":"100","moveSpeed":"0.6","skillId":"2.0"},
-	{"ID":"2.0","prefabPath":"FishNpc_02","atk":"20.0","life":"100","moveSpeed":"0.4","skillId":"-1.0"}
-]}
