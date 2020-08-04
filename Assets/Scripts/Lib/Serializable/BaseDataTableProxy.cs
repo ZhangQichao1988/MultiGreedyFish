@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// 基表代理 提供对外数据接口
@@ -10,7 +11,7 @@ using UnityEngine;
 public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTable<V> where U : IDataTableProxy, new() where V : IQueryById
 {
     //基表内容
-    protected List<V> content;
+    protected Dictionary<int, V> content;
 
     bool hasCached;
 
@@ -37,19 +38,27 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
         {
             assetRef = ResourceManager.LoadSync<TextAsset>(tableName);
             T entity = JsonUtility.FromJson<T>(assetRef.Asset.text);
-            content = entity.Items;
+            List<V> contentList = entity.Items;
+            content = new Dictionary<int, V>();
+            foreach (var item in contentList)
+            {
+                if (!content.ContainsKey(item.ID))
+                {
+                    content.Add(item.ID, item);
+                }
+            }
             hasCached = true;
         }
     }
 
     public List<V> GetAll()
     {
-        return content;
+        return content.Values.ToList();
     }
 
     public V GetDataById(int id)
     {
-        return content.Find(t=>t.ID == id);
+        return content.ContainsKey(id) ? content[id] : null;
     }
 
     public void Destory()
