@@ -89,7 +89,7 @@ public class FishBase : MonoBehaviour
     protected float localScaleBackup = 0f;
     // 是否在屏幕内
     protected bool isBecameInvisible = true;
-
+    //private uint updateCnt = 0;
 
 
     static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
@@ -238,11 +238,32 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
+        //++updateCnt;
+        //if (updateCnt >= int.MaxValue) { updateCnt = 0; }
+        //if (updateCnt % 10 == 1) 
+        {
+            // 计算离相机目标的距离太远的话就不要动了（优化）
+            isBecameInvisible = BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
+            //if (isBecameInvisible)
+            //{
+            //    if (!transModel.gameObject.activeSelf) { transModel.gameObject.SetActive(true); }
+            //    if (lifeGauge && !lifeGauge.gameObject.activeSelf) { lifeGauge.gameObject.SetActive(true); }
+            //}
+            //else
+            //{
+            //    if (transModel.gameObject.activeSelf) { transModel.gameObject.SetActive(false); }
+            //    if (lifeGauge && lifeGauge.gameObject.activeSelf) { lifeGauge.gameObject.SetActive(false); }
+            //}
+        }
+
+        
+
         BuffUpdate();
         AquaticCheck();
         PoisonRingCheck();
         MoveUpdate();
     }
+
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
@@ -268,8 +289,14 @@ public class FishBase : MonoBehaviour
 
         //float dis = BoundsBody.SqrDistance(mouthPos);
         //range = (float)Math.Pow(range, 2);
-        
-        return colliderBody.bounds.Intersects(atkCollider.bounds);
+        if (transModel.gameObject.activeSelf)
+        {
+            return colliderBody.bounds.Intersects(atkCollider.bounds);
+        }
+        else
+        {
+            return Vector3.Distance(colliderBody.transform.position, atkCollider.transform.position) < 3f;
+        }
     }
 
     public virtual void Die(Transform eatFishTrans)
@@ -328,6 +355,7 @@ public class FishBase : MonoBehaviour
 
     protected void AquaticCheck()
     {
+        if (!isBecameInvisible) { return; }
         canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
         // 在水草里恢复血量
         if (BattleManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
@@ -396,7 +424,7 @@ public class FishBase : MonoBehaviour
 
     public virtual void Heal()
     {
-        BattleEffectManager.CreateEffect(0, transform);
+        if (isBecameInvisible) { BattleEffectManager.CreateEffect(0, transform); }
     }
 
     public void AddBuff(FishBase Initiator, int buffId)
