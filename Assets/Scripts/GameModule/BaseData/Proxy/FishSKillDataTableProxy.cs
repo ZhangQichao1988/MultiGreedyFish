@@ -11,7 +11,7 @@ using System.Collections.Generic;
 public class FishSkillDataTableProxy : BaseDataTableProxy<FishSkillDataTable, FishSkillDataInfo, FishSkillDataTableProxy>
 {
 
-    public FishSkillDataTableProxy() : base("JsonData/sc_FishSkillData") {}
+    public FishSkillDataTableProxy() : base("JsonData/FishSkillData") {}
 
 
 }

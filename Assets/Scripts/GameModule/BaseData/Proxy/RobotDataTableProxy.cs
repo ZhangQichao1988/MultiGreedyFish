@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// </summary>
 public class RobotDataTableProxy : BaseDataTableProxy<RobotDataTable, RobotDataInfo, RobotDataTableProxy>
 {
-    public RobotDataTableProxy() : base("JsonData/sc_RobotData") {}
+    public RobotDataTableProxy() : base("JsonData/RobotData") {}
 
 	public int GetRobotCount()
 	{

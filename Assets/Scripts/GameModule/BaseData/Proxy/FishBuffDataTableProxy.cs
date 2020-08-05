@@ -10,7 +10,7 @@ using System;
 public class FishBuffDataTableProxy : BaseDataTableProxy<FishBuffDataTable, FishBuffDataInfo, FishBuffDataTableProxy>
 {
 
-    public FishBuffDataTableProxy() : base("JsonData/c_FishBuffData") {}
+    public FishBuffDataTableProxy() : base("JsonData/FishBuffData") {}
 
 	public BuffBase SetBuff(FishBase Initiator, int id, FishBase fish)
 	{

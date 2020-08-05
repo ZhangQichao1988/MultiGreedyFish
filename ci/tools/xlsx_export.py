@@ -5,9 +5,10 @@ from __future__ import print_function
 
 import codecs
 import os
+import shutil
 import sys
 import time
-import shutil
+
 import xlrd
 
 try:  # python3
@@ -22,11 +23,14 @@ PATH_JSON_DATA = "Assets/Resources/JsonData/"
 PATH_XLSX = "xlsx/"
 
 
-def parse_exl(exl_path, table_name):
+def parse_exl(exl_path, table_name, is_server):
     f = codecs.open(os.path.join(json_output, table_name) + ".json", "w", "utf-8")
     # f.write(u"local tableName = {\n\t\"items\":[\n")
 
     print(exl_path)
+    if is_server:
+        print("server needed")
+
     workbook = xlrd.open_workbook(exl_path)
     # 获取sheet
     sheet_name = workbook.sheet_names()[0]
@@ -99,7 +103,10 @@ if __name__ == '__main__':
     for root, dirs, files in os.walk(xlsx_input):
         for file in files:
             if ".xlsx" in file:
-                parse_exl(os.path.join(root, file), file.split(".")[0])
+                file_name = file.split(".")[0]
+                table_name = len(file_name.split("_")) > 1 and file_name.split("_")[1] or file_name
+                is_server = len(file_name.split("_")) > 1 and "s" in file_name.split("_")[0] or False
+                parse_exl(os.path.join(root, file), table_name, is_server)
 
     # if outputAll == 0:
     #     for i in range(len(a)):

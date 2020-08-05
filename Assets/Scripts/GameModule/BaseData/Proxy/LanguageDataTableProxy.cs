@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// </summary>
 public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, LanguageDataInfo, LanguageDataTableProxy>
 {
-    public LanguageDataTableProxy() : base("JsonData/sc_LanguageData"){}
+    public LanguageDataTableProxy() : base("JsonData/LanguageData"){}
 
 	public enum LanguageMode
 	{

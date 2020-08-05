@@ -10,6 +10,6 @@ using Google.Protobuf.WellKnownTypes;
 public class RobotAiDataTableProxy : BaseDataTableProxy<RobotAiDataTable, RobotAiDataInfo, RobotAiDataTableProxy>
 {
 
-    public RobotAiDataTableProxy() : base("JsonData/c_RobotAiData") {}
+    public RobotAiDataTableProxy() : base("JsonData/RobotAiData") {}
 
 }
