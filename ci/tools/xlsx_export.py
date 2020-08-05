@@ -4,6 +4,7 @@ from __future__ import division
 from __future__ import print_function
 
 import codecs
+import collections
 import os
 import shutil
 import sys
@@ -70,20 +71,30 @@ def parse_exl_client(exl_path, table_name):
     f.close()
 
 
-create_database = "DROP DATABASE IF EXISTS fish_dict" + "\n" + "CREATE DATABASE IF NOT EXISTS fish_dict DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;" + "\n" + "USE fish_dict\n"
-drop_sql = "DROP TABLE IF EXISTS `{}`";
+create_database = "DROP DATABASE IF EXISTS fish_dict;" + "\n" + "CREATE DATABASE IF NOT EXISTS fish_dict DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;" + "\n" + "USE fish_dict;\n"
+drop_sql = "DROP TABLE IF EXISTS `{}`;";
 create_sql = "CREATE TABLE `{}`({}PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
-insert_sql = "INSERT INTO `{}`({}) VALUES {}"
+insert_sql = "INSERT INTO `{}`({}) VALUES {};"
+
+
+def sort_cloum_item(arr):
+    dic = collections.OrderedDict()
+    for item in range(0, len(arr), 2):
+        dic[arr[item]] = arr[item + 1]
+
+    return dic
+
 
 base_data_type = {
-    "EffectData": {"ID": "INT(11)", "prefabPath": "TEXT", "duration": "DOUBLE(16,2)"},
-    "FishBuffData": {"ID": "INT(11)", "buffType": "TEXT", "aryParam": "TEXT"},
-    "FishData": {"ID": "INT(11)", "name": "TEXT", "prefabPath": "TEXT", "atk": "INT(11)", "life": "INT(11)",
-                 "moveSpeed": "DOUBLE(16,2)", "skillId": "INT(11)"},
-    "FishSkillData": {"ID": "INT(11)", "skillType": "TEXT", "effectId": "INT(11)", "aryParam": "TEXT"},
-    "LanguageData": {"ID": "INT(11)", "cn": "TEXT", "tw": "TEXT", "en": "TEXT", "jp": "TEXT"},
-    "RobotAiData": {"ID": "INT(11)", "aiType": "TEXT", "aryParam": "TEXT"},
-    "RobotData": {"ID": "INT(11)", "fishId": "INT(11)", "name": "TEXT", "aiId": "INT(11)"},
+    "EffectData": sort_cloum_item(["ID", "INT(11)", "prefabPath", "TEXT", "duration", "DOUBLE(16,2)"]),
+    "FishBuffData": sort_cloum_item(["ID", "INT(11)", "buffType", "TEXT", "aryParam", "TEXT"]),
+    "FishData": sort_cloum_item(
+        ["ID", "INT(11)", "name", "TEXT", "prefabPath", "TEXT", "atk", "INT(11)", "life", "INT(11)",
+         "moveSpeed", "DOUBLE(16,2)", "skillId", "INT(11)"]),
+    "FishSkillData": sort_cloum_item(["ID", "INT(11)", "skillType", "TEXT", "effectId", "INT(11)", "aryParam", "TEXT"]),
+    "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
+    "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
+    "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "name", "TEXT", "aiId", "INT(11)"]),
 }
 
 
