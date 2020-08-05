@@ -1503,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &214326688
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4854,7 +4854,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.7
+      value: -79.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
@@ -4889,7 +4889,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
@@ -4909,7 +4909,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5735078
+      value: 1.5112913
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63b621cd62566a24e840c797cda5cf6f,
         type: 3}
@@ -9082,7 +9082,12 @@ PrefabInstance:
     - target: {fileID: 4159695324695538866, guid: 4675f21345076ad46bc132a0c6c6795f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882770181310933169, guid: 4675f21345076ad46bc132a0c6c6795f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4675f21345076ad46bc132a0c6c6795f, type: 3}
