@@ -39,7 +39,6 @@ public class NetWorkHandler
             {"P0_Request", P0_Request.Parser},
             {"P1_Request", P1_Request.Parser},
             {"P2_Request", P2_Request.Parser},
-            {"P4_Request", P4_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -57,6 +56,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLogin , OnRecvLogin);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLoginWithPlatform, OnRecvLoginWithThirdPlatform);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetPlayerInfo, OnRecvGetPlayerInfo);
+        HttpDispatcher.Instance.AddObserver(4, OnRecvBattle);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -157,11 +157,7 @@ public class NetWorkHandler
     }
     public static void RequestBattle()
     {
-        var request = new P4_Request();
-        var randomKey = CryptographyUtil.RandomBytes(32);
-
-        byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P4_Request", requestByteData, randomKey, false);
+        NetWorkManager.Request("P4_Request", null);
     }
 
     //recieve callback
