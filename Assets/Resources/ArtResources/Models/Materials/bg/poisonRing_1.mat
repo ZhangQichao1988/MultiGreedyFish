@@ -20,34 +20,30 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: bg
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Name: poisonRing_1
+  m_Shader: {fileID: -6465566751694194690, guid: 68285a4e17a74b14392937ba7dc1692c,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_507FF98C:
-        m_Texture: {fileID: 2800000, guid: bb0abadfa8b58b54bb29882c8fcdb763, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2b9b26dc2db60944280855e8ff182e8e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_82F3D7DB:
         m_Texture: {fileID: 2800000, guid: f2c09db697d482c49a54be00c9389dab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - Texture2D_8CB6BF2D:
-        m_Texture: {fileID: 2800000, guid: bb0abadfa8b58b54bb29882c8fcdb763, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: f2e2956cd015f5646870cfc833771cb8, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: a70b0214dfdfc6b48b7b187d875225e6, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
@@ -58,8 +54,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f2e2956cd015f5646870cfc833771cb8, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: a70b0214dfdfc6b48b7b187d875225e6, type: 3}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -74,16 +70,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_30442003: 35.58
+    - Vector1_6B0B5B9B: 37.7
     - Vector1_6DD45EBB: 0.01
-    - Vector1_DB485C0: 48.03
-    - Vector1_F140229F: 0.04
+    - Vector1_8BF0285F: -0.01
+    - Vector1_905A828F: 1.4
+    - Vector1_9A52D060: 0.01
+    - Vector1_DB485C0: 1000
+    - Vector1_F140229F: 0.1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
-    - _EnvironmentReflections: 0
+    - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossinessSource: 0
@@ -92,25 +93,26 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SafeAreaRange: 100
+    - _SafeGradAreaRange: 95
     - _SampleGI: 0
     - _Shininess: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
-    - _SpecularHighlights: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - Color_3E180B24: {r: 1, g: 1, b: 1, a: 0}
-    - Vector2_54C95536: {r: 5, g: 5, b: 0, a: 0}
-    - Vector2_974E3934: {r: 0.15, g: 0, b: 0, a: 0}
-    - Vector2_9F191979: {r: 0.01, g: 0.01, b: 0, a: 0}
-    - Vector2_AB76A667: {r: 5, g: 5, b: 0, a: 0}
-    - Vector2_D9E6C2E6: {r: 0.1, g: 0, b: 0, a: 0}
-    - _BaseColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+    - Color_C1EDFF25: {r: 0, g: 0.24528295, b: 0.00022848147, a: 0}
+    - Vector2_7F0B80A6: {r: 0.01, g: 0.01, b: 0, a: 0}
+    - Vector2_9F191979: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_AB76A667: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _BaseColor: {r: 0.1448469, g: 0.65370464, b: 0.990566, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999674, g: 0.19999674, b: 0.19999674, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
