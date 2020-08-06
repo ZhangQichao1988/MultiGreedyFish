@@ -14,8 +14,25 @@ public class Title : UIBase
 
     public void OnClickBattle()
     {
-        Close();
-        BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+        NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
+        NetWorkHandler.RequestBattle();
+
+        
     }
 
+    void OnRecvBattle<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P4_RESPONSE);
+        var realResponse = response as P4_Response;
+        if (realResponse.Result.Code == NetworkConst.CODE_OK)
+        {
+            Close();
+            BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+        }
+        else
+        {
+            Debug.Log("战斗通信错误！");
+        }
+
+    }
 }

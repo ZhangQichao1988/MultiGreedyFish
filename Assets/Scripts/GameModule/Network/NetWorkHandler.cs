@@ -39,10 +39,12 @@ public class NetWorkHandler
             {"P0_Request", P0_Request.Parser},
             {"P1_Request", P1_Request.Parser},
             {"P2_Request", P2_Request.Parser},
+            {"P4_Request", P4_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
-            {"P3_Response", P3_Response.Parser}
+            {"P3_Response", P3_Response.Parser},
+            {"P4_Response", P4_Response.Parser}
         };
 
 #if DUMMY_DATA
@@ -153,7 +155,14 @@ public class NetWorkHandler
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P1_Request", requestByteData , randomKey, false);
     }
+    public static void RequestBattle()
+    {
+        var request = new P4_Request();
+        var randomKey = CryptographyUtil.RandomBytes(32);
 
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P4_Request", requestByteData, randomKey, false);
+    }
 
     //recieve callback
     static void OnRecvStartup(HttpDispatcher.NodeMsg msg)
@@ -210,6 +219,12 @@ public class NetWorkHandler
     {
         var response = P3_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P3_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvBattle(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P4_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P4_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void TraceLog(string tag, string msg, byte[] data)

@@ -26,7 +26,7 @@ MonoBehaviour:
   m_SupportsTerrainHoles: 0
   m_SupportsHDR: 1
   m_MSAA: 1
-  m_RenderScale: 0.6
+  m_RenderScale: 1
   m_MainLightRenderingMode: 0
   m_MainLightShadowsSupported: 1
   m_MainLightShadowmapResolution: 1024

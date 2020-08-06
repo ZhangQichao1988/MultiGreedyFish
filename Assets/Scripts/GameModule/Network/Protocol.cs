@@ -36,20 +36,29 @@ public static partial class ProtocolReflection {
           "ASgLMgkuUEJSZXN1bHQSEAoIcGxheWVySWQYAiABKAMSEwoLc2Vzc2lvbl9r",
           "ZXkYAyABKAkSEgoKc2VydmVyVGltZRgEIAEoAxIfChdpc1BsYXRmb3JtU2Vy",
           "dmljZUxpbmtlZBgFIAEoCCJDCgtQM19SZXNwb25zZRIZCgZyZXN1bHQYASAB",
-          "KAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciImCghQ",
-          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkisgEKCFBCUGxh",
-          "eWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEgwKBHJh",
-          "bmsYAyABKAUSDwoHcmVnVGltZRgEIAEoAxIRCglsb2dpbkxhc3QYBSABKAMS",
-          "DwoHZGlhbW9uZBgGIAEoBRIMCgRnb2xkGAcgASgFEg0KBXBvd2VyGAggASgF",
-          "Eg8KB3Bvd2VyQXQYCSABKAMSEQoJZmlnaHRGaXNoGAogASgFKlAKE0RhdGFM",
-          "aW5rU2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVyEAESDwoL",
-          "Z29vZ2xlX3BsYXkQAhINCglhcHBfbG92aW4QAyphCglNZXNzYWdlSWQSDwoL",
-          "TUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0K",
-          "CU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAyptCgpTdGF0",
-          "dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9S",
-          "EAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxD",
-          "TElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2Ft",
-          "ZS5wYkIJUEJNZXNzYWdliAEA"));
+          "KAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciIcCgpQ",
+          "NF9SZXF1ZXN0Eg4KBmZpc2hJZBgBIAIoBSJJCgtQNF9SZXNwb25zZRIZCgZy",
+          "ZXN1bHQYASABKAsyCS5QQlJlc3VsdBIfCglzdGFnZUluZm8YAiABKAsyDC5Q",
+          "QlN0YWdlSW5mbyImCghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MY",
+          "AiABKAkiXwoVUEJQbGF5ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEo",
+          "BRIRCglmaXNoTGV2ZWwYAiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFu",
+          "a0xldmVsGAQgASgFIuUBCghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQ",
+          "CghuaWNrbmFtZRgCIAEoCRIMCgRyYW5rGAMgASgFEg8KB3JlZ1RpbWUYBCAB",
+          "KAMSEQoJbG9naW5MYXN0GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29s",
+          "ZBgHIAEoBRINCgVwb3dlchgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZp",
+          "Z2h0RmlzaBgKIAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBC",
+          "UGxheWVyRmlzaExldmVsSW5mbyJNCg9QQkVuZW15RGF0YUluZm8SDgoGZmlz",
+          "aElkGAEgASgFEhQKDGZpc2hDb3VudE1heBgCIAEoBRIUCgxmaXNoQ291bnRN",
+          "aW4YAyABKAUiOQoLUEJTdGFnZUluZm8SKgoQYXJ5RW5lbXlEYXRhSW5mbxgB",
+          "IAMoCzIQLlBCRW5lbXlEYXRhSW5mbypQChNEYXRhTGlua1NlcnZpY2VUeXBl",
+          "EggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2dsZV9wbGF5EAIS",
+          "DQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQEAAS",
+          "GwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4QAhIX",
+          "ChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJPSxAA",
+          "EgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tfT1VU",
+          "X0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9SEAVC",
+          "MAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2Fn",
+          "ZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -60,8 +69,13 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Request), global::P2_Request.Parser, new[]{ "AuthToken", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P2_Response), global::P2_Response.Parser, new[]{ "Result", "PlayerId", "SessionKey", "ServerTime", "IsPlatformServiceLinked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P3_Response), global::P3_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P4_Request), global::P4_Request.Parser, new[]{ "FishId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P4_Response), global::P4_Response.Parser, new[]{ "Result", "StageInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBStageInfo), global::PBStageInfo.Parser, new[]{ "AryEnemyDataInfo" }, null, null, null, null)
         }));
   }
   #endregion
@@ -1644,6 +1658,9 @@ public sealed partial class P2_Response : pb::IMessage<P2_Response> {
 
 }
 
+/// <summary>
+///获取玩家信息
+/// </summary>
 public sealed partial class P3_Response : pb::IMessage<P3_Response> {
   private static readonly pb::MessageParser<P3_Response> _parser = new pb::MessageParser<P3_Response>(() => new P3_Response());
   private pb::UnknownFieldSet _unknownFields;
@@ -1817,6 +1834,328 @@ public sealed partial class P3_Response : pb::IMessage<P3_Response> {
 }
 
 /// <summary>
+///开始战斗
+/// </summary>
+public sealed partial class P4_Request : pb::IMessage<P4_Request> {
+  private static readonly pb::MessageParser<P4_Request> _parser = new pb::MessageParser<P4_Request>(() => new P4_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P4_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Request(P4_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    fishId_ = other.fishId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Request Clone() {
+    return new P4_Request(this);
+  }
+
+  /// <summary>Field number for the "fishId" field.</summary>
+  public const int FishIdFieldNumber = 1;
+  private readonly static int FishIdDefaultValue = 0;
+
+  private int fishId_;
+  /// <summary>
+  /// 选择出战的鱼
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishId {
+    get { if ((_hasBits0 & 1) != 0) { return fishId_; } else { return FishIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      fishId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "fishId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishId() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P4_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P4_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (FishId != other.FishId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasFishId) hash ^= FishId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasFishId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(FishId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasFishId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P4_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasFishId) {
+      FishId = other.FishId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          FishId = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P4_Response : pb::IMessage<P4_Response> {
+  private static readonly pb::MessageParser<P4_Response> _parser = new pb::MessageParser<P4_Response>(() => new P4_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P4_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Response(P4_Response other) : this() {
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    stageInfo_ = other.stageInfo_ != null ? other.stageInfo_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P4_Response Clone() {
+    return new P4_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "stageInfo" field.</summary>
+  public const int StageInfoFieldNumber = 2;
+  private global::PBStageInfo stageInfo_;
+  /// <summary>
+  ///战斗舞台信息
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBStageInfo StageInfo {
+    get { return stageInfo_; }
+    set {
+      stageInfo_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P4_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P4_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if (!object.Equals(StageInfo, other.StageInfo)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    if (stageInfo_ != null) hash ^= StageInfo.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    if (stageInfo_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(StageInfo);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    if (stageInfo_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(StageInfo);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P4_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    if (other.stageInfo_ != null) {
+      if (stageInfo_ == null) {
+        StageInfo = new global::PBStageInfo();
+      }
+      StageInfo.MergeFrom(other.StageInfo);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 18: {
+          if (stageInfo_ == null) {
+            StageInfo = new global::PBStageInfo();
+          }
+          input.ReadMessage(StageInfo);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 ///PB结果
 /// </summary>
 public sealed partial class PBResult : pb::IMessage<PBResult> {
@@ -1828,7 +2167,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[7]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2009,6 +2348,285 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
 }
 
+public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLevelInfo> {
+  private static readonly pb::MessageParser<PBPlayerFishLevelInfo> _parser = new pb::MessageParser<PBPlayerFishLevelInfo>(() => new PBPlayerFishLevelInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<PBPlayerFishLevelInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBPlayerFishLevelInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBPlayerFishLevelInfo(PBPlayerFishLevelInfo other) : this() {
+    _hasBits0 = other._hasBits0;
+    fishId_ = other.fishId_;
+    fishLevel_ = other.fishLevel_;
+    fishChip_ = other.fishChip_;
+    rankLevel_ = other.rankLevel_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBPlayerFishLevelInfo Clone() {
+    return new PBPlayerFishLevelInfo(this);
+  }
+
+  /// <summary>Field number for the "fishId" field.</summary>
+  public const int FishIdFieldNumber = 1;
+  private readonly static int FishIdDefaultValue = 0;
+
+  private int fishId_;
+  /// <summary>
+  /// 魚ID，對照FishDataTable的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishId {
+    get { if ((_hasBits0 & 1) != 0) { return fishId_; } else { return FishIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      fishId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "fishId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "fishLevel" field.</summary>
+  public const int FishLevelFieldNumber = 2;
+  private readonly static int FishLevelDefaultValue = 0;
+
+  private int fishLevel_;
+  /// <summary>
+  /// 当前鱼等级
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishLevel {
+    get { if ((_hasBits0 & 2) != 0) { return fishLevel_; } else { return FishLevelDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      fishLevel_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishLevel" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishLevel {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "fishLevel" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishLevel() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "fishChip" field.</summary>
+  public const int FishChipFieldNumber = 3;
+  private readonly static int FishChipDefaultValue = 0;
+
+  private int fishChip_;
+  /// <summary>
+  /// 升級用的魚碎片
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishChip {
+    get { if ((_hasBits0 & 4) != 0) { return fishChip_; } else { return FishChipDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      fishChip_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishChip" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishChip {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "fishChip" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishChip() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "rankLevel" field.</summary>
+  public const int RankLevelFieldNumber = 4;
+  private readonly static int RankLevelDefaultValue = 0;
+
+  private int rankLevel_;
+  /// <summary>
+  /// 段位等级
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int RankLevel {
+    get { if ((_hasBits0 & 8) != 0) { return rankLevel_; } else { return RankLevelDefaultValue; } }
+    set {
+      _hasBits0 |= 8;
+      rankLevel_ = value;
+    }
+  }
+  /// <summary>Gets whether the "rankLevel" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasRankLevel {
+    get { return (_hasBits0 & 8) != 0; }
+  }
+  /// <summary>Clears the value of the "rankLevel" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearRankLevel() {
+    _hasBits0 &= ~8;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as PBPlayerFishLevelInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(PBPlayerFishLevelInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (FishId != other.FishId) return false;
+    if (FishLevel != other.FishLevel) return false;
+    if (FishChip != other.FishChip) return false;
+    if (RankLevel != other.RankLevel) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasFishId) hash ^= FishId.GetHashCode();
+    if (HasFishLevel) hash ^= FishLevel.GetHashCode();
+    if (HasFishChip) hash ^= FishChip.GetHashCode();
+    if (HasRankLevel) hash ^= RankLevel.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasFishId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(FishId);
+    }
+    if (HasFishLevel) {
+      output.WriteRawTag(16);
+      output.WriteInt32(FishLevel);
+    }
+    if (HasFishChip) {
+      output.WriteRawTag(24);
+      output.WriteInt32(FishChip);
+    }
+    if (HasRankLevel) {
+      output.WriteRawTag(32);
+      output.WriteInt32(RankLevel);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasFishId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
+    }
+    if (HasFishLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishLevel);
+    }
+    if (HasFishChip) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishChip);
+    }
+    if (HasRankLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(RankLevel);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(PBPlayerFishLevelInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasFishId) {
+      FishId = other.FishId;
+    }
+    if (other.HasFishLevel) {
+      FishLevel = other.FishLevel;
+    }
+    if (other.HasFishChip) {
+      FishChip = other.FishChip;
+    }
+    if (other.HasRankLevel) {
+      RankLevel = other.RankLevel;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          FishId = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          FishLevel = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          FishChip = input.ReadInt32();
+          break;
+        }
+        case 32: {
+          RankLevel = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
 /// <summary>
 ///玩家模型
 /// </summary>
@@ -2021,7 +2639,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[8]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2049,6 +2667,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     power_ = other.power_;
     powerAt_ = other.powerAt_;
     fightFish_ = other.fightFish_;
+    aryPlayerFishInfo_ = other.aryPlayerFishInfo_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2326,6 +2945,19 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     _hasBits0 &= ~256;
   }
 
+  /// <summary>Field number for the "aryPlayerFishInfo" field.</summary>
+  public const int AryPlayerFishInfoFieldNumber = 11;
+  private static readonly pb::FieldCodec<global::PBPlayerFishLevelInfo> _repeated_aryPlayerFishInfo_codec
+      = pb::FieldCodec.ForMessage(90, global::PBPlayerFishLevelInfo.Parser);
+  private readonly pbc::RepeatedField<global::PBPlayerFishLevelInfo> aryPlayerFishInfo_ = new pbc::RepeatedField<global::PBPlayerFishLevelInfo>();
+  /// <summary>
+  /// 玩家鱼信息
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::PBPlayerFishLevelInfo> AryPlayerFishInfo {
+    get { return aryPlayerFishInfo_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as PBPlayer);
@@ -2349,6 +2981,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (Power != other.Power) return false;
     if (PowerAt != other.PowerAt) return false;
     if (FightFish != other.FightFish) return false;
+    if(!aryPlayerFishInfo_.Equals(other.aryPlayerFishInfo_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2365,6 +2998,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasPower) hash ^= Power.GetHashCode();
     if (HasPowerAt) hash ^= PowerAt.GetHashCode();
     if (HasFightFish) hash ^= FightFish.GetHashCode();
+    hash ^= aryPlayerFishInfo_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2418,6 +3052,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
       output.WriteRawTag(80);
       output.WriteInt32(FightFish);
     }
+    aryPlayerFishInfo_.WriteTo(output, _repeated_aryPlayerFishInfo_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2456,6 +3091,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasFightFish) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(FightFish);
     }
+    size += aryPlayerFishInfo_.CalculateSize(_repeated_aryPlayerFishInfo_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -2497,6 +3133,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (other.HasFightFish) {
       FightFish = other.FightFish;
     }
+    aryPlayerFishInfo_.Add(other.aryPlayerFishInfo_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -2546,6 +3183,375 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
         }
         case 80: {
           FightFish = input.ReadInt32();
+          break;
+        }
+        case 90: {
+          aryPlayerFishInfo_.AddEntriesFrom(input, _repeated_aryPlayerFishInfo_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 敵人
+/// </summary>
+public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
+  private static readonly pb::MessageParser<PBEnemyDataInfo> _parser = new pb::MessageParser<PBEnemyDataInfo>(() => new PBEnemyDataInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<PBEnemyDataInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[12]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBEnemyDataInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBEnemyDataInfo(PBEnemyDataInfo other) : this() {
+    _hasBits0 = other._hasBits0;
+    fishId_ = other.fishId_;
+    fishCountMax_ = other.fishCountMax_;
+    fishCountMin_ = other.fishCountMin_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBEnemyDataInfo Clone() {
+    return new PBEnemyDataInfo(this);
+  }
+
+  /// <summary>Field number for the "fishId" field.</summary>
+  public const int FishIdFieldNumber = 1;
+  private readonly static int FishIdDefaultValue = 0;
+
+  private int fishId_;
+  /// <summary>
+  /// 魚ID，對照FishDataTable的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishId {
+    get { if ((_hasBits0 & 1) != 0) { return fishId_; } else { return FishIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      fishId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "fishId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "fishCountMax" field.</summary>
+  public const int FishCountMaxFieldNumber = 2;
+  private readonly static int FishCountMaxDefaultValue = 0;
+
+  private int fishCountMax_;
+  /// <summary>
+  /// 最大数量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishCountMax {
+    get { if ((_hasBits0 & 2) != 0) { return fishCountMax_; } else { return FishCountMaxDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      fishCountMax_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishCountMax" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishCountMax {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "fishCountMax" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishCountMax() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "fishCountMin" field.</summary>
+  public const int FishCountMinFieldNumber = 3;
+  private readonly static int FishCountMinDefaultValue = 0;
+
+  private int fishCountMin_;
+  /// <summary>
+  /// 最小数量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishCountMin {
+    get { if ((_hasBits0 & 4) != 0) { return fishCountMin_; } else { return FishCountMinDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      fishCountMin_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishCountMin" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishCountMin {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "fishCountMin" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishCountMin() {
+    _hasBits0 &= ~4;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as PBEnemyDataInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(PBEnemyDataInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (FishId != other.FishId) return false;
+    if (FishCountMax != other.FishCountMax) return false;
+    if (FishCountMin != other.FishCountMin) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasFishId) hash ^= FishId.GetHashCode();
+    if (HasFishCountMax) hash ^= FishCountMax.GetHashCode();
+    if (HasFishCountMin) hash ^= FishCountMin.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasFishId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(FishId);
+    }
+    if (HasFishCountMax) {
+      output.WriteRawTag(16);
+      output.WriteInt32(FishCountMax);
+    }
+    if (HasFishCountMin) {
+      output.WriteRawTag(24);
+      output.WriteInt32(FishCountMin);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasFishId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
+    }
+    if (HasFishCountMax) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishCountMax);
+    }
+    if (HasFishCountMin) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishCountMin);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(PBEnemyDataInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasFishId) {
+      FishId = other.FishId;
+    }
+    if (other.HasFishCountMax) {
+      FishCountMax = other.FishCountMax;
+    }
+    if (other.HasFishCountMin) {
+      FishCountMin = other.FishCountMin;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          FishId = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          FishCountMax = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          FishCountMin = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 战斗舞台信息
+/// </summary>
+public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
+  private static readonly pb::MessageParser<PBStageInfo> _parser = new pb::MessageParser<PBStageInfo>(() => new PBStageInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<PBStageInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[13]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBStageInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBStageInfo(PBStageInfo other) : this() {
+    aryEnemyDataInfo_ = other.aryEnemyDataInfo_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBStageInfo Clone() {
+    return new PBStageInfo(this);
+  }
+
+  /// <summary>Field number for the "aryEnemyDataInfo" field.</summary>
+  public const int AryEnemyDataInfoFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::PBEnemyDataInfo> _repeated_aryEnemyDataInfo_codec
+      = pb::FieldCodec.ForMessage(10, global::PBEnemyDataInfo.Parser);
+  private readonly pbc::RepeatedField<global::PBEnemyDataInfo> aryEnemyDataInfo_ = new pbc::RepeatedField<global::PBEnemyDataInfo>();
+  /// <summary>
+  /// 杂鱼信息，今后可能会根据段位而变化
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::PBEnemyDataInfo> AryEnemyDataInfo {
+    get { return aryEnemyDataInfo_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as PBStageInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(PBStageInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!aryEnemyDataInfo_.Equals(other.aryEnemyDataInfo_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= aryEnemyDataInfo_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    aryEnemyDataInfo_.WriteTo(output, _repeated_aryEnemyDataInfo_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += aryEnemyDataInfo_.CalculateSize(_repeated_aryEnemyDataInfo_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(PBStageInfo other) {
+    if (other == null) {
+      return;
+    }
+    aryEnemyDataInfo_.Add(other.aryEnemyDataInfo_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          aryEnemyDataInfo_.AddEntriesFrom(input, _repeated_aryEnemyDataInfo_codec);
           break;
         }
       }

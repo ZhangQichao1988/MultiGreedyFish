@@ -1,0 +1,34 @@
+using NetWorkModule.Dummy;
+using Google.Protobuf;
+using UnityEngine;
+using pbc = global::Google.Protobuf.Collections;
+using UnityEngine.UIElements;
+
+/// <summary>
+/// 获取玩家信息
+/// </summary>
+public class ProcesserP4Res : IDummyResponseProcesser
+{
+    public IMessage ProcessRequest(int resId, IMessage pbData)
+    {
+        var response = GetResponseData();
+
+        return response;
+        
+    } 
+
+    public void DispatchRes(int resId, IMessage request, IMessage response)
+    {
+        NetWorkHandler.GetDispatch().Dispatch<P4_Response>(NetWorkHandler.GetDispatchKey(resId), response as P4_Response);
+    }
+
+    P4_Response GetResponseData()
+    {
+        var res = new P4_Response();
+        res.Result = new PBResult() { Code = 0 };
+
+        res.StageInfo = new PBStageInfo();
+        res.StageInfo.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
+        return res;
+    }
+}
