@@ -27,7 +27,8 @@ public class Title : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             Close();
-            BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene), realResponse);
+            DataBank.stageInfo = realResponse.StageInfo;
+            BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
         }
         else
         {

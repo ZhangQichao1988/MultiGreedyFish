@@ -121,5 +121,7 @@ public class UserLoginFlowController
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P3_RESPONSE);
         Debug.Log("On Getted Userinfo!");
+        var realResponse = response as P3_Response;
+        DataBank.player = realResponse.Player;
     }
 }
