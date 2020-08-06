@@ -33,29 +33,50 @@ public class FishManager : MonoBehaviour
 		GameObject goEnemy;
 		PlayerRobotBase prb = null;
 		RobotAiDataInfo playerRobotAiBaseData;
-		RobotDataInfo playerRobotBaseData;
+		PBRobotDataInfo pBRobotDataInfo;
 		// 机器人
-		int robotCount = RobotDataTableProxy.Instance.GetRobotCount();
+		var aryRobotDataInfo = BattleManagerGroup.GetInstance().battleResponse.StageInfo.AryRobotDataInfo;
+		int robotCount = aryRobotDataInfo.Count;
+		var listName = RobotNameDataTableProxy.Instance.GetAllRobotNames();
 		for (int i = 0; i < robotCount; ++i)
 		{
-			playerRobotBaseData = RobotDataTableProxy.Instance.GetDataById(i);
-				goEnemy = Wrapper.CreateEmptyGameObject(transform);
-			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(playerRobotBaseData.aiId);
+			pBRobotDataInfo = aryRobotDataInfo[i];
+			goEnemy = Wrapper.CreateEmptyGameObject(transform);
+			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
 			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-			prb.Init(playerRobotBaseData.fishId, playerRobotBaseData.name);
+			prb.Init(pBRobotDataInfo.FishId, listName[i]);
 			prb.SetAI(playerRobotAiBaseData);
 			listFish.Add(prb);
 		}
 
+		// Boss
+		goEnemy = Wrapper.CreateEmptyGameObject(transform);
+		playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
+		prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
+		prb.Init(2, "BOSS");
+		prb.SetAI(playerRobotAiBaseData);
+		listFish.Add(prb);
+
+		List<FishBase> listEnemy = new List<FishBase>();
 		FishBase fb = null;
+		PBEnemyDataInfo enemyGroup;
 		// 杂鱼
-		for (int i = 0; i < BattleConst.EnemyNumMax; ++i)
+		var aryEnemyDataInfo = BattleManagerGroup.GetInstance().battleResponse.StageInfo.AryEnemyDataInfo;
+		int EnemyNumMax = aryEnemyDataInfo.Count;
+		for (int i = 0; i < EnemyNumMax; ++i)
 		{
-			goEnemy = Wrapper.CreateEmptyGameObject(transform);
-			fb = goEnemy.AddComponent<EnemyBase>();
-			fb.Init(0, "");
-			listFish.Add(fb);
+			enemyGroup = aryEnemyDataInfo[i];
+			for (int j = 0; j < enemyGroup.FishCountMax; ++j)
+			{
+				goEnemy = Wrapper.CreateEmptyGameObject(transform);
+				fb = goEnemy.AddComponent<EnemyBase>();
+				fb.Init(enemyGroup.FishId, "");
+				listEnemy.Add(fb);
+			}
 		}
+		// 打乱敌人列表
+		listEnemy.Sort((a,b)=> { return Wrapper.GetRandom(-1, 1); });
+		listFish.AddRange(listEnemy);
 	}
 	public void CustomUpdate()
 	{
@@ -75,12 +96,12 @@ public class FishManager : MonoBehaviour
 		}
 
 		// 能活着的杂鱼数量计算
-		int enemyNum = (int)Mathf.Lerp(BattleConst.EnemyNumMin, BattleConst.EnemyNumMax, BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.PoisonRingRadiusMax);
+		int enemyNum = GetEnemyCount();
 
 		// 当活着的鱼比能活着的鱼数量少的时候，复活鱼
 		if (enemyNum > aliveEnemyNum)
 		{
-			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum + i; ++i)
+			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum; ++i)
 			{
 				bornWaittingEnemies[i].Born();
 			}
@@ -169,4 +190,15 @@ public class FishManager : MonoBehaviour
 		return listPlayer;
 	}
 
+	int GetEnemyCount()
+	{
+		int enemyMax = 0;
+		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.PoisonRingRadiusMax;
+		var aryEnemyDataInfo = BattleManagerGroup.GetInstance().battleResponse.StageInfo.AryEnemyDataInfo;
+		for (int i = 0; i < aryEnemyDataInfo.Count; ++i)
+		{
+			enemyMax += (int)Mathf.Lerp(aryEnemyDataInfo[i].FishCountMin, aryEnemyDataInfo[i].FishCountMax, rate);
+		}
+		return enemyMax;
+	}
 }

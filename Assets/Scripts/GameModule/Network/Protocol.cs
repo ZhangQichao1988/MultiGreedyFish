@@ -49,16 +49,18 @@ public static partial class ProtocolReflection {
           "Z2h0RmlzaBgKIAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBC",
           "UGxheWVyRmlzaExldmVsSW5mbyJNCg9QQkVuZW15RGF0YUluZm8SDgoGZmlz",
           "aElkGAEgASgFEhQKDGZpc2hDb3VudE1heBgCIAEoBRIUCgxmaXNoQ291bnRN",
-          "aW4YAyABKAUiOQoLUEJTdGFnZUluZm8SKgoQYXJ5RW5lbXlEYXRhSW5mbxgB",
-          "IAMoCzIQLlBCRW5lbXlEYXRhSW5mbypQChNEYXRhTGlua1NlcnZpY2VUeXBl",
-          "EggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2dsZV9wbGF5EAIS",
-          "DQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQEAAS",
-          "GwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4QAhIX",
-          "ChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJPSxAA",
-          "EgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tfT1VU",
-          "X0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9SEAVC",
-          "MAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2Fn",
-          "ZYgBAA=="));
+          "aW4YAyABKAUiLwoPUEJSb2JvdERhdGFJbmZvEg4KBmZpc2hJZBgBIAEoBRIM",
+          "CgRhaUlkGAIgASgFImUKC1BCU3RhZ2VJbmZvEioKEGFyeUVuZW15RGF0YUlu",
+          "Zm8YASADKAsyEC5QQkVuZW15RGF0YUluZm8SKgoQYXJ5Um9ib3REYXRhSW5m",
+          "bxgCIAMoCzIQLlBCUm9ib3REYXRhSW5mbypQChNEYXRhTGlua1NlcnZpY2VU",
+          "eXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2dsZV9wbGF5",
+          "EAISDQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQ",
+          "EAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4Q",
+          "AhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJP",
+          "SxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tf",
+          "T1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9S",
+          "EAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVz",
+          "c2FnZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -75,7 +77,8 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBStageInfo), global::PBStageInfo.Parser, new[]{ "AryEnemyDataInfo" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBStageInfo), global::PBStageInfo.Parser, new[]{ "AryEnemyDataInfo", "AryRobotDataInfo" }, null, null, null, null)
         }));
   }
   #endregion
@@ -3434,6 +3437,200 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 }
 
 /// <summary>
+/// 机器人
+/// </summary>
+public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
+  private static readonly pb::MessageParser<PBRobotDataInfo> _parser = new pb::MessageParser<PBRobotDataInfo>(() => new PBRobotDataInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<PBRobotDataInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[13]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBRobotDataInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBRobotDataInfo(PBRobotDataInfo other) : this() {
+    _hasBits0 = other._hasBits0;
+    fishId_ = other.fishId_;
+    aiId_ = other.aiId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public PBRobotDataInfo Clone() {
+    return new PBRobotDataInfo(this);
+  }
+
+  /// <summary>Field number for the "fishId" field.</summary>
+  public const int FishIdFieldNumber = 1;
+  private readonly static int FishIdDefaultValue = 0;
+
+  private int fishId_;
+  /// <summary>
+  /// 魚ID，對照FishDataTable的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishId {
+    get { if ((_hasBits0 & 1) != 0) { return fishId_; } else { return FishIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      fishId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "fishId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "aiId" field.</summary>
+  public const int AiIdFieldNumber = 2;
+  private readonly static int AiIdDefaultValue = 0;
+
+  private int aiId_;
+  /// <summary>
+  /// 参照基表c_RobotAiData.xlsx
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int AiId {
+    get { if ((_hasBits0 & 2) != 0) { return aiId_; } else { return AiIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      aiId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "aiId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAiId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "aiId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAiId() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as PBRobotDataInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(PBRobotDataInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (FishId != other.FishId) return false;
+    if (AiId != other.AiId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasFishId) hash ^= FishId.GetHashCode();
+    if (HasAiId) hash ^= AiId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasFishId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(FishId);
+    }
+    if (HasAiId) {
+      output.WriteRawTag(16);
+      output.WriteInt32(AiId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasFishId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
+    }
+    if (HasAiId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(AiId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(PBRobotDataInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasFishId) {
+      FishId = other.FishId;
+    }
+    if (other.HasAiId) {
+      AiId = other.AiId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          FishId = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          AiId = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 /// 战斗舞台信息
 /// </summary>
 public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
@@ -3444,7 +3641,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[13]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3462,6 +3659,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public PBStageInfo(PBStageInfo other) : this() {
     aryEnemyDataInfo_ = other.aryEnemyDataInfo_.Clone();
+    aryRobotDataInfo_ = other.aryRobotDataInfo_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3483,6 +3681,19 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
     get { return aryEnemyDataInfo_; }
   }
 
+  /// <summary>Field number for the "aryRobotDataInfo" field.</summary>
+  public const int AryRobotDataInfoFieldNumber = 2;
+  private static readonly pb::FieldCodec<global::PBRobotDataInfo> _repeated_aryRobotDataInfo_codec
+      = pb::FieldCodec.ForMessage(18, global::PBRobotDataInfo.Parser);
+  private readonly pbc::RepeatedField<global::PBRobotDataInfo> aryRobotDataInfo_ = new pbc::RepeatedField<global::PBRobotDataInfo>();
+  /// <summary>
+  /// 机器人，Boss信息
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::PBRobotDataInfo> AryRobotDataInfo {
+    get { return aryRobotDataInfo_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as PBStageInfo);
@@ -3497,6 +3708,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
       return true;
     }
     if(!aryEnemyDataInfo_.Equals(other.aryEnemyDataInfo_)) return false;
+    if(!aryRobotDataInfo_.Equals(other.aryRobotDataInfo_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3504,6 +3716,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
   public override int GetHashCode() {
     int hash = 1;
     hash ^= aryEnemyDataInfo_.GetHashCode();
+    hash ^= aryRobotDataInfo_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3518,6 +3731,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
     aryEnemyDataInfo_.WriteTo(output, _repeated_aryEnemyDataInfo_codec);
+    aryRobotDataInfo_.WriteTo(output, _repeated_aryRobotDataInfo_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3527,6 +3741,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
   public int CalculateSize() {
     int size = 0;
     size += aryEnemyDataInfo_.CalculateSize(_repeated_aryEnemyDataInfo_codec);
+    size += aryRobotDataInfo_.CalculateSize(_repeated_aryRobotDataInfo_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -3539,6 +3754,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
       return;
     }
     aryEnemyDataInfo_.Add(other.aryEnemyDataInfo_);
+    aryRobotDataInfo_.Add(other.aryRobotDataInfo_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -3552,6 +3768,10 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
           break;
         case 10: {
           aryEnemyDataInfo_.AddEntriesFrom(input, _repeated_aryEnemyDataInfo_codec);
+          break;
+        }
+        case 18: {
+          aryRobotDataInfo_.AddEntriesFrom(input, _repeated_aryRobotDataInfo_codec);
           break;
         }
       }

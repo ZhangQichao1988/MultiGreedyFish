@@ -5,9 +5,6 @@ using UnityEngine;
 public class BattleConst
 {
 	static readonly public bool FreeMode = false;																											// 只剩自己也不会胜利
-	static readonly public int EnemyNumMax = 100;                                                                                                                   // 杂鱼最多数量
-	static readonly public int EnemyNumMin = 5;																														// 杂鱼最少数量
-
 
 	static readonly public float PoisonRingScaleSpeed = 0.6f;                                                                                         // 毒圈缩小速度
 	static readonly public float PoisonRingRadiusMin = 5f;																								// 毒圈的最小半径

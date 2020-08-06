@@ -6,12 +6,15 @@ using System.IO;
 
 public class BattleScene : BaseScene
 {
+    public P4_Response battleResponse;
     /// <summary>
     /// 添加资源需要加载的资源
     /// </summary>
     /// <param name="parms">外部传入的参数</param>
     public override void Init(object parms)
     {
+        battleResponse = parms as P4_Response;
+
         // Other
         m_sceneData.Add(new SceneData(){ Resource = Path.Combine(AssetPathConst.lifeGaugePath), ResType = typeof(GameObject) });
         m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.playerNameplatePrefabPath), ResType = typeof(GameObject) });
@@ -27,7 +30,12 @@ public class BattleScene : BaseScene
         listFishIds.AddRange(new int[] { 0 });
 
         // AI鱼
-        listFishIds.AddRange(RobotDataTableProxy.Instance.GetAllRobotFishIds());
+        var aryRobot = battleResponse.StageInfo.AryRobotDataInfo;
+        for (int i = 0; i < aryRobot.Count; ++i)
+        {
+            listFishIds.Add(aryRobot[i].FishId);
+        }
+        
         FishDataInfo fishBaseData;
         FishSkillDataInfo fishSkillBaseData;
         EffectDataInfo effectBaseData;

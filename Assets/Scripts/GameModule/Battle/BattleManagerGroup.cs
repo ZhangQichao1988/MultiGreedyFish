@@ -14,6 +14,7 @@ public class BattleManagerGroup : MonoBehaviour
         Result,
     }
     static BattleManagerGroup instance = null;
+    public P4_Response battleResponse;
 
     public InGameUIPanel inGameUIPanel = null;
     public FishManager fishManager = null;
@@ -30,7 +31,8 @@ public class BattleManagerGroup : MonoBehaviour
 	{
         instance = this;
         animator = GetComponent<Animator>();
-
+        BattleScene bs = BlSceneManager.GetCurrentScene() as BattleScene;
+        battleResponse = bs.battleResponse;
         GotoBattle();
     }
     static public BattleManagerGroup GetInstance()
