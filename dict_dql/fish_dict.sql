@@ -9,7 +9,10 @@ CREATE TABLE `FishSkillData`(`ID` INT(11),`skillType` TEXT,`effectId` INT(11),`a
 INSERT INTO `FishSkillData`(`ID`,`skillType`,`effectId`,`aryParam`) VALUES (1.0,'HealLife',0.0,'0.5,0.1'),(2.0,'Suck',-1.0,'9,1');
 DROP TABLE IF EXISTS `LanguageData`;
 CREATE TABLE `LanguageData`(`ID` INT(11),`cn` TEXT,`tw` TEXT,`en` TEXT,`jp` TEXT,PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `LanguageData`(`ID`,`cn`,`tw`,`en`,`jp`) VALUES (0.0,'江小鱼','江小魚','jiangxiaoyu','魚ちゃん'),(1.0,'第{0}名','第{0}名','No{0}','第{0}名'),(2.0,'+{0}','+{0}','+{0}','+{0}'),(3.0,'-{0}','-{0}','-{0}','-{0}'),(4.0,'躲避周圍污染的海水','躲避周圍污染的海水','躲避周圍污染的海水(en)','躲避周圍污染的海水(jp)'),(5.0,'吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！'),(6.0,'去吧！','去吧！','去吧！','去吧！'),(7.0,'生死决战！','生死决战！','生死决战！','生死决战！');
+INSERT INTO `LanguageData`(`ID`,`cn`,`tw`,`en`,`jp`) VALUES (0.0,'江小鱼','江小魚','jiangxiaoyu','魚ちゃん'),(1.0,'第{0}名','第{0}名','No{0}','第{0}名'),(2.0,'+{0}','+{0}','+{0}','+{0}'),(3.0,'-{0}','-{0}','-{0}','-{0}'),(4.0,'躲避周圍污染的海水','躲避周圍污染的海水','躲避周圍污染的海水(en)','躲避周圍污染的海水(jp)'),(5.0,'吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！','吃掉其他玩家的魚\n成爲海底霸主！'),(6.0,'去吧！','去吧！','去吧！','去吧！'),(7.0,'生死决战！','生死决战！','生死决战！','生死决战！'),(8.0,'获得金币\n{0}','获得金币\n{0}','获得金币\n{0}','获得金币\n{0}'),(9.0,'RankUp\n+{0}','RankUp\n+{0}','RankUp\n+{0}','RankUp\n+{0}');
 DROP TABLE IF EXISTS `RobotData`;
 CREATE TABLE `RobotData`(`ID` INT(11),`fishId` INT(11),`aiId` INT(11),`groupId` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `RobotData`(`ID`,`fishId`,`aiId`,`groupId`) VALUES (0.0,1.0,1.0,1.0),(1.0,1.0,1.0,1.0),(2.0,1.0,1.0,1.0),(3.0,1.0,0.0,1.0),(4.0,1.0,0.0,1.0),(5.0,1.0,0.0,1.0),(6.0,1.0,0.0,1.0),(7.0,1.0,2.0,1.0),(8.0,1.0,2.0,1.0),(9.0,2.0,3.0,2.0);
+INSERT INTO `RobotData`(`ID`,`fishId`,`aiId`,`groupId`) VALUES (0.0,2.0,3.0,-1.0),(1.0,1.0,1.0,0.0),(2.0,1.0,1.0,0.0),(3.0,1.0,1.0,0.0),(4.0,1.0,0.0,0.0),(5.0,1.0,0.0,0.0),(6.0,1.0,0.0,0.0),(7.0,1.0,0.0,0.0),(8.0,1.0,2.0,0.0),(9.0,1.0,2.0,0.0);
+DROP TABLE IF EXISTS `RobotGroupData`;
+CREATE TABLE `RobotGroupData`(`ID` INT(11),`groupId` INT(11),`rankMin` INT(11),`rankMax` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `RobotGroupData`(`ID`,`groupId`,`rankMin`,`rankMax`) VALUES (0.0,0.0,0.0,100.0),(1.0,1.0,100.0,200.0),(2.0,2.0,200.0,300.0),(3.0,3.0,300.0,400.0),(4.0,4.0,400.0,500.0),(5.0,5.0,500.0,600.0),(6.0,6.0,600.0,700.0),(7.0,7.0,700.0,800.0),(8.0,8.0,800.0,900.0),(9.0,9.0,900.0,);

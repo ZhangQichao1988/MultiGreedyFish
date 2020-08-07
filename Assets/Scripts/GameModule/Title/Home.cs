@@ -2,8 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using Google.Protobuf;
 
-public class Title : UIBase
+public class Home : UIBase
 {
+    public void Awake()
+    {
+        UIBase.Close("BattleResult");
+    }
     public void OnClickLogin()
     {
         GameServiceController.GetPlatformToken((token)=>{

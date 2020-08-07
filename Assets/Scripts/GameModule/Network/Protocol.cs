@@ -39,28 +39,30 @@ public static partial class ProtocolReflection {
           "KAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllciIcCgpQ",
           "NF9SZXF1ZXN0Eg4KBmZpc2hJZBgBIAIoBSJJCgtQNF9SZXNwb25zZRIZCgZy",
           "ZXN1bHQYASABKAsyCS5QQlJlc3VsdBIfCglzdGFnZUluZm8YAiABKAsyDC5Q",
-          "QlN0YWdlSW5mbyImCghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MY",
-          "AiABKAkiXwoVUEJQbGF5ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEo",
-          "BRIRCglmaXNoTGV2ZWwYAiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFu",
-          "a0xldmVsGAQgASgFIuUBCghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQ",
-          "CghuaWNrbmFtZRgCIAEoCRIMCgRyYW5rGAMgASgFEg8KB3JlZ1RpbWUYBCAB",
-          "KAMSEQoJbG9naW5MYXN0GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29s",
-          "ZBgHIAEoBRINCgVwb3dlchgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZp",
-          "Z2h0RmlzaBgKIAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBC",
-          "UGxheWVyRmlzaExldmVsSW5mbyJNCg9QQkVuZW15RGF0YUluZm8SDgoGZmlz",
-          "aElkGAEgASgFEhQKDGZpc2hDb3VudE1heBgCIAEoBRIUCgxmaXNoQ291bnRN",
-          "aW4YAyABKAUiLwoPUEJSb2JvdERhdGFJbmZvEg4KBmZpc2hJZBgBIAEoBRIM",
-          "CgRhaUlkGAIgASgFImUKC1BCU3RhZ2VJbmZvEioKEGFyeUVuZW15RGF0YUlu",
-          "Zm8YASADKAsyEC5QQkVuZW15RGF0YUluZm8SKgoQYXJ5Um9ib3REYXRhSW5m",
-          "bxgCIAMoCzIQLlBCUm9ib3REYXRhSW5mbypQChNEYXRhTGlua1NlcnZpY2VU",
-          "eXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2dsZV9wbGF5",
-          "EAISDQoJYXBwX2xvdmluEAMqYQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQ",
-          "EAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4Q",
-          "AhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMqbQoKU3RhdHVzQ29kZRIGCgJP",
-          "SxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tf",
-          "T1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9S",
-          "EAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVz",
-          "c2FnZYgBAA=="));
+          "QlN0YWdlSW5mbyIjCgpQNV9SZXF1ZXN0EhUKDWJhdHRsZVJhbmtpbmcYASAC",
+          "KAUiQwoLUDVfUmVzcG9uc2USGQoGcmVzdWx0GAEgASgLMgkuUEJSZXN1bHQS",
+          "GQoGcGxheWVyGAIgASgLMgkuUEJQbGF5ZXIiJgoIUEJSZXN1bHQSDAoEY29k",
+          "ZRgBIAEoBRIMCgRkZXNjGAIgASgJIl8KFVBCUGxheWVyRmlzaExldmVsSW5m",
+          "bxIOCgZmaXNoSWQYASABKAUSEQoJZmlzaExldmVsGAIgASgFEhAKCGZpc2hD",
+          "aGlwGAMgASgFEhEKCXJhbmtMZXZlbBgEIAEoBSLlAQoIUEJQbGF5ZXISEAoI",
+          "cGxheWVySWQYASABKAMSEAoIbmlja25hbWUYAiABKAkSDAoEcmFuaxgDIAEo",
+          "BRIPCgdyZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEoAxIPCgdkaWFt",
+          "b25kGAYgASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoHcG93",
+          "ZXJBdBgJIAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5UGxheWVyRmlz",
+          "aEluZm8YCyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8iTQoPUEJFbmVt",
+          "eURhdGFJbmZvEg4KBmZpc2hJZBgBIAEoBRIUCgxmaXNoQ291bnRNYXgYAiAB",
+          "KAUSFAoMZmlzaENvdW50TWluGAMgASgFIi8KD1BCUm9ib3REYXRhSW5mbxIO",
+          "CgZmaXNoSWQYASABKAUSDAoEYWlJZBgCIAEoBSJlCgtQQlN0YWdlSW5mbxIq",
+          "ChBhcnlFbmVteURhdGFJbmZvGAEgAygLMhAuUEJFbmVteURhdGFJbmZvEioK",
+          "EGFyeVJvYm90RGF0YUluZm8YAiADKAsyEC5QQlJvYm90RGF0YUluZm8qUAoT",
+          "RGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQ",
+          "ARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKmEKCU1lc3NhZ2VJ",
+          "ZBIPCgtNSURfU1RBUlRVUBAAEhsKF01JRF9MT0dJTl9XSVRIX1BMQVRGT1JN",
+          "EAESDQoJTUlEX0xPR0lOEAISFwoTTUlEX0dFVF9QTEFZRVJfSU5GTxADKm0K",
+          "ClN0YXR1c0NvZGUSBgoCT0sQABIKCgZGQUlMRUQQARITCg9TSUdOQVRVUkVf",
+          "RVJST1IQAhIXChNLSUNLX09VVF9MT0dJTl9VU0VSEAMSCwoHQ0FVVElPThAE",
+          "EhAKDENMSUVOVF9FUlJPUhAFQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZp",
+          "c2hnYW1lLnBiQglQQk1lc3NhZ2WIAQA="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -73,6 +75,8 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P3_Response), global::P3_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P4_Request), global::P4_Request.Parser, new[]{ "FishId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P4_Response), global::P4_Response.Parser, new[]{ "Result", "StageInfo" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P5_Request), global::P5_Request.Parser, new[]{ "BattleRanking" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P5_Response), global::P5_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "Rank", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
@@ -2159,6 +2163,328 @@ public sealed partial class P4_Response : pb::IMessage<P4_Response> {
 }
 
 /// <summary>
+///战斗结算
+/// </summary>
+public sealed partial class P5_Request : pb::IMessage<P5_Request> {
+  private static readonly pb::MessageParser<P5_Request> _parser = new pb::MessageParser<P5_Request>(() => new P5_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P5_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Request(P5_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    battleRanking_ = other.battleRanking_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Request Clone() {
+    return new P5_Request(this);
+  }
+
+  /// <summary>Field number for the "battleRanking" field.</summary>
+  public const int BattleRankingFieldNumber = 1;
+  private readonly static int BattleRankingDefaultValue = 0;
+
+  private int battleRanking_;
+  /// <summary>
+  /// 排名,1~10
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int BattleRanking {
+    get { if ((_hasBits0 & 1) != 0) { return battleRanking_; } else { return BattleRankingDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      battleRanking_ = value;
+    }
+  }
+  /// <summary>Gets whether the "battleRanking" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasBattleRanking {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "battleRanking" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearBattleRanking() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P5_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P5_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (BattleRanking != other.BattleRanking) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasBattleRanking) hash ^= BattleRanking.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasBattleRanking) {
+      output.WriteRawTag(8);
+      output.WriteInt32(BattleRanking);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasBattleRanking) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(BattleRanking);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P5_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasBattleRanking) {
+      BattleRanking = other.BattleRanking;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          BattleRanking = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P5_Response : pb::IMessage<P5_Response> {
+  private static readonly pb::MessageParser<P5_Response> _parser = new pb::MessageParser<P5_Response>(() => new P5_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P5_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Response(P5_Response other) : this() {
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    player_ = other.player_ != null ? other.player_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P5_Response Clone() {
+    return new P5_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player" field.</summary>
+  public const int PlayerFieldNumber = 2;
+  private global::PBPlayer player_;
+  /// <summary>
+  ///玩家信息
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBPlayer Player {
+    get { return player_; }
+    set {
+      player_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P5_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P5_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if (!object.Equals(Player, other.Player)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    if (player_ != null) hash ^= Player.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    if (player_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(Player);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    if (player_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Player);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P5_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    if (other.player_ != null) {
+      if (player_ == null) {
+        Player = new global::PBPlayer();
+      }
+      Player.MergeFrom(other.Player);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 18: {
+          if (player_ == null) {
+            Player = new global::PBPlayer();
+          }
+          input.ReadMessage(Player);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 ///PB结果
 /// </summary>
 public sealed partial class PBResult : pb::IMessage<PBResult> {
@@ -2170,7 +2496,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[9]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2360,7 +2686,7 @@ public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLev
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[10]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2642,7 +2968,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[11]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3210,7 +3536,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[12]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3448,7 +3774,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[13]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3641,7 +3967,7 @@ public sealed partial class PBStageInfo : pb::IMessage<PBStageInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[14]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

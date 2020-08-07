@@ -39,11 +39,13 @@ public class NetWorkHandler
             {"P0_Request", P0_Request.Parser},
             {"P1_Request", P1_Request.Parser},
             {"P2_Request", P2_Request.Parser},
+            {"P5_Request", P5_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
             {"P3_Response", P3_Response.Parser},
-            {"P4_Response", P4_Response.Parser}
+            {"P4_Response", P4_Response.Parser},
+            {"P5_Response", P5_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -57,6 +59,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLoginWithPlatform, OnRecvLoginWithThirdPlatform);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetPlayerInfo, OnRecvGetPlayerInfo);
         HttpDispatcher.Instance.AddObserver(4, OnRecvBattle);
+        HttpDispatcher.Instance.AddObserver(5, OnRecvBattleResult);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -160,6 +163,15 @@ public class NetWorkHandler
         NetWorkManager.Request("P4_Request", null);
     }
 
+    public static void RequestBattleResult(int battleRanking)
+    {
+        var request = new P5_Request();
+        request.BattleRanking = battleRanking;
+        var randomKey = CryptographyUtil.RandomBytes(32);
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P5_Request", requestByteData, randomKey, false);
+    }
+
     //recieve callback
     static void OnRecvStartup(HttpDispatcher.NodeMsg msg)
     {
@@ -221,6 +233,11 @@ public class NetWorkHandler
     {
         var response = P4_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P4_Response>(GetDispatchKey(msg.Key), response);
+    }
+    static void OnRecvBattleResult(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P5_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P5_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void TraceLog(string tag, string msg, byte[] data)

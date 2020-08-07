@@ -26,6 +26,7 @@ public class BattleManagerGroup : MonoBehaviour
 
     Animator animator = null;
     private bool isPause = false;
+    private int battleRanking = 0;
     private void Awake()
 	{
         instance = this;
@@ -56,9 +57,30 @@ public class BattleManagerGroup : MonoBehaviour
 
     public void GotoHome()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
+        NetWorkHandler.GetDispatch().AddListener<P5_Response>(GameEvent.RECIEVE_P5_RESPONSE, OnRecvBattleResult);
+        NetWorkHandler.RequestBattleResult(battleRanking);
+        
     }
-        public void SetPlayPoint()
+
+    void OnRecvBattleResult<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P5_RESPONSE);
+        var realResponse = response as P5_Response;
+        if (realResponse.Result.Code == NetworkConst.CODE_OK)
+        {
+            BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
+            int rewardGold = realResponse.Player.Gold - DataBank.player.Gold;
+            int rewardBattleRanking = DataBank.GetPlayerFishLevelInfo(realResponse.Player).RankLevel - DataBank.GetCurrentPlayerFishLevelInfo().RankLevel;
+            battleResult.Setup(rewardGold, rewardBattleRanking);
+            DataBank.player = realResponse.Player;
+        }
+        else
+        {
+            Debug.Log("战斗报酬通信错误！");
+        }
+
+    }
+    public void SetPlayPoint()
     {
         animator.SetTrigger("PlayPoint");
     }
@@ -76,6 +98,7 @@ public class BattleManagerGroup : MonoBehaviour
         }
         //resultRoot.SetActive(true);
         //battleControl.SetActive(false);
+        battleRanking = rank;
         resultText.text = string.Format( LanguageDataTableProxy.GetText(1), rank.ToString() );
     }
 

@@ -1,10 +1,14 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class UIBase : MonoBehaviour
 {
-    protected GameObject root;
 
+    protected GameObject root;
+    protected virtual string uiName { get { return ""; } }
+
+    static Dictionary<string, UIBase> dicUi = new Dictionary<string, UIBase>();
     public enum UILayers
     {
         DEFAULT,
@@ -19,6 +23,8 @@ public class UIBase : MonoBehaviour
 	
         AssetRef<GameObject> objRef = ResourceManager.LoadSync<GameObject>(path);
         GameObject go = GameObject.Instantiate(objRef.Asset, rootObj.transform);
+        UIBase uIBase = go.GetComponent<UIBase>();
+        dicUi.Add(uIBase.uiName, uIBase);
         return go;
     }
 
@@ -28,7 +34,13 @@ public class UIBase : MonoBehaviour
         return go.GetComponent<T>();
     }
 
-    void Awake()
+    public static void Close(string uiName)
+    {
+        if (!dicUi.ContainsKey(uiName)) { return; }
+        dicUi[uiName].Close();
+    }
+
+        void Awake()
     {
         root = gameObject;
     }
@@ -51,6 +63,7 @@ public class UIBase : MonoBehaviour
 
     public virtual void Close()
     {
+        dicUi.Remove(uiName);
         Destroy(root);
     }
 }

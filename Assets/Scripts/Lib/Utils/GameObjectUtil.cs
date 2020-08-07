@@ -67,7 +67,7 @@ public static class GameObjectUtil
     {
         GameObject gameObject = Object.Instantiate(prefab);
         AttachGameObject(gameObject, parent, resetTransform);
-
+         
         return gameObject;
     }
 

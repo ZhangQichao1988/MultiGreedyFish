@@ -85,10 +85,14 @@ public class InGameUIPanel : MonoBehaviour
         {
             PlayerRunSkill();
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            BattleManagerGroup.GetInstance().GotoHome();
+        }
 #endif
 
-            // TODO:不要弯曲的话可以删除
-            Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
+        // TODO:不要弯曲的话可以删除
+        Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
         Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
 
         int alivePlayerNum = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count;
