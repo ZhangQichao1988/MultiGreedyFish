@@ -27,7 +27,7 @@ public class BattleScene : BaseScene
         listFishIds.AddRange(new int[] { 0 });
 
         // AI鱼
-        var aryRobot = DataBank.stageInfo.AryRobotDataInfo;
+        var aryRobot = StageModel.Instance.stageInfo.AryRobotDataInfo;
         for (int i = 0; i < aryRobot.Count; ++i)
         {
             listFishIds.Add(aryRobot[i].FishId);

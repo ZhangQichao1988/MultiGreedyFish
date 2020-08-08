@@ -1,10 +1,25 @@
 
+using UnityEngine;
+
 public class PlayerModel : BaseModel<PlayerModel>
 {
-    public string testStr = "abc";
-
+    public PBPlayer player;
     public PlayerModel() : base()
     {
 
+    }
+
+    public PBPlayerFishLevelInfo GetCurrentPlayerFishLevelInfo()
+    {
+        return GetPlayerFishLevelInfo(player);
+    }
+    public PBPlayerFishLevelInfo GetPlayerFishLevelInfo(PBPlayer player)
+    {
+        foreach (var note in player.AryPlayerFishInfo)
+        {
+            if (note.FishId == player.FightFish) { return note; }
+        }
+        Debug.LogError("DataBank.GetCurrentPlayerFishLevelInfo()_1");
+        return null;
     }
 }

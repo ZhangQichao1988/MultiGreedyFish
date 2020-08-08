@@ -6,11 +6,11 @@ using System;
 /// </summary>
 public class UserLoginFlowController
 {
+    public static bool isLogin = true;
     public static Action<PBPlayer> OnGetPlayer = null;
     public static void ProcessLoginLogic(string platformToken)
     {
         Debug.LogFormat("[GetPlatform token]{0}", platformToken);
-        Debug.LogFormat(PlayerModel.Instance.testStr);
 
         if (string.IsNullOrEmpty( PlayerPrefs.GetString(NetworkConst.AUTH_KEY) ) )
         {
@@ -121,9 +121,11 @@ public class UserLoginFlowController
     static void OnRecvGetPlayerInfo<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P3_RESPONSE);
+        isLogin = false;
         Debug.Log("On Getted Userinfo!");
         var realResponse = response as P3_Response;
-        DataBank.player = realResponse.Player;
+
+        PlayerModel.Instance.player = realResponse.Player;
         OnGetPlayer(realResponse.Player);
     }
 }

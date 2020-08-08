@@ -9,15 +9,15 @@ public class Home : UIBase
     public void Awake()
     {
         UIBase.Close("BattleResult");
-        OnClickLogin();
+        if (UserLoginFlowController.isLogin) { OnClickLogin(); }
+        else
+        {
+            OnGetPlayer(PlayerModel.Instance.player);
+        }
     }
     public void OnClickLogin()
     {
-        if (UserLoginFlowController.OnGetPlayer == null)
-        {
-            UserLoginFlowController.OnGetPlayer = OnGetPlayer;
-        }
-
+        UserLoginFlowController.OnGetPlayer = OnGetPlayer;
         GameServiceController.GetPlatformToken((token)=>{
             token = token == null ? "" : token ;
             UserLoginFlowController.ProcessLoginLogic(token);
@@ -47,7 +47,7 @@ public class Home : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             Close();
-            DataBank.stageInfo = realResponse.StageInfo;
+            StageModel.Instance.stageInfo = realResponse.StageInfo;
             BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
         }
         else

@@ -69,10 +69,10 @@ public class BattleManagerGroup : MonoBehaviour
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
-            int rewardGold = realResponse.Player.Gold - DataBank.player.Gold;
-            int rewardBattleRanking = DataBank.GetPlayerFishLevelInfo(realResponse.Player).RankLevel - DataBank.GetCurrentPlayerFishLevelInfo().RankLevel;
+            int rewardGold = realResponse.Player.Gold - PlayerModel.Instance.player.Gold;
+            int rewardBattleRanking = PlayerModel.Instance.GetPlayerFishLevelInfo(realResponse.Player).RankLevel - PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel;
             battleResult.Setup(rewardGold, rewardBattleRanking);
-            DataBank.player = realResponse.Player;
+            PlayerModel.Instance.player = realResponse.Player;
         }
         else
         {

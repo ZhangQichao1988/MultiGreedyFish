@@ -15,7 +15,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(1, DataBank.player.Nickname);
+		player.Init(1, PlayerModel.Instance.player.Nickname);
 		return player;
 	}
 
@@ -35,7 +35,7 @@ public class FishManager : MonoBehaviour
 		RobotAiDataInfo playerRobotAiBaseData;
 		PBRobotDataInfo pBRobotDataInfo;
 		// 机器人
-		var aryRobotDataInfo = DataBank.stageInfo.AryRobotDataInfo;
+		var aryRobotDataInfo = StageModel.Instance.stageInfo.AryRobotDataInfo;
 		int robotCount = aryRobotDataInfo.Count;
 		var listName = RobotNameDataTableProxy.Instance.GetAllRobotNames();
 		for (int i = 0; i < robotCount; ++i)
@@ -61,7 +61,7 @@ public class FishManager : MonoBehaviour
 		FishBase fb = null;
 		PBEnemyDataInfo enemyGroup;
 		// 杂鱼
-		var aryEnemyDataInfo = DataBank.stageInfo.AryEnemyDataInfo;
+		var aryEnemyDataInfo = StageModel.Instance.stageInfo.AryEnemyDataInfo;
 		int EnemyNumMax = aryEnemyDataInfo.Count;
 		for (int i = 0; i < EnemyNumMax; ++i)
 		{
@@ -194,7 +194,7 @@ public class FishManager : MonoBehaviour
 	{
 		int enemyMax = 0;
 		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.PoisonRingRadiusMax;
-		var aryEnemyDataInfo = DataBank.stageInfo.AryEnemyDataInfo;
+		var aryEnemyDataInfo = StageModel.Instance.stageInfo.AryEnemyDataInfo;
 		for (int i = 0; i < aryEnemyDataInfo.Count; ++i)
 		{
 			enemyMax += (int)Mathf.Lerp(aryEnemyDataInfo[i].FishCountMin, aryEnemyDataInfo[i].FishCountMax, rate);
