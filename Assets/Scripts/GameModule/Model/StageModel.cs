@@ -1,9 +1,12 @@
 
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class StageModel : BaseModel<StageModel>
 {
-    public PBStageInfo stageInfo;
+    public PBEnemyDataInfo[] aryEnemyDataInfo;
+    public PBRobotDataInfo[] aryRobotDataInfo;
     public StageModel() : base()
     {
 

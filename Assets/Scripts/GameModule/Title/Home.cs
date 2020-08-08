@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Google.Protobuf;
 using System.IO;
+using System.Linq;
 
 public class Home : UIBase
 {
@@ -47,7 +48,9 @@ public class Home : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             Close();
-            StageModel.Instance.stageInfo = realResponse.StageInfo;
+
+            StageModel.Instance.aryEnemyDataInfo = realResponse.AryEnemyDataInfo.ToArray<PBEnemyDataInfo>();
+            StageModel.Instance.aryRobotDataInfo = realResponse.AryRobotDataInfo.ToArray<PBRobotDataInfo>();
             BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
         }
         else
