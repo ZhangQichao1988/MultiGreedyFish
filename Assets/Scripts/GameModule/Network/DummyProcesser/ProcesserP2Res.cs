@@ -8,7 +8,7 @@ using NetWorkModule;
 /// </summary>
 public class ProcesserP2Res : IDummyResponseProcesser
 {
-    public IMessage ProcessRequest(int resId, IMessage pbData)
+    public IMessage ProcessRequest(int msgId, IMessage pbData)
     {
         var request = pbData as P2_Request;
         var response = GetResponseData();
@@ -19,9 +19,9 @@ public class ProcesserP2Res : IDummyResponseProcesser
         return response;
     } 
 
-    public void DispatchRes(int resId, IMessage request, IMessage response)
+    public void DispatchRes(int msgId, IMessage request, IMessage response)
     {
-        NetWorkHandler.GetDispatch().Dispatch<P2_Response>(NetWorkHandler.GetDispatchKey(resId), response as P2_Response);
+        NetWorkHandler.GetDispatch().Dispatch<P2_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P2_Response);
     }
 
     P2_Response GetResponseData()

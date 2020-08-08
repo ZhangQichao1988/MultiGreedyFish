@@ -7,7 +7,7 @@ namespace NetWorkModule.Dummy
     /// </summary>
     public interface IDummyResponseProcesser
     {
-         IMessage ProcessRequest(int resId, IMessage pbData);
-         void DispatchRes(int resId, IMessage request, IMessage response);
+         IMessage ProcessRequest(int msgId, IMessage pbData);
+         void DispatchRes(int msgId, IMessage request, IMessage response);
     }
 }

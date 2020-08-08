@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ProcesserP0Res : IDummyResponseProcesser
 {
-    public IMessage ProcessRequest(int resId, IMessage pbData)
+    public IMessage ProcessRequest(int msgId, IMessage pbData)
     {
         var request = pbData as P0_Request;
         var response = GetResponseData();
@@ -17,9 +17,9 @@ public class ProcesserP0Res : IDummyResponseProcesser
         return response;
     } 
 
-    public void DispatchRes(int resId, IMessage request, IMessage response)
+    public void DispatchRes(int msgId, IMessage request, IMessage response)
     {
-        NetWorkHandler.GetDispatch().Dispatch<P0_Response>(NetWorkHandler.GetDispatchKey(resId), response as P0_Response);
+        NetWorkHandler.GetDispatch().Dispatch<P0_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P0_Response);
     }
 
     P0_Response GetResponseData()

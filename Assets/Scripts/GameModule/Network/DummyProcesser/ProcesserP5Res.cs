@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 /// </summary>
 public class ProcesserP5Res : IDummyResponseProcesser
 {
-    public IMessage ProcessRequest(int resId, IMessage pbData)
+    public IMessage ProcessRequest(int msgId, IMessage pbData)
     {
         var response = GetResponseData();
 
@@ -17,9 +17,9 @@ public class ProcesserP5Res : IDummyResponseProcesser
         
     } 
 
-    public void DispatchRes(int resId, IMessage request, IMessage response)
+    public void DispatchRes(int msgId, IMessage request, IMessage response)
     {
-        NetWorkHandler.GetDispatch().Dispatch<P5_Response>(NetWorkHandler.GetDispatchKey(resId), response as P5_Response);
+        NetWorkHandler.GetDispatch().Dispatch<P5_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P5_Response);
     }
 
     P5_Response GetResponseData()
