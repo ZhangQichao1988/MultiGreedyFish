@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class HomeFishControl : MonoBehaviour
@@ -9,7 +10,8 @@ public class HomeFishControl : MonoBehaviour
     float offset = 5f;
     float spd = 5f;
     float animSpd = 0.025f;
-    public float changePosLen = 1f;
+    float changePosLen = 0.1f;
+    //GameObject effectBlister;
     Animator animator;
     Transform transModel;
     Vector3 Dir, curDir, moveDir;
@@ -21,6 +23,10 @@ public class HomeFishControl : MonoBehaviour
         transModel = goFish.transform;
         targetPos = transModel.position;
         animator = goFish.GetComponent<Animator>();
+        GameObject goMouth = GameObject.Find("mouth");
+        Debug.Assert(goMouth != null, "HomeFishControl.SetFishModel()_1");
+        GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, "fx_blister_home"), typeof(GameObject)).Asset as GameObject;
+        Instantiate(go, goMouth.transform);
     }
     private void Update()
     {
@@ -40,7 +46,7 @@ public class HomeFishControl : MonoBehaviour
         // 靠近目的地后就开始闲逛
         if (new Vector2(targetPos.x - transModel.position.x, targetPos.y - transModel.position.y).sqrMagnitude < changePosLen)
         {
-            targetPos = new Vector3(Wrapper.GetRandom(-80f, 80f), Wrapper.GetRandom(-40f, 40f), transModel.position.z);
+            targetPos = new Vector3(Wrapper.GetRandom(-80f, 80f), Wrapper.GetRandom(-30f, 40f), transModel.position.z);
             spd = 1f;
         }
         MoveUpdate();
