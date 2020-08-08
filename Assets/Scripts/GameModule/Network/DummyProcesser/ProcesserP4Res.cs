@@ -27,17 +27,16 @@ public class ProcesserP4Res : IDummyResponseProcesser
         var res = new P4_Response();
         res.Result = new PBResult() { Code = 0 };
 
-        res.StageInfo = new PBStageInfo();
-        res.StageInfo.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
-        res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
+        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
 
         //res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 2, AiId = 3 });
         return res;

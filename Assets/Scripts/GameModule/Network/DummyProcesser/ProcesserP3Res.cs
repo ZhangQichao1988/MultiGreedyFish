@@ -29,7 +29,6 @@ public class ProcesserP3Res : IDummyResponseProcesser
             Gold = 10,
             Diamond = 10,
             Nickname = "Dummy",
-            Rank = 2,
             Power = 100,
             PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L
         };

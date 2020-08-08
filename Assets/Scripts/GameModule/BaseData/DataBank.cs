@@ -6,7 +6,8 @@ using UnityEngine;
 static public class DataBank
 {
     static public  PBPlayer player;
-    static public PBStageInfo stageInfo;
+    static public IList<PBRobotDataInfo> robotDataInfo;
+    static public IList<PBEnemyDataInfo> enemyDataInfo;
 
     static public PBPlayerFishLevelInfo GetCurrentPlayerFishLevelInfo()
     {

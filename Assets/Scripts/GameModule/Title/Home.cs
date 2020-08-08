@@ -47,7 +47,8 @@ public class Home : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             Close();
-            DataBank.stageInfo = realResponse.StageInfo;
+            DataBank.robotDataInfo = realResponse.AryRobotDataInfo;
+            DataBank.enemyDataInfo = realResponse.AryEnemyDataInfo;
             BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
         }
         else

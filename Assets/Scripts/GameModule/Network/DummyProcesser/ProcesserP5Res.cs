@@ -33,7 +33,6 @@ public class ProcesserP5Res : IDummyResponseProcesser
             Gold = 100,
             Diamond = 999999,
             Nickname = "Dummy",
-            Rank = 2,
             Power = 100,
             PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L
         };
