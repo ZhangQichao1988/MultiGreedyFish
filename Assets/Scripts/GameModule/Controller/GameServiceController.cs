@@ -27,6 +27,12 @@ public class GameServiceController
 
     public static void GetPlatformToken(Action<string> callback)
     {
+        if (!AppConst.EnabledGameServices)
+        {
+            callback(null);
+            return;
+        }
+
         if (IsSignIn())
         {
             EncryptReceiveToken(callback);

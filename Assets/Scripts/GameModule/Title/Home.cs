@@ -11,7 +11,7 @@ public class Home : UIBase
     public void OnClickLogin()
     {
         GameServiceController.GetPlatformToken((token)=>{
-            token = "tesadfasfa";
+            token = token == null ? "" : token ;
             UserLoginFlowController.ProcessLoginLogic(token);
         });
     }

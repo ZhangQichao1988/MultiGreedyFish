@@ -49,6 +49,13 @@ namespace NetWorkModule
             }
         }
 
+
+        public void Reset()
+        {
+            gSessionKey = null;
+            cachedSession = null;
+        }
+
         public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)
         {
             byte[] data = m_protocol.Pack(msg, PID++, body);

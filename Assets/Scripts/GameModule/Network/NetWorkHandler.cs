@@ -31,6 +31,8 @@ public class NetWorkHandler
             dispatch.RemoveAll();
             dispatch = null;
         }
+
+        NetWorkManager.Instance.Reset();
     }
 
     public static void InitHttpNetWork()

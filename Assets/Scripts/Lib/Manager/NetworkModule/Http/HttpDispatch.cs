@@ -21,6 +21,14 @@ namespace NetWorkModule
             m_inst = null;
         }
 
+        public static void Clean()
+        {
+            if (m_inst != null)
+            {
+                m_inst.m_msg_obs.Clear();
+            }
+        }
+
         public delegate void DgtServerEvent(EventType type, string msg, System.Object obj);
         public event DgtServerEvent OnServeEvent;
 

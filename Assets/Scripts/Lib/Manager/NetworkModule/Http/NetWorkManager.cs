@@ -43,6 +43,15 @@ namespace NetWorkModule
             }
         }
 
+        /// <summary>
+        /// 游戏热重启调用
+        /// </summary>
+        public void Reset()
+        {
+            httpClient.Reset();
+            HttpDispatcher.Clean();
+        }
+
         private void OnDestroy()
         {
             HttpDispatcher.DestroyInstance();
