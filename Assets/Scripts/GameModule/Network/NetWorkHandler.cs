@@ -60,8 +60,8 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLogin , OnRecvLogin);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLoginWithPlatform, OnRecvLoginWithThirdPlatform);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetPlayerInfo, OnRecvGetPlayerInfo);
-        HttpDispatcher.Instance.AddObserver(4, OnRecvBattle);
-        HttpDispatcher.Instance.AddObserver(5, OnRecvBattleResult);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartFight, OnRecvBattle);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidEndFight, OnRecvBattleResult);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)

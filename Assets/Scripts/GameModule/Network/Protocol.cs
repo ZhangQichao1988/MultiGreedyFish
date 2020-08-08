@@ -56,13 +56,14 @@ public static partial class ProtocolReflection {
           "ChBhcnlFbmVteURhdGFJbmZvGAEgAygLMhAuUEJFbmVteURhdGFJbmZvEioK",
           "EGFyeVJvYm90RGF0YUluZm8YAiADKAsyEC5QQlJvYm90RGF0YUluZm8qUAoT",
           "RGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQ",
-          "ARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKmEKCU1lc3NhZ2VJ",
-          "ZBIPCgtNSURfU1RBUlRVUBAAEhsKF01JRF9MT0dJTl9XSVRIX1BMQVRGT1JN",
-          "EAESDQoJTUlEX0xPR0lOEAISFwoTTUlEX0dFVF9QTEFZRVJfSU5GTxADKm0K",
-          "ClN0YXR1c0NvZGUSBgoCT0sQABIKCgZGQUlMRUQQARITCg9TSUdOQVRVUkVf",
-          "RVJST1IQAhIXChNLSUNLX09VVF9MT0dJTl9VU0VSEAMSCwoHQ0FVVElPThAE",
-          "EhAKDENMSUVOVF9FUlJPUhAFQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZp",
-          "c2hnYW1lLnBiQglQQk1lc3NhZ2WIAQA="));
+          "ARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKokBCglNZXNzYWdl",
+          "SWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9S",
+          "TRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxIT",
+          "Cg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUqbQoKU3Rh",
+          "dHVzQ29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJP",
+          "UhACEhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoM",
+          "Q0xJRU5UX0VSUk9SEAVCMAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdh",
+          "bWUucGJCCVBCTWVzc2FnZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -104,6 +105,8 @@ public enum MessageId {
   [pbr::OriginalName("MID_LOGIN_WITH_PLATFORM")] MidLoginWithPlatform = 1,
   [pbr::OriginalName("MID_LOGIN")] MidLogin = 2,
   [pbr::OriginalName("MID_GET_PLAYER_INFO")] MidGetPlayerInfo = 3,
+  [pbr::OriginalName("MID_START_FIGHT")] MidStartFight = 4,
+  [pbr::OriginalName("MID_END_FIGHT")] MidEndFight = 5,
 }
 
 public enum StatusCode {
