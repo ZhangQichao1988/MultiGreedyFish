@@ -238,25 +238,9 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
-        //++updateCnt;
-        //if (updateCnt >= int.MaxValue) { updateCnt = 0; }
-        //if (updateCnt % 10 == 1) 
-        {
-            // 计算离相机目标的距离太远的话就不要动了（优化）
-            isBecameInvisible = BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
-            //if (isBecameInvisible)
-            //{
-            //    if (!transModel.gameObject.activeSelf) { transModel.gameObject.SetActive(true); }
-            //    if (lifeGauge && !lifeGauge.gameObject.activeSelf) { lifeGauge.gameObject.SetActive(true); }
-            //}
-            //else
-            //{
-            //    if (transModel.gameObject.activeSelf) { transModel.gameObject.SetActive(false); }
-            //    if (lifeGauge && lifeGauge.gameObject.activeSelf) { lifeGauge.gameObject.SetActive(false); }
-            //}
-        }
+        // 计算离相机目标的距离太远的话就不要动了（优化）
+        isBecameInvisible = BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
 
-        
 
         BuffUpdate();
         AquaticCheck();

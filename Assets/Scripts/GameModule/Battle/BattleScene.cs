@@ -21,7 +21,7 @@ public class BattleScene : BaseScene
         List<int> listFishIds = new List<int>();
 
         // 玩家鱼ID
-        listFishIds.Add(1); // TODO:从Response获取玩家鱼ID
+        //listFishIds.Add(1); // TODO:从Response获取玩家鱼ID
 
         // 杂鱼ID,一般都是固定的
         listFishIds.AddRange(new int[] { 0 });

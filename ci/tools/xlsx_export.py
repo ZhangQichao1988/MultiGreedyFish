@@ -95,6 +95,7 @@ base_data_type = {
     "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
     "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
     "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "aiId", "INT(11)", "groupId", "INT(11)"]),
+    "EnemyData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "fishCountMin", "INT(11)",  "fishCountMax", "INT(11)",  "groupId", "INT(11)"]),
     "RobotGroupData": sort_cloum_item(["ID", "INT(11)", "groupId", "INT(11)", "rankMin", "INT(11)", "rankMax", "INT(11)"]),
 }
 

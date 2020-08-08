@@ -6,6 +6,7 @@ using System;
 /// </summary>
 public class UserLoginFlowController
 {
+    public static Action<PBPlayer> OnGetPlayer = null;
     public static void ProcessLoginLogic(string platformToken)
     {
         Debug.LogFormat("[GetPlatform token]{0}", platformToken);
@@ -123,5 +124,6 @@ public class UserLoginFlowController
         Debug.Log("On Getted Userinfo!");
         var realResponse = response as P3_Response;
         DataBank.player = realResponse.Player;
+        OnGetPlayer(realResponse.Player);
     }
 }
