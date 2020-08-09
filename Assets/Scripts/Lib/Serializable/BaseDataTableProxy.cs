@@ -32,7 +32,7 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
         Cached();
     }
 
-    public void Cached()
+    public virtual void Cached()
     {
         if (!hasCached)
         {

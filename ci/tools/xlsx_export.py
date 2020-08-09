@@ -86,6 +86,7 @@ def sort_cloum_item(arr):
 
 
 base_data_type = {
+    "Config": sort_cloum_item(["ID", "INT(11)", "key", "TEXT", "value", "DOUBLE(16,2)"]),
     "EffectData": sort_cloum_item(["ID", "INT(11)", "prefabPath", "TEXT", "duration", "DOUBLE(16,2)"]),
     "FishBuffData": sort_cloum_item(["ID", "INT(11)", "buffType", "TEXT", "aryParam", "TEXT"]),
     "FishData": sort_cloum_item(

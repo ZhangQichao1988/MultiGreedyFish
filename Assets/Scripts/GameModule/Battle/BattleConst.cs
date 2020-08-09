@@ -41,7 +41,5 @@ public class BattleConst
 	static readonly public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
 
 
-	// 非战斗
-	//static readonly public float HomeChangeFishPosTime = 
 
 }
