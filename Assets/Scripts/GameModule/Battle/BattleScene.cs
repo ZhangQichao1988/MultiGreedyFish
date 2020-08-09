@@ -65,8 +65,10 @@ public class BattleScene : BaseScene
         //GameObject.Instantiate(cachedObject[Path.Combine(UIPathRoot, "BattleControl")]);
     }
 
+    //todo 作销毁
     public override void Destory()
     {
         base.Destory();
+        StageModel.Instance.Dispose();
     }
 }

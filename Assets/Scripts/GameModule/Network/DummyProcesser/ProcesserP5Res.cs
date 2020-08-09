@@ -39,6 +39,9 @@ public class ProcesserP5Res : IDummyResponseProcesser
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 0, FishChip = 10, FishLevel = 2, RankLevel = 3 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 10 });
 
+        //获得的金币
+        res.GainGold = 10;
+
         return res;
     }
 }

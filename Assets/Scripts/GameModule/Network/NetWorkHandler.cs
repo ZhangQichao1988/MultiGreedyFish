@@ -165,13 +165,14 @@ public class NetWorkHandler
         NetWorkManager.Request("P4_Request", null);
     }
 
-    public static void RequestBattleResult(int battleRanking)
+    public static void RequestBattleResult(string battleId, int battleRanking)
     {
         var request = new P5_Request();
         request.BattleRanking = battleRanking;
-        var randomKey = CryptographyUtil.RandomBytes(32);
+        request.BattleId = battleId;
+        
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P5_Request", requestByteData, randomKey, false);
+        NetWorkManager.Request("P5_Request", requestByteData);
     }
 
     //recieve callback

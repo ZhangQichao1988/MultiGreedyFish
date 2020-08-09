@@ -58,8 +58,7 @@ public class BattleManagerGroup : MonoBehaviour
     public void GotoHome()
     {
         NetWorkHandler.GetDispatch().AddListener<P5_Response>(GameEvent.RECIEVE_P5_RESPONSE, OnRecvBattleResult);
-        NetWorkHandler.RequestBattleResult(battleRanking);
-        
+        NetWorkHandler.RequestBattleResult(StageModel.Instance.BattleId, battleRanking);
     }
 
     void OnRecvBattleResult<T>(T response)

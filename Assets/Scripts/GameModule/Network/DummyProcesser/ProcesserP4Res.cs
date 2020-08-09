@@ -38,6 +38,8 @@ public class ProcesserP4Res : IDummyResponseProcesser
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
 
+        res.BattleId = "11111";
+
         //res.StageInfo.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 2, AiId = 3 });
         return res;
     }
