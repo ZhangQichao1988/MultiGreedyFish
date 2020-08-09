@@ -50,6 +50,8 @@ public class Intro : MonoBehaviour
         }
     }
 
+    static int a = 0;
+
     IEnumerator Start()
     {
         ClickEffect.Initialize();
@@ -61,10 +63,12 @@ public class Intro : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         UIManager.Init();
-        var assetHome = ResourceManager.LoadSync("ArtResources/UI/Prefabs/Home", typeof(GameObject));
-        yield return assetHome.Asset;
-        GameObjectUtil.InstantiatePrefab(assetHome.Asset as GameObject, null);
         //UIBase.Open("ArtResources/UI/Prefabs/Title");
+
+        UserLoginFlowController.StartLoginFlow(()=>{
+            BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
+        });
+        
     }
     
 

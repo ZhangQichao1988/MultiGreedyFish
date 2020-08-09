@@ -6,7 +6,7 @@ public class UIBase : MonoBehaviour
 {
 
     protected GameObject root;
-    protected virtual string uiName { get { return ""; } }
+    protected virtual string uiName { get;set; }
 
     static Dictionary<string, UIBase> dicUi = new Dictionary<string, UIBase>();
     public enum UILayers
@@ -24,6 +24,7 @@ public class UIBase : MonoBehaviour
         AssetRef<GameObject> objRef = ResourceManager.LoadSync<GameObject>(path);
         GameObject go = GameObject.Instantiate(objRef.Asset, rootObj.transform);
         UIBase uIBase = go.GetComponent<UIBase>();
+        uIBase.uiName = path + "|" + go.GetHashCode();
         dicUi.Add(uIBase.uiName, uIBase);
         return go;
     }
@@ -40,9 +41,10 @@ public class UIBase : MonoBehaviour
         dicUi[uiName].Close();
     }
 
-        void Awake()
+    protected virtual void Awake()
     {
         root = gameObject;
+        uiName = uiName == null ? "ui" + gameObject.GetHashCode().ToString() : uiName;
     }
 
     public virtual void Show()

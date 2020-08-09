@@ -7,23 +7,11 @@ using System.Linq;
 public class Home : UIBase
 {
     public HomeFishControl fishControl;
-    public void Awake()
+    protected override void Awake()
     {
-        UIBase.Close("BattleResult");
-        if (UserLoginFlowController.isLogin) { OnClickLogin(); }
-        else
-        {
-            OnGetPlayer(PlayerModel.Instance.player);
-        }
-    }
-    public void OnClickLogin()
-    {
-        UserLoginFlowController.OnGetPlayer = OnGetPlayer;
-        GameServiceController.GetPlatformToken((token)=>{
-            token = token == null ? "" : token ;
-            UserLoginFlowController.ProcessLoginLogic(token);
-            
-        });
+        base.Awake();
+        
+        OnGetPlayer(PlayerModel.Instance.player);
     }
 
     private void OnGetPlayer(PBPlayer pBPlayer)
@@ -37,8 +25,6 @@ public class Home : UIBase
     {
         NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
         NetWorkHandler.RequestBattle();
-
-        
     }
 
     void OnRecvBattle<T>(T response)

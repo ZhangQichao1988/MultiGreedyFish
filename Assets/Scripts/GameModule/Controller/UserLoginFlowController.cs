@@ -6,8 +6,16 @@ using System;
 /// </summary>
 public class UserLoginFlowController
 {
-    public static bool isLogin = true;
-    public static Action<PBPlayer> OnGetPlayer = null;
+    static Action finishCb;
+    public static void StartLoginFlow(Action callback)
+    {
+        finishCb = callback;
+        GameServiceController.GetPlatformToken((token)=>{
+            token = token == null ? "" : token ;
+            ProcessLoginLogic(token);
+        });
+    }
+
     public static void ProcessLoginLogic(string platformToken)
     {
         Debug.LogFormat("[GetPlatform token]{0}", platformToken);
@@ -121,11 +129,10 @@ public class UserLoginFlowController
     static void OnRecvGetPlayerInfo<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P3_RESPONSE);
-        isLogin = false;
         Debug.Log("On Getted Userinfo!");
         var realResponse = response as P3_Response;
 
         PlayerModel.Instance.player = realResponse.Player;
-        OnGetPlayer(realResponse.Player);
+        finishCb?.Invoke();
     }
 }

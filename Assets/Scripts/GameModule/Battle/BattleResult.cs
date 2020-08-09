@@ -15,7 +15,8 @@ public class BattleResult : UIBase
 
     public void OnClickNext()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
+        Close();
+        BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
     }
     public void Setup(int gold, int rankUp)
     {
