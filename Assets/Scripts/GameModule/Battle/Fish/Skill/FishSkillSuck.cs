@@ -6,7 +6,7 @@ public class FishSkillSuck : FishSkillBase
 {
 	public override bool Skill()
 	{
-		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.RobotVision);
+		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
 		Vector3 playerToTargetDir;
 		float dot;
 		float distance;

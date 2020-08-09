@@ -30,7 +30,7 @@ public class ShellManager : MonoBehaviour
 		for (int i = 0; i < listShell.Count; ++i)
         {
             // 不在视野范围内就不显示
-            if (BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listShell[i].transform.position))
+            if (BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listShell[i].transform.position))
             {
                 if (!listShell[i].gameObject.activeSelf) { listShell[i].gameObject.SetActive(true); }
             }
@@ -45,7 +45,7 @@ public class ShellManager : MonoBehaviour
 		for (int i = 0; i < listShell.Count; ++i)
 		{
 			float distance = Vector3.Distance(listShell[i].transform.position, fish.transform.position);
-			if (distance <= BattleConst.EatPearlRange)
+			if (distance <= BattleConst.instance.EatPearlRange)
 			{
 				// 根据开合状态来判定吃了珍珠还是被夹
 				if (listShell[i].PearlEatenCheck(fish))

@@ -113,7 +113,7 @@ public class PlayerBase : FishBase
 		}
 		else
 		{
-			float progress = remainingTime / BattleConst.EatFishTime;
+			float progress = remainingTime / BattleConst.instance.EatFishTime;
 			transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
 
 			if (eatFishTrans != null)
@@ -159,10 +159,10 @@ public class PlayerBase : FishBase
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
-		remainingTime = BattleConst.AttackHardTime;
+		remainingTime = BattleConst.instance.AttackHardTime;
 		actionStep = ActionType.Eatting;
 		//data.moveSpeed = 0f;
-		canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
+		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
 		fish.life -= (int)((float)data.atk * transform.localScale.x);
 		if (fish.life <= 0)
@@ -173,7 +173,7 @@ public class PlayerBase : FishBase
 	}
 	public virtual void Eat(FishBase fish)
 	{
-		life += (int)(fish.lifeMax * BattleConst.HealLifeFromEatRate);
+		life += (int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate);
 		fish.Die(colliderMouth.transform);
 		animator.SetTrigger("Eat");
 	}
@@ -182,7 +182,7 @@ public class PlayerBase : FishBase
 	{
 		actionStep = ActionType.Die;
 		localScaleBackup = transform.localScale.x;
-		remainingTime = BattleConst.EatFishTime;
+		remainingTime = BattleConst.instance.EatFishTime;
 		this.eatFishTrans = eatFishTrans;
 	}
 

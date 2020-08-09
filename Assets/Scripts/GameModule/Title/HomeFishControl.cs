@@ -84,8 +84,8 @@ public class HomeFishControl : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -BattleConst.BgBound.x, BattleConst.BgBound.x);
-        pos.z = Mathf.Clamp(pos.z, -BattleConst.BgBound.y, BattleConst.BgBound.y);
+        pos.x = Mathf.Clamp(pos.x, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
+        pos.z = Mathf.Clamp(pos.z, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
 
         transModel.position = pos;
         transModel.localPosition = new Vector3(transModel.localPosition.x, transModel.localPosition.y, 0f);

@@ -10,12 +10,12 @@ public class PoisonRing : MonoBehaviour
 	List<MaterialPropertyBlock> listMaterialBlock = new List<MaterialPropertyBlock>();
 	MeshRenderer[] aryMeshRenderer = null;
 
-	float poisonRange = BattleConst.PoisonRingRadiusMax;
-	float beforePoisonRange = BattleConst.PoisonRingRadiusMax;
+	float poisonRange = BattleConst.instance.PoisonRingRadiusMax;
+	float beforePoisonRange = BattleConst.instance.PoisonRingRadiusMax;
 
 	public void Init()
 	{
-		ApplyRange(BattleConst.PoisonRingRadiusMax);
+		ApplyRange(BattleConst.instance.PoisonRingRadiusMax);
 	}
 
 	private void Awake()
@@ -32,7 +32,7 @@ public class PoisonRing : MonoBehaviour
 	}
 	public void CustomUpdate()
 	{
-		poisonRange -= Time.deltaTime * BattleConst.PoisonRingScaleSpeed;
+		poisonRange -= Time.deltaTime * ConfigTableProxy.Instance.GetDataByKey("PoisonRingScaleSpeed");
 		if (beforePoisonRange - poisonRange > 0.03f)
 		{
 			ApplyRange( poisonRange);
@@ -41,7 +41,7 @@ public class PoisonRing : MonoBehaviour
 
 	void ApplyRange(float value)
 	{
-		poisonRange = Math.Max(value, BattleConst.PoisonRingRadiusMin);
+		poisonRange = Math.Max(value, BattleConst.instance.PoisonRingRadiusMin);
 		beforePoisonRange = poisonRange;
 		for (int i =0; i < listMaterialBlock.Count; ++i)
 		{

@@ -126,13 +126,13 @@ public class FishManager : MonoBehaviour
 	public void EatEnemyCheck(PlayerBase player, BoxCollider atkCollider)
 	{
 		
-		List<FishBase> listFish = GetEnemiesInRange(player, player.transform.position, BattleConst.RobotVision);
+		List<FishBase> listFish = GetEnemiesInRange(player, player.transform.position, BattleConst.instance.RobotVision);
 		EatCheck(player, atkCollider, listFish);
 	}
 
 	public void EatPlayerCheck(PlayerBase player, BoxCollider atkCollider)
 	{
-		List<FishBase> listFish = GetAlivePlayerInRange(player, player.transform.position, BattleConst.RobotVision);
+		List<FishBase> listFish = GetAlivePlayerInRange(player, player.transform.position, BattleConst.instance.RobotVision);
 		EatCheck(player, atkCollider, listFish);
 	}
 
@@ -194,7 +194,7 @@ public class FishManager : MonoBehaviour
 	int GetEnemyCount()
 	{
 		int enemyMax = 0;
-		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.PoisonRingRadiusMax;
+		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.instance.PoisonRingRadiusMax;
 
 		var aryEnemyDataInfo = StageModel.Instance.aryEnemyDataInfo;
 		for (int i = 0; i < aryEnemyDataInfo.Length; ++i)

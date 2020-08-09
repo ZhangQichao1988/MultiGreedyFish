@@ -15,11 +15,18 @@ public class ConfigTableProxy : BaseDataTableProxy<ConfigTable, ConfigInfo, Conf
 
     public override void Cached()
     {
+        base.Cached();
         keyContent = new Dictionary<string, float>();
         foreach (var note in content.Values)
         {
-            if (keyContent.ContainsKey(note.key)) { Debug.LogError("ConfigTableProxy.Cached()_1"); }
+            Debug.Assert(!keyContent.ContainsKey(note.key), "ConfigTableProxy.Cached()_1"); 
             keyContent.Add(note.key, note.value);
         }
+    }
+
+    public float GetDataByKey(string key)
+    {
+        Debug.Assert(keyContent.ContainsKey(key), "ConfigTableProxy.GetDataByKey()_1");
+        return keyContent[key];
     }
 }

@@ -26,7 +26,7 @@ public class PlayerRobotBase : PlayerBase
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 追踪附近比自己小的离最近的鱼
-        List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.RobotVision);
+        List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 
         // 把新发现的，隐身的鱼排除
         for (int i = listFish.Count - 1; i >= 0; --i)
@@ -106,7 +106,7 @@ public class PlayerRobotBase : PlayerBase
         //    GotoAquatic();
         //}
 
-        var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.RobotVision);
+        var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);
         if (shell)
         {   // 吃珍珠
             MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));

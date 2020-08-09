@@ -53,7 +53,7 @@ public class EnemyBase : FishBase
             transModel.gameObject.SetActive(false);
         }
 
-        float progress = remainingTime / BattleConst.EatFishTime;
+        float progress = remainingTime / BattleConst.instance.EatFishTime;
         transform.localScale = Vector3.one * Mathf.Lerp(0, localScaleBackup, progress);
 
         if (eatFishTrans != null)
@@ -134,7 +134,7 @@ public class EnemyBase : FishBase
         this.eatFishTrans = eatFishTrans;
         //transModel.gameObject.SetActive(false);
         actionStep = ActionType.Die;
-        remainingTime = BattleConst.EatFishTime;
+        remainingTime = BattleConst.instance.EatFishTime;
     }    
 
 }

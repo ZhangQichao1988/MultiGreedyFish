@@ -105,7 +105,7 @@ public class CameraFollow : MonoBehaviour
 		}
 		if (Target)
 		{
-			float rate = (Target.transform.localScale.x - 1f) / (BattleConst.FishMaxScale - 1f);
+			float rate = (Target.transform.localScale.x - 1f) / (BattleConst.instance.FishMaxScale - 1f);
 			if (currentRate < rate)
 			{
 				currentRate += Time.deltaTime * 0.1f;

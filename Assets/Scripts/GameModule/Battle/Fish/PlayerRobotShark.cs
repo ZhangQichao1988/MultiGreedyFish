@@ -17,7 +17,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	public override void Damge()
 	{
-		canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
+		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		animator.SetTrigger("Damage");
 	}
 

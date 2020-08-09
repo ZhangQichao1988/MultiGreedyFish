@@ -106,7 +106,7 @@ public class InGameUIPanel : MonoBehaviour
                 BattleManagerGroup.GetInstance().BattleEnd();
             }
 		}
-        else if (alivePlayerNum <= 1 && !BattleConst.FreeMode)
+        else if (alivePlayerNum <= 1 && !BattleConst.instance.FreeMode)
         {
             BattleManagerGroup.GetInstance().GotoResult(1);
         }

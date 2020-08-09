@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS fish_dict DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 USE fish_dict;
 DROP TABLE IF EXISTS `Config`;
 CREATE TABLE `Config`(`ID` INT(11),`key` TEXT,`value` DOUBLE(16,2),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `Config`(`ID`,`key`,`value`) VALUES (0.0,'PoisonRingScaleSpeed',0.6);
+INSERT INTO `Config`(`ID`,`key`,`value`) VALUES (0.0,'PoisonRingScaleSpeed',0.6),(1.0,'PoisonRingRadiusMin',5.0),(2.0,'PoisonRingRadiusMax',120.0),(3.0,'PoisonRingDmg',10.0),(4.0,'PoisonRingDmgCoolTime',1.0),(5.0,'BgBound',85.0),(6.0,'AquaticHeal',10.0),(7.0,'AquaticHealCoolTime',1.0),(8.0,'PlayerSizeUpRate',0.3),(9.0,'FishMaxScale',3.0),(10.0,'HealLifeFromEatRate',1.0),(11.0,'EatFishTime',0.2),(12.0,'AttackHardTime',0.35),(13.0,'RobotVisionX',20.0),(14.0,'RobotVisionY',10.0),(15.0,'RobotVisionRange',557.0),(16.0,'EnemyResurrectionRemainingTime',3.0),(17.0,'AquaticRange',2.0),(18.0,'CanStealthTimeFromDmg',2.0),(19.0,'EatPearlRange',3.0),(20.0,'OpenShellRemainingTime',5.0),(21.0,'ShellOpenningTime',2.0),(22.0,'PearlRecoverLife',100.0),(23.0,'ShellCloseDmg',100.0),(24.0,'ShellPearlResetRate',0.2);
 DROP TABLE IF EXISTS `FishData`;
 CREATE TABLE `FishData`(`ID` INT(11),`name` TEXT,`prefabPath` TEXT,`atk` INT(11),`life` INT(11),`moveSpeed` DOUBLE(16,2),`skillId` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `FishData`(`ID`,`name`,`prefabPath`,`atk`,`life`,`moveSpeed`,`skillId`) VALUES (0.0,'宝宝鱼','FishNpc_01',0.0,20,0.4,-1.0),(1.0,'贪吃鱼','FishPlayer_01',20.0,100,0.6,2.0),(2.0,'鲨鱼','FishNpc_02',20.0,100,0.4,-1.0);

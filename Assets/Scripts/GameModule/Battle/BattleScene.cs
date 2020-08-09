@@ -61,7 +61,8 @@ public class BattleScene : BaseScene
     {
         //初始化资源等
         Debug.Log("OnSceneLoaded Do Something");
-
+        var asset = ResourceManager.LoadSync("BattleVolume", typeof(GameObject));
+        GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, null);
         //GameObject.Instantiate(cachedObject[Path.Combine(UIPathRoot, "BattleControl")]);
     }
 

@@ -231,15 +231,15 @@ public class FishBase : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -BattleConst.BgBound.x, BattleConst.BgBound.x);
-        pos.z = Mathf.Clamp(pos.z, -BattleConst.BgBound.y, BattleConst.BgBound.y);
+        pos.x = Mathf.Clamp(pos.x, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
+        pos.z = Mathf.Clamp(pos.z, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
 
         transform.position = pos;
     }
     public virtual void CustomUpdate()
     {
         // 计算离相机目标的距离太远的话就不要动了（优化）
-        isBecameInvisible = BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
+        isBecameInvisible = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
 
 
         BuffUpdate();
@@ -303,13 +303,13 @@ public class FishBase : MonoBehaviour
     protected virtual void ApplySize()
     {
         float size = ((float)lifeMax - (float)originalData.lifeMax) / (float)originalData.lifeMax;
-        size = 1 + (float)Math.Sqrt(size) * BattleConst.PlayerSizeUpRate;
-        size = Math.Min(BattleConst.FishMaxScale, size);
+        size = 1 + (float)Math.Sqrt(size) * BattleConst.instance.PlayerSizeUpRate;
+        size = Math.Min(BattleConst.instance.FishMaxScale, size);
         transform.localScale = new Vector3(size, size, size);
     }
     protected float GetSafeRudius()
     {
-        return Mathf.Min(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), BattleConst.BgBound.x);
+        return Mathf.Min(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), BattleConst.instance.BgBound);
     }
 
     protected virtual float SetAlpha(float alpha)
@@ -358,9 +358,9 @@ public class FishBase : MonoBehaviour
             beforeInAquatic = false;
         }
 
-        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.AquaticHealCoolTime)
+        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
         {
-            int healLife = BattleConst.AquaticHeal * inAquaticHealCnt++;
+            int healLife = BattleConst.instance.AquaticHeal * inAquaticHealCnt++;
             healLife = Math.Min(lifeMax - life, healLife);
             life += healLife;
         }
@@ -390,9 +390,9 @@ public class FishBase : MonoBehaviour
             beforeInPoisonRing = false;
         }
 
-        if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.PoisonRingDmgCoolTime)
+        if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.instance.PoisonRingDmgCoolTime)
         {
-            life -= BattleConst.PoisonRingDmg * inPoisonRingDmgCnt++;
+            life -= BattleConst.instance.PoisonRingDmg * inPoisonRingDmgCnt++;
             if (data.life <= 0)
             {
                 Die(null);
@@ -402,7 +402,7 @@ public class FishBase : MonoBehaviour
 
     public virtual void Damge()
     {
-        canStealthRemainingTime = BattleConst.CanStealthTimeFromDmg;
+        canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
         AddBuff(this, 0);
     }
 

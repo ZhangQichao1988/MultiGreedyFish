@@ -21,7 +21,7 @@ public class ShellControl : MonoBehaviour
     void Awake()
     {
         openReminingTime = Wrapper.GetRandom( 1f, 5f);
-        openReminingTimedefault = BattleConst.OpenShellRemainingTime;
+        openReminingTimedefault = BattleConst.instance.OpenShellRemainingTime;
 
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ShellControl.Awake()_1");
@@ -36,8 +36,8 @@ public class ShellControl : MonoBehaviour
             {
                 case ShellStatus.Closed:
                     animator.SetTrigger("open");
-                    openReminingTime = BattleConst.ShellOpenningTime;
-                    if (Wrapper.GetRandom(0f, 1f) < BattleConst.ShellPearlResetRate)
+                    openReminingTime = BattleConst.instance.ShellOpenningTime;
+                    if (Wrapper.GetRandom(0f, 1f) < BattleConst.instance.ShellPearlResetRate)
                     {
                         goPearl.SetActive(true);
                     }
@@ -70,12 +70,12 @@ public class ShellControl : MonoBehaviour
         if (CanEatPearl())
         {
             goPearl.SetActive(false);
-            fish.life += BattleConst.PearlRecoverLife;
+            fish.life += BattleConst.instance.PearlRecoverLife;
             return true;
         }
         else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
         {
-            fish.life -= BattleConst.ShellCloseDmg;
+            fish.life -= BattleConst.instance.ShellCloseDmg;
             if (fish.life <= 0)
             {
                 fish.Die(null);

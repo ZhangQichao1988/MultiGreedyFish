@@ -30,7 +30,7 @@ public class AquaticManager : MonoBehaviour
 		for (int i = 0; i < listTransAquatic.Count; ++i)
         {
             // 不在视野范围内就不显示
-            if (BattleConst.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listTransAquatic[i].position))
+            if (BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listTransAquatic[i].position))
             {
                 if (!listTransAquatic[i].gameObject.activeSelf) { listTransAquatic[i].gameObject.SetActive(true); }
             }
@@ -47,7 +47,7 @@ public class AquaticManager : MonoBehaviour
 			//if (!listTransAquatic[i].gameObject.activeSelf) { continue; }
 
 			float distance = Vector3.Distance(listTransAquatic[i].position, fish.transform.position);
-			if (distance <= BattleConst.AquaticRange)
+			if (distance <= BattleConst.instance.AquaticRange)
 			{
 				return true;
 			}

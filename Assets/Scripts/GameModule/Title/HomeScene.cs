@@ -6,6 +6,7 @@ public class HomeScene : BaseScene
     private string mainUIPath = "ArtResources/UI/Prefabs/Home";
     public override void Init(object parms)
     {
+        Resources.UnloadUnusedAssets();
         // Other
         m_sceneData.Add(new SceneData(){ Resource = mainUIPath, ResType = typeof(GameObject) });
     }
