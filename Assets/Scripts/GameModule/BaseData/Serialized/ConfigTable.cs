@@ -9,5 +9,7 @@ public class ConfigTable : BaseDataTable<ConfigInfo> {}
 public class ConfigInfo : IQueryById
 {
     public string key;
-    public float value;
+    public float floatValue;
+    public int intValue;
+    public string stringValue;
 }
