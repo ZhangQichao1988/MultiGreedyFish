@@ -93,7 +93,7 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SafeAreaRange: 100
+    - _SafeAreaRange: 200
     - _SafeGradAreaRange: 95
     - _SampleGI: 0
     - _Shininess: 0
