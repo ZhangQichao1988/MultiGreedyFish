@@ -28,6 +28,10 @@ public class InGameUIPanel : MonoBehaviour
 	public void Init()
 	{
         Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
+        Image image = skillBtn.GetComponent<Image>();
+        string path = string.Format(AssetPathConst.skillIconPath, Player.fishSkill.baseData.skillType);
+        var asset = ResourceManager.LoadSync( path, typeof(Sprite));
+        image.sprite = asset.Asset as Sprite;
         cameraFollow.Target = Player.transform;
     }
 

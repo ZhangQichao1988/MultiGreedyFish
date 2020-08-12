@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BuffBase
 {
+    public FishBuffDataInfo baseData;
     public float[] aryParam;
-    public float remainingTime { get; private set; }
+    public float remainingTime { get; set; }
     public FishBase Initiator { get; private set; }
     public FishBase fish { get; private set; }
 
-    public BuffBase(FishBase Initiator, FishBase fish, float[] aryParam)
+    public BuffBase(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData)
     {
+        this.baseData = baseData;
         this.Initiator = Initiator;
         this.fish = fish;
+        float[] aryParam = Wrapper.GetParamFromString(baseData.aryParam);
         this.aryParam = aryParam;
         remainingTime = aryParam[0];
     }

@@ -8,7 +8,7 @@ public class FishSkillHeadLife : FishSkillBase
 	{
 		if (playerBase.lifeRate >= 1f)
 		{ return false; }
-		int healLife = (int)((float)playerBase.lifeMax * listParam[0]);
+		int healLife = (int)((float)playerBase.lifeMax * listParam[1]);
 		playerBase.life += System.Math.Min(healLife, playerBase.lifeMax - playerBase.life);
 		
 
@@ -16,6 +16,6 @@ public class FishSkillHeadLife : FishSkillBase
 	}
 	public override void CbAttack()
 	{
-		currentGauge += listParam[1];
+		currentGauge += listParam[0];
 	}
 }

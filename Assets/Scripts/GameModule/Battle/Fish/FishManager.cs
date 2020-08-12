@@ -15,7 +15,7 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(1, PlayerModel.Instance.player.Nickname);
+		player.Init(PlayerModel.Instance.player.FightFish, PlayerModel.Instance.player.Nickname);
 		return player;
 	}
 
@@ -61,7 +61,6 @@ public class FishManager : MonoBehaviour
 		FishBase fb = null;
 		PBEnemyDataInfo enemyGroup;
 		// 杂鱼
-
 		var aryEnemyDataInfo = StageModel.Instance.aryEnemyDataInfo;
 		int EnemyNumMax = aryEnemyDataInfo.Length;
 		for (int i = 0; i < EnemyNumMax; ++i)
@@ -75,6 +74,7 @@ public class FishManager : MonoBehaviour
 				listEnemy.Add(fb);
 			}
 		}
+
 		// 打乱敌人列表
 		listEnemy.Sort((a,b)=> { return Wrapper.GetRandom(-1, 1); });
 		listFish.AddRange(listEnemy);

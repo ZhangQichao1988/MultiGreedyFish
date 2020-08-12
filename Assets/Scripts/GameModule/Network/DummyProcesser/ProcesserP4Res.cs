@@ -5,7 +5,7 @@ using pbc = global::Google.Protobuf.Collections;
 using UnityEngine.UIElements;
 
 /// <summary>
-/// 获取玩家信息
+/// 获取战斗信息
 /// </summary>
 public class ProcesserP4Res : IDummyResponseProcesser
 {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BuffBeSucked : BuffBase
 {
-    public BuffBeSucked(FishBase Initiator, FishBase fish, float[] aryParam) : base(Initiator, fish, aryParam)
+    public BuffBeSucked(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {
     }
     public override void ApplyStatus()

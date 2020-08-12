@@ -103,7 +103,13 @@ public class PlayerBase : FishBase
 
 	}
 
-	void DieWait()
+    public override void CustomUpdate()
+    {
+		fishSkill.Update();
+		base.CustomUpdate();
+    }
+
+    void DieWait()
 	{
 		remainingTime -= Time.deltaTime;
 		if (remainingTime <= 0)

@@ -411,8 +411,17 @@ public class FishBase : MonoBehaviour
         if (isBecameInvisible) { BattleEffectManager.CreateEffect(0, transform); }
     }
 
-    public void AddBuff(FishBase Initiator, int buffId)
+    public BuffBase AddBuff(FishBase Initiator, int buffId)
     {
-        listBuff.Add(FishBuffDataTableProxy.Instance.SetBuff(Initiator, buffId, this));
+        foreach (var note in listBuff)
+        {
+            if (note.Initiator == Initiator && note.baseData.ID == buffId)
+            {
+                return null;
+            }
+        }
+        BuffBase buff = FishBuffDataTableProxy.Instance.SetBuff(Initiator, buffId, this);
+        listBuff.Add(buff);
+        return buff;
     }
 }

@@ -25,7 +25,7 @@ public class ProcesserP3Res : IDummyResponseProcesser
         var res = new P3_Response();
         res.Player = new PBPlayer(){
             PlayerId = 9999999L,
-            FightFish = 1,
+            FightFish = 3,
             Gold = 10,
             Diamond = 10,
             Nickname = "Dummy",
@@ -37,6 +37,8 @@ public class ProcesserP3Res : IDummyResponseProcesser
         };
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 0, FishChip = 10, FishLevel = 2, RankLevel = 3 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 6 });
+        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 3, FishChip = 5, FishLevel = 1, RankLevel = 6 });
+
         return res;
     }
 }

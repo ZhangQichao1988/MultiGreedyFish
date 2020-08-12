@@ -15,9 +15,8 @@ public class FishBuffDataTableProxy : BaseDataTableProxy<FishBuffDataTable, Fish
 	public BuffBase SetBuff(FishBase Initiator, int id, FishBase fish)
 	{
 		FishBuffDataInfo bbd = GetDataById(id);
-		float[] aryParam = Wrapper.GetParamFromString(bbd.aryParam);
 		System.Type type = Type.GetType(bbd.buffType);
-		BuffBase bb = Activator.CreateInstance(type, new object[] { Initiator, fish, aryParam }) as BuffBase;
+		BuffBase bb = Activator.CreateInstance(type, new object[] { Initiator, fish, bbd }) as BuffBase;
 		return bb;
 	}
 

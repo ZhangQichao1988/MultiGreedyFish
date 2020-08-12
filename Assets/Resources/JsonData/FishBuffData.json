@@ -1,4 +1,6 @@
 {"Items":[
 	{"ID":"0.0","buffType":"BuffSpeedUp","aryParam":"1,2"},
-	{"ID":"1.0","buffType":"BuffBeSucked","aryParam":"1,2"}
+	{"ID":"1.0","buffType":"BuffBeSucked","aryParam":"1,2"},
+	{"ID":"2.0","buffType":"BuffBeSprang","aryParam":"0.3,30"},
+	{"ID":"3.0","buffType":"BuffSpeedEqual","aryParam":"-1,0.1"}
 ]}

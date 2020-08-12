@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UIElements;
 public class FishSkillBase
 {
 	protected PlayerBase playerBase;
-	protected FishSkillDataInfo baseData;
+	public FishSkillDataInfo baseData;
 	protected float[] listParam;
 	public float currentGauge { get; protected set; }
 
@@ -16,24 +17,13 @@ public class FishSkillBase
 		var baseData = FishSkillDataTableProxy.Instance.GetDataById(id);
 		if (baseData == null) { return new FishSkillBase(); }
 
-		FishSkillBase fishSkill = null;
-		switch (baseData.skillType)
-		{
-			case "HealLife":
-				fishSkill = new FishSkillHeadLife();
-				break;
-			case "Suck":
-				fishSkill = new FishSkillSuck();
-				break;
-			default:
-				Debug.LogError("FishSkillBase.SetFishSkill()_1");
-				break;
-		}
+		System.Type type = Type.GetType(baseData.skillType);
+		FishSkillBase fishSkill = Activator.CreateInstance(type) as FishSkillBase;
 		fishSkill.Init(playerBase, baseData);
 
 		return fishSkill;
 	}
-	public void Init(PlayerBase playerBase, FishSkillDataInfo baseData)
+	public virtual void Init(PlayerBase playerBase, FishSkillDataInfo baseData)
 	{
 		this.playerBase = playerBase;
 		this.baseData = baseData;
@@ -62,5 +52,8 @@ public class FishSkillBase
 
 	public virtual void CbDamage()
 	{
+	}
+	public virtual void Update()
+	{ 
 	}
 }
