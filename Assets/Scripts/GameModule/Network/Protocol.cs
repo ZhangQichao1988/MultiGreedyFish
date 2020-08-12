@@ -44,7 +44,7 @@ public static partial class ProtocolReflection {
           "YmF0dGxlUmFua2luZxgCIAIoBSJVCgtQNV9SZXNwb25zZRIZCgZyZXN1bHQY",
           "ASABKAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllchIQ",
           "CghnYWluR29sZBgDIAEoBSIcCgpQNl9SZXF1ZXN0Eg4KBmZpc2hJZBgBIAIo",
-          "CSIoCgtQNl9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCIm",
+          "BSIoCgtQNl9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCIm",
           "CghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQ",
           "bGF5ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2",
           "ZWwYAiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgF",
@@ -57,14 +57,14 @@ public static partial class ProtocolReflection {
           "AiABKAUSFAoMZmlzaENvdW50TWluGAMgASgFIi8KD1BCUm9ib3REYXRhSW5m",
           "bxIOCgZmaXNoSWQYASABKAUSDAoEYWlJZBgCIAEoBSpQChNEYXRhTGlua1Nl",
           "cnZpY2VUeXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2ds",
-          "ZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqiQEKCU1lc3NhZ2VJZBIPCgtNSURf",
+          "ZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqoQEKCU1lc3NhZ2VJZBIPCgtNSURf",
           "U1RBUlRVUBAAEhsKF01JRF9MT0dJTl9XSVRIX1BMQVRGT1JNEAESDQoJTUlE",
           "X0xPR0lOEAISFwoTTUlEX0dFVF9QTEFZRVJfSU5GTxADEhMKD01JRF9TVEFS",
-          "VF9GSUdIVBAEEhEKDU1JRF9FTkRfRklHSFQQBSptCgpTdGF0dXNDb2RlEgYK",
-          "Ak9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9SEAISFwoTS0lD",
-          "S19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxDTElFTlRfRVJS",
-          "T1IQBUIwCiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJN",
-          "ZXNzYWdliAEA"));
+          "VF9GSUdIVBAEEhEKDU1JRF9FTkRfRklHSFQQBRIWChJNSURfU0VUX0ZJR0hU",
+          "X0ZJU0gQBiptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoP",
+          "U0lHTkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsK",
+          "B0NBVVRJT04QBBIQCgxDTElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNo",
+          "LnNlcnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -108,6 +108,7 @@ public enum MessageId {
   [pbr::OriginalName("MID_GET_PLAYER_INFO")] MidGetPlayerInfo = 3,
   [pbr::OriginalName("MID_START_FIGHT")] MidStartFight = 4,
   [pbr::OriginalName("MID_END_FIGHT")] MidEndFight = 5,
+  [pbr::OriginalName("MID_SET_FIGHT_FISH")] MidSetFightFish = 6,
 }
 
 public enum StatusCode {
@@ -2479,6 +2480,7 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
 public sealed partial class P6_Request : pb::IMessage<P6_Request> {
   private static readonly pb::MessageParser<P6_Request> _parser = new pb::MessageParser<P6_Request>(() => new P6_Request());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pb::MessageParser<P6_Request> Parser { get { return _parser; } }
 
@@ -2501,6 +2503,7 @@ public sealed partial class P6_Request : pb::IMessage<P6_Request> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public P6_Request(P6_Request other) : this() {
+    _hasBits0 = other._hasBits0;
     fishId_ = other.fishId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -2512,25 +2515,26 @@ public sealed partial class P6_Request : pb::IMessage<P6_Request> {
 
   /// <summary>Field number for the "fishId" field.</summary>
   public const int FishIdFieldNumber = 1;
-  private readonly static string FishIdDefaultValue = "";
+  private readonly static int FishIdDefaultValue = 0;
 
-  private string fishId_;
+  private int fishId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public string FishId {
-    get { return fishId_ ?? FishIdDefaultValue; }
+  public int FishId {
+    get { if ((_hasBits0 & 1) != 0) { return fishId_; } else { return FishIdDefaultValue; } }
     set {
-      fishId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      _hasBits0 |= 1;
+      fishId_ = value;
     }
   }
   /// <summary>Gets whether the "fishId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasFishId {
-    get { return fishId_ != null; }
+    get { return (_hasBits0 & 1) != 0; }
   }
   /// <summary>Clears the value of the "fishId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearFishId() {
-    fishId_ = null;
+    _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2568,8 +2572,8 @@ public sealed partial class P6_Request : pb::IMessage<P6_Request> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
     if (HasFishId) {
-      output.WriteRawTag(10);
-      output.WriteString(FishId);
+      output.WriteRawTag(8);
+      output.WriteInt32(FishId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -2580,7 +2584,7 @@ public sealed partial class P6_Request : pb::IMessage<P6_Request> {
   public int CalculateSize() {
     int size = 0;
     if (HasFishId) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(FishId);
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2607,8 +2611,8 @@ public sealed partial class P6_Request : pb::IMessage<P6_Request> {
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 10: {
-          FishId = input.ReadString();
+        case 8: {
+          FishId = input.ReadInt32();
           break;
         }
       }

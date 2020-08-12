@@ -7,19 +7,13 @@ using UnityEngine.UIElements;
 /// <summary>
 /// 获取玩家信息
 /// </summary>
-public class ProcesserP5Res : IDummyResponseProcesser
+public class ProcesserP5Res : BaseDummyProcesser<P5_Request, P5_Response>
 {
-    public IMessage ProcessRequest(int msgId, IMessage pbData)
+    public override P5_Response ProcessRequest(int msgId, P5_Request pbData)
     {
         var response = GetResponseData();
 
         return response;
-        
-    } 
-
-    public void DispatchRes(int msgId, IMessage request, IMessage response)
-    {
-        NetWorkHandler.GetDispatch().Dispatch<P5_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P5_Response);
     }
 
     P5_Response GetResponseData()

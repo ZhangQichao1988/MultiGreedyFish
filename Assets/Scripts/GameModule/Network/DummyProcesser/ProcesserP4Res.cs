@@ -7,19 +7,13 @@ using UnityEngine.UIElements;
 /// <summary>
 /// 获取战斗信息
 /// </summary>
-public class ProcesserP4Res : IDummyResponseProcesser
+public class ProcesserP4Res : BaseDummyProcesser<NullMessage, P4_Response>
 {
-    public IMessage ProcessRequest(int msgId, IMessage pbData)
+    public override P4_Response ProcessRequest(int msgId, NullMessage pbData)
     {
         var response = GetResponseData();
-
         return response;
         
-    } 
-
-    public void DispatchRes(int msgId, IMessage request, IMessage response)
-    {
-        NetWorkHandler.GetDispatch().Dispatch<P4_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P4_Response);
     }
 
     P4_Response GetResponseData()

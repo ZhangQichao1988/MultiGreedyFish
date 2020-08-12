@@ -6,22 +6,16 @@ using NetWorkModule;
 /// <summary>
 /// 登录
 /// </summary>
-public class ProcesserP2Res : IDummyResponseProcesser
+public class ProcesserP2Res : BaseDummyProcesser<P2_Request, P2_Response>
 {
-    public IMessage ProcessRequest(int msgId, IMessage pbData)
+    public override P2_Response ProcessRequest(int msgId, P2_Request pbData)
     {
-        var request = pbData as P2_Request;
         var response = GetResponseData();
 
         NetWorkManager.HttpClient.SetPlayerId(response.PlayerId);
         NetWorkManager.HttpClient.SaveSessionKey(response.SessionKey, new byte[32], false);
 
         return response;
-    } 
-
-    public void DispatchRes(int msgId, IMessage request, IMessage response)
-    {
-        NetWorkHandler.GetDispatch().Dispatch<P2_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P2_Response);
     }
 
     P2_Response GetResponseData()

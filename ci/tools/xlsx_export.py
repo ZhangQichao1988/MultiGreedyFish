@@ -7,9 +7,9 @@ import codecs
 import collections
 import os
 import shutil
+
 import sys
 import time
-
 import xlrd
 
 try:  # python3
@@ -86,7 +86,8 @@ def sort_cloum_item(arr):
 
 
 base_data_type = {
-    "Config": sort_cloum_item(["ID", "INT(11)", "key", "TEXT", "value", "DOUBLE(16,2)"]),
+    "Config": sort_cloum_item(
+        ["ID", "INT(11)", "key", "TEXT", "floatValue", "DOUBLE(16,2)", "intValue", "INT(11)", "stringValue", "TEXT"]),
     "EffectData": sort_cloum_item(["ID", "INT(11)", "prefabPath", "TEXT", "duration", "DOUBLE(16,2)"]),
     "FishBuffData": sort_cloum_item(["ID", "INT(11)", "buffType", "TEXT", "aryParam", "TEXT"]),
     "FishData": sort_cloum_item(
@@ -96,8 +97,11 @@ base_data_type = {
     "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
     "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
     "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "aiId", "INT(11)", "groupId", "INT(11)"]),
-    "EnemyData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "fishCountMin", "INT(11)",  "fishCountMax", "INT(11)",  "groupId", "INT(11)"]),
-    "RobotGroupData": sort_cloum_item(["ID", "INT(11)", "groupId", "INT(11)", "rankMin", "INT(11)", "rankMax", "INT(11)"]),
+    "EnemyData": sort_cloum_item(
+        ["ID", "INT(11)", "fishId", "INT(11)", "fishCountMin", "INT(11)", "fishCountMax", "INT(11)", "groupId",
+         "INT(11)"]),
+    "RobotGroupData": sort_cloum_item(
+        ["ID", "INT(11)", "groupId", "INT(11)", "rankMin", "INT(11)", "rankMax", "INT(11)"]),
 }
 
 
@@ -135,6 +139,9 @@ def parse_exl_server(exl_path, table_name, f):
 
             if table_name not in base_data_type or list_head[n] not in base_data_type[table_name]:
                 continue
+
+            if base_data_type[table_name][list_head[n]] != "TEXT" and temp[n].strip() == "":
+                temp[n] = "0"
 
             row_val += base_data_type[table_name][list_head[n]] == "TEXT" and "'" + temp[n] + "'" or temp[n]
             if n < len(temp) - 1:
@@ -214,22 +221,5 @@ if __name__ == '__main__':
                     parse_exl_server(os.path.join(root, file), table_name, sql_file)
 
     sql_file.close()
-    # if outputAll == 0:
-    #     for i in range(len(a)):
-    #         ta = a[i].strip('(')
-    #         ta = ta.strip(')')
-    #         ta = ta.strip(' ')
-    #         tableName = listTableName[int(ta) - 1]
-    #         if needDb == 1:
-    #             createDataBase(database, tableName)
-    #         parseExl(database, tableName)
-    #         f.write(u"require \"" + PATH_LUA_DATA + tableName + "\"\n")
-    # else:
-    #     print(u"全导出")
-    #     for tableName in dictTableConfig.keys():
-    #         if needDb == 1:
-    #             createDataBase(database, tableName)
-    #         parseExl(database, tableName)
-    #         f.write(u"require \"" + PATH_LUA_DATA + tableName + "\"\n")
 
     print(u"导出数据完成啦~ 花费 {} 秒.".format(time.time() - start_time))

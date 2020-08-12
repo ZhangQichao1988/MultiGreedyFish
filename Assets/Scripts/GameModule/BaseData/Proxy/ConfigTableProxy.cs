@@ -20,7 +20,7 @@ public class ConfigTableProxy : BaseDataTableProxy<ConfigTable, ConfigInfo, Conf
         foreach (var note in content.Values)
         {
             Debug.Assert(!keyContent.ContainsKey(note.key), "ConfigTableProxy.Cached()_1"); 
-            keyContent.Add(note.key, note.value);
+            keyContent.Add(note.key, note.floatValue);
         }
     }
 

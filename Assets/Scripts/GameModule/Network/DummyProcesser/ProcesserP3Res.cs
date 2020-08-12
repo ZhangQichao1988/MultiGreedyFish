@@ -5,19 +5,14 @@ using UnityEngine;
 /// <summary>
 /// 获取玩家信息
 /// </summary>
-public class ProcesserP3Res : IDummyResponseProcesser
+public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
 {
-    public IMessage ProcessRequest(int msgId, IMessage pbData)
+    public override P3_Response ProcessRequest(int msgId, NullMessage pbData)
     {
         var response = GetResponseData();
 
         return response;
         
-    } 
-
-    public void DispatchRes(int msgId, IMessage request, IMessage response)
-    {
-        NetWorkHandler.GetDispatch().Dispatch<P3_Response>(NetWorkHandler.GetDispatchKey(msgId), response as P3_Response);
     }
 
     P3_Response GetResponseData()

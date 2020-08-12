@@ -9,6 +9,7 @@ using Google.Protobuf;
 
 /// <summary>
 /// 网络分发处理
+/// ps 网络层独立 不要处理业务逻辑
 /// </summary>
 public class NetWorkHandler
 {
@@ -42,12 +43,14 @@ public class NetWorkHandler
             {"P1_Request", P1_Request.Parser},
             {"P2_Request", P2_Request.Parser},
             {"P5_Request", P5_Request.Parser},
+            {"P6_Request", P5_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
             {"P3_Response", P3_Response.Parser},
             {"P4_Response", P4_Response.Parser},
             {"P5_Response", P5_Response.Parser},
+            {"P6_Response", P6_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -55,6 +58,7 @@ public class NetWorkHandler
 #else
         NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
 #endif
+
         //register
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartup, OnRecvStartup);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidLogin , OnRecvLogin);
@@ -62,6 +66,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetPlayerInfo, OnRecvGetPlayerInfo);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartFight, OnRecvBattle);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidEndFight, OnRecvBattleResult);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidSetFightFish, OnRecvFightFishSet);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -110,6 +115,7 @@ public class NetWorkHandler
         return bytesDatas;
     }
 
+#region ServerRequest
     /// <summary>
     /// P0 STARTUP
     /// </summary>
@@ -160,6 +166,15 @@ public class NetWorkHandler
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P1_Request", requestByteData , randomKey, false);
     }
+
+    /// <summary>
+    /// P3 获取玩家信息
+    /// </summary>
+    public static void RequestGetPlayer()
+    {
+        NetWorkManager.Request("P3_Request", null);
+    }
+
     public static void RequestBattle()
     {
         NetWorkManager.Request("P4_Request", null);
@@ -175,6 +190,19 @@ public class NetWorkHandler
         NetWorkManager.Request("P5_Request", requestByteData);
     }
 
+    public static void RequestFightFishSet(int fishId)
+    {
+        var request = new P6_Request();
+        request.FishId = fishId;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P6_Request", requestByteData);
+
+    }
+
+#endregion
+
+#region ServerResponse
     //recieve callback
     static void OnRecvStartup(HttpDispatcher.NodeMsg msg)
     {
@@ -197,19 +225,6 @@ public class NetWorkHandler
         }
 
         GetDispatch().Dispatch<P2_Response>(GetDispatchKey(msg.Key), response);
-    }
-
-    /// <summary>
-    /// P3 获取玩家信息
-    /// </summary>
-    public static void RequestGetPlayer()
-    {
-        NetWorkManager.Request("P3_Request", null);
-    }
-
-    public static string GetDispatchKey(int msgId)
-    {
-        return string.Format(GameEvent.RECIEVE_COMMON_RESPONSE, msgId);
     }
 
     static void OnRecvLoginWithThirdPlatform(HttpDispatcher.NodeMsg msg)
@@ -241,6 +256,20 @@ public class NetWorkHandler
     {
         var response = P5_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P5_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvFightFishSet(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P6_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P6_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+
+#endregion
+
+    public static string GetDispatchKey(int msgId)
+    {
+        return string.Format(GameEvent.RECIEVE_COMMON_RESPONSE, msgId);
     }
 
     static void TraceLog(string tag, string msg, byte[] data)
