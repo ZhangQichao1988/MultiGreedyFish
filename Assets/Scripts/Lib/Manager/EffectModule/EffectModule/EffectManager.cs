@@ -423,6 +423,14 @@ public class EffectManager : MonoBehaviour
         }
     }
 
+    public static Effect GetEffect(int handle)
+    {
+        if (Instance != null)
+        {
+            return Instance._activeEffects[handle];
+        }
+        return null;
+    }
     private Effect GetFromCache(int instanceID)
     {
         Queue<Effect> queueEffects;

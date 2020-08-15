@@ -6,13 +6,13 @@ PRODUCT_NAME="FISH-FIGHT"
 BUNDLE_VERSION="0.0.1"
 BUNDLE_VERSION_CODE_SHOW="1"
 ENABLE_DEBUG="true"
-BUNDLE_IDENTIFIER="com.klab.fishfight"
+BUNDLE_IDENTIFIER="co.jp.cad.crazyfish"
 
 #android build
 KEY_STORE_PATH="${WORKDIR}/ci/config/fish.keystore"
-KEY_STORE_PASS="fish007"
-KEY_ALIAS_NAME="com.klab.fishfight"
-KEY_ALIAS_PASS="fish007"
+KEY_STORE_PASS="hulaoshi007"
+KEY_ALIAS_NAME="co.jp.cad.crazyfish"
+KEY_ALIAS_PASS="hulaoshi007"
 
 
 echo ${WORKDIR}

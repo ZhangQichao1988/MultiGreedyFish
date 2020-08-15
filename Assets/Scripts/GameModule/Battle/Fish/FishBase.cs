@@ -37,6 +37,7 @@ public class FishBase : MonoBehaviour
         public int lifeMax;
         public int atk;
         public float moveSpeed;
+        public bool isShield;           // 护盾，不受伤害
 
         public Data(int fishId, string name, int life, int atk, float moveSpeed)
         {
@@ -47,6 +48,7 @@ public class FishBase : MonoBehaviour
             this.lifeMax = life;
             this.atk = atk;
             this.moveSpeed = moveSpeed;
+            this.isShield = false;
         }
     }
     static protected int uidCnt = 0;
@@ -76,6 +78,7 @@ public class FishBase : MonoBehaviour
     protected float inAquaticTime = 0f;
     protected int inAquaticHealCnt = 0;
 
+    protected float dmgTime = 0f;
 
     protected Vector3 Dir;
     protected Vector3 curDir;
@@ -88,7 +91,7 @@ public class FishBase : MonoBehaviour
     // 用来记录被吃掉时候的缩放值
     protected float localScaleBackup = 0f;
     // 是否在屏幕内
-    protected bool isBecameInvisible = true;
+    public bool isBecameInvisible = true;
     //private uint updateCnt = 0;
 
 
@@ -99,7 +102,7 @@ public class FishBase : MonoBehaviour
 
     // 水泡粒子
     protected ParticleSystem particleBlister;
-    protected virtual bool showLifeGauge { get { return false; } }
+    protected virtual bool showLifeGauge { get { return true; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
     public virtual int life
@@ -111,19 +114,45 @@ public class FishBase : MonoBehaviour
             {
                 lifeMax = value;
             }
-            if (value < data.life)
-            {
-                Damge();
-            }
-            else if (value > data.life)
-            {
-                Heal();
-            }
+            //if (value < data.life)
+            //{
+            //    Damge();
+            //}
+            //else if (value > data.life)
+            //{
+            //    Heal();
+            //}
             data.life = value;
             if (lifeGauge != null) { lifeGauge.SetValue(data.life, data.lifeMax); }
         }
     }
-
+    public virtual bool Heal(int value)
+    {
+        if (value < 0)
+        {
+            Debug.LogError(value);
+        }
+        life += value;
+        return true;
+    }
+    public virtual bool Damage(int dmg, Transform hitmanTrans)
+    {
+        if (dmgTime > 0) { return false; }
+        if (data.isShield) { return false; }
+        //if (fishType == FishType.Enemy)
+        //{
+        //    Debug.Log("");
+        //}
+        life -= dmg;
+        if (life <= 0)
+        {
+            Die(hitmanTrans);
+        }
+        dmgTime = 0.5f;
+        canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
+        AddBuff(this, 0);
+        return true;
+    }
     public int lifeMax
     {
         get { return data.lifeMax; }
@@ -240,7 +269,7 @@ public class FishBase : MonoBehaviour
     {
         // 计算离相机目标的距离太远的话就不要动了（优化）
         isBecameInvisible = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
-
+        if (dmgTime > 0f) { dmgTime -= Time.deltaTime; }
 
         BuffUpdate();
         AquaticCheck();
@@ -251,8 +280,9 @@ public class FishBase : MonoBehaviour
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
+        data.isShield = originalData.isShield;
 
-        for(int i = listBuff.Count - 1; i >= 0; --i)
+        for (int i = listBuff.Count - 1; i >= 0; --i)
         {
             listBuff[i].Update();
             if (listBuff[i].IsDestory())
@@ -265,6 +295,7 @@ public class FishBase : MonoBehaviour
     public bool EatCheck(BoxCollider atkCollider)
     {
         if (actionStep == ActionType.Born ||
+            actionStep == ActionType.BornWaitting ||
             actionStep == ActionType.Die ||
             actionStep == ActionType.None)
         {
@@ -277,10 +308,11 @@ public class FishBase : MonoBehaviour
         {
             return colliderBody.bounds.Intersects(atkCollider.bounds);
         }
-        else
-        {
-            return Vector3.Distance(colliderBody.transform.position, atkCollider.transform.position) < 3f;
-        }
+        return false;
+        //else
+        //{
+        //    return Vector3.Distance(colliderBody.transform.position, atkCollider.transform.position) < 3f;
+        //}
     }
 
     public virtual void Die(Transform eatFishTrans)
@@ -362,7 +394,7 @@ public class FishBase : MonoBehaviour
         {
             int healLife = BattleConst.instance.AquaticHeal * inAquaticHealCnt++;
             healLife = Math.Min(lifeMax - life, healLife);
-            life += healLife;
+            Heal(healLife);
         }
 
         // 在水草里透明
@@ -392,36 +424,46 @@ public class FishBase : MonoBehaviour
 
         if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.instance.PoisonRingDmgCoolTime)
         {
-            life -= BattleConst.instance.PoisonRingDmg * inPoisonRingDmgCnt++;
-            if (data.life <= 0)
-            {
-                Die(null);
-            }
+            Damage( BattleConst.instance.PoisonRingDmg * inPoisonRingDmgCnt++, null );
         }
-    }
-
-    public virtual void Damge()
-    {
-        canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
-        AddBuff(this, 0);
-    }
-
-    public virtual void Heal()
-    {
-        if (isBecameInvisible) { BattleEffectManager.CreateEffect(0, transform); }
     }
 
     public BuffBase AddBuff(FishBase Initiator, int buffId)
     {
-        foreach (var note in listBuff)
+        
+        BuffBase note;
+        for (int i = listBuff.Count - 1; i >= 0; --i)
         {
+            note = listBuff[i];
             if (note.Initiator == Initiator && note.baseData.ID == buffId)
             {
                 return null;
             }
+            
         }
+
         BuffBase buff = FishBuffDataTableProxy.Instance.SetBuff(Initiator, buffId, this);
+        for (int i = listBuff.Count - 1; i >= 0; --i)
+        {
+            note = listBuff[i];
+            
+            // Buff类型一样覆盖元Buff
+            if (buff.buffType == note.buffType)
+            {
+                listBuff.RemoveAt(i);
+            }
+        }
+            
         listBuff.Add(buff);
         return buff;
+    }
+
+    public bool ContainsBuff(int buffId)
+    {
+        foreach (var note in listBuff)
+        {
+            if (note.baseData.ID == buffId) { return true; }
+        }
+        return false;
     }
 }

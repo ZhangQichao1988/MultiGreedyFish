@@ -92,7 +92,7 @@ public class FishManager : MonoBehaviour
 			{
 				bornWaittingEnemies.Add(listFish[i] as EnemyBase);
 			}
-			else
+			else if(listFish[i].fishType == FishBase.FishType.Enemy)
 			{ ++aliveEnemyNum; }
 		}
 

@@ -37,7 +37,14 @@ public class PlayerRobotBase : PlayerBase
                 if (listFish[i].beforeInAquatic)
                 {
                     listFish.RemoveAt(i);
+                    continue;
                 }
+            }
+            // 肿胀的河豚鱼剔除
+            if (listFish[i].ContainsBuff(4))
+            {
+                listFish.RemoveAt(i);
+                continue;
             }
         }
         // 按距离升序排序
@@ -64,7 +71,11 @@ public class PlayerRobotBase : PlayerBase
             EnemyIdle();
         }
     }
-
+    public override void CustomUpdate()
+    {
+        fishSkill.CalcAI();
+        base.CustomUpdate();
+    }
     protected void GotoAquatic()
     {
 		foreach (FishBase fb in listFindedFish)
@@ -180,10 +191,14 @@ public class PlayerRobotBase : PlayerBase
         return alpha;
     }
 
-	public override void Damge()
+	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
-		base.Damge();
-        animator.SetTrigger("Damage");
-        isGotoAquatic = false;
+		bool ret = base.Damage(dmg, hitmanTrans);
+        if (ret)
+        {
+            animator.SetTrigger("Damage");
+            isGotoAquatic = false;
+        }
+        return ret;
     }
 }

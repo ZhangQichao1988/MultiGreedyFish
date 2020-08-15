@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BuffSpeedUp : BuffBase
 {
+    public override BuffType buffType { get { return BuffType.ChangeSpeed; } }
+
     public BuffSpeedUp(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {
     }

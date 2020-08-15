@@ -67,7 +67,14 @@ public class EnemyBase : FishBase
         SetAlpha(0f);
         transform.position = GetBornPosition();
         transform.localScale = Vector3.one * localScaleBackup;
-        transModel.gameObject.SetActive(true);
+        //transModel.gameObject.SetActive(true);
+        //lifeMax = originalData.lifeMax;
+        if (showLifeGauge)
+        {
+            lifeGauge.slider.maxValue = originalData.lifeMax;
+            lifeGauge.slider.value = originalData.life;
+        }
+        life = originalData.lifeMax;
     }
 
     protected void Idle()

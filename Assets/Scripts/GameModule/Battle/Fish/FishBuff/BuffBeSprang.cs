@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BuffBeSprang : BuffBase
 {
+    public override BuffType buffType { get { return BuffType.ChangePostion; } }
+
     public BuffBeSprang(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {
     }

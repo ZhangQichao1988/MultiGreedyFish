@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,9 +28,8 @@ public class LifeGauge : MonoBehaviour
     public Slider slider = null;
     public Image valueImage = null;
     public Text valueText = null;
-    public Text[] dmgExpTests = null;
+    public GameObject dmgExpLocation = null;
 
-    List<NumberData> listNumberDatas = new List<NumberData>();
 
     public void SetValue( int current, int max )
     {
@@ -53,17 +53,15 @@ public class LifeGauge : MonoBehaviour
 
     public void ShowNumber(NumberData numberData )
     {
-        listNumberDatas.Add(numberData);
-    }
-
-	private void Update()
-	{
-        if (listNumberDatas.Count <= 0) { return; }
-        Text text = GetText();
-        if (text == null) { return; }
+        int effectId = BattleEffectManager.CreateEffect(1, dmgExpLocation.transform);
+        Effect effect = EffectManager.GetEffect(effectId);
+        //var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.effectRootPath, "fx_dmgExp"));
+        //GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, null);
+        //go.transform.position = dmgExpLocation.transform.position;
+        Text text = effect.effectObject.GetComponent<Text>();
+        Debug.Assert(text != null, "LifeGauge.Update()_1");
         Animator animator = text.GetComponent<Animator>();
-        NumberData nd = listNumberDatas[0];
-        listNumberDatas.RemoveAt(0);
+        NumberData nd = numberData;
         switch (nd.numberType)
         {
             case NumberType.MaxLife:
@@ -79,19 +77,6 @@ public class LifeGauge : MonoBehaviour
                 text.color = Color.green;
                 break;
         }
-        animator.SetTrigger("Restart");
-
     }
 
-    private Text GetText()
-    {
-        foreach (Text text in dmgExpTests)
-        {
-            if (!text.enabled)
-            {
-                return text;
-            }
-        }
-        return null;
-    }
 }

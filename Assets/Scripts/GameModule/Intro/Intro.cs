@@ -23,13 +23,26 @@ public class Intro : MonoBehaviour
         }
     }
 
+    private void SetLandscape()
+    {
+        Screen.orientation = ScreenOrientation.Landscape;//如果屏幕是竖屏,则立刻旋转至横屏
+
+        //设置只允许横屏旋转
+        Screen.autorotateToPortrait = false;
+        Screen.autorotateToPortraitUpsideDown = false;
+        Screen.autorotateToLandscapeRight = true;
+        Screen.autorotateToLandscapeLeft = true;
+
+        Screen.orientation = ScreenOrientation.AutoRotation;//再设置为允许自动旋转
+    }
+
     public void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
-
+        SetLandscape();
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 

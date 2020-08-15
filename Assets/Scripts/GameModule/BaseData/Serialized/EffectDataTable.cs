@@ -10,4 +10,5 @@ public class EffectDataInfo : IQueryById
 {
     public string prefabPath;
     public float duration;
+    public int cacheCount;
 }

@@ -25,7 +25,12 @@ public class FishSkillSwelling : FishSkillBase
 
 		// 减速buff
 		BuffBase buff = playerBase.AddBuff(playerBase, 3);
-		buff.remainingTime = listParam[1];
+		if (buff != null) { buff.remainingTime = listParam[1]; }
+
+		// 无敌护盾buff
+		buff = playerBase.AddBuff(playerBase, 4);
+		if (buff != null) { buff.remainingTime = listParam[1]; }
+
 		return true;
 	}
     public override void Update()
@@ -48,11 +53,12 @@ public class FishSkillSwelling : FishSkillBase
 						// 弹开buff
 						listFish[i].AddBuff(playerBase, 2);
 						// 伤害
-						listFish[i].life -= (int)(playerBase.data.atk * listParam[2]);
-						if (listFish[i].life <= 0)
-						{
-							listFish[i].Die(null);
+						if(!listFish[i].ContainsBuff(0))
+                        {	// 判定是否受伤中
+							listFish[i].Damage( (int)(playerBase.data.atk * listParam[2]), null );
+							
 						}
+						
 					}
 				}
 
@@ -84,4 +90,13 @@ public class FishSkillSwelling : FishSkillBase
 	{
 		currentGauge += listParam[0];
 	}
+    public override void CalcAI()
+    {
+		if (currentGauge < 1) { return; }
+		// 若有受伤buff，就开启膨胀技能
+		if (playerBase.ContainsBuff(0))
+		{
+			RunSkill();
+		}
+    }
 }

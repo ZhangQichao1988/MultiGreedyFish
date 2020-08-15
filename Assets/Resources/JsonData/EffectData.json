@@ -1,3 +1,4 @@
 {"Items":[
-	{"ID":"0.0","prefabPath":"fx_buff_Return_blood","duration":"2"}
+	{"ID":"0.0","prefabPath":"fx_buff_Return_blood","duration":"2","cacheCount":"5"},
+	{"ID":"1.0","prefabPath":"fx_dmgExp","duration":"2","cacheCount":"10"}
 ]}

@@ -70,16 +70,12 @@ public class ShellControl : MonoBehaviour
         if (CanEatPearl())
         {
             goPearl.SetActive(false);
-            fish.life += BattleConst.instance.PearlRecoverLife;
+            fish.Heal(BattleConst.instance.PearlRecoverLife);
             return true;
         }
         else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
         {
-            fish.life -= BattleConst.instance.ShellCloseDmg;
-            if (fish.life <= 0)
-            {
-                fish.Die(null);
-            }
+            fish.Damage( BattleConst.instance.ShellCloseDmg, null );
             listDamagedFish.Add(fish);
             return false;
         }

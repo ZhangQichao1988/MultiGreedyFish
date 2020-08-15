@@ -53,6 +53,9 @@ public class FishSkillBase
 	public virtual void CbDamage()
 	{
 	}
+	public virtual void CalcAI()
+	{
+	}
 	public virtual void Update()
 	{ 
 	}

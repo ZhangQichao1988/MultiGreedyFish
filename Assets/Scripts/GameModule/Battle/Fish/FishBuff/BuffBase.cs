@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffBase
+public abstract class BuffBase
 {
+    public enum BuffType
+    { 
+        None,
+        ChangePostion,             // 位移
+        ChangeSpeed,                // 变速
+        Shield,                             // 护盾
+    };
+    public abstract BuffType buffType { get; }
     public FishBuffDataInfo baseData;
     public float[] aryParam;
     public float remainingTime { get; set; }

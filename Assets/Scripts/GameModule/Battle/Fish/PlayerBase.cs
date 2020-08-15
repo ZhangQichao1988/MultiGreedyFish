@@ -170,7 +170,7 @@ public class PlayerBase : FishBase
 		//data.moveSpeed = 0f;
 		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
-		fish.life -= (int)((float)data.atk * transform.localScale.x);
+		fish.Damage( (int)((float)data.atk * transform.localScale.x), colliderMouth.transform);
 		if (fish.life <= 0)
 		{
 			Eat(fish);
@@ -179,8 +179,8 @@ public class PlayerBase : FishBase
 	}
 	public virtual void Eat(FishBase fish)
 	{
-		life += (int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate);
-		fish.Die(colliderMouth.transform);
+		Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
+		//fish.Die(colliderMouth.transform);
 		animator.SetTrigger("Eat");
 	}
 

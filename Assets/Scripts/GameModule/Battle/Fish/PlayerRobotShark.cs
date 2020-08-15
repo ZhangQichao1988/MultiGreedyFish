@@ -15,10 +15,15 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 		transform.localScale = Vector3.one * 3;
 	}
-	public override void Damge()
+	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
-		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
-		animator.SetTrigger("Damage");
+		bool ret = base.Damage(dmg, hitmanTrans);
+		if (ret)
+		{
+			canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
+			animator.SetTrigger("Damage");
+		}
+		return ret;
 	}
 
 	// 不会透明

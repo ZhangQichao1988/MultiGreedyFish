@@ -1,6 +1,6 @@
 {"Items":[
-	{"ID":"0.0","name":"宝宝鱼","prefabPath":"FishNpc_01","atk":"0.0","life":"20","moveSpeed":"0.4","skillId":"-1.0"},
-	{"ID":"1.0","name":"贪吃鱼","prefabPath":"FishPlayer_01","atk":"20.0","life":"100","moveSpeed":"0.6","skillId":"2.0"},
-	{"ID":"2.0","name":"鲨鱼","prefabPath":"FishNpc_02","atk":"20.0","life":"100","moveSpeed":"0.4","skillId":"-1.0"},
-	{"ID":"3.0","name":"河豚鱼","prefabPath":"FishPlayer_02","atk":"1.0","life":"999999","moveSpeed":"0.8","skillId":"3.0"}
+	{"ID":"0.0","name":"宝宝鱼","prefabPath":"FishNpc_01","atk":"0.0","life":"20","moveSpeed":"0.6","skillId":"-1.0"},
+	{"ID":"1.0","name":"贪吃鱼","prefabPath":"FishPlayer_01","atk":"20.0","life":"100","moveSpeed":"0.8","skillId":"2.0"},
+	{"ID":"2.0","name":"鲨鱼","prefabPath":"FishNpc_02","atk":"20.0","life":"100","moveSpeed":"0.5","skillId":"-1.0"},
+	{"ID":"3.0","name":"河豚鱼","prefabPath":"FishPlayer_02","atk":"20.0","life":"999999","moveSpeed":"0.8","skillId":"3.0"}
 ]}
