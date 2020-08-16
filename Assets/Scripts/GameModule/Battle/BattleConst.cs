@@ -44,7 +44,7 @@ public class BattleConst
 		ShellCloseDmg = (int)ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
 		ShellPearlResetRate = ConfigTableProxy.Instance.GetDataByKey("ShellPearlResetRate");
 	}
-	public readonly bool FreeMode = false;																											// 只剩自己也不会胜利
+	public readonly bool FreeMode = true;																											// 只剩自己也不会胜利
 
 
 	public float PoisonRingScaleSpeed = 0.6f;                                                                                         // 毒圈缩小速度

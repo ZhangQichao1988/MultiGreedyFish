@@ -26,6 +26,11 @@ public class Home : UIBase
         NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
         NetWorkHandler.RequestBattle();
     }
+    public void OnClickFishSelect()
+    {
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoHomeScene("FishEditor");
+    }
 
     void OnRecvBattle<T>(T response)
     {
@@ -43,4 +48,5 @@ public class Home : UIBase
         }
 
     }
+
 }

@@ -13,8 +13,9 @@ Shader "Custom/Fish"
         [HideInInspector] _AlphaClip("__clip", Float) = 0.0
         [HideInInspector] _SrcBlend("Src", Float) = 1.0
         [HideInInspector] _DstBlend("Dst", Float) = 0.0
-        [HideInInspector] _ZWrite("ZWrite", Float) = 1.0
-        [HideInInspector] _Cull("__cull", Float) = 2.0
+        _ZWrite("ZWrite", Float) = 1.0
+        _Cull("Cull", Float) = 2.0
+        _ZTest("ZTest", Float) = 2.0
 
         // Editmode props
         [HideInInspector] _QueueOffset("Queue offset", Float) = 0.0
@@ -31,8 +32,9 @@ Shader "Custom/Fish"
 
 
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite On
-        //Cull [_Cull]
+        ZWrite [_ZWrite]
+        Cull [_Cull]
+        ZTest [_ZTest]
 
         Pass
         {

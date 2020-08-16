@@ -74,6 +74,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _ZTest: 2
     - _ZWrite: 1
     m_Colors:
     - Color_46373A26: {r: 0, g: 0, b: 0, a: 0}

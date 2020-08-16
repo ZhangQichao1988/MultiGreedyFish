@@ -688,7 +688,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: CONSOLE_ENABLE
     4: CONSOLE_ENABLE
-    7: CONSOLE_ENABLE
+    7: CONSOLE_ENABLE;DUMMY_DATA
   platformArchitecture:
     iPhone: 1
   scriptingBackend:
