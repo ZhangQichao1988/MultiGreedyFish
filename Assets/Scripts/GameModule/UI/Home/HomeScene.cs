@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class HomeScene : BaseScene
 {
-    private readonly string uiRootPath = "ArtResources/UI/Prefabs/";
+    
     private readonly List<string> listUI = new List<string>() 
     {
         "Home",
@@ -22,7 +22,7 @@ public class HomeScene : BaseScene
         dicUI = new Dictionary<string, GameObject>();
         foreach (var note in listUI)
         {
-            m_sceneData.Add(new SceneData() { Resource = Path.Combine(uiRootPath, note), ResType = typeof(GameObject) });
+            m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.uiRootPath, note), ResType = typeof(GameObject) });
         }
         
     }
@@ -34,7 +34,7 @@ public class HomeScene : BaseScene
 
     private void CreateHomeScene(string sceneName)
     {
-        string uiPath = Path.Combine(uiRootPath, sceneName);
+        string uiPath = Path.Combine(AssetPathConst.uiRootPath, sceneName);
         var mainGo = cachedObject[uiPath] as GameObject;
         mainGo = GameObjectUtil.InstantiatePrefab(mainGo, null);
         dicUI.Add(sceneName, mainGo);
