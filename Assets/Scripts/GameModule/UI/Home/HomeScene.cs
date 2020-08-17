@@ -11,13 +11,15 @@ public class HomeScene : BaseScene
         "FishEditor"
     };
     private Dictionary<string, GameObject> dicUI;
+    private UIHomeCommon homeCommon;
 
-    private string mainUIPath = "ArtResources/UI/Prefabs/Home";
-    private string fishEditorUIPath = "ArtResources/UI/Prefabs/FishEditor";
+    private string currentScene;
+    private List<string> sceneHistory;
+
     public override void Init(object parms)
     {
         Resources.UnloadUnusedAssets();
-
+        sceneHistory = new List<string>();
         // Home相关UI预载
         dicUI = new Dictionary<string, GameObject>();
         foreach (var note in listUI)
@@ -29,7 +31,11 @@ public class HomeScene : BaseScene
 
     public override void Create()
     {
-        CreateHomeScene("Home");
+        currentScene = "Home";
+        CreateHomeScene(currentScene);
+        sceneHistory.Add(currentScene);
+        homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine( AssetPathConst.uiRootPath, "HomeCommon" ), UIBase.UILayers.DEFAULT);
+        homeCommon.SetActiveScene(currentScene);
     }
 
     private void CreateHomeScene(string sceneName)
@@ -43,8 +49,12 @@ public class HomeScene : BaseScene
     {
         GotoHomeScene("FishEditor");
     }
-    public void GotoHomeScene(string sceneName)
+    public void GotoHomeScene(string sceneName, bool saveHistory = true)
     {
+        if (saveHistory) { sceneHistory.Add(currentScene); }
+
+        currentScene = sceneName;
+        homeCommon.SetActiveScene(sceneName);
         // 隐藏所有UI
         foreach (var note in dicUI.Values)
         {
@@ -59,5 +69,9 @@ public class HomeScene : BaseScene
         {
             CreateHomeScene(sceneName);
         }
+    }
+    public void BackPrescene()
+    {
+        GotoHomeScene(sceneHistory[sceneHistory.Count - 1], false);
     }
 }
