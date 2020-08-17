@@ -10,7 +10,6 @@ public class HomeScene : BaseScene
         "Home",
         "FishEditor"
     };
-    private Dictionary<string, GameObject> dicUI;
 
     private string mainUIPath = "ArtResources/UI/Prefabs/Home";
     private string fishEditorUIPath = "ArtResources/UI/Prefabs/FishEditor";
@@ -29,35 +28,11 @@ public class HomeScene : BaseScene
 
     public override void Create()
     {
-        CreateHomeScene("Home");
+        GotoSceneUI("Home");
     }
 
-    private void CreateHomeScene(string sceneName)
-    {
-        string uiPath = Path.Combine(AssetPathConst.uiRootPath, sceneName);
-        var mainGo = cachedObject[uiPath] as GameObject;
-        mainGo = GameObjectUtil.InstantiatePrefab(mainGo, null);
-        dicUI.Add(sceneName, mainGo);
-    }
     public void GotoFishEditor()
     {
-        GotoHomeScene("FishEditor");
-    }
-    public void GotoHomeScene(string sceneName)
-    {
-        // 隐藏所有UI
-        foreach (var note in dicUI.Values)
-        {
-            note.SetActive(false);
-        }
-
-        if (dicUI.ContainsKey(sceneName))
-        {
-            dicUI[sceneName].SetActive(true);
-        }
-        else
-        {
-            CreateHomeScene(sceneName);
-        }
+        GotoSceneUI("FishEditor");
     }
 }

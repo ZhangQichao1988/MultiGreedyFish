@@ -29,7 +29,7 @@ public class Home : UIBase
     public void OnClickFishSelect()
     {
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-        homeScene.GotoHomeScene("FishEditor");
+        homeScene.GotoSceneUI("FishEditor");
     }
 
     void OnRecvBattle<T>(T response)
