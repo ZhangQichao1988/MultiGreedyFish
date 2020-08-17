@@ -128,6 +128,7 @@ public class BlUIManager : MonoBehaviour
         _rootCanvasTransform = canvasGameObject.AddComponent<RectTransform>();
 
         _rootCanvas = canvasGameObject.AddComponent<Canvas>();
+        RootCanvas.sortingOrder = 1;
         RootCanvas.renderMode = _uiSettings.renderMode;
         RootCanvas.additionalShaderChannels |= AdditionalCanvasShaderChannels.TexCoord1;
 

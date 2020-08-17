@@ -1,3 +1,26 @@
+# Version 1.2.156 - June 10, 2020
+* All: Described EDM4U analytics data usage in readme.
+* Android Resolver: Fixed that the generated local repo assets contains
+  redundent labels which are causing Version Handler to failed while
+  uninstalling packages.
+* Android Resolver: Fixed that the repo url injected into mainTemplate.gradle
+  is incorrect when Unity is configured to export gradle project.
+* Android Resolver: Limited to only create local Maven repo when the source
+  repo contains ".srcaar" file.
+
+# Version 1.2.155 - May 14, 2020
+* All: Fixed compiler error when build with Unity 5.4 or below due to the
+  usage of Rect.zero.
+* All: Ignore cases when checking command line arguments.
+
+# Version 1.2.154 - May 14, 2020
+* All: Make each MultiSelectWindow for different purposes to have its own
+  unique window.
+* All: Replace all dialog with DialogWindow which is implemented from
+  EditorWindow.
+* Package Manager Resolver: Clarify how manifest.json will be changed in Package
+  Manager Resolver window.
+
 # Version 1.2.153 - Apr 24, 2020
 * Android Resolver: Fixed an exception when repainting the Android resolution
   window in Unity 2019.3.x.

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AssetPathConst
 {
+	public static readonly string uiRootPath = "ArtResources/UI/Prefabs/";
+	public static readonly string fishIconPath = "ArtResources/UI/Textures/FishIcon/FishIcon_{0}";
 	public static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/PlayerLifeGauge";
 	public static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
 	public static readonly string effectRootPath = "ArtResources/Effect/Prefab/FX/";

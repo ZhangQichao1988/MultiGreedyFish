@@ -12,6 +12,8 @@ public class BattleScene : BaseScene
     /// <param name="parms">外部传入的参数</param>
     public override void Init(object parms)
     {
+        Resources.UnloadUnusedAssets();
+
         // Other
         m_sceneData.Add(new SceneData(){ Resource = Path.Combine(AssetPathConst.lifeGaugePath), ResType = typeof(GameObject) });
         m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.playerNameplatePrefabPath), ResType = typeof(GameObject) });
