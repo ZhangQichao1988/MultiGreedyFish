@@ -10,18 +10,12 @@ public class HomeScene : BaseScene
         "Home",
         "FishEditor"
     };
-    private Dictionary<string, GameObject> dicUI;
     private UIHomeCommon homeCommon;
 
-    private string currentScene;
-    private List<string> sceneHistory;
 
     public override void Init(object parms)
     {
-        Resources.UnloadUnusedAssets();
-        sceneHistory = new List<string>();
-        // Home相关UI预载
-        dicUI = new Dictionary<string, GameObject>();
+        base.Init(parms);
         foreach (var note in listUI)
         {
             m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.uiRootPath, note), ResType = typeof(GameObject) });
@@ -31,47 +25,17 @@ public class HomeScene : BaseScene
 
     public override void Create()
     {
-        currentScene = "Home";
-        CreateHomeScene(currentScene);
-        sceneHistory.Add(currentScene);
-        homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine( AssetPathConst.uiRootPath, "HomeCommon" ), UIBase.UILayers.DEFAULT);
-        homeCommon.SetActiveScene(currentScene);
-    }
-
-    private void CreateHomeScene(string sceneName)
-    {
-        string uiPath = Path.Combine(AssetPathConst.uiRootPath, sceneName);
-        var mainGo = cachedObject[uiPath] as GameObject;
-        mainGo = GameObjectUtil.InstantiatePrefab(mainGo, null);
-        dicUI.Add(sceneName, mainGo);
+        homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine(AssetPathConst.uiRootPath, "HomeCommon"), UIBase.UILayers.DEFAULT);
+        GotoSceneUI("Home");
     }
     public void GotoFishEditor()
     {
-        GotoHomeScene("FishEditor");
+        GotoSceneUI("FishEditor");
     }
-    public void GotoHomeScene(string sceneName, bool saveHistory = true)
+    public override void GotoSceneUI(string uiName, bool saveHistory = true)
     {
-        if (saveHistory) { sceneHistory.Add(currentScene); }
-
-        currentScene = sceneName;
-        homeCommon.SetActiveScene(sceneName);
-        // 隐藏所有UI
-        foreach (var note in dicUI.Values)
-        {
-            note.SetActive(false);
-        }
-
-        if (dicUI.ContainsKey(sceneName))
-        {
-            dicUI[sceneName].SetActive(true);
-        }
-        else
-        {
-            CreateHomeScene(sceneName);
-        }
+        base.GotoSceneUI(uiName, saveHistory);
+        homeCommon.SetActiveScene(uiName);
     }
-    public void BackPrescene()
-    {
-        GotoHomeScene(sceneHistory[sceneHistory.Count - 1], false);
-    }
+
 }

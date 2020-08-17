@@ -31,7 +31,7 @@ public class FishEditor : MonoBehaviour
     public void GotoHome()
     {
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-        homeScene.GotoHomeScene("Home");
+        homeScene.GotoSceneUI("Home");
     }
 
     private void OnDestroy()
