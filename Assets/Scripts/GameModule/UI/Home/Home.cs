@@ -32,6 +32,11 @@ public class Home : UIBase
         homeScene.GotoSceneUI("FishEditor");
     }
 
+    public void OnClickAdsTest()
+    {
+        Intro.Instance.AdsController.Show();
+    }
+
     void OnRecvBattle<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P4_RESPONSE);

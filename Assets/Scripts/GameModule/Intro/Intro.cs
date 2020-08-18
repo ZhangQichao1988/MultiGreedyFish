@@ -11,7 +11,9 @@ public class Intro : MonoBehaviour
         set;
     }
     
-    private ClickEffect ClickEffect;
+    private ClickEffect clickEffect;
+
+    public AdsController AdsController;
 
     static BlUIManager uiManager;
 
@@ -51,8 +53,10 @@ public class Intro : MonoBehaviour
         uiManager = gameObject.AddComponent<BlUIManager>();
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
+        AdsController = gameObject.AddComponent<AdsController>();
         
-        ClickEffect = gameObject.AddComponent<ClickEffect>();
+        clickEffect = gameObject.AddComponent<ClickEffect>();
+        
     }
 
     private void OnDestroy()
@@ -67,7 +71,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
-        ClickEffect.Initialize();
+        clickEffect.Initialize();
         NetWorkHandler.InitHttpNetWork();
         GameServiceController.Init();
 #if CONSOLE_ENABLE 
