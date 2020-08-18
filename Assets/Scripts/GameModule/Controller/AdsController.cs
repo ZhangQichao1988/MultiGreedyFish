@@ -14,12 +14,11 @@ public class AdsController : MonoBehaviour
 #endif
 
     private bool isInited;
+    private bool isLoadFailed;
     void Start()
     {
         MobileAds.Initialize(client=>{
-            Debug.Log(">>>>>>>>>>>>>>>>>>> ABMOD SDK has been Inited");
             isInited = true;
-            PreLoad();
         });
     }
 
@@ -28,6 +27,7 @@ public class AdsController : MonoBehaviour
     {
         if (isInited)
         {
+            Debug.Log("Started to preload");
             rewardAd = CreateAndLoadRewardedAd(appId);
         }
         else
@@ -38,13 +38,21 @@ public class AdsController : MonoBehaviour
 
     public void Show()
     {
-        if (rewardAd != null && rewardAd.IsLoaded())
+        if (rewardAd != null)
         {
-            rewardAd.Show();
+            if (rewardAd.IsLoaded())
+            {
+                rewardAd.Show();
+            }
+            else if (isLoadFailed)
+            {
+                PreLoad();
+            }
         }
         else
         {
             Debug.Log("have not been Loaded");
+            PreLoad();
         }
     }
 
@@ -53,6 +61,7 @@ public class AdsController : MonoBehaviour
         RewardedAd rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+        rewardedAd.OnAdFailedToLoad += HandleRewardedAdLoadedFailed;
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 
@@ -65,16 +74,22 @@ public class AdsController : MonoBehaviour
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        MonoBehaviour.print("HandleRewardBasedVideoLoaded event received");
+        Debug.Log("HandleRewardBasedVideoLoaded event received");
+    }
+
+    public void HandleRewardedAdLoadedFailed(object sender, EventArgs args)
+    {
+        Debug.Log("HandleRewardBasedVideoLoaded Loaded Failed");
+        isLoadFailed = true;
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
-        MonoBehaviour.print("HandleRewardBasedVideoLoaded Reward");
+        Debug.Log("HandleRewardBasedVideoLoaded Reward");
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        MonoBehaviour.print("HandleRewardBasedVideoLoaded Closed");
+        Debug.Log("HandleRewardBasedVideoLoaded Closed");
     }
 }
