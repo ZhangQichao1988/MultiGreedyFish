@@ -4,6 +4,7 @@ using System;
 
 public class AdsController : MonoBehaviour
 {
+    //使用测试的广告单元
 #if UNITY_ANDROID
     string appId = "ca-app-pub-3940256099942544/5224354917";
 #elif UNITY_IPHONE
@@ -16,7 +17,9 @@ public class AdsController : MonoBehaviour
     void Start()
     {
         MobileAds.Initialize(client=>{
+            Debug.Log(">>>>>>>>>>>>>>>>>>> ABMOD SDK has been Inited");
             isInited = true;
+            PreLoad();
         });
     }
 
@@ -35,7 +38,7 @@ public class AdsController : MonoBehaviour
 
     public void Show()
     {
-        if (rewardAd.IsLoaded())
+        if (rewardAd != null && rewardAd.IsLoaded())
         {
             rewardAd.Show();
         }

@@ -16,7 +16,6 @@ public class HomeScene : BaseScene
     public override void Init(object parms)
     {
         base.Init(parms);
-        Intro.Instance.AdsController.PreLoad();
         foreach (var note in listUI)
         {
             m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.uiRootPath, note), ResType = typeof(GameObject) });

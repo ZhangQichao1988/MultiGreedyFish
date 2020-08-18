@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using NetWorkModule;
+using System;
 
 
 public class Intro : MonoBehaviour
@@ -13,6 +14,7 @@ public class Intro : MonoBehaviour
     
     private ClickEffect clickEffect;
 
+    [NonSerialized]
     public AdsController AdsController;
 
     static BlUIManager uiManager;
