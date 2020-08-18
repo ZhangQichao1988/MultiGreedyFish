@@ -68,4 +68,7 @@ public class UIBase : MonoBehaviour
         dicUi.Remove(uiName);
         Destroy(root);
     }
+    public virtual void Init()
+    { 
+    }
 }

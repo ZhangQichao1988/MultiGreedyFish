@@ -31,17 +31,17 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 2808cef78eaa9674c8aa515563992cd1, type: 3}
-    totalSpriteSurfaceArea: 552960
+    totalSpriteSurfaceArea: 674258
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 7b7d511138d0ad04eae27d0a3342ec3d, type: 3}
   - {fileID: 21300000, guid: de2a14325bc99684f8841195437e4d55, type: 3}
   - {fileID: 21300000, guid: cbd4d062e51d9034db188e84651b0ec2, type: 3}
+  - {fileID: 21300000, guid: 095854c2e17ef654c8a9e938f0172384, type: 3}
   - {fileID: 21300000, guid: fffd27b41b0712b4ba369ea2388630cb, type: 3}
+  - {fileID: 21300000, guid: 2c0de025cef4aaf43a1b3c0593573913, type: 3}
   - {fileID: 21300000, guid: d4caa4e526743544586c9e620b927f1e, type: 3}
   - {fileID: 21300000, guid: 959872b6e9e6d444787855e49bd22b9d, type: 3}
-  - {fileID: 21300000, guid: 148d8b171e581a743bfe44876ff81ac2, type: 3}
   - {fileID: 21300000, guid: 8fc9d808b7bfa1b40b38dd96b7faf162, type: 3}
   - {fileID: 21300000, guid: a93ab5280dc28194b9544dd25a631dfb, type: 3}
   - {fileID: 21300000, guid: 151fdd8821407614ca6f0ec1ff7cf8bf, type: 3}
@@ -51,13 +51,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 95af6acdfa7b3734c9f8a9889317b26f, type: 3}
   - {fileID: 21300000, guid: b2c2a57e3422cae45b7f64250e3c43e7, type: 3}
   m_PackedSpriteNamesToIndex:
-  - UI_grade_bg
   - UI_shop
   - UI_trophy
+  - UI_Head_bg_02
   - UI_plus
+  - UI_Head_bg_01
   - UI_progress_bar
   - UI_activity
-  - UI_grade
   - UI_start
   - UI_goldcoin
   - UI_level_1
