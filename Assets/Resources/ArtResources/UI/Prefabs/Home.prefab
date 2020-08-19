@@ -1534,7 +1534,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3671010847682810900}
-        m_MethodName: OnClickFishSelect
+        m_MethodName: OnClickAdsTest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

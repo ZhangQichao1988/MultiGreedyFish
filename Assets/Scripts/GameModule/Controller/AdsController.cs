@@ -28,12 +28,19 @@ public class AdsController : MonoBehaviour
         if (isInited)
         {
             Debug.Log("Started to preload");
+            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
             rewardAd = CreateAndLoadRewardedAd(appId);
+            rewardAd.LoadAd(GetRequest());
         }
         else
         {
             Debug.Log("have not been Inited");
         }
+    }
+
+    AdRequest GetRequest()
+    {
+        return new AdRequest.Builder().Build();
     }
 
     public void Show()
@@ -65,22 +72,23 @@ public class AdsController : MonoBehaviour
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-        // Load the rewarded ad with the request.
-        rewardedAd.LoadAd(request);
         return rewardedAd;
     }
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded event received");
+        isLoadFailed = false;
+        LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+        Show();
     }
 
     public void HandleRewardedAdLoadedFailed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded Loaded Failed");
         isLoadFailed = true;
+        LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+        MsgBox.OpenTips("Ads Load Failed");
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
@@ -91,5 +99,6 @@ public class AdsController : MonoBehaviour
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded Closed");
+        rewardAd = null;
     }
 }
