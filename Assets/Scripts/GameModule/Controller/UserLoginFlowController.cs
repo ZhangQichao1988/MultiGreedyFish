@@ -132,6 +132,7 @@ public class UserLoginFlowController
         Debug.Log("On Getted Userinfo!");
         var realResponse = response as P3_Response;
 
+        Intro.Instance.FireBaseCtrl.SetUserId(realResponse.Player.PlayerId.ToString());
         PlayerModel.Instance.player = realResponse.Player;
         finishCb?.Invoke();
     }
