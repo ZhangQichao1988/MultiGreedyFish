@@ -20,7 +20,7 @@ public class FishStatusFishControl : MonoBehaviour
         if (transModel != null) { Destroy(transModel.gameObject); }
         transModel = goFish.transform;
         animator = goFish.GetComponent<Animator>();
-        animator.SetFloat("Speed", 1f);
+        animator.SetFloat("Speed", 0.5f);
         //GameObject goMouth = GameObject.Find("mouth");
         //Debug.Assert(goMouth != null, "HomeFishControl.SetFishModel()_1");
         //GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, "fx_blister_home"), typeof(GameObject)).Asset as GameObject;
