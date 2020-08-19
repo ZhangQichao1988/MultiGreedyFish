@@ -16,7 +16,7 @@ KEY_ALIAS_PASS="hulaoshi007"
 
 
 echo ${WORKDIR}
-UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.5f1/Unity.app/Contents/MacOS/Unity
+UNITY_PATH="/c/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Unity.exe"
 
 BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 
@@ -26,6 +26,6 @@ echo ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod Multi
 -bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile /tmp/fish/build/android/build_log-${BUILD_DATA}.log 
 
 
-${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
+"${UNITY_PATH}" -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
 -productName=${PRODUCT_NAME} -iosBuild=false -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
 -bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile /tmp/fish/build/android/build_log-${BUILD_DATA}.log 
