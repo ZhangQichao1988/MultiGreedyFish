@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7523135730315288796}
-  - component: {fileID: 8125001041391259783}
   - component: {fileID: 1922886872524009643}
   m_Layer: 11
   m_Name: Player
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 5350802337412062418}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &8125001041391259783
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003255489399489597}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 17, y: 7.2, z: 0.1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1922886872524009643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711a115cb70bee24caee058a0c8a59ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  camera: {fileID: 7960558673091247428}
+  rotPow: 10
 --- !u!1 &3175805729524764696
 GameObject:
   m_ObjectHideFlags: 0
