@@ -18,12 +18,13 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
     P3_Response GetResponseData()
     {
         var res = new P3_Response();
-        res.Player = new PBPlayer(){
+        res.Player = new PBPlayer() {
             PlayerId = 9999999L,
+            FaceIconId = 1,
             FightFish = 3,
             Gold = 10,
             Diamond = 10,
-            Nickname = "Dummy",
+            Nickname = "孙小杰",
             Power = 100,
             PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L
         };

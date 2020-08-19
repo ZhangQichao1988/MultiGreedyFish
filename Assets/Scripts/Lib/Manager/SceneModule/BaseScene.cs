@@ -13,7 +13,7 @@ public class BaseScene
     Dictionary<int, Dictionary<int ,string>> cachedDic = new Dictionary<int, Dictionary<int, string>>();
     public Dictionary<string, UnityEngine.Object> cachedObject = new Dictionary<string, UnityEngine.Object>();
 
-    protected Dictionary<string, GameObject> dicUI;
+    protected Dictionary<string, UIBase> dicUI;
 
     public class SceneData
     {
@@ -33,7 +33,7 @@ public class BaseScene
         Resources.UnloadUnusedAssets();
         sceneHistory = new List<string>();
         // Home相关UI预载
-        dicUI = new Dictionary<string, GameObject>();
+        dicUI = new Dictionary<string, UIBase>();
     }
 
     void OnLoaded(int block, int resHandle, AssetRef obj)
@@ -74,7 +74,9 @@ public class BaseScene
         string uiPath = Path.Combine(AssetPathConst.uiRootPath, uiName);
         var mainGo = cachedObject[uiPath] as GameObject;
         mainGo = GameObjectUtil.InstantiatePrefab(mainGo, null);
-        dicUI.Add(uiName, mainGo);
+        var uiBase = mainGo.GetComponent<UIBase>();
+        uiBase.Init();
+        dicUI.Add(uiName, uiBase);
     }
     public virtual void GotoSceneUI(string uiName, bool saveHistory = true)
     {
@@ -84,12 +86,14 @@ public class BaseScene
         // 隐藏所有UI
         foreach (var note in dicUI.Values)
         {
-            note.SetActive(false);
+            note.gameObject.SetActive(false);
         }
 
         if (dicUI.ContainsKey(uiName))
         {
-            dicUI[uiName].SetActive(true);
+            dicUI[uiName].gameObject.SetActive(true);
+            dicUI[uiName].Init();
+
         }
         else
         {

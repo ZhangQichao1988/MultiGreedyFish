@@ -102,6 +102,8 @@ base_data_type = {
          "INT(11)"]),
     "RobotGroupData": sort_cloum_item(
         ["ID", "INT(11)", "groupId", "INT(11)", "rankMin", "INT(11)", "rankMax", "INT(11)"]),
+     "RankBonusData": sort_cloum_item(
+        ["ID", "INT(11)", "rankLevel", "INT(11)", "itemId", "INT(11)"]),
 }
 
 

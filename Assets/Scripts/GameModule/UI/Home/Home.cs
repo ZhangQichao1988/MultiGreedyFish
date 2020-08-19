@@ -3,20 +3,48 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using System.IO;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Home : UIBase
 {
-    public HomeFishControl fishControl;
-    protected override void Awake()
-    {
-        base.Awake();
-        
-        OnGetPlayer(PlayerModel.Instance.player);
-    }
+    // FaceIcon
+    public Text textPlayerName;
+    public Image imgPlayerFaceIcon;
 
+    // 段位
+    public Slider sliderRankProcess;
+    public Text textRankLevel;
+
+    // 资源
+    public Text textGold;
+    public Text textDiamond;
+
+    public HomeFishControl fishControl;
+
+    private FishDataInfo fishBaseData;
+
+    public override void Init()
+    {
+        PBPlayer pBPlayer = PlayerModel.Instance.player;
+        OnGetPlayer(pBPlayer);
+
+        // FaceIcon
+        textPlayerName.text = pBPlayer.Nickname;
+        imgPlayerFaceIcon.sprite = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.faceIconPath, pBPlayer.FaceIconId)).Asset;
+
+        // 段位
+        int totalRankLevel = PlayerModel.Instance.GetTotalRankLevel();
+        textRankLevel.text = totalRankLevel.ToString();
+        sliderRankProcess.value = RankBonusDataTableProxy.Instance.GetRankBonusProcess(totalRankLevel);
+
+        // 资源
+        textGold.text = pBPlayer.Gold.ToString();
+        textDiamond.text = pBPlayer.Diamond.ToString();
+    }
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
-        var fishBaseData = FishDataTableProxy.Instance.GetDataById(pBPlayer.FightFish);
+        if (fishBaseData != null && fishBaseData.ID == pBPlayer.FightFish) { return; }
+        fishBaseData = FishDataTableProxy.Instance.GetDataById(pBPlayer.FightFish);
         var asset = ResourceManager.LoadSync(Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), typeof(GameObject));
         GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, fishControl.gameObject);
         fishControl.SetFishModel(go);
