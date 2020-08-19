@@ -15,6 +15,9 @@ public class UIHomeCommon : UIBase
             case "FishEditor":
                 goBack.SetActive(true);
                 break;
+            case "FishStatus":
+                goBack.SetActive(true);
+                break;
         }
     }
     public void OnBackBtn()

@@ -69,7 +69,7 @@ public class BaseScene
         dicUI = null;
     }
 
-    private void CreateUI(string uiName)
+    private UIBase CreateUI(string uiName)
     {
         string uiPath = Path.Combine(AssetPathConst.uiRootPath, uiName);
         var mainGo = cachedObject[uiPath] as GameObject;
@@ -77,8 +77,9 @@ public class BaseScene
         var uiBase = mainGo.GetComponent<UIBase>();
         uiBase.Init();
         dicUI.Add(uiName, uiBase);
+        return uiBase;
     }
-    public virtual void GotoSceneUI(string uiName, bool saveHistory = true)
+    public virtual UIBase GotoSceneUI(string uiName, bool saveHistory = true)
     {
         if (saveHistory) { sceneHistory.Add(currentScene); }
 
@@ -93,16 +94,17 @@ public class BaseScene
         {
             dicUI[uiName].gameObject.SetActive(true);
             dicUI[uiName].Init();
-
+            return dicUI[uiName];
         }
         else
         {
-            CreateUI(uiName);
+            return CreateUI(uiName);
         }
     }
 
     public void BackPrescene()
     {
         GotoSceneUI(sceneHistory[sceneHistory.Count - 1], false);
+        sceneHistory.RemoveAt(sceneHistory.Count - 1);
     }
 }

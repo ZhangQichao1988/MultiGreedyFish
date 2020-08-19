@@ -13,17 +13,27 @@ public class FishEditor : UIBase
     {
         base.Init();
 
+        List<FishEditorItem> aryFishEditorItem = new List<FishEditorItem>( transContent.GetComponentsInChildren<FishEditorItem>());
+
         GameObject go;
-        Image image;
+        FishEditorItem fishEditorItem;
         foreach (var note in PlayerModel.Instance.player.AryPlayerFishInfo)
         {
+            // 已有的鱼只是更新信息，不重新实例化
+            fishEditorItem = aryFishEditorItem.Find((a) => a.pBPlayerFishLevelInfo == note);
+            if (fishEditorItem != null)
+            {
+                fishEditorItem.Refash(note);
+                continue;
+            }
+
+            // 新增的鱼实例化
             if (note.FishLevel > 0)
             {
                 var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.uiRootPath, "FishEditorItem"));
                 go = GameObjectUtil.InstantiatePrefab(asset.Asset, transContent.gameObject);
-                image = go.GetComponent<Image>();
-                var spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, note.FishId));
-                image.sprite = spAsset.Asset;
+                fishEditorItem = go.GetComponent<FishEditorItem>();
+                fishEditorItem.Init(note);
             }
         }
     }

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 
-public class Home : UIBase
+public class UIHome : UIBase
 {
     // FaceIcon
     public Text textPlayerName;
@@ -44,6 +44,7 @@ public class Home : UIBase
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
         if (fishBaseData != null && fishBaseData.ID == pBPlayer.FightFish) { return; }
+
         fishBaseData = FishDataTableProxy.Instance.GetDataById(pBPlayer.FightFish);
         var asset = ResourceManager.LoadSync(Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), typeof(GameObject));
         GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, fishControl.gameObject);
