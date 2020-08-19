@@ -17,6 +17,9 @@ public class Intro : MonoBehaviour
     [NonSerialized]
     public AdsController AdsController;
 
+    [NonSerialized]
+    public FireBaseController FireBaseCtrl;
+
     static BlUIManager uiManager;
 
     public static BlUIManager UIManager
@@ -56,6 +59,8 @@ public class Intro : MonoBehaviour
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
         AdsController = gameObject.AddComponent<AdsController>();
+
+        FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
         
         clickEffect = gameObject.AddComponent<ClickEffect>();
         

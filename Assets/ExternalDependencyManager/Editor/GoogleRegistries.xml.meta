@@ -4,6 +4,7 @@ labels:
 - gumpr_registries
 - gvh
 - gvh_version-1.2.156
+- gvh_version-6.15.2
 - gvhp_exportpath-ExternalDependencyManager/Editor/GoogleRegistries.xml
 timeCreated: 1583806049
 licenseType: Pro
