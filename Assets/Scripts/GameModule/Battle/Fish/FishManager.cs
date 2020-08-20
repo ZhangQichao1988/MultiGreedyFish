@@ -197,6 +197,10 @@ public class FishManager : MonoBehaviour
 		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.instance.PoisonRingRadiusMax;
 
 		var aryEnemyDataInfo = StageModel.Instance.aryEnemyDataInfo;
+		if (aryEnemyDataInfo == null)
+		{
+			Debug.Log("");
+		}
 		for (int i = 0; i < aryEnemyDataInfo.Length; ++i)
 		{
 			enemyMax += (int)Mathf.Lerp(aryEnemyDataInfo[i].FishCountMin, aryEnemyDataInfo[i].FishCountMax, rate);
