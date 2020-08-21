@@ -90,12 +90,13 @@ public class BattleManagerGroup : MonoBehaviour
             //this.isPause = true;
             animator.SetTrigger("Win");
             animator.SetTrigger("BattleEnd");
+            isPause = true;
         }
         else
         {
             animator.SetTrigger("Lose");
         }
-        isPause = true;
+        
         //resultRoot.SetActive(true);
         //battleControl.SetActive(false);
         battleRanking = rank;

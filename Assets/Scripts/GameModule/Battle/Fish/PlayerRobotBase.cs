@@ -10,7 +10,6 @@ public class PlayerRobotBase : PlayerBase
     protected List<FishBase> listFindedFish;
 
     protected override bool showLifeGauge { get { return true; } }
-    protected bool isGotoAquatic { get; set; }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
 
@@ -41,11 +40,11 @@ public class PlayerRobotBase : PlayerBase
                 }
             }
             // 肿胀的河豚鱼剔除
-            if (listFish[i].ContainsBuff(4))
-            {
-                listFish.RemoveAt(i);
-                continue;
-            }
+            //if (listFish[i].ContainsBuff(4))
+            //{
+            //    listFish.RemoveAt(i);
+            //    continue;
+            //}
         }
         // 按距离升序排序
         listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
@@ -86,7 +85,6 @@ public class PlayerRobotBase : PlayerBase
 			}
 
 		}
-        isGotoAquatic = true;
         List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
         for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
         {
@@ -191,14 +189,5 @@ public class PlayerRobotBase : PlayerBase
         return alpha;
     }
 
-	public override bool Damage(int dmg, Transform hitmanTrans)
-	{
-		bool ret = base.Damage(dmg, hitmanTrans);
-        if (ret)
-        {
-            animator.SetTrigger("Damage");
-            isGotoAquatic = false;
-        }
-        return ret;
-    }
+	
 }

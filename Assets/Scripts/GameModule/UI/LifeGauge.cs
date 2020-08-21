@@ -53,6 +53,7 @@ public class LifeGauge : MonoBehaviour
 
     public void ShowNumber(NumberData numberData )
     {
+        if (!dmgExpLocation.activeSelf) { return; }
         int effectId = BattleEffectManager.CreateEffect(1, dmgExpLocation.transform);
         Effect effect = EffectManager.GetEffect(effectId);
         //var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.effectRootPath, "fx_dmgExp"));

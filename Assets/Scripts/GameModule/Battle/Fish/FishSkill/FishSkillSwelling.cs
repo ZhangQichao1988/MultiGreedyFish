@@ -50,15 +50,20 @@ public class FishSkillSwelling : FishSkillBase
 					distance = playerToTargetDir.magnitude;
 					if (playerToTargetDir.magnitude <= 2f)
 					{
-						// 弹开buff
+						// 解除膨胀
+						step = 2;
+						// 解除自己的减速buff
+						playerBase.RemoteBuff(3);
+						// 给自己加速buff
+						playerBase.AddBuff(playerBase, 0);
+
+						// 给敌人弹开buff
 						listFish[i].AddBuff(playerBase, 2);
 						// 伤害
 						if(!listFish[i].ContainsBuff(0))
                         {	// 判定是否受伤中
 							listFish[i].Damage( (int)(playerBase.data.atk * listParam[2]), null );
-							
 						}
-						
 					}
 				}
 
