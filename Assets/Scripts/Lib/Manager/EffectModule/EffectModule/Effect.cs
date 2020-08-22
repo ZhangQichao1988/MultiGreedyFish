@@ -159,7 +159,7 @@ public class Effect
 			{
 				effectObject.transform.localPosition = Vector3.zero;
 				effectObject.transform.localRotation = Quaternion.identity;
-				effectObject.transform.localScale = Vector3.one;
+				//effectObject.transform.localScale = Vector3.one;
 			}
 		}
 	}

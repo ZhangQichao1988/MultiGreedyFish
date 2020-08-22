@@ -35,7 +35,19 @@ public class LifeGauge : MonoBehaviour
     {
         if (max > slider.maxValue)
         {
-            ShowNumber(new NumberData( NumberType.MaxLife, max - (int)slider.maxValue));
+            //ShowNumber(new NumberData( NumberType.MaxLife, max - (int)slider.maxValue));
+            if (max - slider.maxValue >= 150)
+            {
+                BattleEffectManager.CreateEffect(4, dmgExpLocation.transform);
+            }
+            else if (max - slider.maxValue >= 50)
+            {
+                BattleEffectManager.CreateEffect(3, dmgExpLocation.transform);
+            }
+            else
+            {
+                BattleEffectManager.CreateEffect(2, dmgExpLocation.transform);
+            }
         }
         else if (current > slider.value)
         {
