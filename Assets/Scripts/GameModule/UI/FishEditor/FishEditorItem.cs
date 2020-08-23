@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class FishEditorItem : MonoBehaviour
 {
+    Button button;
+
     public Image image;
-    public Button button;
+    public Text textRankLevel;
+    public Text textFishName;
+    public Text textFishChip;
+    public Text textFishLevel;
+
+    FishDataInfo fishData;
 
     public PBPlayerFishLevelInfo pBPlayerFishLevelInfo;
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
@@ -14,13 +21,18 @@ public class FishEditorItem : MonoBehaviour
         this.pBPlayerFishLevelInfo = pBPlayerFishLevelInfo;
 
         // 数据更新
+        textRankLevel.text = pBPlayerFishLevelInfo.RankLevel.ToString();
+        textFishName.text = fishData.name;
 
+        var fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
+        textFishChip.text = string.Format("{0}/{1}", pBPlayerFishLevelInfo.FishChip, fishLevelUpData.useChip);
+        textFishLevel.text = string.Format("Lv.{0}", pBPlayerFishLevelInfo.FishLevel) ;
     }
     public void Init(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
+        fishData = FishDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishId);
         Refash(pBPlayerFishLevelInfo);
         var spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, pBPlayerFishLevelInfo.FishId));
-        image = GetComponent<Image>();
         image.sprite = spAsset.Asset;
 
         button = GetComponent<Button>();
@@ -31,5 +43,6 @@ public class FishEditorItem : MonoBehaviour
                 var ui = homeScene.GotoSceneUI("FishStatus") as UIFishStatus;
                 ui.Setup(pBPlayerFishLevelInfo);
             });
+
     }
 }
