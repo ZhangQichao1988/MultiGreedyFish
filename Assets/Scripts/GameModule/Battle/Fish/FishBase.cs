@@ -428,6 +428,20 @@ public class FishBase : MonoBehaviour
         }
     }
 
+    public void RemoteBuff(int buffId)
+    {
+        BuffBase note;
+        for (int i = listBuff.Count - 1; i >= 0; --i)
+        {
+            note = listBuff[i];
+            if (note.baseData.ID == buffId)
+            {
+                listBuff.RemoveAt(i);
+                return;
+            }
+
+        }
+    }
     public BuffBase AddBuff(FishBase Initiator, int buffId)
     {
         

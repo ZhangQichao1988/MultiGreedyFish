@@ -1,0 +1,12 @@
+{"Items":[
+	{"ID":"0.0","useChip":"10.0","useGold":"10"},
+	{"ID":"1.0","useChip":"10.0","useGold":"20"},
+	{"ID":"2.0","useChip":"20.0","useGold":"50"},
+	{"ID":"3.0","useChip":"50.0","useGold":"100"},
+	{"ID":"4.0","useChip":"100.0","useGold":"200"},
+	{"ID":"5.0","useChip":"200.0","useGold":"500"},
+	{"ID":"6.0","useChip":"500.0","useGold":"1000"},
+	{"ID":"7.0","useChip":"1000.0","useGold":"2000"},
+	{"ID":"8.0","useChip":"2000.0","useGold":"5000"},
+	{"ID":"9.0","useChip":"-1.0","useGold":"-1"}
+]}

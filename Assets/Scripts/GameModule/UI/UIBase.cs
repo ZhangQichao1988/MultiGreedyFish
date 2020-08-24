@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public class UIBase : MonoBehaviour
@@ -67,5 +68,15 @@ public class UIBase : MonoBehaviour
     {
         dicUi.Remove(uiName);
         Destroy(root);
+    }
+    public virtual void Init()
+	{
+	
+	}
+	
+    protected virtual IEnumerator DelayClose(float time = 1.5f)
+    {
+        yield return new WaitForSeconds(time);
+        Close();
     }
 }

@@ -3,7 +3,8 @@ Shader "Custom/Fish"
     Properties
     {
         _BaseMap("Texture", 2D) = "white" {}
-        _BaseColor("Color", Color) = (1, 1, 1, 1)
+        _BaseColor("AddColor", Color) = (1, 1, 1, 1)
+        _MulColor("MulColor", Color) = (1, 1, 1, 1)
         _Alpha("Alpha", Range(0.0, 1.0)) = 1
         _Cutoff("AlphaCutout", Range(0.0, 1.0)) = 0.1
 
@@ -98,7 +99,7 @@ Shader "Custom/Fish"
 
                 half2 uv = input.uv;
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
-                half3 color = texColor.rgb + _BaseColor.rgb;
+                half3 color = texColor.rgb * _MulColor.rgb + _BaseColor.rgb;
                 half alpha = texColor.a * _BaseColor.a * _Alpha;
                 AlphaDiscard(alpha, _Cutoff);
 

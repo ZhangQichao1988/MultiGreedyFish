@@ -38,7 +38,15 @@ public class PlayerBase : FishBase
 
 		CreateNameplate(data.name);
 	}
-
+	public override bool Damage(int dmg, Transform hitmanTrans)
+	{
+		bool ret = base.Damage(dmg, hitmanTrans);
+		if (ret)
+		{
+			animator.SetTrigger("Damage");
+		}
+		return ret;
+	}
 	protected void CreateNameplate(string playerName)
 	{
 		// 生命条

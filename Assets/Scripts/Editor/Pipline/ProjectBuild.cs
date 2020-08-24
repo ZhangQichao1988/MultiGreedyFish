@@ -22,6 +22,8 @@ namespace MultiGreedyFish.Pipline
                 strDefine = strDefine + "CONSOLE_ENABLE;";
             }
 
+            strDefine = strDefine + "DUMMY_DATA;";
+
             SetDefineSymbols(strDefine);
         }
 

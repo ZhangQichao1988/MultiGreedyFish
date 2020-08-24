@@ -68,10 +68,10 @@ public class BattleManagerGroup : MonoBehaviour
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
-            int rewardGold = realResponse.Player.Gold - PlayerModel.Instance.player.Gold;
-            int rewardBattleRanking = PlayerModel.Instance.GetPlayerFishLevelInfo(realResponse.Player).RankLevel - PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel;
-            battleResult.Setup(rewardGold, rewardBattleRanking);
-            PlayerModel.Instance.player = realResponse.Player;
+            int rewardGold = realResponse.GainGold;
+            battleResult.Setup(rewardGold, realResponse.GainRankLevel);
+            var playerFishLevelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+            playerFishLevelInfo.RankLevel += realResponse.GainRankLevel;
         }
         else
         {
@@ -90,11 +90,13 @@ public class BattleManagerGroup : MonoBehaviour
             //this.isPause = true;
             animator.SetTrigger("Win");
             animator.SetTrigger("BattleEnd");
+            isPause = true;
         }
         else
         {
             animator.SetTrigger("Lose");
         }
+        
         //resultRoot.SetActive(true);
         //battleControl.SetActive(false);
         battleRanking = rank;

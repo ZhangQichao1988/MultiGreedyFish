@@ -6,6 +6,8 @@
 CBUFFER_START(UnityPerMaterial)
 float4 _BaseMap_ST;
 half4 _BaseColor;
+half4 _MulColor;
+
 half _Cutoff;
 
 #ifdef _EFFECT1

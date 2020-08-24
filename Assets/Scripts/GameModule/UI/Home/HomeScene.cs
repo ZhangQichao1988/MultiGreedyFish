@@ -8,7 +8,8 @@ public class HomeScene : BaseScene
     private readonly List<string> listUI = new List<string>() 
     {
         "Home",
-        "FishEditor"
+        "FishEditor",
+        "FishStatus",
     };
     private UIHomeCommon homeCommon;
 
@@ -32,10 +33,11 @@ public class HomeScene : BaseScene
     {
         GotoSceneUI("FishEditor");
     }
-    public override void GotoSceneUI(string uiName, bool saveHistory = true)
+    public override UIBase GotoSceneUI(string uiName, bool saveHistory = true)
     {
-        base.GotoSceneUI(uiName, saveHistory);
+        var uiBase = base.GotoSceneUI(uiName, saveHistory);
         homeCommon.SetActiveScene(uiName);
+        return uiBase;
     }
 
 }

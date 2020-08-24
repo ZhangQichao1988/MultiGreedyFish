@@ -92,7 +92,7 @@ base_data_type = {
     "FishBuffData": sort_cloum_item(["ID", "INT(11)", "buffType", "TEXT", "aryParam", "TEXT"]),
     "FishData": sort_cloum_item(
         ["ID", "INT(11)", "name", "TEXT", "prefabPath", "TEXT", "atk", "INT(11)", "life", "INT(11)",
-         "moveSpeed", "DOUBLE(16,2)", "skillId", "INT(11)"]),
+         "moveSpeed", "DOUBLE(16,2)", "skillId", "INT(11)", "isPlayerFish", "INT(11)"]),
     "FishSkillData": sort_cloum_item(["ID", "INT(11)", "skillType", "TEXT", "effectId", "INT(11)", "aryParam", "TEXT"]),
     "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
     "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
@@ -102,6 +102,10 @@ base_data_type = {
          "INT(11)"]),
     "RobotGroupData": sort_cloum_item(
         ["ID", "INT(11)", "groupId", "INT(11)", "rankMin", "INT(11)", "rankMax", "INT(11)"]),
+     "RankBonusData": sort_cloum_item(
+        ["ID", "INT(11)", "rankLevel", "INT(11)", "itemId", "INT(11)"]),
+    "FishLevelUpData": sort_cloum_item(
+        ["ID", "INT(11)", "useChip", "INT(11)", "useGold", "INT(11)"]),
 }
 
 

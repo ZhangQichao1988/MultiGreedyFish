@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -14,4 +14,5 @@ public class FishDataInfo : IQueryById
     public int life;
     public float moveSpeed;
     public int skillId;
+    public int isPlayerFish;
 }

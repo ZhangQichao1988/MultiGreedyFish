@@ -22,4 +22,13 @@ public class PlayerModel : BaseModel<PlayerModel>
         Debug.LogError("DataBank.GetCurrentPlayerFishLevelInfo()_1");
         return null;
     }
+    public int GetTotalRankLevel()
+    {
+        int totalRank = 0;
+        foreach (var note in player.AryPlayerFishInfo)
+        {
+            totalRank += note.RankLevel;
+        }
+        return totalRank;
+    }
 }

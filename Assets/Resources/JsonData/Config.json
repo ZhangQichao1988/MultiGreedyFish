@@ -14,7 +14,7 @@
 	{"ID":"12.0","key":"AttackHardTime","floatValue":"0.35","intValue":"","stringValue":""},
 	{"ID":"13.0","key":"RobotVisionX","floatValue":"20.0","intValue":"","stringValue":""},
 	{"ID":"14.0","key":"RobotVisionY","floatValue":"10.0","intValue":"","stringValue":""},
-	{"ID":"15.0","key":"RobotVisionRange","floatValue":"557.0","intValue":"","stringValue":""},
+	{"ID":"15.0","key":"RobotVisionRange","floatValue":"750.0","intValue":"","stringValue":""},
 	{"ID":"16.0","key":"EnemyResurrectionRemainingTime","floatValue":"3.0","intValue":"","stringValue":""},
 	{"ID":"17.0","key":"AquaticRange","floatValue":"2.0","intValue":"","stringValue":""},
 	{"ID":"18.0","key":"CanStealthTimeFromDmg","floatValue":"2.0","intValue":"","stringValue":""},

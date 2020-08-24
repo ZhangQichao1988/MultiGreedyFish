@@ -20,6 +20,7 @@ public class HomeFishControl : MonoBehaviour
 
     public void SetFishModel(GameObject goFish)
     {
+        if (transModel != null) { Destroy(transModel.gameObject); }
         transModel = goFish.transform;
         targetPos = transModel.position;
         animator = goFish.GetComponent<Animator>();

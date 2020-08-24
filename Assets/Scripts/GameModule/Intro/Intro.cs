@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using NetWorkModule;
+using System;
 
 
 public class Intro : MonoBehaviour
@@ -11,7 +12,13 @@ public class Intro : MonoBehaviour
         set;
     }
     
-    private ClickEffect ClickEffect;
+    private ClickEffect clickEffect;
+
+    [NonSerialized]
+    public AdsController AdsController;
+
+    [NonSerialized]
+    public FireBaseController FireBaseCtrl;
 
     static BlUIManager uiManager;
 
@@ -51,8 +58,12 @@ public class Intro : MonoBehaviour
         uiManager = gameObject.AddComponent<BlUIManager>();
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
+        AdsController = gameObject.AddComponent<AdsController>();
+
+        FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
         
-        ClickEffect = gameObject.AddComponent<ClickEffect>();
+        clickEffect = gameObject.AddComponent<ClickEffect>();
+        
     }
 
     private void OnDestroy()
@@ -67,7 +78,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
-        ClickEffect.Initialize();
+        clickEffect.Initialize();
         NetWorkHandler.InitHttpNetWork();
         GameServiceController.Init();
 #if CONSOLE_ENABLE 

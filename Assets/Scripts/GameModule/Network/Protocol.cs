@@ -41,30 +41,31 @@ public static partial class ProtocolReflection {
           "dGxlSWQYAiACKAkSKgoQYXJ5RW5lbXlEYXRhSW5mbxgDIAMoCzIQLlBCRW5l",
           "bXlEYXRhSW5mbxIqChBhcnlSb2JvdERhdGFJbmZvGAQgAygLMhAuUEJSb2Jv",
           "dERhdGFJbmZvIjUKClA1X1JlcXVlc3QSEAoIYmF0dGxlSWQYASACKAkSFQoN",
-          "YmF0dGxlUmFua2luZxgCIAIoBSJVCgtQNV9SZXNwb25zZRIZCgZyZXN1bHQY",
-          "ASABKAsyCS5QQlJlc3VsdBIZCgZwbGF5ZXIYAiABKAsyCS5QQlBsYXllchIQ",
-          "CghnYWluR29sZBgDIAEoBSIcCgpQNl9SZXF1ZXN0Eg4KBmZpc2hJZBgBIAIo",
-          "BSIoCgtQNl9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCIm",
-          "CghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQ",
-          "bGF5ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2",
-          "ZWwYAiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgF",
-          "ItcBCghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQCghuaWNrbmFtZRgC",
-          "IAEoCRIPCgdyZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEoAxIPCgdk",
-          "aWFtb25kGAYgASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoH",
-          "cG93ZXJBdBgJIAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5UGxheWVy",
-          "RmlzaEluZm8YCyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8iTQoPUEJF",
-          "bmVteURhdGFJbmZvEg4KBmZpc2hJZBgBIAEoBRIUCgxmaXNoQ291bnRNYXgY",
-          "AiABKAUSFAoMZmlzaENvdW50TWluGAMgASgFIi8KD1BCUm9ib3REYXRhSW5m",
-          "bxIOCgZmaXNoSWQYASABKAUSDAoEYWlJZBgCIAEoBSpQChNEYXRhTGlua1Nl",
-          "cnZpY2VUeXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8KC2dvb2ds",
-          "ZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqoQEKCU1lc3NhZ2VJZBIPCgtNSURf",
-          "U1RBUlRVUBAAEhsKF01JRF9MT0dJTl9XSVRIX1BMQVRGT1JNEAESDQoJTUlE",
-          "X0xPR0lOEAISFwoTTUlEX0dFVF9QTEFZRVJfSU5GTxADEhMKD01JRF9TVEFS",
-          "VF9GSUdIVBAEEhEKDU1JRF9FTkRfRklHSFQQBRIWChJNSURfU0VUX0ZJR0hU",
-          "X0ZJU0gQBiptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoP",
-          "U0lHTkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsK",
-          "B0NBVVRJT04QBBIQCgxDTElFTlRfRVJST1IQBUIwCiBjb20uY2hhby5maXNo",
-          "LnNlcnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
+          "YmF0dGxlUmFua2luZxgCIAIoBSJRCgtQNV9SZXNwb25zZRIZCgZyZXN1bHQY",
+          "ASABKAsyCS5QQlJlc3VsdBIVCg1nYWluUmFua0xldmVsGAIgASgFEhAKCGdh",
+          "aW5Hb2xkGAMgASgFIhwKClA2X1JlcXVlc3QSDgoGZmlzaElkGAEgAigFIigK",
+          "C1A2X1Jlc3BvbnNlEhkKBnJlc3VsdBgBIAEoCzIJLlBCUmVzdWx0IiYKCFBC",
+          "UmVzdWx0EgwKBGNvZGUYASABKAUSDAoEZGVzYxgCIAEoCSJfChVQQlBsYXll",
+          "ckZpc2hMZXZlbEluZm8SDgoGZmlzaElkGAEgASgFEhEKCWZpc2hMZXZlbBgC",
+          "IAEoBRIQCghmaXNoQ2hpcBgDIAEoBRIRCglyYW5rTGV2ZWwYBCABKAUi6wEK",
+          "CFBCUGxheWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJ",
+          "EhIKCmZhY2VJY29uSWQYAyABKAUSDwoHcmVnVGltZRgEIAEoAxIRCglsb2dp",
+          "bkxhc3QYBSABKAMSDwoHZGlhbW9uZBgGIAEoBRIMCgRnb2xkGAcgASgFEg0K",
+          "BXBvd2VyGAggASgFEg8KB3Bvd2VyQXQYCSABKAMSEQoJZmlnaHRGaXNoGAog",
+          "ASgFEjEKEWFyeVBsYXllckZpc2hJbmZvGAsgAygLMhYuUEJQbGF5ZXJGaXNo",
+          "TGV2ZWxJbmZvIk0KD1BCRW5lbXlEYXRhSW5mbxIOCgZmaXNoSWQYASABKAUS",
+          "FAoMZmlzaENvdW50TWF4GAIgASgFEhQKDGZpc2hDb3VudE1pbhgDIAEoBSIv",
+          "Cg9QQlJvYm90RGF0YUluZm8SDgoGZmlzaElkGAEgASgFEgwKBGFpSWQYAiAB",
+          "KAUqUAoTRGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9j",
+          "ZW50ZXIQARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKqEBCglN",
+          "ZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9Q",
+          "TEFURk9STRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lO",
+          "Rk8QAxITCg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUS",
+          "FgoSTUlEX1NFVF9GSUdIVF9GSVNIEAYqbQoKU3RhdHVzQ29kZRIGCgJPSxAA",
+          "EgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhACEhcKE0tJQ0tfT1VU",
+          "X0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9SEAVC",
+          "MAogY29tLmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2Fn",
+          "ZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -77,12 +78,12 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P3_Response), global::P3_Response.Parser, new[]{ "Result", "Player" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P4_Response), global::P4_Response.Parser, new[]{ "Result", "BattleId", "AryEnemyDataInfo", "AryRobotDataInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P5_Request), global::P5_Request.Parser, new[]{ "BattleId", "BattleRanking" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P5_Response), global::P5_Response.Parser, new[]{ "Result", "Player", "GainGold" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P5_Response), global::P5_Response.Parser, new[]{ "Result", "GainRankLevel", "GainGold" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P6_Request), global::P6_Request.Parser, new[]{ "FishId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P6_Response), global::P6_Response.Parser, new[]{ "Result" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId" }, null, null, null, null)
         }));
@@ -2284,7 +2285,7 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
   public P5_Response(P5_Response other) : this() {
     _hasBits0 = other._hasBits0;
     result_ = other.result_ != null ? other.result_.Clone() : null;
-    player_ = other.player_ != null ? other.player_.Clone() : null;
+    gainRankLevel_ = other.gainRankLevel_;
     gainGold_ = other.gainGold_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -2305,18 +2306,31 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
     }
   }
 
-  /// <summary>Field number for the "player" field.</summary>
-  public const int PlayerFieldNumber = 2;
-  private global::PBPlayer player_;
+  /// <summary>Field number for the "gainRankLevel" field.</summary>
+  public const int GainRankLevelFieldNumber = 2;
+  private readonly static int GainRankLevelDefaultValue = 0;
+
+  private int gainRankLevel_;
   /// <summary>
-  ///玩家信息
+  ///获得奖杯数
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public global::PBPlayer Player {
-    get { return player_; }
+  public int GainRankLevel {
+    get { if ((_hasBits0 & 1) != 0) { return gainRankLevel_; } else { return GainRankLevelDefaultValue; } }
     set {
-      player_ = value;
+      _hasBits0 |= 1;
+      gainRankLevel_ = value;
     }
+  }
+  /// <summary>Gets whether the "gainRankLevel" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasGainRankLevel {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "gainRankLevel" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearGainRankLevel() {
+    _hasBits0 &= ~1;
   }
 
   /// <summary>Field number for the "gainGold" field.</summary>
@@ -2329,21 +2343,21 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int GainGold {
-    get { if ((_hasBits0 & 1) != 0) { return gainGold_; } else { return GainGoldDefaultValue; } }
+    get { if ((_hasBits0 & 2) != 0) { return gainGold_; } else { return GainGoldDefaultValue; } }
     set {
-      _hasBits0 |= 1;
+      _hasBits0 |= 2;
       gainGold_ = value;
     }
   }
   /// <summary>Gets whether the "gainGold" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasGainGold {
-    get { return (_hasBits0 & 1) != 0; }
+    get { return (_hasBits0 & 2) != 0; }
   }
   /// <summary>Clears the value of the "gainGold" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearGainGold() {
-    _hasBits0 &= ~1;
+    _hasBits0 &= ~2;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2360,7 +2374,7 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
       return true;
     }
     if (!object.Equals(Result, other.Result)) return false;
-    if (!object.Equals(Player, other.Player)) return false;
+    if (GainRankLevel != other.GainRankLevel) return false;
     if (GainGold != other.GainGold) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -2369,7 +2383,7 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
   public override int GetHashCode() {
     int hash = 1;
     if (result_ != null) hash ^= Result.GetHashCode();
-    if (player_ != null) hash ^= Player.GetHashCode();
+    if (HasGainRankLevel) hash ^= GainRankLevel.GetHashCode();
     if (HasGainGold) hash ^= GainGold.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -2388,9 +2402,9 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
       output.WriteRawTag(10);
       output.WriteMessage(Result);
     }
-    if (player_ != null) {
-      output.WriteRawTag(18);
-      output.WriteMessage(Player);
+    if (HasGainRankLevel) {
+      output.WriteRawTag(16);
+      output.WriteInt32(GainRankLevel);
     }
     if (HasGainGold) {
       output.WriteRawTag(24);
@@ -2407,8 +2421,8 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
     if (result_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
     }
-    if (player_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Player);
+    if (HasGainRankLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(GainRankLevel);
     }
     if (HasGainGold) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(GainGold);
@@ -2430,11 +2444,8 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
       }
       Result.MergeFrom(other.Result);
     }
-    if (other.player_ != null) {
-      if (player_ == null) {
-        Player = new global::PBPlayer();
-      }
-      Player.MergeFrom(other.Player);
+    if (other.HasGainRankLevel) {
+      GainRankLevel = other.GainRankLevel;
     }
     if (other.HasGainGold) {
       GainGold = other.GainGold;
@@ -2457,11 +2468,8 @@ public sealed partial class P5_Response : pb::IMessage<P5_Response> {
           input.ReadMessage(Result);
           break;
         }
-        case 18: {
-          if (player_ == null) {
-            Player = new global::PBPlayer();
-          }
-          input.ReadMessage(Player);
+        case 16: {
+          GainRankLevel = input.ReadInt32();
           break;
         }
         case 24: {
@@ -3260,6 +3268,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     _hasBits0 = other._hasBits0;
     playerId_ = other.playerId_;
     nickname_ = other.nickname_;
+    faceIconId_ = other.faceIconId_;
     regTime_ = other.regTime_;
     loginLast_ = other.loginLast_;
     diamond_ = other.diamond_;
@@ -3329,6 +3338,33 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     nickname_ = null;
   }
 
+  /// <summary>Field number for the "faceIconId" field.</summary>
+  public const int FaceIconIdFieldNumber = 3;
+  private readonly static int FaceIconIdDefaultValue = 0;
+
+  private int faceIconId_;
+  /// <summary>
+  ///头像ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FaceIconId {
+    get { if ((_hasBits0 & 2) != 0) { return faceIconId_; } else { return FaceIconIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      faceIconId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "faceIconId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFaceIconId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "faceIconId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFaceIconId() {
+    _hasBits0 &= ~2;
+  }
+
   /// <summary>Field number for the "regTime" field.</summary>
   public const int RegTimeFieldNumber = 4;
   private readonly static long RegTimeDefaultValue = 0L;
@@ -3339,21 +3375,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public long RegTime {
-    get { if ((_hasBits0 & 2) != 0) { return regTime_; } else { return RegTimeDefaultValue; } }
+    get { if ((_hasBits0 & 4) != 0) { return regTime_; } else { return RegTimeDefaultValue; } }
     set {
-      _hasBits0 |= 2;
+      _hasBits0 |= 4;
       regTime_ = value;
     }
   }
   /// <summary>Gets whether the "regTime" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasRegTime {
-    get { return (_hasBits0 & 2) != 0; }
+    get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "regTime" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearRegTime() {
-    _hasBits0 &= ~2;
+    _hasBits0 &= ~4;
   }
 
   /// <summary>Field number for the "loginLast" field.</summary>
@@ -3366,21 +3402,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public long LoginLast {
-    get { if ((_hasBits0 & 4) != 0) { return loginLast_; } else { return LoginLastDefaultValue; } }
+    get { if ((_hasBits0 & 8) != 0) { return loginLast_; } else { return LoginLastDefaultValue; } }
     set {
-      _hasBits0 |= 4;
+      _hasBits0 |= 8;
       loginLast_ = value;
     }
   }
   /// <summary>Gets whether the "loginLast" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasLoginLast {
-    get { return (_hasBits0 & 4) != 0; }
+    get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "loginLast" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearLoginLast() {
-    _hasBits0 &= ~4;
+    _hasBits0 &= ~8;
   }
 
   /// <summary>Field number for the "diamond" field.</summary>
@@ -3393,21 +3429,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int Diamond {
-    get { if ((_hasBits0 & 8) != 0) { return diamond_; } else { return DiamondDefaultValue; } }
+    get { if ((_hasBits0 & 16) != 0) { return diamond_; } else { return DiamondDefaultValue; } }
     set {
-      _hasBits0 |= 8;
+      _hasBits0 |= 16;
       diamond_ = value;
     }
   }
   /// <summary>Gets whether the "diamond" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasDiamond {
-    get { return (_hasBits0 & 8) != 0; }
+    get { return (_hasBits0 & 16) != 0; }
   }
   /// <summary>Clears the value of the "diamond" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearDiamond() {
-    _hasBits0 &= ~8;
+    _hasBits0 &= ~16;
   }
 
   /// <summary>Field number for the "gold" field.</summary>
@@ -3420,21 +3456,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int Gold {
-    get { if ((_hasBits0 & 16) != 0) { return gold_; } else { return GoldDefaultValue; } }
+    get { if ((_hasBits0 & 32) != 0) { return gold_; } else { return GoldDefaultValue; } }
     set {
-      _hasBits0 |= 16;
+      _hasBits0 |= 32;
       gold_ = value;
     }
   }
   /// <summary>Gets whether the "gold" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasGold {
-    get { return (_hasBits0 & 16) != 0; }
+    get { return (_hasBits0 & 32) != 0; }
   }
   /// <summary>Clears the value of the "gold" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearGold() {
-    _hasBits0 &= ~16;
+    _hasBits0 &= ~32;
   }
 
   /// <summary>Field number for the "power" field.</summary>
@@ -3447,21 +3483,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int Power {
-    get { if ((_hasBits0 & 32) != 0) { return power_; } else { return PowerDefaultValue; } }
+    get { if ((_hasBits0 & 64) != 0) { return power_; } else { return PowerDefaultValue; } }
     set {
-      _hasBits0 |= 32;
+      _hasBits0 |= 64;
       power_ = value;
     }
   }
   /// <summary>Gets whether the "power" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasPower {
-    get { return (_hasBits0 & 32) != 0; }
+    get { return (_hasBits0 & 64) != 0; }
   }
   /// <summary>Clears the value of the "power" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearPower() {
-    _hasBits0 &= ~32;
+    _hasBits0 &= ~64;
   }
 
   /// <summary>Field number for the "powerAt" field.</summary>
@@ -3474,21 +3510,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public long PowerAt {
-    get { if ((_hasBits0 & 64) != 0) { return powerAt_; } else { return PowerAtDefaultValue; } }
+    get { if ((_hasBits0 & 128) != 0) { return powerAt_; } else { return PowerAtDefaultValue; } }
     set {
-      _hasBits0 |= 64;
+      _hasBits0 |= 128;
       powerAt_ = value;
     }
   }
   /// <summary>Gets whether the "powerAt" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasPowerAt {
-    get { return (_hasBits0 & 64) != 0; }
+    get { return (_hasBits0 & 128) != 0; }
   }
   /// <summary>Clears the value of the "powerAt" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearPowerAt() {
-    _hasBits0 &= ~64;
+    _hasBits0 &= ~128;
   }
 
   /// <summary>Field number for the "fightFish" field.</summary>
@@ -3501,21 +3537,21 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int FightFish {
-    get { if ((_hasBits0 & 128) != 0) { return fightFish_; } else { return FightFishDefaultValue; } }
+    get { if ((_hasBits0 & 256) != 0) { return fightFish_; } else { return FightFishDefaultValue; } }
     set {
-      _hasBits0 |= 128;
+      _hasBits0 |= 256;
       fightFish_ = value;
     }
   }
   /// <summary>Gets whether the "fightFish" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasFightFish {
-    get { return (_hasBits0 & 128) != 0; }
+    get { return (_hasBits0 & 256) != 0; }
   }
   /// <summary>Clears the value of the "fightFish" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearFightFish() {
-    _hasBits0 &= ~128;
+    _hasBits0 &= ~256;
   }
 
   /// <summary>Field number for the "aryPlayerFishInfo" field.</summary>
@@ -3546,6 +3582,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     }
     if (PlayerId != other.PlayerId) return false;
     if (Nickname != other.Nickname) return false;
+    if (FaceIconId != other.FaceIconId) return false;
     if (RegTime != other.RegTime) return false;
     if (LoginLast != other.LoginLast) return false;
     if (Diamond != other.Diamond) return false;
@@ -3562,6 +3599,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     int hash = 1;
     if (HasPlayerId) hash ^= PlayerId.GetHashCode();
     if (HasNickname) hash ^= Nickname.GetHashCode();
+    if (HasFaceIconId) hash ^= FaceIconId.GetHashCode();
     if (HasRegTime) hash ^= RegTime.GetHashCode();
     if (HasLoginLast) hash ^= LoginLast.GetHashCode();
     if (HasDiamond) hash ^= Diamond.GetHashCode();
@@ -3590,6 +3628,10 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasNickname) {
       output.WriteRawTag(18);
       output.WriteString(Nickname);
+    }
+    if (HasFaceIconId) {
+      output.WriteRawTag(24);
+      output.WriteInt32(FaceIconId);
     }
     if (HasRegTime) {
       output.WriteRawTag(32);
@@ -3634,6 +3676,9 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     if (HasNickname) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Nickname);
     }
+    if (HasFaceIconId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FaceIconId);
+    }
     if (HasRegTime) {
       size += 1 + pb::CodedOutputStream.ComputeInt64Size(RegTime);
     }
@@ -3672,6 +3717,9 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
     }
     if (other.HasNickname) {
       Nickname = other.Nickname;
+    }
+    if (other.HasFaceIconId) {
+      FaceIconId = other.FaceIconId;
     }
     if (other.HasRegTime) {
       RegTime = other.RegTime;
@@ -3712,6 +3760,10 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
         }
         case 18: {
           Nickname = input.ReadString();
+          break;
+        }
+        case 24: {
+          FaceIconId = input.ReadInt32();
           break;
         }
         case 32: {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "89871578339",
+    "firebase_url": "https://crazyfish-56a24.firebaseio.com",
+    "project_id": "crazyfish-56a24",
+    "storage_bucket": "crazyfish-56a24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89871578339:android:31e0df8930545ce994c1d6",
+        "android_client_info": {
+          "package_name": "co.jp.cad.crazyfish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89871578339-4dmnahe4pldjmamuvgc0lcij9qcg87r9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkVvRvabfqyVebr1iZ84wYQaK46fOB_40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89871578339-4dmnahe4pldjmamuvgc0lcij9qcg87r9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
