@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using NetWorkModule;
+using TimerModule;
 using System;
 
 
@@ -58,6 +59,7 @@ public class Intro : MonoBehaviour
         uiManager = gameObject.AddComponent<BlUIManager>();
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
+        gameObject.AddComponent<TimerManager>();
         AdsController = gameObject.AddComponent<AdsController>();
 
         FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
