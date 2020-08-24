@@ -70,6 +70,7 @@ namespace NetWorkModule
             Caution = 3,
             Failed = 4,
             HttpError = 5,
+            TimeOut = 6,
             HttpRequestSend = 16,
             HttpRecieve = 32
         }

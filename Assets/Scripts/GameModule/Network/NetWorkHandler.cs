@@ -83,6 +83,16 @@ public class NetWorkHandler
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 MsgBox.Open("网络错误", errMsg);
                 break;
+            case HttpDispatcher.EventType.TimeOut:
+                //超时
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                MsgBox.OpenConfirm("网络错误", "请求超时 请重试", ()=>{
+                    RetrySend(obj);
+                }, ()=>{
+                    //goto title
+                    Intro.Instance.Restart();
+                });
+                break;
             case HttpDispatcher.EventType.Caution:
                 errMsg = "got a warning";
                 Debug.LogWarning(errMsg);
@@ -102,6 +112,12 @@ public class NetWorkHandler
             default:
                 break;
         }
+    }
+
+    static void RetrySend(System.Object obj)
+    {
+        ReqData reqInfo = obj as ReqData;
+        NetWorkManager.Request(reqInfo.Msg, reqInfo.Body, reqInfo.CachedData, reqInfo.NeedAuth);
     }
 
     static byte[] GetStreamBytes(IMessage pbMsg)

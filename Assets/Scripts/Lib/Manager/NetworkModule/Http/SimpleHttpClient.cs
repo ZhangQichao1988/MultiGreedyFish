@@ -4,19 +4,21 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using TimerModule;
 
 
 namespace NetWorkModule
 {
     public class SimpleHttpClient
     {
+        public static float TIMEOUT_SEC = 5.0f;
         public static string X_APP_VERSION = "x-app-version";
         public static string X_APP_PLATFORM= "x-app-platform";
         public static string X_PLAYER_ID = "x-player-id";
         public static string X_SIGNATURE = "x-signature";
         public static string X_STATUS_CODE = "x-status-code";
 
-
+        Dictionary<string, int> timeoutDict;
 
         HashSet<int> noAuthMsg = new HashSet<int>(); 
         //screct key
@@ -38,6 +40,7 @@ namespace NetWorkModule
 
         public SimpleHttpClient(AbstractProtocol baseProtocol, string version, string platform, int protocolID)
         {
+            timeoutDict = new Dictionary<string, int>();
             m_protocol = baseProtocol;
             cachedProtocolId = protocolID;
             m_version = version;
@@ -76,7 +79,31 @@ namespace NetWorkModule
                 upLoaderHandler.contentType = "application/proto";
                 request.uploadHandler = upLoaderHandler;
                 request.downloadHandler = new DownloadHandlerBuffer();
+
+                var timeoutKey = signStr + PID;
+                var reqInfo = new ReqData(){
+                    TimeoutKey = timeoutKey,
+                    Msg = msg,
+                    Body = body,
+                    CachedData = cachedData,
+                    NeedAuth = needAuth,
+                    RequestTimeing = UnityEngine.Time.realtimeSinceStartup
+                };
+                timeoutDict.Add(timeoutKey, TimerManager.AddTimer((int)eTimerType.RealTime, TIMEOUT_SEC, TimeoutHandler, reqInfo));
+
                 yield return request.SendWebRequest();
+
+                //timeout check
+                if (!timeoutDict.ContainsKey(reqInfo.TimeoutKey))
+                {
+                    //超时
+                    yield break;
+                }
+                else
+                {
+                    TimerManager.RemoveTimer(timeoutDict[reqInfo.TimeoutKey]);
+                }
+
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
                     ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData, body);
@@ -86,6 +113,16 @@ namespace NetWorkModule
                     // error
                     HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpError, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
                 }
+            }
+        }
+
+        void TimeoutHandler(System.Object obj)
+        {
+            ReqData rd = obj as ReqData;
+            HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.TimeOut, rd.Msg, rd);
+            if (timeoutDict.ContainsKey(rd.TimeoutKey))
+            {
+                timeoutDict.Remove(rd.TimeoutKey);
             }
         }
 
@@ -237,5 +274,15 @@ namespace NetWorkModule
 
             return signatureData;
         }
+    }
+
+    public class ReqData
+    {
+        public string TimeoutKey;
+        public string Msg;
+        public byte[] Body;
+        public System.Object CachedData;
+        public bool NeedAuth;
+        public float RequestTimeing;
     }
 }
