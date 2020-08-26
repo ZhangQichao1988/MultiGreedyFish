@@ -123,6 +123,9 @@ Material:
     - _SafeAreaRange: 100
     - _SafeGradAreaRange: 93.51
     - _SampleGI: 0
+    - _ShadowRange: 74.7
+    - _ShadowX: 0
+    - _ShadowY: 0
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0

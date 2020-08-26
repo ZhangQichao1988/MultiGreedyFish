@@ -10,6 +10,9 @@ INSERT INTO `FishData`(`ID`,`name`,`prefabPath`,`atk`,`life`,`moveSpeed`,`skillI
 DROP TABLE IF EXISTS `FishLevelUpData`;
 CREATE TABLE `FishLevelUpData`(`ID` INT(11),`useChip` INT(11),`useGold` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `FishLevelUpData`(`ID`,`useChip`,`useGold`) VALUES (0.0,10.0,10),(1.0,10.0,20),(2.0,20.0,50),(3.0,50.0,100),(4.0,100.0,200),(5.0,200.0,500),(6.0,500.0,1000),(7.0,1000.0,2000),(8.0,2000.0,5000),(9.0,-1.0,-1);
+DROP TABLE IF EXISTS `FishRankLevelData`;
+CREATE TABLE `FishRankLevelData`(`ID` INT(11),`rankLevel` INT(11),`getGold` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `FishRankLevelData`(`ID`,`rankLevel`,`getGold`) VALUES (1.0,0.0,0,),(2.0,40.0,20,),(3.0,60.0,30,),(4.0,80.0,40,),(5.0,100.0,50,),(6.0,120.0,60,),(7.0,140.0,70,),(8.0,160.0,80,),(9.0,180.0,90,),(10.0,200.0,100,),(11.0,220.0,110,),(12.0,240.0,120,),(13.0,260.0,130,),(14.0,280.0,140,),(15.0,300.0,150,),(16.0,320.0,160,),(17.0,340.0,170,),(18.0,360.0,180,),(19.0,380.0,190,),(20.0,400.0,200,);
 DROP TABLE IF EXISTS `FishSkillData`;
 CREATE TABLE `FishSkillData`(`ID` INT(11),`skillType` TEXT,`effectId` INT(11),`aryParam` TEXT,PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `FishSkillData`(`ID`,`skillType`,`effectId`,`aryParam`) VALUES (1.0,'FishSkillHealLife',0.0,'0.1,0.5'),(2.0,'FishSkillSuck',-1.0,'1,9'),(3.0,'FishSkillSwelling',-1.0,'0.2,2,2');

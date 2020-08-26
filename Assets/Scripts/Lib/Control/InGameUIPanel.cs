@@ -91,7 +91,19 @@ public class InGameUIPanel : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            BattleManagerGroup.GetInstance().GotoHome();
+            Player.Damage(99999, null);
+        }
+        // 所有的敌人都死掉
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
+            foreach (var note in listPlayer)
+            {
+                if (note.fishType == FishBase.FishType.PlayerRobot)
+                {
+                    note.Damage(999999, null);
+                }
+            }
         }
 #endif
 
@@ -108,6 +120,7 @@ public class InGameUIPanel : MonoBehaviour
             if (alivePlayerNum == 1)
             {
                 BattleManagerGroup.GetInstance().BattleEnd();
+
             }
 		}
         else if (alivePlayerNum <= 1 && !BattleConst.instance.FreeMode)

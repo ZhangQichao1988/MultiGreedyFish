@@ -1,0 +1,22 @@
+{"Items":[
+	{"ID":"1.0","rankLevel":"0.0","getGold":"0","rankIcon":"UI_RankIcon_1"},
+	{"ID":"2.0","rankLevel":"40.0","getGold":"20","rankIcon":"UI_RankIcon_1"},
+	{"ID":"3.0","rankLevel":"60.0","getGold":"30","rankIcon":"UI_RankIcon_1"},
+	{"ID":"4.0","rankLevel":"80.0","getGold":"40","rankIcon":"UI_RankIcon_1"},
+	{"ID":"5.0","rankLevel":"100.0","getGold":"50","rankIcon":"UI_RankIcon_2"},
+	{"ID":"6.0","rankLevel":"120.0","getGold":"60","rankIcon":"UI_RankIcon_2"},
+	{"ID":"7.0","rankLevel":"140.0","getGold":"70","rankIcon":"UI_RankIcon_2"},
+	{"ID":"8.0","rankLevel":"160.0","getGold":"80","rankIcon":"UI_RankIcon_2"},
+	{"ID":"9.0","rankLevel":"180.0","getGold":"90","rankIcon":"UI_RankIcon_3"},
+	{"ID":"10.0","rankLevel":"200.0","getGold":"100","rankIcon":"UI_RankIcon_3"},
+	{"ID":"11.0","rankLevel":"220.0","getGold":"110","rankIcon":"UI_RankIcon_3"},
+	{"ID":"12.0","rankLevel":"240.0","getGold":"120","rankIcon":"UI_RankIcon_3"},
+	{"ID":"13.0","rankLevel":"260.0","getGold":"130","rankIcon":"UI_RankIcon_4"},
+	{"ID":"14.0","rankLevel":"280.0","getGold":"140","rankIcon":"UI_RankIcon_4"},
+	{"ID":"15.0","rankLevel":"300.0","getGold":"150","rankIcon":"UI_RankIcon_4"},
+	{"ID":"16.0","rankLevel":"320.0","getGold":"160","rankIcon":"UI_RankIcon_4"},
+	{"ID":"17.0","rankLevel":"340.0","getGold":"170","rankIcon":"UI_RankIcon_5"},
+	{"ID":"18.0","rankLevel":"360.0","getGold":"180","rankIcon":"UI_RankIcon_5"},
+	{"ID":"19.0","rankLevel":"380.0","getGold":"190","rankIcon":"UI_RankIcon_5"},
+	{"ID":"20.0","rankLevel":"400.0","getGold":"200","rankIcon":"UI_RankIcon_5"}
+]}

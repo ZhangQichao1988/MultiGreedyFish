@@ -22,6 +22,10 @@ half4 _EffectColor2;
 float4 _EffectMove2;
 #endif
 
+#ifdef _SHADOW
+float _ShadowRange;
+#endif
+
 CBUFFER_END
 
 #endif

@@ -14,210 +14,222 @@ Shader "Custom/Seabed"
         _EffectColor2("EffectColor2", Color) = (1, 1, 1, 1)
         _EffectMove2("_EffectMove2", Vector) = (1, 1, 0, 0)
 
-        // BlendMode
-        [HideInInspector] _Surface("__surface", Float) = 0.0
-        [HideInInspector] _Blend("__blend", Float) = 0.0
-        [HideInInspector] _AlphaClip("__clip", Float) = 0.0
-        [HideInInspector] _SrcBlend("Src", Float) = 1.0
-        [HideInInspector] _DstBlend("Dst", Float) = 0.0
-        [HideInInspector] _ZWrite("ZWrite", Float) = 1.0
-        [HideInInspector] _Cull("__cull", Float) = 2.0
+        _ShadowRange("ShadowRange", Float) = 0.0
 
-        // Editmode props
-        [HideInInspector] _QueueOffset("Queue offset", Float) = 0.0
+            // BlendMode
+            [HideInInspector] _Surface("__surface", Float) = 0.0
+            [HideInInspector] _Blend("__blend", Float) = 0.0
+            [HideInInspector] _AlphaClip("__clip", Float) = 0.0
+            [HideInInspector] _SrcBlend("Src", Float) = 1.0
+            [HideInInspector] _DstBlend("Dst", Float) = 0.0
+            [HideInInspector] _ZWrite("ZWrite", Float) = 1.0
+            [HideInInspector] _Cull("__cull", Float) = 2.0
 
-        // ObsoleteProperties
-        [HideInInspector] _MainTex("BaseMap", 2D) = "white" {}
-        [HideInInspector] _Color("Base Color", Color) = (0.5, 0.5, 0.5, 1)
-        [HideInInspector] _SampleGI("SampleGI", float) = 0.0 // needed from bakedlit
+            // Editmode props
+            [HideInInspector] _QueueOffset("Queue offset", Float) = 0.0
+
+            // ObsoleteProperties
+            [HideInInspector] _MainTex("BaseMap", 2D) = "white" {}
+            [HideInInspector] _Color("Base Color", Color) = (0.5, 0.5, 0.5, 1)
+            [HideInInspector] _SampleGI("SampleGI", float) = 0.0 // needed from bakedlit
     }
-    SubShader
-    {
-        Tags { "RenderType" = "Opaque" "IgnoreProjector" = "True" "RenderPipeline" = "UniversalPipeline" }
-        LOD 100
-
-
-        Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite On
-        //Cull [_Cull]
-
-        Pass
-        {
-            Name "Unlit"
-            HLSLPROGRAM
-            // Required to compile gles 2.0 with standard srp library
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
-
-            #pragma vertex vert
-            #pragma fragment frag
-            #pragma shader_feature _ALPHATEST_ON
-            #pragma shader_feature _ALPHAPREMULTIPLY_ON
-
-            #pragma multi_compile _EFFECT1
-            #pragma multi_compile _EFFECT2 
-            #pragma multi_compile _NOISE
-            // -------------------------------------
-            // Unity defined keywords
-            #pragma multi_compile_fog
-            #pragma multi_compile_instancing
-
-            #include "UnlitInput.hlsl"
-
-            struct Attributes
+        SubShader
             {
-                float4 positionOS       : POSITION;
-                float2 uv               : TEXCOORD0;
-                UNITY_VERTEX_INPUT_INSTANCE_ID
-            };
+                Tags { "RenderType" = "Opaque" "IgnoreProjector" = "True" "RenderPipeline" = "UniversalPipeline" }
+                LOD 100
 
-            struct Varyings
-            {
-                float2 uv        : TEXCOORD0;
-                float2 effectUv1        : TEXCOORD1;
-                float2 effectUv2        : TEXCOORD2;
-                float2 noiseUv        : TEXCOORD3;
-                float fogCoord  : TEXCOORD4;
-                float4 vertex : SV_POSITION;
 
-                UNITY_VERTEX_INPUT_INSTANCE_ID
-                UNITY_VERTEX_OUTPUT_STEREO
-            };
+                Blend SrcAlpha OneMinusSrcAlpha
+                ZWrite On
+                //Cull [_Cull]
 
-            Varyings vert(Attributes input)
-            {
-                Varyings output = (Varyings)0;
-                 
-                UNITY_SETUP_INSTANCE_ID(input);
-                UNITY_TRANSFER_INSTANCE_ID(input, output);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
-                 
-                VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
-                output.vertex = vertexInput.positionCS;
-                output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+                Pass
+                {
+                    Name "Unlit"
+                    HLSLPROGRAM
+                // Required to compile gles 2.0 with standard srp library
+                #pragma prefer_hlslcc gles
+                #pragma exclude_renderers d3d11_9x
 
-                _EffectMap1_ST.zw += _EffectMove1.xy * _Time.y;
-                output.effectUv1 = TRANSFORM_TEX(input.uv, _EffectMap1);
+                #pragma vertex vert
+                #pragma fragment frag
+                #pragma shader_feature _ALPHATEST_ON
+                #pragma shader_feature _ALPHAPREMULTIPLY_ON
 
-                _EffectMap2_ST.zw += _EffectMove2.xy * _Time.y;
-                output.effectUv2 = TRANSFORM_TEX(input.uv, _EffectMap2);
+                #pragma multi_compile _EFFECT1
+                #pragma multi_compile _EFFECT2 
+                #pragma multi_compile _SHADOW 
 
-                output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
+                #pragma multi_compile _NOISE
+                // -------------------------------------
+                // Unity defined keywords
+                #pragma multi_compile_fog
+                #pragma multi_compile_instancing
 
-                return output;
+                #include "UnlitInput.hlsl"
+
+                struct Attributes
+                {
+                    float4 positionOS       : POSITION;
+                    float2 uv               : TEXCOORD0;
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                };
+
+                struct Varyings
+                {
+                    float2 uv        : TEXCOORD0;
+                    float2 effectUv1        : TEXCOORD1;
+                    float2 effectUv2        : TEXCOORD2;
+                    float2 noiseUv          : TEXCOORD3;
+                    float fogCoord : TEXCOORD4;
+                    float3 vertexWS        : TEXCOORD5;
+                    float4 vertex : SV_POSITION;
+
+
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                    UNITY_VERTEX_OUTPUT_STEREO
+                };
+
+                Varyings vert(Attributes input)
+                {
+                    Varyings output = (Varyings)0;
+
+                    UNITY_SETUP_INSTANCE_ID(input);
+                    UNITY_TRANSFER_INSTANCE_ID(input, output);
+                    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
+
+                    VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
+                    output.vertex = vertexInput.positionCS;
+                    output.vertexWS = vertexInput.positionWS;
+                    output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+
+                    _EffectMap1_ST.zw += _EffectMove1.xy * _Time.y;
+                    output.effectUv1 = TRANSFORM_TEX(input.uv, _EffectMap1);
+
+                    _EffectMap2_ST.zw += _EffectMove2.xy * _Time.y;
+                    output.effectUv2 = TRANSFORM_TEX(input.uv, _EffectMap2);
+
+                    output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
+
+                    return output;
+                }
+
+                half4 frag(Varyings input) : SV_Target
+                {
+                    UNITY_SETUP_INSTANCE_ID(input);
+                    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+
+                    half2 uv = input.uv;
+                    half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+
+                    half noise = SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, input.noiseUv);
+
+                    half4 effectColor1 = SAMPLE_TEXTURE2D(_EffectMap1, sampler_EffectMap1, input.effectUv1);
+                    effectColor1 *= _EffectColor1;
+
+                    half4 effectColor2 = SAMPLE_TEXTURE2D(_EffectMap2, sampler_EffectMap2, input.effectUv2);
+                    effectColor2 *= _EffectColor2;
+
+                    half3 color = texColor * _BaseColor.rgb + effectColor1 * effectColor2;
+                    half shadow = smoothstep(_ShadowRange, _ShadowRange - 2, abs(input.vertexWS.x));
+                    color *= shadow;
+                    shadow = smoothstep(_ShadowRange, _ShadowRange - 2, abs(input.vertexWS.z));
+                    color *= shadow;
+
+                    half alpha = texColor.a * _BaseColor.a;
+                    AlphaDiscard(alpha, _Cutoff);
+
+    #ifdef _ALPHAPREMULTIPLY_ON
+                    color *= alpha;
+    #endif
+
+                    color = MixFog(color, input.fogCoord);
+
+                    return half4(color, alpha);
+                }
+                ENDHLSL
             }
+                //Pass
+                //{
+                //    Name "ShadowCaster"
+                //    Tags{"LightMode" = "ShadowCaster"}
 
-            half4 frag(Varyings input) : SV_Target
-            {
-                UNITY_SETUP_INSTANCE_ID(input);
-                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
+                //    ZWrite On
+                //    ZTest LEqual
+                //    Cull[_Cull]
 
-                half2 uv = input.uv;
-                half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                //    HLSLPROGRAM
+                //        // Required to compile gles 2.0 with standard srp library
+                //        #pragma prefer_hlslcc gles
+                //        #pragma exclude_renderers d3d11_9x
+                //        #pragma target 2.0
 
-                half noise = SAMPLE_TEXTURE2D(_NoiseMap, sampler_NoiseMap, input.noiseUv);
+                //        // -------------------------------------
+                //        // Material Keywords
+                //        #pragma shader_feature _ALPHATEST_ON
 
-                half4 effectColor1 = SAMPLE_TEXTURE2D(_EffectMap1, sampler_EffectMap1, input.effectUv1);
-                effectColor1 *= _EffectColor1;
+                //        //--------------------------------------
+                //        // GPU Instancing
+                //        #pragma multi_compile_instancing
+                //        #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 
-                half4 effectColor2 = SAMPLE_TEXTURE2D(_EffectMap2, sampler_EffectMap2, input.effectUv2);
-                effectColor2 *= _EffectColor2;
+                //        #pragma vertex ShadowPassVertex
+                //        #pragma fragment ShadowPassFragment
 
-                half3 color = texColor * _BaseColor.rgb + effectColor1 * effectColor2;
-                half alpha = texColor.a * _BaseColor.a;
-                AlphaDiscard(alpha, _Cutoff);
+                //        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+                //        #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
+                //        ENDHLSL
+                //    }
+                //Pass
+                //{
+                //    Tags{"LightMode" = "DepthOnly"}
 
-#ifdef _ALPHAPREMULTIPLY_ON
-                color *= alpha;
-#endif
+                //    ZWrite On
+                //    ColorMask 0
 
-                color = MixFog(color, input.fogCoord);
+                //    HLSLPROGRAM
+                //    // Required to compile gles 2.0 with standard srp library
+                //    #pragma prefer_hlslcc gles
+                //    #pragma exclude_renderers d3d11_9x
+                //    #pragma target 2.0
 
-                return half4(color, alpha);
+                //    #pragma vertex DepthOnlyVertex
+                //    #pragma fragment DepthOnlyFragment
+
+                //    // -------------------------------------
+                //    // Material Keywords
+                //    #pragma shader_feature _ALPHATEST_ON
+
+                //    //--------------------------------------
+                //    // GPU Instancing
+                //    #pragma multi_compile_instancing
+
+                //    #include "UnlitInput.hlsl"
+                //    #include "DepthOnlyPass.hlsl"
+                //    ENDHLSL
+                //}
+
+                // This pass it not used during regular rendering, only for lightmap baking.
+                Pass
+                {
+                    Name "Meta"
+                    Tags{"LightMode" = "Meta"}
+
+                    Cull Off
+
+                    HLSLPROGRAM
+                    // Required to compile gles 2.0 with standard srp library
+                    #pragma prefer_hlslcc gles
+                    #pragma exclude_renderers d3d11_9x
+                    #pragma vertex UniversalVertexMeta
+                    #pragma fragment UniversalFragmentMetaUnlit
+
+                    #include "UnlitInput.hlsl"
+                    #include "UnlitMetaPass.hlsl"
+
+                    ENDHLSL
+                }
             }
-            ENDHLSL
-        }
-        //Pass
-        //{
-        //    Name "ShadowCaster"
-        //    Tags{"LightMode" = "ShadowCaster"}
-
-        //    ZWrite On
-        //    ZTest LEqual
-        //    Cull[_Cull]
-
-        //    HLSLPROGRAM
-        //        // Required to compile gles 2.0 with standard srp library
-        //        #pragma prefer_hlslcc gles
-        //        #pragma exclude_renderers d3d11_9x
-        //        #pragma target 2.0
-
-        //        // -------------------------------------
-        //        // Material Keywords
-        //        #pragma shader_feature _ALPHATEST_ON
-
-        //        //--------------------------------------
-        //        // GPU Instancing
-        //        #pragma multi_compile_instancing
-        //        #pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-
-        //        #pragma vertex ShadowPassVertex
-        //        #pragma fragment ShadowPassFragment
-
-        //        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-        //        #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
-        //        ENDHLSL
-        //    }
-        //Pass
-        //{
-        //    Tags{"LightMode" = "DepthOnly"}
-
-        //    ZWrite On
-        //    ColorMask 0
-
-        //    HLSLPROGRAM
-        //    // Required to compile gles 2.0 with standard srp library
-        //    #pragma prefer_hlslcc gles
-        //    #pragma exclude_renderers d3d11_9x
-        //    #pragma target 2.0
-
-        //    #pragma vertex DepthOnlyVertex
-        //    #pragma fragment DepthOnlyFragment
-
-        //    // -------------------------------------
-        //    // Material Keywords
-        //    #pragma shader_feature _ALPHATEST_ON
-
-        //    //--------------------------------------
-        //    // GPU Instancing
-        //    #pragma multi_compile_instancing
-
-        //    #include "UnlitInput.hlsl"
-        //    #include "DepthOnlyPass.hlsl"
-        //    ENDHLSL
-        //}
-
-        // This pass it not used during regular rendering, only for lightmap baking.
-        Pass
-        {
-            Name "Meta"
-            Tags{"LightMode" = "Meta"}
-
-            Cull Off
-
-            HLSLPROGRAM
-            // Required to compile gles 2.0 with standard srp library
-            #pragma prefer_hlslcc gles
-            #pragma exclude_renderers d3d11_9x
-            #pragma vertex UniversalVertexMeta
-            #pragma fragment UniversalFragmentMetaUnlit
-
-            #include "UnlitInput.hlsl"
-            #include "UnlitMetaPass.hlsl"
-
-            ENDHLSL
-        }
-    }
-    FallBack "Hidden/Universal Render Pipeline/FallbackError"
-    //CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.UnlitShader"
+                FallBack "Hidden/Universal Render Pipeline/FallbackError"
+                    //CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.UnlitShader"
 }

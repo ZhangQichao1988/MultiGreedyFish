@@ -67,6 +67,7 @@ public class BattleManagerGroup : MonoBehaviour
         var realResponse = response as P5_Response;
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
+            SetBattlePause();
             BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
             int rewardGold = realResponse.GainGold;
             battleResult.Setup(rewardGold, realResponse.GainRankLevel);
@@ -90,7 +91,6 @@ public class BattleManagerGroup : MonoBehaviour
             //this.isPause = true;
             animator.SetTrigger("Win");
             animator.SetTrigger("BattleEnd");
-            isPause = true;
         }
         else
         {
@@ -106,6 +106,7 @@ public class BattleManagerGroup : MonoBehaviour
     public void BattleEnd()
     {
         animator.SetTrigger("BattleEnd");
+        //Time.timeScale = 0f;
     }
 
 	public void SetBattleStart()

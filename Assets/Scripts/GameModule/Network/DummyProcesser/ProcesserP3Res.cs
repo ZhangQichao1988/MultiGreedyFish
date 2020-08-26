@@ -31,7 +31,7 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
         res.Result = new PBResult(){
             Code = 0
         };
-        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 6 });
+        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 115 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 3, FishChip = 5, FishLevel = 1, RankLevel = 6 });
 
         return res;

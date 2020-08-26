@@ -46,7 +46,7 @@ public class EnemyBase : FishBase
     }
     protected void DieWait()
     {
-        remainingTime -= Time.deltaTime;
+        remainingTime -= Time.unscaledDeltaTime;
         if (remainingTime <= 0)
         {
             actionStep = ActionType.BornWaitting;
