@@ -37,8 +37,12 @@ public class BattleResult : UIBase
         // TODO 通信结束后执行来返回主界面
         BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
     }
-    public void Setup(int gold, int rankUp)
+    public void Setup(P5_Response response)
     {
+        // TODO:明细显示时分离
+        int gold = response.GainGold + response.GainRankLevelupBonusGold;
+        int rankUp = response.GainRankLevel;
+
         Debug.Assert(textRewardGold != null, "BattleResult.Setup()_1");
         textRewardGold.text = string.Format( LanguageDataTableProxy.GetText(8), gold);
 

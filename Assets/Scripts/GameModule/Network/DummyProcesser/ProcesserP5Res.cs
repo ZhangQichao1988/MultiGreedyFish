@@ -23,6 +23,7 @@ public class ProcesserP5Res : BaseDummyProcesser<P5_Request, P5_Response>
         res.GainRankLevel = 5;
         //获得的金币
         res.GainGold = 10;
+        res.GainRankLevelupBonusGold = 20;
 
         return res;
     }
