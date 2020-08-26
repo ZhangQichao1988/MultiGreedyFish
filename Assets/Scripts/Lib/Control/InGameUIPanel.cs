@@ -89,9 +89,50 @@ public class InGameUIPanel : MonoBehaviour
         {
             PlayerRunSkill();
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            Player.Damage(99999, null);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(3);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(4);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(5);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(6);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(7);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(8);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(9);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                BattleManagerGroup.GetInstance().GotoResult(10);
+            }
+
+            //Player.Damage(99999, null);
         }
         // 所有的敌人都死掉
         if (Input.GetKeyDown(KeyCode.E))
