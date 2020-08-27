@@ -12,7 +12,7 @@ CREATE TABLE `RobotGroupData`(`ID` INT(11),`groupId` INT(11),`rankMin` INT(11),`
 INSERT INTO `RobotGroupData`(`ID`,`groupId`,`rankMin`,`rankMax`) VALUES (0.0,0.0,0.0,100.0),(1.0,1.0,100.0,200.0),(2.0,2.0,200.0,300.0),(3.0,3.0,300.0,400.0),(4.0,4.0,400.0,500.0),(5.0,5.0,500.0,600.0),(6.0,6.0,600.0,700.0),(7.0,7.0,700.0,800.0),(8.0,8.0,800.0,900.0),(9.0,9.0,900.0,-1.0);
 DROP TABLE IF EXISTS `FishLevelUpData`;
 CREATE TABLE `FishLevelUpData`(`ID` INT(11),`useChip` INT(11),`useGold` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `FishLevelUpData`(`ID`,`useChip`,`useGold`) VALUES (0.0,10.0,10),(1.0,10.0,20),(2.0,20.0,50),(3.0,50.0,100),(4.0,100.0,200),(5.0,200.0,500),(6.0,500.0,1000),(7.0,1000.0,2000),(8.0,2000.0,5000),(9.0,-1.0,-1);
+INSERT INTO `FishLevelUpData`(`ID`,`useChip`,`useGold`) VALUES (0.0,10.0,10),(1.0,10.0,20),(2.0,20.0,50),(3.0,50.0,100),(4.0,100.0,200),(5.0,200.0,500),(6.0,500.0,1000),(7.0,1000.0,2000),(8.0,2000.0,5000),(9.0,5000.0,10000),(10.0,-1.0,-1);
 DROP TABLE IF EXISTS `FishData`;
 CREATE TABLE `FishData`(`ID` INT(11),`name` TEXT,`prefabPath` TEXT,`atk` INT(11),`life` INT(11),`moveSpeed` DOUBLE(16,2),`skillId` INT(11),`isPlayerFish` INT(11),PRIMARY KEY (`ID`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO `FishData`(`ID`,`name`,`prefabPath`,`atk`,`life`,`moveSpeed`,`skillId`,`isPlayerFish`) VALUES (0.0,'宝宝鱼','FishNpc_01',0.0,20,0.6,-1.0,0.0),(1.0,'贪吃鱼','FishPlayer_01',20.0,100,0.8,2.0,1.0),(2.0,'鲨鱼','FishNpc_02',20.0,5000,0.5,-1.0,0.0),(3.0,'河豚鱼','FishPlayer_02',20.0,100,0.8,3.0,1.0);
