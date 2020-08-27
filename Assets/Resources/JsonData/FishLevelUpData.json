@@ -8,5 +8,6 @@
 	{"ID":"6.0","useChip":"500.0","useGold":"1000"},
 	{"ID":"7.0","useChip":"1000.0","useGold":"2000"},
 	{"ID":"8.0","useChip":"2000.0","useGold":"5000"},
-	{"ID":"9.0","useChip":"-1.0","useGold":"-1"}
+	{"ID":"9.0","useChip":"5000.0","useGold":"10000"},
+	{"ID":"10.0","useChip":"-1.0","useGold":"-1"}
 ]}
