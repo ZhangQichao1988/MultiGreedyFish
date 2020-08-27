@@ -107,7 +107,7 @@ base_data_type = {
     "FishLevelUpData": sort_cloum_item(
         ["ID", "INT(11)", "useChip", "INT(11)", "useGold", "INT(11)"]),
     "FishRankLevelData": sort_cloum_item(
-        ["ID", "INT(11)", "rankLevel", "INT(11)", "getGold", "INT(11)"]),
+        ["ID", "INT(11)", "rankLevel", "INT(11)", "getGold", "INT(11)", "rankIcon", "TEXT"]),
 }
 
 
