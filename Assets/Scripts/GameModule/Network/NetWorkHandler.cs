@@ -43,7 +43,9 @@ public class NetWorkHandler
             {"P1_Request", P1_Request.Parser},
             {"P2_Request", P2_Request.Parser},
             {"P5_Request", P5_Request.Parser},
-            {"P6_Request", P5_Request.Parser},
+            {"P6_Request", P6_Request.Parser},
+            {"P7_Request", P7_Request.Parser},
+            {"P8_Request", P8_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -51,6 +53,8 @@ public class NetWorkHandler
             {"P4_Response", P4_Response.Parser},
             {"P5_Response", P5_Response.Parser},
             {"P6_Response", P6_Response.Parser},
+            {"P7_Response", P7_Response.Parser},
+            {"P8_Response", P8_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -67,6 +71,9 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartFight, OnRecvBattle);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidEndFight, OnRecvBattleResult);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidSetFightFish, OnRecvFightFishSet);
+
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidFishLevelUp, OnRecvFishLevelUp);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidBoundsGet, OnRecvBounsGet);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -216,6 +223,27 @@ public class NetWorkHandler
 
     }
 
+    public static void RequesFishLevelUp(int fishId)
+    {
+        var request = new P7_Request();
+        request.FishId = fishId;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P7_Request", requestByteData);
+    }
+
+    public static void RequestGetBattleBounds(string battleId, bool isDouble, string abToken)
+    {
+        var request = new P8_Request();
+        request.BattleId = battleId;
+        request.IsDouble = isDouble;
+        request.RewardToken = abToken;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P8_Request", requestByteData);
+
+    }
+
 #endregion
 
 #region ServerResponse
@@ -280,6 +308,17 @@ public class NetWorkHandler
         GetDispatch().Dispatch<P6_Response>(GetDispatchKey(msg.Key), response);
     }
 
+    static void OnRecvFishLevelUp(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P7_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P7_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvBounsGet(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P8_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P8_Response>(GetDispatchKey(msg.Key), response);
+    }
 
 #endregion
 
