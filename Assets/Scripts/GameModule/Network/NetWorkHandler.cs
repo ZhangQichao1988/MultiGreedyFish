@@ -232,12 +232,11 @@ public class NetWorkHandler
         NetWorkManager.Request("P7_Request", requestByteData);
     }
 
-    public static void RequestGetBattleBounds(string battleId, bool isDouble, string abToken)
+    public static void RequestGetBattleBounds(string battleId, bool isDouble)
     {
         var request = new P8_Request();
         request.BattleId = battleId;
         request.IsDouble = isDouble;
-        request.RewardToken = abToken;
         
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P8_Request", requestByteData);

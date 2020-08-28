@@ -48,6 +48,26 @@ public class UIBase : MonoBehaviour
         uiName = uiName == null ? "ui" + gameObject.GetHashCode().ToString() : uiName;
     }
 
+    void Start()
+    {
+        OnRegisterEvent();
+    }
+    
+    void OnDestroy()
+    {
+        OnUnRegisterEvent();
+    }
+
+    protected virtual void OnRegisterEvent()
+    {
+
+    }
+
+    protected virtual void OnUnRegisterEvent()
+    {
+        
+    }
+
     public virtual void Show()
     {
         if (root != null)

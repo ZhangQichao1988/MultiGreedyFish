@@ -48,31 +48,30 @@ public static partial class ProtocolReflection {
           "ZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCIcCgpQN19SZXF1ZXN0Eg4K",
           "BmZpc2hJZBgBIAIoBSJSCgtQN19SZXNwb25zZRIZCgZyZXN1bHQYASABKAsy",
           "CS5QQlJlc3VsdBIoCghmaXNoSW5mbxgCIAEoCzIWLlBCUGxheWVyRmlzaExl",
-          "dmVsSW5mbyJFCgpQOF9SZXF1ZXN0EhAKCGJhdHRsZUlkGAEgAigJEhAKCGlz",
-          "RG91YmxlGAIgAigIEhMKC3Jld2FyZFRva2VuGAMgASgJIj0KC1A4X1Jlc3Bv",
-          "bnNlEhkKBnJlc3VsdBgBIAEoCzIJLlBCUmVzdWx0EhMKC3Jld2FyZE1vbmV5",
-          "GAIgASgFIiYKCFBCUmVzdWx0EgwKBGNvZGUYASABKAUSDAoEZGVzYxgCIAEo",
-          "CSJfChVQQlBsYXllckZpc2hMZXZlbEluZm8SDgoGZmlzaElkGAEgASgFEhEK",
-          "CWZpc2hMZXZlbBgCIAEoBRIQCghmaXNoQ2hpcBgDIAEoBRIRCglyYW5rTGV2",
-          "ZWwYBCABKAUi6wEKCFBCUGxheWVyEhAKCHBsYXllcklkGAEgASgDEhAKCG5p",
-          "Y2tuYW1lGAIgASgJEhIKCmZhY2VJY29uSWQYAyABKAUSDwoHcmVnVGltZRgE",
-          "IAEoAxIRCglsb2dpbkxhc3QYBSABKAMSDwoHZGlhbW9uZBgGIAEoBRIMCgRn",
-          "b2xkGAcgASgFEg0KBXBvd2VyGAggASgFEg8KB3Bvd2VyQXQYCSABKAMSEQoJ",
-          "ZmlnaHRGaXNoGAogASgFEjEKEWFyeVBsYXllckZpc2hJbmZvGAsgAygLMhYu",
-          "UEJQbGF5ZXJGaXNoTGV2ZWxJbmZvIk0KD1BCRW5lbXlEYXRhSW5mbxIOCgZm",
-          "aXNoSWQYASABKAUSFAoMZmlzaENvdW50TWF4GAIgASgFEhQKDGZpc2hDb3Vu",
-          "dE1pbhgDIAEoBSIvCg9QQlJvYm90RGF0YUluZm8SDgoGZmlzaElkGAEgASgF",
-          "EgwKBGFpSWQYAiABKAUqUAoTRGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25l",
-          "EAASDwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9s",
-          "b3ZpbhADKswBCglNZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURf",
-          "TE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9H",
-          "RVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURf",
-          "RU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9GSVNIEAYSFQoRTUlEX0ZJ",
-          "U0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dFVBAIKm0KClN0YXR1c0Nv",
-          "ZGUSBgoCT0sQABIKCgZGQUlMRUQQARITCg9TSUdOQVRVUkVfRVJST1IQAhIX",
-          "ChNLSUNLX09VVF9MT0dJTl9VU0VSEAMSCwoHQ0FVVElPThAEEhAKDENMSUVO",
-          "VF9FUlJPUhAFQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZpc2hnYW1lLnBi",
-          "QglQQk1lc3NhZ2WIAQA="));
+          "dmVsSW5mbyIwCgpQOF9SZXF1ZXN0EhAKCGJhdHRsZUlkGAEgAigJEhAKCGlz",
+          "RG91YmxlGAIgAigIIj0KC1A4X1Jlc3BvbnNlEhkKBnJlc3VsdBgBIAEoCzIJ",
+          "LlBCUmVzdWx0EhMKC3Jld2FyZE1vbmV5GAIgASgFIiYKCFBCUmVzdWx0EgwK",
+          "BGNvZGUYASABKAUSDAoEZGVzYxgCIAEoCSJfChVQQlBsYXllckZpc2hMZXZl",
+          "bEluZm8SDgoGZmlzaElkGAEgASgFEhEKCWZpc2hMZXZlbBgCIAEoBRIQCghm",
+          "aXNoQ2hpcBgDIAEoBRIRCglyYW5rTGV2ZWwYBCABKAUi6wEKCFBCUGxheWVy",
+          "EhAKCHBsYXllcklkGAEgASgDEhAKCG5pY2tuYW1lGAIgASgJEhIKCmZhY2VJ",
+          "Y29uSWQYAyABKAUSDwoHcmVnVGltZRgEIAEoAxIRCglsb2dpbkxhc3QYBSAB",
+          "KAMSDwoHZGlhbW9uZBgGIAEoBRIMCgRnb2xkGAcgASgFEg0KBXBvd2VyGAgg",
+          "ASgFEg8KB3Bvd2VyQXQYCSABKAMSEQoJZmlnaHRGaXNoGAogASgFEjEKEWFy",
+          "eVBsYXllckZpc2hJbmZvGAsgAygLMhYuUEJQbGF5ZXJGaXNoTGV2ZWxJbmZv",
+          "Ik0KD1BCRW5lbXlEYXRhSW5mbxIOCgZmaXNoSWQYASABKAUSFAoMZmlzaENv",
+          "dW50TWF4GAIgASgFEhQKDGZpc2hDb3VudE1pbhgDIAEoBSIvCg9QQlJvYm90",
+          "RGF0YUluZm8SDgoGZmlzaElkGAEgASgFEgwKBGFpSWQYAiABKAUqUAoTRGF0",
+          "YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQARIP",
+          "Cgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKswBCglNZXNzYWdlSWQS",
+          "DwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRAB",
+          "Eg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9N",
+          "SURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NF",
+          "VF9GSUdIVF9GSVNIEAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURf",
+          "Qk9VTkRTX0dFVBAIKm0KClN0YXR1c0NvZGUSBgoCT0sQABIKCgZGQUlMRUQQ",
+          "ARITCg9TSUdOQVRVUkVfRVJST1IQAhIXChNLSUNLX09VVF9MT0dJTl9VU0VS",
+          "EAMSCwoHQ0FVVElPThAEEhAKDENMSUVOVF9FUlJPUhAFQjAKIGNvbS5jaGFv",
+          "LmZpc2guc2VydmVyLmZpc2hnYW1lLnBiQglQQk1lc3NhZ2WIAQA="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,7 +89,7 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P6_Response), global::P6_Response.Parser, new[]{ "Result" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P7_Request), global::P7_Request.Parser, new[]{ "FishId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P7_Response), global::P7_Response.Parser, new[]{ "Result", "FishInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P8_Request), global::P8_Request.Parser, new[]{ "BattleId", "IsDouble", "RewardToken" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P8_Request), global::P8_Request.Parser, new[]{ "BattleId", "IsDouble" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P8_Response), global::P8_Response.Parser, new[]{ "Result", "RewardMoney" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
@@ -3169,7 +3168,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     _hasBits0 = other._hasBits0;
     battleId_ = other.battleId_;
     isDouble_ = other.isDouble_;
-    rewardToken_ = other.rewardToken_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3225,29 +3223,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     _hasBits0 &= ~1;
   }
 
-  /// <summary>Field number for the "rewardToken" field.</summary>
-  public const int RewardTokenFieldNumber = 3;
-  private readonly static string RewardTokenDefaultValue = "";
-
-  private string rewardToken_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public string RewardToken {
-    get { return rewardToken_ ?? RewardTokenDefaultValue; }
-    set {
-      rewardToken_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-    }
-  }
-  /// <summary>Gets whether the "rewardToken" field is set</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool HasRewardToken {
-    get { return rewardToken_ != null; }
-  }
-  /// <summary>Clears the value of the "rewardToken" field</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void ClearRewardToken() {
-    rewardToken_ = null;
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as P8_Request);
@@ -3263,7 +3238,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     }
     if (BattleId != other.BattleId) return false;
     if (IsDouble != other.IsDouble) return false;
-    if (RewardToken != other.RewardToken) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3272,7 +3246,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     int hash = 1;
     if (HasBattleId) hash ^= BattleId.GetHashCode();
     if (HasIsDouble) hash ^= IsDouble.GetHashCode();
-    if (HasRewardToken) hash ^= RewardToken.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3294,10 +3267,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
       output.WriteRawTag(16);
       output.WriteBool(IsDouble);
     }
-    if (HasRewardToken) {
-      output.WriteRawTag(26);
-      output.WriteString(RewardToken);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3311,9 +3280,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     }
     if (HasIsDouble) {
       size += 1 + 1;
-    }
-    if (HasRewardToken) {
-      size += 1 + pb::CodedOutputStream.ComputeStringSize(RewardToken);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3332,9 +3298,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
     if (other.HasIsDouble) {
       IsDouble = other.IsDouble;
     }
-    if (other.HasRewardToken) {
-      RewardToken = other.RewardToken;
-    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -3352,10 +3315,6 @@ public sealed partial class P8_Request : pb::IMessage<P8_Request> {
         }
         case 16: {
           IsDouble = input.ReadBool();
-          break;
-        }
-        case 26: {
-          RewardToken = input.ReadString();
           break;
         }
       }

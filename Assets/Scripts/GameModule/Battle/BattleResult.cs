@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Google.Protobuf;
 using UnityEngine.UI;
+using TimerModule;
 
 public class BattleResult : UIBase
 {
@@ -14,17 +15,53 @@ public class BattleResult : UIBase
     [SerializeField]
     Text textRewardRank;
 
+    int retryTimes;
+
     protected override string uiName { get { return "BattleResult"; } }
+
+    protected override void OnRegisterEvent()
+    {
+        NetWorkHandler.GetDispatch().AddListener<P8_Response>(GameEvent.RECIEVE_P8_RESPONSE, OnRecvReward);
+    }
+
+    protected override void OnUnRegisterEvent()
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P8_RESPONSE);
+    }
+
+    void OnRecvReward(P8_Response res)
+    {
+        if (res.Result.Code == NetWorkResponseCode.SUCEED)
+        {
+            //TODO rewardmonery业务处理
+            // res.RewardMoney
+            BackToHome();
+        }
+        else if (res.Result.Code == NetWorkResponseCode.NEED_RETRY)
+        {
+            //双倍领取如果 双倍奖励没有验证通过的话 会返回这个 客户端作重试处理
+            if (++retryTimes < AdsController.RewardRetryTimes)
+            {
+                LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+                TimerManager.AddTimer((int)eTimerType.RealTime, retryTimes, (obj)=>{
+                    LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                    NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, true);
+                }, null);
+            }
+            else
+            {
+                //重试失败 作普通奖励逻辑
+                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, false);
+            }
+        }
+    }
 
     /// <summary>
     /// 普通报酬
     /// </summary>
     public void OnClickGetReward()
     {
-        Close();
-
-        // TODO 通信结束后执行来返回主界面
-        BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
+        NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, false);
     }
 
     /// <summary>
@@ -32,11 +69,22 @@ public class BattleResult : UIBase
     /// </summary>
     public void OnClickGetRewardAdvert()
     {
-        Close();
+        Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
+            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+            TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, true);
+            }, null);
+        };
+        Intro.Instance.AdsController.Show();
+    }
 
-        // TODO 通信结束后执行来返回主界面
+    void BackToHome()
+    {
+        Close();
         BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
     }
+
     public void Setup(P5_Response response)
     {
         // TODO:明细显示时分离

@@ -4,6 +4,9 @@ using System;
 
 public class AdsController : MonoBehaviour
 {
+    public static int RewardRetryTimes = 3;
+    public static int RewardWaitTime = 1;
+
     //使用测试的广告单元
 #if UNITY_ANDROID
     string appId = "ca-app-pub-3940256099942544/5224354917";
@@ -15,6 +18,8 @@ public class AdsController : MonoBehaviour
 
     private bool isInited;
     private bool isLoadFailed;
+
+    public Action OnAdRewardGetted;
     void Start()
     {
         MobileAds.Initialize(client=>{
@@ -71,6 +76,9 @@ public class AdsController : MonoBehaviour
         rewardedAd.OnAdFailedToLoad += HandleRewardedAdLoadedFailed;
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
+        rewardedAd.SetServerSideVerificationOptions((new ServerSideVerificationOptions.Builder()).
+                SetUserId(PlayerModel.Instance.player.PlayerId.ToString()).
+                Build());
 
         return rewardedAd;
     }
@@ -94,6 +102,8 @@ public class AdsController : MonoBehaviour
     public void HandleUserEarnedReward(object sender, Reward args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded Reward");
+        OnAdRewardGetted?.Invoke();
+        OnAdRewardGetted = null;
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
