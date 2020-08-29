@@ -30,5 +30,8 @@
 	{"ID":"1003.0","key":"FishLevelMax","floatValue":"","intValue":"10.0","stringValue":""},
 	{"ID":"1004.0","key":"InitialHeadId","floatValue":"","intValue":"1.0","stringValue":""},
 	{"ID":"1005.0","key":"InitialGold","floatValue":"","intValue":"10.0","stringValue":""},
-	{"ID":"1006.0","key":"InitialDiamond","floatValue":"","intValue":"10.0","stringValue":""}
+	{"ID":"1006.0","key":"InitialDiamond","floatValue":"","intValue":"10.0","stringValue":""},
+	{"ID":"2000.0","key":"FishAtkMax","floatValue":"","intValue":"100.0","stringValue":""},
+	{"ID":"2001.0","key":"FishHpMax","floatValue":"","intValue":"500.0","stringValue":""},
+	{"ID":"2002.0","key":"FishSpdMax","floatValue":"1.0","intValue":"","stringValue":""}
 ]}

@@ -16,6 +16,8 @@ public class UIFishStatus : UIBase
     public Text textFishSkillName;
     public Text textLevelupUseGold;
 
+    public Text textCurrentFishLevel;
+
     public GameObject[] goListAtkValue;
     public GameObject[] goListHpValue;
     public GameObject[] goListSpdValue;
@@ -31,6 +33,8 @@ public class UIFishStatus : UIBase
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
         textFishName.text = LanguageDataTableProxy.GetText(fishData.name);
         textFishComment.text = LanguageDataTableProxy.GetText(fishData.comment);
+
+        textCurrentFishLevel.text = string.Format(LanguageDataTableProxy.GetText(10), playerFishLevelInfo.FishLevel);
 
         // 属性
         float rate;
@@ -90,6 +94,8 @@ public class UIFishStatus : UIBase
 
     public void OpenLevelUpDialog()
     {
-        UIBase.Open<UIFishLevelUp>(Path.Combine( AssetPathConst.uiRootPath, "PopupFishLevelUp"), UILayers.POPUP);
-    }
+        var uiFishLevelUp = UIBase.Open<UIFishLevelUp>(Path.Combine( AssetPathConst.uiRootPath, "PopupFishLevelUp"), UILayers.POPUP);
+        uiFishLevelUp.Setup(playerFishLevelInfo);
+        uiFishLevelUp.onClose = () => { Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId)); };
+}
 }

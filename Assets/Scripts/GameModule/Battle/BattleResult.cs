@@ -33,8 +33,8 @@ public class BattleResult : UIBase
     {
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
-            //TODO rewardmonery业务处理
-            // res.RewardMoney
+            // TODO:将来要在Home界面做加算演出
+            PlayerModel.Instance.player.Gold += res.RewardMoney;
             BackToHome();
         }
         else if (res.Result.Code == NetWorkResponseCode.NEED_RETRY)

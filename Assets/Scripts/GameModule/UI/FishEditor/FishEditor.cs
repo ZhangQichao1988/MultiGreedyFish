@@ -20,7 +20,7 @@ public class FishEditor : UIBase
         foreach (var note in PlayerModel.Instance.player.AryPlayerFishInfo)
         {
             // 已有的鱼只是更新信息，不重新实例化
-            fishEditorItem = aryFishEditorItem.Find((a) => a.pBPlayerFishLevelInfo == note);
+            fishEditorItem = aryFishEditorItem.Find((a) => a.pBPlayerFishLevelInfo.FishId == note.FishId);
             if (fishEditorItem != null)
             {
                 fishEditorItem.Refash(note);

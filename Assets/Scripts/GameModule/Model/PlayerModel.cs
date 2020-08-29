@@ -11,16 +11,28 @@ public class PlayerModel : BaseModel<PlayerModel>
 
     public PBPlayerFishLevelInfo GetCurrentPlayerFishLevelInfo()
     {
-        return GetPlayerFishLevelInfo(player);
+        return GetPlayerFishLevelInfo(player.FightFish);
     }
-    public PBPlayerFishLevelInfo GetPlayerFishLevelInfo(PBPlayer player)
+    public PBPlayerFishLevelInfo GetPlayerFishLevelInfo(int fishId)
     {
         foreach (var note in player.AryPlayerFishInfo)
         {
-            if (note.FishId == player.FightFish) { return note; }
+            if (note.FishId == fishId) { return note; }
         }
         Debug.LogError("DataBank.GetCurrentPlayerFishLevelInfo()_1");
         return null;
+    }
+    public void SetPlayerFishLevelInfo(int fishId, PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
+    {
+        for(int i = 0; i < player.AryPlayerFishInfo.Count; ++i)
+        {
+            if (player.AryPlayerFishInfo[i].FishId == fishId) 
+            {
+                player.AryPlayerFishInfo[i] = pBPlayerFishLevelInfo;
+                return;
+            }
+        }
+        Debug.LogError("DataBank.SetPlayerFishLevelInfo()_1, not found set fish id");
     }
     public int GetTotalRankLevel()
     {

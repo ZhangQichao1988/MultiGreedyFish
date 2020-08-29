@@ -11,23 +11,27 @@ public class UIFishLevelUp : UIBase
 
     private PBPlayerFishLevelInfo playerFishLevelInfo;
 
+    public Text textLevelupUseGold;
+
     public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
     {
-
+        this.playerFishLevelInfo = playerFishLevelInfo;
+        var fishLevelData = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
+        textLevelupUseGold.text = fishLevelData.useGold.ToString();
     }
 
     public void OnClickFishLevelUp()
     {
-        NetWorkHandler.GetDispatch().AddListener<P6_Response>(GameEvent.RECIEVE_P6_RESPONSE, OnRecvFishLevelUp);
-        NetWorkHandler.RequestFightFishSet(playerFishLevelInfo.FishId);
+        NetWorkHandler.GetDispatch().AddListener<P7_Response>(GameEvent.RECIEVE_P7_RESPONSE, OnRecvFishLevelUp);
+        NetWorkHandler.RequesFishLevelUp(playerFishLevelInfo.FishId);
     }
 
     void OnRecvFishLevelUp<T>(T response)
     {
-        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P6_RESPONSE);
-        var realResponse = response as P6_Response;
-        PlayerModel.Instance.player.FightFish = playerFishLevelInfo.FishId;
-        ((HomeScene)BlSceneManager.GetCurrentScene()).GotoSceneUI("Home");
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P7_RESPONSE);
+        var realResponse = response as P7_Response;
+        PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
+        Close();
     }
 
 }

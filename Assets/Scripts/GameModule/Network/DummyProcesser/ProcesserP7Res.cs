@@ -25,8 +25,8 @@ public class ProcesserP7Res : BaseDummyProcesser<P7_Request, P7_Response>
         res.Result = new PBResult() { Code = 0 };
         res.FishInfo = new PBPlayerFishLevelInfo(){
             FishId = request.FishId,
-            FishLevel = 1,
-            FishChip = 0,
+            FishLevel = 2,
+            FishChip = 2,
             RankLevel = 1
         };
         return res;

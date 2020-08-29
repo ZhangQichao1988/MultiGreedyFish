@@ -24,6 +24,11 @@ public class FishEditorItem : MonoBehaviour
     FishDataInfo fishData;
 
     public PBPlayerFishLevelInfo pBPlayerFishLevelInfo;
+
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+    }
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
         this.pBPlayerFishLevelInfo = pBPlayerFishLevelInfo;
@@ -33,6 +38,15 @@ public class FishEditorItem : MonoBehaviour
 
         textFishName.text = LanguageDataTableProxy.GetText( fishData.name );
         textFishLevel.text = string.Format("Lv.{0}", pBPlayerFishLevelInfo.FishLevel) ;
+
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(
+            () =>
+            {
+                var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+                var ui = homeScene.GotoSceneUI("FishStatus") as UIFishStatus;
+                ui.Setup(pBPlayerFishLevelInfo);
+            });
     }
     public void Init(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
@@ -41,14 +55,7 @@ public class FishEditorItem : MonoBehaviour
         var spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, pBPlayerFishLevelInfo.FishId));
         image.sprite = spAsset.Asset;
 
-        button = GetComponent<Button>();
-        button.onClick.AddListener(
-            () =>
-            {
-                var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-                var ui = homeScene.GotoSceneUI("FishStatus") as UIFishStatus;
-                ui.Setup(pBPlayerFishLevelInfo);
-            });
+        
 
     }
 }

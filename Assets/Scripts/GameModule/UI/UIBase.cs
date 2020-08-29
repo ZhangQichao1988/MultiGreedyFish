@@ -7,6 +7,7 @@ public class UIBase : MonoBehaviour
 {
 
     protected GameObject root;
+    public Action onClose = null;
     protected virtual string uiName { get;set; }
 
     static Dictionary<string, UIBase> dicUi = new Dictionary<string, UIBase>();
@@ -87,6 +88,7 @@ public class UIBase : MonoBehaviour
 
     public virtual void Close()
     {
+        if (onClose != null) { onClose(); }
         dicUi.Remove(uiName);
         Destroy(root);
     }
