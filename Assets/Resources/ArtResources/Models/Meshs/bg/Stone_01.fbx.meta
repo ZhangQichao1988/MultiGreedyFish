@@ -7,8 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: aiStandardSurface1
+    second: {fileID: 2100000, guid: 2e169f57e7946c54f9c20360e50720aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: aiStandardSurface15
     second: {fileID: 2100000, guid: 75961dd87013e81468501fdac118fe44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface2
+    second: {fileID: 2100000, guid: 128098eb4d3df4f44a1fed3ecddde2bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface3
+    second: {fileID: 2100000, guid: 5414cf87bd83c784b94f137f8376a35b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
