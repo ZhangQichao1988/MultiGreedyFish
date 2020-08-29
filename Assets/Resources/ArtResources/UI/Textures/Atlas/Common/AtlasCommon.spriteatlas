@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: adf5ddb6f08944342a73620aa840db29, type: 3}
-    totalSpriteSurfaceArea: 326938
+    totalSpriteSurfaceArea: 359706
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -41,12 +41,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 196cde33902f7f5419cbf2d49ff1a180, type: 3}
   - {fileID: 21300000, guid: b25fc3c33ce618f4cb3489289688fad4, type: 3}
   - {fileID: 21300000, guid: 4c33af046c31cae4aa52381183916c8d, type: 3}
+  - {fileID: 21300000, guid: a93ab5280dc28194b9544dd25a631dfb, type: 3}
   - {fileID: 21300000, guid: d2f75a296a7cee849a5a95a382e4b27e, type: 3}
   - {fileID: 21300000, guid: f4644e29e75a76a42af5d5a036e94ea1, type: 3}
   - {fileID: 21300000, guid: 8ce9f8a9934f7764190ad8a3597eb6cd, type: 3}
   - {fileID: 21300000, guid: 757a80b921ada6340b71b610c3c1e03a, type: 3}
   - {fileID: 21300000, guid: e6b5180bc12ca1c42a3c3d217a7e31b3, type: 3}
   - {fileID: 21300000, guid: 81c21e0bb09864d4b8a02ed8514c8573, type: 3}
+  - {fileID: 21300000, guid: b3deed5b52a009e4a8b808f34c9c193b, type: 3}
   - {fileID: 21300000, guid: acfc305d626c62c4cab7e584e2add1f1, type: 3}
   m_PackedSpriteNamesToIndex:
   - UI_RankIcon_1
@@ -55,12 +57,14 @@ SpriteAtlas:
   - UI_RankIcon_4
   - UI_RankIcon_2
   - UI_close
+  - UI_goldcoin
   - UI_bg_color
   - UI_Return
   - UI_SliderValue
   - UI_bg_cutline
   - UI_RankIcon_5
   - UI_RankIcon_3
+  - UI_diamond
   - UI_Trophy
   m_Tag: AtlasCommon
   m_IsVariant: 0

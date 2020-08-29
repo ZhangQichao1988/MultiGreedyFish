@@ -14,6 +14,7 @@ public class UIBase : MonoBehaviour
     {
         DEFAULT,
         POPUP,
+        RESOURCE,
         OVERLAY,
         LOADING
     }

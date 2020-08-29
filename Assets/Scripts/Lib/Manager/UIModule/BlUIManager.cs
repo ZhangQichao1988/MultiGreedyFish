@@ -310,6 +310,7 @@ public class BlUIManager : MonoBehaviour
     
     public GameObject UIRootObject;
     public GameObject UIPopupObject;
+    public GameObject UIResourceObject;
     public GameObject UILoadingObject;
 
     public void Init()
@@ -318,6 +319,7 @@ public class BlUIManager : MonoBehaviour
 
         UIRootObject = BlUIManager.GetLayerNode("DEFAULT");
         UIPopupObject = BlUIManager.GetLayerNode("POPUP");
+        UIResourceObject = BlUIManager.GetLayerNode("RESOURCE");
         UILoadingObject = BlUIManager.GetLayerNode("LOADING");
     }
 

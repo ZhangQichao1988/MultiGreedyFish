@@ -1,5 +1,5 @@
 {"Items":[
-	{"ID":"1.0","skillType":"FishSkillHealLife","effectId":"0.0","aryParam":"0.1,0.5"},
-	{"ID":"2.0","skillType":"FishSkillSuck","effectId":"-1.0","aryParam":"1,9"},
-	{"ID":"3.0","skillType":"FishSkillSwelling","effectId":"-1.0","aryParam":"0.2,2,2"}
+	{"ID":"1.0","name":"10012.0","skillType":"FishSkillHealLife","effectId":"0.0","aryParam":"0.1,0.5"},
+	{"ID":"2.0","name":"","skillType":"FishSkillSuck","effectId":"-1.0","aryParam":"1,9"},
+	{"ID":"3.0","name":"10032.0","skillType":"FishSkillSwelling","effectId":"-1.0","aryParam":"0.2,2,2"}
 ]}

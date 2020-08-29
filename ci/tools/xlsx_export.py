@@ -91,9 +91,9 @@ base_data_type = {
     "EffectData": sort_cloum_item(["ID", "INT(11)", "prefabPath", "TEXT", "duration", "DOUBLE(16,2)"]),
     "FishBuffData": sort_cloum_item(["ID", "INT(11)", "buffType", "TEXT", "aryParam", "TEXT"]),
     "FishData": sort_cloum_item(
-        ["ID", "INT(11)", "name", "TEXT", "prefabPath", "TEXT", "atk", "INT(11)", "life", "INT(11)",
+        ["ID", "INT(11)", "name", "INT(11)", "prefabPath", "TEXT", "atk", "INT(11)", "life", "INT(11)",
          "moveSpeed", "DOUBLE(16,2)", "skillId", "INT(11)", "isPlayerFish", "INT(11)"]),
-    "FishSkillData": sort_cloum_item(["ID", "INT(11)", "skillType", "TEXT", "effectId", "INT(11)", "aryParam", "TEXT"]),
+    "FishSkillData": sort_cloum_item(["ID", "INT(11)", "name", "INT(11)", "skillType", "TEXT", "effectId", "INT(11)", "aryParam", "TEXT"]),
     "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
     "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
     "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "aiId", "INT(11)", "groupId", "INT(11)"]),

@@ -27,5 +27,8 @@
 	{"ID":"1000.0","key":"BattleRewardGoldRate","floatValue":"","intValue":"10.0","stringValue":""},
 	{"ID":"1001.0","key":"BattleRewardGoldAdvertRate","floatValue":"","intValue":"2.0","stringValue":""},
 	{"ID":"1002.0","key":"InitialFishId","floatValue":"","intValue":"1.0","stringValue":""},
-	{"ID":"1003.0","key":"FishLevelMax","floatValue":"","intValue":"10.0","stringValue":""}
+	{"ID":"1003.0","key":"FishLevelMax","floatValue":"","intValue":"10.0","stringValue":""},
+	{"ID":"1004.0","key":"InitialHeadId","floatValue":"","intValue":"1.0","stringValue":""},
+	{"ID":"1005.0","key":"InitialGold","floatValue":"","intValue":"10.0","stringValue":""},
+	{"ID":"1006.0","key":"InitialDiamond","floatValue":"","intValue":"10.0","stringValue":""}
 ]}

@@ -10,7 +10,7 @@ public class FishStatusFishControl : MonoBehaviour
     Animator animator;
     Transform transModel;
 
-    float FishRotAngle = 0f;
+    float FishRotAngle = 90f;
     float preTouchPosX = 0f;
     float nowTouchPosX = 0f;
     bool isDrage = false;

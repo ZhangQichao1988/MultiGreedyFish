@@ -12,7 +12,7 @@ public class HomeScene : BaseScene
         "FishStatus",
     };
     private UIHomeCommon homeCommon;
-
+    private UIHomeResource homeResource;
 
     public override void Init(object parms)
     {
@@ -27,6 +27,7 @@ public class HomeScene : BaseScene
     public override void Create()
     {
         homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine(AssetPathConst.uiRootPath, "HomeCommon"), UIBase.UILayers.DEFAULT);
+        homeResource = UIBase.Open<UIHomeResource>(Path.Combine(AssetPathConst.uiRootPath, "HomeResource"), UIBase.UILayers.RESOURCE);
         GotoSceneUI("Home");
     }
     public void GotoFishEditor()
@@ -37,7 +38,14 @@ public class HomeScene : BaseScene
     {
         var uiBase = base.GotoSceneUI(uiName, saveHistory);
         homeCommon.SetActiveScene(uiName);
+        homeResource.SetActiveScene(uiName);
         return uiBase;
     }
 
+    public override void Destory()
+    {
+        base.Destory();
+        homeCommon.Close();
+        homeResource.Close();
+    }
 }

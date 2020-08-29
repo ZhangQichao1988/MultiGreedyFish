@@ -11,15 +11,14 @@ public class FishEditorItem : MonoBehaviour
 
     public Image image;
 
-    public Slider sliderRankLevel;
+    public GauageRank gauageRank;
+    public GauageLevel gauageLevel;
+
     public Text textRankLevel;
     public Text textRank;
     public Image rankIcon;
 
     public Text textFishName;
-    public Text textFishChip;
-
-    public Slider sliderFishLevel;
     public Text textFishLevel;
 
     FishDataInfo fishData;
@@ -29,20 +28,10 @@ public class FishEditorItem : MonoBehaviour
     {
         this.pBPlayerFishLevelInfo = pBPlayerFishLevelInfo;
 
-        // 数据更新
-        FishRankLevelDataInfo currentRankData, nextRankData;
-        FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(pBPlayerFishLevelInfo.RankLevel, out currentRankData, out nextRankData);
-        sliderRankLevel.value = nextRankData == null ? 1f : (float)(pBPlayerFishLevelInfo.RankLevel - currentRankData.rankLevel) / (float)(nextRankData.rankLevel - currentRankData.rankLevel);
-        textRankLevel.text = pBPlayerFishLevelInfo.RankLevel.ToString();
-        textRank.text = currentRankData.ID.ToString();
-        rankIcon.sprite = ResourceManager.LoadSync<Sprite>(Path.Combine( AssetPathConst.texCommonPath, currentRankData.rankIcon)).Asset;
-        
+        gauageRank.Refash(pBPlayerFishLevelInfo);
+        gauageLevel.Refash(pBPlayerFishLevelInfo);
 
-        textFishName.text = fishData.name;
-
-        var fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
-        sliderFishLevel.value = (float)pBPlayerFishLevelInfo.FishChip / (float)fishLevelUpData.useChip;
-        textFishChip.text = string.Format("{0}/{1}", pBPlayerFishLevelInfo.FishChip, fishLevelUpData.useChip);
+        textFishName.text = LanguageDataTableProxy.GetText( fishData.name );
         textFishLevel.text = string.Format("Lv.{0}", pBPlayerFishLevelInfo.FishLevel) ;
     }
     public void Init(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
