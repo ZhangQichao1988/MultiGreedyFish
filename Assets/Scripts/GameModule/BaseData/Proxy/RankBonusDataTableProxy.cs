@@ -27,6 +27,7 @@ public class RankBonusDataTableProxy : BaseDataTableProxy<RankBonusDataTable, Ra
             {
                 nextRankLevel = list[i + 1].rankLevel;
                 preRankLevel = list[i].rankLevel;
+                break;
             }
         }
         return (float)(currentRankLevel - preRankLevel) / (float)(nextRankLevel - preRankLevel);

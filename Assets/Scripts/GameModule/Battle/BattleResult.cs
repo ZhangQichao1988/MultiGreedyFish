@@ -95,7 +95,7 @@ public class BattleResult : UIBase
         textRewardGold.text = string.Format( LanguageDataTableProxy.GetText(8), gold);
 
         Debug.Assert(textRewardGoldAdvert != null, "BattleResult.Setup()_2");
-        textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), gold * ConfigTableProxy.Instance.GetDataByKey("BattleRewardGoldAdvertRate"));
+        textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), gold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
 
         Debug.Assert(textRewardRank != null, "BattleResult.Setup()_3");
         textRewardRank.text = string.Format(LanguageDataTableProxy.GetText(9), rankUp);

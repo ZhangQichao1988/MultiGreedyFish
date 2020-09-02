@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishSkillHeadLife : FishSkillBase
+public class FishSkillHealLife : FishSkillBase
 {
 	public override bool Skill()
 	{
