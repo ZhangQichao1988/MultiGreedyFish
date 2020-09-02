@@ -108,6 +108,8 @@ base_data_type = {
         ["ID", "INT(11)", "useChip", "INT(11)", "useGold", "INT(11)"]),
     "FishRankLevelData": sort_cloum_item(
         ["ID", "INT(11)", "rankLevel", "INT(11)", "getGold", "INT(11)", "rankIcon", "TEXT"]),
+    "UserNick": sort_cloum_item(
+        ["ID", "INT(11)", "value", "TEXT", "type", "INT(11)"])
 }
 
 
@@ -132,6 +134,8 @@ def parse_exl_server(exl_path, table_name, f):
 
         for index in range(0, len(list_head)):
             v = sheet.cell(i, index).value
+            if list_head[index] == "ID":
+                v = int(v)
             temp.append(str(v))
             # if isinstance(v, basestring):
             #     temp.append(str(v).strip().decode("utf-8"))
