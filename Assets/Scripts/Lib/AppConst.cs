@@ -9,10 +9,10 @@ public class AppConst
     public static bool EnableProtocolEncrypt = true;
     public static bool EnabledGameServices = false;
 
-    public static string Host = "127.0.0.1";
+    //public static string Host = "127.0.0.1";
 
     //tencent cloud
-    // public static string Host = "81.68.85.172";
+    public static string Host = "81.68.85.172";
     public static int ApiPort = 8088;
 
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
