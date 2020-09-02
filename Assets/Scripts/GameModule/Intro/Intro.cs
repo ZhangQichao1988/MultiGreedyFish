@@ -92,6 +92,7 @@ public class Intro : MonoBehaviour
         //UIBase.Open("ArtResources/UI/Prefabs/Title");
 
         UserLoginFlowController.StartLoginFlow(()=>{
+
             BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
         });
         

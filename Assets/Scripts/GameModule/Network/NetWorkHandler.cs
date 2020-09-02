@@ -46,6 +46,7 @@ public class NetWorkHandler
             {"P6_Request", P6_Request.Parser},
             {"P7_Request", P7_Request.Parser},
             {"P8_Request", P8_Request.Parser},
+            {"P9_Request", P9_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -55,6 +56,7 @@ public class NetWorkHandler
             {"P6_Response", P6_Response.Parser},
             {"P7_Response", P7_Response.Parser},
             {"P8_Response", P8_Response.Parser},
+            {"P9_Response", P9_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -74,6 +76,7 @@ public class NetWorkHandler
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidFishLevelUp, OnRecvFishLevelUp);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidBoundsGet, OnRecvBounsGet);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidModifyNick, OnRecvModifyNick);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -243,6 +246,16 @@ public class NetWorkHandler
 
     }
 
+    public static void RequestModifyNick(string nickName)
+    {
+        var request = new P9_Request();
+        request.Nick = nickName;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P9_Request", requestByteData);
+
+    }
+
 #endregion
 
 #region ServerResponse
@@ -317,6 +330,12 @@ public class NetWorkHandler
     {
         var response = P8_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P8_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvModifyNick(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P9_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P9_Response>(GetDispatchKey(msg.Key), response);
     }
 
 #endregion
