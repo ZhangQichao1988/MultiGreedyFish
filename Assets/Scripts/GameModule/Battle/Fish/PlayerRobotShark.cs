@@ -69,9 +69,9 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 	}
 
-	public override void Eat(FishBase fish)
+	public override void Eat(float fishLevel)
 	{
-		fish.Die(colliderMouth.transform);
+		//fish.Die(colliderMouth.transform);
 		animator.SetTrigger("Eat");
 	}
 }

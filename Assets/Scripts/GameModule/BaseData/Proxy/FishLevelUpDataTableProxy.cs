@@ -17,12 +17,12 @@ public class FishLevelUpDataTableProxy : BaseDataTableProxy<FishLevelUpDataTable
         var fishData = FishDataTableProxy.Instance.GetDataById(fishId);
         return GetFishAtk(fishData, level);
     }
-    public int GetFishAtk(FishDataInfo fishData, int level)
+    public int GetFishAtk(FishDataInfo fishData, float level)
     {
         float upRate = ConfigTableProxy.Instance.GetDataByKey("FishLevelUpRate");
         return (int)(fishData.atk + fishData.atk * upRate * Mathf.Pow(level, 2));
     }
-    public int GetFishHp(FishDataInfo fishData, int level)
+    public int GetFishHp(FishDataInfo fishData, float level)
     {
         float upRate = ConfigTableProxy.Instance.GetDataByKey("FishLevelUpRate");
         return (int)(fishData.life + fishData.life * upRate * Mathf.Pow(level, 2));

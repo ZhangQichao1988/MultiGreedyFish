@@ -8,9 +8,9 @@ public class EnemyBase : FishBase
     public override FishType fishType { get { return FishType.Enemy; } }
 
 
-    public override void Init(int fishId, string playerName)
+    public override void Init(int fishId, string playerName, float level)
     {
-        base.Init(fishId, playerName);
+        base.Init(fishId, playerName, level);
 
         // 一开始不要一起出生
         remainingTime = Wrapper.GetRandom(0f, 10f);

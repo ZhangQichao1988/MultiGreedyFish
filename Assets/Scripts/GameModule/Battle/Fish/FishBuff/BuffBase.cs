@@ -10,6 +10,7 @@ public abstract class BuffBase
         ChangePostion,             // 位移
         ChangeSpeed,                // 变速
         Shield,                             // 护盾
+        Heal,                             // 回血
     };
     public abstract BuffType buffType { get; }
     public FishBuffDataInfo baseData;

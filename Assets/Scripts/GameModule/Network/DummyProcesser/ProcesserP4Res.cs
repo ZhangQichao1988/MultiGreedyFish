@@ -23,15 +23,15 @@ public class ProcesserP4Res : BaseDummyProcesser<NullMessage, P4_Response>
 
         res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
         
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1 });
 
         res.BattleId = "11111";
 

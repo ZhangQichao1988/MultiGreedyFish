@@ -33,30 +33,30 @@ public class LifeGauge : MonoBehaviour
 
     public void SetValue( int current, int max )
     {
-        if (max > slider.maxValue)
-        {
-            //ShowNumber(new NumberData( NumberType.MaxLife, max - (int)slider.maxValue));
-            if (max - slider.maxValue >= 150)
-            {
-                BattleEffectManager.CreateEffect(4, dmgExpLocation.transform);
-            }
-            else if (max - slider.maxValue >= 50)
-            {
-                BattleEffectManager.CreateEffect(3, dmgExpLocation.transform);
-            }
-            else
-            {
-                BattleEffectManager.CreateEffect(2, dmgExpLocation.transform);
-            }
-        }
-        else if (current > slider.value)
-        {
-            ShowNumber(new NumberData(NumberType.Life, current - (int)slider.value));
-        }
-        else if (current < slider.value)
-        {
-            ShowNumber(new NumberData(NumberType.Damage, (int)slider.value - current));
-        }
+        //if (max > slider.maxValue)
+        //{
+        //    //ShowNumber(new NumberData( NumberType.MaxLife, max - (int)slider.maxValue));
+        //    //if (max - slider.maxValue >= 150)
+        //    //{
+        //    //    BattleEffectManager.CreateEffect(4, dmgExpLocation.transform);
+        //    //}
+        //    //else if (max - slider.maxValue >= 50)
+        //    //{
+        //    //    BattleEffectManager.CreateEffect(3, dmgExpLocation.transform);
+        //    //}
+        //    //else
+        //    //{
+        //    //    BattleEffectManager.CreateEffect(2, dmgExpLocation.transform);
+        //    //}
+        //}
+        //else if (current > slider.value)
+        //{
+        //    //ShowNumber(new NumberData(NumberType.Life, current - (int)slider.value));
+        //}
+        //else if (current < slider.value)
+        //{
+        //    //ShowNumber(new NumberData(NumberType.Damage, (int)slider.value - current));
+        //}
         slider.maxValue = max;
         slider.value = current;
         valueImage.color = Color.HSVToRGB(Mathf.Lerp(0f, 0.3f, slider.normalizedValue), 1f, 1f);
@@ -65,7 +65,7 @@ public class LifeGauge : MonoBehaviour
 
     public void ShowNumber(NumberData numberData )
     {
-        if (!dmgExpLocation.activeSelf) { return; }
+        if (!dmgExpLocation.activeInHierarchy) { return; }
         int effectId = BattleEffectManager.CreateEffect(1, dmgExpLocation.transform);
         Effect effect = EffectManager.GetEffect(effectId);
         //var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.effectRootPath, "fx_dmgExp"));

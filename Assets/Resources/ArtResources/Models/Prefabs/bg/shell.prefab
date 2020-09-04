@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8026204489610385066}
   - component: {fileID: 3315668731681125006}
   - component: {fileID: 4636950453211396769}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

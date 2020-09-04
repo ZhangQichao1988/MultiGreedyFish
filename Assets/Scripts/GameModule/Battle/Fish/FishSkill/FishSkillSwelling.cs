@@ -23,12 +23,12 @@ public class FishSkillSwelling : FishSkillBase
 		process = 0f;
 		step = 1;
 
-		// 减速buff
-		BuffBase buff = playerBase.AddBuff(playerBase, 3);
-		if (buff != null) { buff.remainingTime = listParam[1]; }
+		//// 减速buff
+		//BuffBase buff = playerBase.AddBuff(playerBase, 3);
+		//if (buff != null) { buff.remainingTime = listParam[1]; }
 
 		// 无敌护盾buff
-		buff = playerBase.AddBuff(playerBase, 4);
+		BuffBase buff = playerBase.AddBuff(playerBase, 4);
 		if (buff != null) { buff.remainingTime = listParam[1]; }
 
 		return true;
@@ -50,10 +50,10 @@ public class FishSkillSwelling : FishSkillBase
 					distance = playerToTargetDir.magnitude;
 					if (playerToTargetDir.magnitude <= 2f)
 					{
-						// 解除膨胀
-						step = 2;
-						// 解除自己的减速buff
-						playerBase.RemoteBuff(3);
+						//// 解除膨胀
+						//step = 2;
+						//// 解除自己的减速buff
+						//playerBase.RemoteBuff(3);
 						// 给自己加速buff
 						playerBase.AddBuff(playerBase, 0);
 

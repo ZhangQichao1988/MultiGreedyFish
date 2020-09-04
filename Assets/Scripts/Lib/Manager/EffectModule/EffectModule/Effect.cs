@@ -101,7 +101,7 @@ public class Effect
 	{
 		if(effectObject != null)
 		{
-			effectObject.SetActive(active);
+			GameObjectUtil.SetActive(effectObject, active);
 		}
 	}
 

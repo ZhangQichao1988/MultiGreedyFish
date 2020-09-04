@@ -30,7 +30,6 @@ public class FishBase : MonoBehaviour
 
     public struct Data
     {
-        public int uid;
         public int fishId;
         public string name;
         public int life;
@@ -41,7 +40,6 @@ public class FishBase : MonoBehaviour
 
         public Data(int fishId, string name, int life, int atk, float moveSpeed)
         {
-            uid = -1;
             this.fishId = fishId;
             this.name = name;
             this.life = life;
@@ -53,6 +51,9 @@ public class FishBase : MonoBehaviour
     }
     static protected int uidCnt = 0;
 
+    protected int uid = -1;
+    protected uint actionWaitCnt = 0;
+    public float fishLevel;
     protected FishDataInfo fishBaseData;
     public Data data;
     public Data originalData;
@@ -102,7 +103,7 @@ public class FishBase : MonoBehaviour
 
     // 水泡粒子
     protected ParticleSystem particleBlister;
-    protected virtual bool showLifeGauge { get { return true; } }
+    protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
     public virtual int life
@@ -110,18 +111,6 @@ public class FishBase : MonoBehaviour
         get { return data.life; }
         set
         {
-            if (value > lifeMax)
-            {
-                lifeMax = value;
-            }
-            //if (value < data.life)
-            //{
-            //    Damge();
-            //}
-            //else if (value > data.life)
-            //{
-            //    Heal();
-            //}
             data.life = value;
             if (lifeGauge != null) { lifeGauge.SetValue(data.life, data.lifeMax); }
         }
@@ -132,18 +121,17 @@ public class FishBase : MonoBehaviour
         {
             Debug.LogError(value);
         }
-        life += value;
+        int _life = Mathf.Clamp(life + value, 0, lifeMax );
+        life = _life;
+        if (lifeGauge) lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Life, value));
         return true;
     }
     public virtual bool Damage(int dmg, Transform hitmanTrans)
     {
         if (dmgTime > 0) { return false; }
         if (data.isShield) { return false; }
-        //if (fishType == FishType.Enemy)
-        //{
-        //    Debug.Log("");
-        //}
         life -= dmg;
+        if(lifeGauge) lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Damage, dmg));
         if (life <= 0)
         {
             Die(hitmanTrans);
@@ -159,7 +147,6 @@ public class FishBase : MonoBehaviour
         set
         {
             data.lifeMax = value;
-            ApplySize();
         }
     }
 
@@ -180,18 +167,22 @@ public class FishBase : MonoBehaviour
     }
 
 
-    public virtual void Init(int fishId, string playerName)
+    public virtual void Init(int fishId, string playerName, float level)
     {
         foreach (BuffBase bb in listBuff)
         { bb.Destory(); }
         listBuff.Clear();
 
+        fishLevel = level;
+        ApplySize();
         actionStep = ActionType.Born;
         fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
-        this.data = new Data(fishId, playerName, fishBaseData.life, fishBaseData.atk, fishBaseData.moveSpeed);
-        data.uid = uidCnt++;
+        int life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, fishLevel);
+        int atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, fishLevel);
+        this.data = new Data(fishId, playerName, life, atk, fishBaseData.moveSpeed);
+        uid = uidCnt++;
         this.originalData = data;
-        transform.name = fishType.ToString() + this.data.uid;
+        transform.name = fishType.ToString() + uid;
         GameObject go = ResourceManager.LoadSync(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath, typeof(GameObject)).Asset as GameObject;
         go = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
         transModel = go.transform;
@@ -267,10 +258,44 @@ public class FishBase : MonoBehaviour
     }
     public virtual void CustomUpdate()
     {
-        // 计算离相机目标的距离太远的话就不要动了（优化）
-        isBecameInvisible = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
-        if (dmgTime > 0f) { dmgTime -= Time.deltaTime; }
+        if (actionWaitCnt++ >= uint.MaxValue) { actionWaitCnt = 0; }
+        // 计算离相机目标的距离太远的话就不显示（优化）
+        if((actionWaitCnt + uid) % 3 == 1)
+        {
+            if (isBecameInvisible)
+            {
+                if (BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position))
+                {
+                    foreach (var note in renderers)
+                    { if (note.enabled) note.enabled = false; }
+                    if(lifeGauge) GameObjectUtil.SetActive(lifeGauge.gameObject, false);
+                    isBecameInvisible = false;
+                }
 
+            }
+            else
+            {
+                if (BattleConst.instance.RobotVisionRange - 5f > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position))
+                {
+                    foreach (var note in renderers)
+                    { if (!note.enabled) note.enabled = true; }
+                    if (lifeGauge) GameObjectUtil.SetActive(lifeGauge.gameObject, true);
+                    isBecameInvisible = true;
+                }
+            }
+            //bool _isBecameInvisible = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
+            //if (_isBecameInvisible != isBecameInvisible)
+            //{
+            //    foreach (var note in renderers)
+            //    { note.enabled = _isBecameInvisible; }
+
+            //    if (lifeGauge) { lifeGauge.gameObject.SetActive(_isBecameInvisible); }
+
+            //    isBecameInvisible = _isBecameInvisible;
+            //}
+        }
+
+        if (dmgTime > 0f) { dmgTime -= Time.deltaTime; }
         BuffUpdate();
         AquaticCheck();
         PoisonRingCheck();
@@ -334,9 +359,7 @@ public class FishBase : MonoBehaviour
 
     protected virtual void ApplySize()
     {
-        float size = ((float)lifeMax - (float)originalData.lifeMax) / (float)originalData.lifeMax;
-        size = 1 + (float)Math.Sqrt(size) * BattleConst.instance.PlayerSizeUpRate;
-        size = Math.Min(BattleConst.instance.FishMaxScale, size);
+        float size = 1 + fishLevel / 2;
         transform.localScale = new Vector3(size, size, size);
     }
     protected float GetSafeRudius()
@@ -346,8 +369,11 @@ public class FishBase : MonoBehaviour
 
     protected virtual float SetAlpha(float alpha)
     {
-        transModel.gameObject.SetActive(alpha > 0);
-        if (lifeGauge) { lifeGauge.gameObject.SetActive(alpha > 0); }
+        GameObjectUtil.SetActive(transModel.gameObject, alpha > 0);
+        //if (lifeGauge)
+        //{
+        //    GameObjectUtil.SetActive(lifeGauge.gameObject, alpha > 0);
+        //}
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
@@ -372,6 +398,7 @@ public class FishBase : MonoBehaviour
     protected void AquaticCheck()
     {
         if (!isBecameInvisible) { return; }
+        if ((actionWaitCnt + uid) % 3 != 0) { return; }
         canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
         // 在水草里恢复血量
         if (BattleManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)

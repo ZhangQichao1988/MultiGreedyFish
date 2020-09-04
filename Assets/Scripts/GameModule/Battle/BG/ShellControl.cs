@@ -65,12 +65,12 @@ public class ShellControl : MonoBehaviour
     {
         shellStatus = ShellStatus.Open;
     }
-    public bool PearlEatenCheck(FishBase fish)
+    public bool PearlEatenCheck(PlayerBase fish)
     {
         if (CanEatPearl())
         {
             goPearl.SetActive(false);
-            fish.Heal(BattleConst.instance.PearlRecoverLife);
+            fish.Eat(ConfigTableProxy.Instance.GetDataById(23).floatValue);
             return true;
         }
         else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))

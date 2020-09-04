@@ -8,9 +8,10 @@ public class FishSkillHealLife : FishSkillBase
 	{
 		if (playerBase.lifeRate >= 1f)
 		{ return false; }
-		int healLife = (int)((float)playerBase.lifeMax * listParam[1]);
-		playerBase.Heal(System.Math.Min(healLife, playerBase.lifeMax - playerBase.life));
-		if (playerBase.isBecameInvisible) { BattleEffectManager.CreateEffect(0, playerBase.transform); }
+		playerBase.AddBuff(playerBase, (int)listParam[1]);
+		//int healLife = (int)((float)playerBase.lifeMax * listParam[1]);
+		//playerBase.Heal(System.Math.Min(healLife, playerBase.lifeMax - playerBase.life));
+		//if (playerBase.isBecameInvisible) { BattleEffectManager.CreateEffect(0, playerBase.transform); }
 
 		return true;
 	}
@@ -24,7 +25,7 @@ public class FishSkillHealLife : FishSkillBase
 		int healLife = (int)((float)playerBase.lifeMax * listParam[1]);
 
 		// 若有受伤buff，就开启膨胀技能
-		if (playerBase.lifeMax - playerBase.life > healLife)
+		if (playerBase.lifeRate < 0.5f)
 		{
 			RunSkill();
 		}

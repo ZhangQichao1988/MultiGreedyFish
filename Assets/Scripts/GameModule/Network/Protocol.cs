@@ -62,18 +62,19 @@ public static partial class ProtocolReflection {
           "EhEKCWZpZ2h0RmlzaBgKIAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMo",
           "CzIWLlBCUGxheWVyRmlzaExldmVsSW5mbyJNCg9QQkVuZW15RGF0YUluZm8S",
           "DgoGZmlzaElkGAEgASgFEhQKDGZpc2hDb3VudE1heBgCIAEoBRIUCgxmaXNo",
-          "Q291bnRNaW4YAyABKAUiLwoPUEJSb2JvdERhdGFJbmZvEg4KBmZpc2hJZBgB",
-          "IAEoBRIMCgRhaUlkGAIgASgFKlAKE0RhdGFMaW5rU2VydmljZVR5cGUSCAoE",
-          "bm9uZRAAEg8KC2dhbWVfY2VudGVyEAESDwoLZ29vZ2xlX3BsYXkQAhINCglh",
-          "cHBfbG92aW4QAyrhAQoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQEAASGwoX",
-          "TUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4QAhIXChNN",
-          "SURfR0VUX1BMQVlFUl9JTkZPEAMSEwoPTUlEX1NUQVJUX0ZJR0hUEAQSEQoN",
-          "TUlEX0VORF9GSUdIVBAFEhYKEk1JRF9TRVRfRklHSFRfRklTSBAGEhUKEU1J",
-          "RF9GSVNIX0xFVkVMX1VQEAcSEgoOTUlEX0JPVU5EU19HRVQQCBITCg9NSURf",
-          "TU9ESUZZX05JQ0sQCSptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVE",
-          "EAESEwoPU0lHTkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNF",
-          "UhADEgsKB0NBVVRJT04QBBIQCgxDTElFTlRfRVJST1IQBUIwCiBjb20uY2hh",
-          "by5maXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
+          "Q291bnRNaW4YAyABKAUiPgoPUEJSb2JvdERhdGFJbmZvEg4KBmZpc2hJZBgB",
+          "IAEoBRIMCgRhaUlkGAIgASgFEg0KBWxldmVsGAMgASgFKlAKE0RhdGFMaW5r",
+          "U2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVyEAESDwoLZ29v",
+          "Z2xlX3BsYXkQAhINCglhcHBfbG92aW4QAyrhAQoJTWVzc2FnZUlkEg8KC01J",
+          "RF9TVEFSVFVQEAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglN",
+          "SURfTE9HSU4QAhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMSEwoPTUlEX1NU",
+          "QVJUX0ZJR0hUEAQSEQoNTUlEX0VORF9GSUdIVBAFEhYKEk1JRF9TRVRfRklH",
+          "SFRfRklTSBAGEhUKEU1JRF9GSVNIX0xFVkVMX1VQEAcSEgoOTUlEX0JPVU5E",
+          "U19HRVQQCBITCg9NSURfTU9ESUZZX05JQ0sQCSptCgpTdGF0dXNDb2RlEgYK",
+          "Ak9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9SEAISFwoTS0lD",
+          "S19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxDTElFTlRfRVJS",
+          "T1IQBUIwCiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJN",
+          "ZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -99,7 +100,7 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId", "Level" }, null, null, null, null)
         }));
   }
   #endregion
@@ -5095,6 +5096,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     _hasBits0 = other._hasBits0;
     fishId_ = other.fishId_;
     aiId_ = other.aiId_;
+    level_ = other.level_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5109,7 +5111,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   private int fishId_;
   /// <summary>
-  /// 魚ID，對照FishDataTable的ID
+  /// 魚ID，對照RobotData.xlsx
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int FishId {
@@ -5136,7 +5138,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   private int aiId_;
   /// <summary>
-  /// 参照基表c_RobotAiData.xlsx
+  /// 参照基表RobotData.xlsx
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int AiId {
@@ -5157,6 +5159,33 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     _hasBits0 &= ~2;
   }
 
+  /// <summary>Field number for the "level" field.</summary>
+  public const int LevelFieldNumber = 3;
+  private readonly static int LevelDefaultValue = 0;
+
+  private int level_;
+  /// <summary>
+  /// 参照基表RobotData.xlsx
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Level {
+    get { if ((_hasBits0 & 4) != 0) { return level_; } else { return LevelDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      level_ = value;
+    }
+  }
+  /// <summary>Gets whether the "level" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasLevel {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "level" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearLevel() {
+    _hasBits0 &= ~4;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as PBRobotDataInfo);
@@ -5172,6 +5201,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     }
     if (FishId != other.FishId) return false;
     if (AiId != other.AiId) return false;
+    if (Level != other.Level) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5180,6 +5210,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     int hash = 1;
     if (HasFishId) hash ^= FishId.GetHashCode();
     if (HasAiId) hash ^= AiId.GetHashCode();
+    if (HasLevel) hash ^= Level.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5201,6 +5232,10 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
       output.WriteRawTag(16);
       output.WriteInt32(AiId);
     }
+    if (HasLevel) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Level);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5214,6 +5249,9 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     }
     if (HasAiId) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(AiId);
+    }
+    if (HasLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -5232,6 +5270,9 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
     if (other.HasAiId) {
       AiId = other.AiId;
     }
+    if (other.HasLevel) {
+      Level = other.Level;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -5249,6 +5290,10 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
         }
         case 16: {
           AiId = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          Level = input.ReadInt32();
           break;
         }
       }

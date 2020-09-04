@@ -114,7 +114,7 @@ public class PlayerRobotBase : PlayerBase
         //    //  恢复模式
         //    GotoAquatic();
         //}
-
+        if ((actionWaitCnt + uid) % 5 != 0) { return; }
         var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);
         if (shell)
         {   // 吃珍珠
@@ -185,7 +185,7 @@ public class PlayerRobotBase : PlayerBase
     protected override float SetAlpha(float alpha)
     {
         alpha = base.SetAlpha(alpha);
-        goNamepalte.SetActive(alpha > 0.8);
+        GameObjectUtil.SetActive(goNamepalte, alpha > 0.8);
         return alpha;
     }
 

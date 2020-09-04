@@ -27,17 +27,12 @@ public class ShellManager : MonoBehaviour
 		if (updateCnt >= int.MaxValue) { updateCnt = 0; }
 		if (updateCnt % 10 != 1) { return; }
 
+		bool isActive = false;
 		for (int i = 0; i < listShell.Count; ++i)
         {
-            // 不在视野范围内就不显示
-            if (BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listShell[i].transform.position))
-            {
-                if (!listShell[i].gameObject.activeSelf) { listShell[i].gameObject.SetActive(true); }
-            }
-            else
-            {
-                if (listShell[i].gameObject.activeSelf) { listShell[i].gameObject.SetActive(false); }
-            }
+			// 不在视野范围内就不显示
+			isActive = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listShell[i].transform.position);
+			GameObjectUtil.SetActive(listShell[i].gameObject, isActive);
         }
     }
     public void EatPearl(PlayerBase fish)

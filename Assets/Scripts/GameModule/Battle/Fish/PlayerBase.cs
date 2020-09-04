@@ -24,9 +24,9 @@ public class PlayerBase : FishBase
 	{
 		base.Awake();
 	}
-	public override void Init(int fishId, string playerName)
+	public override void Init(int fishId, string playerName, float level)
 	{
-		base.Init(fishId, playerName);
+		base.Init(fishId, playerName, level);
 
 		fishSkill = FishSkillBase.SetFishSkill(this, fishBaseData.skillId);
 
@@ -163,7 +163,7 @@ public class PlayerBase : FishBase
 
 	protected override Vector3 GetBornPosition()
 	{
-		return Quaternion.AngleAxis(data.uid * 36f, Vector3.up) * Vector3.right * (GetSafeRudius() - 5f);
+		return Quaternion.AngleAxis(uid * 36f, Vector3.up) * Vector3.right * (GetSafeRudius() - 5f);
 	}
 
 	protected void EatPearlCheck()
@@ -181,16 +181,38 @@ public class PlayerBase : FishBase
 		fish.Damage( (int)((float)data.atk * transform.localScale.x), colliderMouth.transform);
 		if (fish.life <= 0)
 		{
-			Eat(fish);
+			Eat(fish.fishLevel);
 		}
 
 	}
-	public virtual void Eat(FishBase fish)
+	public virtual void Eat(float fishLevel)
 	{
-		Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
-		//fish.Die(colliderMouth.transform);
+		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
+		this.fishLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
+		//fishLevel += fish.fishLevel * 0.1f;
+		int _life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, this.fishLevel);
+		int _atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, this.fishLevel);
+		int lifeMax = data.lifeMax;
+		data.lifeMax = _life;
+		life += _life - lifeMax;
+		data.atk = _atk;
+
+		ApplySize();
+		this.originalData.atk = data.atk;
 		animator.SetTrigger("Eat");
-	}
+        if (fishLevel > 5)
+        {
+            BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
+        }
+        else if (fishLevel > 1)
+        {
+            BattleEffectManager.CreateEffect(3, lifeGauge.dmgExpLocation.transform);
+        }
+        else
+        {
+            BattleEffectManager.CreateEffect(2, lifeGauge.dmgExpLocation.transform);
+        }
+    }
 
 	public override void Die( Transform eatFishTrans )
 	{

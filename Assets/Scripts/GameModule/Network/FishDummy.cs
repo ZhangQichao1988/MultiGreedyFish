@@ -17,6 +17,7 @@ public class FishDummy : BaseDummyData
         pbResProcesss.Add("P5_Response", typeof(ProcesserP5Res));
         pbResProcesss.Add("P6_Response", typeof(ProcesserP6Res));
         pbResProcesss.Add("P7_Response", typeof(ProcesserP7Res));
+        pbResProcesss.Add("P8_Response", typeof(ProcesserP8Res));
 
     }
 }

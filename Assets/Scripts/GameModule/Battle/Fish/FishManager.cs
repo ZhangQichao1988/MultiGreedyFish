@@ -15,7 +15,8 @@ public class FishManager : MonoBehaviour
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
-		player.Init(PlayerModel.Instance.player.FightFish, PlayerModel.Instance.player.Nickname);
+		var playerData = PlayerModel.Instance.player;
+		player.Init(playerData.FightFish, playerData.Nickname, PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishLevel);
 		return player;
 	}
 
@@ -44,7 +45,7 @@ public class FishManager : MonoBehaviour
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
 			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-			prb.Init(pBRobotDataInfo.FishId, listName[i]);
+			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level);
 			prb.SetAI(playerRobotAiBaseData);
 			listFish.Add(prb);
 		}
@@ -53,7 +54,7 @@ public class FishManager : MonoBehaviour
 		goEnemy = Wrapper.CreateEmptyGameObject(transform);
 		playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
 		prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-		prb.Init(2, "BOSS");
+		prb.Init(2, "BOSS", 1);
 		prb.SetAI(playerRobotAiBaseData);
 		listFish.Add(prb);
 
@@ -70,7 +71,7 @@ public class FishManager : MonoBehaviour
 			{
 				goEnemy = Wrapper.CreateEmptyGameObject(transform);
 				fb = goEnemy.AddComponent<EnemyBase>();
-				fb.Init(enemyGroup.FishId, "");
+				fb.Init(enemyGroup.FishId, "", 1);
 				listEnemy.Add(fb);
 			}
 		}
@@ -153,6 +154,7 @@ public class FishManager : MonoBehaviour
 		public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
 	{
 		List<FishBase> enemies = new List<FishBase>();
+		Vector3 enemyPos;
 		for (int i = 0; i < listFish.Count; ++i)
 		{
 			if (me == listFish[i]) { continue; }
@@ -160,10 +162,11 @@ public class FishManager : MonoBehaviour
 				listFish[i].actionStep == FishBase.ActionType.Born ||
 				listFish[i].actionStep == FishBase.ActionType.BornWaitting) { continue; }
 
-			if (pos.x + range.x > listFish[i].transform.position.x &&
-				pos.x - range.x < listFish[i].transform.position.x &&
-				pos.z + range.y > listFish[i].transform.position.z &&
-				pos.z - range.y < listFish[i].transform.position.z)
+			enemyPos = listFish[i].transform.position;
+			if (pos.x + range.x > enemyPos.x &&
+				pos.x - range.x < enemyPos.x &&
+				pos.z + range.y > enemyPos.z &&
+				pos.z - range.y < enemyPos.z)
 			{
 				enemies.Add(listFish[i]);
 			}

@@ -40,7 +40,6 @@ public class BattleConst
 		EatPearlRange = ConfigTableProxy.Instance.GetDataByKey("EatPearlRange");
 		OpenShellRemainingTime = ConfigTableProxy.Instance.GetDataByKey("OpenShellRemainingTime");
 		ShellOpenningTime = ConfigTableProxy.Instance.GetDataByKey("ShellOpenningTime");
-		PearlRecoverLife = (int)ConfigTableProxy.Instance.GetDataByKey("PearlRecoverLife");
 		ShellCloseDmg = (int)ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
 		ShellPearlResetRate = ConfigTableProxy.Instance.GetDataByKey("ShellPearlResetRate");
 	}
@@ -77,7 +76,6 @@ public class BattleConst
 	public float EatPearlRange = 3f;                                                                 // 吃珍珠的判定半径
 	public float OpenShellRemainingTime = 5f;												// 打开贝壳的时间间隔
 	public float ShellOpenningTime = 2f;                                                        // 贝壳开着的时间
-	public int PearlRecoverLife = 100;                                                               // 珍珠恢复血量
 	public int ShellCloseDmg = 100;                                                                  // 贝壳关闭伤害
 	public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
 
