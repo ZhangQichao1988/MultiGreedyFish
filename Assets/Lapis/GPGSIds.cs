@@ -25,7 +25,8 @@ namespace Lapis
 {
 public static class GPGSIds
 {
-        public const string achievement_test_commodity = "CgkI3LeHn4YNEAIQAQ"; // <GPGSID>
+        public const string leaderboard = "CgkI4-mN5s4CEAIQAQ"; // <GPGSID>
+        public const string achievement = "CgkI4-mN5s4CEAIQAA"; // <GPGSID>
 
 }
 }

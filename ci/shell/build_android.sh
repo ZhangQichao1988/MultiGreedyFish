@@ -23,7 +23,7 @@ KEY_ALIAS_PASS="hulaoshi007"
 
 
 echo ${WORKDIR}
-UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.5f1/Unity.app/Contents/MacOS/Unity
+UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.7f1/Unity.app/Contents/MacOS/Unity
 
 BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 

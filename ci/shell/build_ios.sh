@@ -22,7 +22,7 @@ BUNDLE_METHOD=${BUNDLE_METHOD:-enterprise}
 
 
 echo ${WORKDIR}
-UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.0f1/Unity.app/Contents/MacOS/Unity
+UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.7f1/Unity.app/Contents/MacOS/Unity
 
 BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 
