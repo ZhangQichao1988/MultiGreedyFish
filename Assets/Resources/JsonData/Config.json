@@ -17,7 +17,7 @@
 	{"ID":"15.0","key":"RobotVisionY","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"16.0","key":"RobotVisionRange","floatValue":"550.0","intValue":"","stringValue":""},
 	{"ID":"17.0","key":"EnemyResurrectionRemainingTime","floatValue":"3.0","intValue":"","stringValue":""},
-	{"ID":"18.0","key":"AquaticRange","floatValue":"2.0","intValue":"","stringValue":""},
+	{"ID":"18.0","key":"AquaticRange","floatValue":"3.0","intValue":"","stringValue":""},
 	{"ID":"19.0","key":"CanStealthTimeFromDmg","floatValue":"2.0","intValue":"","stringValue":""},
 	{"ID":"20.0","key":"EatPearlRange","floatValue":"3.0","intValue":"","stringValue":""},
 	{"ID":"21.0","key":"OpenShellRemainingTime","floatValue":"5.0","intValue":"","stringValue":""},
