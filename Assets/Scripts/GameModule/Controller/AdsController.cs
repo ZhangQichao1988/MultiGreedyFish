@@ -1,6 +1,7 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
+using System.Collections.Generic;
 
 public class AdsController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class AdsController : MonoBehaviour
 
     //使用测试的广告单元
 #if UNITY_ANDROID
-    string appId = "ca-app-pub-3940256099942544/5224354917";
+    // string appId = "ca-app-pub-3940256099942544/5224354917";
+    string appId = "ca-app-pub-3796374498607875/8055947862";
 #elif UNITY_IPHONE
     string appId = "ca-app-pub-3940256099942544/1712485313";
 #else
@@ -24,6 +26,13 @@ public class AdsController : MonoBehaviour
     {
         MobileAds.Initialize(client=>{
             isInited = true;
+
+            MobileAds.SetRequestConfiguration((new RequestConfiguration.Builder()).SetTestDeviceIds(
+                new List<string>(){
+                    "90A076DBA55643D9651A1D3347C57C6A",
+                    "234"
+                }
+            ).build());
         });
     }
 
@@ -76,6 +85,7 @@ public class AdsController : MonoBehaviour
         rewardedAd.OnAdFailedToLoad += HandleRewardedAdLoadedFailed;
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
+        
         rewardedAd.SetServerSideVerificationOptions((new ServerSideVerificationOptions.Builder()).
                 SetUserId(PlayerModel.Instance.player.PlayerId.ToString()).
                 Build());
