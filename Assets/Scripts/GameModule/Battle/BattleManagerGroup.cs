@@ -27,6 +27,7 @@ public class BattleManagerGroup : MonoBehaviour
     Animator animator = null;
     private bool isPause = false;
     private int battleRanking = 0;
+    private bool isResult = false;
     private void Awake()
 	{
         instance = this;
@@ -85,6 +86,8 @@ public class BattleManagerGroup : MonoBehaviour
     }
     public void GotoResult(int rank)
     {
+        if (isResult) { return; }
+        isResult = true;
         if (rank == 1)
         {
             //this.isPause = true;

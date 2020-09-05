@@ -82,88 +82,62 @@ public class InGameUIPanel : MonoBehaviour
 
 	public void Update()
 	{
-        if (!Player) { return; }
-
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            PlayerRunSkill();
-        }
+        // 随机杀死一个机器人
         if (Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(1);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(2);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(3);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(4);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(5);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(6);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha7))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(7);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha8))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(8);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha9))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(9);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                BattleManagerGroup.GetInstance().GotoResult(10);
-            }
-
-            //Player.Damage(99999, null);
+            Player.Damage(999999, null);
         }
         // 所有的敌人都死掉
         if (Input.GetKeyDown(KeyCode.E))
         {
             var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
-            foreach (var note in listPlayer)
+            if (listPlayer.Count > 1)
             {
-                if (note.fishType == FishBase.FishType.PlayerRobot)
+                foreach (var note in listPlayer)
                 {
-                    note.Damage(999999, null);
+                    if (note.fishType == FishBase.FishType.PlayerRobot)
+                    {
+                        note.Damage(999999, null);
+                        break;
+                    }
                 }
             }
         }
 #endif
 
-        // TODO:不要弯曲的话可以删除
-        Shader.SetGlobalVector("_WorldSpacePlayerPos", Player.transform.position);
-        Shader.SetGlobalFloat("_CurveWorldStrength", curveWorldStrength);
+        if (!Player) { return; }
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            PlayerRunSkill();
+        }
 
+        
+#endif
+
+        skillGuage.fillAmount = Player.fishSkill.currentGauge;
+        skillBtn.interactable = Player.fishSkill.currentGauge >= 1f;
+    }
+    public void PlayerRunSkill()
+    {
+        Player.fishSkill.RunSkill();
+    }
+
+    public void CheckBattleEnd()
+    {
         int alivePlayerNum = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count;
+        if (alivePlayerNum == 1)
+        {
+            BattleManagerGroup.GetInstance().BattleEnd();
+        }
+
         if (Player.actionStep == FishBase.ActionType.Die)
         {
             BattleManagerGroup.GetInstance().GotoResult(alivePlayerNum + 1);
             var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
             cameraFollow.SetTarget(listPlayer[0].transform);
-            if (alivePlayerNum == 1)
-            {
-                BattleManagerGroup.GetInstance().BattleEnd();
-
-            }
-		}
+        }
         else if (alivePlayerNum <= 1 && !BattleConst.instance.FreeMode)
         {
             BattleManagerGroup.GetInstance().GotoResult(1);
@@ -173,11 +147,6 @@ public class InGameUIPanel : MonoBehaviour
             BattleManagerGroup.GetInstance().SetPlayPoint();
         }
 
-        skillGuage.fillAmount = Player.fishSkill.currentGauge;
-        skillBtn.interactable = Player.fishSkill.currentGauge >= 1f;
     }
-    public void PlayerRunSkill()
-    {
-        Player.fishSkill.RunSkill();
-    }
+
 }

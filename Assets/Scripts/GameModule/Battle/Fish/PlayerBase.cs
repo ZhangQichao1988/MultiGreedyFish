@@ -220,6 +220,9 @@ public class PlayerBase : FishBase
 		localScaleBackup = transform.localScale.x;
 		remainingTime = BattleConst.instance.EatFishTime;
 		this.eatFishTrans = eatFishTrans;
+
+		// 战斗结果检测
+		BattleManagerGroup.GetInstance().inGameUIPanel.CheckBattleEnd();
 	}
 
 

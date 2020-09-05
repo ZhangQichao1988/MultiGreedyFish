@@ -210,4 +210,5 @@ public class FishManager : MonoBehaviour
 		}
 		return enemyMax;
 	}
+
 }

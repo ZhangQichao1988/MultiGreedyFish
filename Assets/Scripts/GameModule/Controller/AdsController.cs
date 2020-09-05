@@ -30,6 +30,7 @@ public class AdsController : MonoBehaviour
             MobileAds.SetRequestConfiguration((new RequestConfiguration.Builder()).SetTestDeviceIds(
                 new List<string>(){
                     "90A076DBA55643D9651A1D3347C57C6A",
+                    "7320F6D56BD75B826D440B2416692A0E",
                     "234"
                 }
             ).build());

@@ -70,7 +70,8 @@ public class ShellControl : MonoBehaviour
         if (CanEatPearl())
         {
             goPearl.SetActive(false);
-            fish.Eat(ConfigTableProxy.Instance.GetDataById(23).floatValue);
+            fish.Heal(fish.lifeMax);
+            //fish.Eat(ConfigTableProxy.Instance.GetDataById(23).floatValue);
             return true;
         }
         else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
