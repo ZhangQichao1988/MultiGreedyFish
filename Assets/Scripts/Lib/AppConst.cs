@@ -9,11 +9,15 @@ public class AppConst
     public static bool EnableProtocolEncrypt = true;
     public static bool EnabledGameServices = false;
 
-    //public static string Host = "127.0.0.1";
+    
 
-    //tencent cloud
-    public static string Host = "81.68.85.172";
+#if SERVER_TENCENT
+    public static string Host = "www.cad-crazyfish.top";
+    public static int ApiPort = 0;
+#else
+    public static string Host = "127.0.0.1";
     public static int ApiPort = 8088;
+#endif
 
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
     public static string ApiPath = "/fishgame/call";
@@ -27,8 +31,11 @@ public class AppConst
             {
                 httpProtocol = "http://";
             }
-
+#if SERVER_TENCENT
+            return httpProtocol + Host + ApiPath;
+#else
             return httpProtocol + Host + ":" + ApiPort + ApiPath;
+#endif
         }
     }
 

@@ -22,12 +22,15 @@ namespace MultiGreedyFish.Pipline
                 strDefine = strDefine + "CONSOLE_ENABLE;";
             }
 
-            strDefine = strDefine + "DUMMY_DATA;";
+            string uServer = Function.GetValue("-useSever=", false);
+            bool isUseServer = System.Convert.ToBoolean(uServer);
+
+            strDefine = strDefine +  (isUseServer ? UserEditorMenu.SERVER_TENCENT + ";" : "DUMMY_DATA;");
 
             SetDefineSymbols(strDefine);
         }
 
-        private static void SetDefineSymbols(string strDefine)
+        public static void SetDefineSymbols(string strDefine)
         {
             PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS, strDefine);
             PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android, strDefine);

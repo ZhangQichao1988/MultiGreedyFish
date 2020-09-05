@@ -1,5 +1,11 @@
 ##!/usr/bin/bash
 set -euo pipefail
+
+USE_SERVER="false"
+if [[ $# -eq 1 ]]; then
+  USE_SERVER=${1}
+fi
+
 SHELL_PATH=$(cd "$(dirname "$0")";pwd)
 WORKDIR=$(dirname $(dirname "$SHELL_PATH"))
 PRODUCT_NAME="FISH-FIGHT"
@@ -27,7 +33,7 @@ echo ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod Multi
 
 
 ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
--productName=${PRODUCT_NAME} -iosBuild=true -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
+-productName=${PRODUCT_NAME} -iosBuild=true -useSever=${USE_SERVER} -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
 -bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=false -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
 
 
