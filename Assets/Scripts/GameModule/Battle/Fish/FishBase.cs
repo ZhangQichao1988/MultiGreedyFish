@@ -362,10 +362,10 @@ public class FishBase : MonoBehaviour
     protected virtual float SetAlpha(float alpha)
     {
         GameObjectUtil.SetActive(transModel.gameObject, alpha > 0);
-        //if (lifeGauge)
-        //{
-        //    GameObjectUtil.SetActive(lifeGauge.gameObject, alpha > 0);
-        //}
+        if (lifeGauge && isBecameInvisible)
+        {
+            GameObjectUtil.SetActive(lifeGauge.gameObject, alpha > 0);
+        }
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
@@ -418,7 +418,16 @@ public class FishBase : MonoBehaviour
         }
 
         // 在水草里透明
-        float stealthAlpha = fishType == FishType.Player ? 0.3f : 0f;
+        float stealthAlpha = 1f;
+        switch (fishType)
+        {
+            case FishType.Player:
+                stealthAlpha = 0.3f;
+                break;
+            case FishType.PlayerRobot:
+                stealthAlpha = 0f;
+                break;
+        }
         SetAlpha(beforeInAquatic ? stealthAlpha : 1f);
     }
 

@@ -104,8 +104,8 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RotSpeed: 0.015
-    - _SafeAreaRange: 50
-    - _SafeGradAreaRange: 49
+    - _SafeAreaRange: 200
+    - _SafeGradAreaRange: 200
     - _SampleGI: 0
     - _Shininess: 0
     - _Smoothness: 0.5

@@ -55,14 +55,14 @@ public class PlayerRobotBase : PlayerBase
         if (listFish.Count > 0)
         {
             // 当体力较多时，追踪大鱼
-            //if (lifeRate > aiParamRobotFollowBigFishLifeRate)
+            if (lifeRate > aiParamRobotGotoAquaticLifeRate)
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
             }
-            //else
-            //{
-            //    listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
-            //}
+            else
+            {
+                listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
+            }
 
             FishBase target = listFish[0];
             MoveToTarget(target.transform.position);
@@ -116,20 +116,22 @@ public class PlayerRobotBase : PlayerBase
         {   // 吃珍珠
             MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));
         }
-        else if (lifeRate < aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
-        {   // 吃鱼模式
-            if (GotoAquatic())
-            {
-                return;
-            }
+        else
+        {   // 吃鱼
+            Attack();
         }
-        if (lifeRate >= 1f)
-        {
-            isGotoAquatic = false;
-        }
+        //else if (lifeRate < aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
+        //{   // 吃鱼模式
+        //    if (GotoAquatic())
+        //    {
+        //        return;
+        //    }
+        //}
+        //if (lifeRate >= 1f)
+        //{
+        //    isGotoAquatic = false;
+        //}
 
-        // 吃鱼
-        Attack();
     }
 
 

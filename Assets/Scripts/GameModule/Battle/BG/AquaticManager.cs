@@ -27,15 +27,15 @@ public class AquaticManager : MonoBehaviour
 		if (updateCnt >= int.MaxValue) { updateCnt = 0; }
 		if (updateCnt % 10 != 1) { return; }
 
+#if !UNITY_EDITOR
+		// 不在视野范围内就不显示
 		bool isActive = false;
 		for (int i = 0; i < listTransAquatic.Count; ++i)
         {
-			// 不在视野范围内就不显示
-
 			isActive = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - listTransAquatic[i].position);
 			GameObjectUtil.SetActive(listTransAquatic[i].gameObject, isActive);
-			
         }
+#endif
     }
     public bool IsInAquatic(FishBase fish)
 	{
