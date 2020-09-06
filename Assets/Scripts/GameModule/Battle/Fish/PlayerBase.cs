@@ -173,9 +173,8 @@ public class PlayerBase : FishBase
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
-		remainingTime = BattleConst.instance.AttackHardTime;
-		actionStep = ActionType.Eatting;
-		//data.moveSpeed = 0f;
+		//remainingTime = BattleConst.instance.AttackHardTime;
+		//actionStep = ActionType.Eatting;
 		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
 		fish.Damage( (int)((float)data.atk * transform.localScale.x), colliderMouth.transform);

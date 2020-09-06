@@ -31,7 +31,7 @@ public class BattleConst
 		FishMaxScale = ConfigTableProxy.Instance.GetDataByKey("FishMaxScale");
 		HealLifeFromEatRate = ConfigTableProxy.Instance.GetDataByKey("HealLifeFromEatRate");
 		EatFishTime = ConfigTableProxy.Instance.GetDataByKey("EatFishTime");
-		AttackHardTime = ConfigTableProxy.Instance.GetDataByKey("AttackHardTime");
+		//AttackHardTime = ConfigTableProxy.Instance.GetDataByKey("AttackHardTime");
 		RobotVision = new Vector2(ConfigTableProxy.Instance.GetDataByKey("RobotVisionX"), ConfigTableProxy.Instance.GetDataByKey("RobotVisionY"));
 		RobotVisionRange = ConfigTableProxy.Instance.GetDataByKey("RobotVisionRange");
 		EnemyResurrectionRemainingTime = ConfigTableProxy.Instance.GetDataByKey("EnemyResurrectionRemainingTime");

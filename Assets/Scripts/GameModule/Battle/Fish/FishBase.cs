@@ -60,7 +60,7 @@ public class FishBase : MonoBehaviour
     protected Animator animator = null;
     public Transform transModel = null;
     protected Renderer[] renderers = null;
-    protected BoxCollider colliderBody;
+    public BoxCollider colliderBody;
     public ActionType actionStep;
 
     protected List<BuffBase> listBuff = new List<BuffBase>();
@@ -117,9 +117,9 @@ public class FishBase : MonoBehaviour
     }
     public virtual bool Heal(int value)
     {
-        if (value < 0)
+        if (value <= 0)
         {
-            Debug.LogError(value);
+            return false;
         }
         int _life = Mathf.Clamp(life + value, 0, lifeMax );
         life = _life;
@@ -204,8 +204,8 @@ public class FishBase : MonoBehaviour
             lifeGauge.slider.value = data.life;
         }
         
-        lifeMax = data.lifeMax;
-        life = data.life;
+        this.lifeMax = data.lifeMax;
+        this.life = data.life;
     }
 
     protected virtual Vector3 GetBornPosition()
@@ -259,6 +259,7 @@ public class FishBase : MonoBehaviour
     public virtual void CustomUpdate()
     {
         if (actionWaitCnt++ >= uint.MaxValue) { actionWaitCnt = 0; }
+#if !UNITY_EDITOR   // 性能优化相关，编辑器模式方便debug所以关闭
         // 计算离相机目标的距离太远的话就不显示（优化）
         if((actionWaitCnt + uid) % 3 == 1)
         {
@@ -283,18 +284,8 @@ public class FishBase : MonoBehaviour
                     isBecameInvisible = true;
                 }
             }
-            //bool _isBecameInvisible = BattleConst.instance.RobotVisionRange > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
-            //if (_isBecameInvisible != isBecameInvisible)
-            //{
-            //    foreach (var note in renderers)
-            //    { note.enabled = _isBecameInvisible; }
-
-            //    if (lifeGauge) { lifeGauge.gameObject.SetActive(_isBecameInvisible); }
-
-            //    isBecameInvisible = _isBecameInvisible;
-            //}
         }
-
+#endif
         if (dmgTime > 0f) { dmgTime -= Time.deltaTime; }
         BuffUpdate();
         AquaticCheck();
@@ -326,7 +317,8 @@ public class FishBase : MonoBehaviour
         {
             return false;
         }
-
+        // 判断是否刚被攻击
+        if (ContainsBuff(0)) { return false; }
         //float dis = BoundsBody.SqrDistance(mouthPos);
         //range = (float)Math.Pow(range, 2);
         if (transModel.gameObject.activeSelf)
@@ -398,8 +390,9 @@ public class FishBase : MonoBehaviour
     protected void AquaticCheck()
     {
         if (!isBecameInvisible) { return; }
-        if ((actionWaitCnt + uid) % 3 != 0) { return; }
+        
         canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
+        if ((actionWaitCnt + uid) % 3 != 0) { return; }
         // 在水草里恢复血量
         if (BattleManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
         {
@@ -419,7 +412,7 @@ public class FishBase : MonoBehaviour
 
         if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
         {
-            int healLife = BattleConst.instance.AquaticHeal * inAquaticHealCnt++;
+            int healLife = BattleConst.instance.AquaticHeal * ++inAquaticHealCnt;
             healLife = Math.Min(lifeMax - life, healLife);
             Heal(healLife);
         }

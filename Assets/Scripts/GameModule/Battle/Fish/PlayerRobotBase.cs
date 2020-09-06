@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerRobotBase : PlayerBase
 {
-    protected float aiParamRobotFollowBigFishLifeRate = 0f;
+    //protected float aiParamRobotFollowBigFishLifeRate = 0f;
+    protected float aiParamRobotGotoAquaticLifeRate = 0f;
+    protected bool isGotoAquatic = false;
 
     protected List<FishBase> listFindedFish;
 
@@ -16,7 +18,8 @@ public class PlayerRobotBase : PlayerBase
     public virtual void SetAI(RobotAiDataInfo aiData)
     {
         float[] aryParam = Wrapper.GetParamFromString(aiData.aryParam);
-        aiParamRobotFollowBigFishLifeRate = aryParam[0];
+        //aiParamRobotFollowBigFishLifeRate = aryParam[0];
+        aiParamRobotGotoAquaticLifeRate = aryParam[0];
     }
 
     protected virtual void Attack()
@@ -33,7 +36,7 @@ public class PlayerRobotBase : PlayerBase
             // 新发现的鱼
             if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
             {
-                if (listFish[i].beforeInAquatic)
+                if (listFish[i].beforeInAquatic || listFish[i].life > life)
                 {
                     listFish.RemoveAt(i);
                     continue;
@@ -52,14 +55,14 @@ public class PlayerRobotBase : PlayerBase
         if (listFish.Count > 0)
         {
             // 当体力较多时，追踪大鱼
-            if (lifeRate > aiParamRobotFollowBigFishLifeRate)
+            //if (lifeRate > aiParamRobotFollowBigFishLifeRate)
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
             }
-            else
-            {
-                listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
-            }
+            //else
+            //{
+            //    listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
+            //}
 
             FishBase target = listFish[0];
             MoveToTarget(target.transform.position);
@@ -75,16 +78,16 @@ public class PlayerRobotBase : PlayerBase
         fishSkill.CalcAI();
         base.CustomUpdate();
     }
-    protected void GotoAquatic()
+    protected bool GotoAquatic()
     {
-		foreach (FishBase fb in listFindedFish)
-		{
-			if (fb.fishType == FishType.Player || fb.fishType == FishType.PlayerRobot)
-			{
-                return;
-			}
+		//foreach (FishBase fb in listFindedFish)
+		//{
+		//	if (fb.fishType == FishType.Player || fb.fishType == FishType.PlayerRobot)
+		//	{
+  //              return;
+		//	}
 
-		}
+		//}
         List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
         for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
         {
@@ -93,38 +96,40 @@ public class PlayerRobotBase : PlayerBase
                 listTransAquatic.RemoveAt(i);
             }
         }
-        if (listTransAquatic.Count <= 0) { return; }
+        if (listTransAquatic.Count <= 0) { return false; }
         listTransAquatic.Sort((a, b) => { return (int)(Vector3.Distance(transform.position, a.position) - Vector3.Distance(transform.position, b.position)); });
-        MoveToTarget(new Vector3( listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z));
+        Vector3 targetPos = new Vector3(listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z);
+        if (Vector3.Distance(targetPos, transform.position) < BattleConst.instance.AquaticRange)
+        {
+            data.moveSpeed = 0f;
+        }
+        MoveToTarget(targetPos);
+        return true;
     }
 
     protected virtual void CalcMoveAction()
     {
-        // 躲草丛
-        //if (lifeRate > aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
-        //{   // 吃鱼模式
-        //    Attack();
-        //}
-        //else if (lifeRate >= 1f)
-        //{
-        //    isGotoAquatic = false;
-        //}
-        //else
-        //{
-        //    //  恢复模式
-        //    GotoAquatic();
-        //}
-        if ((actionWaitCnt + uid) % 5 != 0) { return; }
+        
+        if ((actionWaitCnt + uid) % 2 != 0) { return; }
         var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);
         if (shell)
         {   // 吃珍珠
             MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));
         }
-        else
-        {
-            // 吃鱼
-            Attack();
+        else if (lifeRate < aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
+        {   // 吃鱼模式
+            if (GotoAquatic())
+            {
+                return;
+            }
         }
+        if (lifeRate >= 1f)
+        {
+            isGotoAquatic = false;
+        }
+
+        // 吃鱼
+        Attack();
     }
 
 

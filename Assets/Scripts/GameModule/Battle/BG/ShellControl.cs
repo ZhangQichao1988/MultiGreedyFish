@@ -67,18 +67,18 @@ public class ShellControl : MonoBehaviour
     }
     public bool PearlEatenCheck(PlayerBase fish)
     {
-        if (CanEatPearl())
+        if (shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
+        {
+            fish.Damage(BattleConst.instance.ShellCloseDmg, null);
+            listDamagedFish.Add(fish);
+            return false;
+        }
+        else if (CanEatPearl())
         {
             goPearl.SetActive(false);
             fish.Heal(fish.lifeMax);
             //fish.Eat(ConfigTableProxy.Instance.GetDataById(23).floatValue);
             return true;
-        }
-        else if(shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
-        {
-            fish.Damage( BattleConst.instance.ShellCloseDmg, null );
-            listDamagedFish.Add(fish);
-            return false;
         }
         return false;
     }

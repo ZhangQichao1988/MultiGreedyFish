@@ -1,3 +1,4 @@
+using GooglePlayGames.BasicApi.Multiplayer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,13 +43,14 @@ public class FishSkillSwelling : FishSkillBase
 			case 1:
 				// 伤害判定
 				var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
-				Vector3 playerToTargetDir;
-				float distance;
+				//Vector3 playerToTargetDir;
+				//float distance;
 				for (int i = 0; i < listFish.Count; ++i)
 				{
-					playerToTargetDir = listFish[i].transform.position - playerBase.transform.position;
-					distance = playerToTargetDir.magnitude;
-					if (playerToTargetDir.magnitude <= 2f)
+					if(playerBase.colliderBody.bounds.Intersects(listFish[i].colliderBody.bounds))
+					//playerToTargetDir = listFish[i].transform.position - playerBase.transform.position;
+					//distance = playerToTargetDir.magnitude;
+					//if (playerToTargetDir.magnitude <= 2f)
 					{
 						//// 解除膨胀
 						//step = 2;

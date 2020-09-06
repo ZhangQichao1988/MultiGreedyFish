@@ -160,7 +160,8 @@ public class FishManager : MonoBehaviour
 			if (me == listFish[i]) { continue; }
 			if (listFish[i].actionStep == FishBase.ActionType.Die ||
 				listFish[i].actionStep == FishBase.ActionType.Born ||
-				listFish[i].actionStep == FishBase.ActionType.BornWaitting) { continue; }
+				listFish[i].actionStep == FishBase.ActionType.BornWaitting){ continue; }
+				//listFish[i].fishType == FishBase.FishType.Boss
 
 			enemyPos = listFish[i].transform.position;
 			if (pos.x + range.x > enemyPos.x &&
