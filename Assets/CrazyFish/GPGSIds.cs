@@ -21,7 +21,7 @@
 /// Resources.
 ///
 
-namespace Lapis
+namespace CrazyFish
 {
 public static class GPGSIds
 {
