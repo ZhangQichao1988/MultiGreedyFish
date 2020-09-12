@@ -5,17 +5,16 @@ using UnityEngine;
 public class UIHomeCommon : UIBase
 {
     public GameObject goBack;
-    public void SetActiveScene(string sceneName)
+    public void SetActiveByUIName(string uiname)
     {
-        switch (sceneName)
+        switch (uiname)
         {
             case "Home":
                 goBack.SetActive(false);
                 break;
             case "FishEditor":
-                goBack.SetActive(true);
-                break;
             case "FishStatus":
+            case "Shop":
                 goBack.SetActive(true);
                 break;
         }

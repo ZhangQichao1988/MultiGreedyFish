@@ -49,11 +49,11 @@ pushd ${XCODE_PROJ_PATH}
 
 
 # 清理
-xcodebuild  -scheme "Unity-iPhone" clean
+xcodebuild  -workspace "Unity-iPhone.xcworkspace" -scheme "Unity-iPhone" clean
 
 
 # Use XcodeBuild to Make Package
-xcodebuild archive -configuration Release -scheme Unity-iPhone -archivePath ${ARCHIVE_PATH}  ENABLE_BITCODE=NO
+xcodebuild archive -workspace "Unity-iPhone.xcworkspace" -configuration Release -scheme Unity-iPhone -archivePath ${ARCHIVE_PATH}  ENABLE_BITCODE=NO
 #CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" PROVISIONING_PROFILE="${MOBILE_PROVISION_UUID}" PRODUCT_BUNDLE_IDENTIFIER="${BUNDLE_IDENTIFIER}" DEVELOPMENT_TEAM="${DEV_TEAM}" ENABLE_BITCODE=NO
 echo '<?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

@@ -10,6 +10,7 @@ public class HomeScene : BaseScene
         "Home",
         "FishEditor",
         "FishStatus",
+        "Shop/Shop",
     };
     private UIHomeCommon homeCommon;
     private UIHomeResource homeResource;
@@ -30,14 +31,15 @@ public class HomeScene : BaseScene
         homeResource = UIBase.Open<UIHomeResource>(Path.Combine(AssetPathConst.uiRootPath, "HomeResource"), UIBase.UILayers.RESOURCE);
         GotoSceneUI("Home");
     }
+
     public void GotoFishEditor()
     {
         GotoSceneUI("FishEditor");
     }
-    public override UIBase GotoSceneUI(string uiName, bool saveHistory = true)
+    public override UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
-        var uiBase = base.GotoSceneUI(uiName, saveHistory);
-        homeCommon.SetActiveScene(uiName);
+        var uiBase = base.GotoSceneUI(uiName, parms, saveHistory);
+        homeCommon.SetActiveByUIName(uiName);
         homeResource.SetActiveScene(uiName);
         return uiBase;
     }

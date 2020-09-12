@@ -69,17 +69,18 @@ public class BaseScene
         dicUI = null;
     }
 
-    private UIBase CreateUI(string uiName)
+    private UIBase CreateUI(string uiName, System.Object parms)
     {
         string uiPath = Path.Combine(AssetPathConst.uiRootPath, uiName);
         var mainGo = cachedObject[uiPath] as GameObject;
         mainGo = GameObjectUtil.InstantiatePrefab(mainGo, null);
         var uiBase = mainGo.GetComponent<UIBase>();
         uiBase.Init();
+        uiBase.OnEnter(parms);
         dicUI.Add(uiName, uiBase);
         return uiBase;
     }
-    public virtual UIBase GotoSceneUI(string uiName, bool saveHistory = true)
+    public virtual UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
         if (saveHistory) { sceneHistory.Add(currentScene); }
 
@@ -93,12 +94,12 @@ public class BaseScene
         if (dicUI.ContainsKey(uiName))
         {
             dicUI[uiName].gameObject.SetActive(true);
-            dicUI[uiName].Init();
+            dicUI[uiName].OnEnter(parms);
             return dicUI[uiName];
         }
         else
         {
-            return CreateUI(uiName);
+            return CreateUI(uiName, parms);
         }
     }
 

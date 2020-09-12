@@ -16,5 +16,7 @@ public class AssetPathConst
 	public static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/RobotNameplate";
 	public static readonly string skillIconPath = "ArtResources/UI/Textures/SkillIcon/SkillIcon_{0}";
 
+	public static readonly string shopItemCellPath = "ArtResources/UI/Prefabs/Shop/ShopItem";
+
 
 }

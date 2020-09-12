@@ -9,9 +9,8 @@ public class FishEditor : UIBase
 {
     public Transform transContent = null;
 
-    public override void Init()
+    public override void OnEnter(System.Object parms)
     {
-        base.Init();
 
         List<FishEditorItem> aryFishEditorItem = new List<FishEditorItem>( transContent.GetComponentsInChildren<FishEditorItem>());
 
