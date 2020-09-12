@@ -7,7 +7,8 @@ public class AssetPathConst
 	public static readonly string uiRootPath = "ArtResources/UI/Prefabs/";
 	public static readonly string texCommonPath = "ArtResources/UI/Textures/Atlas/Common/";
 	public static readonly string faceIconPath = "ArtResources/UI/Textures/Atlas/FaceIcon/FaceIcon_{0}";
-	public static readonly string fishIconPath = "ArtResources/UI/Textures/FishIcon/FishIcon_{0}";
+	public static readonly string fishIconPath = "ArtResources/UI/Textures/Atlas/FishIcon/FishIcon_{0}";
+	public static readonly string fishEditorItemBgPath = "ArtResources/UI/Textures/Atlas/FishEditor/UI_listbox_{0}";
 	public static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/Parts/PlayerLifeGauge";
 	public static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
 	public static readonly string effectRootPath = "ArtResources/Effect/Prefab/FX/";

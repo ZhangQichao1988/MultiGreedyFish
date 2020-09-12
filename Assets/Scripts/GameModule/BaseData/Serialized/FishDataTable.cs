@@ -15,5 +15,6 @@ public class FishDataInfo : IQueryById
     public int life;
     public float moveSpeed;
     public int skillId;
+    public int rare;
     public int isPlayerFish;
 }

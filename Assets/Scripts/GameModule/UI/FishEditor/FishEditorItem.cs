@@ -9,14 +9,11 @@ public class FishEditorItem : MonoBehaviour
 {
     Button button;
 
+    Image bgImage;
     public Image image;
 
     public GauageRank gauageRank;
     public GauageLevel gauageLevel;
-
-    public Text textRankLevel;
-    public Text textRank;
-    public Image rankIcon;
 
     public Text textFishName;
     public Text textFishLevel;
@@ -27,6 +24,7 @@ public class FishEditorItem : MonoBehaviour
 
     private void Awake()
     {
+        bgImage = GetComponent<Image>();
         button = GetComponent<Button>();
     }
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
@@ -55,7 +53,9 @@ public class FishEditorItem : MonoBehaviour
         var spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, pBPlayerFishLevelInfo.FishId));
         image.sprite = spAsset.Asset;
 
-        
+        spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishEditorItemBgPath, fishData.rare));
+        bgImage.sprite = spAsset.Asset;
+
 
     }
 }

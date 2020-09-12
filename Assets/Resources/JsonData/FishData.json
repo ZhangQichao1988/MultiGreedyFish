@@ -1,6 +1,6 @@
 {"Items":[
-	{"ID":"0.0","name":"10000","comment":"","prefabPath":"FishNpc_01","atk":"0.0","life":"1","moveSpeed":"0.6","skillId":"-1.0","isPlayerFish":"0.0"},
-	{"ID":"1.0","name":"10010","comment":"10011","prefabPath":"FishPlayer_01","atk":"10.0","life":"100","moveSpeed":"0.8","skillId":"1.0","isPlayerFish":"1.0"},
-	{"ID":"2.0","name":"10020","comment":"","prefabPath":"FishNpc_02","atk":"5.0","life":"5000","moveSpeed":"0.5","skillId":"-1.0","isPlayerFish":"0.0"},
-	{"ID":"3.0","name":"10030","comment":"10031","prefabPath":"FishPlayer_02","atk":"10.0","life":"100","moveSpeed":"0.8","skillId":"3.0","isPlayerFish":"1.0"}
+	{"ID":"0.0","name":"10000","comment":"","prefabPath":"FishNpc_01","atk":"0.0","life":"1","moveSpeed":"0.6","skillId":"-1.0","rare":"1.0","isPlayerFish":"0.0"},
+	{"ID":"1.0","name":"10010","comment":"10011","prefabPath":"FishPlayer_01","atk":"10.0","life":"100","moveSpeed":"0.8","skillId":"1.0","rare":"1.0","isPlayerFish":"1.0"},
+	{"ID":"2.0","name":"10020","comment":"","prefabPath":"FishNpc_02","atk":"5.0","life":"5000","moveSpeed":"0.5","skillId":"-1.0","rare":"1.0","isPlayerFish":"0.0"},
+	{"ID":"3.0","name":"10030","comment":"10031","prefabPath":"FishPlayer_02","atk":"10.0","life":"100","moveSpeed":"0.8","skillId":"3.0","rare":"2.0","isPlayerFish":"1.0"}
 ]}

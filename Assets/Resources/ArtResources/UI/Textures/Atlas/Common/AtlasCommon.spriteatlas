@@ -31,42 +31,88 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: adf5ddb6f08944342a73620aa840db29, type: 3}
-    totalSpriteSurfaceArea: 404876
+    totalSpriteSurfaceArea: 2546245
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 6c995710a9fae2f489eb295478d2f2a9, type: 3}
   - {fileID: 21300000, guid: ecef5620998deca458a994047612a373, type: 3}
-  - {fileID: 21300000, guid: 48b584f1e3a15fb40add3e2a4ab40ab0, type: 3}
-  - {fileID: 21300000, guid: 196cde33902f7f5419cbf2d49ff1a180, type: 3}
-  - {fileID: 21300000, guid: b25fc3c33ce618f4cb3489289688fad4, type: 3}
+  - {fileID: 21300000, guid: de7431802cb57a542a90beac6ee9c903, type: 3}
+  - {fileID: 21300000, guid: 2ff15cb022f10a84889d7b3568cbb304, type: 3}
+  - {fileID: 21300000, guid: acbdfb1170536624ca6d0130a28a2427, type: 3}
+  - {fileID: 21300000, guid: 2f0658e1bb6c20d469285547bbbd157a, type: 3}
+  - {fileID: 21300000, guid: d2ba3103402dec4498d03c62609f1a9e, type: 3}
+  - {fileID: 21300000, guid: dfbafe43ae670ca4db8337cb9c75822d, type: 3}
+  - {fileID: 21300000, guid: 02f813832ec5cf444a6fa9ba15f9ce9d, type: 3}
+  - {fileID: 21300000, guid: 87684b83b06329b4ebc7d54607dd9bd3, type: 3}
   - {fileID: 21300000, guid: 4c33af046c31cae4aa52381183916c8d, type: 3}
+  - {fileID: 21300000, guid: e5f389353d98a7e4195d95c7e803fbb6, type: 3}
+  - {fileID: 21300000, guid: 31c33f35b39f60642899344abf41e805, type: 3}
+  - {fileID: 21300000, guid: 2502989575dd3ac41a6d7edecd8b82ac, type: 3}
+  - {fileID: 21300000, guid: 70b29d062dc17274cbccd5d75d3bf043, type: 3}
+  - {fileID: 21300000, guid: f998ce0698df2e148a8ff655638334b6, type: 3}
+  - {fileID: 21300000, guid: 8d37c5267d5b10d4ab1dabc81285b72f, type: 3}
+  - {fileID: 21300000, guid: e58914b6e502fd04b897f9b182098616, type: 3}
+  - {fileID: 21300000, guid: bbcc7217a04d5444f913f4ecb0ef6019, type: 3}
   - {fileID: 21300000, guid: 865f1947661671b42a6b31dc2106f3ff, type: 3}
+  - {fileID: 21300000, guid: dbb2db67be1bcbd4ab8a3ac8d9c2692a, type: 3}
   - {fileID: 21300000, guid: a93ab5280dc28194b9544dd25a631dfb, type: 3}
+  - {fileID: 21300000, guid: c5104ac8da2563c45ac381857283546e, type: 3}
+  - {fileID: 21300000, guid: 9275a1e8433f44148986b39cf8d043b7, type: 3}
+  - {fileID: 21300000, guid: bb34bb095607a904894f5afd67920548, type: 3}
   - {fileID: 21300000, guid: d2f75a296a7cee849a5a95a382e4b27e, type: 3}
   - {fileID: 21300000, guid: f4644e29e75a76a42af5d5a036e94ea1, type: 3}
-  - {fileID: 21300000, guid: 8ce9f8a9934f7764190ad8a3597eb6cd, type: 3}
-  - {fileID: 21300000, guid: 757a80b921ada6340b71b610c3c1e03a, type: 3}
-  - {fileID: 21300000, guid: e6b5180bc12ca1c42a3c3d217a7e31b3, type: 3}
-  - {fileID: 21300000, guid: 81c21e0bb09864d4b8a02ed8514c8573, type: 3}
+  - {fileID: 21300000, guid: 46038049435da90429295119d645620e, type: 3}
+  - {fileID: 21300000, guid: aa913f4957dae7c45a18d1643b162dfe, type: 3}
+  - {fileID: 21300000, guid: d3fc571a3d0e5ab42b82318b767f8452, type: 3}
+  - {fileID: 21300000, guid: d070506ad9a6baf4ba6dfa90349da1cb, type: 3}
   - {fileID: 21300000, guid: b3deed5b52a009e4a8b808f34c9c193b, type: 3}
-  - {fileID: 21300000, guid: acfc305d626c62c4cab7e584e2add1f1, type: 3}
+  - {fileID: 21300000, guid: 98180f3c5f40d6b449191eaf3fafd7d8, type: 3}
+  - {fileID: 21300000, guid: 6f38186c707cfdf4086d241c60c9b6b3, type: 3}
+  - {fileID: 21300000, guid: 0e96f90dad1f50d47bb8bece179f08f8, type: 3}
+  - {fileID: 21300000, guid: 725fd86d435aee34290065ba3a0108b2, type: 3}
+  - {fileID: 21300000, guid: fbdd18ad5216f6e4c88516e34f4a2347, type: 3}
+  - {fileID: 21300000, guid: f46975ede0b63b644a4babcb74ce8da4, type: 3}
+  - {fileID: 21300000, guid: 9b90bf2e2bb986f4e943516865fba4d5, type: 3}
+  - {fileID: 21300000, guid: 619d985e9400ad841af834563317e940, type: 3}
   m_PackedSpriteNamesToIndex:
-  - UI_RankIcon_1
   - UI_Energy
-  - UI_Waku
-  - UI_RankIcon_4
-  - UI_RankIcon_2
+  - UI_RankIcon_33
+  - UI_select_bg_left
+  - UI_select_bg
+  - UI_select_bg_right
+  - UI_RankIcon_54
+  - UI_RankIcon_25
+  - UI_RankIcon_41
+  - UI_RankIcon_13
   - UI_close
+  - UI_RankIcon_35
+  - UI_RankIcon_43
+  - UI_RankIcon_52
+  - UI_RankIcon_42
+  - UI_energy_progress_bar
+  - UI_RankIcon_24
+  - UI_RankIcon_21
+  - UI_RankIcon_15
   - UI_Head_bg_05
+  - UI_RankIcon_32
   - UI_goldcoin
+  - UI_RankIcon_44
+  - UI_RankIcon_53
+  - UI_RankIcon_31
   - UI_bg_color
   - UI_Return
-  - UI_SliderValue
-  - UI_bg_cutline
-  - UI_RankIcon_5
-  - UI_RankIcon_3
+  - UI_RankIcon_55
+  - UI_RankIcon_23
+  - UI_RankIcon_22
+  - UI_RankIcon_12
   - UI_diamond
-  - UI_Trophy
+  - UI_trophy_progress_bar_bg3
+  - UI_RankIcon_45
+  - UI_RankIcon_14
+  - UI_RankIcon_34
+  - UI_trophy_progress_bar
+  - UI_energy_progress_bar_bg3
+  - UI_RankIcon_51
+  - UI_RankIcon_11
   m_Tag: AtlasCommon
   m_IsVariant: 0
