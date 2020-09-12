@@ -92,7 +92,20 @@ public class UIBase : MonoBehaviour
         dicUi.Remove(uiName);
         Destroy(root);
     }
+
+    /// <summary>
+    /// 初始化调用一次
+    /// </summary>
     public virtual void Init()
+	{
+	
+	}
+
+    /// <summary>
+    /// 每次进来都会调用
+    /// </summary>
+    /// <param name="obj"></param>
+    public virtual void OnEnter(System.Object obj)
 	{
 	
 	}

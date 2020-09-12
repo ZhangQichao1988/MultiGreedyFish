@@ -63,7 +63,8 @@ public class UIHome : UIBase
 
     public void OnClickAdsTest()
     {
-        Intro.Instance.AdsController.Show();
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("Shop/Shop");
     }
 
     void OnRecvBattle<T>(T response)

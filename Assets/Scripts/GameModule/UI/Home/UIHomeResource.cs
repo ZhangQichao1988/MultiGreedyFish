@@ -15,13 +15,11 @@ public class UIHomeResource : UIBase
         switch (sceneName)
         {
             case "Home":
+            case "Shop":
                 goGold.SetActive(true);
                 goDiamond.SetActive(true);
                 break;
             case "FishEditor":
-                goGold.SetActive(true);
-                goDiamond.SetActive(false);
-                break;
             case "FishStatus":
                 goGold.SetActive(true);
                 goDiamond.SetActive(false);
