@@ -198,7 +198,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -667,7 +667,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6a77acecacd0a5c4999adcb7a438ee6c, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -1048,18 +1048,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163f095fa7ab2ef4e85bbe39301cd22f, type: 3}
---- !u!1 &7785453473378015105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6964477804392781005, guid: 163f095fa7ab2ef4e85bbe39301cd22f,
-    type: 3}
-  m_PrefabInstance: {fileID: 913587538791990092}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4174783262406304332 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3837762068762779904, guid: 163f095fa7ab2ef4e85bbe39301cd22f,
-    type: 3}
-  m_PrefabInstance: {fileID: 913587538791990092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6445289590345466283 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6187932407916331751, guid: 163f095fa7ab2ef4e85bbe39301cd22f,
@@ -1072,6 +1060,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4174783262406304332 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3837762068762779904, guid: 163f095fa7ab2ef4e85bbe39301cd22f,
+    type: 3}
+  m_PrefabInstance: {fileID: 913587538791990092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7785453473378015105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6964477804392781005, guid: 163f095fa7ab2ef4e85bbe39301cd22f,
+    type: 3}
+  m_PrefabInstance: {fileID: 913587538791990092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6284901381115460859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1201,6 +1201,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39afbd17a1edff64f9507e18bcd3cb7c, type: 3}
+--- !u!224 &5505405654212004342 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1972389478589035789, guid: 39afbd17a1edff64f9507e18bcd3cb7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6284901381115460859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2488678119986027142 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8480835625286788733, guid: 39afbd17a1edff64f9507e18bcd3cb7c,
@@ -1213,9 +1219,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5505405654212004342 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1972389478589035789, guid: 39afbd17a1edff64f9507e18bcd3cb7c,
-    type: 3}
-  m_PrefabInstance: {fileID: 6284901381115460859}
-  m_PrefabAsset: {fileID: 0}
