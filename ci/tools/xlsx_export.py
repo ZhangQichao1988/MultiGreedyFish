@@ -58,7 +58,7 @@ def parse_exl_client(exl_path, table_name):
             if list_head[n].strip() == "" or list_head[n] == "ID" and temp[n].strip() == "":
                 continue
 
-            f.write(u"\"" + list_head[n] + "\":\"" + temp[n] + "\"")
+            f.write(u"\"" + list_head[n] + "\":\"" + temp[n].replace("\"", "\\\"") + "\"")
             if n < len(temp) - 1:
                 f.write(u",")
             else:
