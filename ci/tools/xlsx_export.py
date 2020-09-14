@@ -109,7 +109,13 @@ base_data_type = {
     "FishRankLevelData": sort_cloum_item(
         ["ID", "INT(11)", "rankLevel", "INT(11)", "getGold", "INT(11)", "rankIcon", "TEXT"]),
     "UserNick": sort_cloum_item(
-        ["ID", "INT(11)", "value", "TEXT", "type", "INT(11)"])
+        ["ID", "INT(11)", "value", "TEXT", "type", "INT(11)"]),
+    "ItemData": sort_cloum_item(
+        ["ID", "INT(11)", "type", "TEXT", "resIcon", "TEXT", "extra", "INT(11)"]),
+    "ShopBillingItem": sort_cloum_item(
+        ["ID", "INT(11)", "type", "TEXT", "resIcon", "TEXT", "price", "INT(11)", "platformId", "TEXT", "productContent", "TEXT", "beginAt", "BIGINT(64)", "endAt", "BIGINT(64)", "limitAmount", "INT(11)"]),
+    "TreasureInfo": sort_cloum_item(
+        ["ID", "INT(11)", "rateInfo", "TEXT", "isMul", "INT(11)"]),
 }
 
 
