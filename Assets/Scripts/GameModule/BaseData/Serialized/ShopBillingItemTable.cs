@@ -13,8 +13,8 @@ public class ShopBillingItem : IQueryById
     public int price;
     public string platformId;
     public string productContent;
-    public long beginAt;
-    public long endAt;
+    public string beginAt;
+    public string endAt;
 
     public int limitAmount;
     public int rate;
