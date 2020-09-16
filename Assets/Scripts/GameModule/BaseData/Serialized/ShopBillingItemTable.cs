@@ -17,5 +17,6 @@ public class ShopBillingItem : IQueryById
     public long endAt;
 
     public int limitAmount;
+    public int rate;
 }
 
