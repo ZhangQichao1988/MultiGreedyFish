@@ -37,5 +37,5 @@
 	{"ID":"2010.0","key":"FishLevelUpRate","floatValue":"0.1","intValue":"","stringValue":""},
 	{"ID":"3000.0","key":"DiamondShopRefreshRate","floatValue":"","intValue":"1.0","stringValue":"week"},
 	{"ID":"3001.0","key":"GoldShopRefreshRate","floatValue":"","intValue":"1.0","stringValue":"day"},
-	{"ID":"3002.0","key":"PayShopRefreshRate","floatValue":"","intValue":"-1.0","stringValue":"year"}
+	{"ID":"3002.0","key":"PayShopRefreshRate","floatValue":"","intValue":"-1.0","stringValue":"month"}
 ]}
