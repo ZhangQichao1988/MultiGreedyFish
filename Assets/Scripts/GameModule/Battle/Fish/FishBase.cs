@@ -308,7 +308,7 @@ public class FishBase : MonoBehaviour
             }
         }
     }
-    public bool EatCheck(BoxCollider atkCollider)
+    public virtual bool EatCheck(PlayerBase player, BoxCollider atkCollider)
     {
         if (actionStep == ActionType.Born ||
             actionStep == ActionType.BornWaitting ||
@@ -351,7 +351,7 @@ public class FishBase : MonoBehaviour
 
     protected virtual void ApplySize()
     {
-        float size = 1 + fishLevel / 2;
+        float size = 1 + (fishLevel-1) / 2;
         transform.localScale = new Vector3(size, size, size);
     }
     protected float GetSafeRudius()
@@ -377,8 +377,23 @@ public class FishBase : MonoBehaviour
         }
         return alpha; 
     }
-
-    void SetCastShadowMode(bool isEnable)
+    /// <summary>
+    /// 辉度设置
+    /// </summary>
+    /// <param name="alpha"></param>
+    /// <returns></returns>
+    protected virtual void SetBrightness(float brightness)
+    {
+        brightness = Mathf.Clamp(brightness, 0f, 1f);
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.GetPropertyBlock(mpb);
+            mpb.SetColor("_MulColor", Color.white * brightness);
+            renderer.SetPropertyBlock(mpb);
+        }
+    }
+        void SetCastShadowMode(bool isEnable)
     {
         Renderer[] meshRenderers = GetComponentsInChildren<Renderer>();
         foreach (Renderer mr in meshRenderers)

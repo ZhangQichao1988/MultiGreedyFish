@@ -177,7 +177,7 @@ public class PlayerBase : FishBase
 		//actionStep = ActionType.Eatting;
 		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
-		fish.Damage( (int)((float)data.atk * transform.localScale.x), colliderMouth.transform);
+		fish.Damage(data.atk, colliderMouth.transform);
 		if (fish.life <= 0)
 		{
 			Eat(fish.fishLevel);
@@ -188,6 +188,10 @@ public class PlayerBase : FishBase
 	{
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
 		this.fishLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
+		if (this.fishLevel > 10)
+		{
+			Debug.Log("");
+		}
 		//fishLevel += fish.fishLevel * 0.1f;
 		int _life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, this.fishLevel);
 		int _atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, this.fishLevel);

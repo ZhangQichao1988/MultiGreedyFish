@@ -70,7 +70,12 @@ public class FishManager : MonoBehaviour
 			for (int j = 0; j < enemyGroup.FishCountMax; ++j)
 			{
 				goEnemy = Wrapper.CreateEmptyGameObject(transform);
-				fb = goEnemy.AddComponent<EnemyBase>();
+				switch (enemyGroup.FishId)
+				{
+					case 0: fb = goEnemy.AddComponent<EnemyBase>(); break;  // 宝宝鱼
+					case 4: fb = goEnemy.AddComponent<EnemyJellyfish>(); break;  // 水母
+					case 5: fb = goEnemy.AddComponent<EnemyBase>(); break;  // 金龟
+				}
 				fb.Init(enemyGroup.FishId, "", 1);
 				listEnemy.Add(fb);
 			}
@@ -117,7 +122,7 @@ public class FishManager : MonoBehaviour
 		{
 			fb = listFish[i];
 			if (player == fb) { continue; }
-			if (fb.EatCheck(atkCollider))
+			if (fb.EatCheck(player, atkCollider))
 			{
 				player.Atk(fb);
 				continue;

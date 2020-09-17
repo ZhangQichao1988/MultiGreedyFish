@@ -21,11 +21,21 @@ public class BattleEffectManager
 		}
 	}
 
-	static public int CreateEffect(int id, Transform parent)
+	static public int CreateEffect(int id, Transform parent, float scale = float.NaN)
 	{
 		var effectBaseData = EffectDataTableProxy.Instance.GetDataById(id);
 		GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, effectBaseData.prefabPath), typeof(GameObject)).Asset as GameObject;
-		return EffectManager.Alloc(_instance.dicEffect[id], parent, effectBaseData.duration);
+		int effectId = EffectManager.Alloc(_instance.dicEffect[id], parent, effectBaseData.duration);
+		if (!float.IsNaN(scale))
+		{
+			var effect = EffectManager.GetEffect(effectId);
+			var particles = effect.effectObject.GetComponentsInChildren<ParticleSystem>();
+			foreach (var particle in particles)
+			{
+				particle.transform.localScale = Vector3.one * scale;
+			}
+		}
+		return effectId;
 	}
 	static public int CreateEffect(int id, Vector3 position, float scale)
 	{

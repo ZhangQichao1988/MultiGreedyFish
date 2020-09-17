@@ -4,5 +4,6 @@
 	{"ID":"2.0","buffType":"BuffBeSprang","aryParam":"0.20,350"},
 	{"ID":"3.0","buffType":"BuffSpeedEqual","aryParam":"-1,0.1"},
 	{"ID":"4.0","buffType":"BuffShield","aryParam":"-1"},
-	{"ID":"5.0","buffType":"BuffHeal","aryParam":"5,0.1"}
+	{"ID":"5.0","buffType":"BuffHeal","aryParam":"5,0.1"},
+	{"ID":"6.0","buffType":"BuffParalysis","aryParam":"1.5"}
 ]}

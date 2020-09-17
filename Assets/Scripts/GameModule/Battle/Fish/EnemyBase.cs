@@ -64,9 +64,10 @@ public class EnemyBase : FishBase
     {
         actionStep = ActionType.Born;
         remainingTime = 3f;
+
         SetAlpha(0f);
         transform.position = GetBornPosition();
-        transform.localScale = Vector3.one * localScaleBackup;
+        transform.localScale = Vector3.one;
         //transModel.gameObject.SetActive(true);
         //lifeMax = originalData.lifeMax;
         if (showLifeGauge)
@@ -77,7 +78,7 @@ public class EnemyBase : FishBase
         life = originalData.lifeMax;
     }
 
-    protected void Idle()
+    protected virtual void Idle()
     {
         if (!isBecameInvisible) { return; }
         // 过一段时间改变一下方向

@@ -96,9 +96,13 @@ public static class GameObjectUtil
     public static void ResetTransform(GameObject go, bool ignoreScale = false)
     {
         go.transform.localPosition = Vector3.zero;
-        go.transform.localRotation = Quaternion.identity;
-        if(!ignoreScale)
+
+        if (!ignoreScale)
+        {
+            go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;
+        }
+
     }
 
     public static void AttachUIGameObject(GameObject gameObject, GameObject parent)
