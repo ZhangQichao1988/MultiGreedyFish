@@ -4,7 +4,7 @@
 	{"ID":"2.0","key":"PoisonRingRadiusMax","floatValue":"120.0","intValue":"","stringValue":""},
 	{"ID":"3.0","key":"PoisonRingDmg","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"4.0","key":"PoisonRingDmgCoolTime","floatValue":"1.0","intValue":"","stringValue":""},
-	{"ID":"5.0","key":"BgBound","floatValue":"85.0","intValue":"","stringValue":""},
+	{"ID":"5.0","key":"BgBound","floatValue":"73.0","intValue":"","stringValue":""},
 	{"ID":"6.0","key":"AquaticHeal","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"7.0","key":"AquaticHealCoolTime","floatValue":"1.0","intValue":"","stringValue":""},
 	{"ID":"8.0","key":"PlayerSizeUpRate","floatValue":"0.3","intValue":"","stringValue":""},
@@ -38,8 +38,5 @@
 	{"ID":"2000.0","key":"FishAtkMax","floatValue":"","intValue":"100.0","stringValue":""},
 	{"ID":"2001.0","key":"FishHpMax","floatValue":"","intValue":"500.0","stringValue":""},
 	{"ID":"2002.0","key":"FishSpdMax","floatValue":"1.0","intValue":"","stringValue":""},
-	{"ID":"2010.0","key":"FishLevelUpRate","floatValue":"0.1","intValue":"","stringValue":""},
-	{"ID":"3000.0","key":"DiamondShopRefreshRate","floatValue":"","intValue":"","stringValue":"week"},
-	{"ID":"3001.0","key":"GoldShopRefreshRate","floatValue":"","intValue":"","stringValue":"day"},
-	{"ID":"3002.0","key":"PayShopRefreshRate","floatValue":"","intValue":"","stringValue":"none"}
+	{"ID":"2010.0","key":"FishLevelUpRate","floatValue":"0.1","intValue":"","stringValue":""}
 ]}
