@@ -4,7 +4,7 @@
 	{"ID":"2.0","key":"PoisonRingRadiusMax","floatValue":"120.0","intValue":"","stringValue":""},
 	{"ID":"3.0","key":"PoisonRingDmg","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"4.0","key":"PoisonRingDmgCoolTime","floatValue":"1.0","intValue":"","stringValue":""},
-	{"ID":"5.0","key":"BgBound","floatValue":"85.0","intValue":"","stringValue":""},
+	{"ID":"5.0","key":"BgBound","floatValue":"73.0","intValue":"","stringValue":""},
 	{"ID":"6.0","key":"AquaticHeal","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"7.0","key":"AquaticHealCoolTime","floatValue":"1.0","intValue":"","stringValue":""},
 	{"ID":"8.0","key":"PlayerSizeUpRate","floatValue":"0.3","intValue":"","stringValue":""},

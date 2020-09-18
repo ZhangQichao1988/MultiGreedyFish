@@ -686,9 +686,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CONSOLE_ENABLE;DUMMY_DATA
-    4: CONSOLE_ENABLE;DUMMY_DATA
-    7: CONSOLE_ENABLE;DUMMY_DATA
+    1: CONSOLE_ENABLE;SERVER_TENCENT
+    4: CONSOLE_ENABLE;SERVER_TENCENT
+    7: CONSOLE_ENABLE;SERVER_TENCENT
   platformArchitecture:
     iPhone: 1
   scriptingBackend:

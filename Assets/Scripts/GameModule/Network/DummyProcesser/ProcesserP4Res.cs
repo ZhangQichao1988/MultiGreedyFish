@@ -22,7 +22,7 @@ public class ProcesserP4Res : BaseDummyProcesser<NullMessage, P4_Response>
         res.Result = new PBResult() { Code = 0 };
 
         //res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
-        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 4, FishCountMin = 1, FishCountMax = 100 });
+        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 5, FishCountMin = 1, FishCountMax = 100 });
 
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });

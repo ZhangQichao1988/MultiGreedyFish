@@ -14,11 +14,6 @@ public class BuffShield : BuffBase
     public override void ApplyStatus()
     {
         fish.data.isShield = true;
-        //if (fish.fishType == FishType.Player)
-        //{
-        //    Debug.Log("data.isShield:" + data.isShield.ToString());
-        //}
-
     }
 
 }
