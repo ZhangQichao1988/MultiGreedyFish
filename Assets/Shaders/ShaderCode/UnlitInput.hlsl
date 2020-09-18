@@ -8,6 +8,7 @@ float4 _BaseMap_ST;
 half4 _BaseColor;
 half4 _MulColor;
 
+
 half _Cutoff;
 
 #ifdef _EFFECT1
@@ -24,6 +25,12 @@ float4 _EffectMove2;
 
 #ifdef _SHADOW
 float _ShadowRange;
+#endif
+
+#ifdef _METAL_REF_ON
+sampler2D _MetalMap;
+float4 _MetalMap_ST;
+float4 _MetalColor;
 #endif
 
 CBUFFER_END

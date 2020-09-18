@@ -5,6 +5,11 @@ Shader "Custom/Fish"
         _BaseMap("Texture", 2D) = "white" {}
         _BaseColor("AddColor", Color) = (1, 1, 1, 1)
         _MulColor("MulColor", Color) = (1, 1, 1, 1)
+
+        [Toggle] _Metal_Ref("Is Metal?", Float) = 0
+        _MetalMap("MetalMap", 2D) = "white" {}
+        [HDR]_MetalColor("MetalColor", Color) = (1, 1, 1, 1)
+
         _Alpha("Alpha", Range(0.0, 1.0)) = 1
         _Cutoff("AlphaCutout", Range(0.0, 1.0)) = 0.1
 
@@ -49,6 +54,7 @@ Shader "Custom/Fish"
             #pragma fragment frag
             #pragma shader_feature _ALPHATEST_ON
             #pragma shader_feature _ALPHAPREMULTIPLY_ON
+            #pragma multi_compile _ _METAL_REF_ON
 
             // -------------------------------------
             // Unity defined keywords
@@ -60,6 +66,7 @@ Shader "Custom/Fish"
             struct Attributes
             {
                 float4 positionOS       : POSITION;
+                float3 normal           : NORMAL;
                 float2 uv               : TEXCOORD0;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
@@ -68,6 +75,7 @@ Shader "Custom/Fish"
             {
                 float2 uv        : TEXCOORD0;
                 float fogCoord  : TEXCOORD1;
+                float2 metalUv : TEXCOORD2;
                 float4 vertex : SV_POSITION;
 
                 UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -87,6 +95,13 @@ Shader "Custom/Fish"
                 VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
                 output.vertex = vertexInput.positionCS;
                 output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+
+#ifdef _METAL_REF_ON
+                float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - vertexInput.positionWS);
+                float x = dot(viewDir, input.normal);
+                float y = vertexInput.positionWS.z / 2;
+                output.metalUv = TRANSFORM_TEX(float2(x, y), _MetalMap);
+#endif
                 output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
 
                 return output;
@@ -99,7 +114,14 @@ Shader "Custom/Fish"
 
                 half2 uv = input.uv;
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+
                 half3 color = texColor.rgb * _MulColor.rgb + _BaseColor.rgb;
+
+#ifdef _METAL_REF_ON
+                half metalColor = tex2D(_MetalMap, input.metalUv).r;
+                color += metalColor * _MetalColor.rgb;
+#endif
+
                 half alpha = texColor.a * _BaseColor.a * _Alpha;
                 AlphaDiscard(alpha, _Cutoff);
 

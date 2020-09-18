@@ -318,7 +318,7 @@ public class FishBase : MonoBehaviour
             return false;
         }
         // 判断是否刚被攻击
-        if (ContainsBuff(0)) { return false; }
+        if (ContainsBuff(0) || ContainsBuff(7)) { return false; }
         //float dis = BoundsBody.SqrDistance(mouthPos);
         //range = (float)Math.Pow(range, 2);
         if (transModel.gameObject.activeSelf)
