@@ -9,6 +9,7 @@ public class BaseScene
 {
     private string currentScene;
     private List<string> sceneHistory;
+    private List<System.Object> sceneHistoryParam;
 
     Dictionary<int, Dictionary<int ,string>> cachedDic = new Dictionary<int, Dictionary<int, string>>();
     public Dictionary<string, UnityEngine.Object> cachedObject = new Dictionary<string, UnityEngine.Object>();
@@ -32,6 +33,7 @@ public class BaseScene
     {
         Resources.UnloadUnusedAssets();
         sceneHistory = new List<string>();
+        sceneHistoryParam = new List<object>();
         // Home相关UI预载
         dicUI = new Dictionary<string, UIBase>();
     }
@@ -82,7 +84,11 @@ public class BaseScene
     }
     public virtual UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
-        if (saveHistory) { sceneHistory.Add(currentScene); }
+        if (saveHistory)
+        {
+            sceneHistory.Add(currentScene);
+            sceneHistoryParam.Add(parms);
+        }
 
         currentScene = uiName;
         // 隐藏所有UI
@@ -105,7 +111,9 @@ public class BaseScene
 
     public void BackPrescene()
     {
-        GotoSceneUI(sceneHistory[sceneHistory.Count - 1], false);
-        sceneHistory.RemoveAt(sceneHistory.Count - 1);
+        int index = sceneHistory.Count - 1;
+        GotoSceneUI(sceneHistory[index], sceneHistoryParam[index], false);
+        sceneHistory.RemoveAt(index);
+        sceneHistoryParam.RemoveAt(index);
     }
 }

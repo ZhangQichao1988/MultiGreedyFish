@@ -23,7 +23,7 @@ public class UIHome : UIBase
 
     private FishDataInfo fishBaseData;
 
-    public override void Init()
+    public override void OnEnter(System.Object parms)
     {
         PBPlayer pBPlayer = PlayerModel.Instance.player;
         OnGetPlayer(pBPlayer);
