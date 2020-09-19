@@ -98,8 +98,8 @@ Shader "Custom/Fish"
 
 #ifdef _METAL_REF_ON
                 float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - vertexInput.positionWS);
-                float x = dot(viewDir, input.normal);
-                float y = vertexInput.positionWS.z / 2;
+                float x = dot(viewDir, input.normal) + vertexInput.positionWS.x / 5;
+                float y = vertexInput.positionWS.z / 5;
                 output.metalUv = TRANSFORM_TEX(float2(x, y), _MetalMap);
 #endif
                 output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);

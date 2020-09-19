@@ -23,7 +23,7 @@
 	{"ID":"21.0","key":"ShellOpenningTime","floatValue":"2.0","intValue":"","stringValue":""},
 	{"ID":"22.0","key":"PearlLevel","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"23.0","key":"ShellCloseDmg","floatValue":"100.0","intValue":"","stringValue":""},
-	{"ID":"24.0","key":"ShellPearlResetRate","floatValue":"0.2","intValue":"","stringValue":""},
+	{"ID":"24.0","key":"ShellPearlResetRate","floatValue":"0.1","intValue":"","stringValue":""},
 	{"ID":"30.0","key":"Custom30","floatValue":"3.0","intValue":"","stringValue":""},
 	{"ID":"31.0","key":"Custom31","floatValue":"10.0","intValue":"","stringValue":""},
 	{"ID":"32.0","key":"Custom32","floatValue":"10.0","intValue":"","stringValue":""},
