@@ -134,7 +134,7 @@ public class EnemyJellyfish : EnemyBase
         bool isHit = base.EatCheck(player, atkCollider);
         if (isHit)
         {
-            if (goCloud.gameObject.activeSelf)
+            if (goCloud.gameObject.activeSelf && !player.ContainsBuffType(BuffBase.BuffType.Shield))
             {
                 if (!player.ContainsBuff(6))
                 {

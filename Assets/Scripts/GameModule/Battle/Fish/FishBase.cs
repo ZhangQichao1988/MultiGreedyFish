@@ -351,7 +351,8 @@ public class FishBase : MonoBehaviour
 
     protected virtual void ApplySize()
     {
-        float size = 1 + (fishLevel-1) / 2;
+        float size = 1 + (fishLevel-1) / 5;
+        size = Mathf.Min(3f, size);
         transform.localScale = new Vector3(size, size, size);
     }
     protected float GetSafeRudius()
@@ -427,8 +428,8 @@ public class FishBase : MonoBehaviour
 
         if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
         {
-            int healLife = BattleConst.instance.AquaticHeal * ++inAquaticHealCnt;
-            healLife = Math.Min(lifeMax - life, healLife);
+            int healLife = BattleConst.instance.AquaticHeal * lifeMax;
+            healLife = Mathf.Min(lifeMax - life, healLife);
             Heal(healLife);
         }
 
@@ -521,6 +522,14 @@ public class FishBase : MonoBehaviour
         foreach (var note in listBuff)
         {
             if (note.baseData.ID == buffId) { return true; }
+        }
+        return false;
+    }
+    public bool ContainsBuffType(BuffBase.BuffType buffType)
+    {
+        foreach (var note in listBuff)
+        {
+            if (note.buffType == buffType) { return true; }
         }
         return false;
     }

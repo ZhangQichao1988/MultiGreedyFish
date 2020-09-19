@@ -21,8 +21,9 @@ public class ProcesserP4Res : BaseDummyProcesser<NullMessage, P4_Response>
         var res = new P4_Response();
         res.Result = new PBResult() { Code = 0 };
 
-        //res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishCountMin = 5, FishCountMax = 100 });
-        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 5, FishCountMin = 1, FishCountMax = 100 });
+        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 0, FishLevel = 1, FishCountMin = 5, FishCountMax = 100 });
+        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 4, FishLevel = 3, FishCountMin = 2, FishCountMax = 40 });
+        res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 5, FishLevel = 5, FishCountMin = 1, FishCountMax = 5 });
 
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
         res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });

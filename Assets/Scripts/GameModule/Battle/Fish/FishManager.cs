@@ -76,7 +76,7 @@ public class FishManager : MonoBehaviour
 					case 4: fb = goEnemy.AddComponent<EnemyJellyfish>(); break;  // 水母
 					case 5: fb = goEnemy.AddComponent<EnemyTortoise>(); break;  // 金龟
 				}
-				fb.Init(enemyGroup.FishId, "", 1);
+				fb.Init(enemyGroup.FishId, "", enemyGroup.FishLevel);
 				listEnemy.Add(fb);
 			}
 		}

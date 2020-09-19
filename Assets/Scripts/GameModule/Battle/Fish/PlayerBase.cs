@@ -175,7 +175,7 @@ public class PlayerBase : FishBase
 		animator.SetTrigger("Attack");
 		//remainingTime = BattleConst.instance.AttackHardTime;
 		//actionStep = ActionType.Eatting;
-		canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
+		//canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
 		fish.Damage(data.atk, colliderMouth.transform);
 		if (fish.life <= 0)

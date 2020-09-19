@@ -70,36 +70,36 @@ public static partial class ProtocolReflection {
           "ZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEoAxIPCgdkaWFtb25kGAYg",
           "ASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoHcG93ZXJBdBgJ",
           "IAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5UGxheWVyRmlzaEluZm8Y",
-          "CyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8iTQoPUEJFbmVteURhdGFJ",
-          "bmZvEg4KBmZpc2hJZBgBIAEoBRIUCgxmaXNoQ291bnRNYXgYAiABKAUSFAoM",
-          "ZmlzaENvdW50TWluGAMgASgFIj4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNo",
-          "SWQYASABKAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBSKzAQoSU2hv",
-          "cEJpbGxpbmdQcm9kdWN0EgoKAmlkGAEgAigFEhkKB3BheVR5cGUYAiACKA4y",
-          "CC5QYXlUeXBlEg0KBXByaWNlGAMgAigFEicKDnByb2R1Y3RDb250ZW50GAQg",
-          "AygLMg8uUHJvZHVjdENvbnRlbnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBSAB",
-          "KAkSIwoLbGltaXREZXRhaWwYBiABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlBy",
-          "b2R1Y3RDb250ZW50Eg4KBmFtb3VudBgBIAIoBRIRCgljb250ZW50SWQYAiAC",
-          "KAUiaAoNTGltaXRlZERldGFpbBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVF",
-          "bmRBdBgCIAEoBBITCgtsaW1pdEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVt",
-          "YWluaW5nQW1vdW50GAQgASgFIkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdl",
-          "GAEgASgFEiEKGWN1cnJlbnRNb250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoT",
-          "RGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQ",
-          "ARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKpwCCglNZXNzYWdl",
-          "SWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9S",
-          "TRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxIT",
-          "Cg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlE",
-          "X1NFVF9GSUdIVF9GSVNIEAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5N",
-          "SURfQk9VTkRTX0dFVBAIEhMKD01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9H",
-          "RVRfU0hPUElURU0QChISCg5NSURfQlVZX05PUk1BTBALEg8KC01JRF9CVVlf",
-          "UEFZEAwqbQoKU3RhdHVzQ29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJ",
-          "R05BVFVSRV9FUlJPUhACEhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdD",
-          "QVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9SEAUqHgoIU2hvcFR5cGUSCQoFb3Ro",
-          "ZXIQARIHCgNwYXkQAiorCgdQYXlUeXBlEggKBGdvbGQQARILCgdkaWFtb25k",
-          "EAISCQoFbW9uZXkQAypBCgtDb250ZW50VHlwZRIMCghjRGlhbW9uZBABEgkK",
-          "BWNHb2xkEAISCgoGY1BpZWNlEAMSDQoJY1RyZWFzdXJlEAQqOwoGRGV2aWNl",
-          "EhEKDW5vdF9zcGVjaWZpZWQQARIJCgVhcHBsZRACEgoKBmdvb2dsZRADEgcK",
-          "A2FsbBAEQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZpc2hnYW1lLnBiQglQ",
-          "Qk1lc3NhZ2WIAQA="));
+          "CyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8iYAoPUEJFbmVteURhdGFJ",
+          "bmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwYAiABKAUSFAoMZmlz",
+          "aENvdW50TWF4GAMgASgFEhQKDGZpc2hDb3VudE1pbhgEIAEoBSI+Cg9QQlJv",
+          "Ym90RGF0YUluZm8SDgoGZmlzaElkGAEgASgFEgwKBGFpSWQYAiABKAUSDQoF",
+          "bGV2ZWwYAyABKAUiswEKElNob3BCaWxsaW5nUHJvZHVjdBIKCgJpZBgBIAIo",
+          "BRIZCgdwYXlUeXBlGAIgAigOMgguUGF5VHlwZRINCgVwcmljZRgDIAIoBRIn",
+          "Cg5wcm9kdWN0Q29udGVudBgEIAMoCzIPLlByb2R1Y3RDb250ZW50EhkKEXBs",
+          "YXRmb3JtUHJvZHVjdElkGAUgASgJEiMKC2xpbWl0RGV0YWlsGAYgASgLMg4u",
+          "TGltaXRlZERldGFpbCIzCg5Qcm9kdWN0Q29udGVudBIOCgZhbW91bnQYASAC",
+          "KAUSEQoJY29udGVudElkGAIgAigFImgKDUxpbWl0ZWREZXRhaWwSDwoHYmVn",
+          "aW5BdBgBIAEoBBIRCglzYWxlRW5kQXQYAiABKAQSEwoLbGltaXRBbW91bnQY",
+          "AyABKAUSHgoWbGltaXRlZFJlbWFpbmluZ0Ftb3VudBgEIAEoBSJCChBCaWxs",
+          "aW5nU3RhdGVJbmZvEgsKA2FnZRgBIAEoBRIhChljdXJyZW50TW9udGhQdXJj",
+          "aGFzZVByaWNlGAIgAigFKlAKE0RhdGFMaW5rU2VydmljZVR5cGUSCAoEbm9u",
+          "ZRAAEg8KC2dhbWVfY2VudGVyEAESDwoLZ29vZ2xlX3BsYXkQAhINCglhcHBf",
+          "bG92aW4QAyqcAgoJTWVzc2FnZUlkEg8KC01JRF9TVEFSVFVQEAASGwoXTUlE",
+          "X0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglNSURfTE9HSU4QAhIXChNNSURf",
+          "R0VUX1BMQVlFUl9JTkZPEAMSEwoPTUlEX1NUQVJUX0ZJR0hUEAQSEQoNTUlE",
+          "X0VORF9GSUdIVBAFEhYKEk1JRF9TRVRfRklHSFRfRklTSBAGEhUKEU1JRF9G",
+          "SVNIX0xFVkVMX1VQEAcSEgoOTUlEX0JPVU5EU19HRVQQCBITCg9NSURfTU9E",
+          "SUZZX05JQ0sQCRIUChBNSURfR0VUX1NIT1BJVEVNEAoSEgoOTUlEX0JVWV9O",
+          "T1JNQUwQCxIPCgtNSURfQlVZX1BBWRAMKm0KClN0YXR1c0NvZGUSBgoCT0sQ",
+          "ABIKCgZGQUlMRUQQARITCg9TSUdOQVRVUkVfRVJST1IQAhIXChNLSUNLX09V",
+          "VF9MT0dJTl9VU0VSEAMSCwoHQ0FVVElPThAEEhAKDENMSUVOVF9FUlJPUhAF",
+          "Kh4KCFNob3BUeXBlEgkKBW90aGVyEAESBwoDcGF5EAIqKwoHUGF5VHlwZRII",
+          "CgRnb2xkEAESCwoHZGlhbW9uZBACEgkKBW1vbmV5EAMqQQoLQ29udGVudFR5",
+          "cGUSDAoIY0RpYW1vbmQQARIJCgVjR29sZBACEgoKBmNQaWVjZRADEg0KCWNU",
+          "cmVhc3VyZRAEKjsKBkRldmljZRIRCg1ub3Rfc3BlY2lmaWVkEAESCQoFYXBw",
+          "bGUQAhIKCgZnb29nbGUQAxIHCgNhbGwQBEIwCiBjb20uY2hhby5maXNoLnNl",
+          "cnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -130,7 +130,7 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishLevel", "FishCountMax", "FishCountMin" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId", "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ShopBillingProduct), global::ShopBillingProduct.Parser, new[]{ "Id", "PayType", "Price", "ProductContent", "PlatformProductId", "LimitDetail" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProductContent), global::ProductContent.Parser, new[]{ "Amount", "ContentId" }, null, null, null, null),
@@ -6138,6 +6138,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
   public PBEnemyDataInfo(PBEnemyDataInfo other) : this() {
     _hasBits0 = other._hasBits0;
     fishId_ = other.fishId_;
+    fishLevel_ = other.fishLevel_;
     fishCountMax_ = other.fishCountMax_;
     fishCountMin_ = other.fishCountMin_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -6175,8 +6176,35 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
     _hasBits0 &= ~1;
   }
 
+  /// <summary>Field number for the "fishLevel" field.</summary>
+  public const int FishLevelFieldNumber = 2;
+  private readonly static int FishLevelDefaultValue = 0;
+
+  private int fishLevel_;
+  /// <summary>
+  /// 魚等级
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int FishLevel {
+    get { if ((_hasBits0 & 2) != 0) { return fishLevel_; } else { return FishLevelDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      fishLevel_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fishLevel" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFishLevel {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "fishLevel" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFishLevel() {
+    _hasBits0 &= ~2;
+  }
+
   /// <summary>Field number for the "fishCountMax" field.</summary>
-  public const int FishCountMaxFieldNumber = 2;
+  public const int FishCountMaxFieldNumber = 3;
   private readonly static int FishCountMaxDefaultValue = 0;
 
   private int fishCountMax_;
@@ -6185,25 +6213,25 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int FishCountMax {
-    get { if ((_hasBits0 & 2) != 0) { return fishCountMax_; } else { return FishCountMaxDefaultValue; } }
+    get { if ((_hasBits0 & 4) != 0) { return fishCountMax_; } else { return FishCountMaxDefaultValue; } }
     set {
-      _hasBits0 |= 2;
+      _hasBits0 |= 4;
       fishCountMax_ = value;
     }
   }
   /// <summary>Gets whether the "fishCountMax" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasFishCountMax {
-    get { return (_hasBits0 & 2) != 0; }
+    get { return (_hasBits0 & 4) != 0; }
   }
   /// <summary>Clears the value of the "fishCountMax" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearFishCountMax() {
-    _hasBits0 &= ~2;
+    _hasBits0 &= ~4;
   }
 
   /// <summary>Field number for the "fishCountMin" field.</summary>
-  public const int FishCountMinFieldNumber = 3;
+  public const int FishCountMinFieldNumber = 4;
   private readonly static int FishCountMinDefaultValue = 0;
 
   private int fishCountMin_;
@@ -6212,21 +6240,21 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int FishCountMin {
-    get { if ((_hasBits0 & 4) != 0) { return fishCountMin_; } else { return FishCountMinDefaultValue; } }
+    get { if ((_hasBits0 & 8) != 0) { return fishCountMin_; } else { return FishCountMinDefaultValue; } }
     set {
-      _hasBits0 |= 4;
+      _hasBits0 |= 8;
       fishCountMin_ = value;
     }
   }
   /// <summary>Gets whether the "fishCountMin" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public bool HasFishCountMin {
-    get { return (_hasBits0 & 4) != 0; }
+    get { return (_hasBits0 & 8) != 0; }
   }
   /// <summary>Clears the value of the "fishCountMin" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void ClearFishCountMin() {
-    _hasBits0 &= ~4;
+    _hasBits0 &= ~8;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6243,6 +6271,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
       return true;
     }
     if (FishId != other.FishId) return false;
+    if (FishLevel != other.FishLevel) return false;
     if (FishCountMax != other.FishCountMax) return false;
     if (FishCountMin != other.FishCountMin) return false;
     return Equals(_unknownFields, other._unknownFields);
@@ -6252,6 +6281,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
   public override int GetHashCode() {
     int hash = 1;
     if (HasFishId) hash ^= FishId.GetHashCode();
+    if (HasFishLevel) hash ^= FishLevel.GetHashCode();
     if (HasFishCountMax) hash ^= FishCountMax.GetHashCode();
     if (HasFishCountMin) hash ^= FishCountMin.GetHashCode();
     if (_unknownFields != null) {
@@ -6271,12 +6301,16 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
       output.WriteRawTag(8);
       output.WriteInt32(FishId);
     }
-    if (HasFishCountMax) {
+    if (HasFishLevel) {
       output.WriteRawTag(16);
+      output.WriteInt32(FishLevel);
+    }
+    if (HasFishCountMax) {
+      output.WriteRawTag(24);
       output.WriteInt32(FishCountMax);
     }
     if (HasFishCountMin) {
-      output.WriteRawTag(24);
+      output.WriteRawTag(32);
       output.WriteInt32(FishCountMin);
     }
     if (_unknownFields != null) {
@@ -6289,6 +6323,9 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
     int size = 0;
     if (HasFishId) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishId);
+    }
+    if (HasFishLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishLevel);
     }
     if (HasFishCountMax) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(FishCountMax);
@@ -6309,6 +6346,9 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
     }
     if (other.HasFishId) {
       FishId = other.FishId;
+    }
+    if (other.HasFishLevel) {
+      FishLevel = other.FishLevel;
     }
     if (other.HasFishCountMax) {
       FishCountMax = other.FishCountMax;
@@ -6332,10 +6372,14 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
           break;
         }
         case 16: {
-          FishCountMax = input.ReadInt32();
+          FishLevel = input.ReadInt32();
           break;
         }
         case 24: {
+          FishCountMax = input.ReadInt32();
+          break;
+        }
+        case 32: {
           FishCountMin = input.ReadInt32();
           break;
         }

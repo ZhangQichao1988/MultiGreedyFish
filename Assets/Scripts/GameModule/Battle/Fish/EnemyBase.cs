@@ -11,7 +11,7 @@ public class EnemyBase : FishBase
     public override void Init(int fishId, string playerName, float level)
     {
         base.Init(fishId, playerName, level);
-
+        localScaleBackup = transform.localScale.x;
         // 一开始不要一起出生
         remainingTime = Wrapper.GetRandom(0f, 10f);
         SetAlpha((1 - remainingTime));
@@ -67,7 +67,7 @@ public class EnemyBase : FishBase
 
         SetAlpha(0f);
         transform.position = GetBornPosition();
-        transform.localScale = Vector3.one;
+        transform.localScale = Vector3.one * localScaleBackup;
         //transModel.gameObject.SetActive(true);
         //lifeMax = originalData.lifeMax;
         if (showLifeGauge)
@@ -138,7 +138,7 @@ public class EnemyBase : FishBase
     public override void Die(Transform eatFishTrans)
     {
         //SetCastShadowMode(false);
-        localScaleBackup = transform.localScale.x;
+        //localScaleBackup = transform.localScale.x;
         this.eatFishTrans = eatFishTrans;
         //transModel.gameObject.SetActive(false);
         actionStep = ActionType.Die;
