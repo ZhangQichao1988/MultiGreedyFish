@@ -30,6 +30,8 @@ public class HomeScene : BaseScene
         homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine(AssetPathConst.uiRootPath, "HomeCommon"), UIBase.UILayers.DEFAULT);
         homeResource = UIBase.Open<UIHomeResource>(Path.Combine(AssetPathConst.uiRootPath, "HomeResource"), UIBase.UILayers.RESOURCE);
         GotoSceneUI("Home");
+
+        StageModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnGettedItemNormal);
     }
 
     public void GotoFishEditor()
@@ -42,6 +44,21 @@ public class HomeScene : BaseScene
         homeCommon.SetActiveByUIName(uiName);
         homeResource.SetActiveScene(uiName);
         return uiBase;
+    }
+
+    /// <summary>
+    /// get item展示  金币刷新等
+    /// </summary>
+    /// <param name="res"></param>
+    private void OnGettedItemNormal(System.Object res)
+    {
+        P11_Response response = res as P11_Response;
+        MsgBox.ShowGettedItem(response.Content);
+
+        if (response.IsTreasure)
+        {
+            //宝箱
+        }
     }
 
     public override void Destory()

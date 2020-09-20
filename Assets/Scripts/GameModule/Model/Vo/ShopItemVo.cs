@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 public class ShopItemVo
@@ -53,6 +54,14 @@ public class ShopItemVo
             {
                 return pbItems.LimitDetail.LimitedRemainingAmount > 0;
             }
+        }
+    }
+
+    public void UpdateBuyNum(int addNum)
+    {
+        if (pbItems.LimitDetail != null)
+        {
+            pbItems.LimitDetail.LimitedRemainingAmount = Mathf.Max(0, pbItems.LimitDetail.LimitedRemainingAmount - addNum);
         }
     }
 

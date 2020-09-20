@@ -23,7 +23,11 @@ public class UIShopCell : SimpleScrollingCell
     {
         if (shopData.CanBuy)
         {
-            Debug.Log("click buy");
+            ShopModel.Instance.BuyItemNormal(shopData);
+        }
+        else
+        {
+            MsgBox.OpenTips("暂时不能购买此商品");
         }
     }
 }

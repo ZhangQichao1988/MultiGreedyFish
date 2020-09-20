@@ -48,6 +48,7 @@ public class NetWorkHandler
             {"P8_Request", P8_Request.Parser},
             {"P9_Request", P9_Request.Parser},
             {"P10_Request", P10_Request.Parser},
+            {"P11_Request", P11_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -59,6 +60,7 @@ public class NetWorkHandler
             {"P8_Response", P8_Response.Parser},
             {"P9_Response", P9_Response.Parser},
             {"P10_Response", P10_Response.Parser},
+            {"P11_Response", P11_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -80,6 +82,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidBoundsGet, OnRecvBounsGet);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidModifyNick, OnRecvModifyNick);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetShopitem, OnRecvGetShopItem);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyNormal, OnRecvItemBuyNormal);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -269,6 +272,16 @@ public class NetWorkHandler
 
     }
 
+    public static void RequestBuyNormal(int itemId, int num = 1)
+    {
+        var request = new P11_Request();
+        request.ShopItemId = itemId;
+        request.ShopItemNum = num;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P11_Request", requestByteData);
+    }
+
 #endregion
 
 #region ServerResponse
@@ -356,6 +369,13 @@ public class NetWorkHandler
         var response = P10_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P10_Request;
         GetDispatch().Dispatch<P10_Response, P10_Request>(GetDispatchKey(msg.Key), response, request);
+    }
+
+    static void OnRecvItemBuyNormal(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P11_Response.Parser.ParseFrom(msg.Body);
+        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
+        GetDispatch().Dispatch<P11_Response, P11_Request>(GetDispatchKey(msg.Key), response, request);
     }
 
 #endregion

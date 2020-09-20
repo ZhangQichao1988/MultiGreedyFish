@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class MsgBox : UIBase
 {
@@ -30,6 +32,11 @@ public class MsgBox : UIBase
         var msgBox = UIBase.Open<MsgBox>("ArtResources/UI/Prefabs/Msg/MsgTips", UILayers.POPUP);
         msgBox.SetContent(content);
         msgBox.AutoClose();
+    }
+
+    public static void ShowGettedItem(IList items)
+    {
+        
     }
 
 
