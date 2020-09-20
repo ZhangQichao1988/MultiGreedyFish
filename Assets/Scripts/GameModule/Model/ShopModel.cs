@@ -11,6 +11,7 @@ public class ShopModel : BaseModel<ShopModel>
     public ShopModel() : base()
     {
         NetWorkHandler.GetDispatch().AddListener<P10_Response, P10_Request>(GameEvent.RECIEVE_P10_RESPONSE, OnRecvShopItem);
+        NetWorkHandler.GetDispatch().AddListener<P11_Response, P11_Request>(GameEvent.RECIEVE_P11_RESPONSE, OnRecvItemBuyNormal);
     }
 
     private void OnRecvShopItem(P10_Response response, P10_Request request)
@@ -26,6 +27,21 @@ public class ShopModel : BaseModel<ShopModel>
             OtherItems = vos;
         }
         Dispatch(ShopEvent.ON_GETTED_SHOP_LIST, request.ProductType);
+    }
+
+    private void OnRecvItemBuyNormal(P11_Response response, P11_Request request)
+    {
+        if (response.Result.Code == NetworkConst.CODE_OK)
+        {
+            var clientItem = OtherItems.Find(item=> item.pbItems.Id == request.ShopItemId);
+            clientItem.UpdateBuyNum(request.ShopItemNum);
+
+            Dispatch(ShopEvent.ON_GETTED_ITEM, response);
+        }
+        else
+        {
+            Debug.LogError(response.Result.Desc);
+        }
     }
 
     public void RequestShopItem(ShopType sType, bool forceRequest = false)
@@ -52,9 +68,15 @@ public class ShopModel : BaseModel<ShopModel>
         }
     }
 
+    public void BuyItemNormal(ShopItemVo vo, int num = 1)
+    {
+        NetWorkHandler.RequestBuyNormal(vo.masterDataItem.ID, num);
+    }
+
     public override void Dispose()
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P10_RESPONSE);
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P11_RESPONSE);
         base.Dispose();
     }
 }
