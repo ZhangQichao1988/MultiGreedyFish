@@ -65,7 +65,7 @@ public class PlayerRobotShark : PlayerRobotBase
 
 	}
 
-	public override void SetAI(RobotAiDataInfo aiData)
+	public override void SetRobot(RobotAiDataInfo aiData, float growth)
 	{
 	}
 

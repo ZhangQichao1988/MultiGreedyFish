@@ -8,6 +8,7 @@ public class PlayerRobotBase : PlayerBase
     //protected float aiParamRobotFollowBigFishLifeRate = 0f;
     protected float aiParamRobotGotoAquaticLifeRate = 0f;
     protected bool isGotoAquatic = false;
+    protected float growth = 0f;
 
     protected List<FishBase> listFindedFish;
 
@@ -15,10 +16,10 @@ public class PlayerRobotBase : PlayerBase
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
 
-    public virtual void SetAI(RobotAiDataInfo aiData)
+    public virtual void SetRobot(RobotAiDataInfo aiData, float growth)
     {
+        this.growth = growth;
         float[] aryParam = Wrapper.GetParamFromString(aiData.aryParam);
-        //aiParamRobotFollowBigFishLifeRate = aryParam[0];
         aiParamRobotGotoAquaticLifeRate = aryParam[0];
     }
 
@@ -42,12 +43,6 @@ public class PlayerRobotBase : PlayerBase
                     continue;
                 }
             }
-            // 肿胀的河豚鱼剔除
-            //if (listFish[i].ContainsBuff(4))
-            //{
-            //    listFish.RemoveAt(i);
-            //    continue;
-            //}
         }
         // 按距离升序排序
         listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
@@ -80,14 +75,6 @@ public class PlayerRobotBase : PlayerBase
     }
     protected bool GotoAquatic()
     {
-		//foreach (FishBase fb in listFindedFish)
-		//{
-		//	if (fb.fishType == FishType.Player || fb.fishType == FishType.PlayerRobot)
-		//	{
-  //              return;
-		//	}
-
-		//}
         List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
         for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
         {
@@ -120,18 +107,6 @@ public class PlayerRobotBase : PlayerBase
         {   // 吃鱼
             Attack();
         }
-        //else if (lifeRate < aiParamRobotGotoAquaticLifeRate && !isGotoAquatic)
-        //{   // 吃鱼模式
-        //    if (GotoAquatic())
-        //    {
-        //        return;
-        //    }
-        //}
-        //if (lifeRate >= 1f)
-        //{
-        //    isGotoAquatic = false;
-        //}
-
     }
 
 
@@ -196,5 +171,9 @@ public class PlayerRobotBase : PlayerBase
         return alpha;
     }
 
-	
+    public override void Eat(float fishLevel)
+    {
+        fishLevel *= growth;
+        base.Eat(fishLevel);
+    }
 }

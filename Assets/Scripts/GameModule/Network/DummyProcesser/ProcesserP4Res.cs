@@ -25,15 +25,15 @@ public class ProcesserP4Res : BaseDummyProcesser<NullMessage, P4_Response>
         res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 4, FishLevel = 3, FishCountMin = 2, FishCountMax = 40 });
         res.AryEnemyDataInfo.Add(new PBEnemyDataInfo() { FishId = 5, FishLevel = 5, FishCountMin = 1, FishCountMax = 5 });
 
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1 });
-        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 1, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 0, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1, Growth = 30 });
+        res.AryRobotDataInfo.Add(new PBRobotDataInfo() { FishId = 1, AiId = 2, Level = 1, Growth = 30 });
 
         res.BattleId = "11111";
 

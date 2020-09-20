@@ -188,10 +188,6 @@ public class PlayerBase : FishBase
 	{
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
 		this.fishLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
-		if (this.fishLevel > 10)
-		{
-			Debug.Log("");
-		}
 		//fishLevel += fish.fishLevel * 0.1f;
 		int _life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, this.fishLevel);
 		int _atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, this.fishLevel);

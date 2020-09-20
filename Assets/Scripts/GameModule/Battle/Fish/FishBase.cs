@@ -428,7 +428,8 @@ public class FishBase : MonoBehaviour
 
         if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
         {
-            int healLife = BattleConst.instance.AquaticHeal * lifeMax;
+            inAquaticHealCnt++;
+            int healLife = (int)(BattleConst.instance.AquaticHeal * (float)lifeMax);
             healLife = Mathf.Min(lifeMax - life, healLife);
             Heal(healLife);
         }
