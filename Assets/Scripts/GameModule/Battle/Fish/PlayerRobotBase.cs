@@ -50,7 +50,7 @@ public class PlayerRobotBase : PlayerBase
         if (listFish.Count > 0)
         {
             // 当体力较多时，追踪大鱼
-            if (lifeRate > aiParamRobotGotoAquaticLifeRate)
+            if (lifeRate > aiParamRobotGotoAquaticLifeRate || ContainsBuffType( BuffBase.BuffType.Shield))
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
             }

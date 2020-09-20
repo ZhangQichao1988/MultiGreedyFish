@@ -102,6 +102,8 @@ public class FishManager : MonoBehaviour
 			{ ++aliveEnemyNum; }
 		}
 
+		bornWaittingEnemies = Wrapper.RandomSortList<EnemyBase>(bornWaittingEnemies);
+		
 		// 能活着的杂鱼数量计算
 		int enemyNum = GetEnemyCount();
 
@@ -122,6 +124,7 @@ public class FishManager : MonoBehaviour
 		{
 			fb = listFish[i];
 			if (player == fb) { continue; }
+			if (player.fishType == FishBase.FishType.Boss && fb.fishType == FishBase.FishType.Enemy) { continue; }
 			if (fb.EatCheck(player, atkCollider))
 			{
 				player.Atk(fb);

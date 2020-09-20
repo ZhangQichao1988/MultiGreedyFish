@@ -6,5 +6,5 @@
 	{"ID":"4.0","buffType":"BuffShield","aryParam":"-1"},
 	{"ID":"5.0","buffType":"BuffHeal","aryParam":"5,0.1"},
 	{"ID":"6.0","buffType":"BuffParalysis","aryParam":"1.5"},
-	{"ID":"7.0","buffType":"BuffShieldGold","aryParam":"5"}
+	{"ID":"7.0","buffType":"BuffShieldGold","aryParam":"10"}
 ]}

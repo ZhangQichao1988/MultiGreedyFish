@@ -451,7 +451,9 @@ public class FishBase : MonoBehaviour
     // 毒圈判定
     protected void PoisonRingCheck()
     {
-        if (actionStep == ActionType.Die) { return; }
+        if (actionStep == ActionType.Die ||
+            actionStep == ActionType.Born ||
+            actionStep == ActionType.BornWaitting) { return; }
         if (transform.position.sqrMagnitude >= Math.Pow(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
         {
             if (!beforeInPoisonRing)

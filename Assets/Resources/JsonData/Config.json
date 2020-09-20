@@ -7,7 +7,7 @@
 	{"ID":"5.0","key":"BgBound","floatValue":"73.0","intValue":"","stringValue":""},
 	{"ID":"6.0","key":"AquaticHeal","floatValue":"0.2","intValue":"","stringValue":""},
 	{"ID":"7.0","key":"AquaticHealCoolTime","floatValue":"0.5","intValue":"","stringValue":""},
-	{"ID":"8.0","key":"PlayerSizeUpRate","floatValue":"0.3","intValue":"","stringValue":""},
+	{"ID":"8.0","key":"PlayerSizeUpRate","floatValue":"0.1","intValue":"","stringValue":""},
 	{"ID":"9.0","key":"FishMaxScale","floatValue":"3.0","intValue":"","stringValue":""},
 	{"ID":"10.0","key":"HealLifeFromEatRate","floatValue":"1.0","intValue":"","stringValue":""},
 	{"ID":"11.0","key":"EatFishTime","floatValue":"0.2","intValue":"","stringValue":""},
