@@ -96,7 +96,7 @@ base_data_type = {
     "FishSkillData": sort_cloum_item(["ID", "INT(11)", "name", "INT(11)", "skillType", "TEXT", "effectId", "INT(11)", "aryParam", "TEXT"]),
     "LanguageData": sort_cloum_item(["ID", "INT(11)", "cn", "TEXT", "tw", "TEXT", "en", "TEXT", "jp", "TEXT"]),
     "RobotAiData": sort_cloum_item(["ID", "INT(11)", "aiType", "TEXT", "aryParam", "TEXT"]),
-    "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "level", "INT(11)","aiId", "INT(11)", "groupId", "INT(11)"]),
+    "RobotData": sort_cloum_item(["ID", "INT(11)", "fishId", "INT(11)", "level", "INT(11)", "growth", "INT(11)", "aiId", "INT(11)", "groupId", "INT(11)"]),
     "EnemyData": sort_cloum_item(
         ["ID", "INT(11)", "fishId", "INT(11)",  "fishLevel", "INT(11)", "fishCountMin", "INT(11)", "fishCountMax", "INT(11)", "groupId",
          "INT(11)"]),

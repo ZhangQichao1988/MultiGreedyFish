@@ -46,7 +46,7 @@ public class FishManager : MonoBehaviour
 			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
 			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
 			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level);
-			prb.SetAI(playerRobotAiBaseData);
+			prb.SetRobot(playerRobotAiBaseData, pBRobotDataInfo.Growth/100f);
 			listFish.Add(prb);
 		}
 
@@ -55,7 +55,7 @@ public class FishManager : MonoBehaviour
 		playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
 		prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
 		prb.Init(2, "BOSS", 1);
-		prb.SetAI(playerRobotAiBaseData);
+		prb.SetRobot(playerRobotAiBaseData, 0f);
 		listFish.Add(prb);
 
 		List<FishBase> listEnemy = new List<FishBase>();
@@ -108,7 +108,7 @@ public class FishManager : MonoBehaviour
 		// 当活着的鱼比能活着的鱼数量少的时候，复活鱼
 		if (enemyNum > aliveEnemyNum)
 		{
-			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum; ++i)
+			for (int i = 0; i < bornWaittingEnemies.Count && enemyNum > aliveEnemyNum; ++i, ++aliveEnemyNum)
 			{
 				bornWaittingEnemies[i].Born();
 			}
@@ -206,10 +206,6 @@ public class FishManager : MonoBehaviour
 		float rate = BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange() / BattleConst.instance.PoisonRingRadiusMax;
 
 		var aryEnemyDataInfo = StageModel.Instance.aryEnemyDataInfo;
-		if (aryEnemyDataInfo == null)
-		{
-			Debug.Log("");
-		}
 		for (int i = 0; i < aryEnemyDataInfo.Length; ++i)
 		{
 			enemyMax += (int)Mathf.Lerp(aryEnemyDataInfo[i].FishCountMin, aryEnemyDataInfo[i].FishCountMax, rate);

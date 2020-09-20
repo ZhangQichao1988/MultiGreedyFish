@@ -25,7 +25,7 @@ public class BattleConst
 		PoisonRingDmg = (int)ConfigTableProxy.Instance.GetDataByKey("PoisonRingDmg");
 		PoisonRingDmgCoolTime = ConfigTableProxy.Instance.GetDataByKey("PoisonRingDmgCoolTime");
 		BgBound = ConfigTableProxy.Instance.GetDataByKey("BgBound");
-		AquaticHeal = (int)ConfigTableProxy.Instance.GetDataByKey("AquaticHeal");
+		AquaticHeal = ConfigTableProxy.Instance.GetDataByKey("AquaticHeal");
 		AquaticHealCoolTime = ConfigTableProxy.Instance.GetDataByKey("AquaticHealCoolTime");
 		PlayerSizeUpRate = ConfigTableProxy.Instance.GetDataByKey("PlayerSizeUpRate");
 		FishMaxScale = ConfigTableProxy.Instance.GetDataByKey("FishMaxScale");
@@ -54,7 +54,7 @@ public class BattleConst
 
 	public float BgBound;		// 鱼可游动范围
 
-	public int AquaticHeal = 10;																	// 水草恢复量
+	public float AquaticHeal = 10;																	// 水草恢复量
 	public float AquaticHealCoolTime = 1f;                                                 // 水草恢复血间隙
 
 
