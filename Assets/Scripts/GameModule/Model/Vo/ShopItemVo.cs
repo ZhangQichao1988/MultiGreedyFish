@@ -26,11 +26,11 @@ public class ShopItemVo
         }
     }
 
-    public string Price
+    public int Price
     {
         get
         {
-            return masterDataItem.price.ToString();
+            return masterDataItem.price;
         }
     }
 

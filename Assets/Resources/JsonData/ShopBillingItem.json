@@ -6,5 +6,6 @@
 	{"ID":"5.0","type":"gold","resIcon":"Item/shopItem001","refresh":"DAY","price":"30.0","platformId":"","productContent":"[{\"id\":2, \"amount\":1}, {\"id\":2, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"50.0"},
 	{"ID":"6.0","type":"gold","resIcon":"Item/shopItem001","refresh":"DAY","price":"40.0","platformId":"","productContent":"[{\"id\":2, \"amount\":1}, {\"id\":2, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"50.0"},
 	{"ID":"7.0","type":"gold","resIcon":"Item/shopItem001","refresh":"NONE","price":"50.0","platformId":"","productContent":"[{\"id\":2, \"amount\":1}, {\"id\":2, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"100.0"},
-	{"ID":"8.0","type":"gold","resIcon":"Item/shopItem001","refresh":"NONE","price":"60.0","platformId":"","productContent":"[{\"id\":2, \"amount\":1}, {\"id\":2, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"100.0"}
+	{"ID":"8.0","type":"gold","resIcon":"Item/shopItem001","refresh":"NONE","price":"60.0","platformId":"","productContent":"[{\"id\":2, \"amount\":1}, {\"id\":2, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"100.0"},
+	{"ID":"9.0","type":"gold","resIcon":"Item/shopItem001","refresh":"NONE","price":"10.0","platformId":"","productContent":"[{\"id\":4, \"amount\":1}]","beginAt":"","endAt":"","limitAmount":"-1.0","rate":"100.0"}
 ]}

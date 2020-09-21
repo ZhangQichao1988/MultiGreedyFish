@@ -272,14 +272,14 @@ public class NetWorkHandler
 
     }
 
-    public static void RequestBuyNormal(int itemId, int num = 1)
+    public static void RequestBuyNormal(ShopItemVo vo, int num = 1)
     {
         var request = new P11_Request();
-        request.ShopItemId = itemId;
+        request.ShopItemId = vo.masterDataItem.ID;
         request.ShopItemNum = num;
         
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P11_Request", requestByteData);
+        NetWorkManager.Request("P11_Request", requestByteData, vo);
     }
 
 #endregion
@@ -375,7 +375,7 @@ public class NetWorkHandler
     {
         var response = P11_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
-        GetDispatch().Dispatch<P11_Response, P11_Request>(GetDispatchKey(msg.Key), response, request);
+        GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
     }
 
 #endregion

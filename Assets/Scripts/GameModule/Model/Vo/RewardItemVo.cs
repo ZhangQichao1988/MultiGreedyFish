@@ -40,7 +40,6 @@ public class RewardItemVo
         {
             return null;
         }
-
         var result = new List<RewardItemVo>();
         foreach (var item in items)
         {

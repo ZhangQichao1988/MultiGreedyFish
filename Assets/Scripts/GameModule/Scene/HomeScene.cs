@@ -57,8 +57,10 @@ public class HomeScene : BaseScene
 
         if (response.IsTreasure)
         {
-            //宝箱
+            //TODO 宝箱演出
+            MsgBox.ShowGettedItem(response.TreasureContent);
         }
+        homeResource.UpdateAssets();
     }
 
     public override void Destory()
