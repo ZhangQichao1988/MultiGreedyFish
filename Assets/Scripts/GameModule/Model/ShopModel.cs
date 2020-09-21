@@ -36,7 +36,8 @@ public class ShopModel : BaseModel<ShopModel>
             var clientItem = OtherItems.Find(item=> item.pbItems.Id == request.ShopItemId);
             clientItem.UpdateBuyNum(request.ShopItemNum);
 
-            Dispatch(ShopEvent.ON_GETTED_ITEM, response);
+
+            Dispatch(ShopEvent.ON_GETTED_ITEM, RewardMapVo.From(response));
         }
         else
         {

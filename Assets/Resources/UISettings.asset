@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderMode: 0
   orthographic: 1
-  uiScaleMode: 0
+  uiScaleMode: 1
   referenceResolution: {x: 1920, y: 1080}
   screenMathMode: 1
   matchWidthOrHeight: 0

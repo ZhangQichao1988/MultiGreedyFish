@@ -17,6 +17,7 @@ public class AssetPathConst
 	public static readonly string skillIconPath = "ArtResources/UI/Textures/SkillIcon/SkillIcon_{0}";
 
 	public static readonly string shopItemCellPath = "ArtResources/UI/Prefabs/Shop/ShopItem";
+	public static readonly string shopRewardCellPath = "ArtResources/UI/Prefabs/Shop/ShopRewardCell";
 
 	public static readonly string itemIconPath = "ArtResources/UI/Textures/Atlas/";
 

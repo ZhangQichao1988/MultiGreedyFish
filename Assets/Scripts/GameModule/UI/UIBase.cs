@@ -20,7 +20,7 @@ public class UIBase : MonoBehaviour
         LOADING
     }
 
-    public static GameObject Open(string path, UILayers layer = UILayers.DEFAULT)
+    public static GameObject Open(string path, UILayers layer = UILayers.DEFAULT, System.Object parms = null)
     {
         var rootObj = BlUIManager.GetLayerNode(layer.ToString());
 	
@@ -28,13 +28,15 @@ public class UIBase : MonoBehaviour
         GameObject go = GameObject.Instantiate(objRef.Asset, rootObj.transform);
         UIBase uIBase = go.GetComponent<UIBase>();
         uIBase.uiName = path + "|" + go.GetHashCode();
+        uIBase.Init();
+        uIBase.OnEnter(parms);
         dicUi.Add(uIBase.uiName, uIBase);
         return go;
     }
 
-    public static T Open<T>(string path, UILayers layer = UILayers.DEFAULT)
+    public static T Open<T>(string path, UILayers layer = UILayers.DEFAULT, System.Object parms = null)
     {
-        GameObject go = Open(path, layer);
+        GameObject go = Open(path, layer, parms);
         return go.GetComponent<T>();
     }
 
@@ -52,7 +54,7 @@ public class UIBase : MonoBehaviour
 
     void Start()
     {
-        OnRegisterEvent();
+
     }
     
     void OnDestroy()
@@ -98,7 +100,7 @@ public class UIBase : MonoBehaviour
     /// </summary>
     public virtual void Init()
 	{
-	
+        OnRegisterEvent();
 	}
 
     /// <summary>
@@ -107,7 +109,7 @@ public class UIBase : MonoBehaviour
     /// <param name="obj"></param>
     public virtual void OnEnter(System.Object obj)
 	{
-	
+	 
 	}
 	
     protected virtual IEnumerator DelayClose(float time = 1.5f)

@@ -31,7 +31,7 @@ public class HomeScene : BaseScene
         homeResource = UIBase.Open<UIHomeResource>(Path.Combine(AssetPathConst.uiRootPath, "HomeResource"), UIBase.UILayers.RESOURCE);
         GotoSceneUI("Home");
 
-        StageModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnGettedItemNormal);
+        ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnGettedItemNormal);
     }
 
     public void GotoFishEditor()
@@ -52,7 +52,7 @@ public class HomeScene : BaseScene
     /// <param name="res"></param>
     private void OnGettedItemNormal(System.Object res)
     {
-        P11_Response response = res as P11_Response;
+        RewardMapVo response = res as RewardMapVo;
         MsgBox.ShowGettedItem(response.Content);
 
         if (response.IsTreasure)
@@ -63,6 +63,7 @@ public class HomeScene : BaseScene
 
     public override void Destory()
     {
+        Debug.LogWarning("Desotry Item!!");
         base.Destory();
         homeCommon.Close();
         homeResource.Close();

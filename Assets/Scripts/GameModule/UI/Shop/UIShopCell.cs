@@ -6,6 +6,10 @@ public class UIShopCell : SimpleScrollingCell
 {
     public Text text;
 
+    public Image buyIcon;
+
+    public Text priceText;
+
     public Image images;
 
     ShopItemVo shopData;
@@ -15,8 +19,10 @@ public class UIShopCell : SimpleScrollingCell
     {
         shopData = data as ShopItemVo;
         text.text = shopData.Name;
-        Debug.Log(AssetPathConst.itemIconPath + shopData.ResIcon);
         images.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + shopData.ResIcon).Asset;
+        priceText.text = shopData.Price;
+        buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
+                                                ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
     }
 
     public void OnCellClick()

@@ -32,6 +32,7 @@ public class UIShop : UIBase
         selTagOther = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_other");
 
         scrollingView.Init(AssetPathConst.shopItemCellPath);
+        base.Init();
     }
 
     public override void OnEnter(System.Object parms)
@@ -43,6 +44,7 @@ public class UIShop : UIBase
 
     void OnGetted(System.Object type)
     {
+        Debug.Log("OnGetted " + (ShopType)type);
         requestFlag[(ShopType)type] = true;
         InitContent((ShopType)type);
     }

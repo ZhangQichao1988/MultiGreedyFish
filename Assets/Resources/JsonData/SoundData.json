@@ -1,5 +1,12 @@
 {"Items":[
-	{"ID":"0.0","maxCount":"2.0"},
+	{"ID":"0.0","maxCount":"3.0"},
 	{"ID":"1.0","maxCount":"2.0"},
-	{"ID":"2.0","maxCount":"1.0"}
+	{"ID":"2.0","maxCount":"2.0"},
+	{"ID":"3.0","maxCount":"2.0"},
+	{"ID":"4.0","maxCount":"2.0"},
+	{"ID":"5.0","maxCount":"2.0"},
+	{"ID":"6.0","maxCount":"2.0"},
+	{"ID":"7.0","maxCount":"2.0"},
+	{"ID":"8.0","maxCount":""},
+	{"ID":"1000.0","maxCount":"1.0"}
 ]}
