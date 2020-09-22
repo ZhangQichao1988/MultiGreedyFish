@@ -119,7 +119,7 @@ Shader "Custom/Fish"
 
 #ifdef _METAL_REF_ON
                 half metalColor = tex2D(_MetalMap, input.metalUv).r;
-                color += metalColor * _MetalColor.rgb;
+                color = metalColor * _MetalColor.rgb + color * half3(0.74, 0.6, 0);
 #endif
 
                 half alpha = texColor.a * _BaseColor.a * _Alpha;

@@ -83,12 +83,12 @@ public class InGameUIPanel : MonoBehaviour
 	public void Update()
 	{
 #if UNITY_EDITOR
-        // 随机杀死一个机器人
+        // 自杀
         if (Input.GetKey(KeyCode.D))
         {
             Player.Damage(999999, null);
         }
-        // 所有的敌人都死掉
+        // 随机杀死一个机器人
         if (Input.GetKeyDown(KeyCode.E))
         {
             var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();

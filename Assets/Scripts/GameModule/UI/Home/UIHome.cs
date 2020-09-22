@@ -21,8 +21,24 @@ public class UIHome : UIBase
 
     public HomeFishControl fishControl;
 
-    private FishDataInfo fishBaseData;
+    public Text textPlayerCnt;
+    private string strPlayerCnt;
+    private float playerCntCurrentTime;
+    private float playerCntTargetTime;
+    private int playerCnt;
 
+    private FishDataInfo fishBaseData;
+    private List<Button> listBtn;
+
+    private bool battleRequestSuccess;
+
+    public override void Init()
+    {
+        base.Init();
+        textPlayerCnt.gameObject.SetActive(false);
+        strPlayerCnt = LanguageDataTableProxy.GetText(60);
+        listBtn = new List<Button>( GetComponentsInChildren<Button>() );
+    }
     public override void OnEnter(System.Object parms)
     {
         PBPlayer pBPlayer = PlayerModel.Instance.player;
@@ -52,8 +68,20 @@ public class UIHome : UIBase
     }
     public void OnClickBattle()
     {
+        battleRequestSuccess = false;
         NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
         NetWorkHandler.RequestBattle();
+
+        textPlayerCnt.gameObject.SetActive(true);
+
+        playerCnt = 1;
+        textPlayerCnt.text = string.Format(strPlayerCnt, playerCnt);
+        playerCntCurrentTime = 0f;
+        playerCntTargetTime = Wrapper.GetRandom(0.5f, 1.5f);
+        foreach (var btn in listBtn)
+        {
+            btn.interactable = false;
+        }
     }
     public void OnClickFishSelect()
     {
@@ -73,15 +101,38 @@ public class UIHome : UIBase
         var realResponse = response as P4_Response;
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
-            Close();
+            battleRequestSuccess = true;
             StageModel.Instance.SetStartBattleRes(realResponse);
-            BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
         }
         else
         {
-            Debug.Log("战斗通信错误！");
+
+            foreach (var btn in listBtn)
+            {
+                btn.interactable = true;
+            }
         }
 
     }
 
+    private void Update()
+    {
+        if (textPlayerCnt.gameObject.activeSelf)
+        {
+            playerCntCurrentTime += Time.deltaTime;
+            if (playerCntCurrentTime > playerCntTargetTime && playerCnt <= 9)
+            {
+                playerCntCurrentTime = 0f;
+                playerCntTargetTime = Wrapper.GetRandom(0.2f, 1f);
+                ++playerCnt;
+                textPlayerCnt.text = string.Format(strPlayerCnt, playerCnt);
+
+            }
+            else if (playerCntCurrentTime > 1f && playerCnt == 10 && battleRequestSuccess)
+            {   // 进入战斗
+                Close();
+                BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+            }
+        }
+    }
 }
