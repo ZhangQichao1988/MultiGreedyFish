@@ -33,4 +33,9 @@ public class UIHomeResource : UIBase
         textGold.text = PlayerModel.Instance.player.Gold.ToString();
         textDiamond.text = PlayerModel.Instance.player.Diamond.ToString();
     }
+
+    public void UpdateAssets()
+    {
+        Apply();
+    }
 }

@@ -34,11 +34,13 @@ public class MsgBox : UIBase
         msgBox.AutoClose();
     }
 
-    public static void ShowGettedItem(IList items)
+    public static void ShowGettedItem(List<RewardItemVo> items)
     {
-        
+        if (items != null && items.Count > 0)
+        {
+            UIBase.Open("ArtResources/UI/Prefabs/Shop/ShopReward", UILayers.POPUP, items);
+        }
     }
-
 
     public void SetContent(string txt_title, string txt_content, Action onSure, Action onCancel)
     {

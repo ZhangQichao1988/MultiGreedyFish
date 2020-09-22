@@ -20,6 +20,8 @@ public class SimpleScrollingView : MonoBehaviour
 
     private int cellCountByGroup;
 
+    private float originShowItem;
+
     void Awake()
     {
         cells = new List<SimpleScrollingCell>();
@@ -37,6 +39,16 @@ public class SimpleScrollingView : MonoBehaviour
             cellSize = group.cellSize.x + group.spacing.x;
         }
         cellCountByGroup = group.constraintCount;
+
+        if (scrollRect.vertical)
+        {   
+            originShowItem = heightHolder.sizeDelta.y;
+        }
+        else
+        {
+            originShowItem = heightHolder.sizeDelta.x;
+        }
+        
     }
 
     public void Clear()
@@ -68,6 +80,7 @@ public class SimpleScrollingView : MonoBehaviour
         int groupRate = Mathf.CeilToInt( (float)cells.Count / (float)cellCountByGroup );
         float realSize = cellSize * groupRate;
         Debug.LogFormat("real size is {0}  rate :{1}", realSize, groupRate);
+        realSize = realSize > originShowItem ? realSize : originShowItem;
         if (scrollRect.vertical)
         {   
             GameObjectUtil.SetRectTransformSizeDelta(heightHolder.gameObject, heightHolder.sizeDelta.x, realSize);
