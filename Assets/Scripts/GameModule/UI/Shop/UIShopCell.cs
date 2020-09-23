@@ -12,6 +12,8 @@ public class UIShopCell : SimpleScrollingCell
 
     public Image images;
 
+    public GameObject banObject;
+
     ShopItemVo shopData;
 
 
@@ -23,6 +25,9 @@ public class UIShopCell : SimpleScrollingCell
         priceText.text = shopData.Price.ToString();
         buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
                                                 ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
+
+
+        banObject.SetActive(!shopData.CanBuy);
     }
 
     public void OnCellClick()
@@ -33,7 +38,7 @@ public class UIShopCell : SimpleScrollingCell
         }
         else
         {
-            MsgBox.OpenTips("暂时不能购买此商品");
+            MsgBox.OpenTips("达到商品的购买上限");
         }
     }
 }
