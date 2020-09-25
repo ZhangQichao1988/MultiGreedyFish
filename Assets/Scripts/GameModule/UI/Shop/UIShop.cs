@@ -3,14 +3,13 @@ using UnityEditor;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class UIShop : UIBase
 {
     [SerializeField]
     SimpleScrollingView scrollingView;
-
-    private GameObject btnTagGold;
-    private GameObject selTagGold;
 
 
     private GameObject btnTagDiamond;
@@ -20,17 +19,11 @@ public class UIShop : UIBase
     private GameObject btnTagOther;
     private GameObject selTagOther;
 
-    public enum ShopType
-    {
-        Gold,
-        Diamond,
-        Other
-    }
+    private Dictionary<ShopType, bool> requestFlag;
+
 
     public override void Init()
     {
-        btnTagGold = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/tag_gold");
-        selTagGold = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_gold");
 
         btnTagDiamond = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/tag_diamond");
         selTagDiamond = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_diamond");
@@ -43,22 +36,35 @@ public class UIShop : UIBase
 
     public override void OnEnter(System.Object parms)
     {
-        string sType = parms == null ? ShopType.Gold.ToString() : parms.ToString();
-        sType = Enum.GetNames(typeof(ShopType)).Contains(sType) ? sType : ShopType.Gold.ToString();
-        OnClickTag(sType);
+        requestFlag = new Dictionary<ShopType, bool>();
+        ShopType sType = parms == null ? ShopType.Other : (ShopType)Enum.Parse( typeof(ShopType), parms.ToString());
+        OnClickTag(sType.ToString());
+    }
 
+    void OnGetted(System.Object type)
+    {
+        requestFlag[(ShopType)type] = true;
+        InitContent((ShopType)type);
+    }
+
+    protected override void OnRegisterEvent()
+    {
+        ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_SHOP_LIST, OnGetted);
+    }
+
+    protected override void OnUnRegisterEvent()
+    {
+        ShopModel.Instance.RemoveListener(ShopEvent.ON_GETTED_SHOP_LIST, OnGetted);
     }
 
     void AllActiveBtn()
     {
-        btnTagGold.SetActive(true);
         btnTagDiamond.SetActive(true);
         btnTagOther.SetActive(true);
     }
 
     void AllDeActiveSel()
     {
-        selTagGold.SetActive(false);
         selTagDiamond.SetActive(false);
         selTagOther.SetActive(false);
     }
@@ -70,11 +76,7 @@ public class UIShop : UIBase
         AllDeActiveSel();
         switch (tagType)
         {
-            case ShopType.Gold:
-                btnTagGold.SetActive(false);
-                selTagGold.SetActive(true);
-                break;
-            case ShopType.Diamond:
+            case ShopType.Pay:
                 btnTagDiamond.SetActive(false);
                 selTagDiamond.SetActive(true);
                 break;
@@ -85,7 +87,7 @@ public class UIShop : UIBase
             default:
                 break;
         }
-        InitContent(tagType);
+        ShopModel.Instance.RequestShopItem(tagType, !requestFlag.ContainsKey(tagType));
     }
 
     void InitContent(ShopType type)

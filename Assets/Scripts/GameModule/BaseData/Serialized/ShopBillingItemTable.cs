@@ -10,6 +10,7 @@ public class ShopBillingItem : IQueryById
 {
     public string type;
     public string resIcon;
+    public string refresh;
     public int price;
     public string platformId;
     public string productContent;

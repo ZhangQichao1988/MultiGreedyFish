@@ -52,32 +52,57 @@ public static partial class ProtocolReflection {
           "RG91YmxlGAIgAigIIj0KC1A4X1Jlc3BvbnNlEhkKBnJlc3VsdBgBIAEoCzIJ",
           "LlBCUmVzdWx0EhMKC3Jld2FyZE1vbmV5GAIgASgFIhoKClA5X1JlcXVlc3QS",
           "DAoEbmljaxgBIAIoCSIoCgtQOV9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsy",
-          "CS5QQlJlc3VsdCImCghQQlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MY",
-          "AiABKAkiXwoVUEJQbGF5ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEo",
-          "BRIRCglmaXNoTGV2ZWwYAiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFu",
-          "a0xldmVsGAQgASgFIusBCghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQ",
-          "CghuaWNrbmFtZRgCIAEoCRISCgpmYWNlSWNvbklkGAMgASgFEg8KB3JlZ1Rp",
-          "bWUYBCABKAMSEQoJbG9naW5MYXN0GAUgASgDEg8KB2RpYW1vbmQYBiABKAUS",
-          "DAoEZ29sZBgHIAEoBRINCgVwb3dlchgIIAEoBRIPCgdwb3dlckF0GAkgASgD",
-          "EhEKCWZpZ2h0RmlzaBgKIAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMo",
-          "CzIWLlBCUGxheWVyRmlzaExldmVsSW5mbyJNCg9QQkVuZW15RGF0YUluZm8S",
-          "DgoGZmlzaElkGAEgASgFEhQKDGZpc2hDb3VudE1heBgCIAEoBRIUCgxmaXNo",
-          "Q291bnRNaW4YAyABKAUiPgoPUEJSb2JvdERhdGFJbmZvEg4KBmZpc2hJZBgB",
-          "IAEoBRIMCgRhaUlkGAIgASgFEg0KBWxldmVsGAMgASgFKlAKE0RhdGFMaW5r",
-          "U2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVyEAESDwoLZ29v",
-          "Z2xlX3BsYXkQAhINCglhcHBfbG92aW4QAyrhAQoJTWVzc2FnZUlkEg8KC01J",
-          "RF9TVEFSVFVQEAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZPUk0QARINCglN",
-          "SURfTE9HSU4QAhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMSEwoPTUlEX1NU",
-          "QVJUX0ZJR0hUEAQSEQoNTUlEX0VORF9GSUdIVBAFEhYKEk1JRF9TRVRfRklH",
-          "SFRfRklTSBAGEhUKEU1JRF9GSVNIX0xFVkVMX1VQEAcSEgoOTUlEX0JPVU5E",
-          "U19HRVQQCBITCg9NSURfTU9ESUZZX05JQ0sQCSptCgpTdGF0dXNDb2RlEgYK",
-          "Ak9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9SEAISFwoTS0lD",
-          "S19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxDTElFTlRfRVJS",
-          "T1IQBUIwCiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJN",
-          "ZXNzYWdliAEA"));
+          "CS5QQlJlc3VsdCItCgtQMTBfUmVxdWVzdBIeCgtwcm9kdWN0VHlwZRgBIAIo",
+          "DjIJLlNob3BUeXBlImUKDFAxMF9SZXNwb25zZRIoCgtwcm9kdWN0TGlzdBgB",
+          "IAMoCzITLlNob3BCaWxsaW5nUHJvZHVjdBIrChBiaWxsaW5nU3RhdGVJbmZv",
+          "GAIgASgLMhEuQmlsbGluZ1N0YXRlSW5mbyIuCgtQMTFfUmVxdWVzdBIOCgZp",
+          "dGVtSWQYASACKAUSDwoHaXRlbU51bRgCIAIoBSJKCgxQMTFfUmVzcG9uc2US",
+          "GQoGcmVzdWx0GAEgAigLMgkuUEJSZXN1bHQSDgoGaXRlbUlkGAIgASgFEg8K",
+          "B2l0ZW1OdW0YAyABKAUidwoLUDEyX1JlcXVlc3QSDwoHcmVjZWlwdBgBIAIo",
+          "CRIVCg10cmFuc2FjdGlvbklkGAIgAigJEg0KBXByaWNlGAMgAigJEhYKDmZv",
+          "cm1hdHRlZFByaWNlGAQgAigJEhkKCHBsYXRmb3JtGAUgAigOMgcuRGV2aWNl",
+          "IjkKDFAxMl9SZXNwb25zZRIZCgZyZXN1bHQYASACKAsyCS5QQlJlc3VsdBIO",
+          "CgZpdGVtSWQYAiABKAUiJgoIUEJSZXN1bHQSDAoEY29kZRgBIAEoBRIMCgRk",
+          "ZXNjGAIgASgJIl8KFVBCUGxheWVyRmlzaExldmVsSW5mbxIOCgZmaXNoSWQY",
+          "ASABKAUSEQoJZmlzaExldmVsGAIgASgFEhAKCGZpc2hDaGlwGAMgASgFEhEK",
+          "CXJhbmtMZXZlbBgEIAEoBSLrAQoIUEJQbGF5ZXISEAoIcGxheWVySWQYASAB",
+          "KAMSEAoIbmlja25hbWUYAiABKAkSEgoKZmFjZUljb25JZBgDIAEoBRIPCgdy",
+          "ZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEoAxIPCgdkaWFtb25kGAYg",
+          "ASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoHcG93ZXJBdBgJ",
+          "IAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5UGxheWVyRmlzaEluZm8Y",
+          "CyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8iTQoPUEJFbmVteURhdGFJ",
+          "bmZvEg4KBmZpc2hJZBgBIAEoBRIUCgxmaXNoQ291bnRNYXgYAiABKAUSFAoM",
+          "ZmlzaENvdW50TWluGAMgASgFIj4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNo",
+          "SWQYASABKAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBSKzAQoSU2hv",
+          "cEJpbGxpbmdQcm9kdWN0EgoKAmlkGAEgAigFEhkKB3BheVR5cGUYAiACKA4y",
+          "CC5QYXlUeXBlEg0KBXByaWNlGAMgAigFEicKDnByb2R1Y3RDb250ZW50GAQg",
+          "AygLMg8uUHJvZHVjdENvbnRlbnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBSAB",
+          "KAkSIwoLbGltaXREZXRhaWwYBiABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlBy",
+          "b2R1Y3RDb250ZW50Eg4KBmFtb3VudBgBIAIoBRIRCgljb250ZW50SWQYAiAC",
+          "KAUiaAoNTGltaXRlZERldGFpbBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVF",
+          "bmRBdBgCIAEoBBITCgtsaW1pdEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVt",
+          "YWluaW5nQW1vdW50GAQgASgFIkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdl",
+          "GAEgASgFEiEKGWN1cnJlbnRNb250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoT",
+          "RGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQ",
+          "ARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3ZpbhADKpwCCglNZXNzYWdl",
+          "SWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9S",
+          "TRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxIT",
+          "Cg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlE",
+          "X1NFVF9GSUdIVF9GSVNIEAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5N",
+          "SURfQk9VTkRTX0dFVBAIEhMKD01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9H",
+          "RVRfU0hPUElURU0QChISCg5NSURfQlVZX05PUk1BTBALEg8KC01JRF9CVVlf",
+          "UEFZEAwqbQoKU3RhdHVzQ29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJ",
+          "R05BVFVSRV9FUlJPUhACEhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdD",
+          "QVVUSU9OEAQSEAoMQ0xJRU5UX0VSUk9SEAUqHgoIU2hvcFR5cGUSCQoFb3Ro",
+          "ZXIQARIHCgNwYXkQAiorCgdQYXlUeXBlEggKBGdvbGQQARILCgdkaWFtb25k",
+          "EAISCQoFbW9uZXkQAypBCgtDb250ZW50VHlwZRIMCghjRGlhbW9uZBABEgkK",
+          "BWNHb2xkEAISCgoGY1BpZWNlEAMSDQoJY1RyZWFzdXJlEAQqOwoGRGV2aWNl",
+          "EhEKDW5vdF9zcGVjaWZpZWQQARIJCgVhcHBsZRACEgoKBmdvb2dsZRADEgcK",
+          "A2FsbBAEQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZpc2hnYW1lLnBiQglQ",
+          "Qk1lc3NhZ2WIAQA="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
@@ -96,11 +121,21 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P8_Response), global::P8_Response.Parser, new[]{ "Result", "RewardMoney" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P9_Request), global::P9_Request.Parser, new[]{ "Nick" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P9_Response), global::P9_Response.Parser, new[]{ "Result" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P10_Request), global::P10_Request.Parser, new[]{ "ProductType" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P10_Response), global::P10_Response.Parser, new[]{ "ProductList", "BillingStateInfo" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P11_Request), global::P11_Request.Parser, new[]{ "ItemId", "ItemNum" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P11_Response), global::P11_Response.Parser, new[]{ "Result", "ItemId", "ItemNum" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P12_Request), global::P12_Request.Parser, new[]{ "Receipt", "TransactionId", "Price", "FormattedPrice", "Platform" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P12_Response), global::P12_Response.Parser, new[]{ "Result", "ItemId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishCountMax", "FishCountMin" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId", "Level" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId", "Level" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ShopBillingProduct), global::ShopBillingProduct.Parser, new[]{ "Id", "PayType", "Price", "ProductContent", "PlatformProductId", "LimitDetail" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ProductContent), global::ProductContent.Parser, new[]{ "Amount", "ContentId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::LimitedDetail), global::LimitedDetail.Parser, new[]{ "BeginAt", "SaleEndAt", "LimitAmount", "LimitedRemainingAmount" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BillingStateInfo), global::BillingStateInfo.Parser, new[]{ "Age", "CurrentMonthPurchasePrice" }, null, null, null, null)
         }));
   }
   #endregion
@@ -128,6 +163,9 @@ public enum MessageId {
   [pbr::OriginalName("MID_FISH_LEVEL_UP")] MidFishLevelUp = 7,
   [pbr::OriginalName("MID_BOUNDS_GET")] MidBoundsGet = 8,
   [pbr::OriginalName("MID_MODIFY_NICK")] MidModifyNick = 9,
+  [pbr::OriginalName("MID_GET_SHOPITEM")] MidGetShopitem = 10,
+  [pbr::OriginalName("MID_BUY_NORMAL")] MidBuyNormal = 11,
+  [pbr::OriginalName("MID_BUY_PAY")] MidBuyPay = 12,
 }
 
 public enum StatusCode {
@@ -137,6 +175,37 @@ public enum StatusCode {
   [pbr::OriginalName("KICK_OUT_LOGIN_USER")] KickOutLoginUser = 3,
   [pbr::OriginalName("CAUTION")] Caution = 4,
   [pbr::OriginalName("CLIENT_ERROR")] ClientError = 5,
+}
+
+/// <summary>
+///所属商店类型
+/// </summary>
+public enum ShopType {
+  [pbr::OriginalName("other")] Other = 1,
+  [pbr::OriginalName("pay")] Pay = 2,
+}
+
+public enum PayType {
+  [pbr::OriginalName("gold")] Gold = 1,
+  [pbr::OriginalName("diamond")] Diamond = 2,
+  [pbr::OriginalName("money")] Money = 3,
+}
+
+public enum ContentType {
+  [pbr::OriginalName("cDiamond")] CDiamond = 1,
+  [pbr::OriginalName("cGold")] CGold = 2,
+  [pbr::OriginalName("cPiece")] CPiece = 3,
+  /// <summary>
+  ///宝箱 概率出货
+  /// </summary>
+  [pbr::OriginalName("cTreasure")] CTreasure = 4,
+}
+
+public enum Device {
+  [pbr::OriginalName("not_specified")] NotSpecified = 1,
+  [pbr::OriginalName("apple")] Apple = 2,
+  [pbr::OriginalName("google")] Google = 3,
+  [pbr::OriginalName("all")] All = 4,
 }
 
 #endregion
@@ -3787,6 +3856,1218 @@ public sealed partial class P9_Response : pb::IMessage<P9_Response> {
 }
 
 /// <summary>
+///获取商品列表
+/// </summary>
+public sealed partial class P10_Request : pb::IMessage<P10_Request> {
+  private static readonly pb::MessageParser<P10_Request> _parser = new pb::MessageParser<P10_Request>(() => new P10_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P10_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[18]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Request(P10_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    productType_ = other.productType_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Request Clone() {
+    return new P10_Request(this);
+  }
+
+  /// <summary>Field number for the "productType" field.</summary>
+  public const int ProductTypeFieldNumber = 1;
+  private readonly static global::ShopType ProductTypeDefaultValue = global::ShopType.Other;
+
+  private global::ShopType productType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::ShopType ProductType {
+    get { if ((_hasBits0 & 1) != 0) { return productType_; } else { return ProductTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      productType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "productType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasProductType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "productType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearProductType() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P10_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P10_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ProductType != other.ProductType) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasProductType) hash ^= ProductType.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasProductType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) ProductType);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasProductType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ProductType);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P10_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasProductType) {
+      ProductType = other.ProductType;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ProductType = (global::ShopType) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///获取商店列表
+/// </summary>
+public sealed partial class P10_Response : pb::IMessage<P10_Response> {
+  private static readonly pb::MessageParser<P10_Response> _parser = new pb::MessageParser<P10_Response>(() => new P10_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P10_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[19]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Response(P10_Response other) : this() {
+    productList_ = other.productList_.Clone();
+    billingStateInfo_ = other.billingStateInfo_ != null ? other.billingStateInfo_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P10_Response Clone() {
+    return new P10_Response(this);
+  }
+
+  /// <summary>Field number for the "productList" field.</summary>
+  public const int ProductListFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::ShopBillingProduct> _repeated_productList_codec
+      = pb::FieldCodec.ForMessage(10, global::ShopBillingProduct.Parser);
+  private readonly pbc::RepeatedField<global::ShopBillingProduct> productList_ = new pbc::RepeatedField<global::ShopBillingProduct>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ShopBillingProduct> ProductList {
+    get { return productList_; }
+  }
+
+  /// <summary>Field number for the "billingStateInfo" field.</summary>
+  public const int BillingStateInfoFieldNumber = 2;
+  private global::BillingStateInfo billingStateInfo_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::BillingStateInfo BillingStateInfo {
+    get { return billingStateInfo_; }
+    set {
+      billingStateInfo_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P10_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P10_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!productList_.Equals(other.productList_)) return false;
+    if (!object.Equals(BillingStateInfo, other.BillingStateInfo)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= productList_.GetHashCode();
+    if (billingStateInfo_ != null) hash ^= BillingStateInfo.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    productList_.WriteTo(output, _repeated_productList_codec);
+    if (billingStateInfo_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(BillingStateInfo);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += productList_.CalculateSize(_repeated_productList_codec);
+    if (billingStateInfo_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(BillingStateInfo);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P10_Response other) {
+    if (other == null) {
+      return;
+    }
+    productList_.Add(other.productList_);
+    if (other.billingStateInfo_ != null) {
+      if (billingStateInfo_ == null) {
+        BillingStateInfo = new global::BillingStateInfo();
+      }
+      BillingStateInfo.MergeFrom(other.BillingStateInfo);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          productList_.AddEntriesFrom(input, _repeated_productList_codec);
+          break;
+        }
+        case 18: {
+          if (billingStateInfo_ == null) {
+            BillingStateInfo = new global::BillingStateInfo();
+          }
+          input.ReadMessage(BillingStateInfo);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///购买商品协议
+/// </summary>
+public sealed partial class P11_Request : pb::IMessage<P11_Request> {
+  private static readonly pb::MessageParser<P11_Request> _parser = new pb::MessageParser<P11_Request>(() => new P11_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P11_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[20]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Request(P11_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    itemId_ = other.itemId_;
+    itemNum_ = other.itemNum_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Request Clone() {
+    return new P11_Request(this);
+  }
+
+  /// <summary>Field number for the "itemId" field.</summary>
+  public const int ItemIdFieldNumber = 1;
+  private readonly static int ItemIdDefaultValue = 0;
+
+  private int itemId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ItemId {
+    get { if ((_hasBits0 & 1) != 0) { return itemId_; } else { return ItemIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      itemId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "itemId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasItemId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "itemId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearItemId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "itemNum" field.</summary>
+  public const int ItemNumFieldNumber = 2;
+  private readonly static int ItemNumDefaultValue = 0;
+
+  private int itemNum_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ItemNum {
+    get { if ((_hasBits0 & 2) != 0) { return itemNum_; } else { return ItemNumDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      itemNum_ = value;
+    }
+  }
+  /// <summary>Gets whether the "itemNum" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasItemNum {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "itemNum" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearItemNum() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P11_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P11_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ItemId != other.ItemId) return false;
+    if (ItemNum != other.ItemNum) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasItemId) hash ^= ItemId.GetHashCode();
+    if (HasItemNum) hash ^= ItemNum.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasItemId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(ItemId);
+    }
+    if (HasItemNum) {
+      output.WriteRawTag(16);
+      output.WriteInt32(ItemNum);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasItemId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemId);
+    }
+    if (HasItemNum) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemNum);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P11_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasItemId) {
+      ItemId = other.ItemId;
+    }
+    if (other.HasItemNum) {
+      ItemNum = other.ItemNum;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ItemId = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          ItemNum = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P11_Response : pb::IMessage<P11_Response> {
+  private static readonly pb::MessageParser<P11_Response> _parser = new pb::MessageParser<P11_Response>(() => new P11_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P11_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[21]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Response(P11_Response other) : this() {
+    _hasBits0 = other._hasBits0;
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    itemId_ = other.itemId_;
+    itemNum_ = other.itemNum_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P11_Response Clone() {
+    return new P11_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  /// <summary>
+  ///结果
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "itemId" field.</summary>
+  public const int ItemIdFieldNumber = 2;
+  private readonly static int ItemIdDefaultValue = 0;
+
+  private int itemId_;
+  /// <summary>
+  ///商品基表id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ItemId {
+    get { if ((_hasBits0 & 1) != 0) { return itemId_; } else { return ItemIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      itemId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "itemId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasItemId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "itemId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearItemId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "itemNum" field.</summary>
+  public const int ItemNumFieldNumber = 3;
+  private readonly static int ItemNumDefaultValue = 0;
+
+  private int itemNum_;
+  /// <summary>
+  ///商品数量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ItemNum {
+    get { if ((_hasBits0 & 2) != 0) { return itemNum_; } else { return ItemNumDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      itemNum_ = value;
+    }
+  }
+  /// <summary>Gets whether the "itemNum" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasItemNum {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "itemNum" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearItemNum() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P11_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P11_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if (ItemId != other.ItemId) return false;
+    if (ItemNum != other.ItemNum) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    if (HasItemId) hash ^= ItemId.GetHashCode();
+    if (HasItemNum) hash ^= ItemNum.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    if (HasItemId) {
+      output.WriteRawTag(16);
+      output.WriteInt32(ItemId);
+    }
+    if (HasItemNum) {
+      output.WriteRawTag(24);
+      output.WriteInt32(ItemNum);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    if (HasItemId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemId);
+    }
+    if (HasItemNum) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemNum);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P11_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    if (other.HasItemId) {
+      ItemId = other.ItemId;
+    }
+    if (other.HasItemNum) {
+      ItemNum = other.ItemNum;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 16: {
+          ItemId = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          ItemNum = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///氪金协议
+/// </summary>
+public sealed partial class P12_Request : pb::IMessage<P12_Request> {
+  private static readonly pb::MessageParser<P12_Request> _parser = new pb::MessageParser<P12_Request>(() => new P12_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P12_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[22]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Request(P12_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    receipt_ = other.receipt_;
+    transactionId_ = other.transactionId_;
+    price_ = other.price_;
+    formattedPrice_ = other.formattedPrice_;
+    platform_ = other.platform_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Request Clone() {
+    return new P12_Request(this);
+  }
+
+  /// <summary>Field number for the "receipt" field.</summary>
+  public const int ReceiptFieldNumber = 1;
+  private readonly static string ReceiptDefaultValue = "";
+
+  private string receipt_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Receipt {
+    get { return receipt_ ?? ReceiptDefaultValue; }
+    set {
+      receipt_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "receipt" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasReceipt {
+    get { return receipt_ != null; }
+  }
+  /// <summary>Clears the value of the "receipt" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearReceipt() {
+    receipt_ = null;
+  }
+
+  /// <summary>Field number for the "transactionId" field.</summary>
+  public const int TransactionIdFieldNumber = 2;
+  private readonly static string TransactionIdDefaultValue = "";
+
+  private string transactionId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string TransactionId {
+    get { return transactionId_ ?? TransactionIdDefaultValue; }
+    set {
+      transactionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "transactionId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasTransactionId {
+    get { return transactionId_ != null; }
+  }
+  /// <summary>Clears the value of the "transactionId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearTransactionId() {
+    transactionId_ = null;
+  }
+
+  /// <summary>Field number for the "price" field.</summary>
+  public const int PriceFieldNumber = 3;
+  private readonly static string PriceDefaultValue = "";
+
+  private string price_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Price {
+    get { return price_ ?? PriceDefaultValue; }
+    set {
+      price_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "price" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPrice {
+    get { return price_ != null; }
+  }
+  /// <summary>Clears the value of the "price" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPrice() {
+    price_ = null;
+  }
+
+  /// <summary>Field number for the "formattedPrice" field.</summary>
+  public const int FormattedPriceFieldNumber = 4;
+  private readonly static string FormattedPriceDefaultValue = "";
+
+  private string formattedPrice_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string FormattedPrice {
+    get { return formattedPrice_ ?? FormattedPriceDefaultValue; }
+    set {
+      formattedPrice_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "formattedPrice" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFormattedPrice {
+    get { return formattedPrice_ != null; }
+  }
+  /// <summary>Clears the value of the "formattedPrice" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFormattedPrice() {
+    formattedPrice_ = null;
+  }
+
+  /// <summary>Field number for the "platform" field.</summary>
+  public const int PlatformFieldNumber = 5;
+  private readonly static global::Device PlatformDefaultValue = global::Device.NotSpecified;
+
+  private global::Device platform_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::Device Platform {
+    get { if ((_hasBits0 & 1) != 0) { return platform_; } else { return PlatformDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      platform_ = value;
+    }
+  }
+  /// <summary>Gets whether the "platform" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPlatform {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "platform" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPlatform() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P12_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P12_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Receipt != other.Receipt) return false;
+    if (TransactionId != other.TransactionId) return false;
+    if (Price != other.Price) return false;
+    if (FormattedPrice != other.FormattedPrice) return false;
+    if (Platform != other.Platform) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasReceipt) hash ^= Receipt.GetHashCode();
+    if (HasTransactionId) hash ^= TransactionId.GetHashCode();
+    if (HasPrice) hash ^= Price.GetHashCode();
+    if (HasFormattedPrice) hash ^= FormattedPrice.GetHashCode();
+    if (HasPlatform) hash ^= Platform.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasReceipt) {
+      output.WriteRawTag(10);
+      output.WriteString(Receipt);
+    }
+    if (HasTransactionId) {
+      output.WriteRawTag(18);
+      output.WriteString(TransactionId);
+    }
+    if (HasPrice) {
+      output.WriteRawTag(26);
+      output.WriteString(Price);
+    }
+    if (HasFormattedPrice) {
+      output.WriteRawTag(34);
+      output.WriteString(FormattedPrice);
+    }
+    if (HasPlatform) {
+      output.WriteRawTag(40);
+      output.WriteEnum((int) Platform);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasReceipt) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Receipt);
+    }
+    if (HasTransactionId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(TransactionId);
+    }
+    if (HasPrice) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Price);
+    }
+    if (HasFormattedPrice) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(FormattedPrice);
+    }
+    if (HasPlatform) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Platform);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P12_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasReceipt) {
+      Receipt = other.Receipt;
+    }
+    if (other.HasTransactionId) {
+      TransactionId = other.TransactionId;
+    }
+    if (other.HasPrice) {
+      Price = other.Price;
+    }
+    if (other.HasFormattedPrice) {
+      FormattedPrice = other.FormattedPrice;
+    }
+    if (other.HasPlatform) {
+      Platform = other.Platform;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          Receipt = input.ReadString();
+          break;
+        }
+        case 18: {
+          TransactionId = input.ReadString();
+          break;
+        }
+        case 26: {
+          Price = input.ReadString();
+          break;
+        }
+        case 34: {
+          FormattedPrice = input.ReadString();
+          break;
+        }
+        case 40: {
+          Platform = (global::Device) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P12_Response : pb::IMessage<P12_Response> {
+  private static readonly pb::MessageParser<P12_Response> _parser = new pb::MessageParser<P12_Response>(() => new P12_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P12_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[23]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Response(P12_Response other) : this() {
+    _hasBits0 = other._hasBits0;
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    itemId_ = other.itemId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P12_Response Clone() {
+    return new P12_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  /// <summary>
+  ///结果
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "itemId" field.</summary>
+  public const int ItemIdFieldNumber = 2;
+  private readonly static int ItemIdDefaultValue = 0;
+
+  private int itemId_;
+  /// <summary>
+  ///商品基表id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ItemId {
+    get { if ((_hasBits0 & 1) != 0) { return itemId_; } else { return ItemIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      itemId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "itemId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasItemId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "itemId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearItemId() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P12_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P12_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if (ItemId != other.ItemId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    if (HasItemId) hash ^= ItemId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    if (HasItemId) {
+      output.WriteRawTag(16);
+      output.WriteInt32(ItemId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    if (HasItemId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P12_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    if (other.HasItemId) {
+      ItemId = other.ItemId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 16: {
+          ItemId = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 ///PB结果
 /// </summary>
 public sealed partial class PBResult : pb::IMessage<PBResult> {
@@ -3798,7 +5079,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[18]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3988,7 +5269,7 @@ public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLev
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[19]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4270,7 +5551,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[20]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4838,7 +6119,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[21]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5076,7 +6357,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[22]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5294,6 +6575,966 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
         }
         case 24: {
           Level = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///商店出售物品
+/// </summary>
+public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct> {
+  private static readonly pb::MessageParser<ShopBillingProduct> _parser = new pb::MessageParser<ShopBillingProduct>(() => new ShopBillingProduct());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ShopBillingProduct> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[29]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ShopBillingProduct() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ShopBillingProduct(ShopBillingProduct other) : this() {
+    _hasBits0 = other._hasBits0;
+    id_ = other.id_;
+    payType_ = other.payType_;
+    price_ = other.price_;
+    productContent_ = other.productContent_.Clone();
+    platformProductId_ = other.platformProductId_;
+    limitDetail_ = other.limitDetail_ != null ? other.limitDetail_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ShopBillingProduct Clone() {
+    return new ShopBillingProduct(this);
+  }
+
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 1;
+  private readonly static int IdDefaultValue = 0;
+
+  private int id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Id {
+    get { if ((_hasBits0 & 1) != 0) { return id_; } else { return IdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      id_ = value;
+    }
+  }
+  /// <summary>Gets whether the "id" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "id" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "payType" field.</summary>
+  public const int PayTypeFieldNumber = 2;
+  private readonly static global::PayType PayTypeDefaultValue = global::PayType.Gold;
+
+  private global::PayType payType_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PayType PayType {
+    get { if ((_hasBits0 & 2) != 0) { return payType_; } else { return PayTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      payType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "payType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPayType {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "payType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPayType() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "price" field.</summary>
+  public const int PriceFieldNumber = 3;
+  private readonly static int PriceDefaultValue = 0;
+
+  private int price_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Price {
+    get { if ((_hasBits0 & 4) != 0) { return price_; } else { return PriceDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      price_ = value;
+    }
+  }
+  /// <summary>Gets whether the "price" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPrice {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "price" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPrice() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "productContent" field.</summary>
+  public const int ProductContentFieldNumber = 4;
+  private static readonly pb::FieldCodec<global::ProductContent> _repeated_productContent_codec
+      = pb::FieldCodec.ForMessage(34, global::ProductContent.Parser);
+  private readonly pbc::RepeatedField<global::ProductContent> productContent_ = new pbc::RepeatedField<global::ProductContent>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ProductContent> ProductContent {
+    get { return productContent_; }
+  }
+
+  /// <summary>Field number for the "platformProductId" field.</summary>
+  public const int PlatformProductIdFieldNumber = 5;
+  private readonly static string PlatformProductIdDefaultValue = "";
+
+  private string platformProductId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string PlatformProductId {
+    get { return platformProductId_ ?? PlatformProductIdDefaultValue; }
+    set {
+      platformProductId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "platformProductId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPlatformProductId {
+    get { return platformProductId_ != null; }
+  }
+  /// <summary>Clears the value of the "platformProductId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPlatformProductId() {
+    platformProductId_ = null;
+  }
+
+  /// <summary>Field number for the "limitDetail" field.</summary>
+  public const int LimitDetailFieldNumber = 6;
+  private global::LimitedDetail limitDetail_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::LimitedDetail LimitDetail {
+    get { return limitDetail_; }
+    set {
+      limitDetail_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ShopBillingProduct);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ShopBillingProduct other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Id != other.Id) return false;
+    if (PayType != other.PayType) return false;
+    if (Price != other.Price) return false;
+    if(!productContent_.Equals(other.productContent_)) return false;
+    if (PlatformProductId != other.PlatformProductId) return false;
+    if (!object.Equals(LimitDetail, other.LimitDetail)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasId) hash ^= Id.GetHashCode();
+    if (HasPayType) hash ^= PayType.GetHashCode();
+    if (HasPrice) hash ^= Price.GetHashCode();
+    hash ^= productContent_.GetHashCode();
+    if (HasPlatformProductId) hash ^= PlatformProductId.GetHashCode();
+    if (limitDetail_ != null) hash ^= LimitDetail.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasId) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Id);
+    }
+    if (HasPayType) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) PayType);
+    }
+    if (HasPrice) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Price);
+    }
+    productContent_.WriteTo(output, _repeated_productContent_codec);
+    if (HasPlatformProductId) {
+      output.WriteRawTag(42);
+      output.WriteString(PlatformProductId);
+    }
+    if (limitDetail_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(LimitDetail);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+    }
+    if (HasPayType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayType);
+    }
+    if (HasPrice) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Price);
+    }
+    size += productContent_.CalculateSize(_repeated_productContent_codec);
+    if (HasPlatformProductId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PlatformProductId);
+    }
+    if (limitDetail_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(LimitDetail);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ShopBillingProduct other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasId) {
+      Id = other.Id;
+    }
+    if (other.HasPayType) {
+      PayType = other.PayType;
+    }
+    if (other.HasPrice) {
+      Price = other.Price;
+    }
+    productContent_.Add(other.productContent_);
+    if (other.HasPlatformProductId) {
+      PlatformProductId = other.PlatformProductId;
+    }
+    if (other.limitDetail_ != null) {
+      if (limitDetail_ == null) {
+        LimitDetail = new global::LimitedDetail();
+      }
+      LimitDetail.MergeFrom(other.LimitDetail);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Id = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          PayType = (global::PayType) input.ReadEnum();
+          break;
+        }
+        case 24: {
+          Price = input.ReadInt32();
+          break;
+        }
+        case 34: {
+          productContent_.AddEntriesFrom(input, _repeated_productContent_codec);
+          break;
+        }
+        case 42: {
+          PlatformProductId = input.ReadString();
+          break;
+        }
+        case 50: {
+          if (limitDetail_ == null) {
+            LimitDetail = new global::LimitedDetail();
+          }
+          input.ReadMessage(LimitDetail);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class ProductContent : pb::IMessage<ProductContent> {
+  private static readonly pb::MessageParser<ProductContent> _parser = new pb::MessageParser<ProductContent>(() => new ProductContent());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<ProductContent> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[30]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ProductContent() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ProductContent(ProductContent other) : this() {
+    _hasBits0 = other._hasBits0;
+    amount_ = other.amount_;
+    contentId_ = other.contentId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ProductContent Clone() {
+    return new ProductContent(this);
+  }
+
+  /// <summary>Field number for the "amount" field.</summary>
+  public const int AmountFieldNumber = 1;
+  private readonly static int AmountDefaultValue = 0;
+
+  private int amount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Amount {
+    get { if ((_hasBits0 & 1) != 0) { return amount_; } else { return AmountDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      amount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "amount" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAmount {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "amount" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAmount() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "contentId" field.</summary>
+  public const int ContentIdFieldNumber = 2;
+  private readonly static int ContentIdDefaultValue = 0;
+
+  private int contentId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int ContentId {
+    get { if ((_hasBits0 & 2) != 0) { return contentId_; } else { return ContentIdDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      contentId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "contentId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasContentId {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "contentId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearContentId() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as ProductContent);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(ProductContent other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Amount != other.Amount) return false;
+    if (ContentId != other.ContentId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasAmount) hash ^= Amount.GetHashCode();
+    if (HasContentId) hash ^= ContentId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasAmount) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Amount);
+    }
+    if (HasContentId) {
+      output.WriteRawTag(16);
+      output.WriteInt32(ContentId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasAmount) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Amount);
+    }
+    if (HasContentId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ContentId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(ProductContent other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasAmount) {
+      Amount = other.Amount;
+    }
+    if (other.HasContentId) {
+      ContentId = other.ContentId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Amount = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          ContentId = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class LimitedDetail : pb::IMessage<LimitedDetail> {
+  private static readonly pb::MessageParser<LimitedDetail> _parser = new pb::MessageParser<LimitedDetail>(() => new LimitedDetail());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<LimitedDetail> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[31]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public LimitedDetail() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public LimitedDetail(LimitedDetail other) : this() {
+    _hasBits0 = other._hasBits0;
+    beginAt_ = other.beginAt_;
+    saleEndAt_ = other.saleEndAt_;
+    limitAmount_ = other.limitAmount_;
+    limitedRemainingAmount_ = other.limitedRemainingAmount_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public LimitedDetail Clone() {
+    return new LimitedDetail(this);
+  }
+
+  /// <summary>Field number for the "beginAt" field.</summary>
+  public const int BeginAtFieldNumber = 1;
+  private readonly static ulong BeginAtDefaultValue = 0UL;
+
+  private ulong beginAt_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ulong BeginAt {
+    get { if ((_hasBits0 & 1) != 0) { return beginAt_; } else { return BeginAtDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      beginAt_ = value;
+    }
+  }
+  /// <summary>Gets whether the "beginAt" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasBeginAt {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "beginAt" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearBeginAt() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "saleEndAt" field.</summary>
+  public const int SaleEndAtFieldNumber = 2;
+  private readonly static ulong SaleEndAtDefaultValue = 0UL;
+
+  private ulong saleEndAt_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ulong SaleEndAt {
+    get { if ((_hasBits0 & 2) != 0) { return saleEndAt_; } else { return SaleEndAtDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      saleEndAt_ = value;
+    }
+  }
+  /// <summary>Gets whether the "saleEndAt" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasSaleEndAt {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "saleEndAt" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearSaleEndAt() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "limitAmount" field.</summary>
+  public const int LimitAmountFieldNumber = 3;
+  private readonly static int LimitAmountDefaultValue = 0;
+
+  private int limitAmount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int LimitAmount {
+    get { if ((_hasBits0 & 4) != 0) { return limitAmount_; } else { return LimitAmountDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      limitAmount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "limitAmount" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasLimitAmount {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "limitAmount" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearLimitAmount() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "limitedRemainingAmount" field.</summary>
+  public const int LimitedRemainingAmountFieldNumber = 4;
+  private readonly static int LimitedRemainingAmountDefaultValue = 0;
+
+  private int limitedRemainingAmount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int LimitedRemainingAmount {
+    get { if ((_hasBits0 & 8) != 0) { return limitedRemainingAmount_; } else { return LimitedRemainingAmountDefaultValue; } }
+    set {
+      _hasBits0 |= 8;
+      limitedRemainingAmount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "limitedRemainingAmount" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasLimitedRemainingAmount {
+    get { return (_hasBits0 & 8) != 0; }
+  }
+  /// <summary>Clears the value of the "limitedRemainingAmount" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearLimitedRemainingAmount() {
+    _hasBits0 &= ~8;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as LimitedDetail);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(LimitedDetail other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (BeginAt != other.BeginAt) return false;
+    if (SaleEndAt != other.SaleEndAt) return false;
+    if (LimitAmount != other.LimitAmount) return false;
+    if (LimitedRemainingAmount != other.LimitedRemainingAmount) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasBeginAt) hash ^= BeginAt.GetHashCode();
+    if (HasSaleEndAt) hash ^= SaleEndAt.GetHashCode();
+    if (HasLimitAmount) hash ^= LimitAmount.GetHashCode();
+    if (HasLimitedRemainingAmount) hash ^= LimitedRemainingAmount.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasBeginAt) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(BeginAt);
+    }
+    if (HasSaleEndAt) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(SaleEndAt);
+    }
+    if (HasLimitAmount) {
+      output.WriteRawTag(24);
+      output.WriteInt32(LimitAmount);
+    }
+    if (HasLimitedRemainingAmount) {
+      output.WriteRawTag(32);
+      output.WriteInt32(LimitedRemainingAmount);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasBeginAt) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BeginAt);
+    }
+    if (HasSaleEndAt) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SaleEndAt);
+    }
+    if (HasLimitAmount) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(LimitAmount);
+    }
+    if (HasLimitedRemainingAmount) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(LimitedRemainingAmount);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(LimitedDetail other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasBeginAt) {
+      BeginAt = other.BeginAt;
+    }
+    if (other.HasSaleEndAt) {
+      SaleEndAt = other.SaleEndAt;
+    }
+    if (other.HasLimitAmount) {
+      LimitAmount = other.LimitAmount;
+    }
+    if (other.HasLimitedRemainingAmount) {
+      LimitedRemainingAmount = other.LimitedRemainingAmount;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          BeginAt = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          SaleEndAt = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          LimitAmount = input.ReadInt32();
+          break;
+        }
+        case 32: {
+          LimitedRemainingAmount = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class BillingStateInfo : pb::IMessage<BillingStateInfo> {
+  private static readonly pb::MessageParser<BillingStateInfo> _parser = new pb::MessageParser<BillingStateInfo>(() => new BillingStateInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<BillingStateInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[32]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public BillingStateInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public BillingStateInfo(BillingStateInfo other) : this() {
+    _hasBits0 = other._hasBits0;
+    age_ = other.age_;
+    currentMonthPurchasePrice_ = other.currentMonthPurchasePrice_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public BillingStateInfo Clone() {
+    return new BillingStateInfo(this);
+  }
+
+  /// <summary>Field number for the "age" field.</summary>
+  public const int AgeFieldNumber = 1;
+  private readonly static int AgeDefaultValue = 0;
+
+  private int age_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Age {
+    get { if ((_hasBits0 & 1) != 0) { return age_; } else { return AgeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      age_ = value;
+    }
+  }
+  /// <summary>Gets whether the "age" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasAge {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "age" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearAge() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "currentMonthPurchasePrice" field.</summary>
+  public const int CurrentMonthPurchasePriceFieldNumber = 2;
+  private readonly static int CurrentMonthPurchasePriceDefaultValue = 0;
+
+  private int currentMonthPurchasePrice_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CurrentMonthPurchasePrice {
+    get { if ((_hasBits0 & 2) != 0) { return currentMonthPurchasePrice_; } else { return CurrentMonthPurchasePriceDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      currentMonthPurchasePrice_ = value;
+    }
+  }
+  /// <summary>Gets whether the "currentMonthPurchasePrice" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasCurrentMonthPurchasePrice {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "currentMonthPurchasePrice" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearCurrentMonthPurchasePrice() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as BillingStateInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(BillingStateInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Age != other.Age) return false;
+    if (CurrentMonthPurchasePrice != other.CurrentMonthPurchasePrice) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasAge) hash ^= Age.GetHashCode();
+    if (HasCurrentMonthPurchasePrice) hash ^= CurrentMonthPurchasePrice.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasAge) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Age);
+    }
+    if (HasCurrentMonthPurchasePrice) {
+      output.WriteRawTag(16);
+      output.WriteInt32(CurrentMonthPurchasePrice);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasAge) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Age);
+    }
+    if (HasCurrentMonthPurchasePrice) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrentMonthPurchasePrice);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(BillingStateInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasAge) {
+      Age = other.Age;
+    }
+    if (other.HasCurrentMonthPurchasePrice) {
+      CurrentMonthPurchasePrice = other.CurrentMonthPurchasePrice;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Age = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          CurrentMonthPurchasePrice = input.ReadInt32();
           break;
         }
       }

@@ -29,7 +29,7 @@ public class BaseModel<T> where T : class, new()
         dispatchDic = new Dictionary<string, Action<System.Object>>();
     }
 
-    public void Dispose()
+    public virtual void Dispose()
     {
         dispatchDic = null;
         _instance = null;

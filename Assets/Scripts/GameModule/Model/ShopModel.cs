@@ -6,66 +6,55 @@ using System.Collections.Generic;
 
 public class ShopModel : BaseModel<ShopModel>
 {
-    public List<ShopItem> GoldItems;
-    public List<ShopItem> DiamondItems;
-    public List<ShopItem> OtherItems;
+    public List<ShopItemVo> PayItems;
+    public List<ShopItemVo> OtherItems;
     public ShopModel() : base()
     {
-        GoldItems = new List<ShopItem>(){
-            new ShopItem(){ maxNum = 2, name = "金币宝箱", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱2", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱3", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱4", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱5", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱6", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱7", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱8", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱9", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "金币宝箱10", price = "12345"}
-        };
-
-        DiamondItems = new List<ShopItem>(){
-            new ShopItem(){ name = "钻石宝箱", price = "12345"},
-            new ShopItem(){ name = "钻石宝箱2", price = "12345"},
-            new ShopItem(){ name = "钻石宝箱3", price = "12345"},
-            new ShopItem(){ name = "钻石宝箱4", price = "12345"},
-            new ShopItem(){ name = "钻石宝箱5", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱6", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱7", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱8", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱9", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱10", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱11", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱12", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱13", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱14", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "钻石宝箱15", price = "12345"}
-        };
-
-        OtherItems = new List<ShopItem>(){
-            new ShopItem(){ name = "其他宝箱", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱2", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱3", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱4", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱5", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱6", price = "12345"},
-            new ShopItem(){ maxNum = 2, name = "其他宝箱7", price = "12345"}
-        };
+        NetWorkHandler.GetDispatch().AddListener<P10_Response, P10_Request>(GameEvent.RECIEVE_P10_RESPONSE, OnRecvShopItem);
     }
 
-    public List<ShopItem> GetShopItemByType(UIShop.ShopType type)
+    private void OnRecvShopItem(P10_Response response, P10_Request request)
     {
-        if (type == UIShop.ShopType.Gold)
+        var vos = ShopItemVo.FromList(response.ProductList);
+        
+        if (request.ProductType == ShopType.Pay)
         {
-            return GoldItems;
+            PayItems = vos;
         }
-        else if (type == UIShop.ShopType.Diamond)
+        else
         {
-            return DiamondItems;
+            OtherItems = vos;
+        }
+        Dispatch(ShopEvent.ON_GETTED_SHOP_LIST, request.ProductType);
+    }
+
+    public void RequestShopItem(ShopType sType, bool forceRequest = false)
+    {
+        if (forceRequest)
+        {
+            NetWorkHandler.RequestGetShopItem(sType);
+        }
+        else
+        {
+            Dispatch(ShopEvent.ON_GETTED_SHOP_LIST, sType);
+        }
+    }
+
+    public List<ShopItemVo> GetShopItemByType(ShopType type)
+    {
+        if (type == ShopType.Pay)
+        {
+            return PayItems;
         }
         else
         {
             return OtherItems;
         }
+    }
+
+    public override void Dispose()
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P10_RESPONSE);
+        base.Dispose();
     }
 }

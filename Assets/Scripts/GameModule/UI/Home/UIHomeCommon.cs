@@ -14,7 +14,7 @@ public class UIHomeCommon : UIBase
                 break;
             case "FishEditor":
             case "FishStatus":
-            case "Shop":
+            case "Shop/Shop":
                 goBack.SetActive(true);
                 break;
         }

@@ -49,5 +49,6 @@ public class HomeScene : BaseScene
         base.Destory();
         homeCommon.Close();
         homeResource.Close();
+        ShopModel.Instance.Dispose();
     }
 }

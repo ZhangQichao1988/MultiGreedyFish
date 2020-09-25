@@ -8,17 +8,22 @@ public class UIShopCell : SimpleScrollingCell
 
     public Image images;
 
-    ShopItem shopData;
+    ShopItemVo shopData;
 
 
     public override void UpdateData(System.Object data)
     {
-        shopData = data as ShopItem;
-        text.text = shopData.name;
+        shopData = data as ShopItemVo;
+        text.text = shopData.Name;
+        Debug.Log(AssetPathConst.itemIconPath + shopData.ResIcon);
+        images.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + shopData.ResIcon).Asset;
     }
 
     public void OnCellClick()
     {
-        Debug.Log("click buy");
+        if (shopData.CanBuy)
+        {
+            Debug.Log("click buy");
+        }
     }
 }
