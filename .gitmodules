@@ -1,0 +1,3 @@
+[submodule "xlsx"]
+	path = xlsx
+	url = git@github.com:nightmare100/MultiGreedyFishExcel.git

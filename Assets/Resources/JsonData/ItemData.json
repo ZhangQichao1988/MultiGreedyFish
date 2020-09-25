@@ -1,6 +1,0 @@
-{"Items":[
-	{"ID":"1.0","type":"cDiamond","resIcon":"item/item_diamond","extra":""},
-	{"ID":"2.0","type":"cGold","resIcon":"item/item_gold","extra":""},
-	{"ID":"3.0","type":"cPiece","resIcon":"item/item_piece001","extra":"1.0"},
-	{"ID":"4.0","type":"cTreasure","resIcon":"item/item_trea001","extra":"1.0"}
-]}

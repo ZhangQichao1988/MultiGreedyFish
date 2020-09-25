@@ -1,8 +1,0 @@
-{"Items":[
-	{"ID":"0.0","prefabPath":"fx_buff_Return_blood","duration":"2","cacheCount":"5"},
-	{"ID":"1.0","prefabPath":"fx_dmgExp","duration":"2","cacheCount":"10"},
-	{"ID":"2.0","prefabPath":"fx_eat_small","duration":"1.0","cacheCount":"3.0"},
-	{"ID":"3.0","prefabPath":"fx_eat_normal","duration":"1.0","cacheCount":"1.0"},
-	{"ID":"4.0","prefabPath":"fx_eat_big","duration":"1.0","cacheCount":"1.0"},
-	{"ID":"5.0","prefabPath":"fx_skill_Paralysis","duration":"1.5","cacheCount":"1.0"}
-]}
