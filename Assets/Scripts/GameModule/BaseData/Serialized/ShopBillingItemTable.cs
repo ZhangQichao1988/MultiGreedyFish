@@ -13,6 +13,7 @@ public class ShopBillingItem : IQueryById
     public string refresh;
     public int price;
     public string platformId;
+    public string platform;
     public string productContent;
     public string beginAt;
     public string endAt;
