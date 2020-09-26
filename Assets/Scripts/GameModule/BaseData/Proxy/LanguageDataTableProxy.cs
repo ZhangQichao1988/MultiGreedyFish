@@ -23,6 +23,10 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 	static public string GetText(int Id)
 	{
 		var data = LanguageDataTableProxy.Instance.GetDataById(Id);
+		if (data == null)
+		{
+			return Id.ToString();
+		}
 		switch (AppConst.languageMode)
 		{
 			case LanguageMode.CN:

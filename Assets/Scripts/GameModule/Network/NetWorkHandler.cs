@@ -275,7 +275,7 @@ public class NetWorkHandler
     public static void RequestBuyNormal(ShopItemVo vo, int num = 1)
     {
         var request = new P11_Request();
-        request.ShopItemId = vo.masterDataItem.ID;
+        request.ShopItemId = vo.ID;
         request.ShopItemNum = num;
         
         byte[] requestByteData = GetStreamBytes(request);
