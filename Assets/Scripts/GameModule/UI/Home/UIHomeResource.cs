@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class UIHomeResource : UIBase
 {
+    static public UIHomeResource Instance{ private set; get; }
     public GameObject goGold;
     public Text textGold;
 
     public GameObject goDiamond;
     public Text textDiamond;
+    protected override void Awake()
+    {
+        base.Awake();
+        Instance = this;
+    }
     public void SetActiveScene(string sceneName)
     {
         switch (sceneName)

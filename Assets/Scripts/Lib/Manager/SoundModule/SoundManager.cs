@@ -43,7 +43,8 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1f;
-        audioSource.maxDistance = 50;
+        audioSource.minDistance = 10;
+        audioSource.maxDistance = 20;
         audioSource.playOnAwake = false;
         return audioSource;
     }

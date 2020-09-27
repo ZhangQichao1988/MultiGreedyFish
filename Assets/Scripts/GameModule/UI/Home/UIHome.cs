@@ -38,6 +38,7 @@ public class UIHome : UIBase
         textPlayerCnt.gameObject.SetActive(false);
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
         listBtn = new List<Button>( GetComponentsInChildren<Button>() );
+        listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());
     }
     public override void OnEnter(System.Object parms)
     {

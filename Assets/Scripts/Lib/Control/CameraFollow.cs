@@ -56,7 +56,8 @@ public class CameraFollow : MonoBehaviour
 
     public void SetTarget(Transform target)
     {
-        Target = target;
+		target.gameObject.AddComponent<AudioListener>();
+		Target = target;
         if (Target != null)
             RadiusCenter = Target.position;
     }
