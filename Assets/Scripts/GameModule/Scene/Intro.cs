@@ -60,12 +60,13 @@ public class Intro : MonoBehaviour
         gameObject.AddComponent<BlSceneManager>();
         gameObject.AddComponent<EffectManager>();
         gameObject.AddComponent<TimerManager>();
+        
         AdsController = gameObject.AddComponent<AdsController>();
 
         FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
         
         clickEffect = gameObject.AddComponent<ClickEffect>();
-        
+
     }
 
     private void OnDestroy()

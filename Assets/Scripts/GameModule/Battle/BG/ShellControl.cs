@@ -12,6 +12,7 @@ public class ShellControl : MonoBehaviour
 
     public GameObject goPearl = null;
 
+    AudioSource audioSource;
     Animator animator;
     public ShellStatus shellStatus = ShellStatus.Closed;
     float openReminingTime;
@@ -25,6 +26,7 @@ public class ShellControl : MonoBehaviour
 
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ShellControl.Awake()_1");
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -36,6 +38,7 @@ public class ShellControl : MonoBehaviour
             {
                 case ShellStatus.Closed:
                     animator.SetTrigger("open");
+                    SoundManager.PlaySE(6, audioSource);
                     openReminingTime = BattleConst.instance.ShellOpenningTime;
                     if (Wrapper.GetRandom(0f, 1f) < BattleConst.instance.ShellPearlResetRate)
                     {
@@ -44,6 +47,7 @@ public class ShellControl : MonoBehaviour
                     break;
                 case ShellStatus.Open:
                     animator.SetTrigger("close");
+                    SoundManager.PlaySE(7, audioSource);
                     openReminingTime = openReminingTimedefault;
                     break;
             }

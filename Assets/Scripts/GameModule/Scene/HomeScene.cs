@@ -70,5 +70,7 @@ public class HomeScene : BaseScene
         homeCommon.Close();
         homeResource.Close();
         ShopModel.Instance.Dispose();
+        SoundManager.Instance.UnloadSimSE();
+
     }
 }

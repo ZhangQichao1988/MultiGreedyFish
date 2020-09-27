@@ -199,18 +199,22 @@ public class PlayerBase : FishBase
 		ApplySize();
 		this.originalData.atk = data.atk;
 		animator.SetTrigger("Eat");
-        if (fishLevel > 5)
-        {
-            BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
-        }
-        else if (fishLevel > 1)
-        {
-            BattleEffectManager.CreateEffect(3, lifeGauge.dmgExpLocation.transform);
-        }
-        else
-        {
-            BattleEffectManager.CreateEffect(2, lifeGauge.dmgExpLocation.transform);
-        }
+		if (isBecameInvisible)
+		{
+			if (fishLevel > 5)
+			{
+				BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
+			}
+			else if (fishLevel > 1)
+			{
+				BattleEffectManager.CreateEffect(3, lifeGauge.dmgExpLocation.transform);
+			}
+			else
+			{
+				BattleEffectManager.CreateEffect(2, lifeGauge.dmgExpLocation.transform);
+			}
+		}
+        
     }
 
 	public override void Die( Transform eatFishTrans )

@@ -91,6 +91,7 @@ public class EnemyJellyfish : EnemyBase
                 if (changeVectorRemainingTime < 0)
                 {
                     animator.SetTrigger("Jump");
+                    SoundManager.PlaySE(8, audioSource);
                     if (transform.position.sqrMagnitude >= Math.Pow(GetSafeRudius(), 2) - 5)
                     {
                         Dir = -Dir;

@@ -23,8 +23,9 @@ public class BattleEffectManager
 
 	static public int CreateEffect(int id, Transform parent, float scale = float.NaN)
 	{
+		//PlaySE(_instance.dicEffect[id].Asset);
+		
 		var effectBaseData = EffectDataTableProxy.Instance.GetDataById(id);
-		GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, effectBaseData.prefabPath), typeof(GameObject)).Asset as GameObject;
 		int effectId = EffectManager.Alloc(_instance.dicEffect[id], parent, effectBaseData.duration);
 		if (!float.IsNaN(scale))
 		{
@@ -34,14 +35,25 @@ public class BattleEffectManager
 			{
 				particle.transform.localScale = Vector3.one * scale;
 			}
+
 		}
 		return effectId;
 	}
 	static public int CreateEffect(int id, Vector3 position, float scale)
 	{
+		//PlaySE(_instance.dicEffect[id].Asset);
+
 		var effectBaseData = EffectDataTableProxy.Instance.GetDataById(id);
-		GameObject go = ResourceManager.LoadSync(Path.Combine(AssetPathConst.effectRootPath, effectBaseData.prefabPath), typeof(GameObject)).Asset as GameObject;
 		return EffectManager.Alloc(_instance.dicEffect[id], position, scale, effectBaseData.duration);
+	}
+	static private void PlaySE(GameObject goEffect)
+	{
+		AudioSource audioSource = goEffect.GetComponent<AudioSource>();
+		if (audioSource == null)
+		{
+			audioSource = goEffect.AddComponent<AudioSource>();
+		}
+		audioSource.clip = ResourceManager.LoadSync<AudioClip>(string.Format(AssetPathConst.soundRootPath, 0)).Asset;
 	}
 	static public void Destroy()
 	{

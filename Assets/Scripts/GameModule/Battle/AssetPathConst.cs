@@ -12,6 +12,7 @@ public class AssetPathConst
 	public static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/Parts/PlayerLifeGauge";
 	public static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
 	public static readonly string effectRootPath = "ArtResources/Effect/Prefab/FX/";
+	public static readonly string soundRootPath = "SoundResources/Se/se_{0}";
 	public static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/PlayerNameplate";
 	public static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/RobotNameplate";
 	public static readonly string skillIconPath = "ArtResources/UI/Textures/SkillIcon/SkillIcon_{0}";

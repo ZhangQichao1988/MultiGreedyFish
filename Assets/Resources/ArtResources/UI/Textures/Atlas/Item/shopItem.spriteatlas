@@ -31,20 +31,24 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: a38df82e95f2849e9b40ecf58a3738c4, type: 3}
-    totalSpriteSurfaceArea: 154564
+    totalSpriteSurfaceArea: 232572
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: abff23e168067458da43db1ff683c30a, type: 3}
   - {fileID: 21300000, guid: b8ad00d45c5cb4b54a8992e95fe29fec, type: 3}
+  - {fileID: 21300000, guid: 7d2faa750909990489b23f85485e1bbb, type: 3}
   - {fileID: 21300000, guid: 1c3bd536488ab475086936a2d9004ee2, type: 3}
   - {fileID: 21300000, guid: e0c4e0a7aee804167b66b2e334736cda, type: 3}
   - {fileID: 21300000, guid: 0d01f6e894f2f418f949b9b603c9263e, type: 3}
+  - {fileID: 21300000, guid: 2dab4feee3361a34986b00506252c308, type: 3}
   m_PackedSpriteNamesToIndex:
   - item_gold
   - shopItem001
+  - item_trea003
   - item_trea001
   - item_piece001
   - item_diamond
+  - item_trea002
   m_Tag: shopItem
   m_IsVariant: 0

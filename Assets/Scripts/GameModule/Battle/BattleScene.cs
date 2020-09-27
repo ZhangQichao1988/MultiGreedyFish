@@ -74,5 +74,6 @@ public class BattleScene : BaseScene
         base.Destory();
         StageModel.Instance.Dispose();
         BattleEffectManager.Destroy();
+        SoundManager.Instance.UnloadBattleSE();
     }
 }

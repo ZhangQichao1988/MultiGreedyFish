@@ -17,6 +17,9 @@ public class FishManager : MonoBehaviour
 		listFish.Add(player);
 		var playerData = PlayerModel.Instance.player;
 		player.Init(playerData.FightFish, playerData.Nickname, PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishLevel);
+		player.gameObject.AddComponent<AudioListener>();
+		//GameObjectUtil.InstantiatePrefab(ResourceManager.LoadSync<GameObject>("SoundManager").Asset, player.gameObject);
+
 		return player;
 	}
 

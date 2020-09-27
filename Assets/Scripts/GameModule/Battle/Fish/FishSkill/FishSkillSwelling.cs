@@ -17,12 +17,16 @@ public class FishSkillSwelling : FishSkillBase
 		var transBody = playerBase.transModel.Find("body");
 		Debug.Assert(transBody != null, "FishSkillSwelling.Init()_1");
 		skinnedMeshRenderer = transBody.GetComponent<SkinnedMeshRenderer>();
+
+		
 	}
 	public override bool Skill()
 	{
 		remainingTime = listParam[1];
 		process = 0f;
 		step = 1;
+
+		SoundManager.PlaySE(12, playerBase.audioSource);
 
 		//// 减速buff
 		//BuffBase buff = playerBase.AddBuff(playerBase, 3);
