@@ -9,20 +9,26 @@ public class ShopItemVo
     public static int SHOP_LANG_ST_ID = 30000;
     public ShopBillingProduct pbItems;
 
-    public ShopBillingItem masterDataItem;
+    public int ID
+    {
+        get
+        {
+            return pbItems.Id;
+        }
+    }
 
     public string Name
     {
         get
         {
-            return LanguageDataTableProxy.GetText(SHOP_LANG_ST_ID + masterDataItem.ID);
+            return LanguageDataTableProxy.GetText(SHOP_LANG_ST_ID + pbItems.Id);
         }
     }
     public string ResIcon
     {
         get
         {
-            return masterDataItem.resIcon;
+            return pbItems.ResIcon;
         }
     }
 
@@ -30,7 +36,7 @@ public class ShopItemVo
     {
         get
         {
-            return masterDataItem.price;
+            return pbItems.Price;
         }
     }
 
@@ -80,7 +86,6 @@ public class ShopItemVo
     {
         var result = new ShopItemVo();
         result.pbItems = item;
-        result.masterDataItem = ShopBillingItemTableProxy.Instance.GetDataById(item.Id);
 
         return result;
     }

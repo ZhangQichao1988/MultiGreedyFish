@@ -7,3 +7,6 @@ woshi xues
 
 ### DummyData开启方式
 加入宏 DUMMY_DATA
+
+### 子模块更新
+git submodule update --remote
