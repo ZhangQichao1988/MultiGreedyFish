@@ -24,6 +24,10 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 	{
 		var data = LanguageDataTableProxy.Instance.GetDataById(Id);
 		Debug.Assert(data != null, "not found id:" + Id);
+		if (data == null)
+		{
+			return Id.ToString();
+		}
 		switch (AppConst.languageMode)
 		{
 			case LanguageMode.CN:
