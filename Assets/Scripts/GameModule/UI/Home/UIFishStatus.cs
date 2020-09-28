@@ -39,21 +39,27 @@ public class UIFishStatus : UIBase
         // 属性
         float rate;
         int intRate;
-        rate = Mathf.InverseLerp(0f, ConfigTableProxy.Instance.GetDataByKey("FishAtkMax"), fishData.atk);
+        rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2000).intValue,
+                                                    ConfigTableProxy.Instance.GetDataById(2001).intValue, 
+                                                    fishData.atk);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)
         {
             goListAtkValue[i].SetActive(i < intRate);
         }
 
-        rate = Mathf.InverseLerp(0f, ConfigTableProxy.Instance.GetDataByKey("FishHpMax"), fishData.life);
+        rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2002).intValue,
+                                                    ConfigTableProxy.Instance.GetDataById(2003).intValue, 
+                                                    fishData.life);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)
         {
             goListHpValue[i].SetActive(i < intRate);
         }
 
-        rate = Mathf.InverseLerp(0f, ConfigTableProxy.Instance.GetDataByKey("FishSpdMax"), fishData.moveSpeed);
+        rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2004).intValue,
+                                                    ConfigTableProxy.Instance.GetDataById(2005).intValue, 
+                                                    fishData.moveSpeed);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)
         {

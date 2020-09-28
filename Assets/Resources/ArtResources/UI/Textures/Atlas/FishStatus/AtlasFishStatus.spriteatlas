@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasFishStatus
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 453328492178b7447a5a9947d4b398af, type: 3}
+    totalSpriteSurfaceArea: 754729
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e56266313d083844dacf8846a1a0e74c, type: 3}
+  - {fileID: 21300000, guid: d58b67f5e1fc47844ad4aa066a6becf7, type: 3}
+  - {fileID: 21300000, guid: 0c446fb683c279a49b12c7d1d01c3f8c, type: 3}
+  - {fileID: 21300000, guid: 53a12ef7b8c62bb48b3bbc1509679268, type: 3}
+  - {fileID: 21300000, guid: d76a679853720024d95b5e7de30de5c5, type: 3}
+  - {fileID: 21300000, guid: 3753110a47d6f284092f46e583a58bb1, type: 3}
+  - {fileID: 21300000, guid: 3c8c0d6c6b3b8254f9bd053eb43c583f, type: 3}
+  - {fileID: 21300000, guid: 52cd18eee963ea14f87d330ce2c831a3, type: 3}
+  - {fileID: 21300000, guid: 4245990f774d1764485422e8caf02c6f, type: 3}
+  - {fileID: 21300000, guid: 7cd150efbc5dd394984e84b3d677ff22, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - btn_01
+  - ui_status_line
+  - btn_02
+  - icon_power
+  - icon_speed
+  - ui_status_circle
+  - ui_fishname_frame
+  - icon_stamina
+  - ui_status_frame
+  - icon_skill
+  m_Tag: AtlasFishStatus
+  m_IsVariant: 0

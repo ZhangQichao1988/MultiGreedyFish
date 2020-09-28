@@ -31,7 +31,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: adf5ddb6f08944342a73620aa840db29, type: 3}
-    totalSpriteSurfaceArea: 2546245
+    totalSpriteSurfaceArea: 4619845
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -51,6 +51,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 70b29d062dc17274cbccd5d75d3bf043, type: 3}
   - {fileID: 21300000, guid: f998ce0698df2e148a8ff655638334b6, type: 3}
   - {fileID: 21300000, guid: 8d37c5267d5b10d4ab1dabc81285b72f, type: 3}
+  - {fileID: 21300000, guid: a0d6b976100d11542b0bf9525d8cb3c6, type: 3}
   - {fileID: 21300000, guid: e58914b6e502fd04b897f9b182098616, type: 3}
   - {fileID: 21300000, guid: bbcc7217a04d5444f913f4ecb0ef6019, type: 3}
   - {fileID: 21300000, guid: 865f1947661671b42a6b31dc2106f3ff, type: 3}
@@ -91,6 +92,7 @@ SpriteAtlas:
   - UI_RankIcon_42
   - UI_energy_progress_bar
   - UI_RankIcon_24
+  - UI_status_bg
   - UI_RankIcon_21
   - UI_RankIcon_15
   - UI_Head_bg_05

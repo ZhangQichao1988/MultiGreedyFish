@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class Localization : MonoBehaviour
 {
+	public int id = -1;
 	private void Awake()
 	{
 		Text text = GetComponent<Text>();
 		Debug.Assert(text != null, "LoLocalization.Awake()_1");
-		text.text = LanguageDataTableProxy.GetText(int.Parse(text.text));
+		if(id == -1)
+        {
+			id = int.Parse(text.text);
+		}
+		text.text = LanguageDataTableProxy.GetText(id);
 	}
 }
