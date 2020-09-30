@@ -65,58 +65,62 @@ public static partial class ProtocolReflection {
           "MhYuUHVyY2hhc2VkUmVzcG9uc2VLaW5kEg8KB21lc3NhZ2UYAyABKAkidwoL",
           "UDEzX1JlcXVlc3QSDwoHcmVjZWlwdBgBIAIoCRIVCg10cmFuc2FjdGlvbklk",
           "GAIgAigJEg0KBXByaWNlGAMgAigJEhYKDmZvcm1hdHRlZFByaWNlGAQgAigJ",
-          "EhkKCHBsYXRmb3JtGAUgAigOMgcuRGV2aWNlIl8KDFAxM19SZXNwb25zZRIZ",
-          "CgZyZXN1bHQYASACKAsyCS5QQlJlc3VsdBIgCgdjb250ZW50GAIgAygLMg8u",
-          "UHJvZHVjdENvbnRlbnQSEgoKaXNUcmVhc3VyZRgDIAIoCCImCghQQlJlc3Vs",
-          "dBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQbGF5ZXJGaXNo",
-          "TGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwYAiABKAUS",
-          "EAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgFIusBCghQQlBs",
-          "YXllchIQCghwbGF5ZXJJZBgBIAEoAxIQCghuaWNrbmFtZRgCIAEoCRISCgpm",
-          "YWNlSWNvbklkGAMgASgFEg8KB3JlZ1RpbWUYBCABKAMSEQoJbG9naW5MYXN0",
-          "GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dl",
-          "chgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBRIx",
-          "ChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBCUGxheWVyRmlzaExldmVs",
-          "SW5mbyJgCg9QQkVuZW15RGF0YUluZm8SDgoGZmlzaElkGAEgASgFEhEKCWZp",
-          "c2hMZXZlbBgCIAEoBRIUCgxmaXNoQ291bnRNYXgYAyABKAUSFAoMZmlzaENv",
-          "dW50TWluGAQgASgFIk4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNoSWQYASAB",
-          "KAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBRIOCgZncm93dGgYBCAB",
-          "KAUixAEKElNob3BCaWxsaW5nUHJvZHVjdBIKCgJpZBgBIAIoBRIZCgdwYXlU",
-          "eXBlGAIgAigOMgguUGF5VHlwZRINCgVwcmljZRgDIAIoBRIPCgdyZXNJY29u",
-          "GAQgAigJEicKDnByb2R1Y3RDb250ZW50GAUgAygLMg8uUHJvZHVjdENvbnRl",
-          "bnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBiABKAkSIwoLbGltaXREZXRhaWwY",
-          "ByABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlByb2R1Y3RDb250ZW50Eg4KBmFt",
-          "b3VudBgBIAIoBRIRCgljb250ZW50SWQYAiACKAUiaAoNTGltaXRlZERldGFp",
-          "bBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVFbmRBdBgCIAEoBBITCgtsaW1p",
-          "dEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVtYWluaW5nQW1vdW50GAQgASgF",
-          "IkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdlGAEgASgFEiEKGWN1cnJlbnRN",
-          "b250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoTRGF0YUxpbmtTZXJ2aWNlVHlw",
-          "ZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVfcGxheRAC",
-          "Eg0KCWFwcF9sb3ZpbhADKq0CCglNZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQ",
-          "ABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9MT0dJThAC",
-          "EhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRfRklHSFQQ",
-          "BBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9GSVNIEAYS",
-          "FQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dFVBAIEhMK",
-          "D01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0QChISCg5N",
-          "SURfQlVZX05PUk1BTBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlEX0JVWV9Q",
-          "QVkQDSptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lH",
-          "TkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NB",
-          "VVRJT04QBBIQCgxDTElFTlRfRVJST1IQBSoeCghTaG9wVHlwZRIJCgVvdGhl",
-          "chABEgcKA3BheRACKisKB1BheVR5cGUSCAoEZ29sZBABEgsKB2RpYW1vbmQQ",
-          "AhIJCgVtb25leRADKkEKC0NvbnRlbnRUeXBlEgwKCGNEaWFtb25kEAESCQoF",
-          "Y0dvbGQQAhIKCgZjUGllY2UQAxINCgljVHJlYXN1cmUQBCo7CgZEZXZpY2US",
-          "EQoNbm90X3NwZWNpZmllZBABEgkKBWFwcGxlEAISCgoGZ29vZ2xlEAMSBwoD",
-          "YWxsEAQq4AMKFVB1cmNoYXNlZFJlc3BvbnNlS2luZBIaChZwcm9jZXNzZWRf",
-          "c3VjY2Vzc2Z1bGx5EAESFQoRYWxyZWFkeV9wcm9jZXNzZWQQAhILCgd1bmtu",
-          "b3duEAMSEQoNaW52YWxpZF9wYXJhbRAKEhMKD2ludmFsaWRfcmVjZWlwdBAL",
-          "EiIKHmZhaWxlZF90b19jb25uZWN0X3RvX2FwcF9zdG9yZRAMEhYKEmludmFs",
-          "aWRfcHJvZHVjdF9pZBANEhcKE3JlY2VpcHRfb3V0X29mX2RhdGUQDhIgChx1",
-          "bmV4cGVjdGVkX3ZhbGlkYXN0aW9uX2Vycm9yEBMSGgoWY29udGVudF9kZWxp",
-          "dmVyX2ZhaWxlZBAeEhMKD3Byb2R1Y3RfZXhwaXJlZBAoEhgKFGZhaWx1cmVf",
-          "cHJlX3B1cmNoYXNlEGUSEgoNZGVidWdfc3VjY2VzcxDIARISCg1kZWJ1Z191",
-          "bmtub3duEMkBEhwKF2RlYnVnX2FscmVhZHlfcHJvY2Vzc2VkEMoBEhwKF2Rl",
-          "YnVnX2RlZmVycmVkX3B1cmNoYXNlEMsBEiIKHWRlYnVnX2ZhaWxlZF9jb25u",
-          "ZWN0X3BsYXRmb3JtEMwBEhUKEGRlYnVnX29sZF9yZWNpcGUQzQFCMAogY29t",
-          "LmNoYW8uZmlzaC5zZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2FnZYgBAA=="));
+          "EhkKCHBsYXRmb3JtGAUgAigOMgcuRGV2aWNlIogBCgxQMTNfUmVzcG9uc2US",
+          "GQoGcmVzdWx0GAEgAigLMgkuUEJSZXN1bHQSIAoHY29udGVudBgCIAMoCzIP",
+          "LlByb2R1Y3RDb250ZW50EioKCnJlc3VsdENvZGUYAyACKA4yFi5QdXJjaGFz",
+          "ZWRSZXNwb25zZUtpbmQSDwoHbWVzc2FnZRgEIAEoCSJhCgxQMTRfUmVzcG9u",
+          "c2USDQoFbGV2ZWwYASACKAUSEAoIY3VyckdvbGQYAiACKAUSEAoIY3VyclRp",
+          "bWUYAyACKAMSDgoGbmV4dEF0GAQgAigDEg4KBmZ1bGxBdBgFIAIoAyImCghQ",
+          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQbGF5",
+          "ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwY",
+          "AiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgFIusB",
+          "CghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQCghuaWNrbmFtZRgCIAEo",
+          "CRISCgpmYWNlSWNvbklkGAMgASgFEg8KB3JlZ1RpbWUYBCABKAMSEQoJbG9n",
+          "aW5MYXN0GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRIN",
+          "CgVwb3dlchgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgK",
+          "IAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBCUGxheWVyRmlz",
+          "aExldmVsSW5mbyJgCg9QQkVuZW15RGF0YUluZm8SDgoGZmlzaElkGAEgASgF",
+          "EhEKCWZpc2hMZXZlbBgCIAEoBRIUCgxmaXNoQ291bnRNYXgYAyABKAUSFAoM",
+          "ZmlzaENvdW50TWluGAQgASgFIk4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNo",
+          "SWQYASABKAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBRIOCgZncm93",
+          "dGgYBCABKAUixAEKElNob3BCaWxsaW5nUHJvZHVjdBIKCgJpZBgBIAIoBRIZ",
+          "CgdwYXlUeXBlGAIgAigOMgguUGF5VHlwZRINCgVwcmljZRgDIAIoBRIPCgdy",
+          "ZXNJY29uGAQgAigJEicKDnByb2R1Y3RDb250ZW50GAUgAygLMg8uUHJvZHVj",
+          "dENvbnRlbnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBiABKAkSIwoLbGltaXRE",
+          "ZXRhaWwYByABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlByb2R1Y3RDb250ZW50",
+          "Eg4KBmFtb3VudBgBIAIoBRIRCgljb250ZW50SWQYAiACKAUiaAoNTGltaXRl",
+          "ZERldGFpbBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVFbmRBdBgCIAEoBBIT",
+          "CgtsaW1pdEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVtYWluaW5nQW1vdW50",
+          "GAQgASgFIkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdlGAEgASgFEiEKGWN1",
+          "cnJlbnRNb250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoTRGF0YUxpbmtTZXJ2",
+          "aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVf",
+          "cGxheRACEg0KCWFwcF9sb3ZpbhADKsgCCglNZXNzYWdlSWQSDwoLTUlEX1NU",
+          "QVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9M",
+          "T0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRf",
+          "RklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9G",
+          "SVNIEAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dF",
+          "VBAIEhMKD01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0Q",
+          "ChISCg5NSURfQlVZX05PUk1BTBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlE",
+          "X0JVWV9QQVkQDRIZChVNSURfR09MRF9QT09MX1JFRlJFU0gQDiptCgpTdGF0",
+          "dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9S",
+          "EAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxD",
+          "TElFTlRfRVJST1IQBSoeCghTaG9wVHlwZRIJCgVvdGhlchABEgcKA3BheRAC",
+          "KisKB1BheVR5cGUSCAoEZ29sZBABEgsKB2RpYW1vbmQQAhIJCgVtb25leRAD",
+          "KkEKC0NvbnRlbnRUeXBlEgwKCGNEaWFtb25kEAESCQoFY0dvbGQQAhIKCgZj",
+          "UGllY2UQAxINCgljVHJlYXN1cmUQBCo7CgZEZXZpY2USEQoNbm90X3NwZWNp",
+          "ZmllZBABEgkKBWFwcGxlEAISCgoGZ29vZ2xlEAMSBwoDYWxsEAQq4AMKFVB1",
+          "cmNoYXNlZFJlc3BvbnNlS2luZBIaChZwcm9jZXNzZWRfc3VjY2Vzc2Z1bGx5",
+          "EAESFQoRYWxyZWFkeV9wcm9jZXNzZWQQAhILCgd1bmtub3duEAMSEQoNaW52",
+          "YWxpZF9wYXJhbRAKEhMKD2ludmFsaWRfcmVjZWlwdBALEiIKHmZhaWxlZF90",
+          "b19jb25uZWN0X3RvX2FwcF9zdG9yZRAMEhYKEmludmFsaWRfcHJvZHVjdF9p",
+          "ZBANEhcKE3JlY2VpcHRfb3V0X29mX2RhdGUQDhIgChx1bmV4cGVjdGVkX3Zh",
+          "bGlkYXN0aW9uX2Vycm9yEBMSGgoWY29udGVudF9kZWxpdmVyX2ZhaWxlZBAe",
+          "EhMKD3Byb2R1Y3RfZXhwaXJlZBAoEhgKFGZhaWx1cmVfcHJlX3B1cmNoYXNl",
+          "EGUSEgoNZGVidWdfc3VjY2VzcxDIARISCg1kZWJ1Z191bmtub3duEMkBEhwK",
+          "F2RlYnVnX2FscmVhZHlfcHJvY2Vzc2VkEMoBEhwKF2RlYnVnX2RlZmVycmVk",
+          "X3B1cmNoYXNlEMsBEiIKHWRlYnVnX2ZhaWxlZF9jb25uZWN0X3BsYXRmb3Jt",
+          "EMwBEhUKEGRlYnVnX29sZF9yZWNpcGUQzQFCMAogY29tLmNoYW8uZmlzaC5z",
+          "ZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2FnZYgBAA=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), typeof(global::PurchasedResponseKind), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -145,7 +149,8 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P12_Request), global::P12_Request.Parser, new[]{ "ShopItemId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P12_Response), global::P12_Response.Parser, new[]{ "Result", "ResultCode", "Message" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P13_Request), global::P13_Request.Parser, new[]{ "Receipt", "TransactionId", "Price", "FormattedPrice", "Platform" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P13_Response), global::P13_Response.Parser, new[]{ "Result", "Content", "IsTreasure" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P13_Response), global::P13_Response.Parser, new[]{ "Result", "Content", "ResultCode", "Message" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P14_Response), global::P14_Response.Parser, new[]{ "Level", "CurrGold", "CurrTime", "NextAt", "FullAt" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
@@ -186,6 +191,7 @@ public enum MessageId {
   [pbr::OriginalName("MID_BUY_NORMAL")] MidBuyNormal = 11,
   [pbr::OriginalName("MID_PRE_PAY")] MidPrePay = 12,
   [pbr::OriginalName("MID_BUY_PAY")] MidBuyPay = 13,
+  [pbr::OriginalName("MID_GOLD_POOL_REFRESH")] MidGoldPoolRefresh = 14,
 }
 
 public enum StatusCode {
@@ -5323,7 +5329,8 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
     _hasBits0 = other._hasBits0;
     result_ = other.result_ != null ? other.result_.Clone() : null;
     content_ = other.content_.Clone();
-    isTreasure_ = other.isTreasure_;
+    resultCode_ = other.resultCode_;
+    message_ = other.message_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5359,31 +5366,51 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
     get { return content_; }
   }
 
-  /// <summary>Field number for the "isTreasure" field.</summary>
-  public const int IsTreasureFieldNumber = 3;
-  private readonly static bool IsTreasureDefaultValue = false;
+  /// <summary>Field number for the "resultCode" field.</summary>
+  public const int ResultCodeFieldNumber = 3;
+  private readonly static global::PurchasedResponseKind ResultCodeDefaultValue = global::PurchasedResponseKind.ProcessedSuccessfully;
 
-  private bool isTreasure_;
-  /// <summary>
-  ///是否为宝箱物品
-  /// </summary>
+  private global::PurchasedResponseKind resultCode_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool IsTreasure {
-    get { if ((_hasBits0 & 1) != 0) { return isTreasure_; } else { return IsTreasureDefaultValue; } }
+  public global::PurchasedResponseKind ResultCode {
+    get { if ((_hasBits0 & 1) != 0) { return resultCode_; } else { return ResultCodeDefaultValue; } }
     set {
       _hasBits0 |= 1;
-      isTreasure_ = value;
+      resultCode_ = value;
     }
   }
-  /// <summary>Gets whether the "isTreasure" field is set</summary>
+  /// <summary>Gets whether the "resultCode" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool HasIsTreasure {
+  public bool HasResultCode {
     get { return (_hasBits0 & 1) != 0; }
   }
-  /// <summary>Clears the value of the "isTreasure" field</summary>
+  /// <summary>Clears the value of the "resultCode" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void ClearIsTreasure() {
+  public void ClearResultCode() {
     _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "message" field.</summary>
+  public const int MessageFieldNumber = 4;
+  private readonly static string MessageDefaultValue = "";
+
+  private string message_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Message {
+    get { return message_ ?? MessageDefaultValue; }
+    set {
+      message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "message" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasMessage {
+    get { return message_ != null; }
+  }
+  /// <summary>Clears the value of the "message" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearMessage() {
+    message_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5401,7 +5428,8 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
     }
     if (!object.Equals(Result, other.Result)) return false;
     if(!content_.Equals(other.content_)) return false;
-    if (IsTreasure != other.IsTreasure) return false;
+    if (ResultCode != other.ResultCode) return false;
+    if (Message != other.Message) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5410,7 +5438,8 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
     int hash = 1;
     if (result_ != null) hash ^= Result.GetHashCode();
     hash ^= content_.GetHashCode();
-    if (HasIsTreasure) hash ^= IsTreasure.GetHashCode();
+    if (HasResultCode) hash ^= ResultCode.GetHashCode();
+    if (HasMessage) hash ^= Message.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5429,9 +5458,13 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
       output.WriteMessage(Result);
     }
     content_.WriteTo(output, _repeated_content_codec);
-    if (HasIsTreasure) {
+    if (HasResultCode) {
       output.WriteRawTag(24);
-      output.WriteBool(IsTreasure);
+      output.WriteEnum((int) ResultCode);
+    }
+    if (HasMessage) {
+      output.WriteRawTag(34);
+      output.WriteString(Message);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -5445,8 +5478,11 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
     }
     size += content_.CalculateSize(_repeated_content_codec);
-    if (HasIsTreasure) {
-      size += 1 + 1;
+    if (HasResultCode) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ResultCode);
+    }
+    if (HasMessage) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -5466,8 +5502,11 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
       Result.MergeFrom(other.Result);
     }
     content_.Add(other.content_);
-    if (other.HasIsTreasure) {
-      IsTreasure = other.IsTreasure;
+    if (other.HasResultCode) {
+      ResultCode = other.ResultCode;
+    }
+    if (other.HasMessage) {
+      Message = other.Message;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -5492,7 +5531,337 @@ public sealed partial class P13_Response : pb::IMessage<P13_Response> {
           break;
         }
         case 24: {
-          IsTreasure = input.ReadBool();
+          ResultCode = (global::PurchasedResponseKind) input.ReadEnum();
+          break;
+        }
+        case 34: {
+          Message = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+///金币池信息获取
+/// </summary>
+public sealed partial class P14_Response : pb::IMessage<P14_Response> {
+  private static readonly pb::MessageParser<P14_Response> _parser = new pb::MessageParser<P14_Response>(() => new P14_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P14_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[26]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P14_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P14_Response(P14_Response other) : this() {
+    _hasBits0 = other._hasBits0;
+    level_ = other.level_;
+    currGold_ = other.currGold_;
+    currTime_ = other.currTime_;
+    nextAt_ = other.nextAt_;
+    fullAt_ = other.fullAt_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P14_Response Clone() {
+    return new P14_Response(this);
+  }
+
+  /// <summary>Field number for the "level" field.</summary>
+  public const int LevelFieldNumber = 1;
+  private readonly static int LevelDefaultValue = 0;
+
+  private int level_;
+  /// <summary>
+  ///金币池等级
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Level {
+    get { if ((_hasBits0 & 1) != 0) { return level_; } else { return LevelDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      level_ = value;
+    }
+  }
+  /// <summary>Gets whether the "level" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasLevel {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "level" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearLevel() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "currGold" field.</summary>
+  public const int CurrGoldFieldNumber = 2;
+  private readonly static int CurrGoldDefaultValue = 0;
+
+  private int currGold_;
+  /// <summary>
+  ///当前金币池金币数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CurrGold {
+    get { if ((_hasBits0 & 2) != 0) { return currGold_; } else { return CurrGoldDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      currGold_ = value;
+    }
+  }
+  /// <summary>Gets whether the "currGold" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasCurrGold {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "currGold" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearCurrGold() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "currTime" field.</summary>
+  public const int CurrTimeFieldNumber = 3;
+  private readonly static long CurrTimeDefaultValue = 0L;
+
+  private long currTime_;
+  /// <summary>
+  ///当前服务器时间
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long CurrTime {
+    get { if ((_hasBits0 & 4) != 0) { return currTime_; } else { return CurrTimeDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      currTime_ = value;
+    }
+  }
+  /// <summary>Gets whether the "currTime" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasCurrTime {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "currTime" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearCurrTime() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "nextAt" field.</summary>
+  public const int NextAtFieldNumber = 4;
+  private readonly static long NextAtDefaultValue = 0L;
+
+  private long nextAt_;
+  /// <summary>
+  ///下一个增加金币时间点 如果已满 返回-1
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long NextAt {
+    get { if ((_hasBits0 & 8) != 0) { return nextAt_; } else { return NextAtDefaultValue; } }
+    set {
+      _hasBits0 |= 8;
+      nextAt_ = value;
+    }
+  }
+  /// <summary>Gets whether the "nextAt" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNextAt {
+    get { return (_hasBits0 & 8) != 0; }
+  }
+  /// <summary>Clears the value of the "nextAt" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearNextAt() {
+    _hasBits0 &= ~8;
+  }
+
+  /// <summary>Field number for the "fullAt" field.</summary>
+  public const int FullAtFieldNumber = 5;
+  private readonly static long FullAtDefaultValue = 0L;
+
+  private long fullAt_;
+  /// <summary>
+  ///金币池到达满的时间 如果已满 返回-1
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long FullAt {
+    get { if ((_hasBits0 & 16) != 0) { return fullAt_; } else { return FullAtDefaultValue; } }
+    set {
+      _hasBits0 |= 16;
+      fullAt_ = value;
+    }
+  }
+  /// <summary>Gets whether the "fullAt" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasFullAt {
+    get { return (_hasBits0 & 16) != 0; }
+  }
+  /// <summary>Clears the value of the "fullAt" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearFullAt() {
+    _hasBits0 &= ~16;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P14_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P14_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Level != other.Level) return false;
+    if (CurrGold != other.CurrGold) return false;
+    if (CurrTime != other.CurrTime) return false;
+    if (NextAt != other.NextAt) return false;
+    if (FullAt != other.FullAt) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasLevel) hash ^= Level.GetHashCode();
+    if (HasCurrGold) hash ^= CurrGold.GetHashCode();
+    if (HasCurrTime) hash ^= CurrTime.GetHashCode();
+    if (HasNextAt) hash ^= NextAt.GetHashCode();
+    if (HasFullAt) hash ^= FullAt.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasLevel) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Level);
+    }
+    if (HasCurrGold) {
+      output.WriteRawTag(16);
+      output.WriteInt32(CurrGold);
+    }
+    if (HasCurrTime) {
+      output.WriteRawTag(24);
+      output.WriteInt64(CurrTime);
+    }
+    if (HasNextAt) {
+      output.WriteRawTag(32);
+      output.WriteInt64(NextAt);
+    }
+    if (HasFullAt) {
+      output.WriteRawTag(40);
+      output.WriteInt64(FullAt);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasLevel) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
+    }
+    if (HasCurrGold) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrGold);
+    }
+    if (HasCurrTime) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(CurrTime);
+    }
+    if (HasNextAt) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(NextAt);
+    }
+    if (HasFullAt) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(FullAt);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P14_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasLevel) {
+      Level = other.Level;
+    }
+    if (other.HasCurrGold) {
+      CurrGold = other.CurrGold;
+    }
+    if (other.HasCurrTime) {
+      CurrTime = other.CurrTime;
+    }
+    if (other.HasNextAt) {
+      NextAt = other.NextAt;
+    }
+    if (other.HasFullAt) {
+      FullAt = other.FullAt;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Level = input.ReadInt32();
+          break;
+        }
+        case 16: {
+          CurrGold = input.ReadInt32();
+          break;
+        }
+        case 24: {
+          CurrTime = input.ReadInt64();
+          break;
+        }
+        case 32: {
+          NextAt = input.ReadInt64();
+          break;
+        }
+        case 40: {
+          FullAt = input.ReadInt64();
           break;
         }
       }
@@ -5513,7 +5882,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[26]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5703,7 +6072,7 @@ public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLev
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[27]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5985,7 +6354,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[28]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6553,7 +6922,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[29]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6835,7 +7204,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[30]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7117,7 +7486,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[31]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7477,7 +7846,7 @@ public sealed partial class ProductContent : pb::IMessage<ProductContent> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[32]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7662,7 +8031,7 @@ public sealed partial class LimitedDetail : pb::IMessage<LimitedDetail> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[33]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7929,7 +8298,7 @@ public sealed partial class BillingStateInfo : pb::IMessage<BillingStateInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

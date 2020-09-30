@@ -49,6 +49,8 @@ public class NetWorkHandler
             {"P9_Request", P9_Request.Parser},
             {"P10_Request", P10_Request.Parser},
             {"P11_Request", P11_Request.Parser},
+            {"P12_Request", P12_Request.Parser},
+            {"P13_Request", P13_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -61,6 +63,9 @@ public class NetWorkHandler
             {"P9_Response", P9_Response.Parser},
             {"P10_Response", P10_Response.Parser},
             {"P11_Response", P11_Response.Parser},
+            {"P12_Response", P12_Response.Parser},
+            {"P13_Response", P13_Response.Parser},
+            {"P14_Response", P14_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -83,6 +88,11 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidModifyNick, OnRecvModifyNick);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetShopitem, OnRecvGetShopItem);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyNormal, OnRecvItemBuyNormal);
+
+        // HttpDispatcher.Instance.AddObserver((int)MessageId.MidPrePay, OnRecvItemBuyNormal);
+        // HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyPay, OnRecvItemBuyNormal);
+
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRefresh, OnRecvGoldRef);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -282,6 +292,11 @@ public class NetWorkHandler
         NetWorkManager.Request("P11_Request", requestByteData, vo);
     }
 
+    public static void RequestFetchGoldPool()
+    {
+        NetWorkManager.Request("P14_Request", null);
+    }
+
 #endregion
 
 #region ServerResponse
@@ -377,6 +392,13 @@ public class NetWorkHandler
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
         GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
     }
+
+    static void OnRecvGoldRef(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P14_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P14_Response>(GetDispatchKey(msg.Key), response);
+    }
+    
 
 #endregion
 
