@@ -25,8 +25,10 @@ public class UIHome : UIBase
 
     public Slider sliderGoldPool;
     public Text textGoldPool;
+    public Text textGoldPool_1;
     private float backupTime;
     private P14_Response goldPoolResponse;
+    GoldPoolDataInfo goldPoolData;
 
     public Text textPlayerCnt;
     private string strPlayerCnt;
@@ -44,7 +46,7 @@ public class UIHome : UIBase
         base.Init();
         textPlayerCnt.gameObject.SetActive(false);
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
-        listBtn = new List<Button>( GetComponentsInChildren<Button>() );
+        listBtn = new List<Button>(GetComponentsInChildren<Button>());
         listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());
 
         NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);
@@ -77,6 +79,7 @@ public class UIHome : UIBase
         Debug.Log("On Getted GoldPool!");
         goldPoolResponse = response as P14_Response;
         backupTime = Time.realtimeSinceStartup;
+        goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
         GoldPoolUpdate();
 
 
@@ -85,23 +88,31 @@ public class UIHome : UIBase
     private void GoldPoolUpdate()
     {
         long nowTime = (long)(Time.realtimeSinceStartup - backupTime) + goldPoolResponse.CurrTime;
-        if (nowTime > goldPoolResponse.FullAt) { return; }
+        if (goldPoolResponse.CurrGold >= goldPoolData.maxGold) { return; }
 
-        var goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
-        if (nowTime >= goldPoolResponse.NextAt && nowTime < goldPoolResponse.FullAt)
+        if (nowTime >= goldPoolResponse.NextAt)
         {
-            goldPoolResponse.NextAt += (int)ConfigTableProxy.Instance.GetDataById(3000).floatValue;
-            goldPoolResponse.NextAt = Math.Max(goldPoolResponse.FullAt, goldPoolResponse.NextAt);
+            goldPoolResponse.NextAt += (int)ConfigTableProxy.Instance.GetDataById(3000).intValue;
+            goldPoolResponse.NextAt = Math.Min(goldPoolResponse.FullAt, goldPoolResponse.NextAt);
 
             goldPoolResponse.CurrGold += goldPoolData.gainPreSec;
         }
-        
+
         sliderGoldPool.value = (float)goldPoolResponse.CurrGold / (float)goldPoolData.maxGold;
-        textGoldPool.text = string.Format("{0}/{1}\t还有{2}分钟恢复{3}金币", 
-                                                                goldPoolResponse.CurrGold, 
-                                                                goldPoolData.maxGold,
-                                                                goldPoolResponse.NextAt - nowTime,
-                                                                goldPoolData.gainPreSec);
+        bool isEnable = sliderGoldPool.value < 1f;
+        //GameObjectUtil.SetActive(textGoldPool.gameObject, isEnable);
+        GameObjectUtil.SetActive(textGoldPool_1.transform.parent.gameObject, isEnable);
+
+        textGoldPool.text = string.Format("{0}/{1}",
+                                                            goldPoolResponse.CurrGold,
+                                                            goldPoolData.maxGold);
+        if (isEnable)
+        {
+            textGoldPool_1.text = string.Format(LanguageDataTableProxy.GetText(61),
+                                                                        goldPoolResponse.NextAt - nowTime,
+                                                                        goldPoolData.gainPreSec);
+        }
+
     }
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
@@ -109,7 +120,7 @@ public class UIHome : UIBase
 
         fishBaseData = FishDataTableProxy.Instance.GetDataById(pBPlayer.FightFish);
         var asset = ResourceManager.LoadSync(Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), typeof(GameObject));
-        GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, fishControl.gameObject);
+        GameObject go = GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, fishControl.gameObject);
         fishControl.SetFishModel(go);
     }
     public void OnClickBattle()
@@ -163,6 +174,8 @@ public class UIHome : UIBase
 
     private void Update()
     {
+        GoldPoolUpdate();
+
         if (textPlayerCnt.gameObject.activeSelf)
         {
             playerCntCurrentTime += Time.deltaTime;

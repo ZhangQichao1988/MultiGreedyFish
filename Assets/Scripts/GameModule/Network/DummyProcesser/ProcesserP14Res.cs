@@ -20,10 +20,11 @@ public class ProcesserP14Res : BaseDummyProcesser<NullMessage, P14_Response>
     {
         var res = new P14_Response();
         res.Level = 1;
-        res.CurrGold = 50;
+        res.CurrGold = 80;
         res.CurrTime = 1601719931;
         res.NextAt = 1601719941;
-        res.FullAt = 1601720181;
+        //res.FullAt = 1601720181;
+        res.FullAt = 1601720001;
         return res;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7686007760436618645}
   - component: {fileID: 2818586472892311700}
   m_Layer: 5
-  m_Name: TextGoldPool (1)
+  m_Name: TextGoldPool_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3775,6 +3775,7 @@ MonoBehaviour:
   fishControl: {fileID: 2185106758843559476}
   sliderGoldPool: {fileID: 1504369599985442546}
   textGoldPool: {fileID: 3089871546909536481}
+  textGoldPool_1: {fileID: 2818586472892311700}
   textPlayerCnt: {fileID: 56336844574034531}
 --- !u!95 &246808594873533043
 Animator:
