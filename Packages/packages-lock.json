@@ -43,6 +43,15 @@
       "dependencies": {},
       "url": "https://packages.unity.cn"
     },
+    "com.unity.purchasing": {
+      "version": "2.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.render-pipelines.core": {
       "version": "7.3.1",
       "depth": 1,
@@ -70,7 +79,7 @@
       }
     },
     "com.unity.test-framework": {
-      "version": "1.1.14",
+      "version": "1.1.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {
