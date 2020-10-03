@@ -21,6 +21,9 @@ public class UIHome : UIBase
 
     public HomeFishControl fishControl;
 
+    public Slider sliderGoldPool;
+    public Text textGoldPool;
+
     public Text textPlayerCnt;
     private string strPlayerCnt;
     private float playerCntCurrentTime;
@@ -39,6 +42,12 @@ public class UIHome : UIBase
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
         listBtn = new List<Button>( GetComponentsInChildren<Button>() );
         listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());
+
+        NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);
+        NetWorkHandler.RequestFetchGoldPool();
+
+        Animator animator = GetComponent<Animator>();
+        //animator.Play();
     }
     public override void OnEnter(System.Object parms)
     {
@@ -57,6 +66,16 @@ public class UIHome : UIBase
         // 资源
         textGold.text = pBPlayer.Gold.ToString();
         textDiamond.text = pBPlayer.Diamond.ToString();
+    }
+    void OnRecvGetGoldPool<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P14_RESPONSE);
+        Debug.Log("On Getted GoldPool!");
+        var realResponse = response as P14_Response;
+
+        var goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(realResponse.Level);
+        sliderGoldPool.value = (float)realResponse.CurrGold / (float)goldPoolData.maxGold;
+        textGoldPool.text = string.Format("{0}/{1}", realResponse.CurrGold, goldPoolData.maxGold);
     }
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
