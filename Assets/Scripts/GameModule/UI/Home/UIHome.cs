@@ -4,6 +4,8 @@ using Google.Protobuf;
 using System.IO;
 using System.Linq;
 using UnityEngine.UI;
+using TimerModule;
+using System;
 
 public class UIHome : UIBase
 {
@@ -23,6 +25,8 @@ public class UIHome : UIBase
 
     public Slider sliderGoldPool;
     public Text textGoldPool;
+    private float backupTime;
+    private P14_Response goldPoolResponse;
 
     public Text textPlayerCnt;
     private string strPlayerCnt;
@@ -71,11 +75,33 @@ public class UIHome : UIBase
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P14_RESPONSE);
         Debug.Log("On Getted GoldPool!");
-        var realResponse = response as P14_Response;
+        goldPoolResponse = response as P14_Response;
+        backupTime = Time.realtimeSinceStartup;
+        GoldPoolUpdate();
 
-        var goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(realResponse.Level);
-        sliderGoldPool.value = (float)realResponse.CurrGold / (float)goldPoolData.maxGold;
-        textGoldPool.text = string.Format("{0}/{1}", realResponse.CurrGold, goldPoolData.maxGold);
+
+    }
+
+    private void GoldPoolUpdate()
+    {
+        long nowTime = (long)(Time.realtimeSinceStartup - backupTime) + goldPoolResponse.CurrTime;
+        if (nowTime > goldPoolResponse.FullAt) { return; }
+
+        var goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
+        if (nowTime >= goldPoolResponse.NextAt && nowTime < goldPoolResponse.FullAt)
+        {
+            goldPoolResponse.NextAt += (int)ConfigTableProxy.Instance.GetDataById(3000).floatValue;
+            goldPoolResponse.NextAt = Math.Max(goldPoolResponse.FullAt, goldPoolResponse.NextAt);
+
+            goldPoolResponse.CurrGold += goldPoolData.gainPreSec;
+        }
+        
+        sliderGoldPool.value = (float)goldPoolResponse.CurrGold / (float)goldPoolData.maxGold;
+        textGoldPool.text = string.Format("{0}/{1}\t还有{2}分钟恢复{3}金币", 
+                                                                goldPoolResponse.CurrGold, 
+                                                                goldPoolData.maxGold,
+                                                                goldPoolResponse.NextAt - nowTime,
+                                                                goldPoolData.gainPreSec);
     }
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
