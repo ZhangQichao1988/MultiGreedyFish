@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,14 @@ public class UIHomeResource : UIBase
 {
     static public UIHomeResource Instance{ private set; get; }
     public GameObject goGold;
+    public Image imgGold;
     public Text textGold;
 
     public GameObject goDiamond;
     public Text textDiamond;
+
+    bool isGoldAddCalc = false;
+    float goldAddCalcRemainingTime = 0f;
     protected override void Awake()
     {
         base.Awake();
@@ -36,12 +41,27 @@ public class UIHomeResource : UIBase
 
     private void Apply()
     {
-        textGold.text = PlayerModel.Instance.player.Gold.ToString();
+        textGold.text = (PlayerModel.Instance.player.Gold - PlayerModel.Instance.gainGold).ToString();
         textDiamond.text = PlayerModel.Instance.player.Diamond.ToString();
     }
 
     public void UpdateAssets()
     {
         Apply();
+    }
+    public void StartGoldAddCalc()
+    {
+        if (isGoldAddCalc) { return; }
+        isGoldAddCalc = true;
+        goldAddCalcRemainingTime = 1f;
+    }
+    private void Update()
+    {
+        if (isGoldAddCalc)
+        {
+            goldAddCalcRemainingTime = Mathf.Max(0f, goldAddCalcRemainingTime - Time.deltaTime);
+
+            PlayerModel.Instance.gainGold = (int)Mathf.Lerp(PlayerModel.Instance.gainGold, 0, 1f - goldAddCalcRemainingTime);
+        }
     }
 }

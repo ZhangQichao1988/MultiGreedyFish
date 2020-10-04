@@ -23,12 +23,13 @@ public class UIHome : UIBase
 
     public HomeFishControl fishControl;
 
+    public GameObject transGoldPool;
     public Slider sliderGoldPool;
     public Text textGoldPool;
     public Text textGoldPool_1;
     private float backupTime;
     private P14_Response goldPoolResponse;
-    GoldPoolDataInfo goldPoolData;
+    GoldPoolDataInfo goldPoolData = null;
 
     public Text textPlayerCnt;
     private string strPlayerCnt;
@@ -41,6 +42,11 @@ public class UIHome : UIBase
 
     private bool battleRequestSuccess;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        textGoldPool.gameObject.SetActive(false);
+    }
     public override void Init()
     {
         base.Init();
@@ -52,8 +58,6 @@ public class UIHome : UIBase
         NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);
         NetWorkHandler.RequestFetchGoldPool();
 
-        Animator animator = GetComponent<Animator>();
-        //animator.Play();
     }
     public override void OnEnter(System.Object parms)
     {
@@ -77,10 +81,17 @@ public class UIHome : UIBase
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P14_RESPONSE);
         Debug.Log("On Getted GoldPool!");
+        textGoldPool.gameObject.SetActive(true);
         goldPoolResponse = response as P14_Response;
         backupTime = Time.realtimeSinceStartup;
         goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
         GoldPoolUpdate();
+
+        if (goldPoolResponse.CurrGold < goldPoolData.maxGold)
+        {
+            Animator animator = GetComponent<Animator>();
+            animator.enabled = true;
+        }
 
 
     }
@@ -88,23 +99,23 @@ public class UIHome : UIBase
     private void GoldPoolUpdate()
     {
         long nowTime = (long)(Time.realtimeSinceStartup - backupTime) + goldPoolResponse.CurrTime;
-        if (goldPoolResponse.CurrGold >= goldPoolData.maxGold) { return; }
+        //if () { return; }
 
-        if (nowTime >= goldPoolResponse.NextAt)
+        if (nowTime >= goldPoolResponse.NextAt && goldPoolResponse.CurrGold < goldPoolData.maxGold)
         {
             goldPoolResponse.NextAt += (int)ConfigTableProxy.Instance.GetDataById(3000).intValue;
             goldPoolResponse.NextAt = Math.Min(goldPoolResponse.FullAt, goldPoolResponse.NextAt);
 
             goldPoolResponse.CurrGold += goldPoolData.gainPreSec;
         }
-
-        sliderGoldPool.value = (float)goldPoolResponse.CurrGold / (float)goldPoolData.maxGold;
+        int disCurrGold = PlayerModel.Instance.gainGold + goldPoolResponse.CurrGold;
+        sliderGoldPool.value = (float)disCurrGold / (float)goldPoolData.maxGold;
         bool isEnable = sliderGoldPool.value < 1f;
         //GameObjectUtil.SetActive(textGoldPool.gameObject, isEnable);
         GameObjectUtil.SetActive(textGoldPool_1.transform.parent.gameObject, isEnable);
 
         textGoldPool.text = string.Format("{0}/{1}",
-                                                            goldPoolResponse.CurrGold,
+                                                            disCurrGold,
                                                             goldPoolData.maxGold);
         if (isEnable)
         {
@@ -113,6 +124,15 @@ public class UIHome : UIBase
                                                                         goldPoolData.gainPreSec);
         }
 
+    }
+    public void DropGoldFromPoolStart()
+    {
+        var asset = ResourceManager.LoadSync<GameObject>(AssetPathConst.uiRootPath + "HomePoolGold");
+        int goldCnt = PlayerModel.Instance.gainGold;
+        for (int i = 0; i < goldCnt; ++i)
+        {
+            GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool);
+        }
     }
     private void OnGetPlayer(PBPlayer pBPlayer)
     {
@@ -174,7 +194,10 @@ public class UIHome : UIBase
 
     private void Update()
     {
-        GoldPoolUpdate();
+        if (goldPoolData != null)
+        {
+            GoldPoolUpdate();
+        }
 
         if (textPlayerCnt.gameObject.activeSelf)
         {

@@ -10,7 +10,7 @@ public class PlayerModel : BaseModel<PlayerModel>
     {
 
     }
-
+    public int gainGold { set; get; }
     public PBPlayerFishLevelInfo GetCurrentPlayerFishLevelInfo()
     {
         return GetPlayerFishLevelInfo(player.FightFish);

@@ -70,6 +70,8 @@ public class BattleManagerGroup : MonoBehaviour
         {
             SetBattlePause();
             BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
+
+            PlayerModel.Instance.gainGold = realResponse.GainGold;
             battleResult.Setup(realResponse);
             var playerFishLevelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
             playerFishLevelInfo.RankLevel += realResponse.GainRankLevel;

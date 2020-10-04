@@ -3773,6 +3773,7 @@ MonoBehaviour:
   textGold: {fileID: 3441277201575853022}
   textDiamond: {fileID: 1421351008550435832}
   fishControl: {fileID: 2185106758843559476}
+  transGoldPool: {fileID: 1077707119437914124}
   sliderGoldPool: {fileID: 1504369599985442546}
   textGoldPool: {fileID: 3089871546909536481}
   textGoldPool_1: {fileID: 2818586472892311700}

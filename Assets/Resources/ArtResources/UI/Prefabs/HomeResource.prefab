@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goGold: {fileID: 1174004328573623157}
+  imgGold: {fileID: 644765202786081249}
   textGold: {fileID: 1697949882583036696}
   goDiamond: {fileID: 3234488798800963917}
   textDiamond: {fileID: 8858955026193046081}
