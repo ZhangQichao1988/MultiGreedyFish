@@ -117,6 +117,7 @@ namespace MultiGreedyFish.Pipline
             Debug.Log("Build Android Start!!");
 
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+            PlayerSettings.Android.useCustomKeystore = true;
             PlayerSettings.Android.keystoreName = Function.GetValue ("-keyStorePath=", true);
             PlayerSettings.Android.keystorePass = Function.GetValue ("-keyStorePass=", true);
             PlayerSettings.Android.keyaliasName = Function.GetValue ("-keyAliasName=", true);
