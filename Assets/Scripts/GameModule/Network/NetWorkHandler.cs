@@ -89,8 +89,8 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGetShopitem, OnRecvGetShopItem);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyNormal, OnRecvItemBuyNormal);
 
-        // HttpDispatcher.Instance.AddObserver((int)MessageId.MidPrePay, OnRecvItemBuyNormal);
-        // HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyPay, OnRecvItemBuyNormal);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidPrePay, OnRecvPrePay);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyPay, OnRecvBuyPay);
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRefresh, OnRecvGoldRef);
     }
@@ -292,6 +292,36 @@ public class NetWorkHandler
         NetWorkManager.Request("P11_Request", requestByteData, vo);
     }
 
+    public static void RequestBillingPreBuy(ShopItemVo itemVo)
+    {
+        var request = new P12_Request();
+        request.ShopItemId = itemVo.ID;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P12_Request", requestByteData, itemVo);
+
+    }
+
+    /*
+        required string receipt			= 1;
+        required string transactionId	= 2;
+        required string price			= 3;
+        required string formattedPrice	= 4;
+        required Device platform 		= 5;
+    */
+    public static void RequestBillingBuy(string receipt, string transactionId, string price, string formattedPrice, Device device ,ShopItemVo itemVo)
+    {
+        var request = new P13_Request();
+        request.Receipt = receipt;
+        request.TransactionId = transactionId;
+        request.Price = price;
+        request.FormattedPrice = formattedPrice;
+        request.Platform = device;
+        
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P13_Request", requestByteData, itemVo);
+    }
+
     public static void RequestFetchGoldPool()
     {
         NetWorkManager.Request("P14_Request", null);
@@ -391,6 +421,21 @@ public class NetWorkHandler
         var response = P11_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
         GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
+    }
+
+    static void OnRecvPrePay(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P12_Response.Parser.ParseFrom(msg.Body);
+        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P12_Request;
+        GetDispatch().Dispatch<P12_Response, ShopItemVo>(GetDispatchKey(msg.Key), response, msg.CachedData as ShopItemVo);
+    }
+
+
+    static void OnRecvBuyPay(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P13_Response.Parser.ParseFrom(msg.Body);
+        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P13_Request;
+        GetDispatch().Dispatch<P13_Response, ShopItemVo>(GetDispatchKey(msg.Key), response, msg.CachedData as ShopItemVo);
     }
 
     static void OnRecvGoldRef(HttpDispatcher.NodeMsg msg)

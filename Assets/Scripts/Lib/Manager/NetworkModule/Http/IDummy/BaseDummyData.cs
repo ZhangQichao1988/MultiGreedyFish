@@ -19,7 +19,7 @@ namespace NetWorkModule.Dummy
             pbParserDic = parser;
         }
 
-        public virtual void Recieve(string msg, byte[] data)
+        public virtual void Recieve(string msg, byte[] data, System.Object cachedData = null)
         {
             IMessage pbMsg = null;
             if (pbParserDic.ContainsKey(msg))
@@ -28,10 +28,10 @@ namespace NetWorkModule.Dummy
             }
             
             var resMsgId = msg.Split('_')[0] + "_Response";
-            ProcessResponse(resMsgId, pbMsg);
+            ProcessResponse(resMsgId, pbMsg, cachedData);
         }
 
-        void ProcessResponse(string resMsg, IMessage pbMsg)
+        void ProcessResponse(string resMsg, IMessage pbMsg, System.Object cachedData = null)
         {
             if (!pbResProcesssInst.ContainsKey(resMsg))
             {
@@ -51,7 +51,8 @@ namespace NetWorkModule.Dummy
             IMessage resData = pbResProcesssInst[resMsg].ProcessRequest(msgId, pbMsg);
 
             HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, string.Format("P{0}_Response", msgId), GetStreamBytes(resData));
-
+            
+            pbResProcesssInst[resMsg].SetCachedData(cachedData);
             pbResProcesssInst[resMsg].DispatchRes(msgId, pbMsg, resData);
         }
 

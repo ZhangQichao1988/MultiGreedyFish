@@ -11,6 +11,11 @@ public class RewardMapVo
 
     public List<RewardItemVo> TreasureContent;
 
+    /// <summary>
+    /// 普通购买
+    /// </summary>
+    /// <param name="pRes"></param>
+    /// <returns></returns>
     public static RewardMapVo From(P11_Response pRes)
     {
         var rvo = new RewardMapVo();
@@ -22,6 +27,20 @@ public class RewardMapVo
         {
             rvo.Content = null;
         }
+
+        return rvo;
+    }
+
+    /// <summary>
+    /// 氪金
+    /// </summary>
+    /// <param name="pRes"></param>
+    /// <returns></returns>
+    public static RewardMapVo From(P13_Response pRes)
+    {
+        var rvo = new RewardMapVo();
+        rvo.Content = RewardItemVo.FromList(pRes.Content);
+        rvo.IsTreasure = false;
 
         return rvo;
     }
