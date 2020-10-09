@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
   <string name="firebase_database_url" translatable="false">https://crazyfish-56a24.firebaseio.com</string>
   <string name="gcm_defaultSenderId" translatable="false">89871578339</string>
   <string name="google_storage_bucket" translatable="false">crazyfish-56a24.appspot.com</string>
   <string name="project_id" translatable="false">crazyfish-56a24</string>
   <string name="google_api_key" translatable="false">AIzaSyAkVvRvabfqyVebr1iZ84wYQaK46fOB_40</string>
   <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAkVvRvabfqyVebr1iZ84wYQaK46fOB_40</string>
-  <string name="google_app_id" translatable="false">1:89871578339:android:31e0df8930545ce994c1d6</string>
+  <string name="google_app_id" translatable="false">1:89871578339:android:b08867370c95354c94c1d6</string>
+  <string name="default_android_client_id" translatable="false">89871578339-a47o70jvjto72s6svquamq9lafqrrubs.apps.googleusercontent.com</string>
   <string name="default_web_client_id" translatable="false">89871578339-4dmnahe4pldjmamuvgc0lcij9qcg87r9.apps.googleusercontent.com</string>
 </resources>
