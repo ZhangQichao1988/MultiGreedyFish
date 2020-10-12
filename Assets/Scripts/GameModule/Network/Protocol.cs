@@ -60,7 +60,7 @@ public static partial class ProtocolReflection {
           "UmVzcG9uc2USGQoGcmVzdWx0GAEgAigLMgkuUEJSZXN1bHQSIAoHY29udGVu",
           "dBgCIAMoCzIPLlByb2R1Y3RDb250ZW50EhIKCmlzVHJlYXN1cmUYAyABKAgS",
           "JAoLdHJlYUNvbnRlbnQYBCADKAsyDy5Qcm9kdWN0Q29udGVudCIhCgtQMTJf",
-          "UmVxdWVzdBISCgpzaG9wSXRlbUlkGAEgAigFImYKDFAxMl9SZXNwb25zZRIZ",
+          "UmVxdWVzdBISCgpwbGF0Zm9ybUlkGAEgAigJImYKDFAxMl9SZXNwb25zZRIZ",
           "CgZyZXN1bHQYASACKAsyCS5QQlJlc3VsdBIqCgpyZXN1bHRDb2RlGAIgAigO",
           "MhYuUHVyY2hhc2VkUmVzcG9uc2VLaW5kEg8KB21lc3NhZ2UYAyABKAkidwoL",
           "UDEzX1JlcXVlc3QSDwoHcmVjZWlwdBgBIAIoCRIVCg10cmFuc2FjdGlvbklk",
@@ -70,57 +70,62 @@ public static partial class ProtocolReflection {
           "LlByb2R1Y3RDb250ZW50EioKCnJlc3VsdENvZGUYAyACKA4yFi5QdXJjaGFz",
           "ZWRSZXNwb25zZUtpbmQSDwoHbWVzc2FnZRgEIAEoCSJhCgxQMTRfUmVzcG9u",
           "c2USDQoFbGV2ZWwYASACKAUSEAoIY3VyckdvbGQYAiACKAUSEAoIY3VyclRp",
-          "bWUYAyACKAMSDgoGbmV4dEF0GAQgAigDEg4KBmZ1bGxBdBgFIAIoAyImCghQ",
-          "QlJlc3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQbGF5",
-          "ZXJGaXNoTGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwY",
-          "AiABKAUSEAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgFIusB",
-          "CghQQlBsYXllchIQCghwbGF5ZXJJZBgBIAEoAxIQCghuaWNrbmFtZRgCIAEo",
-          "CRISCgpmYWNlSWNvbklkGAMgASgFEg8KB3JlZ1RpbWUYBCABKAMSEQoJbG9n",
-          "aW5MYXN0GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRIN",
-          "CgVwb3dlchgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgK",
-          "IAEoBRIxChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBCUGxheWVyRmlz",
-          "aExldmVsSW5mbyJgCg9QQkVuZW15RGF0YUluZm8SDgoGZmlzaElkGAEgASgF",
-          "EhEKCWZpc2hMZXZlbBgCIAEoBRIUCgxmaXNoQ291bnRNYXgYAyABKAUSFAoM",
-          "ZmlzaENvdW50TWluGAQgASgFIk4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNo",
-          "SWQYASABKAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBRIOCgZncm93",
-          "dGgYBCABKAUixAEKElNob3BCaWxsaW5nUHJvZHVjdBIKCgJpZBgBIAIoBRIZ",
-          "CgdwYXlUeXBlGAIgAigOMgguUGF5VHlwZRINCgVwcmljZRgDIAIoBRIPCgdy",
-          "ZXNJY29uGAQgAigJEicKDnByb2R1Y3RDb250ZW50GAUgAygLMg8uUHJvZHVj",
-          "dENvbnRlbnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBiABKAkSIwoLbGltaXRE",
-          "ZXRhaWwYByABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlByb2R1Y3RDb250ZW50",
-          "Eg4KBmFtb3VudBgBIAIoBRIRCgljb250ZW50SWQYAiACKAUiaAoNTGltaXRl",
-          "ZERldGFpbBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVFbmRBdBgCIAEoBBIT",
-          "CgtsaW1pdEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVtYWluaW5nQW1vdW50",
-          "GAQgASgFIkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdlGAEgASgFEiEKGWN1",
-          "cnJlbnRNb250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoTRGF0YUxpbmtTZXJ2",
-          "aWNlVHlwZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVf",
-          "cGxheRACEg0KCWFwcF9sb3ZpbhADKsgCCglNZXNzYWdlSWQSDwoLTUlEX1NU",
-          "QVJUVVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9M",
-          "T0dJThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRf",
-          "RklHSFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9G",
-          "SVNIEAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dF",
-          "VBAIEhMKD01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0Q",
-          "ChISCg5NSURfQlVZX05PUk1BTBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlE",
-          "X0JVWV9QQVkQDRIZChVNSURfR09MRF9QT09MX1JFRlJFU0gQDiptCgpTdGF0",
-          "dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lHTkFUVVJFX0VSUk9S",
-          "EAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NBVVRJT04QBBIQCgxD",
-          "TElFTlRfRVJST1IQBSoeCghTaG9wVHlwZRIJCgVvdGhlchABEgcKA3BheRAC",
-          "KisKB1BheVR5cGUSCAoEZ29sZBABEgsKB2RpYW1vbmQQAhIJCgVtb25leRAD",
-          "KkEKC0NvbnRlbnRUeXBlEgwKCGNEaWFtb25kEAESCQoFY0dvbGQQAhIKCgZj",
-          "UGllY2UQAxINCgljVHJlYXN1cmUQBCo7CgZEZXZpY2USEQoNbm90X3NwZWNp",
-          "ZmllZBABEgkKBWFwcGxlEAISCgoGZ29vZ2xlEAMSBwoDYWxsEAQq4AMKFVB1",
-          "cmNoYXNlZFJlc3BvbnNlS2luZBIaChZwcm9jZXNzZWRfc3VjY2Vzc2Z1bGx5",
-          "EAESFQoRYWxyZWFkeV9wcm9jZXNzZWQQAhILCgd1bmtub3duEAMSEQoNaW52",
-          "YWxpZF9wYXJhbRAKEhMKD2ludmFsaWRfcmVjZWlwdBALEiIKHmZhaWxlZF90",
-          "b19jb25uZWN0X3RvX2FwcF9zdG9yZRAMEhYKEmludmFsaWRfcHJvZHVjdF9p",
-          "ZBANEhcKE3JlY2VpcHRfb3V0X29mX2RhdGUQDhIgChx1bmV4cGVjdGVkX3Zh",
-          "bGlkYXN0aW9uX2Vycm9yEBMSGgoWY29udGVudF9kZWxpdmVyX2ZhaWxlZBAe",
-          "EhMKD3Byb2R1Y3RfZXhwaXJlZBAoEhgKFGZhaWx1cmVfcHJlX3B1cmNoYXNl",
-          "EGUSEgoNZGVidWdfc3VjY2VzcxDIARISCg1kZWJ1Z191bmtub3duEMkBEhwK",
-          "F2RlYnVnX2FscmVhZHlfcHJvY2Vzc2VkEMoBEhwKF2RlYnVnX2RlZmVycmVk",
-          "X3B1cmNoYXNlEMsBEiIKHWRlYnVnX2ZhaWxlZF9jb25uZWN0X3BsYXRmb3Jt",
-          "EMwBEhUKEGRlYnVnX29sZF9yZWNpcGUQzQFCMAogY29tLmNoYW8uZmlzaC5z",
-          "ZXJ2ZXIuZmlzaGdhbWUucGJCCVBCTWVzc2FnZYgBAA=="));
+          "bWUYAyACKAMSDgoGbmV4dEF0GAQgAigDEg4KBmZ1bGxBdBgFIAIoAyIhCgtQ",
+          "MTVfUmVxdWVzdBISCgpwbGF0Zm9ybUlkGAEgAigJIogBCgxQMTVfUmVzcG9u",
+          "c2USGQoGcmVzdWx0GAEgAigLMgkuUEJSZXN1bHQSIAoHY29udGVudBgCIAMo",
+          "CzIPLlByb2R1Y3RDb250ZW50EioKCnJlc3VsdENvZGUYAyACKA4yFi5QdXJj",
+          "aGFzZWRSZXNwb25zZUtpbmQSDwoHbWVzc2FnZRgEIAEoCSImCghQQlJlc3Vs",
+          "dBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkiXwoVUEJQbGF5ZXJGaXNo",
+          "TGV2ZWxJbmZvEg4KBmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwYAiABKAUS",
+          "EAoIZmlzaENoaXAYAyABKAUSEQoJcmFua0xldmVsGAQgASgFIusBCghQQlBs",
+          "YXllchIQCghwbGF5ZXJJZBgBIAEoAxIQCghuaWNrbmFtZRgCIAEoCRISCgpm",
+          "YWNlSWNvbklkGAMgASgFEg8KB3JlZ1RpbWUYBCABKAMSEQoJbG9naW5MYXN0",
+          "GAUgASgDEg8KB2RpYW1vbmQYBiABKAUSDAoEZ29sZBgHIAEoBRINCgVwb3dl",
+          "chgIIAEoBRIPCgdwb3dlckF0GAkgASgDEhEKCWZpZ2h0RmlzaBgKIAEoBRIx",
+          "ChFhcnlQbGF5ZXJGaXNoSW5mbxgLIAMoCzIWLlBCUGxheWVyRmlzaExldmVs",
+          "SW5mbyJgCg9QQkVuZW15RGF0YUluZm8SDgoGZmlzaElkGAEgASgFEhEKCWZp",
+          "c2hMZXZlbBgCIAEoBRIUCgxmaXNoQ291bnRNYXgYAyABKAUSFAoMZmlzaENv",
+          "dW50TWluGAQgASgFIk4KD1BCUm9ib3REYXRhSW5mbxIOCgZmaXNoSWQYASAB",
+          "KAUSDAoEYWlJZBgCIAEoBRINCgVsZXZlbBgDIAEoBRIOCgZncm93dGgYBCAB",
+          "KAUixAEKElNob3BCaWxsaW5nUHJvZHVjdBIKCgJpZBgBIAIoBRIZCgdwYXlU",
+          "eXBlGAIgAigOMgguUGF5VHlwZRINCgVwcmljZRgDIAIoBRIPCgdyZXNJY29u",
+          "GAQgAigJEicKDnByb2R1Y3RDb250ZW50GAUgAygLMg8uUHJvZHVjdENvbnRl",
+          "bnQSGQoRcGxhdGZvcm1Qcm9kdWN0SWQYBiABKAkSIwoLbGltaXREZXRhaWwY",
+          "ByABKAsyDi5MaW1pdGVkRGV0YWlsIjMKDlByb2R1Y3RDb250ZW50Eg4KBmFt",
+          "b3VudBgBIAIoBRIRCgljb250ZW50SWQYAiACKAUiaAoNTGltaXRlZERldGFp",
+          "bBIPCgdiZWdpbkF0GAEgASgEEhEKCXNhbGVFbmRBdBgCIAEoBBITCgtsaW1p",
+          "dEFtb3VudBgDIAEoBRIeChZsaW1pdGVkUmVtYWluaW5nQW1vdW50GAQgASgF",
+          "IkIKEEJpbGxpbmdTdGF0ZUluZm8SCwoDYWdlGAEgASgFEiEKGWN1cnJlbnRN",
+          "b250aFB1cmNoYXNlUHJpY2UYAiACKAUqUAoTRGF0YUxpbmtTZXJ2aWNlVHlw",
+          "ZRIICgRub25lEAASDwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVfcGxheRAC",
+          "Eg0KCWFwcF9sb3ZpbhADKt8CCglNZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQ",
+          "ABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9MT0dJThAC",
+          "EhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRfRklHSFQQ",
+          "BBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9GSVNIEAYS",
+          "FQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dFVBAIEhMK",
+          "D01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0QChISCg5N",
+          "SURfQlVZX05PUk1BTBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlEX0JVWV9Q",
+          "QVkQDRIZChVNSURfR09MRF9QT09MX1JFRlJFU0gQDhIVChFNSURfREVCVUdf",
+          "QklMTElORxAPKm0KClN0YXR1c0NvZGUSBgoCT0sQABIKCgZGQUlMRUQQARIT",
+          "Cg9TSUdOQVRVUkVfRVJST1IQAhIXChNLSUNLX09VVF9MT0dJTl9VU0VSEAMS",
+          "CwoHQ0FVVElPThAEEhAKDENMSUVOVF9FUlJPUhAFKh4KCFNob3BUeXBlEgkK",
+          "BW90aGVyEAESBwoDcGF5EAIqKwoHUGF5VHlwZRIICgRnb2xkEAESCwoHZGlh",
+          "bW9uZBACEgkKBW1vbmV5EAMqQQoLQ29udGVudFR5cGUSDAoIY0RpYW1vbmQQ",
+          "ARIJCgVjR29sZBACEgoKBmNQaWVjZRADEg0KCWNUcmVhc3VyZRAEKjsKBkRl",
+          "dmljZRIRCg1ub3Rfc3BlY2lmaWVkEAESCQoFYXBwbGUQAhIKCgZnb29nbGUQ",
+          "AxIHCgNhbGwQBCrgAwoVUHVyY2hhc2VkUmVzcG9uc2VLaW5kEhoKFnByb2Nl",
+          "c3NlZF9zdWNjZXNzZnVsbHkQARIVChFhbHJlYWR5X3Byb2Nlc3NlZBACEgsK",
+          "B3Vua25vd24QAxIRCg1pbnZhbGlkX3BhcmFtEAoSEwoPaW52YWxpZF9yZWNl",
+          "aXB0EAsSIgoeZmFpbGVkX3RvX2Nvbm5lY3RfdG9fYXBwX3N0b3JlEAwSFgoS",
+          "aW52YWxpZF9wcm9kdWN0X2lkEA0SFwoTcmVjZWlwdF9vdXRfb2ZfZGF0ZRAO",
+          "EiAKHHVuZXhwZWN0ZWRfdmFsaWRhc3Rpb25fZXJyb3IQExIaChZjb250ZW50",
+          "X2RlbGl2ZXJfZmFpbGVkEB4SEwoPcHJvZHVjdF9leHBpcmVkECgSGAoUZmFp",
+          "bHVyZV9wcmVfcHVyY2hhc2UQZRISCg1kZWJ1Z19zdWNjZXNzEMgBEhIKDWRl",
+          "YnVnX3Vua25vd24QyQESHAoXZGVidWdfYWxyZWFkeV9wcm9jZXNzZWQQygES",
+          "HAoXZGVidWdfZGVmZXJyZWRfcHVyY2hhc2UQywESIgodZGVidWdfZmFpbGVk",
+          "X2Nvbm5lY3RfcGxhdGZvcm0QzAESFQoQZGVidWdfb2xkX3JlY2lwZRDNAUIw",
+          "CiBjb20uY2hhby5maXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdl",
+          "iAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), typeof(global::PurchasedResponseKind), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -146,11 +151,13 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P10_Response), global::P10_Response.Parser, new[]{ "ProductList", "BillingStateInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P11_Request), global::P11_Request.Parser, new[]{ "ShopItemId", "ShopItemNum" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P11_Response), global::P11_Response.Parser, new[]{ "Result", "Content", "IsTreasure", "TreaContent" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::P12_Request), global::P12_Request.Parser, new[]{ "ShopItemId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P12_Request), global::P12_Request.Parser, new[]{ "PlatformId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P12_Response), global::P12_Response.Parser, new[]{ "Result", "ResultCode", "Message" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P13_Request), global::P13_Request.Parser, new[]{ "Receipt", "TransactionId", "Price", "FormattedPrice", "Platform" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P13_Response), global::P13_Response.Parser, new[]{ "Result", "Content", "ResultCode", "Message" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P14_Response), global::P14_Response.Parser, new[]{ "Level", "CurrGold", "CurrTime", "NextAt", "FullAt" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P15_Request), global::P15_Request.Parser, new[]{ "PlatformId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P15_Response), global::P15_Response.Parser, new[]{ "Result", "Content", "ResultCode", "Message" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo" }, null, null, null, null),
@@ -192,6 +199,7 @@ public enum MessageId {
   [pbr::OriginalName("MID_PRE_PAY")] MidPrePay = 12,
   [pbr::OriginalName("MID_BUY_PAY")] MidBuyPay = 13,
   [pbr::OriginalName("MID_GOLD_POOL_REFRESH")] MidGoldPoolRefresh = 14,
+  [pbr::OriginalName("MID_DEBUG_BILLING")] MidDebugBilling = 15,
 }
 
 public enum StatusCode {
@@ -4631,7 +4639,6 @@ public sealed partial class P11_Response : pb::IMessage<P11_Response> {
 public sealed partial class P12_Request : pb::IMessage<P12_Request> {
   private static readonly pb::MessageParser<P12_Request> _parser = new pb::MessageParser<P12_Request>(() => new P12_Request());
   private pb::UnknownFieldSet _unknownFields;
-  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pb::MessageParser<P12_Request> Parser { get { return _parser; } }
 
@@ -4654,8 +4661,7 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public P12_Request(P12_Request other) : this() {
-    _hasBits0 = other._hasBits0;
-    shopItemId_ = other.shopItemId_;
+    platformId_ = other.platformId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4664,28 +4670,27 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
     return new P12_Request(this);
   }
 
-  /// <summary>Field number for the "shopItemId" field.</summary>
-  public const int ShopItemIdFieldNumber = 1;
-  private readonly static int ShopItemIdDefaultValue = 0;
+  /// <summary>Field number for the "platformId" field.</summary>
+  public const int PlatformIdFieldNumber = 1;
+  private readonly static string PlatformIdDefaultValue = "";
 
-  private int shopItemId_;
+  private string platformId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public int ShopItemId {
-    get { if ((_hasBits0 & 1) != 0) { return shopItemId_; } else { return ShopItemIdDefaultValue; } }
+  public string PlatformId {
+    get { return platformId_ ?? PlatformIdDefaultValue; }
     set {
-      _hasBits0 |= 1;
-      shopItemId_ = value;
+      platformId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
-  /// <summary>Gets whether the "shopItemId" field is set</summary>
+  /// <summary>Gets whether the "platformId" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool HasShopItemId {
-    get { return (_hasBits0 & 1) != 0; }
+  public bool HasPlatformId {
+    get { return platformId_ != null; }
   }
-  /// <summary>Clears the value of the "shopItemId" field</summary>
+  /// <summary>Clears the value of the "platformId" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void ClearShopItemId() {
-    _hasBits0 &= ~1;
+  public void ClearPlatformId() {
+    platformId_ = null;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4701,14 +4706,14 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (ShopItemId != other.ShopItemId) return false;
+    if (PlatformId != other.PlatformId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    if (HasShopItemId) hash ^= ShopItemId.GetHashCode();
+    if (HasPlatformId) hash ^= PlatformId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4722,9 +4727,9 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    if (HasShopItemId) {
-      output.WriteRawTag(8);
-      output.WriteInt32(ShopItemId);
+    if (HasPlatformId) {
+      output.WriteRawTag(10);
+      output.WriteString(PlatformId);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -4734,8 +4739,8 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    if (HasShopItemId) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(ShopItemId);
+    if (HasPlatformId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PlatformId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4748,8 +4753,8 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
     if (other == null) {
       return;
     }
-    if (other.HasShopItemId) {
-      ShopItemId = other.ShopItemId;
+    if (other.HasPlatformId) {
+      PlatformId = other.PlatformId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4762,8 +4767,8 @@ public sealed partial class P12_Request : pb::IMessage<P12_Request> {
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          ShopItemId = input.ReadInt32();
+        case 10: {
+          PlatformId = input.ReadString();
           break;
         }
       }
@@ -5871,6 +5876,394 @@ public sealed partial class P14_Response : pb::IMessage<P14_Response> {
 }
 
 /// <summary>
+/// Debug Billing
+/// </summary>
+public sealed partial class P15_Request : pb::IMessage<P15_Request> {
+  private static readonly pb::MessageParser<P15_Request> _parser = new pb::MessageParser<P15_Request>(() => new P15_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P15_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[27]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Request(P15_Request other) : this() {
+    platformId_ = other.platformId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Request Clone() {
+    return new P15_Request(this);
+  }
+
+  /// <summary>Field number for the "platformId" field.</summary>
+  public const int PlatformIdFieldNumber = 1;
+  private readonly static string PlatformIdDefaultValue = "";
+
+  private string platformId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string PlatformId {
+    get { return platformId_ ?? PlatformIdDefaultValue; }
+    set {
+      platformId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "platformId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPlatformId {
+    get { return platformId_ != null; }
+  }
+  /// <summary>Clears the value of the "platformId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPlatformId() {
+    platformId_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P15_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P15_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlatformId != other.PlatformId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPlatformId) hash ^= PlatformId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasPlatformId) {
+      output.WriteRawTag(10);
+      output.WriteString(PlatformId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPlatformId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(PlatformId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P15_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPlatformId) {
+      PlatformId = other.PlatformId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          PlatformId = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P15_Response : pb::IMessage<P15_Response> {
+  private static readonly pb::MessageParser<P15_Response> _parser = new pb::MessageParser<P15_Response>(() => new P15_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P15_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[28]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Response(P15_Response other) : this() {
+    _hasBits0 = other._hasBits0;
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    content_ = other.content_.Clone();
+    resultCode_ = other.resultCode_;
+    message_ = other.message_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P15_Response Clone() {
+    return new P15_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  /// <summary>
+  ///结果
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "content" field.</summary>
+  public const int ContentFieldNumber = 2;
+  private static readonly pb::FieldCodec<global::ProductContent> _repeated_content_codec
+      = pb::FieldCodec.ForMessage(18, global::ProductContent.Parser);
+  private readonly pbc::RepeatedField<global::ProductContent> content_ = new pbc::RepeatedField<global::ProductContent>();
+  /// <summary>
+  ///获得物品列表
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ProductContent> Content {
+    get { return content_; }
+  }
+
+  /// <summary>Field number for the "resultCode" field.</summary>
+  public const int ResultCodeFieldNumber = 3;
+  private readonly static global::PurchasedResponseKind ResultCodeDefaultValue = global::PurchasedResponseKind.ProcessedSuccessfully;
+
+  private global::PurchasedResponseKind resultCode_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PurchasedResponseKind ResultCode {
+    get { if ((_hasBits0 & 1) != 0) { return resultCode_; } else { return ResultCodeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      resultCode_ = value;
+    }
+  }
+  /// <summary>Gets whether the "resultCode" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasResultCode {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "resultCode" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearResultCode() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "message" field.</summary>
+  public const int MessageFieldNumber = 4;
+  private readonly static string MessageDefaultValue = "";
+
+  private string message_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Message {
+    get { return message_ ?? MessageDefaultValue; }
+    set {
+      message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "message" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasMessage {
+    get { return message_ != null; }
+  }
+  /// <summary>Clears the value of the "message" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearMessage() {
+    message_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P15_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P15_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if(!content_.Equals(other.content_)) return false;
+    if (ResultCode != other.ResultCode) return false;
+    if (Message != other.Message) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    hash ^= content_.GetHashCode();
+    if (HasResultCode) hash ^= ResultCode.GetHashCode();
+    if (HasMessage) hash ^= Message.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    content_.WriteTo(output, _repeated_content_codec);
+    if (HasResultCode) {
+      output.WriteRawTag(24);
+      output.WriteEnum((int) ResultCode);
+    }
+    if (HasMessage) {
+      output.WriteRawTag(34);
+      output.WriteString(Message);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    size += content_.CalculateSize(_repeated_content_codec);
+    if (HasResultCode) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ResultCode);
+    }
+    if (HasMessage) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P15_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    content_.Add(other.content_);
+    if (other.HasResultCode) {
+      ResultCode = other.ResultCode;
+    }
+    if (other.HasMessage) {
+      Message = other.Message;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 18: {
+          content_.AddEntriesFrom(input, _repeated_content_codec);
+          break;
+        }
+        case 24: {
+          ResultCode = (global::PurchasedResponseKind) input.ReadEnum();
+          break;
+        }
+        case 34: {
+          Message = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 ///PB结果
 /// </summary>
 public sealed partial class PBResult : pb::IMessage<PBResult> {
@@ -5882,7 +6275,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[27]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6072,7 +6465,7 @@ public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLev
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[28]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6354,7 +6747,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[29]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6922,7 +7315,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[30]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7204,7 +7597,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[31]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7486,7 +7879,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[32]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7846,7 +8239,7 @@ public sealed partial class ProductContent : pb::IMessage<ProductContent> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[33]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8031,7 +8424,7 @@ public sealed partial class LimitedDetail : pb::IMessage<LimitedDetail> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8298,7 +8691,7 @@ public sealed partial class BillingStateInfo : pb::IMessage<BillingStateInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[35]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

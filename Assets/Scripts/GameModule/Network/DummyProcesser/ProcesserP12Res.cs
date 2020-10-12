@@ -28,6 +28,6 @@ public class ProcesserP12Res : BaseDummyProcesser<P12_Request, P12_Response>
 
     public override void DispatchRes(int msgId, P12_Request request, P12_Response response)
     {
-        NetWorkHandler.GetDispatch().Dispatch<P12_Response, ShopItemVo>(NetWorkHandler.GetDispatchKey(msgId), response, GetCachedData() as ShopItemVo);
+        NetWorkHandler.GetDispatch().Dispatch<P12_Response, string>(NetWorkHandler.GetDispatchKey(msgId), response, GetCachedData().ToString());
     }
 }

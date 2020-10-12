@@ -54,13 +54,13 @@ namespace Jackpot.Billing
         /// 商品価格を示します
         /// </summary>
         /// <value>The receipt.</value>
-        public string Price { get; private set; }
+        public string Price { get; set; }
 
         /// <summary>
         /// フォーマットされた商品価格を示します
         /// </summary>
         /// <value>The receipt.</value>
-        public string FormattedPrice { get; private set; }
+        public string FormattedPrice { get; set; }
 
         /// <summary>
         /// 通貨単位を示します

@@ -7,9 +7,9 @@ using UnityEngine.UIElements;
 /// <summary>
 /// 修改昵称
 /// </summary>
-public class ProcesserP13Res : BaseDummyProcesser<P13_Request, P13_Response>
+public class ProcesserP15Res : BaseDummyProcesser<P15_Request, P15_Response>
 {
-    public override P13_Response ProcessRequest(int msgId, P13_Request pbData)
+    public override P15_Response ProcessRequest(int msgId, P15_Request pbData)
     {
         var response = GetResponseData();
 
@@ -17,9 +17,9 @@ public class ProcesserP13Res : BaseDummyProcesser<P13_Request, P13_Response>
         
     }
 
-    P13_Response GetResponseData()
+    P15_Response GetResponseData()
     {
-        var res = new P13_Response();
+        var res = new P15_Response();
         res.Result = new PBResult() { Code = 0 };
         res.ResultCode = PurchasedResponseKind.ProcessedSuccessfully;
         for (int i = 0; i < 10; i++)
@@ -31,8 +31,8 @@ public class ProcesserP13Res : BaseDummyProcesser<P13_Request, P13_Response>
     }
 
 
-    public override void DispatchRes(int msgId, P13_Request request, P13_Response response)
+    public override void DispatchRes(int msgId, P15_Request request, P15_Response response)
     {
-        NetWorkHandler.GetDispatch().Dispatch<P13_Response, string>(NetWorkHandler.GetDispatchKey(msgId), response, GetCachedData().ToString());
+        NetWorkHandler.GetDispatch().Dispatch<P15_Response, string>(NetWorkHandler.GetDispatchKey(msgId), response, GetCachedData().ToString());
     }
 }

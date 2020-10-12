@@ -41,6 +41,7 @@ public class ProcesserP10Res : BaseDummyProcesser<P10_Request, P10_Response>
             for (int i = 0; i < 6; i++)
             {
                 var shopItem = new ShopBillingProduct(){ Id = 1, PayType = PayType.Money, Price = 11 };
+                shopItem.PlatformProductId = "jp.co.crazyfish.item00" + (i + 1);
                 shopItem.ProductContent.Add(new ProductContent(){ Amount = 1, ContentId = 1});
                 res.ProductList.Add(shopItem);
             }

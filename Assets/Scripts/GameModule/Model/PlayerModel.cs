@@ -100,5 +100,10 @@ public class PlayerModel : BaseModel<PlayerModel>
             }
         }
     }
-    //public void 
+    
+    public override void Dispose()
+    {
+        base.Dispose();
+        player = null;
+    }
 }

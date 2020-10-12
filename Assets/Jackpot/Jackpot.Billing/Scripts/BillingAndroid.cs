@@ -30,7 +30,7 @@ namespace Jackpot.Billing
         /// <summary>
         /// Resume時のProductを一時的に保持するList
         /// </summary>
-        readonly List<Product> resumedProducts;
+        readonly List<ResumeProduct> resumedProducts;
 
         /// <summary>
         /// The is billing supported.
@@ -79,7 +79,7 @@ namespace Jackpot.Billing
             defaultRefreshReceipt)
         {
 #if UNITY_ANDROID
-            resumedProducts = new List<Product>();
+            resumedProducts = new List<ResumeProduct>();
             isBillingSupported = false;
             billingNotSupportedMessage = string.Empty;
             this.enableClientAcknowledge = enableClientAcknowledge;
@@ -689,14 +689,15 @@ namespace Jackpot.Billing
                 );
 
                 resumedProducts.Add(
-                    new Product(
+                    new ResumeProduct(
                         resumedSkuDetail.ProductId,
                         resumedSkuDetail.Type,
                         resumedSkuDetail.Title,
                         resumedSkuDetail.Description,
                         resumedSkuDetail.Price,
                         resumedSkuDetail.FormattedPrice,
-                        Currency.Resolve(resumedSkuDetail.PriceCurrencyCode)
+                        Currency.Resolve(resumedSkuDetail.PriceCurrencyCode),
+                        purchase.PurchaseToken
                     )
                 );
             }
@@ -732,6 +733,20 @@ namespace Jackpot.Billing
             }
         }
 
+        public void CloseResumeProudct()
+        {
+            if (resumedProducts != null)
+            {
+                if (resumedProducts.Count > 0)
+                {
+                    foreach (var item in resumedProducts)
+                    {
+                        GoogleInAppBilling.Consume(item.Id, item.PurchaseToken);
+                    }
+                }
+                resumedProducts.Clear();
+            }
+        }
 #endif
     }
 }

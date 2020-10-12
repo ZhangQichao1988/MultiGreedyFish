@@ -44,4 +44,12 @@ public class RewardMapVo
 
         return rvo;
     }
+    public static RewardMapVo From(IList<ProductContent> pRes)
+    {
+        var rvo = new RewardMapVo();
+        rvo.Content = RewardItemVo.FromList(pRes);
+        rvo.IsTreasure = false;
+
+        return rvo;
+    }
 }

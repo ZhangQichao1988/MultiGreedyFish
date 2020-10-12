@@ -9,11 +9,22 @@ public class ShopItemVo
     public static int SHOP_LANG_ST_ID = 30000;
     public ShopBillingProduct pbItems;
 
+    public string BillingPrice{get; set;}
+    public string BillingFormatPrice{get; set;}
+
     public int ID
     {
         get
         {
             return pbItems.Id;
+        }
+    }
+
+    public string PlatformID
+    {
+        get
+        {
+            return pbItems.PlatformProductId;
         }
     }
 

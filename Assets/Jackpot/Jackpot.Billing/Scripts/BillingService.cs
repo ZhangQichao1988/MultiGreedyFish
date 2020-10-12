@@ -423,6 +423,14 @@ namespace Jackpot.Billing
 #endif
         }
 
+
+#if UNITY_ANDROID
+        public void CloseAndroidProudct()
+        {
+            (billing as BillingAndroid).CloseResumeProudct();
+        }
+#endif
+
 #endregion
     }
 }

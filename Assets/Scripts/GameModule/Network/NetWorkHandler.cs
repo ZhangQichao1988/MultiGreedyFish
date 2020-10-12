@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NetWorkModule;
 using Google.Protobuf;
+using Jackpot.Billing;
 
 
 /// <summary>
@@ -51,6 +52,7 @@ public class NetWorkHandler
             {"P11_Request", P11_Request.Parser},
             {"P12_Request", P12_Request.Parser},
             {"P13_Request", P13_Request.Parser},
+            {"P15_Request", P15_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -66,6 +68,7 @@ public class NetWorkHandler
             {"P12_Response", P12_Response.Parser},
             {"P13_Response", P13_Response.Parser},
             {"P14_Response", P14_Response.Parser},
+            {"P15_Response", P15_Response.Parser},
         };
 
 #if DUMMY_DATA
@@ -91,6 +94,7 @@ public class NetWorkHandler
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidPrePay, OnRecvPrePay);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidBuyPay, OnRecvBuyPay);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidDebugBilling, OnRecvDebugPay);
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRefresh, OnRecvGoldRef);
     }
@@ -292,13 +296,13 @@ public class NetWorkHandler
         NetWorkManager.Request("P11_Request", requestByteData, vo);
     }
 
-    public static void RequestBillingPreBuy(ShopItemVo itemVo)
+    public static void RequestBillingPreBuy(string productId)
     {
         var request = new P12_Request();
-        request.ShopItemId = itemVo.ID;
+        request.PlatformId = productId;
         
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P12_Request", requestByteData, itemVo);
+        NetWorkManager.Request("P12_Request", requestByteData, productId);
 
     }
 
@@ -309,7 +313,7 @@ public class NetWorkHandler
         required string formattedPrice	= 4;
         required Device platform 		= 5;
     */
-    public static void RequestBillingBuy(string receipt, string transactionId, string price, string formattedPrice, Device device ,ShopItemVo itemVo)
+    public static void RequestBillingBuy(string receipt, string transactionId, string price, string formattedPrice, Device device ,string productId)
     {
         var request = new P13_Request();
         request.Receipt = receipt;
@@ -319,7 +323,16 @@ public class NetWorkHandler
         request.Platform = device;
         
         byte[] requestByteData = GetStreamBytes(request);
-        NetWorkManager.Request("P13_Request", requestByteData, itemVo);
+        NetWorkManager.Request("P13_Request", requestByteData, productId);
+    }
+
+    public static void RequestDebugBilling(string productId)
+    {
+        var request = new P15_Request();
+        request.PlatformId = productId;
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P15_Request", requestByteData, productId);
     }
 
     public static void RequestFetchGoldPool()
@@ -427,7 +440,7 @@ public class NetWorkHandler
     {
         var response = P12_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P12_Request;
-        GetDispatch().Dispatch<P12_Response, ShopItemVo>(GetDispatchKey(msg.Key), response, msg.CachedData as ShopItemVo);
+        GetDispatch().Dispatch<P12_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
     }
 
 
@@ -435,7 +448,13 @@ public class NetWorkHandler
     {
         var response = P13_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P13_Request;
-        GetDispatch().Dispatch<P13_Response, ShopItemVo>(GetDispatchKey(msg.Key), response, msg.CachedData as ShopItemVo);
+        GetDispatch().Dispatch<P13_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+    }
+
+    static void OnRecvDebugPay(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P15_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P15_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
     }
 
     static void OnRecvGoldRef(HttpDispatcher.NodeMsg msg)

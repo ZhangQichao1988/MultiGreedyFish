@@ -81,6 +81,7 @@ public class Intro : MonoBehaviour
 
     IEnumerator Start()
     {
+        BillingManager.Initialize();
         clickEffect.Initialize();
         NetWorkHandler.InitHttpNetWork();
         GameServiceController.Init();

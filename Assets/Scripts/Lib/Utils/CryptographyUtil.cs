@@ -189,6 +189,11 @@ public class CryptographyUtil
 	{
 		return Convert.ToBase64String(PublicEncrypt(randomBytes));
 	}
+
+	public static string GetBase64String(byte[] radBytes)
+	{
+		return Convert.ToBase64String(radBytes);
+	}
 	
 	public static byte[] HmacSha1(byte[] data, byte[] key)
 	{
