@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+    <androidPackages>
+        <androidPackage spec="com.android.billingclient:billing:3.0.0" />
+    </androidPackages>
+</dependencies>
+
