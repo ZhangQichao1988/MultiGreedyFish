@@ -113,7 +113,6 @@ public class InGameUIPanel : MonoBehaviour
             PlayerRunSkill();
         }
 
-        
 #endif
 
         skillGuage.fillAmount = Player.fishSkill.currentGauge;

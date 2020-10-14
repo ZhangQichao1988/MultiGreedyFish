@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058798958167963340}
   - component: {fileID: 175688623766271668}
+  - component: {fileID: 5469532549466583784}
   m_Layer: 0
   m_Name: HomeResource
   m_TagString: Untagged
@@ -55,6 +56,25 @@ MonoBehaviour:
   textGold: {fileID: 1697949882583036696}
   goDiamond: {fileID: 3234488798800963917}
   textDiamond: {fileID: 8858955026193046081}
+--- !u!95 &5469532549466583784
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180606638188661783}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8eb979504d92864cb41c5d81e5a25ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &389853280380552873
 GameObject:
   m_ObjectHideFlags: 0

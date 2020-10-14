@@ -29,6 +29,10 @@ public class UIHome : UIBase
     public Text textGoldPool_1;
     private float backupTime;
     private P14_Response goldPoolResponse;
+
+    private bool isStartGoldCnt = false;
+    private float gainGoldCntRemainingTime = 0f;
+    private int gainGold;
     GoldPoolDataInfo goldPoolData = null;
 
     public Text textPlayerCnt;
@@ -85,12 +89,16 @@ public class UIHome : UIBase
         goldPoolResponse = response as P14_Response;
         backupTime = Time.realtimeSinceStartup;
         goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
+        gainGoldCntRemainingTime = 3f;
+        gainGold = PlayerModel.Instance.gainGold;
+
         GoldPoolUpdate();
 
-        if (goldPoolResponse.CurrGold < goldPoolData.maxGold)
+        if (PlayerModel.Instance.gainGold > 0)
         {
             Animator animator = GetComponent<Animator>();
             animator.enabled = true;
+
         }
 
 
@@ -98,6 +106,12 @@ public class UIHome : UIBase
 
     private void GoldPoolUpdate()
     {
+        if (isStartGoldCnt)
+        {
+            gainGoldCntRemainingTime = Mathf.Clamp(gainGoldCntRemainingTime - Time.deltaTime, 0f, 1f);
+            gainGold = (int)Mathf.Lerp(0, gainGold, gainGoldCntRemainingTime);
+        }
+
         long nowTime = (long)(Time.realtimeSinceStartup - backupTime) + goldPoolResponse.CurrTime;
         //if () { return; }
 
@@ -108,7 +122,7 @@ public class UIHome : UIBase
 
             goldPoolResponse.CurrGold += goldPoolData.gainPreSec;
         }
-        int disCurrGold = PlayerModel.Instance.gainGold + goldPoolResponse.CurrGold;
+        int disCurrGold = gainGold + goldPoolResponse.CurrGold;
         sliderGoldPool.value = (float)disCurrGold / (float)goldPoolData.maxGold;
         bool isEnable = sliderGoldPool.value < 1f;
         //GameObjectUtil.SetActive(textGoldPool.gameObject, isEnable);
@@ -127,8 +141,9 @@ public class UIHome : UIBase
     }
     public void DropGoldFromPoolStart()
     {
+        isStartGoldCnt = true;
         var asset = ResourceManager.LoadSync<GameObject>(AssetPathConst.uiRootPath + "HomePoolGold");
-        int goldCnt = PlayerModel.Instance.gainGold;
+        int goldCnt = PlayerModel.Instance.gainGold/10 + 1;
         for (int i = 0; i < goldCnt; ++i)
         {
             GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool);

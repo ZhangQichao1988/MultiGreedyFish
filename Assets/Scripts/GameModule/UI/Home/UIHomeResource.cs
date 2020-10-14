@@ -14,12 +14,15 @@ public class UIHomeResource : UIBase
     public GameObject goDiamond;
     public Text textDiamond;
 
+    private Animator animator;
+
     bool isGoldAddCalc = false;
     float goldAddCalcRemainingTime = 0f;
     protected override void Awake()
     {
         base.Awake();
         Instance = this;
+        animator = GetComponent<Animator>();
     }
     public void SetActiveScene(string sceneName)
     {
@@ -51,6 +54,7 @@ public class UIHomeResource : UIBase
     }
     public void StartGoldAddCalc()
     {
+        animator.SetTrigger("GoldAdd");
         if (isGoldAddCalc) { return; }
         isGoldAddCalc = true;
         goldAddCalcRemainingTime = 1f;
@@ -59,9 +63,16 @@ public class UIHomeResource : UIBase
     {
         if (isGoldAddCalc)
         {
-            goldAddCalcRemainingTime = Mathf.Max(0f, goldAddCalcRemainingTime - Time.deltaTime);
+            goldAddCalcRemainingTime -= Time.deltaTime;
+            if (goldAddCalcRemainingTime < 0f)
+            {
+                goldAddCalcRemainingTime = 0f;
+                isGoldAddCalc = false;
+            }
 
             PlayerModel.Instance.gainGold = (int)Mathf.Lerp(PlayerModel.Instance.gainGold, 0, 1f - goldAddCalcRemainingTime);
+            textGold.text = (PlayerModel.Instance.player.Gold - PlayerModel.Instance.gainGold).ToString();
+            
         }
     }
 }

@@ -42,7 +42,7 @@ public class PoolGoldAnim : MonoBehaviour
                 break;
             case 2:
                 transform.position = Vector3.Lerp(transform.position, targetPos, 1f - remainingTime);
-                if (remainingTime <= 0.2f)
+                if (remainingTime <= 0.5f)
                 {
                     UIHomeResource.Instance.StartGoldAddCalc();
                     Destroy(gameObject);

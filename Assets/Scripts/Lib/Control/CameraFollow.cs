@@ -56,6 +56,8 @@ public class CameraFollow : MonoBehaviour
 
     public void SetTarget(Transform target)
     {
+		var audio = Target.gameObject.GetComponent<AudioListener>();
+		Destroy(audio);
 		target.gameObject.AddComponent<AudioListener>();
 		Target = target;
         if (Target != null)
