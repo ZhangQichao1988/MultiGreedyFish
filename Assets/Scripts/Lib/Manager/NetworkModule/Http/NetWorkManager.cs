@@ -77,7 +77,7 @@ namespace NetWorkModule
         static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
         {
 #if DUMMY_DATA
-            dummyData.Recieve(msg, data);
+            dummyData.Recieve(msg, data, cachedData);
             yield break;
 #else
             yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);

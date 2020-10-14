@@ -11,19 +11,19 @@ SHELL_PATH=$(cd "$(dirname "$0")";pwd)
 WORKDIR=$(dirname $(dirname "$SHELL_PATH"))
 PRODUCT_NAME="FISH-FIGHT"
 BUNDLE_VERSION="0.0.1"
-BUNDLE_VERSION_CODE_SHOW="1"
+BUNDLE_VERSION_CODE_SHOW="3"
 ENABLE_DEBUG="true"
-BUNDLE_IDENTIFIER="co.jp.cad.crazyfish"
+BUNDLE_IDENTIFIER="jp.co.cad.crazyfish"
 
 #android build
 KEY_STORE_PATH="${WORKDIR}/ci/config/fish.keystore"
 KEY_STORE_PASS="hulaoshi007"
-KEY_ALIAS_NAME="co.jp.cad.crazyfish"
+KEY_ALIAS_NAME="crazyfish"
 KEY_ALIAS_PASS="hulaoshi007"
 
 
 echo ${WORKDIR}
-UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.7f1/Unity.app/Contents/MacOS/Unity
+UNITY_PATH=/Applications/Unity/Hub/Editor/2019.4.11f1/Unity.app/Contents/MacOS/Unity
 
 BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 

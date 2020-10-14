@@ -26,7 +26,7 @@ public class UIShopCell : SimpleScrollingCell
         {
             images.sprite = assRef.Asset;
         }
-        priceText.text = shopData.Price.ToString();
+        priceText.text = shopData.Paytype == PayType.Money ? shopData.BillingFormatPrice : shopData.Price.ToString();
         buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
                                                 ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
 

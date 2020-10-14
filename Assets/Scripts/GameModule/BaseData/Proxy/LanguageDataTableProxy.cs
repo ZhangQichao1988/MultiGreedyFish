@@ -23,7 +23,7 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 	static public string GetText(int Id)
 	{
 		var data = LanguageDataTableProxy.Instance.GetDataById(Id);
-		Debug.Assert(data != null, "not found id:" + Id);
+		// Debug.Assert(data != null, "not found id:" + Id);
 		if (data == null)
 		{
 			return Id.ToString();

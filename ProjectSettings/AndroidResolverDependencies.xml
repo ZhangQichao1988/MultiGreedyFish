@@ -1,6 +1,9 @@
 <dependencies>
   <packages>
+    <package>androidx.legacy:legacy-support-v4:1.0.0</package>
+    <package>com.android.billingclient:billing:3.0.0</package>
     <package>com.google.android.gms:play-services-ads:19.3.0</package>
+    <package>com.google.android.gms:play-services-ads-identifier:17.0.0</package>
     <package>com.google.firebase:firebase-analytics:17.4.1</package>
     <package>com.google.firebase:firebase-analytics-unity:6.15.2</package>
     <package>com.google.firebase:firebase-app-unity:6.15.2</package>
@@ -28,6 +31,7 @@
     <file>Assets/Plugins/Android/androidx.interpolator.interpolator-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.legacy.legacy-support-core-ui-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.legacy.legacy-support-core-utils-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.legacy.legacy-support-v4-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-common-2.0.0.jar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-core-2.0.0.aar</file>
@@ -35,11 +39,13 @@
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-viewmodel-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.loader.loader-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.localbroadcastmanager.localbroadcastmanager-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.media.media-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.print.print-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.slidingpanelayout.slidingpanelayout-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.swiperefreshlayout.swiperefreshlayout-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.viewpager.viewpager-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.android.billingclient.billing-3.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-api-2.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-backend-cct-2.2.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-runtime-2.2.1.aar</file>
@@ -89,15 +95,15 @@
   </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="co.jp.cad.crazyfish" />
-    <setting name="explodeAars" value="True" />
+    <setting name="bundleId" value="jp.co.cad.crazyfish" />
+    <setting name="explodeAars" value="False" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />
-    <setting name="installAndroidPackages" value="True" />
+    <setting name="installAndroidPackages" value="False" />
     <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
     <setting name="packageDir" value="Assets/Plugins/Android" />
-    <setting name="patchAndroidManifest" value="True" />
-    <setting name="patchMainTemplateGradle" value="True" />
+    <setting name="patchAndroidManifest" value="False" />
+    <setting name="patchMainTemplateGradle" value="False" />
     <setting name="projectExportEnabled" value="False" />
     <setting name="useJetifier" value="True" />
   </settings>

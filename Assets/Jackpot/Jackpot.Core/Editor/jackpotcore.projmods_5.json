@@ -1,0 +1,10 @@
+{
+    "group":       "Libraries/Plugins/iOS",
+    "libs":        [],
+    "frameworks":  ["Security.framework", "StoreKit.framework"],
+    "files":       [],
+    "arc_sources": [],
+    "folders":     [],
+    "excludes":    [],
+    "buildSettings": {}
+}
