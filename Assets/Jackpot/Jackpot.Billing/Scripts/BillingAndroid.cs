@@ -224,17 +224,15 @@ namespace Jackpot.Billing
         protected override void QueryProductsCore(List<string> productIds, List<string> subsIds)
         {
 #if UNITY_ANDROID
-            string[] productArr = null;
-            string[] subsArr = null;
-            if (productIds != null)
+            if (productIds == null)
             {
-                productArr = productIds.ToArray();
+                productIds = new List<string>();
             }
-            if (subsIds != null)
+            if (subsIds == null)
             {
-                subsArr = subsIds.ToArray();
+                subsIds = new List<string>();
             }
-            GoogleInAppBilling.QueryInventory(productArr, subsArr);
+            GoogleInAppBilling.QueryInventory(productIds.ToArray(), subsIds.ToArray());
 #endif
         }
 

@@ -9,10 +9,12 @@ namespace MultiGreedyFish.Pipline
     public class ProjectBuild
     {
         private static bool IsBuildIos = false;
+        private static bool IsDevBuild = false;
+
         static void DealwithBuildArg()
         {
             IsBuildIos = System.Convert.ToBoolean(Function.GetValue("-iosBuild=", false));
-
+            IsDevBuild = System.Convert.ToBoolean(Function.GetValue("-devBuild=", false));
             string strDefine = "";
 
             string enabledDebugMenu = Function.GetValue("-enabledDebugMenu=", false);
@@ -74,7 +76,7 @@ namespace MultiGreedyFish.Pipline
             BuildOptions opt = BuildOptions.SymlinkLibraries;
             // opt = opt | BuildOptions.Development | BuildOptions.ConnectWithProfiler;
             
-            EditorUserBuildSettings.development = false;
+            EditorUserBuildSettings.development = IsDevBuild;
             
             PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, 1);
             
@@ -134,7 +136,7 @@ namespace MultiGreedyFish.Pipline
             PlayerSettings.bundleVersion = Function.GetValue ("-bundleVersion=", true);
 
 
-            EditorUserBuildSettings.development = false;
+            EditorUserBuildSettings.development = IsDevBuild;
 
             string dir = "Achieve" + Path.DirectorySeparatorChar + "Android" + Path.DirectorySeparatorChar;
 

@@ -423,7 +423,6 @@ namespace Jackpot.Billing
 #endif
         }
 
-
 #if UNITY_ANDROID
         public void CloseAndroidProudct()
         {

@@ -7,7 +7,7 @@ public class AppConst
     public static string RsaPublicKey = "<RSAKeyValue><Modulus>udy3x+fT95dgx/3SPYrIncR4LrSqPOEllKqID7Q/nQCLq/g/MkC2J0oO3HRl3rmgccxTecAXioemT2TV72w7NHRkw3JXn4AY+2moYy9Fx/ncLClYh1/+ieJmf9vJX8WyTe0+mFaUis4ShJCxtA6aUyaEqgKahFHgz1s0+1wvZyc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
 
     public static bool EnableProtocolEncrypt = true;
-    public static bool EnabledGameServices = false;
+    public static bool EnabledGameServices = true;
 
     
 
