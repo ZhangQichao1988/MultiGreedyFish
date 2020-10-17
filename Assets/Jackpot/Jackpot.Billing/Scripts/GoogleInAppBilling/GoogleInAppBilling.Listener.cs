@@ -131,6 +131,7 @@ namespace Jackpot.Billing
             /// <param name="json">Json.</param>
             public void purchaseSucceeded(string json)
             {
+                UnityEngine.Debug.Log("google play result json:" + json);
                 var dict = Json.Deserialize(json) as Dictionary<string, object>;
                 var purchase = new GoogleIabPurchase(dict);
                 MainThreadDispatcher.Post(() =>

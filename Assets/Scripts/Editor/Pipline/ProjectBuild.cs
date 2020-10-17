@@ -76,7 +76,7 @@ namespace MultiGreedyFish.Pipline
             BuildOptions opt = BuildOptions.SymlinkLibraries;
             // opt = opt | BuildOptions.Development | BuildOptions.ConnectWithProfiler;
             
-            EditorUserBuildSettings.development = IsDevBuild;
+            EditorUserBuildSettings.development = false;
             
             PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, 1);
             
@@ -136,7 +136,7 @@ namespace MultiGreedyFish.Pipline
             PlayerSettings.bundleVersion = Function.GetValue ("-bundleVersion=", true);
 
 
-            EditorUserBuildSettings.development = IsDevBuild;
+            EditorUserBuildSettings.development = false;
 
             string dir = "Achieve" + Path.DirectorySeparatorChar + "Android" + Path.DirectorySeparatorChar;
 
@@ -148,8 +148,14 @@ namespace MultiGreedyFish.Pipline
             string path = dir + Function.GetValue("-apk_name=") + ".apk";
             Debug.Log("show path: " + path);
             
-
-            BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.None);
+            if (IsDevBuild)
+            {
+                BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.Development | BuildOptions.ConnectWithProfiler);
+            }
+            else
+            {
+                BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.None);
+            }
             // BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.Development | BuildOptions.ConnectWithProfiler);
             Debug.Log("Build Android Suceed !");
         }

@@ -269,6 +269,7 @@ public static class BillingManager
         Action<PurchasedProduct> finishPurchase,
         Action<Jackpot.Billing.PurchaseError> failurePurchasedRequest)
     {
+        UnityEngine.Debug.Log("On Finish Purchase");
         if (!IsLoggedIn())
         {
             // ユーザーがログイン前にResumeで購入処理が走ることがあるので、未ログインの場合はエラーとしておく
@@ -287,6 +288,13 @@ public static class BillingManager
             price = purchaseProduct.Price;
             formattedPrice = purchaseProduct.FormattedPrice;
         }
+
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.Id );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.TransactionId );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.TransactionDate.ToString() );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.Receipt );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + price );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + formattedPrice );
 
 #if UNITY_EDITOR || BILLING_DEBUG
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P15_RESPONSE);
@@ -326,10 +334,19 @@ public static class BillingManager
                 finishPurchase(purchasedProduct);
             }
         });
-        NetWorkHandler.RequestBillingBuy(purchasedProduct.Receipt, purchasedProduct.TransactionId, purchaseProduct.Price, 
-            purchaseProduct.FormattedPrice, UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android ? Device.Google : Device.Apple, purchasedProduct.Id);
-#endif
 
+        if (UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android)
+        {
+            NetWorkHandler.RequestBillingBuy(purchasedProduct.Receipt, purchasedProduct.TransactionId, price, 
+            formattedPrice, Device.Google, purchasedProduct.Id);
+        }
+        else
+        {
+            NetWorkHandler.RequestBillingBuy(purchasedProduct.SignedData, purchasedProduct.Signature, price, 
+            formattedPrice, Device.Apple, purchasedProduct.Id);
+        }
+#endif
+                
     }
 
     /// <summary>
