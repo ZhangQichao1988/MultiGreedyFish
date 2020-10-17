@@ -514,6 +514,12 @@ public class DebugMenu :MonoBehaviour
         {
             Intro.Instance.Restart();
         }
+
+
+        if (GUILayout.Button("清理当前未完成的氪金项", GUI.skin.button))
+        {
+            BillingManager.FinishPendingTransactions();
+        }
     }
     
 
