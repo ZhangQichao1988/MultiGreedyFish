@@ -13,6 +13,7 @@ BUNDLE_VERSION="0.0.1"
 BUNDLE_VERSION_CODE_SHOW="1"
 ENABLE_DEBUG="true"
 BUNDLE_IDENTIFIER="com.klab.fishfight"
+DEV_BUILD="true"
 
 #ios build
 DEV_TEAM=${DEV_TEAM:-E84VPJ2AUN}
@@ -28,11 +29,13 @@ BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 
 echo "Start build unity ios"
 echo ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
+-devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=true -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
 -bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=false -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
 
 
 ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
+-devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=true -useSever=${USE_SERVER} -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
 -bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=false -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
 
