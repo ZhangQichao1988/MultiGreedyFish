@@ -31,13 +31,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 453328492178b7447a5a9947d4b398af, type: 3}
-    totalSpriteSurfaceArea: 754729
+    totalSpriteSurfaceArea: 641945
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: e56266313d083844dacf8846a1a0e74c, type: 3}
   - {fileID: 21300000, guid: d58b67f5e1fc47844ad4aa066a6becf7, type: 3}
-  - {fileID: 21300000, guid: 0c446fb683c279a49b12c7d1d01c3f8c, type: 3}
   - {fileID: 21300000, guid: 53a12ef7b8c62bb48b3bbc1509679268, type: 3}
   - {fileID: 21300000, guid: d76a679853720024d95b5e7de30de5c5, type: 3}
   - {fileID: 21300000, guid: 3753110a47d6f284092f46e583a58bb1, type: 3}
@@ -46,9 +44,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4245990f774d1764485422e8caf02c6f, type: 3}
   - {fileID: 21300000, guid: 7cd150efbc5dd394984e84b3d677ff22, type: 3}
   m_PackedSpriteNamesToIndex:
-  - btn_01
   - ui_status_line
-  - btn_02
   - icon_power
   - icon_speed
   - ui_status_circle

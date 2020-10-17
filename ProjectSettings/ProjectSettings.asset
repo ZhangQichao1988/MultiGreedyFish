@@ -172,7 +172,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: co.jp.cad.crazyfish
+    Android: jp.co.cad.crazyfish
     iPhone: com.klab.fishfight
   buildNumber:
     iPhone: 1
@@ -686,9 +686,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CONSOLE_ENABLE;SERVER_TENCENT
-    4: CONSOLE_ENABLE;SERVER_TENCENT
-    7: CONSOLE_ENABLE;SERVER_TENCENT
+    1: CONSOLE_ENABLE;DUMMY_DATA
+    4: CONSOLE_ENABLE;DUMMY_DATA
+    7: CONSOLE_ENABLE;DUMMY_DATA
   platformArchitecture:
     iPhone: 1
   scriptingBackend:
