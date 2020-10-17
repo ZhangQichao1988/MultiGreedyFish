@@ -290,9 +290,9 @@ public static class BillingManager
         }
 
         UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.Id );
-        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.TransactionId );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.SignedData );
         UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.TransactionDate.ToString() );
-        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.Receipt );
+        UnityEngine.Debug.Log("PurchasedProduct Info :" + purchasedProduct.Signature );
         UnityEngine.Debug.Log("PurchasedProduct Info :" + price );
         UnityEngine.Debug.Log("PurchasedProduct Info :" + formattedPrice );
 
@@ -337,13 +337,13 @@ public static class BillingManager
 
         if (UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android)
         {
-            NetWorkHandler.RequestBillingBuy(purchasedProduct.Receipt, purchasedProduct.TransactionId, price, 
-            formattedPrice, Device.Google, purchasedProduct.Id);
+            NetWorkHandler.RequestBillingBuy(purchasedProduct.SignedData, purchasedProduct.Signature, price, 
+            formattedPrice, Device.Apple, purchasedProduct.Id);
         }
         else
         {
-            NetWorkHandler.RequestBillingBuy(purchasedProduct.SignedData, purchasedProduct.Signature, price, 
-            formattedPrice, Device.Apple, purchasedProduct.Id);
+            NetWorkHandler.RequestBillingBuy(purchasedProduct.Receipt, purchasedProduct.TransactionId, price, 
+            formattedPrice, Device.Google, purchasedProduct.Id);
         }
 #endif
                 
