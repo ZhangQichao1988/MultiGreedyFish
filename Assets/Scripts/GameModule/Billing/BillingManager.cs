@@ -338,12 +338,12 @@ public static class BillingManager
         if (UnityEngine.Application.platform == UnityEngine.RuntimePlatform.Android)
         {
             NetWorkHandler.RequestBillingBuy(purchasedProduct.SignedData, purchasedProduct.Signature, price, 
-            formattedPrice, Device.Apple, purchasedProduct.Id);
+            formattedPrice, Device.Google, purchasedProduct.Id);
         }
         else
         {
             NetWorkHandler.RequestBillingBuy(purchasedProduct.Receipt, purchasedProduct.TransactionId, price, 
-            formattedPrice, Device.Google, purchasedProduct.Id);
+            formattedPrice, Device.Apple, purchasedProduct.Id);
         }
 #endif
                 
