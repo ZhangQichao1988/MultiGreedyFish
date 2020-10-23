@@ -1,4 +1,6 @@
 using System.Text;
+using System.IO;
+using UnityEngine;
 
 public class AppConst
 {
@@ -21,8 +23,34 @@ public class AppConst
 
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
     public static string ApiPath = "/fishgame/call";
+    public static string VersionPath = "/assets/version";
+    public static string DownloadPath = "/assets/json-output.zip";
 
     public static string HttpEndPoint
+    {
+        get
+        {
+            return HttpHost + ApiPath;
+        }
+    }
+
+    public static string HttpVersionPoint
+    {
+        get
+        {
+            return HttpHost + VersionPath + "?ra=" + UnityEngine.Random.Range(0, int.MaxValue).ToString();
+        }
+    }
+
+    public static string HttpDownloadPoint
+    {
+        get
+        {
+            return HttpHost + DownloadPath + "?ra=" + UnityEngine.Random.Range(0, int.MaxValue).ToString();
+        }
+    }
+
+    public static string HttpHost
     {
         get
         {
@@ -31,11 +59,22 @@ public class AppConst
             {
                 httpProtocol = "http://";
             }
+
 #if SERVER_TENCENT
-            return httpProtocol + Host + ApiPath;
+            return httpProtocol + Host;
 #else
-            return httpProtocol + Host + ":" + ApiPort + ApiPath;
+            return httpProtocol + Host + ":" + ApiPort;
 #endif
+        }
+    }
+
+
+
+    public static string MasterSavedPath
+    {
+        get
+        {
+            return Path.Combine( Application.persistentDataPath, "masterData");
         }
     }
 

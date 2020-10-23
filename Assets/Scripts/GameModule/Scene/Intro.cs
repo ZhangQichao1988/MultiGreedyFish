@@ -92,14 +92,20 @@ public class Intro : MonoBehaviour
         yield return new WaitForEndOfFrame();
         UIManager.Init();
         //UIBase.Open("ArtResources/UI/Prefabs/Title");
-
-        UserLoginFlowController.StartLoginFlow(()=>{
-
-            BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
-        });
-        
+#if DUMMY_DATA
+        StartLogin();
+#else
+        LoadingMgr.Show(LoadingMgr.LoadingType.Progress, "检查是否有更新...");
+        UpdateFlowController.StartUpdateFlow(StartLogin);
+#endif
     }
     
+    void StartLogin()
+    {
+        UserLoginFlowController.StartLoginFlow(()=>{
+                BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
+            });
+    }
 
     public string GetAppVer()
     {

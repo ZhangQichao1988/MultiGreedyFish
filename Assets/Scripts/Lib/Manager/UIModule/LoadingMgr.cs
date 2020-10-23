@@ -20,7 +20,7 @@ public static class LoadingMgr
         progressUI = new LoadingProgress(progressLayerNode);
     }
 
-    public static void Show(LoadingType type)
+    public static void Show(LoadingType type, string text = null)
     {
         if (type == LoadingType.Repeat)
         {
@@ -28,7 +28,7 @@ public static class LoadingMgr
         }
         else if (type == LoadingType.Progress)
         {
-            progressUI.Show();
+            progressUI.Show(text);
         }
     }
 

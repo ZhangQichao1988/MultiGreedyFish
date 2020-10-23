@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
 
 /// <summary>
 /// 基表代理 提供对外数据接口
@@ -36,8 +37,13 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
     {
         if (!hasCached)
         {
+#if DUMMY_DATA
             assetRef = ResourceManager.LoadSync<TextAsset>(tableName);
             T entity = JsonUtility.FromJson<T>(assetRef.Asset.text);
+#else
+            string jsonText = ReadFromLocalStorage(tableName);
+            T entity = JsonUtility.FromJson<T>(jsonText);
+#endif
             List<V> contentList = entity.Items;
             content = new Dictionary<int, V>();
             foreach (var item in contentList)
@@ -49,6 +55,19 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
             }
             hasCached = true;
         }
+    }
+
+    /// <summary>
+    /// 读基表并解密
+    /// </summary>
+    /// <param name="tableName"></param>
+    /// <returns></returns>
+    private string ReadFromLocalStorage(string tableName)
+    {
+        string localFileName = Path.Combine( AppConst.MasterSavedPath, tableName.Replace("JsonData/", "") + ".json.enc");
+        byte[] fileBytes = File.ReadAllBytes(localFileName);
+        ZipHelper.DesMasterFile(fileBytes);
+        return System.Text.Encoding.UTF8.GetString(fileBytes);
     }
 
     public List<V> GetAll()
@@ -63,8 +82,11 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
 
     public void Destory()
     {
-        ResourceManager.Unload(assetRef);
-        assetRef = null;
+        if (assetRef != null)
+        {
+            ResourceManager.Unload(assetRef);
+            assetRef = null;
+        }
         hasCached = false;
         content = null;
     }

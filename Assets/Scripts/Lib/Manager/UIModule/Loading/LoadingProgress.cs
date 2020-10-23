@@ -8,18 +8,25 @@ public class LoadingProgress
     GameObject _ui;
 
     Image _imgProgress;
+
+    Text _text;
     public LoadingProgress(GameObject root)
     {
         _root = root;
     }
 
-    public void Show()
+    public void Show(string txt = null)
     {
         if (_ui == null)
         {
             var prefab = ResourceManager.LoadSync<GameObject>("ArtResources/UI/Effect/LoadingProgress/LoadingProgress").Asset;
             _ui = GameObjectUtil.InstantiatePrefab(prefab, _root);
             _imgProgress = GameObjectUtil.FindChildComponent(prefab, "Img_ProgressBar/Img_ProgressSlot/Progress", "Image") as Image;
+            _text = GameObjectUtil.FindChildComponent(prefab, "Text", "Text") as Text;
+        }
+        if (txt != null)
+        {
+            _text.text = txt;
         }
     }
 

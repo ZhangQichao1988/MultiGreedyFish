@@ -14,10 +14,10 @@ public class MsgBox : UIBase
     Action _callback;
     Action _cancelCallback;
     
-    public static void Open(string title, string content)
+    public static void Open(string title, string content, Action onSure = null)
     {
         var msgBox = UIBase.Open<MsgBox>("ArtResources/UI/Prefabs/Msg/MsgBox", UILayers.POPUP);
-        msgBox.SetContent(title, content);
+        msgBox.SetContent(title, content, onSure);
     }
 
     
@@ -55,10 +55,11 @@ public class MsgBox : UIBase
         content.text = txt_content;
     }
 
-    public void SetContent(string txt_title, string txt_content)
+    public void SetContent(string txt_title, string txt_content, Action onSure = null)
     {
         title.text = txt_title;
         content.text = txt_content;
+        _callback = onSure;
     }
 
     public void AutoClose()

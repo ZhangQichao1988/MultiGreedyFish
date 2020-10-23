@@ -83,6 +83,15 @@ namespace NetWorkModule
             yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);
 #endif
         }
-        
+
+        public static void SimpleGet<T>(string url, Action<T> callback, Action retry) where T : class
+        {
+            Instance.StartCoroutine(RequestHttpGet<T>(url, callback, retry));
+        }
+
+        static IEnumerator RequestHttpGet<T>(string url, Action<T> callback, Action retry) where T : class
+        {
+            yield return httpClient.RequestHttpGet<T>(url, callback, retry);
+        }
     }
 }

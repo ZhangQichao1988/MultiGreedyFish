@@ -59,6 +59,30 @@ namespace NetWorkModule
             cachedSession = null;
         }
 
+        public System.Collections.IEnumerator RequestHttpGet<T>(string url, Action<T> finish, Action retry) where T : class
+        {
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
+            {
+                request.timeout = 5;
+                yield return request.SendWebRequest();
+                if (request.isNetworkError)
+                {
+                    retry();
+                }
+                else
+                {
+                    if (typeof(T).Equals(typeof(string)))
+                    {
+                        finish(request.downloadHandler.text as T);
+                    }
+                    else
+                    {
+                        finish(request.downloadHandler.data as T);
+                    }
+                }
+            }
+        }
+
         public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)
         {
             byte[] data = m_protocol.Pack(msg, PID++, body);
