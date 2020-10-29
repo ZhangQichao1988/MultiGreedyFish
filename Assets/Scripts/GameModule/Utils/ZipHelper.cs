@@ -12,7 +12,7 @@ public class ZipHelper
     /// <param name="overWrite">是否覆盖已存在的文件。</param>
     public static void UnZip(byte[] zipStream, string strDirectory, string password = "", bool overWrite = true)
     {
- 
+        ZipConstants.DefaultCodePage = System.Text.Encoding.UTF8.CodePage;
         if (string.IsNullOrEmpty(strDirectory))
         {
             throw new DirectoryNotFoundException("Direction is not found!!");
