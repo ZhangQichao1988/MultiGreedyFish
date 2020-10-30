@@ -50,6 +50,11 @@ IPA_PATH=${WORKDIR}/Achieve/output/Unity-iPhone.ipa
 
 pushd ${XCODE_PROJ_PATH}
 
+#if [[ $IS_DEVELOPMENT = "false" ]] && [[ $IS_APPSTORE = "false" ]]; then
+  # remove StoreKit.framework
+  sed -e '/StoreKit/d' Unity-iPhone.xcodeproj/project.pbxproj > /tmp/tmp.xcodeproj
+  mv /tmp/tmp.xcodeproj Unity-iPhone.xcodeproj/project.pbxproj
+#fi
 
 # 清理
 xcodebuild  -workspace "Unity-iPhone.xcworkspace" -scheme "Unity-iPhone" clean
