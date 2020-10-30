@@ -55,7 +55,7 @@ namespace MultiGreedyFish.Pipline
                 proj.AddFrameworkToProject (target, "CFNetwork.framework", false);
                 proj.AddFrameworkToProject (target, "CoreGraphics.framework", false);
                 proj.AddFrameworkToProject (target, "Foundation.framework", false);
-                proj.AddFrameworkToProject (target, "AuthenticationServices.framework", false);
+                proj.AddFrameworkToProject (target, "AuthenticationServices.framework", true);
                 proj.AddFrameworkToProject (target, "UIKit.framework", false);
                 proj.AddFrameworkToProject (target, "libresolv.tbd", false);
                 proj.AddFrameworkToProject (target, "UserNotifications.framework", false);

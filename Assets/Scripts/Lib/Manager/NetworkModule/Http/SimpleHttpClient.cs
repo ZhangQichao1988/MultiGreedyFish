@@ -213,9 +213,13 @@ namespace NetWorkModule
 
         void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData, byte[] req)
         {
-            string sign = headers[X_SIGNATURE];
+            string sign = headers.ContainsKey(X_SIGNATURE) ? headers[X_SIGNATURE] : null;
             int stateCode = (int)StatusCode.Failed;
-            int.TryParse(headers[X_STATUS_CODE], out stateCode);
+
+            if (headers.ContainsKey(X_STATUS_CODE))
+            {
+                int.TryParse(headers[X_STATUS_CODE], out stateCode);
+            }
             PackData output = res == null ? null : m_protocol.ParserOutput(res, res.Length);
 
             if (output != null)
@@ -224,7 +228,7 @@ namespace NetWorkModule
             }
             
             //status code 处理
-            bool statuOk = ProcessStatues((StatusCode)stateCode, output, sign);
+            bool statuOk = sign == null ? true : ProcessStatues((StatusCode)stateCode, output, sign);
             if (statuOk)
             {
                 HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid, cachedData, req);

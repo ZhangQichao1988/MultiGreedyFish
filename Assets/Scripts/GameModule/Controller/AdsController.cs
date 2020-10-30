@@ -24,6 +24,8 @@ public class AdsController : MonoBehaviour
     public Action OnAdRewardGetted;
     void Start()
     {
+        //todo : ios 等待申请
+#if UNITY_ANDROID
         MobileAds.Initialize(client=>{
             isInited = true;
 
@@ -35,6 +37,7 @@ public class AdsController : MonoBehaviour
                 }
             ).build());
         });
+#endif
     }
 
     RewardedAd rewardAd;
