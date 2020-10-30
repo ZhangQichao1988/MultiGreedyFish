@@ -176,7 +176,7 @@ PlayerSettings:
     iPhone: com.klab.fishfight
   buildNumber:
     iPhone: 1
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 21
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -254,14 +254,14 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: '{inproject}: ci/config/fish.keystore'
-  AndroidKeyaliasName: co.jp.cad.crazyfish
+  AndroidKeyaliasName: crazyfish
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -686,9 +686,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CONSOLE_ENABLE;DUMMY_DATA
-    4: CONSOLE_ENABLE;DUMMY_DATA
-    7: CONSOLE_ENABLE;DUMMY_DATA
+    1: CONSOLE_ENABLE;SERVER_TENCENT
+    4: CONSOLE_ENABLE;SERVER_TENCENT
+    7: CONSOLE_ENABLE;SERVER_TENCENT
   platformArchitecture:
     iPhone: 1
   scriptingBackend:
