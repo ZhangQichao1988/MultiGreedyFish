@@ -24,6 +24,8 @@ namespace MultiGreedyFish.Pipline
 
                 bool isDevMode = File.Exists(path + "/../ios-development-build");
 
+                Debug.Log("Is DevMode " + isDevMode);
+
 
                 // 获取当前项目名字  
                 string target = proj.GetUnityMainTargetGuid();  
@@ -76,7 +78,6 @@ namespace MultiGreedyFish.Pipline
                     proj.AddFile("Unity-iPhone/lapis.entitlements", "lapis.entitlements");
                     proj.AddBuildProperty(target, "CODE_SIGN_ENTITLEMENTS", "Unity-iPhone/lapis.entitlements");
                 }
-
                 // 设置签名  
                 //proj.SetBuildProperty (target, "CODE_SIGN_IDENTITY", "iPhone Distribution: _______________");  
                 //proj.SetBuildProperty (target, "PROVISIONING_PROFILE", "********-****-****-****-************");   
