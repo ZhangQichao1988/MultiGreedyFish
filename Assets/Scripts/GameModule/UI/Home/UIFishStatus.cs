@@ -8,6 +8,11 @@ using System;
 
 public class UIFishStatus : UIBase
 {
+    public Button btnSelectFish;
+    public Text textSelectFish;
+
+    public Button btnLvUp;//碎片不够无法升级
+
     public FishStatusFishControl fishControl;
     public GauageLevel gauageLevel;
     public GauageRank gauageRank;
@@ -17,6 +22,8 @@ public class UIFishStatus : UIBase
     public Text textLevelupUseGold;
 
     public Text textCurrentFishLevel;
+
+    public Text textLvUpBtn;
 
     public GameObject[] goListAtkValue;
     public GameObject[] goListHpValue;
@@ -34,7 +41,6 @@ public class UIFishStatus : UIBase
         textFishName.text = LanguageDataTableProxy.GetText(fishData.name);
         textFishComment.text = LanguageDataTableProxy.GetText(fishData.comment);
 
-        textCurrentFishLevel.text = string.Format(LanguageDataTableProxy.GetText(10), playerFishLevelInfo.FishLevel);
 
         // 属性
         float rate;
@@ -72,6 +78,14 @@ public class UIFishStatus : UIBase
 
         var fishLevelData = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
         textLevelupUseGold.text = fishLevelData.useGold.ToString();
+
+        bool canSelectFish = playerFishLevelInfo.FishLevel > 0;
+        textLvUpBtn.text = LanguageDataTableProxy.GetText(canSelectFish ? 15 : 18);
+        btnSelectFish.interactable = canSelectFish;
+        textSelectFish.text = LanguageDataTableProxy.GetText(canSelectFish ? 16 : 17);
+        textCurrentFishLevel.text = canSelectFish ? 
+                                                    string.Format(LanguageDataTableProxy.GetText(10), playerFishLevelInfo.FishLevel) :
+                                                    LanguageDataTableProxy.GetText(17);
 
         gauageLevel.Refash(playerFishLevelInfo);
         gauageRank.Refash(playerFishLevelInfo);

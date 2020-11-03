@@ -31,14 +31,26 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 44815f80e65595344b48979926b23856, type: 3}
-    totalSpriteSurfaceArea: 131072
+    totalSpriteSurfaceArea: 524288
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 92e7f4909449f974f81d54908668ef0d, type: 3}
   - {fileID: 21300000, guid: a4048881f078bcb43a2972d4a040313f, type: 3}
+  - {fileID: 21300000, guid: 5aaf079159cac644e9ed5c9869f72db8, type: 3}
+  - {fileID: 21300000, guid: 9d7674f20c4b2a444be5879ce0d3ad58, type: 3}
+  - {fileID: 21300000, guid: 689217e4095025242991ad73854c2e62, type: 3}
+  - {fileID: 21300000, guid: a8514167fb52fa04f813eeccbab360c6, type: 3}
+  - {fileID: 21300000, guid: ea55a92a01563e64a9e050bf578dd232, type: 3}
   - {fileID: 21300000, guid: f4ae7dfe295d0534fa49273c70159571, type: 3}
   m_PackedSpriteNamesToIndex:
+  - FishIcon_8
   - FishIcon_3
+  - FishIcon_9
+  - FishIcon_6
+  - FishIcon_11
+  - FishIcon_7
+  - FishIcon_10
   - FishIcon_1
   m_Tag: AtlasFishIcon
   m_IsVariant: 0

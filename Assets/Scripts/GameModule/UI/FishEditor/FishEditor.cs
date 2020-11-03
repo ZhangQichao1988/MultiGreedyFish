@@ -27,7 +27,7 @@ public class FishEditor : UIBase
             }
 
             // 新增的鱼实例化
-            if (note.FishLevel > 0)
+            //if (note.FishLevel > 0)
             {
                 var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.uiRootPath, "FishEditorItem"));
                 go = GameObjectUtil.InstantiatePrefab(asset.Asset, transContent.gameObject);

@@ -11,6 +11,7 @@ public class UIFishLevelUp : UIBase
 
     private PBPlayerFishLevelInfo playerFishLevelInfo;
 
+    public Text textLvUp;
     public Text textTitle;
     public Text textLevelupUseGold;
 
@@ -24,8 +25,13 @@ public class UIFishLevelUp : UIBase
     {
         this.playerFishLevelInfo = playerFishLevelInfo;
         var fishLevelData = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
-        textTitle.text = string.Format( LanguageDataTableProxy.GetText(50), playerFishLevelInfo.FishLevel + 1);
         textLevelupUseGold.text = fishLevelData.useGold.ToString();
+
+        bool isLvUp = playerFishLevelInfo.FishLevel > 0;
+        textTitle.text = isLvUp ? 
+                                string.Format(LanguageDataTableProxy.GetText(50), playerFishLevelInfo.FishLevel + 1) :
+                                LanguageDataTableProxy.GetText(51);
+        textLvUp.text = LanguageDataTableProxy.GetText(isLvUp ? 15 : 18); 
 
         int currentValue, plus;
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
@@ -39,6 +45,7 @@ public class UIFishLevelUp : UIBase
         textHpValue.text = currentValue.ToString();
         plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1) - currentValue;
         textHpPlus.text = "+" + plus.ToString();
+
     }
 
     public void OnClickFishLevelUp()

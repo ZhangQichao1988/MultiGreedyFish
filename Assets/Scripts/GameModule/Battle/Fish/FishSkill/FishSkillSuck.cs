@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class FishSkillSuck : FishSkillBase
 {
+	Animator animatorPlayer;
+	public override void Init(PlayerBase playerBase, FishSkillDataInfo baseData)
+	{
+		base.Init(playerBase, baseData);
+		animatorPlayer = playerBase.transModel.GetComponent<Animator>();
+	}
 	public override bool Skill()
 	{
+		animatorPlayer.SetTrigger("Skill");
 		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
 		Vector3 playerToTargetDir;
 		float dot;

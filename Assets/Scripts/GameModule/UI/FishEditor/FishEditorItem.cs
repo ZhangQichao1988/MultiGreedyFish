@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class FishEditorItem : MonoBehaviour
 {
     Button button;
-
-    Image bgImage;
+    Animator animator;
+Image bgImage;
     public Image image;
 
     public GauageRank gauageRank;
@@ -26,6 +26,7 @@ public class FishEditorItem : MonoBehaviour
     {
         bgImage = GetComponent<Image>();
         button = GetComponent<Button>();
+        animator = GetComponent<Animator>();
     }
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
@@ -33,10 +34,17 @@ public class FishEditorItem : MonoBehaviour
 
         gauageRank.Refash(pBPlayerFishLevelInfo);
         gauageLevel.Refash(pBPlayerFishLevelInfo);
-
         textFishName.text = LanguageDataTableProxy.GetText( fishData.name );
-        textFishLevel.text = string.Format("Lv.{0}", pBPlayerFishLevelInfo.FishLevel) ;
-
+        if (pBPlayerFishLevelInfo.FishLevel > 0)
+        {
+            textFishLevel.text = string.Format("Lv.{0}", pBPlayerFishLevelInfo.FishLevel);
+            animator.SetTrigger("Normal");
+        }
+        else
+        {
+            textFishLevel.text = LanguageDataTableProxy.GetText(17);
+            animator.SetTrigger("Disabled");
+        }
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(
             () =>
@@ -51,6 +59,7 @@ public class FishEditorItem : MonoBehaviour
         fishData = FishDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishId);
         Refash(pBPlayerFishLevelInfo);
         var spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, pBPlayerFishLevelInfo.FishId));
+        Debug.Assert(spAsset != null, "Not found IconData:" + pBPlayerFishLevelInfo.FishId);
         image.sprite = spAsset.Asset;
 
         spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishEditorItemBgPath, fishData.rare));
