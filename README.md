@@ -12,8 +12,12 @@ git submodule update --remote
 
 ### 打包
 ./ci/shell/build_android.sh ${SERVER} ${IS_RELEASE}
+${SERVER}
 ESeverType.OFFLINE          离线包
 ESeverType.LOCAL_SERVER     本地服务器
 ESeverType.TENCENT_DEV      腾讯云开发服
 ESeverType.TENCENT_STABLE   腾讯云稳定服
 ESeverType.TENCENT_PROD     腾讯云prod
+
+${IS_RELEASE}
+true 正式包 会删除 resouce下 json资源 关闭console等

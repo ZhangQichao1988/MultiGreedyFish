@@ -22,7 +22,7 @@ public class AppConst
     public static bool EnabledGameServices = true;
 
 
-	public static ESeverType DefaultServerType = ESeverType.TENCENT_DEV;
+	public static ESeverType DefaultServerType = ESeverType.LOCAL_SERVER;
 
 	public static ESeverType ServerType
     {
@@ -40,7 +40,7 @@ public class AppConst
             switch(ServerType)
             {
                 case ESeverType.LOCAL_SERVER:
-                    return "www.cad-crazyfish.top";
+                    return "127.0.0.1";
                 case ESeverType.TENCENT_DEV:
                     return "www.cad-crazyfish.top";
                 case ESeverType.TENCENT_STABLE:
@@ -60,7 +60,7 @@ public class AppConst
             switch(ServerType)
             {
                 case ESeverType.LOCAL_SERVER:
-                    return 0;
+                    return 8088;
                 case ESeverType.TENCENT_DEV:
                     return 0;
                 case ESeverType.TENCENT_STABLE:
@@ -68,7 +68,7 @@ public class AppConst
                 case ESeverType.TENCENT_PROD:
                     return 0;
                 default:
-                    return 8080;
+                    return 8088;
             }
         }
     }

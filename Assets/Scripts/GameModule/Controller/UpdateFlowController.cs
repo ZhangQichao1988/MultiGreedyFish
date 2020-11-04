@@ -10,15 +10,16 @@ public class UpdateFlowController
 {
     static string CURRENT_VERSION = "CURRENT_VERSION";
     static Action finishCb;
-    static int retryTime;
+    static int retryTime = 3;
     public static void StartUpdateFlow(Action callback)
     {
         finishCb = callback;
-        retryTime = 3;
+        Debug.LogWarning(AppConst.HttpVersionPoint);
         NetWorkManager.SimpleGet<string>(AppConst.HttpVersionPoint, (str)=>{
             Debug.Log("Version Num " + str);
             if (PlayerPrefs.GetString(CURRENT_VERSION, "") != str)
             {
+                retryTime = 3;
                 DoUpdate(str);
             }
             else
@@ -29,6 +30,7 @@ public class UpdateFlowController
             if (retryTime-- < 0)
             {
                 MsgBox.Open("网络错误", "请检查网络", ()=>{
+                    retryTime = 3;
                     StartUpdateFlow(finishCb);
                 });
                 return;
@@ -40,7 +42,6 @@ public class UpdateFlowController
     //更新
     private static void DoUpdate(string currVersion)
     {
-        retryTime = 3;
         NetWorkManager.SimpleGet<byte[]>(AppConst.HttpDownloadPoint, (bytes)=>{
             //保存 & 解压
             // File.WriteAllBytes(GetMasterSavedPath, bytes);
@@ -57,6 +58,7 @@ public class UpdateFlowController
             if (retryTime-- < 0)
             {
                  MsgBox.Open("网络错误", "请检查网络", ()=>{
+                    retryTime = 3;
                     DoUpdate(currVersion);
                 });
                 return;
