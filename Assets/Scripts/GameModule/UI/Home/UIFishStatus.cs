@@ -11,7 +11,7 @@ public class UIFishStatus : UIBase
     public Button btnSelectFish;
     public Text textSelectFish;
 
-    public Button btnLvUp;//碎片不够无法升级
+    public Button btnLvUp;
 
     public FishStatusFishControl fishControl;
     public GauageLevel gauageLevel;
@@ -40,7 +40,6 @@ public class UIFishStatus : UIBase
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
         textFishName.text = LanguageDataTableProxy.GetText(fishData.name);
         textFishComment.text = LanguageDataTableProxy.GetText(fishData.comment);
-
 
         // 属性
         float rate;
@@ -89,6 +88,8 @@ public class UIFishStatus : UIBase
 
         gauageLevel.Refash(playerFishLevelInfo);
         gauageRank.Refash(playerFishLevelInfo);
+        btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f;
+
     }
     private void CreateFishModel(int fishId)
     {

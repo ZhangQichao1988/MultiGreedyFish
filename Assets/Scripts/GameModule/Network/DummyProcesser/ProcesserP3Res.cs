@@ -32,11 +32,11 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
             Code = 0
         };
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 115 });
-        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 3, FishChip = 5, FishLevel = 1, RankLevel = 6 });
+        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 3, FishChip = 15, FishLevel = 1, RankLevel = 6 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 6, FishChip = 5, FishLevel = 0, RankLevel = 2 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 7, FishChip = 5, FishLevel = 1, RankLevel = 0 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 8, FishChip = 5, FishLevel = 0, RankLevel = 0 });
-        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 9, FishChip = 5, FishLevel = 0, RankLevel = 0 });
+        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 9, FishChip = 15, FishLevel = 0, RankLevel = 0 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 10, FishChip = 5, FishLevel = 0, RankLevel = 0 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 11, FishChip = 5, FishLevel = 0, RankLevel = 0 });
 

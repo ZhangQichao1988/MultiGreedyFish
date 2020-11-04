@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GauageLevel : MonoBehaviour
 {
     public Text textFishChip;
-    Slider sliderFishLevel;
+    public Slider sliderFishLevel;
 
     private void Awake()
     {
