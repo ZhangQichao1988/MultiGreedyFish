@@ -11,7 +11,7 @@ git submodule update --remote
 
 
 ### 打包
-./ci/shell/build_android.sh ESeverType.LOCAL_SERVER
+./ci/shell/build_android.sh ${SERVER} ${IS_RELEASE}
 ESeverType.OFFLINE          离线包
 ESeverType.LOCAL_SERVER     本地服务器
 ESeverType.TENCENT_DEV      腾讯云开发服
