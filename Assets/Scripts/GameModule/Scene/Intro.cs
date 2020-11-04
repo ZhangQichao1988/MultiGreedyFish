@@ -92,12 +92,16 @@ public class Intro : MonoBehaviour
         yield return new WaitForEndOfFrame();
         UIManager.Init();
         //UIBase.Open("ArtResources/UI/Prefabs/Title");
-#if DUMMY_DATA
-        StartLogin();
-#else
-        LoadingMgr.Show(LoadingMgr.LoadingType.Progress, "检查是否有更新...");
-        UpdateFlowController.StartUpdateFlow(StartLogin);
-#endif
+
+        if (AppConst.ServerType == ESeverType.OFFLINE)
+        {
+            StartLogin();
+        }
+        else
+        {
+            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, "检查是否有更新...");
+            UpdateFlowController.StartUpdateFlow(StartLogin);
+        }
     }
     
     void StartLogin()

@@ -16,54 +16,54 @@ public class UserEditorMenu
         PlayerPrefs.Save();
     }
 
-    public static string SERVER_TENCENT = "SERVER_TENCENT";
-    public static string DUMMY_DATA = "DUMMY_DATA";
-
-    [MenuItem("UserEditor/Server/Local")]
+    [MenuItem("UserEditor/Server/LocalServer")]
     public static void ServerLocal()
     {
-        string symblos = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
-        if (symblos.Contains(SERVER_TENCENT))
-        {
-            symblos = symblos.Replace(SERVER_TENCENT + ";", "").Replace(SERVER_TENCENT, "");
-        }
-        if (symblos.Contains(DUMMY_DATA))
-        {
-            symblos = symblos.Replace(DUMMY_DATA + ";", "").Replace(DUMMY_DATA, "");
-        }
-        MultiGreedyFish.Pipline.ProjectBuild.SetDefineSymbols(symblos);
+        SetMode("ESeverType.LOCAL_SERVER");
     }
 
 
-    [MenuItem("UserEditor/Server/Tencent")]
-    public static void ServerTencent()
-    {
-        string symblos = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
-        if (symblos.Contains(DUMMY_DATA))
-        {
-            symblos = symblos.Replace(DUMMY_DATA + ";", "").Replace(DUMMY_DATA, "");
-        }
-        if (!symblos.Contains(SERVER_TENCENT))
-        {
-            symblos = symblos + ";" +  SERVER_TENCENT + ";";
-        }
-        MultiGreedyFish.Pipline.ProjectBuild.SetDefineSymbols(symblos);
-    }
-
-
-    [MenuItem("UserEditor/Server/Dummy")]
+    [MenuItem("UserEditor/Server/Offline")]
     public static void ServerDummy()
     {
-        string symblos = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
-        if (symblos.Contains(SERVER_TENCENT))
+        SetMode("ESeverType.OFFLINE");
+    }
+
+    [MenuItem("UserEditor/Server/TencentDev")]
+    public static void ServerTencentDev()
+    {
+        SetMode("ESeverType.TENCENT_DEV");
+    }
+
+    [MenuItem("UserEditor/Server/TencentStable")]
+    public static void ServerTencentStb()
+    {
+        SetMode("ESeverType.TENCENT_STABLE");
+    }
+
+
+    [MenuItem("UserEditor/Server/TencentProd")]
+    public static void ServerTencentProd()
+    {
+        SetMode("ESeverType.TENCENT_PROD");
+    }
+
+    public static void SetMode(string mode)
+    {
+        var appFilePath = Path.Combine(Application.dataPath, "Scripts/GameModule/AppConst.cs");
+        var lines = File.ReadAllLines(appFilePath);
+        for (int i = 0; i <  lines.Length; i++)
         {
-            symblos = symblos.Replace(SERVER_TENCENT + ";", "").Replace(SERVER_TENCENT, "");
+            if (lines[i].Contains("public static ESeverType DefaultServerType"))
+            {
+                lines[i] = "\tpublic static ESeverType DefaultServerType = " + mode + ";";
+                File.WriteAllLines(appFilePath, lines); 
+                PlayerPrefs.DeleteKey("SERVER_TYPE");
+                PlayerPrefs.Save();
+                AssetDatabase.Refresh();
+                break;
+            }
         }
-        if (!symblos.Contains(DUMMY_DATA))
-        {
-            symblos = symblos + ";" +  DUMMY_DATA + ";";
-        }
-        MultiGreedyFish.Pipline.ProjectBuild.SetDefineSymbols(symblos);
     }
 
     [MenuItem("UserEditor/FontChange")]

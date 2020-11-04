@@ -5,8 +5,15 @@ woshi xues
 ### PB version 3.12.2
 ./protoc -I/Users/li-j/project/unity-project/MultiGreedyFishServer/fishgame/other/proto/ /Users/li-j/project/unity-project/MultiGreedyFishServer/fishgame/other/proto/protocol.proto --csharp_out=/Users/li-j/project/unity-project/MultiGreedyFish/Assets/Scripts/GameModule/Network/
 
-### DummyData开启方式
-加入宏 DUMMY_DATA
 
 ### 子模块更新
 git submodule update --remote
+
+
+### 打包
+./ci/shell/build_android.sh ESeverType.LOCAL_SERVER
+ESeverType.OFFLINE          离线包
+ESeverType.LOCAL_SERVER     本地服务器
+ESeverType.TENCENT_DEV      腾讯云开发服
+ESeverType.TENCENT_STABLE   腾讯云稳定服
+ESeverType.TENCENT_PROD     腾讯云prod

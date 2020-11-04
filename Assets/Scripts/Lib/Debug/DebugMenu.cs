@@ -70,6 +70,10 @@ public class DebugMenu :MonoBehaviour
     /// </summary>
     Queue<LoggerReport> reports = new Queue<LoggerReport>();
 
+
+    private int currentServerIdx;
+    private int selectedServerIdx;
+
     public static DebugMenu Instance
     {
         get
@@ -141,6 +145,10 @@ public class DebugMenu :MonoBehaviour
         texture.wrapMode = TextureWrapMode.Clamp;
 
         material = new Material(Shader.Find("Custom/Debug"));
+
+        string[] list = Enum.GetNames(typeof(ESeverType));
+        currentServerIdx = Array.IndexOf(list, AppConst.ServerType.ToString());
+        selectedServerIdx = currentServerIdx;
     }
     
 
@@ -501,9 +509,19 @@ public class DebugMenu :MonoBehaviour
         }
     }
 
-
     void ShowToolWindow()
     {
+        string[] names = Enum.GetNames(typeof(ESeverType));
+        GUILayout.Label("服务器选择:");
+        currentServerIdx = GUILayout.SelectionGrid(currentServerIdx, names, names.Length, GUILayout.Width(windowRect.width));
+        if (selectedServerIdx != currentServerIdx)
+        {
+            selectedServerIdx = currentServerIdx;
+            PlayerPrefs.SetString("SERVER_TYPE", names[selectedServerIdx]);
+            PlayerPrefs.Save();
+            Debug.LogWarning("CHANGE SERVER MODE TO:" + names[selectedServerIdx]);
+        }
+
         if (GUILayout.Button("清除本地缓存账号(谨慎)", GUI.skin.button))
         {
             PlayerPrefs.DeleteAll();

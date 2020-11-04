@@ -37,13 +37,18 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
     {
         if (!hasCached)
         {
-#if DUMMY_DATA
-            assetRef = ResourceManager.LoadSync<TextAsset>(tableName);
-            T entity = JsonUtility.FromJson<T>(assetRef.Asset.text);
-#else
-            string jsonText = ReadFromLocalStorage(tableName);
-            T entity = JsonUtility.FromJson<T>(jsonText);
-#endif
+            T entity = null;
+            if (AppConst.ServerType == ESeverType.OFFLINE)
+            {
+                assetRef = ResourceManager.LoadSync<TextAsset>(tableName);
+                entity = JsonUtility.FromJson<T>(assetRef.Asset.text);
+            }
+            else
+            {
+                string jsonText = ReadFromLocalStorage(tableName);
+                entity = JsonUtility.FromJson<T>(jsonText);
+            }
+
             List<V> contentList = entity.Items;
             content = new Dictionary<int, V>();
             foreach (var item in contentList)
