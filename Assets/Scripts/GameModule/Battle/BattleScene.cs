@@ -72,7 +72,7 @@ public class BattleScene : BaseScene
     public override void Destory()
     {
         base.Destory();
-        StageModel.Instance.Dispose();
+        //StageModel.Instance.Dispose();
         BattleEffectManager.Destroy();
         SoundManager.Instance.UnloadBattleSE();
     }
