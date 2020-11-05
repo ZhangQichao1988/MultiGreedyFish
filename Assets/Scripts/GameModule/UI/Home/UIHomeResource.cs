@@ -38,6 +38,10 @@ public class UIHomeResource : UIBase
                 goGold.SetActive(true);
                 goDiamond.SetActive(false);
                 break;
+            case "BattleResult":
+                goGold.SetActive(false);
+                goDiamond.SetActive(false);
+                break;
         }
         Apply();
     }

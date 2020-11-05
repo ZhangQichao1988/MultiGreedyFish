@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GauageLevel : MonoBehaviour
+public class GaugeLevel : MonoBehaviour
 {
     public Text textFishChip;
     public Slider sliderFishLevel;

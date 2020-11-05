@@ -4,13 +4,13 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GauageRank : MonoBehaviour
+public class GaugeRank : MonoBehaviour
 {
     public Text textRankLevel;
     public Text textRank;
     public Image rankIcon;
 
-    Slider sliderRankLevel;
+    public Slider sliderRankLevel;
 
 
     private void Awake()

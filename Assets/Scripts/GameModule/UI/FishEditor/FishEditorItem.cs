@@ -9,11 +9,11 @@ public class FishEditorItem : MonoBehaviour
 {
     Button button;
     Animator animator;
-Image bgImage;
+    Image bgImage;
     public Image image;
 
-    public GauageRank gauageRank;
-    public GauageLevel gauageLevel;
+    public GaugeRank gaugeRank;
+    public GaugeLevel gaugeLevel;
 
     public Text textFishName;
     public Text textFishLevel;
@@ -32,8 +32,8 @@ Image bgImage;
     {
         this.pBPlayerFishLevelInfo = pBPlayerFishLevelInfo;
 
-        gauageRank.Refash(pBPlayerFishLevelInfo);
-        gauageLevel.Refash(pBPlayerFishLevelInfo);
+        gaugeRank.Refash(pBPlayerFishLevelInfo);
+        gaugeLevel.Refash(pBPlayerFishLevelInfo);
         textFishName.text = LanguageDataTableProxy.GetText( fishData.name );
         if (pBPlayerFishLevelInfo.FishLevel > 0)
         {

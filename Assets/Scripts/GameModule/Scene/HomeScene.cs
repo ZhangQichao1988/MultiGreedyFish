@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class HomeScene : BaseScene
 {
-    
+    private string startSceneName = "Home";
     private readonly List<string> listUI = new List<string>() 
     {
+        "BattleResult",
         "Home",
         "FishEditor",
         "FishStatus",
@@ -22,14 +23,17 @@ public class HomeScene : BaseScene
         {
             m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.uiRootPath, note), ResType = typeof(GameObject) });
         }
-        
+        if (parms != null)
+        {
+            startSceneName = (string)parms;
+        }
     }
 
     public override void Create()
     {
         homeCommon = UIBase.Open<UIHomeCommon>(Path.Combine(AssetPathConst.uiRootPath, "HomeCommon"), UIBase.UILayers.DEFAULT);
         homeResource = UIBase.Open<UIHomeResource>(Path.Combine(AssetPathConst.uiRootPath, "HomeResource"), UIBase.UILayers.RESOURCE);
-        GotoSceneUI("Home");
+        GotoSceneUI(startSceneName);
 
         ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnGettedItemNormal);
     }

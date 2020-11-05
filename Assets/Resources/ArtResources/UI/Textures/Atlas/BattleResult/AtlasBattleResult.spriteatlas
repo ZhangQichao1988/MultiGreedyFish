@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AtlasBattleResult
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 01a267bf1e57d6f44b378377678caece, type: 3}
+    totalSpriteSurfaceArea: 610681
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 91d9c5f5f7bc0164d87ad799034e1375, type: 3}
+  - {fileID: 21300000, guid: 1296c8b72f229f748b16d4c5e266baf3, type: 3}
+  - {fileID: 21300000, guid: bf89c64c02d3e3f478acbb9a077f675e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_battleresult_value_bg
+  - ui_battleresult_frame1
+  - ui_battleresult_frame2
+  m_Tag: AtlasBattleResult
+  m_IsVariant: 0

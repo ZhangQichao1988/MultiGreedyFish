@@ -14,8 +14,8 @@ public class UIFishStatus : UIBase
     public Button btnLvUp;
 
     public FishStatusFishControl fishControl;
-    public GauageLevel gauageLevel;
-    public GauageRank gauageRank;
+    public GaugeLevel gauageLevel;
+    public GaugeRank gauageRank;
     public Text textFishName;
     public Text textFishComment;
     public Text textFishSkillName;
@@ -34,7 +34,7 @@ public class UIFishStatus : UIBase
     public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
     {
         if (this.playerFishLevelInfo == null || this.playerFishLevelInfo.FishId != playerFishLevelInfo.FishId)
-        { CreateFishModel(playerFishLevelInfo.FishId); }
+        { fishControl.CreateFishModel(playerFishLevelInfo.FishId); }
 
         this.playerFishLevelInfo = playerFishLevelInfo;
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
@@ -91,13 +91,7 @@ public class UIFishStatus : UIBase
         btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f;
 
     }
-    private void CreateFishModel(int fishId)
-    {
-        var fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
-        var asset = ResourceManager.LoadSync(Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), typeof(GameObject));
-        GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, fishControl.gameObject);
-        fishControl.SetFishModel(go);
-    }
+    
 
     public void OnClickFishSelect()
     {

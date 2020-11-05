@@ -15,6 +15,13 @@ public class FishStatusFishControl : MonoBehaviour
     float nowTouchPosX = 0f;
     bool isDrage = false;
 
+    public void CreateFishModel(int fishId)
+    {
+        var fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
+        var asset = ResourceManager.LoadSync(Path.Combine(AssetPathConst.fishPrefabRootPath + fishBaseData.prefabPath), typeof(GameObject));
+        GameObject go = GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, gameObject);
+        SetFishModel(go);
+    }
     public void SetFishModel(GameObject goFish)
     {
         if (transModel != null) { Destroy(transModel.gameObject); }

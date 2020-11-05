@@ -9,7 +9,7 @@ public class Localization : MonoBehaviour
 	private void Awake()
 	{
 		Text text = GetComponent<Text>();
-		Debug.Assert(text != null, "LoLocalization.Awake()_1");
+		Debug.Assert(text != null, "LoLocalization.Awake()_1" + gameObject.name);
 		if(id == -1)
         {
 			id = int.Parse(text.text);

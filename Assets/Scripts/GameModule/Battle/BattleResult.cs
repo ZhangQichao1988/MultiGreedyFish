@@ -6,19 +6,39 @@ using TimerModule;
 
 public class BattleResult : UIBase
 {
-    [SerializeField]
-    Text textRewardGold;
+    public Text textRewardGold;
+    public Text textRewardGoldAdvert;
+    public Text textRewardRank;
+    public Text textBattleRanking;
 
-    [SerializeField]
-    Text textRewardGoldAdvert;
+    public Text textBattleRankingReward;
+    public Text textRankUpReward;
+    public Text textTotalReward;
 
-    [SerializeField]
-    Text textRewardRank;
+    public FishStatusFishControl fishControl;
+    public GaugeRank gaugeRank;
 
+    // 动画演出用参数
+    public float AddRankRate;
+    public float AddBattleRankingRewardRate;
+    public float AddRankUpRewardRate;
+
+    Animator animator;
+    private int rankStart;
+    private float preRankGaugeRate;
+
+    private P5_Response response;
+    PBPlayerFishLevelInfo levelInfo;
     int retryTimes;
 
     protected override string uiName { get { return "BattleResult"; } }
 
+    public override void Init()
+    {
+        base.Init();
+        Setup();
+
+    }
     protected override void OnRegisterEvent()
     {
         NetWorkHandler.GetDispatch().AddListener<P8_Response>(GameEvent.RECIEVE_P8_RESPONSE, OnRecvReward);
@@ -33,7 +53,6 @@ public class BattleResult : UIBase
     {
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
-            // TODO:将来要在Home界面做加算演出
             PlayerModel.Instance.player.Gold += res.RewardMoney;
             BackToHome();
         }
@@ -45,13 +64,13 @@ public class BattleResult : UIBase
                 LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
                 TimerManager.AddTimer((int)eTimerType.RealTime, retryTimes, (obj)=>{
                     LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-                    NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, true);
+                    NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
                 }, null);
             }
             else
             {
                 //重试失败 作普通奖励逻辑
-                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, false);
+                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, false);
             }
         }
     }
@@ -61,7 +80,7 @@ public class BattleResult : UIBase
     /// </summary>
     public void OnClickGetReward()
     {
-        NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, false);
+        NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, false);
     }
 
     /// <summary>
@@ -73,7 +92,7 @@ public class BattleResult : UIBase
             LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
             TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.BattleId, true);
+                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
             }, null);
         };
         Intro.Instance.AdsController.Show();
@@ -81,23 +100,64 @@ public class BattleResult : UIBase
 
     void BackToHome()
     {
-        Close();
-        BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("Home");
+        //Close();
+        //BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene), "BattleResult");
     }
 
-    public void Setup(P5_Response response)
+    public void Setup()
     {
-        // TODO:明细显示时分离
-        int gold = response.GainGold + response.GainRankLevelupBonusGold;
-        int rankUp = response.GainRankLevel;
+        animator = GetComponent<Animator>();
 
-        Debug.Assert(textRewardGold != null, "BattleResult.Setup()_1");
-        textRewardGold.text = string.Format( LanguageDataTableProxy.GetText(8), gold);
+        response = StageModel.Instance.resultResponse;
 
-        Debug.Assert(textRewardGoldAdvert != null, "BattleResult.Setup()_2");
-        textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), gold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
+        levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+        
+        // rank条
+        gaugeRank.Refash(levelInfo);
+        preRankGaugeRate = gaugeRank.sliderRankLevel.value;
 
-        Debug.Assert(textRewardRank != null, "BattleResult.Setup()_3");
-        textRewardRank.text = string.Format(LanguageDataTableProxy.GetText(9), rankUp);
+        // 中间的鱼
+        fishControl.CreateFishModel(levelInfo.FishId);
+
+        
+
+        rankStart = levelInfo.RankLevel + response.GainRankLevel;
+        int totalGold = response.GainGold + response.GainRankLevelupBonusGold;
+
+        textBattleRankingReward.text = response.GainGold.ToString();
+        textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+
+        textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
+        
+    }
+
+    private void Update()
+    {
+        // rank条更新
+        if(AddRankRate <= 1.5f)
+        {
+            int rankUp = response.GainRankLevel;
+            textRewardRank.text = "+" + (int)Mathf.Lerp(0, rankUp, AddRankRate);
+            levelInfo.RankLevel = (int)Mathf.Lerp(rankStart, rankStart + rankUp, AddRankRate);
+            gaugeRank.Refash(levelInfo);
+            if (preRankGaugeRate > gaugeRank.sliderRankLevel.value)
+            {
+                animator.SetTrigger("RankUp");
+            }
+        }
+
+        // 明细显示
+        if (AddBattleRankingRewardRate <= 1.5f || AddRankUpRewardRate <= 1.5f)
+        {
+            int AddBattleRankingReward = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
+            int AddRankUpReward = (int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate);
+            int totalGold = AddBattleRankingReward + AddRankUpReward;
+            textTotalReward.text = totalGold.ToString();
+            textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
+            textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
+
+        }
     }
 }

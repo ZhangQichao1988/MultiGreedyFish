@@ -59,7 +59,8 @@ public class BattleManagerGroup : MonoBehaviour
     public void GotoHome()
     {
         NetWorkHandler.GetDispatch().AddListener<P5_Response>(GameEvent.RECIEVE_P5_RESPONSE, OnRecvBattleResult);
-        NetWorkHandler.RequestBattleResult(StageModel.Instance.BattleId, battleRanking);
+        NetWorkHandler.RequestBattleResult(StageModel.Instance.battleId, battleRanking);
+        StageModel.Instance.battleRanking = battleRanking;
     }
 
     void OnRecvBattleResult<T>(T response)
@@ -69,12 +70,14 @@ public class BattleManagerGroup : MonoBehaviour
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             SetBattlePause();
-            BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
+            BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene), "BattleResult");
+            StageModel.Instance.resultResponse = realResponse;
+            //BattleResult battleResult = UIBase.Open<BattleResult>("ArtResources/UI/Prefabs/BattleResult");
 
-            PlayerModel.Instance.gainGold = realResponse.GainGold;
-            battleResult.Setup(realResponse);
-            var playerFishLevelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
-            playerFishLevelInfo.RankLevel += realResponse.GainRankLevel;
+            //PlayerModel.Instance.gainGold = realResponse.GainGold;
+            //battleResult.Setup(realResponse);
+            //var playerFishLevelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+            //playerFishLevelInfo.RankLevel += realResponse.GainRankLevel;
         }
         else
         {
