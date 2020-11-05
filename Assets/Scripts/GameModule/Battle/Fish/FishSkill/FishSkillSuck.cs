@@ -13,6 +13,8 @@ public class FishSkillSuck : FishSkillBase
 	public override bool Skill()
 	{
 		animatorPlayer.SetTrigger("Skill");
+		BattleEffectManager.CreateEffect(6, playerBase.transModel);
+
 		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
 		Vector3 playerToTargetDir;
 		float dot;

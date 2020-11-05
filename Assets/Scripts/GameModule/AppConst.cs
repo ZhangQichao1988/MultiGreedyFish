@@ -22,7 +22,7 @@ public class AppConst
     public static bool EnabledGameServices = true;
 
 
-	public static ESeverType DefaultServerType = ESeverType.LOCAL_SERVER;
+	public static ESeverType DefaultServerType = ESeverType.TENCENT_DEV;
 
 	public static ESeverType ServerType
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerModel : BaseModel<PlayerModel>
 {
+    public long playerId;
     public PBPlayer player;
     public PlayerModel() : base()
     {

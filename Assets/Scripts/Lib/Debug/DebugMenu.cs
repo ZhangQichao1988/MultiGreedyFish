@@ -512,6 +512,8 @@ public class DebugMenu :MonoBehaviour
     void ShowToolWindow()
     {
         string[] names = Enum.GetNames(typeof(ESeverType));
+        if (PlayerModel.Instance != null) { GUILayout.Label("PlayerID:" + PlayerModel.Instance.playerId, GUILayout.Height(50)); }
+
         GUILayout.Label("服务器选择:");
         currentServerIdx = GUILayout.SelectionGrid(currentServerIdx, names, names.Length, GUILayout.Width(windowRect.width));
         if (selectedServerIdx != currentServerIdx)

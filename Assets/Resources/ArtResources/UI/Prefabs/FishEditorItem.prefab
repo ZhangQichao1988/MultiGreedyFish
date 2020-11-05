@@ -410,8 +410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3424262300322324405}
-  gauageRank: {fileID: 2904004134527022354}
-  gauageLevel: {fileID: 8016019789560399753}
+  gaugeRank: {fileID: 2904004134527022354}
+  gaugeLevel: {fileID: 8016019789560399753}
   textFishName: {fileID: 969949095684191402}
   textFishLevel: {fileID: 8938543965784080546}
 --- !u!95 &1865024744291966975

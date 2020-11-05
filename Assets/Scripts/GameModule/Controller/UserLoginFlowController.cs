@@ -114,6 +114,7 @@ public class UserLoginFlowController
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             GameTimeUtil.SetServerTime(realResponse.ServerTime);
+            PlayerModel.Instance.playerId = realResponse.PlayerId;
             NetWorkHandler.GetDispatch().AddListener<P3_Response>(GameEvent.RECIEVE_P3_RESPONSE, OnRecvGetPlayerInfo);
             NetWorkHandler.RequestGetPlayer();
         }
