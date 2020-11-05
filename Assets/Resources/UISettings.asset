@@ -21,6 +21,6 @@ MonoBehaviour:
   layers:
   - DEFAULT
   - OVERLAY
-  - POPUP
-  - RESOURCE
   - LOADING
+  - RESOURCE
+  - POPUP

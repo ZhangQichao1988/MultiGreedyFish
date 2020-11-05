@@ -25,9 +25,10 @@ namespace MultiGreedyFish.Pipline
             }
 
             string uServer = Function.GetValue("-useSever=", false);
-            bool isUseServer = System.Convert.ToBoolean(uServer);
-
-            strDefine = strDefine +  (isUseServer ? UserEditorMenu.SERVER_TENCENT + ";" : "DUMMY_DATA;");
+            if (uServer != null)
+            {
+                UserEditorMenu.SetMode(uServer);
+            }
 
             SetDefineSymbols(strDefine);
         }

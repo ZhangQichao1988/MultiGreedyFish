@@ -1,6 +1,16 @@
 using System.Text;
 using System.IO;
 using UnityEngine;
+using System;
+
+public enum ESeverType
+{
+    OFFLINE,
+    LOCAL_SERVER,
+    TENCENT_DEV,
+    TENCENT_STABLE,
+    TENCENT_PROD,
+}
 
 public class AppConst
 {
@@ -11,15 +21,57 @@ public class AppConst
     public static bool EnableProtocolEncrypt = true;
     public static bool EnabledGameServices = true;
 
-    
 
-#if SERVER_TENCENT
-    public static string Host = "www.cad-crazyfish.top";
-    public static int ApiPort = 0;
-#else
-    public static string Host = "127.0.0.1";
-    public static int ApiPort = 8088;
-#endif
+	public static ESeverType DefaultServerType = ESeverType.LOCAL_SERVER;
+
+	public static ESeverType ServerType
+    {
+        get
+        {
+            string typeStr = PlayerPrefs.GetString("SERVER_TYPE", DefaultServerType.ToString());
+            return (ESeverType)Enum.Parse(typeof(ESeverType), typeStr);
+        }
+    }
+
+    public static string Host
+    {
+        get
+        {
+            switch(ServerType)
+            {
+                case ESeverType.LOCAL_SERVER:
+                    return "127.0.0.1";
+                case ESeverType.TENCENT_DEV:
+                    return "www.cad-crazyfish.top";
+                case ESeverType.TENCENT_STABLE:
+                    return "www.cad-crazyfish.top";
+                case ESeverType.TENCENT_PROD:
+                    return "www.cad-crazyfish.top";
+                default:
+                    return "127.0.0.1";
+            }
+        }
+    }
+
+    public static int ApiPort
+    {
+        get
+        {
+            switch(ServerType)
+            {
+                case ESeverType.LOCAL_SERVER:
+                    return 8088;
+                case ESeverType.TENCENT_DEV:
+                    return 0;
+                case ESeverType.TENCENT_STABLE:
+                    return 0;
+                case ESeverType.TENCENT_PROD:
+                    return 0;
+                default:
+                    return 8088;
+            }
+        }
+    }
 
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
     public static string ApiPath = "/fishgame/call";
@@ -60,15 +112,16 @@ public class AppConst
                 httpProtocol = "http://";
             }
 
-#if SERVER_TENCENT
-            return httpProtocol + Host;
-#else
-            return httpProtocol + Host + ":" + ApiPort;
-#endif
+            if (ServerType == ESeverType.LOCAL_SERVER)
+            {
+                return httpProtocol + Host + ":" + ApiPort;
+            }
+            else
+            {
+                return httpProtocol + Host;
+            }
         }
     }
-
-
 
     public static string MasterSavedPath
     {

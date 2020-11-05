@@ -71,11 +71,14 @@ public class NetWorkHandler
             {"P15_Response", P15_Response.Parser},
         };
 
-#if DUMMY_DATA
-        NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent, new FishDummy(pbParserRef));
-#else
-        NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
-#endif
+        if (AppConst.ServerType == ESeverType.OFFLINE)
+        {
+            NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent, new FishDummy(pbParserRef));
+        }
+        else
+        {
+            NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
+        }
 
         //register
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartup, OnRecvStartup);

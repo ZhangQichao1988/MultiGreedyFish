@@ -2,8 +2,12 @@
 set -euo pipefail
 
 USE_SERVER="false"
+IS_RELEASE="false"
 if [[ $# -eq 1 ]]; then
   USE_SERVER=${1}
+fi
+if [[ $# -eq 2 ]]; then
+  IS_RELEASE=${2}
 fi
 
 SHELL_PATH=$(cd "$(dirname "$0")";pwd)
@@ -14,6 +18,11 @@ BUNDLE_VERSION_CODE_SHOW="1"
 ENABLE_DEBUG="true"
 BUNDLE_IDENTIFIER="com.klab.fishfight"
 DEV_BUILD="true"
+
+if [[ ${IS_RELEASE} == "true" ]]; then
+  DEV_BUILD="false"
+  ENABLE_DEBUG="false"
+fi
 
 #ios build
 DEV_TEAM=${DEV_TEAM:-E84VPJ2AUN}
