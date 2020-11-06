@@ -18,6 +18,10 @@ public class BattleResult : UIBase
     public FishStatusFishControl fishControl;
     public GaugeRank gaugeRank;
 
+    public GameObject goRankupRewardRoot;
+
+    public Button btnGetRewardAdvert;
+
     // 动画演出用参数
     public float AddRankRate;
     public float AddBattleRankingRewardRate;
@@ -111,7 +115,7 @@ public class BattleResult : UIBase
         animator = GetComponent<Animator>();
 
         response = StageModel.Instance.resultResponse;
-
+        
         levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
         
         // rank条
@@ -121,13 +125,19 @@ public class BattleResult : UIBase
         // 中间的鱼
         fishControl.CreateFishModel(levelInfo.FishId);
 
-        
+        btnGetRewardAdvert.gameObject.SetActive( response.GainGold > 0 );
 
-        rankStart = levelInfo.RankLevel + response.GainRankLevel;
+        rankStart = levelInfo.RankLevel;
         int totalGold = response.GainGold + response.GainRankLevelupBonusGold;
 
         textBattleRankingReward.text = response.GainGold.ToString();
-        textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+
+        // 荣誉提升奖励
+        goRankupRewardRoot.SetActive(response.GainRankLevelupBonusGold > 0);
+        if (goRankupRewardRoot.activeSelf)
+        {
+            textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+        }
 
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
         
@@ -156,7 +166,7 @@ public class BattleResult : UIBase
             int totalGold = AddBattleRankingReward + AddRankUpReward;
             textTotalReward.text = totalGold.ToString();
             textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
-            textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
+            textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue); 
 
         }
     }

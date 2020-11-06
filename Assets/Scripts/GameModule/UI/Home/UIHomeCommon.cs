@@ -10,6 +10,7 @@ public class UIHomeCommon : UIBase
         switch (uiname)
         {
             case "Home":
+            case "BattleResult":
                 goBack.SetActive(false);
                 break;
             case "FishEditor":
