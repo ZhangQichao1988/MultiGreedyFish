@@ -46,6 +46,7 @@ public class HomeScene : BaseScene
     {
         var uiBase = base.GotoSceneUI(uiName, parms, saveHistory);
         homeCommon.SetActiveByUIName(uiName);
+        homeCommon.SetBgmValue(uiName); 
         homeResource.SetActiveScene(uiName);
         return uiBase;
     }
