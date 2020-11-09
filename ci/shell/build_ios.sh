@@ -1,13 +1,18 @@
 ##!/usr/bin/bash
 set -euo pipefail
 
-USE_SERVER="false"
+USE_SERVER="ESeverType.TENCENT_DEV"
+BUILD_TYPE="development"        #默认开发 什么都能测
 IS_RELEASE="false"
 if [[ $# -eq 1 ]]; then
   USE_SERVER=${1}
 fi
+
 if [[ $# -eq 2 ]]; then
-  IS_RELEASE=${2}
+  BUILD_TYPE=${2}
+fi
+if [[ $# -eq 3 ]]; then
+  IS_RELEASE=${3}
 fi
 
 SHELL_PATH=$(cd "$(dirname "$0")";pwd)
@@ -16,8 +21,9 @@ PRODUCT_NAME="FISH-FIGHT"
 BUNDLE_VERSION="0.0.1"
 BUNDLE_VERSION_CODE_SHOW="1"
 ENABLE_DEBUG="true"
-BUNDLE_IDENTIFIER="com.klab.fishfight"
+BUNDLE_IDENTIFIER="jp.co.cad.crazyfish"
 DEV_BUILD="true"
+IS_DEVELOPMENT="false"
 
 if [[ ${IS_RELEASE} == "true" ]]; then
   DEV_BUILD="false"
@@ -25,10 +31,27 @@ if [[ ${IS_RELEASE} == "true" ]]; then
 fi
 
 #ios build
-DEV_TEAM=${DEV_TEAM:-E84VPJ2AUN}
-MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-88d86ceb-326f-4bde-91c1-e2726f80daf8}
-CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Distribution: KLab INC. (ENT)"}
-BUNDLE_METHOD=${BUNDLE_METHOD:-enterprise}
+if [[ ${BUILD_TYPE} == "adhoc" ]]; then
+    # ad hoc
+    DEV_TEAM=${DEV_TEAM:-LQ497AGR75}
+    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-a34d2fa6-e01c-43b0-8b2d-c8152951bb4b}
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Distribution"}
+    BUNDLE_METHOD=${BUNDLE_METHOD:-ad-hoc}
+elif [[ ${BUILD_TYPE} == "development" ]]; then
+    #开发
+    IS_DEVELOPMENT="true"
+    DEV_TEAM=${DEV_TEAM:-LQ497AGR75}
+    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-a7356385-0f28-4a26-929a-fb1f0298f742}
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Developer"}
+    BUNDLE_METHOD=${BUNDLE_METHOD:-development}
+else
+    # 企业 用kc
+    BUNDLE_IDENTIFIER="com.klab.crazyfish"
+    DEV_TEAM=${DEV_TEAM:-E84VPJ2AUN}
+    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-88d86ceb-326f-4bde-91c1-e2726f80daf8}
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Distribution: KLab INC. (ENT)"}
+    BUNDLE_METHOD=${BUNDLE_METHOD:-enterprise}
+fi
 
 
 echo ${WORKDIR}
@@ -40,13 +63,13 @@ echo "Start build unity ios"
 echo ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
 -devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=true -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
--bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=false -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
+-bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=${IS_DEVELOPMENT} -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
 
 
 ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
 -devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=true -useSever=${USE_SERVER} -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
--bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=false -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
+-bundleIdentifier=${BUNDLE_IDENTIFIER} -provisionPID=${MOBILE_PROVISION_UUID} -teamID=${DEV_TEAM} -isDevelop=${IS_DEVELOPMENT} -logFile /tmp/fish/build/ios/build_log-${BUILD_DATA}.log 
 
 
 echo "start build  ios xcode project"
