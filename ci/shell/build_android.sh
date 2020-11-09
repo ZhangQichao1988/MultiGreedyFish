@@ -1,7 +1,7 @@
 ##!/usr/bin/bash
 set -euo pipefail
 
-USE_SERVER="false"
+USE_SERVER="ESeverType.TENCENT_DEV"
 IS_RELEASE="false"
 if [[ $# -eq 1 ]]; then
   USE_SERVER=${1}
