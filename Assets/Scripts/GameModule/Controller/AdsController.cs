@@ -13,7 +13,7 @@ public class AdsController : MonoBehaviour
     // string appId = "ca-app-pub-3940256099942544/5224354917";
     string appId = "ca-app-pub-3796374498607875/8055947862";
 #elif UNITY_IPHONE
-    string appId = "ca-app-pub-3940256099942544/1712485313";
+    string appId = "ca-app-pub-3796374498607875/1231733180";
 #else
     string appId = "unexpected_platform";
 #endif
