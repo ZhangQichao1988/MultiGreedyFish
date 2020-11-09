@@ -135,7 +135,10 @@ public class InGameUIPanel : MonoBehaviour
         {
             BattleManagerGroup.GetInstance().GotoResult(alivePlayerNum + 1);
             var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(cameraFollow.Target.position);
-            cameraFollow.SetTarget(listPlayer[0].transform);
+            if (listPlayer[0] != cameraFollow.Target)
+            {
+                cameraFollow.SetTarget(listPlayer[0].transform);
+            }
         }
         else if (alivePlayerNum <= 1 && !BattleConst.instance.FreeMode)
         {

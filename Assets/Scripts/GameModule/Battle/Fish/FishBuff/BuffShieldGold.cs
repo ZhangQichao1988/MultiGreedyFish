@@ -6,6 +6,8 @@ using static FishBase;
 
 public class BuffShieldGold : BuffShield
 {
+    public override BuffType buffType { get { return BuffType.ShieldGold; } }
+
     Renderer renderer;
     public BuffShieldGold(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {

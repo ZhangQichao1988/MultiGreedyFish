@@ -68,6 +68,10 @@ public class LifeGauge : MonoBehaviour
         if (!dmgExpLocation.activeInHierarchy) { return; }
         int effectId = BattleEffectManager.CreateEffect(1, dmgExpLocation.transform);
         Effect effect = EffectManager.GetEffect(effectId);
+        if (numberData.numberType == NumberType.Damage)
+        {
+            SoundManager.PlaySE(10, effect.effectObject);
+        }
         //var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.effectRootPath, "fx_dmgExp"));
         //GameObject go =  GameObjectUtil.InstantiatePrefab(asset.Asset as GameObject, null);
         //go.transform.position = dmgExpLocation.transform.position;

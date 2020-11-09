@@ -133,7 +133,11 @@ public class FishBase : MonoBehaviour
         if (dmgTime > 0) { return false; }
         if (data.isShield) { return false; }
         life -= dmg;
-        if(lifeGauge) lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Damage, dmg));
+        if (lifeGauge)
+        {
+            lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Damage, dmg));
+            
+        }
         if (life <= 0)
         {
             Die(hitmanTrans);
