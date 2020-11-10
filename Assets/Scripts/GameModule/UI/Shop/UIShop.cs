@@ -96,6 +96,12 @@ public class UIShop : UIBase
     {
         //tmp data;
         var items = ShopModel.Instance.GetShopItemByType(type);
+        if (items.Count <= 0)
+        {
+            MsgBox.OpenTips("无法读取商店物品");
+            scrollingView.Fill(0);
+            return;
+        }
         var uiObjs = scrollingView.Fill(items.Count);
         uiObjs.ForEach(cell=>{
             var idx = uiObjs.IndexOf(cell);

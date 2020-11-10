@@ -75,9 +75,18 @@ namespace MultiGreedyFish.Pipline
             
 
             BuildOptions opt = BuildOptions.SymlinkLibraries;
+            if (IsDevBuild)
+            {
+                opt = opt | BuildOptions.Development;
+                EditorUserBuildSettings.development = true;
+            }
+            else
+            {
+                EditorUserBuildSettings.development = false;
+            }
             // opt = opt | BuildOptions.Development | BuildOptions.ConnectWithProfiler;
             
-            EditorUserBuildSettings.development = false;
+            
             
             PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, 1);
             
@@ -137,7 +146,6 @@ namespace MultiGreedyFish.Pipline
             PlayerSettings.bundleVersion = Function.GetValue ("-bundleVersion=", true);
 
 
-            EditorUserBuildSettings.development = false;
 
             string dir = "Achieve" + Path.DirectorySeparatorChar + "Android" + Path.DirectorySeparatorChar;
 
@@ -151,10 +159,12 @@ namespace MultiGreedyFish.Pipline
             
             if (IsDevBuild)
             {
+                EditorUserBuildSettings.development = true;
                 BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.Development | BuildOptions.ConnectWithProfiler);
             }
             else
             {
+                EditorUserBuildSettings.development = false;
                 BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.None);
             }
             // BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.Development | BuildOptions.ConnectWithProfiler);

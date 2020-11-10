@@ -12,6 +12,11 @@ public class ShopItemVo
     public string BillingPrice{get; set;}
     public string BillingFormatPrice{get; set;}
 
+    /// <summary>
+    /// 氪金商品专用
+    /// </summary>
+    public bool IsVaildItem = false;
+
     public int ID
     {
         get

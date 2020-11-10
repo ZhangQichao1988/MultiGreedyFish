@@ -29,6 +29,7 @@ public class ShopModel : BaseModel<ShopModel>
                     string[] priceList = dicItem.Value.Split('|');
                     vo.BillingPrice = priceList[0];
                     vo.BillingFormatPrice = priceList[1];
+                    vo.IsVaildItem = true;
                 }
                 Dispatch(ShopEvent.ON_GETTED_SHOP_LIST, request.ProductType);
             }, (err)=>{
@@ -107,7 +108,7 @@ public class ShopModel : BaseModel<ShopModel>
     {
         if (type == ShopType.Pay)
         {
-            return PayItems;
+            return PayItems.FindAll(t=>t.IsVaildItem);
         }
         else
         {
