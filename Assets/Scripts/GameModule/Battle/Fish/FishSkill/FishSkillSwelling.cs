@@ -64,11 +64,12 @@ public class FishSkillSwelling : FishSkillBase
 						playerBase.AddBuff(playerBase, 0);
 
 						// 给敌人弹开buff
-						listFish[i].AddBuff(playerBase, 2);
-						// 伤害
-						if(!listFish[i].ContainsBuff(0))
-                        {	// 判定是否受伤中
-							listFish[i].Damage( (int)(playerBase.data.atk * listParam[2]), null );
+						if (listFish[i].AddBuff(playerBase, 2) != null)
+						{
+							// 被弹开SE
+							SoundManager.PlaySE(13, playerBase.audioSource);
+							// 伤害
+							listFish[i].Damage((int)(playerBase.data.atk * listParam[2]), null);
 						}
 					}
 				}

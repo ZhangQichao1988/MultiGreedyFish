@@ -39,12 +39,21 @@ public class SoundManager : MonoBehaviour
         }
         return ac;
     }
-    static public AudioSource CreateAudioSource(GameObject gameObject)
+    static public void PlaySE(int soundId, GameObject gameObject)
+    {
+        var audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = CreateAudioSource(gameObject);
+        }
+        PlaySE(soundId, audioSource);
+    }
+        static public AudioSource CreateAudioSource(GameObject gameObject)
     {
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1f;
-        audioSource.minDistance = 10;
-        audioSource.maxDistance = 20;
+        audioSource.minDistance = 1;
+        audioSource.maxDistance = 10;
         audioSource.playOnAwake = false;
         return audioSource;
     }
@@ -52,6 +61,7 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.clip = SoundManager.GetAudioClip(soundId);
         audioSource.Play();
+        //Debug.Log("PlaySE:" + soundId + "\nTarget:" + audioSource.gameObject.name);
     }
     static public void PlaySE(int soundId)
     {
