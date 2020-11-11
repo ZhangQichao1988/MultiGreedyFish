@@ -126,10 +126,13 @@ public class ShopModel : BaseModel<ShopModel>
         }
         else if (vo.Paytype == PayType.Money)
         {
+            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
             BillingManager.Purchase(vo.PlatformID, (id)=>{
                 ShopModel.Instance.ShowGainedItem(id);
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
             }, (err)=>{
                 MsgBox.OpenTips(BillingManager.GetErrorWord(err));
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
             });
         }
         else
