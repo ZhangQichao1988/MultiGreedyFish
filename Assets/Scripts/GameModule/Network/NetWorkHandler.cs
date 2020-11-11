@@ -119,6 +119,11 @@ public class NetWorkHandler
             case HttpDispatcher.EventType.TimeOut:
                 //超时
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                if (msg.Contains("P13_Request"))
+                {
+                    //支付协议超时
+                    LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                }
                 MsgBox.OpenConfirm("网络错误", "请求超时 请重试", ()=>{
                     RetrySend(obj);
                 }, ()=>{

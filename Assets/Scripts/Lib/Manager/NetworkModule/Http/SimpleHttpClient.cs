@@ -21,6 +21,7 @@ namespace NetWorkModule
         Dictionary<string, int> timeoutDict;
 
         HashSet<int> noAuthMsg = new HashSet<int>(); 
+        HashSet<string> useLongTimeout = new HashSet<string>(){"P13_Request"};
         //screct key
         byte[] gSessionKey = null;
         byte[] cachedSession = null;
@@ -113,7 +114,7 @@ namespace NetWorkModule
                     NeedAuth = needAuth,
                     RequestTimeing = UnityEngine.Time.realtimeSinceStartup
                 };
-                timeoutDict.Add(timeoutKey, TimerManager.AddTimer((int)eTimerType.RealTime, TIMEOUT_SEC, TimeoutHandler, reqInfo));
+                timeoutDict.Add(timeoutKey, TimerManager.AddTimer((int)eTimerType.RealTime, GetTimeoutSec(msg), TimeoutHandler, reqInfo));
 
                 yield return request.SendWebRequest();
 
@@ -138,6 +139,11 @@ namespace NetWorkModule
                     HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpError, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
                 }
             }
+        }
+
+        float GetTimeoutSec(string msg)
+        {
+            return useLongTimeout.Contains(msg) ? 20 : TIMEOUT_SEC;
         }
 
         void TimeoutHandler(System.Object obj)
