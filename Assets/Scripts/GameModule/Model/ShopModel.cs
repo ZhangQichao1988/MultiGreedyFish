@@ -20,6 +20,7 @@ public class ShopModel : BaseModel<ShopModel>
         
         if (request.ProductType == ShopType.Pay)
         {
+            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
             PayItems = vos;
             BillingManager.GetProductList(vos, (dic)=>{
                 foreach (var dicItem in dic)
@@ -31,8 +32,10 @@ public class ShopModel : BaseModel<ShopModel>
                     vo.BillingFormatPrice = priceList[1];
                     vo.IsVaildItem = true;
                 }
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 Dispatch(ShopEvent.ON_GETTED_SHOP_LIST, request.ProductType);
             }, (err)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 MsgBox.Open("错误", "商品列表读取错误");
             });
         }

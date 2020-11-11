@@ -36,6 +36,7 @@ public class HomeScene : BaseScene
         GotoSceneUI(startSceneName);
 
         ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnGettedItemNormal);
+        BillingManager.Resume();
     }
 
     public void GotoFishEditor()
