@@ -117,10 +117,13 @@ PlayerSettings:
   switchNVNShaderPoolsGranularity: 33554432
   switchNVNDefaultPoolsGranularity: 16777216
   switchNVNOtherPoolsGranularity: 16777216
+  switchNVNMaxPublicTextureIDCount: 0
+  switchNVNMaxPublicSamplerIDCount: 0
   stadiaPresentMode: 0
   stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
+  vulkanEnableLateAcquireNextImage: 0
   useSecurityBuild: 0
   m_SupportedAspectRatios:
     4:3: 1
@@ -173,7 +176,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: jp.co.cad.crazyfish
-    iPhone: com.klab.fishfight
+    iPhone: jp.co.cad.crazyfish
   buildNumber:
     iPhone: 1
   AndroidBundleVersionCode: 5
@@ -238,10 +241,10 @@ PlayerSettings:
   metalEditorSupport: 1
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 0
-  appleDeveloperTeamID: E84VPJ2AUN
-  iOSManualSigningProvisioningProfileID: 88d86ceb-326f-4bde-91c1-e2726f80daf8
+  appleDeveloperTeamID: LQ497AGR75
+  iOSManualSigningProvisioningProfileID: b7a1c8e1-b024-4d3a-9287-4137b3d79210
   tvOSManualSigningProvisioningProfileID: 
-  iOSManualSigningProvisioningProfileType: 2
+  iOSManualSigningProvisioningProfileType: 1
   tvOSManualSigningProvisioningProfileType: 0
   appleEnableAutomaticSigning: 2
   iOSRequireARKit: 0
@@ -610,6 +613,7 @@ PlayerSettings:
   ps4ShareFilePath: 
   ps4ShareOverlayImagePath: 
   ps4PrivacyGuardImagePath: 
+  ps4ExtraSceSysFile: 
   ps4NPtitleDatPath: 
   ps4RemotePlayKeyAssignment: -1
   ps4RemotePlayKeyMappingDir: 
@@ -652,6 +656,8 @@ PlayerSettings:
   ps4disableAutoHideSplash: 0
   ps4videoRecordingFeaturesUsed: 0
   ps4contentSearchFeaturesUsed: 0
+  ps4CompatibilityPS5: 0
+  ps4GPU800MHz: 1
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules:
   - libc.prx
@@ -686,9 +692,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CONSOLE_ENABLE;SERVER_TENCENT
-    4: CONSOLE_ENABLE;SERVER_TENCENT
-    7: CONSOLE_ENABLE;SERVER_TENCENT
+    1: CONSOLE_ENABLE
+    4: CONSOLE_ENABLE
+    7: CONSOLE_ENABLE
   platformArchitecture:
     iPhone: 1
   scriptingBackend:
