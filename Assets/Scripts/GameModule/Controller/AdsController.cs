@@ -25,19 +25,24 @@ public class AdsController : MonoBehaviour
     void Start()
     {
         //todo : ios 等待申请
-#if UNITY_ANDROID
         MobileAds.Initialize(client=>{
             isInited = true;
 
+#if CONSOLE_ENABLE
             MobileAds.SetRequestConfiguration((new RequestConfiguration.Builder()).SetTestDeviceIds(
                 new List<string>(){
+    #if UNITY_ANDROID
                     "90A076DBA55643D9651A1D3347C57C6A",
                     "636A92A693B6B3F0ADFDB471C1BBF70B",
                     "234"
+    #elif UNITY_IOS
+                    
+    #endif
+#endif
                 }
             ).build());
         });
-#endif
+        
     }
 
     RewardedAd rewardAd;
