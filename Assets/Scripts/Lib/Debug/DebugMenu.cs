@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor;
 
 public class DebugMenu :MonoBehaviour
 {
@@ -539,6 +540,27 @@ public class DebugMenu :MonoBehaviour
         if (GUILayout.Button("清理当前未完成的氪金项", GUI.skin.button))
         {
             BillingManager.FinishPendingTransactions();
+        }
+
+        // 战斗debug
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("杀死一个敌人", GUI.skin.button))
+            {
+                try
+                {
+                    BattleManagerGroup.GetInstance().inGameUIPanel.KillEnemy();
+                }
+                catch (Exception e) { }
+            }
+            if (GUILayout.Button("自杀", GUI.skin.button))
+            {
+                try
+                {
+                    BattleManagerGroup.GetInstance().inGameUIPanel.KillSelf();
+                }
+                catch (Exception e) { }
+            }
         }
     }
     

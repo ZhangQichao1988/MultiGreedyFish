@@ -79,30 +79,40 @@ public class InGameUIPanel : MonoBehaviour
         pos.y = (pos.y / Screen.height - 0.5f) * SelfRectTF.rect.height;
         return pos;
     }
+#if CONSOLE_ENABLE
+    public void KillEnemy()
+    {
+        var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
+        if (listPlayer.Count > 1)
+        {
+            foreach (var note in listPlayer)
+            {
+                if (note.fishType == FishBase.FishType.PlayerRobot)
+                {
+                    note.Damage(999999, null);
+                    break;
+                }
+            }
+        }
+    }
+    public void KillSelf()
+    {
+        Player.Damage(999999, null);
+    }
+#endif
 
-	public void Update()
+    public void Update()
 	{
-#if UNITY_EDITOR
+#if UNITY_EDITOR && CONSOLE_ENABLE
         // 自杀
         if (Input.GetKey(KeyCode.D))
         {
-            Player.Damage(999999, null);
+            KillSelf();
         }
         // 随机杀死一个机器人
         if (Input.GetKeyDown(KeyCode.E))
         {
-            var listPlayer = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
-            if (listPlayer.Count > 1)
-            {
-                foreach (var note in listPlayer)
-                {
-                    if (note.fishType == FishBase.FishType.PlayerRobot)
-                    {
-                        note.Damage(999999, null);
-                        break;
-                    }
-                }
-            }
+            KillEnemy();
         }
 #endif
 

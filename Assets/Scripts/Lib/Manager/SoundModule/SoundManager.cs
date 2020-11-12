@@ -85,9 +85,15 @@ public class SoundManager : MonoBehaviour
     public void UnloadBattleSE()
     {
         Dictionary<int, AssetRef<AudioClip>> tmp = new Dictionary<int, AssetRef<AudioClip>>(dicAudio);
+        SoundData soundData;
         foreach (var se in tmp.Keys)
         {
-            if (SoundDataTableProxy.Instance.GetDataById(se).scene == (int)SoundData.SceneType.Battle)
+            soundData = SoundDataTableProxy.Instance.GetDataById(se);
+            if (soundData == null)
+            {
+                Debug.LogWarning("Not fournd soundData:" + se);
+            }
+            else if (soundData.scene == (int)SoundData.SceneType.Battle)
             {
                 ResourceManager.Unload(dicAudio[se]);
                 dicAudio.Remove(se);
