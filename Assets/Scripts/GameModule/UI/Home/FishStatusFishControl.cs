@@ -10,11 +10,14 @@ public class FishStatusFishControl : MonoBehaviour
     Animator animator;
     Transform transModel;
 
-    float FishRotAngle = 90f;
+    float FishRotAngle = 0f;
     float preTouchPosX = 0f;
     float nowTouchPosX = 0f;
     bool isDrage = false;
-
+    public void OnEnter()
+    {
+        FishRotAngle = 0f;
+    }
     public void CreateFishModel(int fishId)
     {
         var fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
@@ -54,7 +57,7 @@ public class FishStatusFishControl : MonoBehaviour
                 if (preTouchPosX != 0f)
                 {
                     FishRotAngle += (preTouchPosX - nowTouchPosX) * 0.5f;
-                    transModel.rotation = Quaternion.AngleAxis(FishRotAngle, Vector3.up);
+                    transModel.localRotation = Quaternion.AngleAxis(FishRotAngle, Vector3.up);
                 }
                 preTouchPosX = nowTouchPosX;
             }

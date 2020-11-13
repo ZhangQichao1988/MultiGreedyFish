@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,8 +30,7 @@ public class InGameUIPanel : MonoBehaviour
 	{
         Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
         Image image = skillBtn.GetComponent<Image>();
-        string path = string.Format(AssetPathConst.skillIconPath, Player.fishSkill.baseData.skillType);
-        var asset = ResourceManager.LoadSync( path, typeof(Sprite));
+        var asset = ResourceManager.LoadSync(AssetPathConst.skillIconPath, typeof(Sprite));
         image.sprite = asset.Asset as Sprite;
         cameraFollow.Target = Player.transform;
     }

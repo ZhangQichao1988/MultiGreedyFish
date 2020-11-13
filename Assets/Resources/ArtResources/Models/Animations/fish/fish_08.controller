@@ -136,7 +136,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 57c0ea1372d596d4c8348ac3585ef3c3, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1e8dafb977cf5d341ae4ac3c6d6402de, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.5
@@ -144,7 +144,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 57c0ea1372d596d4c8348ac3585ef3c3, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1e8dafb977cf5d341ae4ac3c6d6402de, type: 2}
     m_Threshold: 0.3
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -152,7 +152,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 57c0ea1372d596d4c8348ac3585ef3c3, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1e8dafb977cf5d341ae4ac3c6d6402de, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1.5
@@ -333,7 +333,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: fish_06
+  m_Name: fish_08
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -418,7 +418,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 57c0ea1372d596d4c8348ac3585ef3c3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1e8dafb977cf5d341ae4ac3c6d6402de, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -535,7 +535,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1cbe061267ff4354daf01da09d7e5b43, type: 2}
+  m_Motion: {fileID: 7400000, guid: 581a19536d788f54ab32758804ff2b8f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

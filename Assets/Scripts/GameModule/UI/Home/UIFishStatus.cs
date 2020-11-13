@@ -31,7 +31,11 @@ public class UIFishStatus : UIBase
 
     private PBPlayerFishLevelInfo playerFishLevelInfo;
 
-    public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
+    public override void OnEnter(System.Object obj)
+    {
+        fishControl.OnEnter();
+    }
+        public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
     {
         if (this.playerFishLevelInfo == null || this.playerFishLevelInfo.FishId != playerFishLevelInfo.FishId)
         { fishControl.CreateFishModel(playerFishLevelInfo.FishId); }
