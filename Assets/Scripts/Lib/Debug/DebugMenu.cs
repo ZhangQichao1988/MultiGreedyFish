@@ -543,7 +543,7 @@ public class DebugMenu :MonoBehaviour
         }
 
         // 战斗debug
-        using (new EditorGUILayout.HorizontalScope())
+        GUILayout.BeginHorizontal();
         {
             if (GUILayout.Button("杀死一个敌人", GUI.skin.button))
             {
@@ -562,6 +562,7 @@ public class DebugMenu :MonoBehaviour
                 catch (Exception e) { }
             }
         }
+        GUILayout.EndHorizontal();
     }
     
 
