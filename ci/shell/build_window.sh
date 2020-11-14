@@ -10,6 +10,7 @@ if [[ $# -eq 2 ]]; then
   IS_RELEASE=${2}
 fi
 
+
 SHELL_PATH=$(cd "$(dirname "$0")";pwd)
 WORKDIR=$(dirname $(dirname "$SHELL_PATH"))
 PRODUCT_NAME="FISH-FIGHT"
@@ -24,6 +25,7 @@ if [[ ${IS_RELEASE} == "true" ]]; then
   ENABLE_DEBUG="false"
 fi
 
+
 #android build
 KEY_STORE_PATH="${WORKDIR}/ci/config/fish.keystore"
 KEY_STORE_PASS="hulaoshi007"
@@ -32,7 +34,7 @@ KEY_ALIAS_PASS="hulaoshi007"
 
 
 echo ${WORKDIR}
-UNITY_PATH="/c/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Unity.exe"
+UNITY_PATH="/c/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Unity.exe"
 
 BUILD_DATA=$(date "+%Y%m%d%H%M%S")
 

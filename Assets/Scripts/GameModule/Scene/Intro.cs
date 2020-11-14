@@ -34,6 +34,7 @@ public class Intro : MonoBehaviour
     private void SetLandscape()
     {
         Screen.orientation = ScreenOrientation.Landscape;//如果屏幕是竖屏,则立刻旋转至横屏
+        Application.targetFrameRate = 60;
 
         //设置只允许横屏旋转
         Screen.autorotateToPortrait = false;
