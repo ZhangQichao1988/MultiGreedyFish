@@ -37,6 +37,7 @@ public class AdsController : MonoBehaviour
                     "234"
     #elif UNITY_IOS
                     "f75d6701fabbd6600b397a1aaf3a7845"
+                    "b303361fe28b19ad4944977e8505c2bb"
     #endif
 #endif
                 }
