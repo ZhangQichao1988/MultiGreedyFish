@@ -42,9 +42,9 @@ public class AppConst
                 case ESeverType.LOCAL_SERVER:
                     return "127.0.0.1";
                 case ESeverType.TENCENT_DEV:
-                    return "www.cad-crazyfish.top";
+                    return "www.cad-crazyfish.top/dev";
                 case ESeverType.TENCENT_STABLE:
-                    return "www.cad-crazyfish.top";
+                    return "www.cad-crazyfish.top/stable";
                 case ESeverType.TENCENT_PROD:
                     return "www.cad-crazyfish.top";
                 default:
