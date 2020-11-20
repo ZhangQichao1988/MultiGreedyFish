@@ -21,7 +21,7 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
         res.Player = new PBPlayer() {
             PlayerId = 9999999L,
             FaceIconId = 1,
-            FightFish = 6,
+            FightFish = 8,
             Gold = 10,
             Diamond = 10,
             Nickname = "孙小杰",
