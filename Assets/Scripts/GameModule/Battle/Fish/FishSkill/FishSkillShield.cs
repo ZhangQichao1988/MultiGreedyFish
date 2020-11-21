@@ -9,10 +9,14 @@ public class FishSkillShield : FishSkillBase
 	float remainingTime;
 	int step = 0;
 
+	// 吸收次数
+	int defenseCnt;
+
 	Effect effect;
 	public override bool Skill()
 	{
 		remainingTime = listParam[1];
+		defenseCnt = (int)listParam[2];
 		step = 1;
 
 		SoundManager.PlaySE(14, playerBase.audioSource);
@@ -39,7 +43,15 @@ public class FishSkillShield : FishSkillBase
 					if(playerBase.colliderBody.bounds.Intersects(listFish[i].colliderBody.bounds))
 					{
 						// 被敌人弹开
-						playerBase.AddBuff(listFish[i], 8);
+						if(playerBase.AddBuff(listFish[i], 2) != null)
+                        {
+							if (--defenseCnt <= 0)
+							{
+								effect.Destroy();
+								step = 0;
+							}
+						}
+						
 					}
 				}
 				remainingTime -= Time.deltaTime;
