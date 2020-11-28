@@ -162,7 +162,7 @@ public class FishManager : MonoBehaviour
 		}
 		return listFish;
 	}
-		public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
+	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
 	{
 		List<FishBase> enemies = new List<FishBase>();
 		Vector3 enemyPos;
@@ -185,7 +185,26 @@ public class FishManager : MonoBehaviour
 		}
 		return enemies;
 	}
+	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, float range)
+	{
+		List<FishBase> enemies = new List<FishBase>();
+		Vector3 enemyPos;
+		for (int i = 0; i < listFish.Count; ++i)
+		{
+			if (me == listFish[i]) { continue; }
+			if (listFish[i].actionStep == FishBase.ActionType.Die ||
+				listFish[i].actionStep == FishBase.ActionType.Born ||
+				listFish[i].actionStep == FishBase.ActionType.BornWaitting) { continue; }
+			//listFish[i].fishType == FishBase.FishType.Boss
 
+			enemyPos = listFish[i].transform.position;
+			if ( (me.transform.position- enemyPos).magnitude <= range)
+			{
+				enemies.Add(listFish[i]);
+			}
+		}
+		return enemies;
+	}
 	public List<FishBase> GetAlivePlayer()
 	{
 		List<FishBase> listPlayer = new List<FishBase>();

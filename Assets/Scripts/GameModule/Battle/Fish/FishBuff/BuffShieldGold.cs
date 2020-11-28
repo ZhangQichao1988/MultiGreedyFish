@@ -12,7 +12,7 @@ public class BuffShieldGold : BuffShield
     public BuffShieldGold(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {
         renderer = fish.colliderBody.GetComponent<Renderer>();
-        renderer.material.EnableKeyword("_METAL_REF_ON");
+        renderer.material.EnableKeyword("_METAL_REF_ON"); 
     }
 
     public override void Destory()
