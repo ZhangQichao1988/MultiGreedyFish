@@ -66,8 +66,8 @@ public class UIFishStatus : UIBase
             goListHpValue[i].SetActive(i < intRate);
         }
 
-        rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2004).intValue,
-                                                    ConfigTableProxy.Instance.GetDataById(2005).intValue, 
+        rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2004).floatValue,
+                                                    ConfigTableProxy.Instance.GetDataById(2005).floatValue, 
                                                     fishData.moveSpeed);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)

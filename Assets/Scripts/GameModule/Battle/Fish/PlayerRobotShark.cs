@@ -53,7 +53,7 @@ public class PlayerRobotShark : PlayerRobotBase
 			}
 		}
 		listFindedFish = listFish;
-		if (listFish.Count > 0)
+		if (listFish.Count > 0 && (listFish[0].transform.position-transform.position).magnitude <= ConfigTableProxy.Instance.GetDataById(34).floatValue)
 		{
 			FishBase target = listFish[0];
 			MoveToTarget(target.transform.position);
