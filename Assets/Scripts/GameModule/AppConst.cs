@@ -22,7 +22,7 @@ public class AppConst
     public static bool EnabledGameServices = true;
 
 
-	public static ESeverType DefaultServerType = ESeverType.OFFLINE;
+	public static ESeverType DefaultServerType = ESeverType.TENCENT_DEV;
 
 	public static ESeverType ServerType
     {
@@ -33,6 +33,25 @@ public class AppConst
         }
     }
 
+    // public static string Host
+    // {
+    //     get
+    //     {
+    //         switch(ServerType)
+    //         {
+    //             case ESeverType.LOCAL_SERVER:
+    //                 return "127.0.0.1";
+    //             case ESeverType.TENCENT_DEV:
+    //                 return "www.cad-crazyfish.top/dev";
+    //             case ESeverType.TENCENT_STABLE:
+    //                 return "www.cad-crazyfish.top/stable";
+    //             case ESeverType.TENCENT_PROD:
+    //                 return "www.cad-crazyfish.top";
+    //             default:
+    //                 return "127.0.0.1";
+    //         }
+    //     }
+    // }
     public static string Host
     {
         get
@@ -42,16 +61,17 @@ public class AppConst
                 case ESeverType.LOCAL_SERVER:
                     return "127.0.0.1";
                 case ESeverType.TENCENT_DEV:
-                    return "www.cad-crazyfish.top/dev";
+                    return "81.68.85.172/dev";
                 case ESeverType.TENCENT_STABLE:
-                    return "www.cad-crazyfish.top/stable";
+                    return "81.68.85.172/stable";
                 case ESeverType.TENCENT_PROD:
-                    return "www.cad-crazyfish.top";
+                    return "81.68.85.172";
                 default:
                     return "127.0.0.1";
             }
         }
     }
+    
 
     public static int ApiPort
     {
