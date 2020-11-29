@@ -58,15 +58,8 @@ public class UIFishLevelUp : UIBase
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P7_RESPONSE);
         var realResponse = response as P7_Response;
-        if (realResponse.Result.Code == NetWorkResponseCode.SUCEED)
-        {
-             PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
-            Close();
-        }
-        else
-        {
-            MsgBox.Open("networkerror", realResponse.Result.Desc);
-        }
+        PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
+        Close();
     }
 
 }
