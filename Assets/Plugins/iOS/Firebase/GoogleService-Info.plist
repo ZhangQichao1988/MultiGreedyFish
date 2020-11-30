@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>89871578339-6gd8evk1i59545je5b64k0msp3586ova.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.89871578339-6gd8evk1i59545je5b64k0msp3586ova</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>89871578339-a47o70jvjto72s6svquamq9lafqrrubs.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1F63hAgCrXa8lSiRfxt51yVRECfoTJ-o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>89871578339</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jp.co.cad.crazyfish</string>
+	<key>PROJECT_ID</key>
+	<string>crazyfish-56a24</string>
+	<key>STORAGE_BUCKET</key>
+	<string>crazyfish-56a24.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:89871578339:ios:ad1af40a391a9da594c1d6</string>
+	<key>DATABASE_URL</key>
+	<string>https://crazyfish-56a24.firebaseio.com</string>
+</dict>
+</plist>
