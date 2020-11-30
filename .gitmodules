@@ -1,0 +1,6 @@
+[submodule "xlsx"]
+	path = xlsx
+	url = git@github.com:nightmare100/MultiGreedyFishExcel.git
+[submodule "Assets/Resources/JsonData"]
+	path = Assets/Resources/JsonData
+	url = git@github.com:nightmare100/MultiGreedyFishJson.git

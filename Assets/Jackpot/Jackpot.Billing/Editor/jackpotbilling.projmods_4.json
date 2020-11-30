@@ -1,0 +1,10 @@
+{
+    "group":       "Libraries",
+    "libs":        [],
+    "frameworks":  [],
+    "files":       [],
+    "arc_sources": ["Plugins/iOS/KJPBillingService.m", "Plugins/iOS/KJPBillingProduct.m", "Plugins/iOS/KJPBillingConfig.m"],
+    "folders":     [],
+    "excludes":    [],
+    "buildSettings": {}
+}

@@ -1,1 +1,13 @@
 Library
+.vs
+/*.csproj
+/*.sln
+Temp
+obj
+/Assets/Scenes/Test
+/Assets/Scenes/Test.meta
+/Properties
+/Assets/Resources/JsonData/*.meta
+/Achieve
+/Assets/StreamingAssets/google-services-desktop.json
+/Assets/StreamingAssets/google-services-desktop.json.meta
