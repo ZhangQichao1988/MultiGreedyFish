@@ -120,6 +120,7 @@ public class InGameUIPanel : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
         {
+            Player.fishSkill.currentGauge = 1f;
             PlayerRunSkill();
         }
 

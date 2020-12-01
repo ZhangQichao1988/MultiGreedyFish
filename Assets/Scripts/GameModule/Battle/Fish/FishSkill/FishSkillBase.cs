@@ -9,7 +9,7 @@ public class FishSkillBase
 	protected PlayerBase playerBase;
 	public FishSkillDataInfo baseData;
 	protected float[] listParam;
-	public float currentGauge { get; protected set; }
+	public float currentGauge { get; set; }
 
 	static public FishSkillBase SetFishSkill(PlayerBase playerBase, int id)
 	{
