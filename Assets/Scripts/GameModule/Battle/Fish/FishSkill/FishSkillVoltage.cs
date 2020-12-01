@@ -16,12 +16,13 @@ public class FishSkillVoltage : FishSkillBase
 	Effect effect;
 	public override bool Skill()
 	{
+		if (remainingTime > 0f) { return false; }
 		remainingTime = listParam[1];
 		buffId = (int)listParam[2];
 		step = 1;
 
 		SoundManager.PlaySE(16, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transform);
+		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transModel);
 		effect = EffectManager.GetEffect(effectId);
 
 		return true;
