@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 202122400439834495}
   - component: {fileID: -3724640959959206278}
   m_Layer: 0
-  m_Name: fx_skill_Paralysis
+  m_Name: fx_skill_icicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &202122400439834495
 Transform:
   m_ObjectHideFlags: 0
