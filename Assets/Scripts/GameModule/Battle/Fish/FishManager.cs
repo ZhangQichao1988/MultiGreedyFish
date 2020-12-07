@@ -142,26 +142,6 @@ public class FishManager : MonoBehaviour
 		EatCheck(player, atkCollider, listFish);
 	}
 
-	public void EatPlayerCheck(PlayerBase player, BoxCollider atkCollider)
-	{
-		List<FishBase> listFish = GetAlivePlayerInRange(player, player.transform.position, BattleConst.instance.RobotVision);
-		EatCheck(player, atkCollider, listFish);
-	}
-
-
-	public List<FishBase> GetAlivePlayerInRange(FishBase me, Vector3 pos, Vector2 range)
-	{
-		List<FishBase> listFish = GetEnemiesInRange(me, pos, range);
-		for (int i = listFish.Count - 1; i >= 0; --i)
-		{
-			if (listFish[i].fishType == FishBase.FishType.PlayerRobot || listFish[i].fishType == FishBase.FishType.Player)
-			{
-				continue;
-			}
-			listFish.RemoveAt(i);
-		}
-		return listFish;
-	}
 	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)
 	{
 		List<FishBase> enemies = new List<FishBase>();
@@ -211,7 +191,8 @@ public class FishManager : MonoBehaviour
 		for (int i = 0; i < listFish.Count; ++i)
 		{
 			if ((	listFish[i].fishType == FishBase.FishType.PlayerRobot || listFish[i].fishType == FishBase.FishType.Player)
-					 && listFish[i].actionStep != FishBase.ActionType.Die)
+					 && listFish[i].actionStep != FishBase.ActionType.Die
+					 && !listFish[i].isStealth)
 			{
 				listPlayer.Add(listFish[i]);
 			}

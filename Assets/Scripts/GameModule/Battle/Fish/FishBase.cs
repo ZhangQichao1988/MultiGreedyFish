@@ -77,6 +77,7 @@ public class FishBase : MonoBehaviour
     protected float inPoisonRingTime = 0f;
     protected int inPoisonRingDmgCnt = 0;
 
+    // 草丛相关
     public bool beforeInAquatic = false;
     protected float inAquaticTime = 0f;
     protected int inAquaticHealCnt = 0;
@@ -133,6 +134,9 @@ public class FishBase : MonoBehaviour
         if (dmgTime > 0) { return false; }
         if (data.isShield) { return false; }
         life -= dmg;
+        // 取消隐身buff
+        RemoveBuff(10);
+
         if (lifeGauge)
         {
             lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Damage, dmg));
@@ -178,7 +182,7 @@ public class FishBase : MonoBehaviour
         foreach (BuffBase bb in listBuff)
         { bb.Destory(); }
         listBuff.Clear();
-
+        isStealth = false;
         fishLevel = level;
         ApplySize();
         actionStep = ActionType.Born;
@@ -305,6 +309,7 @@ public class FishBase : MonoBehaviour
     { 
         data.moveSpeed = originalData.moveSpeed;
         data.isShield = originalData.isShield;
+        isStealth = false;
 
         for (int i = listBuff.Count - 1; i >= 0; --i)
         {
@@ -453,7 +458,7 @@ public class FishBase : MonoBehaviour
                 stealthAlpha = 0f;
                 break;
         }
-        SetAlpha(beforeInAquatic ? stealthAlpha : 1f);
+        SetAlpha(beforeInAquatic || isStealth ? stealthAlpha : 1f);
     }
 
     // 毒圈判定
@@ -484,7 +489,7 @@ public class FishBase : MonoBehaviour
         }
     }
 
-    public void RemoteBuff(int buffId)
+    public void RemoveBuff(int buffId)
     {
         BuffBase note;
         for (int i = listBuff.Count - 1; i >= 0; --i)
@@ -495,7 +500,6 @@ public class FishBase : MonoBehaviour
                 listBuff.RemoveAt(i);
                 return;
             }
-
         }
     }
     public BuffBase AddBuff(FishBase Initiator, int buffId)

@@ -34,10 +34,16 @@ public class PlayerRobotBase : PlayerBase
         // 把新发现的，隐身的鱼排除
         for (int i = listFish.Count - 1; i >= 0; --i)
         {
+            // 排除隐身的鱼
+            if (listFish[i].isStealth) 
+            {
+                listFish.RemoveAt(i);
+                continue;
+            }
             // 新发现的鱼
             if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
             {
-                if (listFish[i].beforeInAquatic || listFish[i].life > life)
+                if ( listFish[i].beforeInAquatic || listFish[i].life > life)
                 {
                     listFish.RemoveAt(i);
                     continue;
