@@ -54,6 +54,7 @@ public class FishBase : MonoBehaviour
     protected int uid = -1;
     protected uint actionWaitCnt = 0;
     public float fishLevel;
+    public float battleLevel;
     protected FishDataInfo fishBaseData;
     public Data data;
     public Data originalData;
@@ -184,11 +185,12 @@ public class FishBase : MonoBehaviour
         listBuff.Clear();
         isStealth = false;
         fishLevel = level;
+        battleLevel = 1;
         ApplySize();
         actionStep = ActionType.Born;
         fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
-        int life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, fishLevel);
-        int atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, fishLevel);
+        int life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, fishLevel, battleLevel);
+        int atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, fishLevel, battleLevel);
         this.data = new Data(fishId, playerName, life, atk, fishBaseData.moveSpeed);
         uid = uidCnt++;
         this.originalData = data;
@@ -364,7 +366,7 @@ public class FishBase : MonoBehaviour
 
     protected virtual void ApplySize()
     {
-        float size = 1 + (fishLevel-1) / 5;
+        float size = 1 + (battleLevel-1) / 5;
         size = Mathf.Min(3f, size);
         transform.localScale = new Vector3(size, size, size);
     }

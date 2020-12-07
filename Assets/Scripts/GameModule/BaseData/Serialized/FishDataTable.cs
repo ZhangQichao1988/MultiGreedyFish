@@ -12,7 +12,9 @@ public class FishDataInfo : IQueryById
     public int comment;
     public string prefabPath;
     public int atk;
+    public int atkAdd;
     public int life;
+    public int lifeAdd;
     public float moveSpeed;
     public int skillId;
     public int rare;

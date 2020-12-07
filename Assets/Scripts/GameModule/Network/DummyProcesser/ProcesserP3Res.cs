@@ -22,8 +22,8 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
             PlayerId = 9999999L,
             FaceIconId = 1,
             FightFish = 11,
-            Gold = 10,
-            Diamond = 10,
+            Gold = 1000,
+            Diamond = 1000,
             Nickname = "孙小杰",
             Power = 100,
             PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L
@@ -31,7 +31,7 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
         res.Result = new PBResult(){
             Code = 0
         };
-        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 5, FishLevel = 1, RankLevel = 115 });
+        res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 1, FishChip = 500, FishLevel = 3, RankLevel = 115 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 3, FishChip = 15, FishLevel = 1, RankLevel = 6 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 6, FishChip = 5, FishLevel = 1, RankLevel = 2 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 7, FishChip = 5, FishLevel = 1, RankLevel = 0 });
