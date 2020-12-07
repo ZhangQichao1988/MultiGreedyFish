@@ -130,9 +130,20 @@ public class ShopModel : BaseModel<ShopModel>
         else if (vo.Paytype == PayType.Money)
         {
             LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
-            BillingManager.Purchase(vo.PlatformID, (id)=>{
-                ShopModel.Instance.ShowGainedItem(id);
+            BillingManager.Purchase(vo.PlatformID, (id, purchaseType)=>{
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                if (purchaseType == Jackpot.Billing.PurchaseSuccessTypes.Normal)
+                {
+                    ShopModel.Instance.ShowGainedItem(id);
+                }
+                else if (purchaseType == Jackpot.Billing.PurchaseSuccessTypes.Pending)
+                {
+                    MsgBox.OpenTips("PAY_STATUE_WAITTNG");
+                }
+                else
+                {
+                    MsgBox.OpenTips("PAY_STATUE_FAILED");
+                }
             }, (err)=>{
                 MsgBox.OpenTips(BillingManager.GetErrorWord(err));
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);

@@ -176,9 +176,18 @@ public static class BillingManager
     /// <param name="onFailure">エラー時のcallback</param>
     public static void Purchase(
         string productId,
-        Action<string> onSuccess,
+        Action<string, PurchaseSuccessTypes> onSuccess,
         Action<PurchaseError> onFailure)
     {
+        if (!IsBillingSupported())
+        {
+            var error = Jackpot.Billing.PurchaseError.FailedOnPurchasedRequest(
+                productId,
+                "Failed purchase. billing not support");
+            onFailure(error);
+            return;
+        }
+
         if (IsBillingRequested)
         {
             // 課金リクエストフラグが有効な時は購入できない
@@ -203,7 +212,7 @@ public static class BillingManager
             .OnSuccessPurchase(
                 (successProduct, purchasedProduct, suceedType) =>
                 {
-                    onSuccess(purchasedProduct.Id);
+                    onSuccess(purchasedProduct.Id, suceedType);
                     SuccessPurchase(successProduct, purchasedProduct, suceedType);
                 })
             .OnRefreshReceipt(RefreshReceipt)
