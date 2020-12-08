@@ -12,6 +12,13 @@ public class PlayerRobotBase : PlayerBase
 
     protected List<FishBase> listFindedFish;
 
+    // 鱼白名单，不会攻击的鱼
+    protected FishBase whiteFish;
+    // 目标鱼
+    FishBase targetFish;
+    // 锁定同一目标鱼时间，用来规避穷追不舍
+    float targetCntTime;
+    float targetCntTimeLimit;
     protected override bool showLifeGauge { get { return true; } }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
@@ -20,7 +27,9 @@ public class PlayerRobotBase : PlayerBase
     {
         this.growth = growth;
         float[] aryParam = Wrapper.GetParamFromString(aiData.aryParam);
-        aiParamRobotGotoAquaticLifeRate = aryParam[0];
+        targetCntTimeLimit = aryParam[0];
+        aiParamRobotGotoAquaticLifeRate = aryParam[1];
+        targetCntTime = targetCntTimeLimit;
     }
 
     protected virtual void Attack()
@@ -31,11 +40,26 @@ public class PlayerRobotBase : PlayerBase
         // 追踪附近比自己小的离最近的鱼
         List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 
-        // 把新发现的，隐身的鱼排除
+        // 判定是否有白名单的鱼
+        bool hasWhiteFish = false;
+
         for (int i = listFish.Count - 1; i >= 0; --i)
         {
+            // 剔除白名单的鱼
+            if (whiteFish == listFish[i])
+            {
+                hasWhiteFish = true;
+                listFish.RemoveAt(i);
+                continue;
+            }
             // 排除隐身的鱼
             if (listFish[i].isStealth) 
+            {
+                listFish.RemoveAt(i);
+                continue;
+            }
+            // 剔除乌云状态水母
+            if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
             {
                 listFish.RemoveAt(i);
                 continue;
@@ -50,6 +74,13 @@ public class PlayerRobotBase : PlayerBase
                 }
             }
         }
+
+        // 视野范围没有白名单的鱼的话
+        if (!hasWhiteFish)
+        {
+            whiteFish = null;
+        }
+
         // 按距离升序排序
         listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
         listFindedFish = listFish;
@@ -64,10 +95,28 @@ public class PlayerRobotBase : PlayerBase
             {
                 listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
             }
-
-            FishBase target = listFish[0];
-            MoveToTarget(target.transform.position);
-
+            FishBase target;
+            if (targetFish == listFish[0])
+            {
+                targetCntTime -= Time.deltaTime;
+                if (targetCntTime <= 0 && listFish.Count > 1)
+                {
+                    whiteFish = listFish[0];
+                    target = listFish[1];
+                }
+                else 
+                {
+                    target = listFish[0];
+                }
+            }
+            else
+            {
+                target = listFish[0];
+                targetCntTime = targetCntTimeLimit;
+            }
+            targetFish = target;
+            MoveToTarget(targetFish.transform.position);
+            
         }
         else
         {
