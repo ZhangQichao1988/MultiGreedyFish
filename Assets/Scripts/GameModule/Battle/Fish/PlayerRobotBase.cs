@@ -15,10 +15,10 @@ public class PlayerRobotBase : PlayerBase
     // 鱼白名单，不会攻击的鱼
     protected FishBase whiteFish;
     // 目标鱼
-    FishBase targetFish;
+    protected FishBase targetFish;
     // 锁定同一目标鱼时间，用来规避穷追不舍
-    float targetCntTime;
-    float targetCntTimeLimit;
+    protected float targetCntTime;
+    protected float targetCntTimeLimit;
     protected override bool showLifeGauge { get { return true; } }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
     
