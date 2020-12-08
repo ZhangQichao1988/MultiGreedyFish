@@ -64,7 +64,7 @@ Material:
     m_Floats:
     - Curvature: 0.006
     - _AlphaClip: 0
-    - _BaseColorPower: 1
+    - _BaseColorPower: 1.2
     - _Blend: 0
     - _BlendOp: 0
     - _BumpScale: 1
