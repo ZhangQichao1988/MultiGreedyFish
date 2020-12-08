@@ -31,6 +31,7 @@ public class EnemyBase : FishBase
             case ActionType.BornWaitting:
                 break;
             case ActionType.Idle:
+                if (isFrozen) { return; }
                 Idle();
                 break;
             case ActionType.Die:

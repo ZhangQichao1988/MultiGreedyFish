@@ -171,7 +171,8 @@ public class FishBase : MonoBehaviour
 
     // 是否隐身
     public bool isStealth { get; set; }
-
+    // 是否冰冻
+    public bool isFrozen { get; set; }
     //Vector3 pos;
     protected virtual void Awake()
     {
@@ -305,12 +306,14 @@ public class FishBase : MonoBehaviour
         AquaticCheck();
         PoisonRingCheck();
         MoveUpdate();
+
     }
 
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
         data.isShield = originalData.isShield;
+        isFrozen = false;
         isStealth = false;
 
         for (int i = listBuff.Count - 1; i >= 0; --i)

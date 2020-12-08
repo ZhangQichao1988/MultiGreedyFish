@@ -99,6 +99,7 @@ public class PlayerBase : FishBase
 				Born();
 				break;
 			case ActionType.Idle:
+				if (isFrozen) { return; }
 				Idle();
 				break;
 			case ActionType.Eatting:
