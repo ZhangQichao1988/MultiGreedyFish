@@ -20,7 +20,6 @@ public class FishLevelUpDataTableProxy : BaseDataTableProxy<FishLevelUpDataTable
     public int GetFishAtk(FishDataInfo fishData, float level, float battleLevel)
     {
         --level;
-        --battleLevel;
         float upRate = ConfigTableProxy.Instance.GetDataByKey("FishLevelUpRate");
         float atk = fishData.atk + fishData.atkAdd * level;
         return (int)(atk + atk * upRate * Mathf.Pow(battleLevel, 2));
@@ -28,7 +27,6 @@ public class FishLevelUpDataTableProxy : BaseDataTableProxy<FishLevelUpDataTable
     public int GetFishHp(FishDataInfo fishData, float level, float battleLevel)
     {
         --level;
-        --battleLevel;
         float life = fishData.life + fishData.lifeAdd * level;
         float upRate = ConfigTableProxy.Instance.GetDataByKey("FishLevelUpRate");
         return (int)(life + life * upRate * Mathf.Pow(battleLevel, 2));
