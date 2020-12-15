@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &40928160
 Transform:
   m_ObjectHideFlags: 0
@@ -48,12 +48,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40928159}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -127,12 +127,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100498712}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &242310364
 Transform:
   m_ObjectHideFlags: 0
@@ -206,12 +206,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242310363}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &534179012
 Transform:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 15
+      scalar: 25
       minScalar: 8
       maxCurve:
         serializedVersion: 2
@@ -459,7 +459,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.11764706}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -521,8 +521,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 20
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5004,8 +5004,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3c717fadd60e1c488955a1362ad0e3e, type: 2}
-  - {fileID: 2100000, guid: f3c717fadd60e1c488955a1362ad0e3e, type: 2}
+  - {fileID: 2100000, guid: 87b4317ce64f56d47a91dc649a77b67d, type: 2}
+  - {fileID: 2100000, guid: 87b4317ce64f56d47a91dc649a77b67d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5097,12 +5097,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568557679}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -5412,7 +5412,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.7
+      scalar: 1.5
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -9988,12 +9988,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913615253}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -10125,7 +10125,7 @@ Transform:
   m_GameObject: {fileID: 1055572215}
   m_LocalRotation: {x: -0.000000029802319, y: 0.00000008940696, z: 0.5939359, w: 0.8045124}
   m_LocalPosition: {x: 0, y: 0, z: 0.09666741}
-  m_LocalScale: {x: 1, y: 1, z: 4.146162}
+  m_LocalScale: {x: 0.84874, y: 0.84874, z: 2.657673}
   m_Children: []
   m_Father: {fileID: 2330103623772681505}
   m_RootOrder: 0
@@ -14866,12 +14866,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007368873}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
@@ -14922,7 +14922,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3106885926830370715}
-  m_LocalRotation: {x: 0.49870196, y: 0.50129473, z: 0.5012946, w: -0.49870196}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -0, y: -0.57, z: 0}
   m_LocalScale: {x: 11.296135, y: 11.29613, z: 5.896507}
   m_Children:
@@ -14946,12 +14946,12 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3106885926830370715}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0

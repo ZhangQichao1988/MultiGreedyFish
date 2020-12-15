@@ -99,6 +99,7 @@ public class PlayerBase : FishBase
 				Born();
 				break;
 			case ActionType.Idle:
+				if (isFrozen) { return; }
 				Idle();
 				break;
 			case ActionType.Eatting:
@@ -180,17 +181,21 @@ public class PlayerBase : FishBase
 		fish.Damage(data.atk, colliderMouth.transform);
 		if (fish.life <= 0)
 		{
-			Eat(fish.fishLevel);
+			Eat(fish.battleLevel);
 		}
 
 	}
 	public virtual void Eat(float fishLevel)
 	{
+		if (fishType == FishType.Player)
+		{
+			Debug.Log("");
+		}
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
-		this.fishLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
+		this.battleLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
 		//fishLevel += fish.fishLevel * 0.1f;
-		int _life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, this.fishLevel);
-		int _atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, this.fishLevel);
+		int _life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, this.fishLevel, this.battleLevel);
+		int _atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, this.fishLevel, this.battleLevel);
 		int lifeMax = data.lifeMax;
 		data.lifeMax = _life;
 		life += _life - lifeMax;

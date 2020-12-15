@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class EnemyJellyfish : EnemyBase
 {
+    enum Status : int 
+    {
+        DarkCloudInit = 0,
+        DarkCloud,
+        Cloud,
+    }
     static readonly float DarkBrightness = 0.5f;
     ParticleSystem goCloud;
-    GameObject goDarkCloud;
-
     Vector3 startPos, endPos;
 
     int idleStep = 0;
 
     float changeStatusRemainingTime = 0f;
-    int statusChangeStep = 2;
+    Status statusChangeStep = Status.Cloud;
 
     public override void Init(int fishId, string playerName, float level)
     {
@@ -27,7 +31,7 @@ public class EnemyJellyfish : EnemyBase
 
         // 为了不要一起动
         changeStatusRemainingTime = Wrapper.GetRandom(0f, 5f);
-        statusChangeStep = 2;
+        statusChangeStep = Status.Cloud;
 
     }
 
@@ -42,14 +46,14 @@ public class EnemyJellyfish : EnemyBase
     {
         switch (statusChangeStep)
         {
-            case 0: //  乌云状态初期化
+            case Status.DarkCloudInit: //  乌云状态初期化
                 goCloud.gameObject.SetActive(true);
                 //goDarkCloud.SetActive(false);
                 SetBrightness(0.5f);
-                statusChangeStep = 1;
+                statusChangeStep = Status.DarkCloud;
                 changeStatusRemainingTime = ConfigTableProxy.Instance.GetDataById(32).floatValue;
                 break;
-            case 1: // 乌云状态阶段
+            case Status.DarkCloud: // 乌云状态阶段
                 changeStatusRemainingTime -= Time.deltaTime;
                 if (changeStatusRemainingTime < DarkBrightness)
                 {
@@ -62,10 +66,10 @@ public class EnemyJellyfish : EnemyBase
                     //goDarkCloud.SetActive(true);
                     SetBrightness(1f);
                     changeStatusRemainingTime = ConfigTableProxy.Instance.GetDataById(33).floatValue;
-                    statusChangeStep = 2;
+                    statusChangeStep = Status.Cloud;
                 }
                 break;
-            case 2: // 云状态阶段
+            case Status.Cloud: // 云状态阶段
                 changeStatusRemainingTime -= Time.deltaTime;
                 if (changeStatusRemainingTime < DarkBrightness)
                 {
@@ -74,7 +78,7 @@ public class EnemyJellyfish : EnemyBase
                     
                 if (changeStatusRemainingTime < 0)
                 {
-                    statusChangeStep = 0;
+                    statusChangeStep = Status.DarkCloudInit;
                 }
                 break;
         }
@@ -151,4 +155,5 @@ public class EnemyJellyfish : EnemyBase
         }
         return false;
     }
+    public bool isDark { get { return statusChangeStep == Status.DarkCloud; } }
 }

@@ -36,14 +36,14 @@ public class UIFishLevelUp : UIBase
         int currentValue, plus;
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
         // 攻击力
-        currentValue = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel);
+        currentValue = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel, 1);
         textAtkValue.text = currentValue.ToString();
-        plus = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel + 1) - currentValue;
+        plus = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
         textAtkPlus.text = "+" + plus.ToString();
         // 体力
-        currentValue = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel);
+        currentValue = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel, 1);
         textHpValue.text = currentValue.ToString();
-        plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1) - currentValue;
+        plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
         textHpPlus.text = "+" + plus.ToString();
 
     }

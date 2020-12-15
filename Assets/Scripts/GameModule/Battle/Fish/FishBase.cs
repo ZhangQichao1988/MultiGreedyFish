@@ -54,6 +54,7 @@ public class FishBase : MonoBehaviour
     protected int uid = -1;
     protected uint actionWaitCnt = 0;
     public float fishLevel;
+    public float battleLevel;
     protected FishDataInfo fishBaseData;
     public Data data;
     public Data originalData;
@@ -77,6 +78,7 @@ public class FishBase : MonoBehaviour
     protected float inPoisonRingTime = 0f;
     protected int inPoisonRingDmgCnt = 0;
 
+    // 草丛相关
     public bool beforeInAquatic = false;
     protected float inAquaticTime = 0f;
     protected int inAquaticHealCnt = 0;
@@ -133,6 +135,9 @@ public class FishBase : MonoBehaviour
         if (dmgTime > 0) { return false; }
         if (data.isShield) { return false; }
         life -= dmg;
+        // 取消隐身buff
+        RemoveBuff(10);
+
         if (lifeGauge)
         {
             lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Damage, dmg));
@@ -166,7 +171,8 @@ public class FishBase : MonoBehaviour
 
     // 是否隐身
     public bool isStealth { get; set; }
-
+    // 是否冰冻
+    public bool isFrozen { get; set; }
     //Vector3 pos;
     protected virtual void Awake()
     {
@@ -178,13 +184,14 @@ public class FishBase : MonoBehaviour
         foreach (BuffBase bb in listBuff)
         { bb.Destory(); }
         listBuff.Clear();
-
+        isStealth = false;
         fishLevel = level;
+        battleLevel = 1;
         ApplySize();
         actionStep = ActionType.Born;
         fishBaseData = FishDataTableProxy.Instance.GetDataById(fishId);
-        int life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, fishLevel);
-        int atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, fishLevel);
+        int life = FishLevelUpDataTableProxy.Instance.GetFishHp(fishBaseData, fishLevel, battleLevel);
+        int atk = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishBaseData, fishLevel, battleLevel);
         this.data = new Data(fishId, playerName, life, atk, fishBaseData.moveSpeed);
         uid = uidCnt++;
         this.originalData = data;
@@ -299,12 +306,15 @@ public class FishBase : MonoBehaviour
         AquaticCheck();
         PoisonRingCheck();
         MoveUpdate();
+
     }
 
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
         data.isShield = originalData.isShield;
+        isFrozen = false;
+        isStealth = false;
 
         for (int i = listBuff.Count - 1; i >= 0; --i)
         {
@@ -359,7 +369,7 @@ public class FishBase : MonoBehaviour
 
     protected virtual void ApplySize()
     {
-        float size = 1 + (fishLevel-1) / 5;
+        float size = 1 + (battleLevel-1) / 5;
         size = Mathf.Min(3f, size);
         transform.localScale = new Vector3(size, size, size);
     }
@@ -453,7 +463,7 @@ public class FishBase : MonoBehaviour
                 stealthAlpha = 0f;
                 break;
         }
-        SetAlpha(beforeInAquatic ? stealthAlpha : 1f);
+        SetAlpha(beforeInAquatic || isStealth ? stealthAlpha : 1f);
     }
 
     // 毒圈判定
@@ -484,7 +494,7 @@ public class FishBase : MonoBehaviour
         }
     }
 
-    public void RemoteBuff(int buffId)
+    public void RemoveBuff(int buffId)
     {
         BuffBase note;
         for (int i = listBuff.Count - 1; i >= 0; --i)
@@ -495,7 +505,6 @@ public class FishBase : MonoBehaviour
                 listBuff.RemoveAt(i);
                 return;
             }
-
         }
     }
     public BuffBase AddBuff(FishBase Initiator, int buffId)
