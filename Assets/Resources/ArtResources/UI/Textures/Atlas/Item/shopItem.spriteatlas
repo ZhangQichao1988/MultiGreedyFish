@@ -26,8 +26,8 @@ SpriteAtlas:
       padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
-      enableTightPacking: 1
+      enableRotation: 0
+      enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: a38df82e95f2849e9b40ecf58a3738c4, type: 3}
@@ -35,19 +35,31 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: abff23e168067458da43db1ff683c30a, type: 3}
+  - {fileID: 21300000, guid: 13b1e823f8ca1674ab8f78fe660ba95c, type: 3}
+  - {fileID: 21300000, guid: 8a75da33df231d34e9462b738ff8b69e, type: 3}
   - {fileID: 21300000, guid: b8ad00d45c5cb4b54a8992e95fe29fec, type: 3}
   - {fileID: 21300000, guid: 7d2faa750909990489b23f85485e1bbb, type: 3}
   - {fileID: 21300000, guid: 1c3bd536488ab475086936a2d9004ee2, type: 3}
   - {fileID: 21300000, guid: e0c4e0a7aee804167b66b2e334736cda, type: 3}
   - {fileID: 21300000, guid: 0d01f6e894f2f418f949b9b603c9263e, type: 3}
+  - {fileID: 21300000, guid: 846fc219fd36d584194d0e9d4ee5c3ea, type: 3}
+  - {fileID: 21300000, guid: ee107f4a8330304428532230077aae0e, type: 3}
+  - {fileID: 21300000, guid: bee64d5b164f5344f932c737137c0213, type: 3}
+  - {fileID: 21300000, guid: f4270bdda92ac5c49bc744382ed65736, type: 3}
   - {fileID: 21300000, guid: 2dab4feee3361a34986b00506252c308, type: 3}
   m_PackedSpriteNamesToIndex:
   - item_gold
+  - icon_coin_01
+  - icon_diamond_03
   - shopItem001
   - item_trea003
   - item_trea001
   - item_piece001
   - item_diamond
+  - icon_diamond_02
+  - icon_diamond_01
+  - icon_coin_03
+  - icon_coin_02
   - item_trea002
   m_Tag: shopItem
   m_IsVariant: 0

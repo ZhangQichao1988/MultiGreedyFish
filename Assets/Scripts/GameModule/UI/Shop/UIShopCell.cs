@@ -7,12 +7,14 @@ public class UIShopCell : SimpleScrollingCell
     public Text text;
 
     public Image buyIcon;
+    public Button buyBtn;
 
     public Text priceText;
 
     public Image images;
 
     public GameObject banObject;
+
 
     ShopItemVo shopData;
 
@@ -31,7 +33,9 @@ public class UIShopCell : SimpleScrollingCell
                                                 ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
 
 
+        buyBtn.interactable = shopData.CanBuy;
         banObject.SetActive(!shopData.CanBuy);
+
     }
 
     public void OnCellClick()

@@ -177,9 +177,22 @@ public static class GameObjectUtil
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="gameObjet"></param>
+    /// <param name="gameObject"></param>
     /// <param name="avtive"></param>
-    public static void SetActive(GameObject gameObject, bool avtive)
+    public static void SetBtnActive(GameObject gameObject, bool avtive)
+    {
+        var btns = gameObject.GetComponentsInChildren<Button>();
+        foreach (var btn in btns)
+        {
+            btn.interactable = avtive;
+        }
+    }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameObjet"></param>
+        /// <param name="avtive"></param>
+        public static void SetActive(GameObject gameObject, bool avtive)
     {
         if (gameObject.activeSelf != avtive)
         {

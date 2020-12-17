@@ -13,11 +13,11 @@ public class UIShop : UIBase
 
 
     private GameObject btnTagDiamond;
-    private GameObject selTagDiamond;
+    //private GameObject selTagDiamond;
 
 
     private GameObject btnTagOther;
-    private GameObject selTagOther;
+    //private GameObject selTagOther;
 
     private Dictionary<ShopType, bool> requestFlag;
 
@@ -26,10 +26,10 @@ public class UIShop : UIBase
     {
 
         btnTagDiamond = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/tag_diamond");
-        selTagDiamond = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_diamond");
+        //selTagDiamond = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_diamond");
 
         btnTagOther = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/tag_other");
-        selTagOther = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_other");
+        //selTagOther = GameObjectUtil.FindChildGameObject(gameObject, "shop_tag/sel_other");
 
         scrollingView.Init(AssetPathConst.shopItemCellPath);
         base.Init();
@@ -59,32 +59,34 @@ public class UIShop : UIBase
         ShopModel.Instance.RemoveListener(ShopEvent.ON_GETTED_SHOP_LIST, OnGetted);
     }
 
-    void AllActiveBtn()
-    {
-        btnTagDiamond.SetActive(true);
-        btnTagOther.SetActive(true);
-    }
+    //void AllActiveBtn()
+    //{
+    //    btnTagDiamond.SetActive(true);
+    //    btnTagOther.SetActive(true);
+    //}
 
-    void AllDeActiveSel()
-    {
-        selTagDiamond.SetActive(false);
-        selTagOther.SetActive(false);
-    }
+    //void AllDeActiveSel()
+    //{
+    //    selTagDiamond.SetActive(false);
+    //    selTagOther.SetActive(false);
+    //}
 
     public void OnClickTag(string tag)
     {
         ShopType tagType = (ShopType)Enum.Parse(typeof(ShopType), tag);
-        AllActiveBtn();
-        AllDeActiveSel();
+        //AllActiveBtn();
+        //AllDeActiveSel();
         switch (tagType)
         {
             case ShopType.Pay:
-                btnTagDiamond.SetActive(false);
-                selTagDiamond.SetActive(true);
+                btnTagDiamond.SetActive(true);
+                btnTagOther.SetActive(false);
+                //selTagDiamond.SetActive(true);
                 break;
             case ShopType.Other:
-                btnTagOther.SetActive(false);
-                selTagOther.SetActive(true);
+                btnTagDiamond.SetActive(false);
+                btnTagOther.SetActive(true);
+                //selTagOther.SetActive(true);
                 break;
             default:
                 break;
