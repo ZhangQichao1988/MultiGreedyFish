@@ -47,6 +47,7 @@ namespace NetWorkModule
             m_version = version;
             m_platform = platform;
             string sessionStr = PlayerPrefs.GetString(NetworkConst.SESSION_KEY_FOR_LOGIN, null);
+            Debug.LogWarning("get session key :" + sessionStr);
             if (sessionStr != null)
             {
                 cachedSession = Convert.FromBase64String(sessionStr);
@@ -91,6 +92,8 @@ namespace NetWorkModule
             string err = null;
             byte[] combinedData = GetCombineData(msgId, body, m_playerId, m_platform);
             string signStr = GetRequestSign(combinedData, needAuth, msgId, ref err);
+
+            Debug.LogWarning("Send Signuare:" + signStr);
             
             using (UnityWebRequest request = new UnityWebRequest(AppConst.HttpEndPoint, UnityWebRequest.kHttpVerbPOST))
             {
