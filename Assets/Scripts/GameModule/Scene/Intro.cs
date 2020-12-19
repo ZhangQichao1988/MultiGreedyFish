@@ -84,7 +84,7 @@ public class Intro : MonoBehaviour
     {
         BillingManager.Initialize();
         clickEffect.Initialize();
-        NetWorkHandler.InitHttpNetWork();
+        NetWorkHandler.InitHttpNetWork(RequestType.JSON);
         GameServiceController.Init();
 #if CONSOLE_ENABLE 
 		DebugMenu.Instance.StartDebug();

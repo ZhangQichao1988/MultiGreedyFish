@@ -14,6 +14,7 @@ using Jackpot.Billing;
 /// </summary>
 public class NetWorkHandler
 {
+
     private static Dictionary<string, MessageParser> pbParserRef;
     private static EventDispatch dispatch;
 
@@ -37,7 +38,9 @@ public class NetWorkHandler
         NetWorkManager.Instance.Reset();
     }
 
-    public static void InitHttpNetWork()
+    static RequestType reqTypeInfo;
+
+    public static void InitHttpNetWork(RequestType reqType = RequestType.PROTOBUF)
     {
         pbParserRef = new Dictionary<string, MessageParser>(){
             {"P0_Request", P0_Request.Parser},
@@ -77,8 +80,9 @@ public class NetWorkHandler
         }
         else
         {
-            NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent);
+            NetWorkManager.Instance.InitWithServerCallBack(new FishProtocol(), (int)MessageId.MidLogin, OnServerEvent, null, reqType);
         }
+        reqTypeInfo = reqType;
 
         //register
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidStartup, OnRecvStartup);
@@ -160,12 +164,21 @@ public class NetWorkHandler
 
     static byte[] GetStreamBytes(IMessage pbMsg)
     {
-        byte[] bytesDatas;
-        using (MemoryStream stream = new MemoryStream())
+        byte[] bytesDatas = null;
+        if (reqTypeInfo == RequestType.PROTOBUF)
         {
-            pbMsg.WriteTo(stream);
-            bytesDatas = stream.ToArray();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                pbMsg.WriteTo(stream);
+                bytesDatas = stream.ToArray();
+            }
         }
+        else
+        {
+            string jsonStr = JsonFormatter.ToDiagnosticString(pbMsg);
+            bytesDatas = System.Text.Encoding.UTF8.GetBytes(jsonStr);
+        }
+        
         return bytesDatas;
     }
 
@@ -385,8 +398,16 @@ public class NetWorkHandler
             byte[] randKey = msg.CachedData as byte[];
             NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
         }
-        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P1_Request;
-        GetDispatch().Dispatch<P1_Response, P1_Request>(GetDispatchKey(msg.Key), response, request);
+        if (reqTypeInfo == RequestType.JSON)
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseJson(System.Text.Encoding.UTF8.GetString(msg.ReqMsg)) as P1_Request;
+            GetDispatch().Dispatch<P1_Response, P1_Request>(GetDispatchKey(msg.Key), response, request);
+        }
+        else
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P1_Request;
+            GetDispatch().Dispatch<P1_Response, P1_Request>(GetDispatchKey(msg.Key), response, request);
+        }
     }
 
     static void OnRecvGetPlayerInfo(HttpDispatcher.NodeMsg msg)
@@ -433,30 +454,66 @@ public class NetWorkHandler
     static void OnRecvGetShopItem(HttpDispatcher.NodeMsg msg)
     {
         var response = P10_Response.Parser.ParseFrom(msg.Body);
-        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P10_Request;
-        GetDispatch().Dispatch<P10_Response, P10_Request>(GetDispatchKey(msg.Key), response, request);
+
+        if (reqTypeInfo == RequestType.JSON)
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseJson(System.Text.Encoding.UTF8.GetString(msg.ReqMsg)) as P10_Request;
+            GetDispatch().Dispatch<P10_Response, P10_Request>(GetDispatchKey(msg.Key), response, request);
+        }
+        else
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P10_Request;
+            GetDispatch().Dispatch<P10_Response, P10_Request>(GetDispatchKey(msg.Key), response, request);
+        }
     }
 
     static void OnRecvItemBuyNormal(HttpDispatcher.NodeMsg msg)
     {
         var response = P11_Response.Parser.ParseFrom(msg.Body);
-        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
-        GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
+        
+        if (reqTypeInfo == RequestType.JSON)
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseJson(System.Text.Encoding.UTF8.GetString(msg.ReqMsg)) as P11_Request;
+            GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
+        }
+        else
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
+            GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
+        }
     }
 
     static void OnRecvPrePay(HttpDispatcher.NodeMsg msg)
     {
         var response = P12_Response.Parser.ParseFrom(msg.Body);
-        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P12_Request;
-        GetDispatch().Dispatch<P12_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        if (reqTypeInfo == RequestType.JSON)
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseJson(System.Text.Encoding.UTF8.GetString(msg.ReqMsg)) as P12_Request;
+            GetDispatch().Dispatch<P12_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        }
+        else
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P12_Request;
+            GetDispatch().Dispatch<P12_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        }
+        
     }
 
 
     static void OnRecvBuyPay(HttpDispatcher.NodeMsg msg)
     {
         var response = P13_Response.Parser.ParseFrom(msg.Body);
-        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P13_Request;
-        GetDispatch().Dispatch<P13_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        if (reqTypeInfo == RequestType.JSON)
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseJson(System.Text.Encoding.UTF8.GetString(msg.ReqMsg)) as P13_Request;
+            GetDispatch().Dispatch<P13_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        }
+        else
+        {
+            var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P13_Request;
+            GetDispatch().Dispatch<P13_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
+        }
+        
     }
 
     static void OnRecvDebugPay(HttpDispatcher.NodeMsg msg)
@@ -486,9 +543,16 @@ public class NetWorkHandler
         string color = tag == "Request" ? "green" : "yellow";
         if (data != null)
         {
-            MessageParser parser = pbParserRef[msg];
-            var msgData = parser.ParseFrom(ByteString.CopyFrom(data));
-            requestData = JsonFormatter.ToDiagnosticString(msgData);
+            if (reqTypeInfo == RequestType.JSON && tag == "Request")
+            {
+                requestData = System.Text.Encoding.UTF8.GetString(data);
+            }
+            else
+            {
+                MessageParser parser = pbParserRef[msg];
+                var msgData = parser.ParseFrom(ByteString.CopyFrom(data));
+                requestData = JsonFormatter.ToDiagnosticString(msgData);
+            }
         }
         string logData = string.Format("<color='{3}'>[{0}]</color> {1} \n{2}", tag, msg, requestData, color);
         Debug.Log(logData);

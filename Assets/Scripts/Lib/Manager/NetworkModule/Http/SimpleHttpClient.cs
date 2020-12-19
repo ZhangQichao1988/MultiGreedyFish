@@ -17,6 +17,7 @@ namespace NetWorkModule
         public static string X_PLAYER_ID = "x-player-id";
         public static string X_SIGNATURE = "x-signature";
         public static string X_STATUS_CODE = "x-status-code";
+        public static string X_REQ_TYPE = "x-req-type";
 
         Dictionary<string, int> timeoutDict;
 
@@ -47,7 +48,6 @@ namespace NetWorkModule
             m_version = version;
             m_platform = platform;
             string sessionStr = PlayerPrefs.GetString(NetworkConst.SESSION_KEY_FOR_LOGIN, null);
-            Debug.LogWarning("get session key :" + sessionStr);
             if (sessionStr != null)
             {
                 cachedSession = Convert.FromBase64String(sessionStr);
@@ -92,8 +92,6 @@ namespace NetWorkModule
             string err = null;
             byte[] combinedData = GetCombineData(msgId, body, m_playerId, m_platform);
             string signStr = GetRequestSign(combinedData, needAuth, msgId, ref err);
-
-            Debug.LogWarning("Send Signuare:" + signStr);
             
             using (UnityWebRequest request = new UnityWebRequest(AppConst.HttpEndPoint, UnityWebRequest.kHttpVerbPOST))
             {
@@ -102,6 +100,7 @@ namespace NetWorkModule
                 request.SetRequestHeader(X_APP_PLATFORM, m_platform);
                 request.SetRequestHeader(X_PLAYER_ID, m_playerId.ToString());
                 request.SetRequestHeader(X_SIGNATURE, signStr);
+                request.SetRequestHeader(X_REQ_TYPE, NetWorkManager.Instance.requestType.ToString());
                 
                 var upLoaderHandler = new UploadHandlerRaw(data);
                 upLoaderHandler.contentType = "application/proto";

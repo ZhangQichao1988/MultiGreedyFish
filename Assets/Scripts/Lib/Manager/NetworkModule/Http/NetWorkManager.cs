@@ -19,12 +19,17 @@ namespace NetWorkModule
             }
         }
 
-        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb, IDummyData dummy = null)
+        public RequestType requestType;
+
+        public void InitWithServerCallBack(AbstractProtocol protocol, int loginMsgId, HttpDispatcher.DgtServerEvent serverCb, IDummyData dummy = null,
+                                            RequestType reqType = RequestType.PROTOBUF)
         {
             dummyData = dummy;
             httpClient = new SimpleHttpClient(protocol, Application.version, Application.platform == RuntimePlatform.Android ? "a" : "i", loginMsgId);
             HttpDispatcher.CreateInstance();
             HttpDispatcher.Instance.OnServeEvent += serverCb;
+
+            requestType = reqType;
         }
 
         private void Awake()
@@ -74,6 +79,7 @@ namespace NetWorkModule
             HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRequestSend, msg, data);
             Instance.StartCoroutine(RequestHttpOneInternal(msg, data, cachedData, needAuth));
         }
+        
         static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
         {
             if (AppConst.ServerType == ESeverType.OFFLINE)
