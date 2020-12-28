@@ -16,7 +16,7 @@ public class UIOption : UIBase
     public readonly List<LanguageSelectNote> languageModes = new List<LanguageSelectNote>() 
     {
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.CN, languageValue = "简体中文"},
-        new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.TR, languageValue = "繁體中文"},
+        new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.TW, languageValue = "繁體中文"},
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.EN, languageValue = "English"},
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.JP, languageValue = "日本語"},
     };

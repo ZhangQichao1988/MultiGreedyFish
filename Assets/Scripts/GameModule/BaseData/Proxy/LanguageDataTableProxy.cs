@@ -15,7 +15,7 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 	public enum LanguageMode
 	{
 		CN,
-		TR,
+		TW,
 		EN,
 		JP
 	};
@@ -32,7 +32,7 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 		{
 			case LanguageMode.CN:
 				return data.cn;
-			case LanguageMode.TR:
+			case LanguageMode.TW:
 				return data.tw;
 			case LanguageMode.EN:
 				return data.en;

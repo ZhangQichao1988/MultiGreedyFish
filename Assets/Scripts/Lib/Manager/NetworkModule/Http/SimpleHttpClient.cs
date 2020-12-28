@@ -18,6 +18,8 @@ namespace NetWorkModule
         public static string X_SIGNATURE = "x-signature";
         public static string X_STATUS_CODE = "x-status-code";
 
+        public static string X_APP_LANGUAGE = "x-app-language";
+
         Dictionary<string, int> timeoutDict;
 
         HashSet<int> noAuthMsg = new HashSet<int>(); 
@@ -102,6 +104,7 @@ namespace NetWorkModule
                 request.SetRequestHeader(X_APP_PLATFORM, m_platform);
                 request.SetRequestHeader(X_PLAYER_ID, m_playerId.ToString());
                 request.SetRequestHeader(X_SIGNATURE, signStr);
+                request.SetRequestHeader(X_APP_LANGUAGE, AppConst.languageMode.ToString());
                 
                 var upLoaderHandler = new UploadHandlerRaw(data);
                 upLoaderHandler.contentType = "application/proto";
