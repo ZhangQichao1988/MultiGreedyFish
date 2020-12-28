@@ -154,4 +154,7 @@ public class AppConst
     // 本地化
     public static LanguageDataTableProxy.LanguageMode languageMode = LanguageDataTableProxy.LanguageMode.CN;
 
+    // PlayerPrefs本地缓存Key
+    public static readonly string PlayerPrefabsOptionLangauge = "OPTION_LANGUAGE";
+
 }

@@ -52,6 +52,10 @@ public class Intro : MonoBehaviour
             Instance = this;
         }
         SetLandscape();
+
+        // 设置语言
+        AppConst.languageMode = (LanguageDataTableProxy.LanguageMode)PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
+        
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 

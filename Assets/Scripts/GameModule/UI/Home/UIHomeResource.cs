@@ -39,6 +39,7 @@ public class UIHomeResource : UIBase
                 goDiamond.SetActive(false);
                 break;
             case "BattleResult":
+            case "Option":
                 goGold.SetActive(false);
                 goDiamond.SetActive(false);
                 break;

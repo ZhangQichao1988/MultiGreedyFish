@@ -12,6 +12,7 @@ public class HomeScene : BaseScene
         "FishEditor",
         "FishStatus",
         "Shop/Shop",
+        "Option",
     };
     private UIHomeCommon homeCommon;
     private UIHomeResource homeResource;
@@ -39,10 +40,6 @@ public class HomeScene : BaseScene
         BillingManager.Resume();
     }
 
-    public void GotoFishEditor()
-    {
-        GotoSceneUI("FishEditor");
-    }
     public override UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
         var uiBase = base.GotoSceneUI(uiName, parms, saveHistory);

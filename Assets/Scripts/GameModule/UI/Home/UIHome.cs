@@ -17,10 +17,6 @@ public class UIHome : UIBase
     public Slider sliderRankProcess;
     public Text textRankLevel;
 
-    // 资源
-    public Text textGold;
-    public Text textDiamond;
-
     public HomeFishControl fishControl;
 
     public GameObject transGoldPool;
@@ -77,9 +73,6 @@ public class UIHome : UIBase
         textRankLevel.text = totalRankLevel.ToString();
         sliderRankProcess.value = RankBonusDataTableProxy.Instance.GetRankBonusProcess(totalRankLevel);
 
-        // 资源
-        textGold.text = pBPlayer.Gold.ToString();
-        textDiamond.text = pBPlayer.Diamond.ToString();
     }
     void OnRecvGetGoldPool<T>(T response)
     {
@@ -185,6 +178,12 @@ public class UIHome : UIBase
     {
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
         homeScene.GotoSceneUI("Shop/Shop");
+    }
+
+    public void OnClickOption()
+    {
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("Option");
     }
 
     void OnRecvBattle<T>(T response)
