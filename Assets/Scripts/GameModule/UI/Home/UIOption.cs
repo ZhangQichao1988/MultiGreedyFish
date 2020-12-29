@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Audio;
 
 public class UIOption : UIBase
 {
@@ -12,6 +13,7 @@ public class UIOption : UIBase
     {
         public LanguageDataTableProxy.LanguageMode languageMode;
         public string languageValue;
+
     };
     public readonly List<LanguageSelectNote> languageModes = new List<LanguageSelectNote>() 
     {
@@ -21,6 +23,8 @@ public class UIOption : UIBase
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.JP, languageValue = "日本語"},
     };
     public Dropdown languageSelect;
+    public AudioMixer audioMixer;
+
     public override void Init()
     {
         base.Init();
@@ -35,5 +39,13 @@ public class UIOption : UIBase
     {
         AppConst.languageMode = languageModes[n].languageMode;
         PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionLangauge, n);
+    }
+    public void Drop_BgmValue(float n)
+    {
+        audioMixer.SetFloat("BgmValue", n);
+    }
+    public void Drop_SeValue(float n)
+    {
+        audioMixer.SetFloat("SeValue", n);
     }
 }

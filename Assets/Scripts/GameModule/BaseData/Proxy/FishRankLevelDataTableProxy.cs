@@ -39,6 +39,7 @@ public class FishRankLevelDataTableProxy : BaseDataTableProxy<FishRankLevelDataT
         {
             currentRank = list[list.Count - 1];
             nextRank = null;
+            return;
         }
 
         for (int i = list.Count - 1; i >= 0; --i)
