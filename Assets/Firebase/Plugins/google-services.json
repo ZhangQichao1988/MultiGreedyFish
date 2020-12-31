@@ -38,6 +38,13 @@
             {
               "client_id": "89871578339-4dmnahe4pldjmamuvgc0lcij9qcg87r9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "89871578339-6gd8evk1i59545je5b64k0msp3586ova.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.co.cad.crazyfish"
+              }
             }
           ]
         }
