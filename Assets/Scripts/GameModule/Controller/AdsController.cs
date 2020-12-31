@@ -2,6 +2,7 @@ using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
 using System.Collections.Generic;
+using Jackpot;
 
 public class AdsController : MonoBehaviour
 {
@@ -107,23 +108,30 @@ public class AdsController : MonoBehaviour
     {
         Debug.Log("HandleRewardBasedVideoLoaded event received");
         isLoadFailed = false;
-        LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-        Show();
+        MainThreadDispatcher.Post(()=>{
+            LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+            Show();
+        });
     }
 
     public void HandleRewardedAdLoadedFailed(object sender, EventArgs args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded Loaded Failed");
         isLoadFailed = true;
-        LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-        MsgBox.OpenTips("Ads Load Failed");
+        MainThreadDispatcher.Post(()=>{
+            LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+            MsgBox.OpenTips("Ads Load Failed");
+        });
+        
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
     {
         Debug.Log("HandleRewardBasedVideoLoaded Reward");
-        OnAdRewardGetted?.Invoke();
-        OnAdRewardGetted = null;
+        MainThreadDispatcher.Post(()=>{
+            OnAdRewardGetted?.Invoke();
+            OnAdRewardGetted = null;
+        });
     }
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)

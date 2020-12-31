@@ -64,7 +64,8 @@ public class UIOption : UIBase
     public void SendSupportMail()
     {
         Debug.Log("联系客服");
-        // TODO:联系客服
+        // TODO:联系客服 修改
+        MailSupport.RunMail("aaaa@sina.com", "title", "body");
     }
     // 服务规约
     public void OpenServiceAgreement()
