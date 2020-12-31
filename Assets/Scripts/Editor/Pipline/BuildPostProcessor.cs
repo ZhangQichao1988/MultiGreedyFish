@@ -61,23 +61,33 @@ namespace MultiGreedyFish.Pipline
                 proj.AddFrameworkToProject (target, "UserNotifications.framework", false);
 
 
-                
-                if (isDevMode)
-                {
-                    proj.AddCapability(target, PBXCapabilityType.PushNotifications);
-                    proj.AddCapability(target, PBXCapabilityType.GameCenter);
-                    proj.AddCapability(target, PBXCapabilityType.InAppPurchase);
-                    // 修改 lapis.plist 添加 sign with appleid
-                    string lapisPlistPath = path + "/Unity-iPhone/lapis.entitlements";  
-                    PlistDocument plist_entit = new PlistDocument(); 
-                    plist_entit.Create(); 
-                    PlistElementArray lapisArray = plist_entit.root.CreateArray("com.apple.developer.applesignin"); 
-                    lapisArray.AddString("Default"); 
-                    plist_entit.WriteToFile(lapisPlistPath); 
+                proj.AddCapability(target, PBXCapabilityType.PushNotifications);
+                proj.AddCapability(target, PBXCapabilityType.InAppPurchase);
+
+                string lapisPlistPath = path + "/Unity-iPhone/crazyfish.entitlements";  
+                PlistDocument plist_entit = new PlistDocument(); 
+                plist_entit.Create(); 
+                plist_entit.root.SetString("aps-environment", "production");
+                plist_entit.WriteToFile(lapisPlistPath); 
+                proj.AddFile("Unity-iPhone/crazyfish.entitlements", "crazyfish.entitlements");
+                proj.AddBuildProperty(target, "CODE_SIGN_ENTITLEMENTS", "Unity-iPhone/crazyfish.entitlements");
+
+                proj.AddCapability(target, PBXCapabilityType.GameCenter);
+
+                // if (isDevMode)
+                // {
+                //     // 修改 lapis.plist 添加 sign with appleid
+                //     string lapisPlistPath = path + "/Unity-iPhone/lapis.entitlements";  
+                //     PlistDocument plist_entit = new PlistDocument(); 
+                //     plist_entit.Create(); 
+                //     plist_entit.root.SetString("aps-environment", "production");
+                //     PlistElementArray lapisArray = plist_entit.root.CreateArray("com.apple.developer.applesignin"); 
+                //     lapisArray.AddString("Default"); 
+                //     plist_entit.WriteToFile(lapisPlistPath); 
                     
-                    proj.AddFile("Unity-iPhone/lapis.entitlements", "lapis.entitlements");
-                    proj.AddBuildProperty(target, "CODE_SIGN_ENTITLEMENTS", "Unity-iPhone/lapis.entitlements");
-                }
+                //     proj.AddFile("Unity-iPhone/lapis.entitlements", "lapis.entitlements");
+                //     proj.AddBuildProperty(target, "CODE_SIGN_ENTITLEMENTS", "Unity-iPhone/lapis.entitlements");
+                // }
                 // 设置签名  
                 //proj.SetBuildProperty (target, "CODE_SIGN_IDENTITY", "iPhone Distribution: _______________");  
                 //proj.SetBuildProperty (target, "PROVISIONING_PROFILE", "********-****-****-****-************");   
@@ -123,22 +133,22 @@ namespace MultiGreedyFish.Pipline
                 rootDict.SetString("NSPhotoLibraryAddUsageDescription", "是否允许此游戏使用系统相册附加功能？");
                 rootDict.SetString("NSCameraUsageDescription", "允许访问相机");
 
-                if (!isDevMode)
-                {
-                    // gamecenter disabled
-                    PlistElementArray arr = rootDict["UIRequiredDeviceCapabilities"] as PlistElementArray;
-                    if (arr != null)
-                    {
-                        foreach (var feat in arr.values)
-                        {
-                            if (feat.AsString() == "gamekit")
-                            {
-                                arr.values.Remove(feat);
-                                break;
-                            }
-                        }
-                    }
-                }
+                // if (!isDevMode)
+                // {
+                //     // gamecenter disabled
+                //     PlistElementArray arr = rootDict["UIRequiredDeviceCapabilities"] as PlistElementArray;
+                //     if (arr != null)
+                //     {
+                //         foreach (var feat in arr.values)
+                //         {
+                //             if (feat.AsString() == "gamekit")
+                //             {
+                //                 arr.values.Remove(feat);
+                //                 break;
+                //             }
+                //         }
+                //     }
+                // }
 
                 //微信白名单
                 // PlistElementArray array = rootDict.CreateArray("LSApplicationQueriesSchemes");
@@ -154,15 +164,15 @@ namespace MultiGreedyFish.Pipline
                 dic.SetString("CFBundleTypeRole", "Editor"); 
                 if (!isDevMode)
                 {
-                    dic.SetString("CFBundleURLName", "com.klab.fishgame"); 
+                    dic.SetString("CFBundleURLName", "jp.co.cad.crazyfish"); 
                     PlistElementArray dicArray = dic.CreateArray("CFBundleURLSchemes"); 
-                    dicArray.AddString("com.klab.fishgame.dev"); 
+                    dicArray.AddString("jp.co.cad.crazyfish"); 
                 }
                 else
                 {
-                    dic.SetString("CFBundleURLName", "com.klab.fishgame"); 
+                    dic.SetString("CFBundleURLName", "jp.co.cad.crazyfish"); 
                     PlistElementArray dicArray = dic.CreateArray("CFBundleURLSchemes"); 
-                    dicArray.AddString("com.klab.fishgame"); 
+                    dicArray.AddString("jp.co.cad.crazyfish"); 
                 }
                 // 通知
                 PlistElementArray backgroundModesArray = rootDict.CreateArray("UIBackgroundModes"); 
@@ -174,10 +184,10 @@ namespace MultiGreedyFish.Pipline
 
                 // 保存plist  
                 plist.WriteToFile (plistPath); 
-                if (!isDevMode)
-                {
-                    DisableCapability(projPath, "com.apple.GameCenter.iOS");
-                } 
+                // if (!isDevMode)
+                // {
+                //     DisableCapability(projPath, "com.apple.GameCenter.iOS");
+                // } 
             }  
         } 
         
