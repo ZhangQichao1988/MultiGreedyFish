@@ -93,19 +93,11 @@ public class BattleManagerGroup : MonoBehaviour
     {
         if (isResult) { return; }
         isResult = true;
+        animator.SetTrigger("Win");
         if (rank == 1)
         {
-            //this.isPause = true;
-            animator.SetTrigger("Win");
             animator.SetTrigger("BattleEnd");
         }
-        else
-        {
-            animator.SetTrigger("Lose");
-        }
-        
-        //resultRoot.SetActive(true);
-        //battleControl.SetActive(false);
         battleRanking = rank;
         resultText.text = string.Format( LanguageDataTableProxy.GetText(1), rank.ToString() );
     }

@@ -19,7 +19,10 @@ public class CameraFollow : MonoBehaviour
 	public Transform Target;
     public float Angle;
     public float Distance;
-    public float Offset;
+	public float MinDistance = 35f;
+	public float MaxDistance = 50f;
+
+	public float Offset;
     public float Radius;
     public Vector3 RadiusCenter;
     public Camera SelfCamera;
@@ -45,7 +48,7 @@ public class CameraFollow : MonoBehaviour
         SelfCamera = GetComponent<Camera>();
         SelfCamera.fieldOfView = 22.5f;
         Angle = 42.2f;
-        Distance = 45f;
+        Distance = MinDistance;
         Offset = 0f;
         Radius = 1f;
         BaseRadius = 90;
@@ -67,45 +70,22 @@ public class CameraFollow : MonoBehaviour
     Vector3 ChangePos;
     void LateUpdate()
     {
-		if (Time.time <= ChangeStateTime)
-		{
-			float lerp = 1 - (ChangeStateTime - Time.time) / thinkingTime;
-			switch (curState)
-			{
-				case State.MovingTop:
-					Angle = Mathf.Lerp(Angle, 38f, lerp);
-					Distance = Mathf.Lerp(Distance, 90f, lerp);
-					Offset = Mathf.Lerp(Offset, 0, lerp);
-					ChangePos = Vector3.Lerp(ChangePos, RadiusCenter + OffsetPos, lerp);
-					if (Mathf.Abs(Angle - 42.2f) < 0.05f)
-					{
-						Angle = 28f;
-						Distance = 45f;
-						Offset = 0;
-						ChangePos = RadiusCenter + OffsetPos;
-						ChangeStateTime = 0;
-					}
-					break;
-				case State.Thinking:
-					Angle = Mathf.Lerp(Angle, 29, lerp);
-					Distance = Mathf.Lerp(Distance, 18, lerp);
-					Offset = Mathf.Lerp(Offset, 2.5f, lerp);
-					ChangePos = Vector3.Lerp(ChangePos, Target.position, lerp);
-					break;
-				case State.WatchPhone:
-					Angle = Mathf.Lerp(Angle, 20, lerp);
-					Distance = Mathf.Lerp(Distance, 17, lerp);
-					Offset = Mathf.Lerp(Offset, 1.5f, lerp);
-					ChangePos = Vector3.Lerp(ChangePos, Target.position, lerp);
-					break;
-				case State.ShowItem:
-					Angle = Mathf.Lerp(Angle, 20, lerp);
-					Distance = Mathf.Lerp(Distance, 17, lerp);
-					Offset = Mathf.Lerp(Offset, 1f, lerp);
-					ChangePos = Vector3.Lerp(ChangePos, Target.position, lerp);
-					break;
-			}
-		}
+		//if (Time.time <= ChangeStateTime)
+		//{
+		//	float lerp = 1 - (ChangeStateTime - Time.time) / thinkingTime;
+		//	Angle = Mathf.Lerp(Angle, 38f, lerp);
+		//	Distance = Mathf.Lerp(Distance, 90f, lerp);
+		//	Offset = Mathf.Lerp(Offset, 0, lerp);
+		//	ChangePos = Vector3.Lerp(ChangePos, RadiusCenter + OffsetPos, lerp);
+		//	if (Mathf.Abs(Angle - 42.2f) < 0.05f)
+		//	{
+		//		Angle = 28f;
+		//		Distance = 45f;
+		//		Offset = 0;
+		//		ChangePos = RadiusCenter + OffsetPos;
+		//		ChangeStateTime = 0;
+		//	}
+		//}
 		if (Target)
 		{
 			float rate = (Target.transform.localScale.x - 1f) / (BattleConst.instance.FishMaxScale - 1f);
@@ -114,7 +94,7 @@ public class CameraFollow : MonoBehaviour
 				currentRate += Time.deltaTime * 0.1f;
 			}
 
-			Distance = Mathf.Lerp(45f, 50f, currentRate);
+			Distance = Mathf.Lerp(MinDistance, MaxDistance, currentRate);
 			//FixOffsetPos.z = Mathf.Lerp(-5f, -13f, currentRate);
 			SelfCamera.nearClipPlane = Mathf.Lerp(0.1f, 0.1f, currentRate);
 			SelfCamera.farClipPlane = Mathf.Lerp(90f, 110f, currentRate);

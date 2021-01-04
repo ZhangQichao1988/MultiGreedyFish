@@ -58,16 +58,21 @@ public class PlayerRobotBase : PlayerBase
                 listFish.RemoveAt(i);
                 continue;
             }
-            // 剔除乌云状态水母
-            if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
+            // 如果不是无敌状态，剔除乌云状态水母
+            if(!ContainsBuffType(BuffBase.BuffType.Shield) &&
+                !ContainsBuffType(BuffBase.BuffType.ShieldGold))
             {
-                listFish.RemoveAt(i);
-                continue;
+                if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
+                {
+                    listFish.RemoveAt(i);
+                    continue;
+                }
             }
+            
             // 新发现的鱼
             if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
             {
-                if ( listFish[i].beforeInAquatic || listFish[i].life > life)
+                if ( listFish[i].beforeInAquatic)
                 {
                     listFish.RemoveAt(i);
                     continue;
@@ -87,7 +92,9 @@ public class PlayerRobotBase : PlayerBase
         if (listFish.Count > 0)
         {
             // 当体力较多时，追踪大鱼
-            if (lifeRate > aiParamRobotGotoAquaticLifeRate || ContainsBuffType( BuffBase.BuffType.Shield))
+            if (lifeRate > aiParamRobotGotoAquaticLifeRate || 
+                ContainsBuffType( BuffBase.BuffType.Shield) ||
+                ContainsBuffType(BuffBase.BuffType.ShieldGold))
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
             }

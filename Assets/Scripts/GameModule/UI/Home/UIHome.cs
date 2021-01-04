@@ -41,11 +41,14 @@ public class UIHome : UIBase
     private List<Button> listBtn;
 
     private bool battleRequestSuccess;
+    private Animator animator;
+
 
     protected override void Awake()
     {
         base.Awake();
         textGoldPool.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
     public override void Init()
     {
@@ -89,8 +92,7 @@ public class UIHome : UIBase
 
         if (PlayerModel.Instance.gainGold > 0)
         {
-            Animator animator = GetComponent<Animator>();
-            animator.enabled = true;
+            animator.SetTrigger("DropGold");
 
         }
 
@@ -163,10 +165,11 @@ public class UIHome : UIBase
         textPlayerCnt.text = string.Format(strPlayerCnt, playerCnt);
         playerCntCurrentTime = 0f;
         playerCntTargetTime = Wrapper.GetRandom(0.5f, 1.5f);
-        foreach (var btn in listBtn)
-        {
-            btn.interactable = false;
-        }
+        animator.SetTrigger("BattleStart");
+        //foreach (var btn in listBtn)
+        //{
+        //    btn.interactable = false;
+        //}
     }
     public void OnClickFishSelect()
     {
@@ -197,13 +200,16 @@ public class UIHome : UIBase
         }
         else
         {
-
-            foreach (var btn in listBtn)
-            {
-                btn.interactable = true;
-            }
+            
+            //foreach (var btn in listBtn)
+            //{
+            //    btn.interactable = true;
+            //}
         }
-
+    }
+    public void OnClickBattleCancel()
+    {
+        animator.SetTrigger("BattleCancel");
     }
 
     private void Update()

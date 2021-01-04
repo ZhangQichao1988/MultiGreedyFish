@@ -55,7 +55,11 @@ public class Intro : MonoBehaviour
 
         // 设置语言
         AppConst.languageMode = (LanguageDataTableProxy.LanguageMode)PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
-        
+       
+        // 设置音量
+        AppConst.BgmValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
+        AppConst.SeValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
+
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 

@@ -26,6 +26,8 @@ public class UIOption : UIBase
     public AudioMixer audioMixer;
     public Text textPlayerID;
     public Text textNickName;
+    public Slider sliderBgmValue;
+    public Slider sliderSeValue;
 
     string setNickName;
 
@@ -35,6 +37,8 @@ public class UIOption : UIBase
         textPlayerID.text = PlayerModel.Instance.playerId.ToString();
         textNickName.text = PlayerModel.Instance.player.Nickname;
         int languageModeIndex = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
+        sliderBgmValue.value = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
+        sliderSeValue.value = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
         foreach (var note in languageModes)
         {
             languageSelect.options.Add(new Dropdown.OptionData(note.languageValue));

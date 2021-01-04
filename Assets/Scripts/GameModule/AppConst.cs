@@ -153,8 +153,12 @@ public class AppConst
 
     // 本地化
     public static LanguageDataTableProxy.LanguageMode languageMode = LanguageDataTableProxy.LanguageMode.CN;
+    public static float BgmValue = -20f;
+    public static float SeValue = 0f;
 
     // PlayerPrefs本地缓存Key
     public static readonly string PlayerPrefabsOptionLangauge = "OPTION_LANGUAGE";
+    public static readonly string PlayerPrefabsOptionBgmValue = "OPTION_BGM_VALUE";
+    public static readonly string PlayerPrefabsOptionSeValue = "OPTION_SE_VALUE";
 
 }
