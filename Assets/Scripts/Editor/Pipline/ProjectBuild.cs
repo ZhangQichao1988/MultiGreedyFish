@@ -147,6 +147,8 @@ namespace MultiGreedyFish.Pipline
 
 
 
+
+
             string dir = "Achieve" + Path.DirectorySeparatorChar + "Android" + Path.DirectorySeparatorChar;
 
             if (Directory.Exists(dir))
@@ -156,7 +158,11 @@ namespace MultiGreedyFish.Pipline
             Directory.CreateDirectory(dir);
             string path = dir + Function.GetValue("-apk_name=") + ".apk";
             Debug.Log("show path: " + path);
-            
+
+
+            bool buildAsAAB = Convert.ToBoolean(Function.GetValue("-is_aab="));
+            EditorUserBuildSettings.buildAppBundle = buildAsAAB;
+
             if (IsDevBuild)
             {
                 EditorUserBuildSettings.development = true;
