@@ -18,7 +18,7 @@ BUNDLE_VERSION="0.0.2"
 BUNDLE_VERSION_CODE_SHOW="7"
 ENABLE_DEBUG="true"
 BUNDLE_IDENTIFIER="jp.co.cad.crazyfish"
-DEV_BUILD="true"
+DEV_BUILD="false"
 
 if [[ ${IS_RELEASE} == "true" ]]; then
   DEV_BUILD="false"
