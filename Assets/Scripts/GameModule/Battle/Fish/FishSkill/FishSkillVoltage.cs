@@ -46,7 +46,7 @@ public class FishSkillVoltage : FishSkillBase
 							if (!listFish[i].ContainsBuff(buffId))
 							{
 								var buff = listFish[i].AddBuff(playerBase, buffId);
-								BattleEffectManager.CreateEffect(5, listFish[i].transform, listFish[i].transform.localScale.x);
+								BattleEffectManager.CreateEffect(5, listFish[i].transModel, listFish[i].transform.localScale.x);
 							}
 						}
 					}

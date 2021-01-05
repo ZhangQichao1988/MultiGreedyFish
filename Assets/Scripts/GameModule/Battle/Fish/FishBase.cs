@@ -274,7 +274,7 @@ public class FishBase : MonoBehaviour
     public virtual void CustomUpdate()
     {
         if (actionWaitCnt++ >= uint.MaxValue) { actionWaitCnt = 0; }
-#if !UNITY_EDITOR || !NO_PERFORMANCE  // 性能优化相关，编辑器模式方便debug所以关闭
+#if !UNITY_EDITOR  // 性能优化相关，编辑器模式方便debug所以关闭
         // 计算离相机目标的距离太远的话就不显示（优化）
         if((actionWaitCnt + uid) % 3 == 1)
         {

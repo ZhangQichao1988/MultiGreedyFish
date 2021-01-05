@@ -42,8 +42,8 @@ public abstract class BuffBase
     }
 
     public virtual void Destory()
-    { 
-        
+    {
+        remainingTime = 0f;
     }
 
     public virtual void ApplyStatus()

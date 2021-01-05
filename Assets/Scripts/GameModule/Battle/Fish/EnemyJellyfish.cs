@@ -146,7 +146,7 @@ public class EnemyJellyfish : EnemyBase
                 if (!player.ContainsBuff(6))
                 {
                     var buff = player.AddBuff(this, 6);
-                    int effectId = BattleEffectManager.CreateEffect(5, player.transform, player.transform.localScale.x);
+                    int effectId = BattleEffectManager.CreateEffect(5, player.transModel, player.transform.localScale.x);
                 }
                 return false;
             }

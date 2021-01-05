@@ -22,7 +22,6 @@ public class PlayerRobotBase : PlayerBase
     protected float targetCntTimeLimit;
     protected override bool showLifeGauge { get { return true; } }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
-    
 
     public virtual void SetRobot(RobotAiDataInfo aiData, float growth)
     {
@@ -60,8 +59,20 @@ public class PlayerRobotBase : PlayerBase
                 listFish.RemoveAt(i);
                 continue;
             }
+            // 排除鲨鱼
+            if (listFish[i].fishType == FishType.Boss)
+            {
+                listFish.RemoveAt(i);
+                continue;
+            }
+            // 剔除毒圈的敌人
+            if (listFish[i].transform.position.sqrMagnitude > Mathf.Pow(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
+            {
+                listFish.RemoveAt(i);
+                continue;
+            }
             // 如果不是无敌状态，剔除乌云状态水母
-            if(!ContainsBuffType(BuffBase.BuffType.Shield) &&
+            if (!ContainsBuffType(BuffBase.BuffType.Shield) &&
                 !ContainsBuffType(BuffBase.BuffType.ShieldGold))
             {
                 if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
@@ -175,9 +186,8 @@ public class PlayerRobotBase : PlayerBase
             var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);
             if (fishs.Count > 1 && Vector3.SqrMagnitude(fishs[1].transform.position - myPos) > ConfigTableProxy.Instance.GetDataById(35).floatValue)
             {   // 附近没有其他玩家鱼的话躲草丛
-                isGotoAquatic = true;
-                GotoAquatic();
-                return;
+                isGotoAquatic = GotoAquatic();
+                if (isGotoAquatic) { return; }
             }
         }
 

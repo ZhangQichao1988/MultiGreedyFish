@@ -14,6 +14,8 @@ public class PlayerBase : FishBase
 	public GameObject goNamepalte = null;
 
 	protected override bool showLifeGauge { get { return true; } }
+	protected virtual bool showNameplate { get { return true; } }
+
 
 	public override FishType fishType { get { return FishType.Player; } }
 
@@ -35,8 +37,10 @@ public class PlayerBase : FishBase
 		Debug.Assert(go, "transMouth is not found.");
 		colliderMouth = go.GetComponent<BoxCollider>();
 		Debug.Assert(colliderMouth, "colliderMouth is not found.");
-
-		CreateNameplate(data.name);
+		if (showNameplate)
+		{
+			CreateNameplate(data.name);
+		}
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerRobotShark : PlayerRobotBase
 {
 	public override FishType fishType { get { return FishType.Boss; } }
-	protected override bool showLifeGauge { get { return true; } }
-
+	protected override bool showLifeGauge { get { return false; } }
+	protected override bool showNameplate { get { return false; } }
 	protected override Vector3 GetBornPosition()
 	{
 		return Vector3.zero;
@@ -17,13 +17,14 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
-		bool ret = base.Damage(dmg, hitmanTrans);
-		if (ret)
-		{
-			canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
-			animator.SetTrigger("Damage");
-		}
-		return ret;
+		//bool ret = base.Damage(dmg, hitmanTrans);
+		//if (ret)
+		//{
+		//	canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
+		//	animator.SetTrigger("Damage");
+		//}
+		//return ret;
+		return false;
 	}
 
 	// 不会透明

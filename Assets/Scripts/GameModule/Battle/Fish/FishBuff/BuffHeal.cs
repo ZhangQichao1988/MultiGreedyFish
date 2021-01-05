@@ -18,7 +18,7 @@ public class BuffHeal : BuffBase
         {
             ++healCnt;
             fish.Heal((int)(aryParam[1] * fish.data.lifeMax));
-            if (fish.isBecameInvisible) { BattleEffectManager.CreateEffect(0, fish.transform); }
+            if (fish.isBecameInvisible) { BattleEffectManager.CreateEffect(0, fish.transModel); }
         }
 
     }

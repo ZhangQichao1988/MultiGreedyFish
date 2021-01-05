@@ -8,6 +8,7 @@ public class FishSkillShield : FishSkillBase
 {
 	float remainingTime;
 	int step = 0;
+	BuffBase buff;
 
 	// 吸收次数
 	int defenseCnt;
@@ -20,10 +21,10 @@ public class FishSkillShield : FishSkillBase
 		step = 1;
 
 		SoundManager.PlaySE(14, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transform);
+		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transModel);
 		effect = EffectManager.GetEffect(effectId);
 		// 无敌护盾buff
-		BuffBase buff = playerBase.AddBuff(playerBase, 4);
+		buff = playerBase.AddBuff(playerBase, 4);
 		if (buff != null) { buff.remainingTime = listParam[1]; }
 
 		return true;
@@ -49,6 +50,7 @@ public class FishSkillShield : FishSkillBase
 							{
 								effect.Destroy();
 								step = 0;
+								buff.Destory();
 							}
 						}
 						
