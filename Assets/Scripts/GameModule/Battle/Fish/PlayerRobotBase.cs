@@ -7,6 +7,7 @@ public class PlayerRobotBase : PlayerBase
 {
     //protected float aiParamRobotFollowBigFishLifeRate = 0f;
     protected float aiParamRobotGotoAquaticLifeRate = 0f;
+    protected float aiParamRobotGotoHealLifeRate = 0f;
     protected bool isGotoAquatic = false;
     protected float growth = 0f;
 
@@ -29,6 +30,7 @@ public class PlayerRobotBase : PlayerBase
         float[] aryParam = Wrapper.GetParamFromString(aiData.aryParam);
         targetCntTimeLimit = aryParam[0];
         aiParamRobotGotoAquaticLifeRate = aryParam[1];
+        aiParamRobotGotoHealLifeRate = aryParam[2];
         targetCntTime = targetCntTimeLimit;
     }
 
@@ -37,7 +39,7 @@ public class PlayerRobotBase : PlayerBase
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
 
-        // 追踪附近比自己小的离最近的鱼
+        // 搜索附近的鱼
         List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 
         // 判定是否有白名单的鱼
@@ -92,8 +94,8 @@ public class PlayerRobotBase : PlayerBase
         if (listFish.Count > 0)
         {
             // 当体力较多时，追踪大鱼
-            if (lifeRate > aiParamRobotGotoAquaticLifeRate || 
-                ContainsBuffType( BuffBase.BuffType.Shield) ||
+            if (lifeRate > aiParamRobotGotoAquaticLifeRate ||
+                ContainsBuffType(BuffBase.BuffType.Shield) ||
                 ContainsBuffType(BuffBase.BuffType.ShieldGold))
             {
                 listFish.Sort((a, b) => { return b.lifeMax - a.lifeMax; });
@@ -138,9 +140,9 @@ public class PlayerRobotBase : PlayerBase
     protected bool GotoAquatic()
     {
         List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
-        for (int i = listTransAquatic.Count - 1; i >= 0 ; --i)
+        for (int i = listTransAquatic.Count - 1; i >= 0; --i)
         {
-            if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow( GetSafeRudius(), 2))
+            if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow(GetSafeRudius(), 2))
             {
                 listTransAquatic.RemoveAt(i);
             }
@@ -150,16 +152,35 @@ public class PlayerRobotBase : PlayerBase
         Vector3 targetPos = new Vector3(listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z);
         if (Vector3.Distance(targetPos, transform.position) < BattleConst.instance.AquaticRange)
         {
-            data.moveSpeed = 0f;
+            data.moveSpeed = 0.01f;
         }
+
         MoveToTarget(targetPos);
         return true;
     }
-
+    public override bool Heal(int value)
+    {
+        bool ret = base.Heal(value);
+        if (life == lifeMax) { isGotoAquatic = false; }
+        return ret;
+    }
     protected virtual void CalcMoveAction()
     {
         
         if ((actionWaitCnt + uid) % 2 != 0) { return; }
+        // 当血量过低时，去找水草回血
+        if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
+        {
+            Vector3 myPos = transform.position;
+            var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);
+            if (fishs.Count > 1 && Vector3.SqrMagnitude(fishs[1].transform.position - myPos) > ConfigTableProxy.Instance.GetDataById(35).floatValue)
+            {   // 附近没有其他玩家鱼的话躲草丛
+                isGotoAquatic = true;
+                GotoAquatic();
+                return;
+            }
+        }
+
         var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);
         if (shell)
         {   // 吃珍珠
@@ -169,6 +190,7 @@ public class PlayerRobotBase : PlayerBase
         {   // 吃鱼
             Attack();
         }
+
     }
 
 

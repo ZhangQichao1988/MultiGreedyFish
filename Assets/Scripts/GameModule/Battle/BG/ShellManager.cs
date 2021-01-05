@@ -58,6 +58,9 @@ public class ShellManager : MonoBehaviour
 		for (int i = 0; i < _listShell.Count; ++i)
 		{
 			if (!_listShell[i].CanEatPearl()) { continue; }
+			// 剔除毒圈以外的珍珠
+			if (Vector3.Distance(_listShell[i].transform.position, Vector3.zero) > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange())
+			{ continue; }
 			if (pos.x + range.x > _listShell[i].transform.position.x &&
 				pos.x - range.x < _listShell[i].transform.position.x &&
 				pos.z + range.y > _listShell[i].transform.position.z &&

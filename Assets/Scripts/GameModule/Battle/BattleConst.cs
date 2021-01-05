@@ -22,7 +22,7 @@ public class BattleConst
 		PoisonRingScaleSpeed = ConfigTableProxy.Instance.GetDataByKey("PoisonRingScaleSpeed");
 		PoisonRingRadiusMin = ConfigTableProxy.Instance.GetDataByKey("PoisonRingRadiusMin");
 		PoisonRingRadiusMax = ConfigTableProxy.Instance.GetDataByKey("PoisonRingRadiusMax");
-		PoisonRingDmg = (int)ConfigTableProxy.Instance.GetDataByKey("PoisonRingDmg");
+		PoisonRingDmg = ConfigTableProxy.Instance.GetDataByKey("PoisonRingDmg");
 		PoisonRingDmgCoolTime = ConfigTableProxy.Instance.GetDataByKey("PoisonRingDmgCoolTime");
 		BgBound = ConfigTableProxy.Instance.GetDataByKey("BgBound");
 		AquaticHeal = ConfigTableProxy.Instance.GetDataByKey("AquaticHeal");
@@ -48,7 +48,7 @@ public class BattleConst
 	public float PoisonRingScaleSpeed = 0.6f;                                                                                         // 毒圈缩小速度
 	public float PoisonRingRadiusMin = 5f;																								// 毒圈的最小半径
 	public float PoisonRingRadiusMax = 120f;																	                    // 毒圈的最大半径
-	public int PoisonRingDmg = 10;																										// 毒圈伤害量
+	public float PoisonRingDmg = 10;																										// 毒圈伤害量
 	public float PoisonRingDmgCoolTime = 1f;																	                     // 毒圈伤害间隙
 
 	public float BgBound;		// 鱼可游动范围
