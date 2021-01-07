@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
         }
         return ac;
     }
-    static public void PlaySE(int soundId, GameObject gameObject)
+    static public AudioSource PlaySE(int soundId, GameObject gameObject)
     {
         var audioSource = gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
             audioSource = CreateAudioSource(gameObject);
         }
         PlaySE(soundId, audioSource);
+        return audioSource;
     }
         static public AudioSource CreateAudioSource(GameObject gameObject)
     {
@@ -57,15 +58,16 @@ public class SoundManager : MonoBehaviour
         audioSource.playOnAwake = false;
         return audioSource;
     }
-    static public void PlaySE(int soundId, AudioSource audioSource)
+    static public AudioSource PlaySE(int soundId, AudioSource audioSource)
     {
         audioSource.clip = SoundManager.GetAudioClip(soundId);
         audioSource.Play();
+        return audioSource;
         //Debug.Log("PlaySE:" + soundId + "\nTarget:" + audioSource.gameObject.name);
     }
-    static public void PlaySE(int soundId)
+    static public AudioSource PlaySE(int soundId)
     {
-        if (!Instance) { return; }
+        if (!Instance) { return null; }
         AudioClip ac = GetAudioClip(soundId);
 
         foreach (var ss in Instance.seSources)
@@ -74,12 +76,13 @@ public class SoundManager : MonoBehaviour
             {
                 ss.clip = ac;
                 ss.Play();
-                return;
+                return ss;
             }
         }
         // 没有空闲Source的话，就强制播放第一个Source
         Instance.seSources[0].clip = ac;
         Instance.seSources[0].Play();
+        return Instance.seSources[0];
     }
 
     public void UnloadBattleSE()

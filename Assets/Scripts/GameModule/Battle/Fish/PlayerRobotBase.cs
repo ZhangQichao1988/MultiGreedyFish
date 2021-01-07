@@ -150,7 +150,7 @@ public class PlayerRobotBase : PlayerBase
     }
     protected bool GotoAquatic()
     {
-        List<Transform> listTransAquatic = BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic;
+        List<Transform> listTransAquatic = new List<Transform>( BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic);
         for (int i = listTransAquatic.Count - 1; i >= 0; --i)
         {
             if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow(GetSafeRudius(), 2))

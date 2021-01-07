@@ -26,7 +26,7 @@ public class BattleManagerGroup : MonoBehaviour
     public Text resultText = null;
 
     Animator animator = null;
-    private bool isPause = false;
+    public bool isPause = false;
     private int battleRanking = 0;
     private bool isResult = false;
     private void Awake()
@@ -112,7 +112,6 @@ public class BattleManagerGroup : MonoBehaviour
 	public void SetBattleStart()
     {
         this.isPause = false;
-        battleTime.isRun = true;
     }
 
 	public void SetBattlePause()

@@ -85,7 +85,7 @@ public class FishManager : MonoBehaviour
 		}
 
 		// 打乱敌人列表
-		listEnemy.Sort((a,b)=> { return Wrapper.GetRandom(-1, 1); });
+		listEnemy = Wrapper.RandomSortList<FishBase>(listEnemy);
 		listFish.AddRange(listEnemy);
 	}
 	public void CustomUpdate()
