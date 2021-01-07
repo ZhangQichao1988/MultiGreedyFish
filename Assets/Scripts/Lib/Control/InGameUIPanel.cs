@@ -14,6 +14,8 @@ public class InGameUIPanel : MonoBehaviour
     public CameraFollow cameraFollow;
     public Image skillGuage;
     public Button skillBtn;
+
+    public int alivePlayerNum;
     private PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
@@ -136,7 +138,7 @@ public class InGameUIPanel : MonoBehaviour
 
     public void CheckBattleEnd()
     {
-        int alivePlayerNum = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count;
+        alivePlayerNum = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer().Count;
         if (alivePlayerNum == 1)
         {
             BattleManagerGroup.GetInstance().BattleEnd();

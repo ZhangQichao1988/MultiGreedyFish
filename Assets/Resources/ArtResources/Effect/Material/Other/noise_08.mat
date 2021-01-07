@@ -12,7 +12,7 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses:
@@ -109,8 +109,8 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RotSpeed: 0.05
-    - _SafeAreaRange: -156.4
-    - _SafeGradAreaRange: 295.05
+    - _SafeAreaRange: 10
+    - _SafeGradAreaRange: 10
     - _SampleGI: 0
     - _ShadowRange: 74.7
     - _Smoothness: 0.5

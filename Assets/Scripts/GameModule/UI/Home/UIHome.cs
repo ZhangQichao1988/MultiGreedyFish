@@ -198,14 +198,7 @@ public class UIHome : UIBase
             battleRequestSuccess = true;
             StageModel.Instance.SetStartBattleRes(realResponse);
         }
-        else
-        {
-            
-            //foreach (var btn in listBtn)
-            //{
-            //    btn.interactable = true;
-            //}
-        }
+
     }
     public void OnClickBattleCancel()
     {

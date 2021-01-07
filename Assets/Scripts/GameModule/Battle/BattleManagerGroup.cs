@@ -21,6 +21,7 @@ public class BattleManagerGroup : MonoBehaviour
     public ShellManager shellManager = null;
     public PoisonRing poisonRing = null;
     public CameraFollow cameraFollow = null;
+    public BattleTime battleTime = null;
 
     public Text resultText = null;
 
@@ -111,6 +112,7 @@ public class BattleManagerGroup : MonoBehaviour
 	public void SetBattleStart()
     {
         this.isPause = false;
+        battleTime.isRun = true;
     }
 
 	public void SetBattlePause()

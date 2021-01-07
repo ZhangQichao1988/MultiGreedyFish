@@ -9,6 +9,8 @@ public class PlayerBase : FishBase
 {
 	static readonly string boneNameMouth = "eye";
 
+	// 当前等级排名
+	public int battleLevelRanking = 0;
 
 	public BoxCollider colliderMouth = null;
 	public GameObject goNamepalte = null;

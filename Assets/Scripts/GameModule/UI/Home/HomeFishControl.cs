@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class HomeFishControl : MonoBehaviour
 {
-
+    static readonly Vector2 fishCanMoveRange = new Vector2(8.7f, 4f);
     public Camera camera;
-    float offset = 5f;
-    float spd = 5f;
-    float animSpd = 0.025f;
-    float changePosLen = 0.1f;
+    float offset = 0.5f;
+    float spd = 0.5f;
+    float animSpd = 0.25f;
+    float changePosLen = 1f;
     //GameObject effectBlister;
     Animator animator;
     Transform transModel;
@@ -47,7 +47,7 @@ public class HomeFishControl : MonoBehaviour
         // 靠近目的地后就开始闲逛
         if (new Vector2(targetPos.x - transModel.position.x, targetPos.y - transModel.position.y).sqrMagnitude < changePosLen)
         {
-            targetPos = new Vector3(Wrapper.GetRandom(-80f, 80f), Wrapper.GetRandom(-30f, 40f), transModel.position.z);
+            targetPos = new Vector3(Wrapper.GetRandom(-fishCanMoveRange.x, fishCanMoveRange.x), Wrapper.GetRandom(-fishCanMoveRange.y, fishCanMoveRange.y), transModel.position.z);
             spd = 1f;
         }
         MoveUpdate();
@@ -66,7 +66,7 @@ public class HomeFishControl : MonoBehaviour
             float angle = Vector3.Angle(curDir.normalized, dir.normalized);
             curDir = Vector3.Slerp(curDir.normalized, dir.normalized, 520 / angle * Time.deltaTime);
             moveDir = Vector3.Lerp(moveDir, dir, 360 / angle * Time.deltaTime);
-            pos += moveDir * 10 * Time.deltaTime;
+            pos += moveDir * Time.deltaTime;
             pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
             animator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude * animSpd, 0.101f, 1f));
         }
@@ -75,7 +75,7 @@ public class HomeFishControl : MonoBehaviour
             curDir = Vector3.Lerp(curDir, dir, 5 * Time.deltaTime);
             if (curDir.sqrMagnitude > 0.001f)
             {
-                pos += curDir * 10 * Time.deltaTime;
+                pos += curDir * Time.deltaTime;
                 pos = ObstacleGrid.ObstacleClamp(pos, curDir);
             }
             animator.SetFloat("Speed", curDir.magnitude * animSpd);
@@ -85,8 +85,8 @@ public class HomeFishControl : MonoBehaviour
 
         //Debug.Log("curDir:" + curDir);
         // 界限限制
-        pos.x = Mathf.Clamp(pos.x, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
-        pos.z = Mathf.Clamp(pos.z, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
+        //pos.x = Mathf.Clamp(pos.x, -8.7f, 8.7f);
+        //pos.y = Mathf.Clamp(pos.y, -4f, 4f);
 
         transModel.position = pos;
         transModel.localPosition = new Vector3(transModel.localPosition.x, transModel.localPosition.y, 0f);
