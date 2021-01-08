@@ -74,7 +74,7 @@ ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreed
 
 echo "start build  ios xcode project"
 # export ios app by xcode build
-sudo xcode-select -s /Applications/Xcode11.3.app/Contents/Developer
+export DEVELOPER_DIR=/Applications/Xcode11.3.app/Contents/Developer
 XCODE_PROJ_PATH=${WORKDIR}/Achieve/xcodeProj
 ARCHIVE_PATH=${WORKDIR}/Achieve/output/fishgame.xcarchive
 EXPORT_PATH=${WORKDIR}/Achieve/output/
