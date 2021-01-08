@@ -10,6 +10,7 @@ public class BattleResult : UIBase
     public Text textRewardGoldAdvert;
     public Text textRewardRank;
     public Text textBattleRanking;
+    public Text textStreakCnt;
 
     public Text textBattleRankingReward;
     public Text textRankUpReward;
@@ -24,6 +25,7 @@ public class BattleResult : UIBase
 
     // 动画演出用参数
     public float AddRankRate;
+    public float AddStreakRankRate;
     public float AddBattleRankingRewardRate;
     public float AddRankUpRewardRate;
 
@@ -141,15 +143,34 @@ public class BattleResult : UIBase
 
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
         
+        int currentWin = response.FightFish.CurrentWin;
+        levelInfo.CurrentWin = currentWin;
+        if (currentWin > 1)
+        {
+            textStreakCnt.text = string.Format(LanguageDataTableProxy.GetText(62), currentWin);
+            textStreakCnt.gameObject.SetActive(true);
+        }
+        else
+        {
+            textStreakCnt.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
         // rank条更新
-        if(AddRankRate <= 1.5f)
+        if(AddStreakRankRate <= 1.5f)
         {
             int rankUp = response.GainRankLevel;
-            textRewardRank.text = "+" + (int)Mathf.Lerp(0, rankUp, AddRankRate);
+            int streakRankUp = response.ContWinRankAdded;
+            if (rankUp < 0)
+            {
+                textRewardRank.text = "-" + (int)Mathf.Lerp(0, rankUp, AddRankRate);
+            }
+            else
+            {
+                textRewardRank.text = "+" + (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
+            }
             levelInfo.RankLevel = (int)Mathf.Lerp(rankStart, rankStart + rankUp, AddRankRate);
             gaugeRank.Refash(levelInfo);
             if (preRankGaugeRate > gaugeRank.sliderRankLevel.value)

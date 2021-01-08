@@ -17,15 +17,14 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
-		//bool ret = base.Damage(dmg, hitmanTrans);
-		//if (ret)
-		//{
-		//	canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
-		//	animator.SetTrigger("Damage");
-		//}
-		//return ret;
-		return false;
-	}
+        bool ret = base.Damage(1, hitmanTrans);
+        if (ret)
+        {
+            canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
+            animator.SetTrigger("Damage");
+        }
+        return ret;
+    }
 
 	// 不会透明
 	protected override float SetAlpha(float alpha)
