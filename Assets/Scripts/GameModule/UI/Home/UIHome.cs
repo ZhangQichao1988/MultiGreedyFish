@@ -23,6 +23,8 @@ public class UIHome : UIBase
     public Slider sliderGoldPool;
     public Text textGoldPool;
     public Text textGoldPool_1;
+
+    public Text textStreakCnt;
     private float backupTime;
     private P14_Response goldPoolResponse;
 
@@ -54,6 +56,9 @@ public class UIHome : UIBase
     {
         base.Init();
         textPlayerCnt.gameObject.SetActive(false);
+
+        
+
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
         listBtn = new List<Button>(GetComponentsInChildren<Button>());
         listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());
@@ -76,6 +81,17 @@ public class UIHome : UIBase
         textRankLevel.text = totalRankLevel.ToString();
         sliderRankProcess.value = RankBonusDataTableProxy.Instance.GetRankBonusProcess(totalRankLevel);
 
+        // 连胜显示
+        int currentWin = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().CurrentWin;
+        if (currentWin > 1)
+        {
+            textStreakCnt.text = string.Format(LanguageDataTableProxy.GetText(62), currentWin);
+            textStreakCnt.gameObject.SetActive(true);
+        }
+        else
+        {
+            textStreakCnt.gameObject.SetActive(false);
+        }
     }
     void OnRecvGetGoldPool<T>(T response)
     {
