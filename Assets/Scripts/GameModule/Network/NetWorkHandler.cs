@@ -69,6 +69,8 @@ public class NetWorkHandler
             {"P13_Response", P13_Response.Parser},
             {"P14_Response", P14_Response.Parser},
             {"P15_Response", P15_Response.Parser},
+            {"P16_Response", P16_Response.Parser},
+
         };
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
@@ -347,10 +349,17 @@ public class NetWorkHandler
     {
         NetWorkManager.Request("P14_Request", null);
     }
+    /// <summary>
+    /// 获取已获得段位奖励ID数组
+    /// </summary>
+    public static void RequestGetGettedRankBonusIds()
+    {
+        NetWorkManager.Request("P16_Request", null);
+    }
 
-#endregion
+    #endregion
 
-#region ServerResponse
+    #region ServerResponse
     //recieve callback
     static void OnRecvStartup(HttpDispatcher.NodeMsg msg)
     {

@@ -198,6 +198,12 @@ public class UIHome : UIBase
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
         homeScene.GotoSceneUI("Shop/Shop");
     }
+    public void OnClickRankBonus()
+    {
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("RankBonus/RankBonus");
+    }
+
 
     public void OnClickOption()
     {

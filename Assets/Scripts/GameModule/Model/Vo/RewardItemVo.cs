@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class RewardItemVo
 {
-    public static int SHOP_LANG_ST_ID = 40000;
     public ProductContent pbContent;
 
     public ItemData masterDataItem;
@@ -14,7 +13,7 @@ public class RewardItemVo
     {
         get
         {
-            return LanguageDataTableProxy.GetText(SHOP_LANG_ST_ID + masterDataItem.ID);
+            return ItemDataTableProxy.Instance.GetItemName(masterDataItem.ID);
         }
     }
 

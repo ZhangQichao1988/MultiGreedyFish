@@ -163,15 +163,16 @@ public class BattleResult : UIBase
         {
             int rankUp = response.GainRankLevel;
             int streakRankUp = response.ContWinRankAdded;
-            if (rankUp < 0)
+            int totalRankUp = (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
+            if (totalRankUp < 0)
             {
-                textRewardRank.text = "-" + (int)Mathf.Lerp(0, rankUp, AddRankRate);
+                textRewardRank.text = "-" + totalRankUp;
             }
             else
             {
-                textRewardRank.text = "+" + (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
+                textRewardRank.text = "+" + totalRankUp;
             }
-            levelInfo.RankLevel = (int)Mathf.Lerp(rankStart, rankStart + rankUp, AddRankRate);
+            levelInfo.RankLevel = totalRankUp;
             gaugeRank.Refash(levelInfo);
             if (preRankGaugeRate > gaugeRank.sliderRankLevel.value)
             {
