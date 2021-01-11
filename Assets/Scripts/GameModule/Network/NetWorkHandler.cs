@@ -53,6 +53,7 @@ public class NetWorkHandler
             {"P12_Request", P12_Request.Parser},
             {"P13_Request", P13_Request.Parser},
             {"P15_Request", P15_Request.Parser},
+            {"P16_Request", P16_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -352,9 +353,13 @@ public class NetWorkHandler
     /// <summary>
     /// 获取段位奖励
     /// </summary>
-    public static void RequestGetRankBonus()
+    public static void RequestGetRankBonus(int rankBonusDataId)
     {
-        NetWorkManager.Request("P16_Request", null);
+        var request = new P16_Request();
+        request.RankBoundsId = rankBonusDataId;
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P16_Request", requestByteData);
     }
 
     #endregion

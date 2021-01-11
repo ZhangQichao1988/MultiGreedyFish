@@ -85,7 +85,7 @@ public class RankBonusItem : MonoBehaviour
     public void OnClickGetBonus()
     {
         NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
-        NetWorkHandler.RequestGetRankBonus();
+        NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
 
     }
     void OnRecvGetBonus<T>(T response)
