@@ -24,7 +24,7 @@ public class ProcesserP15Res : BaseDummyProcesser<P15_Request, P15_Response>
         res.ResultCode = PurchasedResponseKind.ProcessedSuccessfully;
         for (int i = 0; i < 10; i++)
         {
-            var content = new ProductContent(){ ContentId = 1 + Random.Range(0, 3), Amount = i + 1 };
+            var content = new ProductContent(){ ContentId = 1 + Random.Range(0, 2), Amount = i + 1 };
             res.Content.Add(content);
         }
         return res;

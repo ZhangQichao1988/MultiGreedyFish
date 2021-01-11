@@ -24,61 +24,82 @@ public class RankBonusItem : MonoBehaviour
     public GameObject goTick;
     public GameObject textNextBonus;
 
-    private Animator animator;
-    private RankBonusDataInfo dataInfo;
+    public Animator animator;
+    public RankBonusDataInfo dataInfo;
+    private Material material;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
     public void Refash(Status status)
     {
+        if (material == null)
+        {
+            material = new Material(imageItem.material);
+            imageItem.material = material;
+        }
         switch (status)
         {
             case Status.Getted:
                 goTick.SetActive(true);
                 textNextBonus.SetActive(false);
                 animator.enabled = false;
-                imageItem.material.DisableKeyword("BOOLEAN_9AA876E6_ON");
+                imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.Next:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(true);
                 animator.enabled = false;
-                imageItem.material.EnableKeyword("BOOLEAN_9AA876E6_ON");
+                imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
             case Status.NoGet:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
                 animator.enabled = true;
-                imageItem.material.DisableKeyword("BOOLEAN_9AA876E6_ON");
+                imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.NoReach:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
                 animator.enabled = false;
-                imageItem.material.EnableKeyword("BOOLEAN_9AA876E6_ON");
+                imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
         }
     }
-    public void Init(RankBonusDataInfo rankBonusDataInfo, Status status)
+    public void Init(RankBonusDataInfo rankBonusDataInfo)
     {
         dataInfo = rankBonusDataInfo;
-        var itemData = ItemDataTableProxy.Instance.GetDataById(dataInfo.itemId);
+        var itemDataInfo = new RankBonusDataInfo.RankBonusItemDataInfo(dataInfo.productContent);
+        var itemData = ItemDataTableProxy.Instance.GetDataById(itemDataInfo.id);
 
         textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID);
         textRankPoint.text = dataInfo.rankLevel.ToString();
 
         // 奖励物品图标显示
-        string itemImgPath = string.Format(AssetPathConst.ItemPath, itemData.resIcon);
+        string itemImgPath = Path.Combine(AssetPathConst.itemIconPath, itemData.resIcon);
         var spAsset = ResourceManager.LoadSync<Sprite>(itemImgPath);
         Debug.Assert(spAsset != null, "Not found ItemImage:" + itemImgPath);
         imageItem.sprite = spAsset.Asset;
 
         // 段位图标
-        spAsset = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.texCommonPath, dataInfo.rankIcon));
+        spAsset = ResourceManager.LoadSync<Sprite>(Path.Combine(AssetPathConst.texCommonPath, dataInfo.rankIcon));
         imageRankIcon.sprite = spAsset.Asset;
+    }
+    public void OnClickGetBonus()
+    {
+        NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
+        NetWorkHandler.RequestGetRankBonus();
 
-
+    }
+    void OnRecvGetBonus<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P16_RESPONSE);
+        Debug.Log("OnRecvGetBonus!");
+        var res = response as P16_Response;
+        var rewardVO = RewardMapVo.From(res);
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        PlayerModel.Instance.UpdateAssets(rewardVO);
+        homeScene.OnGettedItemNormal(rewardVO);
+    }
+    private void OnDestroy()
+    {
+        Destroy(material);
     }
 }

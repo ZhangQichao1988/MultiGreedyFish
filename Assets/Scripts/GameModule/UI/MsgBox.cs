@@ -41,6 +41,13 @@ public class MsgBox : UIBase
             UIBase.Open("ArtResources/UI/Prefabs/Shop/ShopReward", UILayers.POPUP, items);
         }
     }
+    public static void ShowGettedItem(RewardItemVo item)
+    {
+        if (item != null)
+        {
+            UIBase.Open("ArtResources/UI/Prefabs/Shop/ShopReward", UILayers.POPUP, new List<RewardItemVo>() { item });
+        }
+    }
 
     public void SetContent(string txt_title, string txt_content, Action onSure, Action onCancel)
     {

@@ -22,6 +22,16 @@ public class ProcesserP16Res : BaseDummyProcesser<NullMessage, P16_Response>
         var res = new P16_Response();
         res.Result = new PBResult() { Code = 0 };
         //res.GettedBonusIds.Add();
+        var content = new ProductContent() { ContentId = 2, Amount = 10 };
+        res.Content.Add(content);
+
+        res.IsTreasure = true;
+        for (int i = 0; i < 3; i++)
+        {
+            content = new ProductContent() { ContentId = 1 + Random.Range(0, 2), Amount = i + 1 };
+            res.TreaContent.Add(content);
+        }
+
         return res;
     }
 

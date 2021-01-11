@@ -23,6 +23,7 @@ public class UIHomeCommon : UIBase
             case "FishEditor":
             case "FishStatus":
             case "Shop/Shop":
+            case "RankBonus/RankBonus":
             case "Option":
                 goBack.SetActive(true);
                 break;

@@ -12,6 +12,7 @@ public class HomeScene : BaseScene
         "FishEditor",
         "FishStatus",
         "Shop/Shop",
+        "RankBonus/RankBonus",
         "Option",
     };
     private UIHomeCommon homeCommon;
@@ -53,7 +54,7 @@ public class HomeScene : BaseScene
     /// get item展示  金币刷新等
     /// </summary>
     /// <param name="res"></param>
-    private void OnGettedItemNormal(System.Object res)
+    public void OnGettedItemNormal(System.Object res)
     {
         RewardMapVo response = res as RewardMapVo;
         MsgBox.ShowGettedItem(response.Content);

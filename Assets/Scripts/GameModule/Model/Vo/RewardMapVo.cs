@@ -44,6 +44,25 @@ public class RewardMapVo
 
         return rvo;
     }
+    /// <summary>
+    /// 获得段位奖励
+    /// </summary>
+    /// <param name="pRes"></param>
+    /// <returns></returns>
+    public static RewardMapVo From(P16_Response pRes)
+    {
+        var rvo = new RewardMapVo();
+        rvo.Content = RewardItemVo.FromList(pRes.Content);
+        rvo.IsTreasure = pRes.IsTreasure;
+        rvo.TreasureContent = RewardItemVo.FromList(pRes.TreaContent);
+
+        if (rvo.IsTreasure && rvo.Content.Count <= 1)
+        {
+            rvo.Content = null;
+        }
+
+        return rvo;
+    }
     public static RewardMapVo From(IList<ProductContent> pRes)
     {
         var rvo = new RewardMapVo();

@@ -350,9 +350,9 @@ public class NetWorkHandler
         NetWorkManager.Request("P14_Request", null);
     }
     /// <summary>
-    /// 获取已获得段位奖励ID数组
+    /// 获取段位奖励
     /// </summary>
-    public static void RequestGetGettedRankBonusIds()
+    public static void RequestGetRankBonus()
     {
         NetWorkManager.Request("P16_Request", null);
     }

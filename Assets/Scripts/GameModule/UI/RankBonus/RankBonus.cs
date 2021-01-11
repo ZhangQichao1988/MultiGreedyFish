@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public class RankBonus : UIBase
 {
-    public Transform transContent = null;
+    public Slider slider;
+    public Text textTotalRankLevel;
+    public RectTransform transGrid = null;
+    public RectTransform transContent = null;
 
     List<RankBonusItem> aryFishEditorItem = null;
     List<RankBonusDataInfo> rankBonusDataInfos;
-    P16_Response p16_Response;
 
     public override void OnEnter(System.Object parms)
     {
@@ -20,14 +22,6 @@ public class RankBonus : UIBase
     public override void Init()
     {
         base.Init();
-        NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetGettedRankBonusIds);
-        NetWorkHandler.RequestGetGettedRankBonusIds();
-
-    }
-    void OnRecvGetGettedRankBonusIds<T>(T response)
-    {
-        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P16_RESPONSE);
-        p16_Response = response as P16_Response;
 
         aryFishEditorItem = new List<RankBonusItem>();
 
@@ -37,24 +31,28 @@ public class RankBonus : UIBase
         foreach (var note in rankBonusDataInfos)
         {
             var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.uiRootPath, "RankBonus/RankBonusItem"));
-            go = GameObjectUtil.InstantiatePrefab(asset.Asset, transContent.gameObject);
+            go = GameObjectUtil.InstantiatePrefab(asset.Asset, transGrid.gameObject, false);
             rankBonusItem = go.GetComponent<RankBonusItem>();
+            rankBonusItem.Init(note);
             aryFishEditorItem.Add(rankBonusItem);
         }
+        var rect = slider.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(350f * rankBonusDataInfos.Count, rect.sizeDelta.y);
+        slider.maxValue = rankBonusDataInfos[rankBonusDataInfos.Count - 1].rankLevel;
         Refash();
-
     }
+
     void Refash()
     {
         int playerTotalRankLevel = PlayerModel.Instance.GetTotalRankLevel();
         bool firstReach = false;
         RankBonusItem.Status status;
 
-        foreach (var note in rankBonusDataInfos)
+        foreach (var note in aryFishEditorItem)
         {
-            if (playerTotalRankLevel >= note.rankLevel)
+            if (playerTotalRankLevel >= note.dataInfo.rankLevel)
             {
-                status = p16_Response.GettedBonusIds.Contains(note.ID) ? RankBonusItem.Status.Getted : RankBonusItem.Status.NoGet;
+                status = PlayerModel.Instance.player.GettedBoundsId.Contains(note.dataInfo.ID) ? RankBonusItem.Status.Getted : RankBonusItem.Status.NoGet;
             }
             else
             {
@@ -68,6 +66,17 @@ public class RankBonus : UIBase
                     status = RankBonusItem.Status.NoReach;
                 }
             }
+            note.Refash(status);
+        }
+        transContent.sizeDelta = new Vector2(transGrid.sizeDelta.x, 0);
+        slider.value = playerTotalRankLevel;
+        textTotalRankLevel.text = playerTotalRankLevel.ToString();
+    }
+    private void Update()
+    {
+        if (transContent.sizeDelta.x == 0)
+        {
+            transContent.sizeDelta = new Vector2(transGrid.sizeDelta.x + 100f, 0);
         }
     }
- }
+}

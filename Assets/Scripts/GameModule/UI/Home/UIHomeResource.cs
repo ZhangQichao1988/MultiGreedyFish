@@ -29,7 +29,8 @@ public class UIHomeResource : UIBase
         switch (sceneName)
         {
             case "Home":
-            case "Shop":
+            case "Shop/Shop":
+            case "RankBonus/RankBonus":
                 goGold.SetActive(true);
                 goDiamond.SetActive(true);
                 break;

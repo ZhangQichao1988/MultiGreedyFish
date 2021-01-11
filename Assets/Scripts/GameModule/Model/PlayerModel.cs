@@ -60,7 +60,10 @@ public class PlayerModel : BaseModel<PlayerModel>
         {
             player.Gold -= itemVo.Price;
         }
-
+        UpdateAssets(rewardVo);
+    }
+    public void UpdateAssets(RewardMapVo rewardVo)
+    {
         if (rewardVo.Content != null && rewardVo.Content.Count > 0)
         {
             ProcessReward(rewardVo.Content);
@@ -71,8 +74,7 @@ public class PlayerModel : BaseModel<PlayerModel>
             ProcessReward(rewardVo.TreasureContent);
         }
     }
-
-    void ProcessReward(List<RewardItemVo> rewards)
+        void ProcessReward(List<RewardItemVo> rewards)
     {
         foreach (RewardItemVo vo in rewards)
         {
