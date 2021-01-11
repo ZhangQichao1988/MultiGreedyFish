@@ -43,28 +43,28 @@ public class RankBonusItem : MonoBehaviour
             case Status.Getted:
                 goTick.SetActive(true);
                 textNextBonus.SetActive(false);
-                animator.enabled = false;
+                animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.Next:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(true);
-                animator.enabled = false;
+                animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
             case Status.NoGet:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
-                animator.enabled = true;
+                animator.SetBool("Blinking", true);
                 rootButton.enabled = true;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.NoReach:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
-                animator.enabled = false;
+                animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
@@ -102,6 +102,8 @@ public class RankBonusItem : MonoBehaviour
         var res = response as P16_Response;
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
+            PlayerModel.Instance.player.GettedBoundsId.Clear();
+            PlayerModel.Instance.player.GettedBoundsId.AddRange( res.GettedBoundsId );
             var rewardVO = RewardMapVo.From(res);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
             PlayerModel.Instance.UpdateAssets(rewardVO);

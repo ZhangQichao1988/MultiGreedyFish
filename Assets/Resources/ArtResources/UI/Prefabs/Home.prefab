@@ -3941,6 +3941,7 @@ MonoBehaviour:
   sliderGoldPool: {fileID: 1504369599985442546}
   textGoldPool: {fileID: 3089871546909536481}
   textGoldPool_1: {fileID: 2818586472892311700}
+  textStreakCnt: {fileID: 517273497398853157}
   textPlayerCnt: {fileID: 56336844574034531}
 --- !u!95 &246808594873533043
 Animator:
