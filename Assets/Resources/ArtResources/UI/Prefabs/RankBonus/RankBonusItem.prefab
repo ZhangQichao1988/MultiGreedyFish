@@ -532,6 +532,7 @@ MonoBehaviour:
     rankLevel: 0
     productContent: 
     rankIcon: 
+  rootButton: {fileID: 1425048166919777421}
 --- !u!1 &5270944441154450167
 GameObject:
   m_ObjectHideFlags: 0

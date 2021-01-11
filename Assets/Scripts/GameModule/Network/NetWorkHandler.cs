@@ -103,6 +103,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidDebugBilling, OnRecvDebugPay);
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRefresh, OnRecvGoldRef);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidRankRewardGet, OnRecvRewardGet);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -483,6 +484,12 @@ public class NetWorkHandler
     {
         var response = P14_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P14_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvRewardGet(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P16_Response.Parser.ParseFrom(msg.Body);
+        GetDispatch().Dispatch<P16_Response>(GetDispatchKey(msg.Key), response);
     }
     
 

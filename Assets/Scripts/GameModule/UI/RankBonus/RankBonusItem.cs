@@ -28,6 +28,9 @@ public class RankBonusItem : MonoBehaviour
     public RankBonusDataInfo dataInfo;
     private Material material;
 
+    [SerializeField]
+    private Button rootButton;
+
     public void Refash(Status status)
     {
         if (material == null)
@@ -41,24 +44,28 @@ public class RankBonusItem : MonoBehaviour
                 goTick.SetActive(true);
                 textNextBonus.SetActive(false);
                 animator.enabled = false;
+                rootButton.enabled = false;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.Next:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(true);
                 animator.enabled = false;
+                rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
             case Status.NoGet:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
                 animator.enabled = true;
+                rootButton.enabled = true;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
                 break;
             case Status.NoReach:
                 goTick.SetActive(false);
                 textNextBonus.SetActive(false);
                 animator.enabled = false;
+                rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
                 break;
         }
@@ -93,10 +100,19 @@ public class RankBonusItem : MonoBehaviour
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P16_RESPONSE);
         Debug.Log("OnRecvGetBonus!");
         var res = response as P16_Response;
-        var rewardVO = RewardMapVo.From(res);
-        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-        PlayerModel.Instance.UpdateAssets(rewardVO);
-        homeScene.OnGettedItemNormal(rewardVO);
+        if (res.Result.Code == NetWorkResponseCode.SUCEED)
+        {
+            var rewardVO = RewardMapVo.From(res);
+            var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+            PlayerModel.Instance.UpdateAssets(rewardVO);
+            homeScene.OnGettedItemNormal(rewardVO);
+            Refash(Status.Getted);
+        }
+        else
+        {
+            //todo l10n
+            MsgBox.OpenTips(res.Result.Desc);
+        }
     }
     private void OnDestroy()
     {
