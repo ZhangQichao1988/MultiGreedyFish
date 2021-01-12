@@ -9,7 +9,10 @@ public class BattleResult : UIBase
 
     public Text textRewardGold;
     public Text textRewardGoldAdvert;
+
     public Text textRewardRank;
+
+    public Text textGoldPool;
     public Text textRewardRankStreak;
     public Text textBattleRanking;
     public Text textStreakCnt;
@@ -29,8 +32,6 @@ public class BattleResult : UIBase
     public Button btnGetRewardAdvert;
 
     // 动画演出用参数
-    public float AddRankRate;
-    public float AddStreakRankRate;
     public float AddBattleRankingRewardRate;
     public float AddRankUpRewardRate;
     public float AddContWinRewardRate;
@@ -168,14 +169,15 @@ public class BattleResult : UIBase
         //}
 
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
-        
-        
+        textGoldPool.text = response.GoldPoolCurrGold.ToString();
+
+
     }
 
     private void Update()
     {
+        int tmp = 0;
         animTime -= Time.deltaTime;
-        int totalGold = 0;
         switch (animStep)
         {
             case 0: // 稍等一下再开始
@@ -239,7 +241,7 @@ public class BattleResult : UIBase
                     levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded;
                     textTotalAddRankLevel.gameObject.SetActive(false);
                     // 显示金币明细（战斗排名）
-                    textBattleRankingReward.text = response.GainGold.ToString();
+                    textBattleRankingReward.text = "0";
                     goAddGoldBattleRanking.SetActive(true);
                     animTime = 0.5f;
                     animStep = 15;
@@ -252,11 +254,14 @@ public class BattleResult : UIBase
                 break;
             case 15: // 显示金币明细（战斗排名）
                 AddBattleRankingRewardRate = 1 - animTime * 2f;
+                tmp = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
+                textBattleRankingReward.text = tmp.ToString();
+                textGoldPool.text = (response.GoldPoolCurrGold - tmp).ToString();
                 if (animTime <= 0f)
                 {
                     if (response.GainRankLevelupBonusGold > 0)
                     {   // 是否有段位升级奖励
-                        textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+                        textRankUpReward.text = "0";
                         goAddGoldRankUp.SetActive(true);
                         animTime = 0.5f;
                         animStep = 20;
@@ -273,19 +278,22 @@ public class BattleResult : UIBase
                 break;
             case 20: // 段位升级金币加算
                 AddRankUpRewardRate = 1 - animTime * 2f;
+                textRankUpReward.text = Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate).ToString();
                 if (animTime <= 0f)
                 {
                     animStep = 25;
                 }
                 break;
             case 25:// 连胜金币加算初始化
-                textStreakReward.text = response.ContWinGoldAdded.ToString();
+                textStreakReward.text = "0";
                 goAddGoldStreak.SetActive(true);
                 animTime = 0.5f;
                 animStep = 26;
                 break;
             case 26:
                 AddContWinRewardRate = 1 - animTime * 2f;
+                textStreakReward.text = Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate).ToString();
+
                 if (animTime <= 0f)
                 {
                     animStep = 30;
@@ -324,7 +332,7 @@ public class BattleResult : UIBase
         int AddBattleRankingReward = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
         int AddRankUpReward = (int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate);
         int AddContWinReward = (int)Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate);
-        totalGold = AddBattleRankingReward + AddRankUpReward + AddContWinReward;
+        int totalGold = AddBattleRankingReward + AddRankUpReward + AddContWinReward;
         textTotalReward.text = totalGold.ToString();
         textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
         textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);

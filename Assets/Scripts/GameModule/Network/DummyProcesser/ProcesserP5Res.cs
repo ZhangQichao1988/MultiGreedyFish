@@ -27,7 +27,7 @@ public class ProcesserP5Res : BaseDummyProcesser<P5_Request, P5_Response>
         res.GainRankLevelupBonusGold = 20;
         res.FightFish = new PBPlayerFishLevelInfo();
         res.FightFish.CurrentWin = 2;
-
+        res.GoldPoolCurrGold = 200;
         return res;
     }
 }
