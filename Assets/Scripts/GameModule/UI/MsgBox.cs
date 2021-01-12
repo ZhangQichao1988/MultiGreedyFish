@@ -51,9 +51,8 @@ public class MsgBox : UIBase
 
     public void SetContent(string txt_title, string txt_content, Action onSure, Action onCancel)
     {
-        _callback = onSure;
         _cancelCallback = onCancel;
-        SetContent(txt_title, txt_content);
+        SetContent(txt_title, txt_content, onSure);
         btnCancel.SetActive(true);
     }
 

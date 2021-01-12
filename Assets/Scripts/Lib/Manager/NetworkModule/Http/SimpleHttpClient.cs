@@ -19,6 +19,8 @@ namespace NetWorkModule
         public static string X_STATUS_CODE = "x-status-code";
 
         public static string X_APP_LANGUAGE = "x-app-language";
+        public static string X_TIME_STAMP = "x-time-stamp";
+        public static string X_REQUEST_ID = "x-request-id";
 
         Dictionary<string, int> timeoutDict;
 
@@ -54,6 +56,8 @@ namespace NetWorkModule
             {
                 cachedSession = Convert.FromBase64String(sessionStr);
             }
+
+            cmdNum = 0;
         }
 
 
@@ -94,7 +98,7 @@ namespace NetWorkModule
             string err = null;
             byte[] combinedData = GetCombineData(msgId, body, m_playerId, m_platform);
             string signStr = GetRequestSign(combinedData, needAuth, msgId, ref err);
-
+            float sentTime = Time.realtimeSinceStartup;
             Debug.LogWarning("Send Signuare:" + signStr);
             
             using (UnityWebRequest request = new UnityWebRequest(AppConst.HttpEndPoint, UnityWebRequest.kHttpVerbPOST))
@@ -105,6 +109,12 @@ namespace NetWorkModule
                 request.SetRequestHeader(X_PLAYER_ID, m_playerId.ToString());
                 request.SetRequestHeader(X_SIGNATURE, signStr);
                 request.SetRequestHeader(X_APP_LANGUAGE, AppConst.languageMode.ToString());
+                if (Clock.MilliTimestamp.HasValue)
+                {
+                    request.SetRequestHeader(X_TIME_STAMP, Clock.MilliTimestamp.Value.ToString());
+                }
+                
+                request.SetRequestHeader(X_REQUEST_ID, CreateRequestId());
                 
                 var upLoaderHandler = new UploadHandlerRaw(data);
                 upLoaderHandler.contentType = "application/proto";
@@ -137,7 +147,7 @@ namespace NetWorkModule
 
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData, body);
+                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData, body, sentTime);
                 }
                 else
                 {
@@ -145,6 +155,14 @@ namespace NetWorkModule
                     HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpError, err != null ? err : string.Format("Error Http Response, Got Error {0}" ,request.responseCode));
                 }
             }
+        }
+
+        //RequestID 
+        static int cmdNum = 0;
+        static string CreateRequestId()
+        {
+            cmdNum++;
+            return CryptographyUtil.Hexlify(CryptographyUtil.RandomBytes(8)) + cmdNum.ToString();
         }
 
         float GetTimeoutSec(string msg)
@@ -223,7 +241,7 @@ namespace NetWorkModule
             return result;
         }
 
-        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData, byte[] req)
+        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData, byte[] req, float sendTime)
         {
             string sign = headers.ContainsKey(X_SIGNATURE) ? headers[X_SIGNATURE] : null;
             int stateCode = (int)StatusCode.Failed;
@@ -237,6 +255,13 @@ namespace NetWorkModule
             if (output != null)
             {
                 HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, string.Format("P{0}_Response", output.msgId), output.pbData);
+            }
+
+            if (headers.ContainsKey(X_TIME_STAMP))
+            {
+                long serverTs;
+                long.TryParse(headers[X_TIME_STAMP], out serverTs);
+                Clock.SetServerTime(serverTs, sendTime);
             }
             
             //status code 处理
@@ -265,6 +290,10 @@ namespace NetWorkModule
                     result = false;
                     break;
                 case StatusCode.Failed:
+                    HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.Failed);
+                    result = false;
+                    break;
+                case StatusCode.ClientError:
                     HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.Failed);
                     result = false;
                     break;

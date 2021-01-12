@@ -129,6 +129,7 @@ public class NetWorkHandler
                     LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 }
                 MsgBox.OpenConfirm("网络错误", "请求超时 请重试", ()=>{
+                    Debug.Log("Clicked !!");
                     RetrySend(obj);
                 }, ()=>{
                     //goto title
