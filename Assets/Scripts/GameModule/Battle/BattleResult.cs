@@ -6,21 +6,26 @@ using TimerModule;
 
 public class BattleResult : UIBase
 {
+
     public Text textRewardGold;
     public Text textRewardGoldAdvert;
     public Text textRewardRank;
+    public Text textRewardRankStreak;
     public Text textBattleRanking;
     public Text textStreakCnt;
 
     public Text textBattleRankingReward;
     public Text textRankUpReward;
+    public Text textStreakReward;
     public Text textTotalReward;
 
     public FishStatusFishControl fishControl;
     public GaugeRank gaugeRank;
 
-    public GameObject goRankupRewardRoot;
+    public GameObject goRewardRoot;
+    public GameObject goStreakRankupRewardRoot;
 
+    public Button btnGetReward;
     public Button btnGetRewardAdvert;
 
     // 动画演出用参数
@@ -28,6 +33,7 @@ public class BattleResult : UIBase
     public float AddStreakRankRate;
     public float AddBattleRankingRewardRate;
     public float AddRankUpRewardRate;
+    public float AddContWinRewardRate;
 
     Animator animator;
     private int rankStart;
@@ -36,6 +42,15 @@ public class BattleResult : UIBase
     private P5_Response response;
     PBPlayerFishLevelInfo levelInfo;
     int retryTimes;
+
+    // 演出相关
+    int animStep = 0;
+    float animTime = 0f;
+    public Text textStreakAddRankLevel;
+    public Text textTotalAddRankLevel;
+    public GameObject goAddGoldBattleRanking;
+    public GameObject goAddGoldRankUp;
+    public GameObject goAddGoldStreak;
 
     protected override string uiName { get { return "BattleResult"; } }
 
@@ -117,7 +132,18 @@ public class BattleResult : UIBase
         animator = GetComponent<Animator>();
 
         response = StageModel.Instance.resultResponse;
-        
+
+        // 提升段位积分
+        if (response.GainRankLevel < 0)
+        {
+            textRewardRank.text = "-" + response.GainRankLevel;
+        }
+        else
+        {
+            textRewardRank.text = "+" + response.GainRankLevel;
+        }
+
+
         levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
         
         // rank条
@@ -130,66 +156,179 @@ public class BattleResult : UIBase
         btnGetRewardAdvert.gameObject.SetActive( response.GainGold > 0 );
 
         rankStart = levelInfo.RankLevel;
-        int totalGold = response.GainGold + response.GainRankLevelupBonusGold;
+        //int totalGold = response.GainGold + response.GainRankLevelupBonusGold;
 
-        textBattleRankingReward.text = response.GainGold.ToString();
+        //textBattleRankingReward.text = response.GainGold.ToString();
 
-        // 荣誉提升奖励
-        goRankupRewardRoot.SetActive(response.GainRankLevelupBonusGold > 0);
-        if (goRankupRewardRoot.activeSelf)
-        {
-            textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
-        }
+        //// 荣誉提升奖励
+        //goRankupRewardRoot.SetActive(response.GainRankLevelupBonusGold > 0);
+        //if (goRankupRewardRoot.activeSelf)
+        //{
+        //    textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+        //}
 
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
         
-        int currentWin = response.FightFish.CurrentWin;
-        levelInfo.CurrentWin = currentWin;
-        if (currentWin > 1)
-        {
-            textStreakCnt.text = string.Format(LanguageDataTableProxy.GetText(62), currentWin);
-            textStreakCnt.gameObject.SetActive(true);
-        }
-        else
-        {
-            textStreakCnt.gameObject.SetActive(false);
-        }
+        
     }
 
     private void Update()
     {
-        // rank条更新
-        if(AddStreakRankRate <= 1.5f)
+        animTime -= Time.deltaTime;
+        int totalGold = 0;
+        switch (animStep)
         {
-            int rankUp = response.GainRankLevel;
-            int streakRankUp = response.ContWinRankAdded;
-            int totalRankUp = (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
-            if (totalRankUp < 0)
-            {
-                textRewardRank.text = "-" + totalRankUp;
-            }
-            else
-            {
-                textRewardRank.text = "+" + totalRankUp;
-            }
-            levelInfo.RankLevel = totalRankUp;
-            gaugeRank.Refash(levelInfo);
-            if (preRankGaugeRate > gaugeRank.sliderRankLevel.value)
-            {
-                animator.SetTrigger("RankUp");
-            }
+            case 0: // 稍等一下再开始
+                animTime = 1f;
+                animStep = 1;
+                break;
+            case 1: // 显示第几名
+                if (animTime > 0f) { return; }
+                goRewardRoot.SetActive(true);
+                textTotalAddRankLevel.gameObject.SetActive(true);
+                animTime = 0.5f;
+                animStep = 2;
+                break;
+            case 2:
+                if (response.GainRankLevel >= 0)
+                {
+                    textTotalAddRankLevel.text = "+" + (int)Mathf.Lerp(response.GainRankLevel, 0f,  animTime * 2f);
+                }
+                if (animTime <= 0f) 
+                {
+                    // 判定是否2连胜以上
+                    int currentWin = response.FightFish.CurrentWin;
+                    levelInfo.CurrentWin = currentWin;
+                    if (currentWin >= 2)
+                    {
+                        textStreakCnt.text = string.Format(LanguageDataTableProxy.GetText(62), currentWin);
+                        textStreakAddRankLevel.text = "+" + response.ContWinRankAdded;
+                        goStreakRankupRewardRoot.SetActive(true);
+                        animTime = 0.5f;
+                        animStep = 5;
+                    }
+                    else
+                    {
+                        animTime = 0.5f;
+                        animStep = 6;
+                    }
+                }
+                break;
+            case 5:// 连胜显示
+                textTotalAddRankLevel.text = "+" + (response.GainRankLevel + (int)Mathf.Lerp(response.ContWinRankAdded, 0f, animTime * 2f));
+                if (animTime <= 0f)
+                {
+                    textTotalAddRankLevel.text = "+" + (response.GainRankLevel + response.ContWinRankAdded);
+                    animTime = 0.5f;
+                    animStep = 6;
+                }
+                break;
+            case 6: // 加算经验条前等一等
+                if (animTime <= 0f)
+                {
+                    animTime = 0.5f;
+                    animStep = 10;
+                }
+                break;
+            case 10:// 加算经验条
+                int totalRankLevel = (int)Mathf.Lerp(0f, (response.GainRankLevel + response.ContWinRankAdded), animTime * 2f);
+                textTotalAddRankLevel.text = "+" + totalRankLevel;
+                levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded - totalRankLevel;
+                if (animTime <= 0f)
+                {
+                    levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded;
+                    textTotalAddRankLevel.gameObject.SetActive(false);
+                    // 显示金币明细（战斗排名）
+                    textBattleRankingReward.text = response.GainGold.ToString();
+                    goAddGoldBattleRanking.SetActive(true);
+                    animTime = 0.5f;
+                    animStep = 15;
+                }
+                gaugeRank.Refash(levelInfo);
+                if (response.GainRankLevel > 0 && preRankGaugeRate > gaugeRank.sliderRankLevel.value)
+                {
+                    animator.SetTrigger("RankUp");
+                }
+                break;
+            case 15: // 显示金币明细（战斗排名）
+                AddBattleRankingRewardRate = 1 - animTime * 2f;
+                if (animTime <= 0f)
+                {
+                    if (response.GainRankLevelupBonusGold > 0)
+                    {   // 是否有段位升级奖励
+                        textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+                        goAddGoldRankUp.SetActive(true);
+                        animTime = 0.5f;
+                        animStep = 20;
+                    }
+                    else if (response.ContWinGoldAdded > 0)
+                    {   // 是否有连胜奖励
+                        animStep = 25;
+                    }
+                    else
+                    {
+                        animStep = 30;
+                    }
+                }
+                break;
+            case 20: // 段位升级金币加算
+                AddRankUpRewardRate = 1 - animTime * 2f;
+                if (animTime <= 0f)
+                {
+                    animStep = 25;
+                }
+                break;
+            case 25:// 连胜金币加算初始化
+                textStreakReward.text = response.ContWinGoldAdded.ToString();
+                goAddGoldStreak.SetActive(true);
+                animTime = 0.5f;
+                animStep = 26;
+                break;
+            case 26:
+                AddContWinRewardRate = 1 - animTime * 2f;
+                if (animTime <= 0f)
+                {
+                    animStep = 30;
+                }
+                break;
+            case 30:
+                btnGetReward.interactable = true;
+                btnGetRewardAdvert.interactable = true;
+                animStep = 40;
+                break;
         }
 
-        // 明细显示
-        if (AddBattleRankingRewardRate <= 1.5f || AddRankUpRewardRate <= 1.5f)
-        {
-            int AddBattleRankingReward = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
-            int AddRankUpReward = (int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate);
-            int totalGold = AddBattleRankingReward + AddRankUpReward;
-            textTotalReward.text = totalGold.ToString();
-            textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
-            textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue); 
 
-        }
+        //// rank条更新
+        //if(AddStreakRankRate <= 1f)
+        //{
+        //    int rankUp = response.GainRankLevel;
+        //    int streakRankUp = response.ContWinRankAdded;
+        //    int totalRankUp = (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
+        //    if (totalRankUp < 0)
+        //    {
+        //        textRewardRank.text = "-" + totalRankUp;
+        //    }
+        //    else
+        //    {
+        //        textRewardRank.text = "+" + totalRankUp;
+        //    }
+        //    levelInfo.RankLevel = totalRankUp;
+        //    gaugeRank.Refash(levelInfo);
+
+        //}
+
+        //// 明细显示
+        //if (AddBattleRankingRewardRate <= 1f || AddRankUpRewardRate <= 1f)
+        //{
+        int AddBattleRankingReward = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
+        int AddRankUpReward = (int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate);
+        int AddContWinReward = (int)Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate);
+        totalGold = AddBattleRankingReward + AddRankUpReward + AddContWinReward;
+        textTotalReward.text = totalGold.ToString();
+        textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
+        textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
+
+        //}
     }
 }

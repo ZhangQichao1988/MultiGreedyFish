@@ -19,7 +19,7 @@ public class RobotNameDataTableProxy : BaseDataTableProxy<RobotNameDataTable, Ro
 	public string[] GetAllRobotNames()
 	{
 		var listName = GetAll();
-		listName.Sort((a, b)=> { return Wrapper.GetRandom(-1, 1); });
+		listName = Wrapper.RandomSortList<RobotNameDataInfo>(listName);
 		List<string> ret = new List<string>();
 		for (int i = 0; i < 9; ++i)
 		{
