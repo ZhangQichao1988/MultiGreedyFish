@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PoolGoldAnim : MonoBehaviour
 {
-    static readonly Vector3 goldTargetPos = new Vector3(264.6f, 184.7f, 352.9f);
+    Vector3 resGoldPosition;
+
     Vector3 targetPos;
     float remainingTime;
     int step = 0;
+    public void Init(Vector3 resGoldPosition)
+    {
+        this.resGoldPosition = resGoldPosition;
+    }
     private void Start()
     {
         float moveAngle = Wrapper.GetRandom(0f, 180f);
         remainingTime = 1f;
-        var movePos = Quaternion.AngleAxis(moveAngle, Vector3.forward) * Vector3.right * Wrapper.GetRandom(50f, 250f);
+        var movePos = Quaternion.AngleAxis(moveAngle, Vector3.forward) * Vector3.right * Wrapper.GetRandom(5f, 2f);
         targetPos = transform.position + movePos;
         
     }
@@ -34,8 +39,8 @@ public class PoolGoldAnim : MonoBehaviour
             case 1:
                 if (remainingTime <= 0f)
                 {
-                    remainingTime = 2f;
-                    targetPos = goldTargetPos;
+                    remainingTime = 1f;
+                    targetPos = resGoldPosition;
                     step = 2;
                 }
                     
@@ -46,7 +51,7 @@ public class PoolGoldAnim : MonoBehaviour
                 {
                     UIHomeResource.Instance.StartGoldAddCalc();
                     Destroy(gameObject);
-                    step = 3;
+                    //step = 3;
                 }
                 break;
         }

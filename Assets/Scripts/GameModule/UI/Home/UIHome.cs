@@ -20,6 +20,7 @@ public class UIHome : UIBase
     public HomeFishControl fishControl;
 
     public GameObject transGoldPool;
+    public Transform transPoolGoldGotoTarget;
     public Slider sliderGoldPool;
     public Text textGoldPool;
     public Text textGoldPool_1;
@@ -155,9 +156,11 @@ public class UIHome : UIBase
         isStartGoldCnt = true;
         var asset = ResourceManager.LoadSync<GameObject>(AssetPathConst.uiRootPath + "HomePoolGold");
         int goldCnt = PlayerModel.Instance.gainGold/10 + 1;
+        GameObject go;
         for (int i = 0; i < goldCnt; ++i)
         {
-            GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool);
+            var poolGold = GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool).GetComponent<PoolGoldAnim>(); ;
+            poolGold.Init(transPoolGoldGotoTarget.position);
         }
     }
     private void OnGetPlayer(PBPlayer pBPlayer)

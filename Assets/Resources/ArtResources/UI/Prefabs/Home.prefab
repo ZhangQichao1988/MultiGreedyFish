@@ -1267,6 +1267,41 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &3417376235397549106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2649655566489953940}
+  m_Layer: 5
+  m_Name: PoolGoldGotoTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2649655566489953940
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417376235397549106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7478952345486615224}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -211, y: -46}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3923418902054746460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1535,7 @@ RectTransform:
   - {fileID: 1007286727764168008}
   - {fileID: 6324769894420482842}
   - {fileID: 4425946051343532258}
+  - {fileID: 2649655566489953940}
   m_Father: {fileID: 6045129904995671806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3938,6 +3974,7 @@ MonoBehaviour:
   textRankLevel: {fileID: 1036372017892585673}
   fishControl: {fileID: 2185106758843559476}
   transGoldPool: {fileID: 1077707119437914124}
+  transPoolGoldGotoTarget: {fileID: 2649655566489953940}
   sliderGoldPool: {fileID: 1504369599985442546}
   textGoldPool: {fileID: 3089871546909536481}
   textGoldPool_1: {fileID: 2818586472892311700}
