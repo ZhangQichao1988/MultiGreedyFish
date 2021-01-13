@@ -19,25 +19,34 @@ public class UserLoginFlowController
     public static void ProcessLoginLogic(string platformToken)
     {
         Debug.LogFormat("[GetPlatform token]{0}", platformToken);
-
-        if (string.IsNullOrEmpty( PlayerPrefs.GetString(NetworkConst.AUTH_KEY) ) )
+        if (string.IsNullOrEmpty( PlayerPrefs.GetString("TEST_LOGIN") ) )
         {
-            if (!string.IsNullOrEmpty(platformToken))
+            //正常登录
+            if (string.IsNullOrEmpty( PlayerPrefs.GetString(NetworkConst.AUTH_KEY) ) )
             {
-                //连协check
-                ProcessLinkedCheck(
-                    platformToken,
-                    LinkServiceType
-                );
+                if (!string.IsNullOrEmpty(platformToken))
+                {
+                    //连协check
+                    ProcessLinkedCheck(
+                        platformToken,
+                        LinkServiceType
+                    );
+                }
+                else
+                {
+                    ProcessStartUp();
+                }
             }
             else
             {
-                ProcessStartUp();
+                ProcessLogin();
             }
         }
         else
         {
-            ProcessLogin();
+            //debug login
+            NetWorkHandler.GetDispatch().AddListener<P17_Response, P17_Request>(GameEvent.RECIEVE_P17_RESPONSE, OnRecvDebugLogin);
+            NetWorkHandler.RequestDebugLogin(PlayerPrefs.GetString("TEST_LOGIN"));
         }
     }
 
@@ -72,6 +81,21 @@ public class UserLoginFlowController
         else
         {
             ProcessStartUp(linkedReq.Accesstoken);
+        }
+    }
+
+    static void OnRecvDebugLogin<T, V>(T response, V request)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P17_RESPONSE);
+        var linkedRes = response as P17_Response;
+        var linkedReq = request as P17_Request;
+        if (linkedRes.Result.Code == NetworkConst.CODE_OK)
+        {
+            ProcessLogin();
+        }
+        else
+        {
+            MsgBox.OpenTips(linkedRes.Result.Desc);
         }
     }
 

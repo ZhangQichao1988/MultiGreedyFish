@@ -133,6 +133,7 @@ public class Intro : MonoBehaviour
         Destroy(gameObject);
         System.GC.Collect();
         NetWorkHandler.Dispose();
+        PlayerModel.Instance.Dispose();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
     }
 

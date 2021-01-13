@@ -74,6 +74,7 @@ public class DebugMenu :MonoBehaviour
 
     private int currentServerIdx;
     private int selectedServerIdx;
+    private string testPlayerId;
 
     public static DebugMenu Instance
     {
@@ -514,6 +515,16 @@ public class DebugMenu :MonoBehaviour
     {
         string[] names = Enum.GetNames(typeof(ESeverType));
         if (PlayerModel.Instance != null) { GUILayout.Label("PlayerID:" + PlayerModel.Instance.playerId, GUILayout.Height(50)); }
+        GUILayout.Label("测试登录 请输入PlayerID:");
+        GUILayout.BeginHorizontal();
+        testPlayerId = GUILayout.TextField(testPlayerId);
+        if (GUILayout.Button("测试登录") && testPlayerId != string.Empty)
+        {
+            PlayerPrefs.SetString("TEST_LOGIN", testPlayerId);
+            PlayerPrefs.Save();
+            Intro.Instance.Restart();
+        }
+        GUILayout.EndHorizontal();
 
         GUILayout.Label("服务器选择:");
         currentServerIdx = GUILayout.SelectionGrid(currentServerIdx, names, names.Length, GUILayout.Width(windowRect.width));

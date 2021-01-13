@@ -54,6 +54,7 @@ public class NetWorkHandler
             {"P13_Request", P13_Request.Parser},
             {"P15_Request", P15_Request.Parser},
             {"P16_Request", P16_Request.Parser},
+            {"P17_Request", P17_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -71,6 +72,7 @@ public class NetWorkHandler
             {"P14_Response", P14_Response.Parser},
             {"P15_Response", P15_Response.Parser},
             {"P16_Response", P16_Response.Parser},
+            {"P17_Response", P17_Response.Parser},
 
         };
 
@@ -104,6 +106,8 @@ public class NetWorkHandler
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRefresh, OnRecvGoldRef);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidRankRewardGet, OnRecvRewardGet);
+
+        HttpDispatcher.Instance.AddObserver(17, OnDebugLoginEnd);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -364,6 +368,17 @@ public class NetWorkHandler
         NetWorkManager.Request("P16_Request", requestByteData);
     }
 
+    public static void RequestDebugLogin(string playerId)
+    {
+        var request = new P17_Request();
+        request.PlayerId = playerId;
+        var randomKey = CryptographyUtil.RandomBytes(32);
+        request.Mask = CryptographyUtil.GetMakData(randomKey);
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P17_Request", requestByteData , randomKey, false);
+    }
+
     #endregion
 
     #region ServerResponse
@@ -491,6 +506,20 @@ public class NetWorkHandler
     {
         var response = P16_Response.Parser.ParseFrom(msg.Body);
         GetDispatch().Dispatch<P16_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnDebugLoginEnd(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P17_Response.Parser.ParseFrom(msg.Body);
+        if (response.Result.Code == NetworkConst.CODE_OK)
+        {
+            PlayerPrefs.SetString(NetworkConst.AUTH_KEY, response.AuthToken);
+            PlayerPrefs.Save();
+            byte[] randKey = msg.CachedData as byte[];
+            NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
+        }
+        var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P17_Request;
+        GetDispatch().Dispatch<P17_Response, P17_Request>(GetDispatchKey(msg.Key), response, request);
     }
     
 
