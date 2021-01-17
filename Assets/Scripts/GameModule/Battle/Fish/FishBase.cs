@@ -490,7 +490,10 @@ public class FishBase : MonoBehaviour
 
         if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.instance.PoisonRingDmgCoolTime)
         {
-            Damage( (int)(BattleConst.instance.PoisonRingDmg *lifeMax * inPoisonRingDmgCnt++), null );
+            if (Damage((int)(BattleConst.instance.PoisonRingDmg * lifeMax * inPoisonRingDmgCnt), null))
+            {
+                inPoisonRingDmgCnt++;
+            }
         }
     }
 
