@@ -42,10 +42,10 @@ echo "Start build unity android"
 echo ${UNITY_PATH} -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
 -devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=false -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
--bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile /tmp/fish/build/android/build_log-${BUILD_DATA}.log 
+-bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile build_log-${BUILD_DATA}.log 
 
 
 "${UNITY_PATH}" -batchmode -quit -projectPath ${WORKDIR} -executeMethod MultiGreedyFish.Pipline.ProjectBuild.Build \
 -devBuild=${DEV_BUILD} \
 -productName=${PRODUCT_NAME} -iosBuild=false -useSever=${USE_SERVER} -bundleVersion=${BUNDLE_VERSION} -buildNumber=${BUNDLE_VERSION_CODE_SHOW} -enabledDebugMenu=${ENABLE_DEBUG} \
--bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile /tmp/fish/build/android/build_log-${BUILD_DATA}.log 
+-bundleIdentifier=${BUNDLE_IDENTIFIER} -keyStorePath="${KEY_STORE_PATH}" -keyStorePass="${KEY_STORE_PASS}" -keyAliasName="${KEY_ALIAS_NAME}" -apk_name="fish-${BUILD_DATA}" -keyAliasPass="${KEY_ALIAS_PASS}" -logFile build_log-${BUILD_DATA}.log 

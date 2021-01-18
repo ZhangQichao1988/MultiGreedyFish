@@ -37,11 +37,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ad6d933040a753942a50906ef168d3c6, type: 3}
   - {fileID: 21300000, guid: de819b307fb9c12439e5e44de4fcdff2, type: 3}
   - {fileID: 21300000, guid: 492cc12671070b344af477e5528048f9, type: 3}
-  - {fileID: 21300000, guid: 98da581ecf11a75498ccf18298356e8a, type: 3}
   m_PackedSpriteNamesToIndex:
-  - UI_listbox_4
   - UI_listbox_3
-  - UI_listbox_1
   - UI_listbox_2
+  - UI_listbox_1
   m_Tag: AtlasFishEditor
   m_IsVariant: 0

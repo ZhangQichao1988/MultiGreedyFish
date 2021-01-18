@@ -34,6 +34,7 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: a0405a10c5248ac4a991460a79068bef, type: 3}
   - {fileID: 21300000, guid: ecef5620998deca458a994047612a373, type: 3}
   - {fileID: 21300000, guid: de7431802cb57a542a90beac6ee9c903, type: 3}
   - {fileID: 21300000, guid: 2ff15cb022f10a84889d7b3568cbb304, type: 3}
@@ -50,11 +51,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e5f389353d98a7e4195d95c7e803fbb6, type: 3}
   - {fileID: 21300000, guid: 31c33f35b39f60642899344abf41e805, type: 3}
   - {fileID: 21300000, guid: 2502989575dd3ac41a6d7edecd8b82ac, type: 3}
+  - {fileID: 21300000, guid: 45460eb5278535f40925c86f4cf659a6, type: 3}
   - {fileID: 21300000, guid: 88b45806af518624b98d5ee5230a04da, type: 3}
   - {fileID: 21300000, guid: 70b29d062dc17274cbccd5d75d3bf043, type: 3}
   - {fileID: 21300000, guid: f998ce0698df2e148a8ff655638334b6, type: 3}
   - {fileID: 21300000, guid: 8d37c5267d5b10d4ab1dabc81285b72f, type: 3}
   - {fileID: 21300000, guid: a0d6b976100d11542b0bf9525d8cb3c6, type: 3}
+  - {fileID: 21300000, guid: 6149c4867757651488ee9b9b5ea8f35b, type: 3}
   - {fileID: 21300000, guid: e58914b6e502fd04b897f9b182098616, type: 3}
   - {fileID: 21300000, guid: 0c446fb683c279a49b12c7d1d01c3f8c, type: 3}
   - {fileID: 21300000, guid: bbcc7217a04d5444f913f4ecb0ef6019, type: 3}
@@ -64,7 +67,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c5104ac8da2563c45ac381857283546e, type: 3}
   - {fileID: 21300000, guid: 9275a1e8433f44148986b39cf8d043b7, type: 3}
   - {fileID: 21300000, guid: bb34bb095607a904894f5afd67920548, type: 3}
-  - {fileID: 21300000, guid: d2f75a296a7cee849a5a95a382e4b27e, type: 3}
   - {fileID: 21300000, guid: f4644e29e75a76a42af5d5a036e94ea1, type: 3}
   - {fileID: 21300000, guid: 46038049435da90429295119d645620e, type: 3}
   - {fileID: 21300000, guid: aa913f4957dae7c45a18d1643b162dfe, type: 3}
@@ -83,6 +85,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 384c5a3ebd0346a44836f1e2c091371e, type: 3}
   - {fileID: 21300000, guid: 619d985e9400ad841af834563317e940, type: 3}
   m_PackedSpriteNamesToIndex:
+  - UI_radiation
   - UI_Energy
   - UI_RankIcon_33
   - UI_select_bg_left
@@ -99,11 +102,13 @@ SpriteAtlas:
   - UI_RankIcon_35
   - UI_RankIcon_43
   - UI_RankIcon_52
+  - UI_circle
   - SkillIcon
   - UI_RankIcon_42
   - UI_energy_progress_bar
   - UI_RankIcon_24
   - UI_status_bg
+  - UI_circle1
   - UI_RankIcon_21
   - btn_02
   - UI_RankIcon_15
@@ -113,7 +118,6 @@ SpriteAtlas:
   - UI_RankIcon_44
   - UI_RankIcon_53
   - UI_RankIcon_31
-  - UI_bg_color
   - UI_Return
   - UI_RankIcon_55
   - UI_RankIcon_23

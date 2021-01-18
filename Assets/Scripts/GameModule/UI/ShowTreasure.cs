@@ -82,14 +82,14 @@ public class ShowTreasure : UIBase
         {
             imageRadiation.gameObject.SetActive(true);
             var fishData = FishDataTableProxy.Instance.GetDataById(mapVo.TreasureContent[showItemIndex].masterDataItem.extra);
-            Color color = new Color(0.65f, 0.88f, 1f);
+            Color color = new Color(0.12f, 0.24f, 0.63f, 0.7f);
             switch (fishData.rare)
             {
                 case 3:
-                    color = new Color(0.92f, 0.28f, 0.58f);
+                    color = new Color(0.92f, 0.28f, 0.58f, 0.7f);
                     break;
                 case 2:
-                    color = new Color(0.92f, 0.87f, 0.24f);
+                    color = new Color(0.92f, 0.87f, 0.24f, 0.7f);
                     break;
             }
             imageCricle.color = color;
