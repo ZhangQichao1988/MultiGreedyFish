@@ -23,10 +23,10 @@ public class RewardMapVo
         rvo.IsTreasure = pRes.IsTreasure;
         rvo.TreasureContent = RewardItemVo.FromList(pRes.TreaContent);
 
-        if (rvo.IsTreasure && rvo.Content.Count <= 1)
-        {
-            rvo.Content = null;
-        }
+        //if (rvo.IsTreasure && rvo.Content.Count <= 1)
+        //{
+        //    rvo.Content = null;
+        //}
 
         return rvo;
     }
@@ -56,10 +56,10 @@ public class RewardMapVo
         rvo.IsTreasure = pRes.IsTreasure;
         rvo.TreasureContent = RewardItemVo.FromList(pRes.TreaContent);
 
-        if (rvo.IsTreasure && rvo.Content.Count <= 1)
-        {
-            rvo.Content = null;
-        }
+        //if (rvo.IsTreasure && rvo.Content.Count <= 1)
+        //{
+        //    rvo.Content = null;
+        //}
 
         return rvo;
     }

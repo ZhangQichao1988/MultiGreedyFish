@@ -10,6 +10,7 @@ public class UIFishLevelUp : UIBase
 {
 
     private PBPlayerFishLevelInfo playerFishLevelInfo;
+    private FishLevelUpDataInfo dataInfo;
 
     public Text textLvUp;
     public Text textTitle;
@@ -24,8 +25,8 @@ public class UIFishLevelUp : UIBase
     public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
     {
         this.playerFishLevelInfo = playerFishLevelInfo;
-        var fishLevelData = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
-        textLevelupUseGold.text = fishLevelData.useGold.ToString();
+        dataInfo = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
+        textLevelupUseGold.text = dataInfo.useGold.ToString();
 
         bool isLvUp = playerFishLevelInfo.FishLevel > 0;
         textTitle.text = isLvUp ? 
@@ -59,6 +60,8 @@ public class UIFishLevelUp : UIBase
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P7_RESPONSE);
         var realResponse = response as P7_Response;
         PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
+        PlayerModel.Instance.player.Gold -= dataInfo.useGold;
+        UIHomeResource.Instance.UpdateAssets();
         Close();
     }
 

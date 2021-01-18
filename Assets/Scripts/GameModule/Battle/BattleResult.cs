@@ -134,19 +134,22 @@ public class BattleResult : UIBase
 
         response = StageModel.Instance.resultResponse;
 
+        levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+
+        if (levelInfo.RankLevel + response.GainRankLevel < 0)
+        {
+            response.GainRankLevel = -levelInfo.RankLevel;
+        }
+
         // 提升段位积分
         if (response.GainRankLevel < 0)
         {
-            textRewardRank.text = "-" + response.GainRankLevel;
+            textRewardRank.text = response.GainRankLevel.ToString();
         }
         else
         {
             textRewardRank.text = "+" + response.GainRankLevel;
         }
-
-
-        levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
-        
         // rank条
         gaugeRank.Refash(levelInfo);
         preRankGaugeRate = gaugeRank.sliderRankLevel.value;
@@ -187,12 +190,15 @@ public class BattleResult : UIBase
             case 1: // 显示第几名
                 if (animTime > 0f) { return; }
                 goRewardRoot.SetActive(true);
-                textTotalAddRankLevel.gameObject.SetActive(true);
+                if (response.GainRankLevel > 0)
+                {
+                    textTotalAddRankLevel.gameObject.SetActive(true);
+                }
                 animTime = 0.5f;
                 animStep = 2;
                 break;
             case 2:
-                if (response.GainRankLevel >= 0)
+                if (response.GainRankLevel > 0)
                 {
                     textTotalAddRankLevel.text = "+" + (int)Mathf.Lerp(response.GainRankLevel, 0f,  animTime * 2f);
                 }
@@ -234,7 +240,18 @@ public class BattleResult : UIBase
                 break;
             case 10:// 加算经验条
                 int totalRankLevel = (int)Mathf.Lerp(0f, (response.GainRankLevel + response.ContWinRankAdded), animTime * 2f);
-                textTotalAddRankLevel.text = "+" + totalRankLevel;
+                if (totalRankLevel > 0)
+                {
+                    textTotalAddRankLevel.text = "+" + totalRankLevel;
+                }
+                else if (totalRankLevel < 0)
+                {
+                    textTotalAddRankLevel.text = totalRankLevel.ToString();
+                }
+                else
+                {
+                    textTotalAddRankLevel.gameObject.SetActive(false);
+                }
                 levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded - totalRankLevel;
                 if (animTime <= 0f)
                 {

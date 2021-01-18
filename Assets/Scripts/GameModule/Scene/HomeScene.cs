@@ -57,12 +57,14 @@ public class HomeScene : BaseScene
     public void OnGettedItemNormal(System.Object res)
     {
         RewardMapVo response = res as RewardMapVo;
-        MsgBox.ShowGettedItem(response.Content);
 
         if (response.IsTreasure)
         {
-            //TODO 宝箱演出
-            MsgBox.ShowGettedItem(response.TreasureContent);
+            ShowTreasure.ShowGettedItem(response);
+        }
+        else 
+        {
+            MsgBox.ShowGettedItem(response.Content);
         }
         homeResource.UpdateAssets();
     }

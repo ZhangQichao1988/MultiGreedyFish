@@ -21,18 +21,14 @@ public class ProcesserP11Res : BaseDummyProcesser<P11_Request, P11_Response>
     {
         var res = new P11_Response();
         res.Result = new PBResult() { Code = 0 };
-        for (int i = 0; i < 10; i++)
-        {
-            var content = new ProductContent(){ ContentId = 1 + Random.Range(0, 2), Amount = i + 1 };
-            res.Content.Add(content);
-        }
+        var content = new ProductContent() { ContentId = 4, Amount = 1 };
+        res.Content.Add(content);
 
         res.IsTreasure = true;
-        for (int i = 0; i < 3; i++)
-        {
-            var content = new ProductContent(){ ContentId = 1 + Random.Range(0, 2), Amount = i + 1 };
-            res.TreaContent.Add(content);
-        }
+        res.TreaContent.Add(new ProductContent() { ContentId = 60, Amount = 100 });
+        res.TreaContent.Add(new ProductContent() { ContentId = 100, Amount = 5 });
+        res.TreaContent.Add(new ProductContent() { ContentId = 600, Amount = 10 });
+        res.TreaContent.Add(new ProductContent() { ContentId = 700, Amount = 7 });
         return res;
     }
 

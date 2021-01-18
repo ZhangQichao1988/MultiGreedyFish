@@ -17,7 +17,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
-        bool ret = base.Damage(1, hitmanTrans);
+        bool ret = base.Damage(dmg, hitmanTrans);
         if (ret)
         {
             canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;

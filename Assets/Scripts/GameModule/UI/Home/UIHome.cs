@@ -58,8 +58,6 @@ public class UIHome : UIBase
         base.Init();
         textPlayerCnt.gameObject.SetActive(false);
 
-        
-
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
         listBtn = new List<Button>(GetComponentsInChildren<Button>());
         listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());

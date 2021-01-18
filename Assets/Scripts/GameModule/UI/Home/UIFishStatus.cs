@@ -92,7 +92,7 @@ public class UIFishStatus : UIBase
 
         gauageLevel.Refash(playerFishLevelInfo);
         gauageRank.Refash(playerFishLevelInfo);
-        btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f;
+        btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f && PlayerModel.Instance.player.Gold >= fishLevelData.useGold;
 
     }
     
