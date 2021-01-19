@@ -38,7 +38,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ecef5620998deca458a994047612a373, type: 3}
   - {fileID: 21300000, guid: de7431802cb57a542a90beac6ee9c903, type: 3}
   - {fileID: 21300000, guid: 2ff15cb022f10a84889d7b3568cbb304, type: 3}
-  - {fileID: 21300000, guid: acbdfb1170536624ca6d0130a28a2427, type: 3}
   - {fileID: 21300000, guid: e56266313d083844dacf8846a1a0e74c, type: 3}
   - {fileID: 21300000, guid: 2f0658e1bb6c20d469285547bbbd157a, type: 3}
   - {fileID: 21300000, guid: d2ba3103402dec4498d03c62609f1a9e, type: 3}
@@ -56,13 +55,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 70b29d062dc17274cbccd5d75d3bf043, type: 3}
   - {fileID: 21300000, guid: f998ce0698df2e148a8ff655638334b6, type: 3}
   - {fileID: 21300000, guid: 8d37c5267d5b10d4ab1dabc81285b72f, type: 3}
-  - {fileID: 21300000, guid: a0d6b976100d11542b0bf9525d8cb3c6, type: 3}
   - {fileID: 21300000, guid: 6149c4867757651488ee9b9b5ea8f35b, type: 3}
   - {fileID: 21300000, guid: e58914b6e502fd04b897f9b182098616, type: 3}
   - {fileID: 21300000, guid: 0c446fb683c279a49b12c7d1d01c3f8c, type: 3}
   - {fileID: 21300000, guid: bbcc7217a04d5444f913f4ecb0ef6019, type: 3}
   - {fileID: 21300000, guid: 865f1947661671b42a6b31dc2106f3ff, type: 3}
   - {fileID: 21300000, guid: dbb2db67be1bcbd4ab8a3ac8d9c2692a, type: 3}
+  - {fileID: 21300000, guid: 23f7dca70d282644196648359286cb71, type: 3}
   - {fileID: 21300000, guid: a93ab5280dc28194b9544dd25a631dfb, type: 3}
   - {fileID: 21300000, guid: c5104ac8da2563c45ac381857283546e, type: 3}
   - {fileID: 21300000, guid: 9275a1e8433f44148986b39cf8d043b7, type: 3}
@@ -89,7 +88,6 @@ SpriteAtlas:
   - UI_Energy
   - UI_RankIcon_33
   - UI_select_bg_left
-  - UI_select_bg
   - btn_01
   - UI_select_bg_right
   - UI_RankIcon_54
@@ -107,13 +105,13 @@ SpriteAtlas:
   - UI_RankIcon_42
   - UI_energy_progress_bar
   - UI_RankIcon_24
-  - UI_status_bg
   - UI_circle1
   - UI_RankIcon_21
   - btn_02
   - UI_RankIcon_15
   - UI_Head_bg_05
   - UI_RankIcon_32
+  - ui_shop_frame
   - UI_goldcoin
   - UI_RankIcon_44
   - UI_RankIcon_53
