@@ -78,7 +78,7 @@ public class BattleResult : UIBase
             PlayerModel.Instance.player.Gold += res.RewardMoney;
             BackToHome();
         }
-        else if (res.Result.Code == NetWorkResponseCode.NEED_RETRY)
+        else if (res.Result.Code == NetWorkResponseCode.ADS_NEED_RETRY)
         {
             //双倍领取如果 双倍奖励没有验证通过的话 会返回这个 客户端作重试处理
             if (++retryTimes < AdsController.RewardRetryTimes)

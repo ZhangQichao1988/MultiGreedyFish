@@ -37,8 +37,10 @@ public class NetWorkHandler
         NetWorkManager.Instance.Reset();
     }
 
-    public static void InitHttpNetWork()
+    static IErrorCodeProcesser errorCodeProcesser;
+    public static void InitHttpNetWork(IErrorCodeProcesser errProcess)
     {
+        errorCodeProcesser = errProcess;
         pbParserRef = new Dictionary<string, MessageParser>(){
             {"P0_Request", P0_Request.Parser},
             {"P1_Request", P1_Request.Parser},
@@ -109,6 +111,8 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidRankRewardGet, OnRecvRewardGet);
 
         HttpDispatcher.Instance.AddObserver(17, OnDebugLoginEnd);
+
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidUpdateGooldPool, OnRecvUpdateGooldPool);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -396,7 +400,9 @@ public class NetWorkHandler
         PlayerPrefs.Save();
         byte[] randKey = msg.CachedData as byte[];
         NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P0_Response>(GetDispatchKey(msg.Key), response);
+        
     }
 
     static void OnRecvLogin(HttpDispatcher.NodeMsg msg)
@@ -409,6 +415,7 @@ public class NetWorkHandler
             NetWorkManager.HttpClient.SetPlayerId(response.PlayerId);
         }
 
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P2_Response>(GetDispatchKey(msg.Key), response);
     }
 
@@ -423,47 +430,55 @@ public class NetWorkHandler
             NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
         }
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P1_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P1_Response, P1_Request>(GetDispatchKey(msg.Key), response, request);
     }
 
     static void OnRecvGetPlayerInfo(HttpDispatcher.NodeMsg msg)
     {
         var response = P3_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P3_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvBattle(HttpDispatcher.NodeMsg msg)
     {
         var response = P4_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P4_Response>(GetDispatchKey(msg.Key), response);
     }
     static void OnRecvBattleResult(HttpDispatcher.NodeMsg msg)
     {
         var response = P5_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P5_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvFightFishSet(HttpDispatcher.NodeMsg msg)
     {
         var response = P6_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P6_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvFishLevelUp(HttpDispatcher.NodeMsg msg)
     {
         var response = P7_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P7_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvBounsGet(HttpDispatcher.NodeMsg msg)
     {
         var response = P8_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P8_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvModifyNick(HttpDispatcher.NodeMsg msg)
     {
         var response = P9_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P9_Response>(GetDispatchKey(msg.Key), response);
     }
 
@@ -471,6 +486,7 @@ public class NetWorkHandler
     {
         var response = P10_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P10_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P10_Response, P10_Request>(GetDispatchKey(msg.Key), response, request);
     }
 
@@ -478,6 +494,7 @@ public class NetWorkHandler
     {
         var response = P11_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P11_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P11_Response, P11_Request, ShopItemVo>(GetDispatchKey(msg.Key), response, request, msg.CachedData as ShopItemVo);
     }
 
@@ -485,6 +502,7 @@ public class NetWorkHandler
     {
         var response = P12_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P12_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P12_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
     }
 
@@ -493,24 +511,28 @@ public class NetWorkHandler
     {
         var response = P13_Response.Parser.ParseFrom(msg.Body);
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P13_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P13_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
     }
 
     static void OnRecvDebugPay(HttpDispatcher.NodeMsg msg)
     {
         var response = P15_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P15_Response, string>(GetDispatchKey(msg.Key), response, msg.CachedData.ToString());
     }
 
     static void OnRecvGoldRef(HttpDispatcher.NodeMsg msg)
     {
         var response = P14_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P14_Response>(GetDispatchKey(msg.Key), response);
     }
 
     static void OnRecvRewardGet(HttpDispatcher.NodeMsg msg)
     {
         var response = P16_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P16_Response>(GetDispatchKey(msg.Key), response);
     }
 
@@ -525,7 +547,15 @@ public class NetWorkHandler
             NetWorkManager.HttpClient.SaveSessionKey(response.AuthKey, randKey, true);
         }
         var request = pbParserRef[string.Format("P{0}_Request", msg.Key)].ParseFrom(ByteString.CopyFrom(msg.ReqMsg)) as P17_Request;
+        errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P17_Response, P17_Request>(GetDispatchKey(msg.Key), response, request);
+    }
+
+    static void OnRecvUpdateGooldPool(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P18_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P18_Response>(GetDispatchKey(msg.Key), response);
     }
     
 
