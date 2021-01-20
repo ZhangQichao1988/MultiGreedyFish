@@ -93,10 +93,6 @@ public class UserLoginFlowController
         {
             ProcessLogin();
         }
-        else
-        {
-            MsgBox.OpenTips(linkedRes.Result.Desc);
-        }
     }
 
     /// <summary>
