@@ -191,8 +191,7 @@ public class FishManager : MonoBehaviour
 		for (int i = 0; i < listFish.Count; ++i)
 		{
 			if ((	listFish[i].fishType == FishBase.FishType.PlayerRobot || listFish[i].fishType == FishBase.FishType.Player)
-					 && listFish[i].actionStep != FishBase.ActionType.Die
-					 && !listFish[i].isStealth)
+					 && listFish[i].actionStep != FishBase.ActionType.Die)
 			{
 				listPlayer.Add(listFish[i]);
 			}

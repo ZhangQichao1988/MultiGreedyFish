@@ -5,8 +5,13 @@ using UnityEngine;
 public class PlayerRobotShark : PlayerRobotBase
 {
 	public override FishType fishType { get { return FishType.Boss; } }
-	protected override bool showLifeGauge { get { return false; } }
+	protected override bool showLifeGauge { get { return true; } }
 	protected override bool showNameplate { get { return false; } }
+	public override void Init(int fishId, string playerName, float level)
+	{
+		base.Init(fishId, playerName, level);
+		battleLevel = 10;
+	}
 	protected override Vector3 GetBornPosition()
 	{
 		return Vector3.zero;
@@ -122,5 +127,6 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 		//fish.Die(colliderMouth.transform);
 		animator.SetTrigger("Eat");
+		BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
 	}
 }

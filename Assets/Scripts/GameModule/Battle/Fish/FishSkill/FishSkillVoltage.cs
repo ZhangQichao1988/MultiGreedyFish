@@ -41,7 +41,8 @@ public class FishSkillVoltage : FishSkillBase
 					if (listFish[i].fishType == FishBase.FishType.Enemy) { continue; }
 					if(playerBase.colliderBody.bounds.Intersects(listFish[i].colliderBody.bounds))
 					{
-						if (!listFish[i].ContainsBuffType(BuffBase.BuffType.Shield))
+						if (!listFish[i].ContainsBuffType(BuffBase.BuffType.Shield) &&
+							!listFish[i].ContainsBuffType(BuffBase.BuffType.ShieldGold))
 						{
 							if (!listFish[i].ContainsBuff(buffId))
 							{

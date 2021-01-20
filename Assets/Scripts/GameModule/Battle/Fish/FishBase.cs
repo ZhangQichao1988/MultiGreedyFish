@@ -532,6 +532,7 @@ public class FishBase : MonoBehaviour
             // Buff类型一样覆盖元Buff
             if (buff.buffType == note.buffType)
             {
+                //listBuff[i].Destory();
                 listBuff.RemoveAt(i);
             }
         }

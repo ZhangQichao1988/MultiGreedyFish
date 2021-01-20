@@ -13,6 +13,7 @@ public abstract class BuffBase
         ShieldGold,                     // 护盾(金)
         Heal,                             // 回血
         Frozen,                         // 冰冻
+        Stealth,                         // 隐身
     };
     public abstract BuffType buffType { get; }
     public FishBuffDataInfo baseData;
