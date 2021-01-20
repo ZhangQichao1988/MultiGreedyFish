@@ -7,6 +7,7 @@ public class PlayerModel : BaseModel<PlayerModel>
 {
     public long playerId;
     public PBPlayer player;
+    public int goldPoolLevel;
     public PlayerModel() : base()
     {
 

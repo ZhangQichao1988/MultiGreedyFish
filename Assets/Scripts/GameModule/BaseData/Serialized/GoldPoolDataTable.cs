@@ -11,5 +11,6 @@ public class GoldPoolDataInfo : IQueryById
     public int level;
     public int gainPreSec;
     public int maxGold;
+    public int useDiamond;
 
 }

@@ -73,6 +73,7 @@ public class NetWorkHandler
             {"P15_Response", P15_Response.Parser},
             {"P16_Response", P16_Response.Parser},
             {"P17_Response", P17_Response.Parser},
+            {"P18_Response", P18_Response.Parser},
 
         };
 
@@ -352,10 +353,15 @@ public class NetWorkHandler
         NetWorkManager.Request("P15_Request", requestByteData, productId);
     }
 
-    public static void RequestFetchGoldPool()
+    public static void RequestGoldPoolFetch()
     {
         NetWorkManager.Request("P14_Request", null);
     }
+    public static void RequestGoldPoolLevelUp()
+    {
+        NetWorkManager.Request("P18_Request", null);
+    }
+
     /// <summary>
     /// 获取段位奖励
     /// </summary>

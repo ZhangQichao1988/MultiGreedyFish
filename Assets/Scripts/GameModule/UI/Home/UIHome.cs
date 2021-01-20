@@ -9,6 +9,8 @@ using System;
 
 public class UIHome : UIBase
 {
+    static public UIHome Instance { private set; get; }
+
     // FaceIcon
     public Text textPlayerName;
     public Image imgPlayerFaceIcon;
@@ -50,6 +52,7 @@ public class UIHome : UIBase
     protected override void Awake()
     {
         base.Awake();
+        Instance = this;
         textGoldPool.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
     }
@@ -62,9 +65,12 @@ public class UIHome : UIBase
         listBtn = new List<Button>(GetComponentsInChildren<Button>());
         listBtn.AddRange(UIHomeResource.Instance.gameObject.GetComponentsInChildren<Button>());
 
+        FetchGoldPool();
+    }
+    public void FetchGoldPool()
+    {
         NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);
-        NetWorkHandler.RequestFetchGoldPool();
-
+        NetWorkHandler.RequestGoldPoolFetch();
     }
     public override void OnEnter(System.Object parms)
     {
@@ -98,6 +104,7 @@ public class UIHome : UIBase
         Debug.Log("On Getted GoldPool!");
         textGoldPool.gameObject.SetActive(true);
         goldPoolResponse = response as P14_Response;
+        PlayerModel.Instance.goldPoolLevel = goldPoolResponse.Level;
         backupTime = Time.realtimeSinceStartup;
         goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
         gainGoldCntRemainingTime = 3f;
@@ -226,6 +233,10 @@ public class UIHome : UIBase
     public void OnClickBattleCancel()
     {
         animator.SetTrigger("BattleCancel");
+    }
+    public void OnClickGoldPool()
+    {
+        UIGoldPoolLevelUp.Open();
     }
 
     private void Update()
