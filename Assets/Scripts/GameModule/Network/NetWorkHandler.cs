@@ -57,6 +57,7 @@ public class NetWorkHandler
             {"P15_Request", P15_Request.Parser},
             {"P16_Request", P16_Request.Parser},
             {"P17_Request", P17_Request.Parser},
+            {"P19_Request", P19_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -76,6 +77,7 @@ public class NetWorkHandler
             {"P16_Response", P16_Response.Parser},
             {"P17_Response", P17_Response.Parser},
             {"P18_Response", P18_Response.Parser},
+            {"P19_Response", P19_Response.Parser},
 
         };
 
@@ -113,6 +115,7 @@ public class NetWorkHandler
         HttpDispatcher.Instance.AddObserver(17, OnDebugLoginEnd);
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidUpdateGooldPool, OnRecvUpdateGooldPool);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidRankListGet, OnRecvRankList);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -389,6 +392,15 @@ public class NetWorkHandler
         NetWorkManager.Request("P17_Request", requestByteData , randomKey, false);
     }
 
+    public static void RequestGetRankList(PBRankType type)
+    {
+        var request = new P19_Request();
+        request.RankType = type;
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P19_Request", requestByteData);
+    }
+
     #endregion
 
     #region ServerResponse
@@ -558,6 +570,12 @@ public class NetWorkHandler
         GetDispatch().Dispatch<P18_Response>(GetDispatchKey(msg.Key), response);
     }
     
+    static void OnRecvRankList(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P19_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P19_Response>(GetDispatchKey(msg.Key), response);
+    }
 
 #endregion
 

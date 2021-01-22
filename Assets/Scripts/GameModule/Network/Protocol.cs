@@ -86,63 +86,72 @@ public static partial class ProtocolReflection {
           "ZW50Ii0KC1AxN19SZXF1ZXN0EhAKCHBsYXllcklkGAEgAigJEgwKBG1hc2sY",
           "AiACKAkiTQoMUDE3X1Jlc3BvbnNlEhkKBnJlc3VsdBgBIAEoCzIJLlBCUmVz",
           "dWx0EhEKCWF1dGhUb2tlbhgCIAEoCRIPCgdhdXRoS2V5GAMgASgJIikKDFAx",
-          "OF9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCImCghQQlJl",
-          "c3VsdBIMCgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkigwEKFVBCUGxheWVy",
-          "RmlzaExldmVsSW5mbxIOCgZmaXNoSWQYASABKAUSEQoJZmlzaExldmVsGAIg",
-          "ASgFEhAKCGZpc2hDaGlwGAMgASgFEhEKCXJhbmtMZXZlbBgEIAEoBRISCgpj",
-          "dXJyZW50V2luGAUgASgFEg4KBm1heFdpbhgGIAEoBSKDAgoIUEJQbGF5ZXIS",
-          "EAoIcGxheWVySWQYASABKAMSEAoIbmlja25hbWUYAiABKAkSEgoKZmFjZUlj",
-          "b25JZBgDIAEoBRIPCgdyZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEo",
-          "AxIPCgdkaWFtb25kGAYgASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCAB",
-          "KAUSDwoHcG93ZXJBdBgJIAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5",
-          "UGxheWVyRmlzaEluZm8YCyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8S",
-          "FgoOZ2V0dGVkQm91bmRzSWQYDCADKAUiYAoPUEJFbmVteURhdGFJbmZvEg4K",
-          "BmZpc2hJZBgBIAEoBRIRCglmaXNoTGV2ZWwYAiABKAUSFAoMZmlzaENvdW50",
-          "TWF4GAMgASgFEhQKDGZpc2hDb3VudE1pbhgEIAEoBSJOCg9QQlJvYm90RGF0",
-          "YUluZm8SDgoGZmlzaElkGAEgASgFEgwKBGFpSWQYAiABKAUSDQoFbGV2ZWwY",
-          "AyABKAUSDgoGZ3Jvd3RoGAQgASgFIsQBChJTaG9wQmlsbGluZ1Byb2R1Y3QS",
-          "CgoCaWQYASACKAUSGQoHcGF5VHlwZRgCIAIoDjIILlBheVR5cGUSDQoFcHJp",
-          "Y2UYAyACKAUSDwoHcmVzSWNvbhgEIAIoCRInCg5wcm9kdWN0Q29udGVudBgF",
-          "IAMoCzIPLlByb2R1Y3RDb250ZW50EhkKEXBsYXRmb3JtUHJvZHVjdElkGAYg",
-          "ASgJEiMKC2xpbWl0RGV0YWlsGAcgASgLMg4uTGltaXRlZERldGFpbCIzCg5Q",
-          "cm9kdWN0Q29udGVudBIOCgZhbW91bnQYASACKAUSEQoJY29udGVudElkGAIg",
-          "AigFImgKDUxpbWl0ZWREZXRhaWwSDwoHYmVnaW5BdBgBIAEoBBIRCglzYWxl",
-          "RW5kQXQYAiABKAQSEwoLbGltaXRBbW91bnQYAyABKAUSHgoWbGltaXRlZFJl",
-          "bWFpbmluZ0Ftb3VudBgEIAEoBSJCChBCaWxsaW5nU3RhdGVJbmZvEgsKA2Fn",
-          "ZRgBIAEoBRIhChljdXJyZW50TW9udGhQdXJjaGFzZVByaWNlGAIgAigFKlAK",
-          "E0RhdGFMaW5rU2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVy",
-          "EAESDwoLZ29vZ2xlX3BsYXkQAhINCglhcHBfbG92aW4QAyqTAwoJTWVzc2Fn",
-          "ZUlkEg8KC01JRF9TVEFSVFVQEAASGwoXTUlEX0xPR0lOX1dJVEhfUExBVEZP",
-          "Uk0QARINCglNSURfTE9HSU4QAhIXChNNSURfR0VUX1BMQVlFUl9JTkZPEAMS",
-          "EwoPTUlEX1NUQVJUX0ZJR0hUEAQSEQoNTUlEX0VORF9GSUdIVBAFEhYKEk1J",
-          "RF9TRVRfRklHSFRfRklTSBAGEhUKEU1JRF9GSVNIX0xFVkVMX1VQEAcSEgoO",
-          "TUlEX0JPVU5EU19HRVQQCBITCg9NSURfTU9ESUZZX05JQ0sQCRIUChBNSURf",
-          "R0VUX1NIT1BJVEVNEAoSEgoOTUlEX0JVWV9OT1JNQUwQCxIPCgtNSURfUFJF",
-          "X1BBWRAMEg8KC01JRF9CVVlfUEFZEA0SGQoVTUlEX0dPTERfUE9PTF9SRUZS",
-          "RVNIEA4SFQoRTUlEX0RFQlVHX0JJTExJTkcQDxIXChNNSURfUkFOS19SRVdB",
-          "UkRfR0VUEBASGQoVTUlEX1VQREFURV9HT09MRF9QT09MEBIqbQoKU3RhdHVz",
-          "Q29kZRIGCgJPSxAAEgoKBkZBSUxFRBABEhMKD1NJR05BVFVSRV9FUlJPUhAC",
-          "EhcKE0tJQ0tfT1VUX0xPR0lOX1VTRVIQAxILCgdDQVVUSU9OEAQSEAoMQ0xJ",
-          "RU5UX0VSUk9SEAUqHgoIU2hvcFR5cGUSCQoFb3RoZXIQARIHCgNwYXkQAior",
-          "CgdQYXlUeXBlEggKBGdvbGQQARILCgdkaWFtb25kEAISCQoFbW9uZXkQAypB",
-          "CgtDb250ZW50VHlwZRIMCghjRGlhbW9uZBABEgkKBWNHb2xkEAISCgoGY1Bp",
-          "ZWNlEAMSDQoJY1RyZWFzdXJlEAQqOwoGRGV2aWNlEhEKDW5vdF9zcGVjaWZp",
-          "ZWQQARIJCgVhcHBsZRACEgoKBmdvb2dsZRADEgcKA2FsbBAEKuADChVQdXJj",
-          "aGFzZWRSZXNwb25zZUtpbmQSGgoWcHJvY2Vzc2VkX3N1Y2Nlc3NmdWxseRAB",
-          "EhUKEWFscmVhZHlfcHJvY2Vzc2VkEAISCwoHdW5rbm93bhADEhEKDWludmFs",
-          "aWRfcGFyYW0QChITCg9pbnZhbGlkX3JlY2VpcHQQCxIiCh5mYWlsZWRfdG9f",
-          "Y29ubmVjdF90b19hcHBfc3RvcmUQDBIWChJpbnZhbGlkX3Byb2R1Y3RfaWQQ",
-          "DRIXChNyZWNlaXB0X291dF9vZl9kYXRlEA4SIAocdW5leHBlY3RlZF92YWxp",
-          "ZGFzdGlvbl9lcnJvchATEhoKFmNvbnRlbnRfZGVsaXZlcl9mYWlsZWQQHhIT",
-          "Cg9wcm9kdWN0X2V4cGlyZWQQKBIYChRmYWlsdXJlX3ByZV9wdXJjaGFzZRBl",
-          "EhIKDWRlYnVnX3N1Y2Nlc3MQyAESEgoNZGVidWdfdW5rbm93bhDJARIcChdk",
-          "ZWJ1Z19hbHJlYWR5X3Byb2Nlc3NlZBDKARIcChdkZWJ1Z19kZWZlcnJlZF9w",
-          "dXJjaGFzZRDLARIiCh1kZWJ1Z19mYWlsZWRfY29ubmVjdF9wbGF0Zm9ybRDM",
-          "ARIVChBkZWJ1Z19vbGRfcmVjaXBlEM0BQjAKIGNvbS5jaGFvLmZpc2guc2Vy",
-          "dmVyLmZpc2hnYW1lLnBiQglQQk1lc3NhZ2WIAQA="));
+          "OF9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdCIsCgtQMTlf",
+          "UmVxdWVzdBIdCghyYW5rVHlwZRgBIAIoDjILLlBCUmFua1R5cGUi1wEKDFAx",
+          "OV9SZXNwb25zZRIZCgZyZXN1bHQYASABKAsyCS5QQlJlc3VsdBIjCg5yYW5r",
+          "UGxheWVyTGlzdBgCIAMoCzILLlJhbmtQbGF5ZXISIAoHY29udGVudBgDIAMo",
+          "CzIPLlByb2R1Y3RDb250ZW50EhkKBHR5cGUYBCACKA4yCy5QQlJhbmtUeXBl",
+          "EgwKBHJhbmsYBSACKAMSEgoKcmFua1N0cmluZxgGIAIoCRIQCghiZXN0UmFu",
+          "axgHIAIoAxIWCg5iZXN0UmFua1N0cmluZxgIIAIoCSImCghQQlJlc3VsdBIM",
+          "CgRjb2RlGAEgASgFEgwKBGRlc2MYAiABKAkigwEKFVBCUGxheWVyRmlzaExl",
+          "dmVsSW5mbxIOCgZmaXNoSWQYASABKAUSEQoJZmlzaExldmVsGAIgASgFEhAK",
+          "CGZpc2hDaGlwGAMgASgFEhEKCXJhbmtMZXZlbBgEIAEoBRISCgpjdXJyZW50",
+          "V2luGAUgASgFEg4KBm1heFdpbhgGIAEoBSKDAgoIUEJQbGF5ZXISEAoIcGxh",
+          "eWVySWQYASABKAMSEAoIbmlja25hbWUYAiABKAkSEgoKZmFjZUljb25JZBgD",
+          "IAEoBRIPCgdyZWdUaW1lGAQgASgDEhEKCWxvZ2luTGFzdBgFIAEoAxIPCgdk",
+          "aWFtb25kGAYgASgFEgwKBGdvbGQYByABKAUSDQoFcG93ZXIYCCABKAUSDwoH",
+          "cG93ZXJBdBgJIAEoAxIRCglmaWdodEZpc2gYCiABKAUSMQoRYXJ5UGxheWVy",
+          "RmlzaEluZm8YCyADKAsyFi5QQlBsYXllckZpc2hMZXZlbEluZm8SFgoOZ2V0",
+          "dGVkQm91bmRzSWQYDCADKAUiYAoPUEJFbmVteURhdGFJbmZvEg4KBmZpc2hJ",
+          "ZBgBIAEoBRIRCglmaXNoTGV2ZWwYAiABKAUSFAoMZmlzaENvdW50TWF4GAMg",
+          "ASgFEhQKDGZpc2hDb3VudE1pbhgEIAEoBSJOCg9QQlJvYm90RGF0YUluZm8S",
+          "DgoGZmlzaElkGAEgASgFEgwKBGFpSWQYAiABKAUSDQoFbGV2ZWwYAyABKAUS",
+          "DgoGZ3Jvd3RoGAQgASgFIsQBChJTaG9wQmlsbGluZ1Byb2R1Y3QSCgoCaWQY",
+          "ASACKAUSGQoHcGF5VHlwZRgCIAIoDjIILlBheVR5cGUSDQoFcHJpY2UYAyAC",
+          "KAUSDwoHcmVzSWNvbhgEIAIoCRInCg5wcm9kdWN0Q29udGVudBgFIAMoCzIP",
+          "LlByb2R1Y3RDb250ZW50EhkKEXBsYXRmb3JtUHJvZHVjdElkGAYgASgJEiMK",
+          "C2xpbWl0RGV0YWlsGAcgASgLMg4uTGltaXRlZERldGFpbCIzCg5Qcm9kdWN0",
+          "Q29udGVudBIOCgZhbW91bnQYASACKAUSEQoJY29udGVudElkGAIgAigFImgK",
+          "DUxpbWl0ZWREZXRhaWwSDwoHYmVnaW5BdBgBIAEoBBIRCglzYWxlRW5kQXQY",
+          "AiABKAQSEwoLbGltaXRBbW91bnQYAyABKAUSHgoWbGltaXRlZFJlbWFpbmlu",
+          "Z0Ftb3VudBgEIAEoBSJCChBCaWxsaW5nU3RhdGVJbmZvEgsKA2FnZRgBIAEo",
+          "BRIhChljdXJyZW50TW9udGhQdXJjaGFzZVByaWNlGAIgAigFIj8KClJhbmtQ",
+          "bGF5ZXISEAoIcGxheWVySWQYASACKAMSEAoIbmlja25hbWUYAiACKAkSDQoF",
+          "c2NvcmUYAyACKAMqUAoTRGF0YUxpbmtTZXJ2aWNlVHlwZRIICgRub25lEAAS",
+          "DwoLZ2FtZV9jZW50ZXIQARIPCgtnb29nbGVfcGxheRACEg0KCWFwcF9sb3Zp",
+          "bhADKqoDCglNZXNzYWdlSWQSDwoLTUlEX1NUQVJUVVAQABIbChdNSURfTE9H",
+          "SU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9MT0dJThACEhcKE01JRF9HRVRf",
+          "UExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRfRklHSFQQBBIRCg1NSURfRU5E",
+          "X0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9GSVNIEAYSFQoRTUlEX0ZJU0hf",
+          "TEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dFVBAIEhMKD01JRF9NT0RJRllf",
+          "TklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0QChISCg5NSURfQlVZX05PUk1B",
+          "TBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlEX0JVWV9QQVkQDRIZChVNSURf",
+          "R09MRF9QT09MX1JFRlJFU0gQDhIVChFNSURfREVCVUdfQklMTElORxAPEhcK",
+          "E01JRF9SQU5LX1JFV0FSRF9HRVQQEBIZChVNSURfVVBEQVRFX0dPT0xEX1BP",
+          "T0wQEhIVChFNSURfUkFOS19MSVNUX0dFVBATKm0KClN0YXR1c0NvZGUSBgoC",
+          "T0sQABIKCgZGQUlMRUQQARITCg9TSUdOQVRVUkVfRVJST1IQAhIXChNLSUNL",
+          "X09VVF9MT0dJTl9VU0VSEAMSCwoHQ0FVVElPThAEEhAKDENMSUVOVF9FUlJP",
+          "UhAFKiQKClBCUmFua1R5cGUSCgoGV0VFS0xZEAASCgoGU0VBU09OEAEqHgoI",
+          "U2hvcFR5cGUSCQoFb3RoZXIQARIHCgNwYXkQAiorCgdQYXlUeXBlEggKBGdv",
+          "bGQQARILCgdkaWFtb25kEAISCQoFbW9uZXkQAypBCgtDb250ZW50VHlwZRIM",
+          "CghjRGlhbW9uZBABEgkKBWNHb2xkEAISCgoGY1BpZWNlEAMSDQoJY1RyZWFz",
+          "dXJlEAQqOwoGRGV2aWNlEhEKDW5vdF9zcGVjaWZpZWQQARIJCgVhcHBsZRAC",
+          "EgoKBmdvb2dsZRADEgcKA2FsbBAEKuADChVQdXJjaGFzZWRSZXNwb25zZUtp",
+          "bmQSGgoWcHJvY2Vzc2VkX3N1Y2Nlc3NmdWxseRABEhUKEWFscmVhZHlfcHJv",
+          "Y2Vzc2VkEAISCwoHdW5rbm93bhADEhEKDWludmFsaWRfcGFyYW0QChITCg9p",
+          "bnZhbGlkX3JlY2VpcHQQCxIiCh5mYWlsZWRfdG9fY29ubmVjdF90b19hcHBf",
+          "c3RvcmUQDBIWChJpbnZhbGlkX3Byb2R1Y3RfaWQQDRIXChNyZWNlaXB0X291",
+          "dF9vZl9kYXRlEA4SIAocdW5leHBlY3RlZF92YWxpZGFzdGlvbl9lcnJvchAT",
+          "EhoKFmNvbnRlbnRfZGVsaXZlcl9mYWlsZWQQHhITCg9wcm9kdWN0X2V4cGly",
+          "ZWQQKBIYChRmYWlsdXJlX3ByZV9wdXJjaGFzZRBlEhIKDWRlYnVnX3N1Y2Nl",
+          "c3MQyAESEgoNZGVidWdfdW5rbm93bhDJARIcChdkZWJ1Z19hbHJlYWR5X3By",
+          "b2Nlc3NlZBDKARIcChdkZWJ1Z19kZWZlcnJlZF9wdXJjaGFzZRDLARIiCh1k",
+          "ZWJ1Z19mYWlsZWRfY29ubmVjdF9wbGF0Zm9ybRDMARIVChBkZWJ1Z19vbGRf",
+          "cmVjaXBlEM0BQjAKIGNvbS5jaGFvLmZpc2guc2VydmVyLmZpc2hnYW1lLnBi",
+          "QglQQk1lc3NhZ2WIAQA="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), typeof(global::PurchasedResponseKind), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::PBRankType), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), typeof(global::PurchasedResponseKind), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Request), global::P0_Request.Parser, new[]{ "DeviceId", "DevicePlatform", "DeviceName", "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P0_Response), global::P0_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P1_Request), global::P1_Request.Parser, new[]{ "Accesstoken", "ServiceType", "Mask" }, null, null, null, null),
@@ -177,6 +186,8 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::P17_Request), global::P17_Request.Parser, new[]{ "PlayerId", "Mask" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P17_Response), global::P17_Response.Parser, new[]{ "Result", "AuthToken", "AuthKey" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::P18_Response), global::P18_Response.Parser, new[]{ "Result" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P19_Request), global::P19_Request.Parser, new[]{ "RankType" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::P19_Response), global::P19_Response.Parser, new[]{ "Result", "RankPlayerList", "Content", "Type", "Rank", "RankString", "BestRank", "BestRankString" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBResult), global::PBResult.Parser, new[]{ "Code", "Desc" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayerFishLevelInfo), global::PBPlayerFishLevelInfo.Parser, new[]{ "FishId", "FishLevel", "FishChip", "RankLevel", "CurrentWin", "MaxWin" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo", "GettedBoundsId" }, null, null, null, null),
@@ -185,7 +196,8 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ShopBillingProduct), global::ShopBillingProduct.Parser, new[]{ "Id", "PayType", "Price", "ResIcon", "ProductContent", "PlatformProductId", "LimitDetail" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProductContent), global::ProductContent.Parser, new[]{ "Amount", "ContentId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LimitedDetail), global::LimitedDetail.Parser, new[]{ "BeginAt", "SaleEndAt", "LimitAmount", "LimitedRemainingAmount" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BillingStateInfo), global::BillingStateInfo.Parser, new[]{ "Age", "CurrentMonthPurchasePrice" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BillingStateInfo), global::BillingStateInfo.Parser, new[]{ "Age", "CurrentMonthPurchasePrice" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RankPlayer), global::RankPlayer.Parser, new[]{ "PlayerId", "Nickname", "Score" }, null, null, null, null)
         }));
   }
   #endregion
@@ -221,6 +233,7 @@ public enum MessageId {
   [pbr::OriginalName("MID_DEBUG_BILLING")] MidDebugBilling = 15,
   [pbr::OriginalName("MID_RANK_REWARD_GET")] MidRankRewardGet = 16,
   [pbr::OriginalName("MID_UPDATE_GOOLD_POOL")] MidUpdateGooldPool = 18,
+  [pbr::OriginalName("MID_RANK_LIST_GET")] MidRankListGet = 19,
 }
 
 public enum StatusCode {
@@ -230,6 +243,11 @@ public enum StatusCode {
   [pbr::OriginalName("KICK_OUT_LOGIN_USER")] KickOutLoginUser = 3,
   [pbr::OriginalName("CAUTION")] Caution = 4,
   [pbr::OriginalName("CLIENT_ERROR")] ClientError = 5,
+}
+
+public enum PBRankType {
+  [pbr::OriginalName("WEEKLY")] Weekly = 0,
+  [pbr::OriginalName("SEASON")] Season = 1,
 }
 
 /// <summary>
@@ -7469,6 +7487,557 @@ public sealed partial class P18_Response : pb::IMessage<P18_Response> {
 }
 
 /// <summary>
+///请求获取排行榜信息
+/// </summary>
+public sealed partial class P19_Request : pb::IMessage<P19_Request> {
+  private static readonly pb::MessageParser<P19_Request> _parser = new pb::MessageParser<P19_Request>(() => new P19_Request());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P19_Request> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Request() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Request(P19_Request other) : this() {
+    _hasBits0 = other._hasBits0;
+    rankType_ = other.rankType_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Request Clone() {
+    return new P19_Request(this);
+  }
+
+  /// <summary>Field number for the "rankType" field.</summary>
+  public const int RankTypeFieldNumber = 1;
+  private readonly static global::PBRankType RankTypeDefaultValue = global::PBRankType.Weekly;
+
+  private global::PBRankType rankType_;
+  /// <summary>
+  ///排行类型
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBRankType RankType {
+    get { if ((_hasBits0 & 1) != 0) { return rankType_; } else { return RankTypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      rankType_ = value;
+    }
+  }
+  /// <summary>Gets whether the "rankType" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasRankType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "rankType" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearRankType() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P19_Request);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P19_Request other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (RankType != other.RankType) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasRankType) hash ^= RankType.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasRankType) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) RankType);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasRankType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RankType);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P19_Request other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasRankType) {
+      RankType = other.RankType;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          RankType = (global::PBRankType) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class P19_Response : pb::IMessage<P19_Response> {
+  private static readonly pb::MessageParser<P19_Response> _parser = new pb::MessageParser<P19_Response>(() => new P19_Response());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<P19_Response> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[35]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Response() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Response(P19_Response other) : this() {
+    _hasBits0 = other._hasBits0;
+    result_ = other.result_ != null ? other.result_.Clone() : null;
+    rankPlayerList_ = other.rankPlayerList_.Clone();
+    content_ = other.content_.Clone();
+    type_ = other.type_;
+    rank_ = other.rank_;
+    rankString_ = other.rankString_;
+    bestRank_ = other.bestRank_;
+    bestRankString_ = other.bestRankString_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public P19_Response Clone() {
+    return new P19_Response(this);
+  }
+
+  /// <summary>Field number for the "result" field.</summary>
+  public const int ResultFieldNumber = 1;
+  private global::PBResult result_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBResult Result {
+    get { return result_; }
+    set {
+      result_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "rankPlayerList" field.</summary>
+  public const int RankPlayerListFieldNumber = 2;
+  private static readonly pb::FieldCodec<global::RankPlayer> _repeated_rankPlayerList_codec
+      = pb::FieldCodec.ForMessage(18, global::RankPlayer.Parser);
+  private readonly pbc::RepeatedField<global::RankPlayer> rankPlayerList_ = new pbc::RepeatedField<global::RankPlayer>();
+  /// <summary>
+  ///排行榜top 玩家降序
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::RankPlayer> RankPlayerList {
+    get { return rankPlayerList_; }
+  }
+
+  /// <summary>Field number for the "content" field.</summary>
+  public const int ContentFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::ProductContent> _repeated_content_codec
+      = pb::FieldCodec.ForMessage(26, global::ProductContent.Parser);
+  private readonly pbc::RepeatedField<global::ProductContent> content_ = new pbc::RepeatedField<global::ProductContent>();
+  /// <summary>
+  ///排行榜奖励
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::ProductContent> Content {
+    get { return content_; }
+  }
+
+  /// <summary>Field number for the "type" field.</summary>
+  public const int TypeFieldNumber = 4;
+  private readonly static global::PBRankType TypeDefaultValue = global::PBRankType.Weekly;
+
+  private global::PBRankType type_;
+  /// <summary>
+  ///排行榜类型
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::PBRankType Type {
+    get { if ((_hasBits0 & 1) != 0) { return type_; } else { return TypeDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      type_ = value;
+    }
+  }
+  /// <summary>Gets whether the "type" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasType {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "type" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearType() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "rank" field.</summary>
+  public const int RankFieldNumber = 5;
+  private readonly static long RankDefaultValue = 0L;
+
+  private long rank_;
+  /// <summary>
+  ///本期排行榜名次
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long Rank {
+    get { if ((_hasBits0 & 2) != 0) { return rank_; } else { return RankDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      rank_ = value;
+    }
+  }
+  /// <summary>Gets whether the "rank" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasRank {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "rank" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearRank() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "rankString" field.</summary>
+  public const int RankStringFieldNumber = 6;
+  private readonly static string RankStringDefaultValue = "";
+
+  private string rankString_;
+  /// <summary>
+  ///本期排行榜名次百分比
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string RankString {
+    get { return rankString_ ?? RankStringDefaultValue; }
+    set {
+      rankString_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "rankString" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasRankString {
+    get { return rankString_ != null; }
+  }
+  /// <summary>Clears the value of the "rankString" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearRankString() {
+    rankString_ = null;
+  }
+
+  /// <summary>Field number for the "bestRank" field.</summary>
+  public const int BestRankFieldNumber = 7;
+  private readonly static long BestRankDefaultValue = 0L;
+
+  private long bestRank_;
+  /// <summary>
+  ///最佳该类排行榜名次
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long BestRank {
+    get { if ((_hasBits0 & 4) != 0) { return bestRank_; } else { return BestRankDefaultValue; } }
+    set {
+      _hasBits0 |= 4;
+      bestRank_ = value;
+    }
+  }
+  /// <summary>Gets whether the "bestRank" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasBestRank {
+    get { return (_hasBits0 & 4) != 0; }
+  }
+  /// <summary>Clears the value of the "bestRank" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearBestRank() {
+    _hasBits0 &= ~4;
+  }
+
+  /// <summary>Field number for the "bestRankString" field.</summary>
+  public const int BestRankStringFieldNumber = 8;
+  private readonly static string BestRankStringDefaultValue = "";
+
+  private string bestRankString_;
+  /// <summary>
+  ///最佳该累排行榜名次百分比
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string BestRankString {
+    get { return bestRankString_ ?? BestRankStringDefaultValue; }
+    set {
+      bestRankString_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "bestRankString" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasBestRankString {
+    get { return bestRankString_ != null; }
+  }
+  /// <summary>Clears the value of the "bestRankString" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearBestRankString() {
+    bestRankString_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as P19_Response);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(P19_Response other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Result, other.Result)) return false;
+    if(!rankPlayerList_.Equals(other.rankPlayerList_)) return false;
+    if(!content_.Equals(other.content_)) return false;
+    if (Type != other.Type) return false;
+    if (Rank != other.Rank) return false;
+    if (RankString != other.RankString) return false;
+    if (BestRank != other.BestRank) return false;
+    if (BestRankString != other.BestRankString) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (result_ != null) hash ^= Result.GetHashCode();
+    hash ^= rankPlayerList_.GetHashCode();
+    hash ^= content_.GetHashCode();
+    if (HasType) hash ^= Type.GetHashCode();
+    if (HasRank) hash ^= Rank.GetHashCode();
+    if (HasRankString) hash ^= RankString.GetHashCode();
+    if (HasBestRank) hash ^= BestRank.GetHashCode();
+    if (HasBestRankString) hash ^= BestRankString.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (result_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Result);
+    }
+    rankPlayerList_.WriteTo(output, _repeated_rankPlayerList_codec);
+    content_.WriteTo(output, _repeated_content_codec);
+    if (HasType) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) Type);
+    }
+    if (HasRank) {
+      output.WriteRawTag(40);
+      output.WriteInt64(Rank);
+    }
+    if (HasRankString) {
+      output.WriteRawTag(50);
+      output.WriteString(RankString);
+    }
+    if (HasBestRank) {
+      output.WriteRawTag(56);
+      output.WriteInt64(BestRank);
+    }
+    if (HasBestRankString) {
+      output.WriteRawTag(66);
+      output.WriteString(BestRankString);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (result_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
+    }
+    size += rankPlayerList_.CalculateSize(_repeated_rankPlayerList_codec);
+    size += content_.CalculateSize(_repeated_content_codec);
+    if (HasType) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+    }
+    if (HasRank) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Rank);
+    }
+    if (HasRankString) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(RankString);
+    }
+    if (HasBestRank) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(BestRank);
+    }
+    if (HasBestRankString) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(BestRankString);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(P19_Response other) {
+    if (other == null) {
+      return;
+    }
+    if (other.result_ != null) {
+      if (result_ == null) {
+        Result = new global::PBResult();
+      }
+      Result.MergeFrom(other.Result);
+    }
+    rankPlayerList_.Add(other.rankPlayerList_);
+    content_.Add(other.content_);
+    if (other.HasType) {
+      Type = other.Type;
+    }
+    if (other.HasRank) {
+      Rank = other.Rank;
+    }
+    if (other.HasRankString) {
+      RankString = other.RankString;
+    }
+    if (other.HasBestRank) {
+      BestRank = other.BestRank;
+    }
+    if (other.HasBestRankString) {
+      BestRankString = other.BestRankString;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (result_ == null) {
+            Result = new global::PBResult();
+          }
+          input.ReadMessage(Result);
+          break;
+        }
+        case 18: {
+          rankPlayerList_.AddEntriesFrom(input, _repeated_rankPlayerList_codec);
+          break;
+        }
+        case 26: {
+          content_.AddEntriesFrom(input, _repeated_content_codec);
+          break;
+        }
+        case 32: {
+          Type = (global::PBRankType) input.ReadEnum();
+          break;
+        }
+        case 40: {
+          Rank = input.ReadInt64();
+          break;
+        }
+        case 50: {
+          RankString = input.ReadString();
+          break;
+        }
+        case 56: {
+          BestRank = input.ReadInt64();
+          break;
+        }
+        case 66: {
+          BestRankString = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
 ///PB结果
 /// </summary>
 public sealed partial class PBResult : pb::IMessage<PBResult> {
@@ -7480,7 +8049,7 @@ public sealed partial class PBResult : pb::IMessage<PBResult> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[34]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7670,7 +8239,7 @@ public sealed partial class PBPlayerFishLevelInfo : pb::IMessage<PBPlayerFishLev
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[35]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8040,7 +8609,7 @@ public sealed partial class PBPlayer : pb::IMessage<PBPlayer> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[36]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8632,7 +9201,7 @@ public sealed partial class PBEnemyDataInfo : pb::IMessage<PBEnemyDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[37]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8914,7 +9483,7 @@ public sealed partial class PBRobotDataInfo : pb::IMessage<PBRobotDataInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[38]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9196,7 +9765,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[39]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[41]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9556,7 +10125,7 @@ public sealed partial class ProductContent : pb::IMessage<ProductContent> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[40]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[42]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9741,7 +10310,7 @@ public sealed partial class LimitedDetail : pb::IMessage<LimitedDetail> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[41]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[43]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10008,7 +10577,7 @@ public sealed partial class BillingStateInfo : pb::IMessage<BillingStateInfo> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ProtocolReflection.Descriptor.MessageTypes[42]; }
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[44]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10176,6 +10745,240 @@ public sealed partial class BillingStateInfo : pb::IMessage<BillingStateInfo> {
         }
         case 16: {
           CurrentMonthPurchasePrice = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class RankPlayer : pb::IMessage<RankPlayer> {
+  private static readonly pb::MessageParser<RankPlayer> _parser = new pb::MessageParser<RankPlayer>(() => new RankPlayer());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RankPlayer> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ProtocolReflection.Descriptor.MessageTypes[45]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RankPlayer() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RankPlayer(RankPlayer other) : this() {
+    _hasBits0 = other._hasBits0;
+    playerId_ = other.playerId_;
+    nickname_ = other.nickname_;
+    score_ = other.score_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RankPlayer Clone() {
+    return new RankPlayer(this);
+  }
+
+  /// <summary>Field number for the "playerId" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private readonly static long PlayerIdDefaultValue = 0L;
+
+  private long playerId_;
+  /// <summary>
+  ///玩家ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long PlayerId {
+    get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      playerId_ = value;
+    }
+  }
+  /// <summary>Gets whether the "playerId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasPlayerId {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "playerId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearPlayerId() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "nickname" field.</summary>
+  public const int NicknameFieldNumber = 2;
+  private readonly static string NicknameDefaultValue = "";
+
+  private string nickname_;
+  /// <summary>
+  ///名字
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Nickname {
+    get { return nickname_ ?? NicknameDefaultValue; }
+    set {
+      nickname_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "nickname" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasNickname {
+    get { return nickname_ != null; }
+  }
+  /// <summary>Clears the value of the "nickname" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearNickname() {
+    nickname_ = null;
+  }
+
+  /// <summary>Field number for the "score" field.</summary>
+  public const int ScoreFieldNumber = 3;
+  private readonly static long ScoreDefaultValue = 0L;
+
+  private long score_;
+  /// <summary>
+  ///排行积分
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public long Score {
+    get { if ((_hasBits0 & 2) != 0) { return score_; } else { return ScoreDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      score_ = value;
+    }
+  }
+  /// <summary>Gets whether the "score" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasScore {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "score" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void ClearScore() {
+    _hasBits0 &= ~2;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RankPlayer);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RankPlayer other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (Nickname != other.Nickname) return false;
+    if (Score != other.Score) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+    if (HasNickname) hash ^= Nickname.GetHashCode();
+    if (HasScore) hash ^= Score.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (HasPlayerId) {
+      output.WriteRawTag(8);
+      output.WriteInt64(PlayerId);
+    }
+    if (HasNickname) {
+      output.WriteRawTag(18);
+      output.WriteString(Nickname);
+    }
+    if (HasScore) {
+      output.WriteRawTag(24);
+      output.WriteInt64(Score);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasPlayerId) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(PlayerId);
+    }
+    if (HasNickname) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Nickname);
+    }
+    if (HasScore) {
+      size += 1 + pb::CodedOutputStream.ComputeInt64Size(Score);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RankPlayer other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasPlayerId) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.HasNickname) {
+      Nickname = other.Nickname;
+    }
+    if (other.HasScore) {
+      Score = other.Score;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadInt64();
+          break;
+        }
+        case 18: {
+          Nickname = input.ReadString();
+          break;
+        }
+        case 24: {
+          Score = input.ReadInt64();
           break;
         }
       }
