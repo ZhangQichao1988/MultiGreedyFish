@@ -211,7 +211,11 @@ public class UIHome : UIBase
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
         homeScene.GotoSceneUI("RankBonus/RankBonus");
     }
-
+    public void OnClickPlayerRanking()
+    {
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("PlayerRanking/PlayerRanking");
+    }
 
     public void OnClickOption()
     {

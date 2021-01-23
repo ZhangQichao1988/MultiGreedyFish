@@ -13,6 +13,7 @@ public class HomeScene : BaseScene
         "FishStatus",
         "Shop/Shop",
         "RankBonus/RankBonus",
+        "PlayerRanking/PlayerRanking",
         "Option",
     };
     private UIHomeCommon homeCommon;

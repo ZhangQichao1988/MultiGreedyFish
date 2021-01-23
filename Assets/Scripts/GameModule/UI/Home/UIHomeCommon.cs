@@ -24,6 +24,7 @@ public class UIHomeCommon : UIBase
             case "FishStatus":
             case "Shop/Shop":
             case "RankBonus/RankBonus":
+            case "PlayerRanking/PlayerRanking":
             case "Option":
                 goBack.SetActive(true);
                 break;
@@ -33,14 +34,11 @@ public class UIHomeCommon : UIBase
     {
         switch (uiname)
         {
-            case "Home":
-            case "FishEditor":
-            case "FishStatus":
-            case "Shop/Shop":
-                bgmAudioSource.volume = 1;
-                break;
             case "BattleResult":
                 bgmAudioSource.volume = 0;
+                break;
+            default:
+                bgmAudioSource.volume = 1;
                 break;
         }
     }

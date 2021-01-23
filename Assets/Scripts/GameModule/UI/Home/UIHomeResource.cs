@@ -31,6 +31,7 @@ public class UIHomeResource : UIBase
             case "Home":
             case "Shop/Shop":
             case "RankBonus/RankBonus":
+            case "PlayerRanking/PlayerRanking":
                 goGold.SetActive(true);
                 goDiamond.SetActive(true);
                 break;
