@@ -14,9 +14,6 @@ public class NetWorkResponseCode
     //请求的排行榜不存在
     public static int RANK_BOARD_NO_EXIST = 9;
 
-    //没有当前玩家的排行
-    public static int USER_NO_RANK = 10;
-
     //排行榜数据为空
-    public static int NO_RANK_DATA = 11;
+    public static int NO_RANK_DATA = 10;
 }
