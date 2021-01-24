@@ -20,6 +20,9 @@ public class AssetPathConst
 	public static readonly string shopItemCellPath = "ArtResources/UI/Prefabs/Shop/ShopItem";
 	public static readonly string shopRewardCellPath = "ArtResources/UI/Prefabs/Shop/ShopRewardCell";
 
+	public static readonly string playerRankingRewardListPrefabPath = "ArtResources/UI/Prefabs/PlayerRanking/PlayerRankingRewardList";
+	public static readonly string playerRankingRewardItemPrefabPath = "ArtResources/UI/Prefabs/PlayerRanking/PlayerRankingRewardItem";
+	public static readonly string playerRankingGetRewardDialogPrefabPath = "ArtResources/UI/Prefabs/PlayerRanking/PlayerRankingGetRewardDialog";
 	public static readonly string itemIconPath = "ArtResources/UI/Textures/Atlas/";
 
 

@@ -20,8 +20,18 @@ public class ProcesserP19Res : BaseDummyProcesser<P19_Request, P19_Response>
     {
         var res = new P19_Response();
         res.Result = new PBResult() { Code = 0 };
+        var rankReward = new PBRankReward();
+        rankReward.Rank = 8;
+        rankReward.RankRate = 50.48f;
+        rankReward.RankBatch = 2;
+        rankReward.Content.Add(new ProductContent() { ContentId = 20, Amount = 50 });
+        rankReward.Content.Add(new ProductContent() { ContentId = 100, Amount = 50 });
+        rankReward.Content.Add(new ProductContent() { ContentId = 200, Amount = 50 });
+        rankReward.Content.Add(new ProductContent() { ContentId = 300, Amount = 50 });
+        rankReward.Content.Add(new ProductContent() { ContentId = 400, Amount = 50 });
+        res.RankReward = rankReward;
         res.RankBatch = 1;
-        res.Rank = 4;
+        res.Rank = 10;
         res.RankRate = 100;
         res.RankPlayerList.Add(new RankPlayer() { Nickname = "草雉牙牙1", PlayerId = 334978252, Score = 5 });
         res.RankPlayerList.Add(new RankPlayer() { Nickname = "草雉牙牙2", PlayerId = 334978252, Score = 5 });

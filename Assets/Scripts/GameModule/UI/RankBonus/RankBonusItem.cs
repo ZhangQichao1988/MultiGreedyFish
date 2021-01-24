@@ -73,8 +73,8 @@ public class RankBonusItem : MonoBehaviour
     public void Init(RankBonusDataInfo rankBonusDataInfo)
     {
         dataInfo = rankBonusDataInfo;
-        var itemDataInfo = new RankBonusDataInfo.RankBonusItemDataInfo(dataInfo.productContent);
-        var itemData = ItemDataTableProxy.Instance.GetDataById(itemDataInfo.id);
+        var itemDataInfo = ItemDataTableProxy.GetRewardList(dataInfo.productContent);
+        var itemData = ItemDataTableProxy.Instance.GetDataById(itemDataInfo[0].id);
 
         textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID);
         textRankPoint.text = dataInfo.rankLevel.ToString();

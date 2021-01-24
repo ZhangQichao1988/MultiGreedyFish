@@ -16,11 +16,12 @@ public class UIPlayerRanking : UIBase
     public Text textPlayerName;
     public Text textTotalScore;
     public Text textRankingPercent;
+    public Text textRewardCalcTime;
 
     public SimpleScrollingView scrollingView;
 
     List<UIPlayerRankingItem> listPlayerRankingItem = new List<UIPlayerRankingItem>();
-
+    P19_Response res;
     public override void Init()
     {
         base.Init();
@@ -40,7 +41,7 @@ public class UIPlayerRanking : UIBase
     void OnRecvFetchRanking<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P19_RESPONSE);
-        var res = response as P19_Response;
+        res = response as P19_Response;
         if (res.Result.Code == NetWorkResponseCode.RANK_BOARD_NO_EXIST ||
             res.Result.Code == NetWorkResponseCode.NO_RANK_DATA)
         {
@@ -53,6 +54,8 @@ public class UIPlayerRanking : UIBase
             goRoot.SetActive(true);
             goWaringText.SetActive(false);
         }
+        var batchData = RankingBatchDataTableProxy.Instance.GetDataById(res.RankBatch);
+
         textPlayerName.text = PlayerModel.Instance.player.Nickname;
         textTotalScore.text = string.Format( LanguageDataTableProxy.GetText(601), PlayerModel.Instance.GetTotalRankLevel());
         if (res.Rank < 0)
@@ -61,7 +64,8 @@ public class UIPlayerRanking : UIBase
         }
         else
         {
-            textRankingPercent.text = string.Format(LanguageDataTableProxy.GetText(602), res.RankRate);
+            string rankStr = RankingRewardDataTableProxy.Instance.GetRankingStr(batchData.groupId, res.Rank, res.RankRate);
+            textRankingPercent.text = string.Format(LanguageDataTableProxy.GetText(602), rankStr);
         }
         if (listPlayerRankingItem.Count <= 0)
         {
@@ -80,6 +84,19 @@ public class UIPlayerRanking : UIBase
         {
             listPlayerRankingItem[i].Setup( res.RankPlayerList[i]);
         }
+        textRewardCalcTime.text = string.Format(LanguageDataTableProxy.GetText(617), batchData.endTime);
 
+        // 若获得奖励就弹窗
+        if (res.RankReward != null)
+        {
+            UIBase.Open<UIPlayerRankingGetRewardDialog>(AssetPathConst.playerRankingGetRewardDialogPrefabPath, UIBase.UILayers.POPUP, res.RankReward);
+        }
+        
+    }
+    public void OpenRewardListDialog()
+    {
+        int groupId = RankingBatchDataTableProxy.Instance.GetGroupId(res.RankBatch);
+        Debug.Assert(groupId >= 0, "UIPlayerRanking.OpenRewardListDialog()_0:" + res.RankBatch);
+        UIBase.Open<UIPlayerRankingRewardList>(AssetPathConst.playerRankingRewardListPrefabPath, UILayers.POPUP, groupId);
     }
 }

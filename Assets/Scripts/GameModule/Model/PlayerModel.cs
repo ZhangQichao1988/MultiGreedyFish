@@ -75,7 +75,7 @@ public class PlayerModel : BaseModel<PlayerModel>
             ProcessReward(rewardVo.TreasureContent);
         }
     }
-        void ProcessReward(List<RewardItemVo> rewards)
+    public void ProcessReward(List<RewardItemVo> rewards)
     {
         foreach (RewardItemVo vo in rewards)
         {

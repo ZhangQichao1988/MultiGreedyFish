@@ -23,8 +23,11 @@ public class FishSkillFrozen : FishSkillBase
 		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, listParam[1]);
 		for (int i = 0; i < listFish.Count; ++i)
 		{
-			// 冰冻Buff
-			listFish[i].AddBuff(playerBase, (int)listParam[2]);
+			if (!listFish[i].ContainsBuffType(BuffBase.BuffType.Shield) &&
+				!listFish[i].ContainsBuffType(BuffBase.BuffType.ShieldGold))
+			{
+				listFish[i].AddBuff(playerBase, (int)listParam[2]);
+			}
 		}
 
 
