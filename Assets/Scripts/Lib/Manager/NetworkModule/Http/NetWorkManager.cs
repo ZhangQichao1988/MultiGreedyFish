@@ -69,12 +69,12 @@ namespace NetWorkModule
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="data"></param>
-        public static void Request(string msg, byte[] data, System.Object cachedData = null, bool needAuth = true)
+        public static void Request(string msg, byte[] data, System.Object cachedData = null, bool needAuth = true, string requestId = null)
         {
             HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRequestSend, msg, data);
-            Instance.StartCoroutine(RequestHttpOneInternal(msg, data, cachedData, needAuth));
+            Instance.StartCoroutine(RequestHttpOneInternal(msg, data, cachedData, needAuth, requestId));
         }
-        static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth)
+        static IEnumerator RequestHttpOneInternal(string msg, byte[] data, System.Object cachedData, bool needAuth, string requestId)
         {
             if (AppConst.ServerType == ESeverType.OFFLINE)
             {
@@ -83,7 +83,7 @@ namespace NetWorkModule
             }
             else
             {
-                yield return httpClient.RequestHttp(msg, data, cachedData, needAuth);
+                yield return httpClient.RequestHttp(msg, data, cachedData, needAuth, requestId);
             }
         }
 

@@ -172,7 +172,7 @@ public class NetWorkHandler
     static void RetrySend(System.Object obj)
     {
         ReqData reqInfo = obj as ReqData;
-        NetWorkManager.Request(reqInfo.Msg, reqInfo.Body, reqInfo.CachedData, reqInfo.NeedAuth);
+        NetWorkManager.Request(reqInfo.Msg, reqInfo.Body, reqInfo.CachedData, reqInfo.NeedAuth, reqInfo.RequestId);
     }
 
     static byte[] GetStreamBytes(IMessage pbMsg)

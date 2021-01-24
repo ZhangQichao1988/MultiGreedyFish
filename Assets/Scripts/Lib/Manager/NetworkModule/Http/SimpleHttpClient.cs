@@ -91,7 +91,7 @@ namespace NetWorkModule
             }
         }
 
-        public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth)
+        public System.Collections.IEnumerator RequestHttp(string msg, byte[] body, System.Object cachedData, bool needAuth, string requestId)
         {
             byte[] data = m_protocol.Pack(msg, PID++, body);
             int msgId = int.Parse(msg.Substring(1, msg.IndexOf("_") - 1));
@@ -114,7 +114,11 @@ namespace NetWorkModule
                     request.SetRequestHeader(X_TIME_STAMP, Clock.MilliTimestamp.Value.ToString());
                 }
                 
-                request.SetRequestHeader(X_REQUEST_ID, CreateRequestId());
+                string reqId = requestId == null ? CreateRequestId() : requestId;
+
+            
+                Debug.LogWarning("Send RequestId:" + reqId);
+                request.SetRequestHeader(X_REQUEST_ID, reqId);
                 
                 var upLoaderHandler = new UploadHandlerRaw(data);
                 upLoaderHandler.contentType = "application/proto";
@@ -128,7 +132,8 @@ namespace NetWorkModule
                     Body = body,
                     CachedData = cachedData,
                     NeedAuth = needAuth,
-                    RequestTimeing = UnityEngine.Time.realtimeSinceStartup
+                    RequestTimeing = UnityEngine.Time.realtimeSinceStartup,
+                    RequestId = reqId
                 };
                 timeoutDict.Add(timeoutKey, TimerManager.AddTimer((int)eTimerType.RealTime, GetTimeoutSec(msg), TimeoutHandler, reqInfo));
 
@@ -352,6 +357,7 @@ namespace NetWorkModule
         public byte[] Body;
         public System.Object CachedData;
         public bool NeedAuth;
+        public string RequestId;
         public float RequestTimeing;
     }
 }
