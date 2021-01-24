@@ -115,9 +115,6 @@ namespace NetWorkModule
                 }
                 
                 string reqId = requestId == null ? CreateRequestId() : requestId;
-
-            
-                Debug.LogWarning("Send RequestId:" + reqId);
                 request.SetRequestHeader(X_REQUEST_ID, reqId);
                 
                 var upLoaderHandler = new UploadHandlerRaw(data);
