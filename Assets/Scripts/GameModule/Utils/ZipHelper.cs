@@ -65,14 +65,21 @@ public class ZipHelper
             s.Close();
         }
         string srcPatchDir = Path.Combine(strDirectory, "patch");
+        string writePath = Path.Combine(UnityEngine.Application.persistentDataPath, "patch");
         if (Directory.Exists(srcPatchDir))
         {
-            string writePath = Path.Combine(UnityEngine.Application.persistentDataPath, "patch");
             if (Directory.Exists(writePath))
             {
                 Directory.Delete(writePath, true);
             }
             Directory.Move(srcPatchDir, writePath);
+        }
+        else
+        {
+            if (Directory.Exists(writePath))
+            {
+                Directory.Delete(writePath, true);
+            }
         }
     }
 
