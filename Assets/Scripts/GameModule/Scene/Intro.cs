@@ -3,6 +3,8 @@ using UnityEngine;
 using NetWorkModule;
 using TimerModule;
 using System;
+using IFix.Core;
+using System.IO;
 
 
 public class Intro : MonoBehaviour
@@ -115,9 +117,30 @@ public class Intro : MonoBehaviour
     
     void StartLogin()
     {
+        //更新完毕 补丁嵌入逻辑
+        var patchPath = Path.Combine(Application.persistentDataPath + "/patch", GetPlatformName(), "Assembly-CSharp.patch.bytes");
+        if (File.Exists(patchPath))
+        {
+            FileStream stream = new FileStream(patchPath, FileMode.Open, FileAccess.Read);
+            PatchManager.Load(stream);
+        }
+
         UserLoginFlowController.StartLoginFlow(()=>{
                 BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
             });
+    }
+
+    string GetPlatformName()
+    {
+        switch (Application.platform)
+        {
+            case RuntimePlatform.Android:
+                return "android";
+            case RuntimePlatform.IPhonePlayer:
+                return "ios";
+            default:
+                return "editor";
+        }
     }
 
     public string GetAppVer()
