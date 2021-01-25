@@ -64,6 +64,16 @@ public class ZipHelper
  
             s.Close();
         }
+        string srcPatchDir = Path.Combine(strDirectory, "patch");
+        if (Directory.Exists(srcPatchDir))
+        {
+            string writePath = Path.Combine(UnityEngine.Application.persistentDataPath, "patch");
+            if (Directory.Exists(writePath))
+            {
+                Directory.Delete(writePath, true);
+            }
+            Directory.Move(srcPatchDir, writePath);
+        }
     }
 
     const uint LCG_A = 214013;

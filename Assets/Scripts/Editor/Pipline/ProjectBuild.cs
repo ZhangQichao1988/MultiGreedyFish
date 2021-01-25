@@ -3,6 +3,7 @@ using UnityEditor;
 using System.IO;
 using System;
 using System.Collections.Generic;
+using IFix.Editor;
 
 namespace MultiGreedyFish.Pipline
 {
@@ -53,7 +54,7 @@ namespace MultiGreedyFish.Pipline
                 EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.iOS, BuildTarget.iOS);
             }
             
-            
+            IFixEditor.InjectAssemblys();
             if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS)
             {
                 BuildForIPhone();
