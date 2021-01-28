@@ -149,7 +149,7 @@ namespace NetWorkModule
 
                 if (!request.isNetworkError && !request.isHttpError && err == null)
                 {
-                    ProcessCommonResponse(request.GetResponseHeaders(), request.downloadHandler.data, cachedData, body, sentTime);
+                    ProcessCommonResponse(request.downloadHandler.data, cachedData, body, sentTime);
                 }
                 else
                 {
@@ -243,31 +243,24 @@ namespace NetWorkModule
             return result;
         }
 
-        void ProcessCommonResponse(Dictionary<string, string> headers, byte[] res, System.Object cachedData, byte[] req, float sendTime)
+        void ProcessCommonResponse(byte[] res, System.Object cachedData, byte[] req, float sendTime)
         {
-            string sign = headers.ContainsKey(X_SIGNATURE) ? headers[X_SIGNATURE] : null;
-            int stateCode = (int)StatusCode.Failed;
+            var commonResponse = CommonResponse.Parser.ParseFrom(res);
 
-            if (headers.ContainsKey(X_STATUS_CODE))
-            {
-                int.TryParse(headers[X_STATUS_CODE], out stateCode);
-            }
-            PackData output = res == null ? null : m_protocol.ParserOutput(res, res.Length);
+            string sign = commonResponse.Signature;
+
+            byte[] messageBody = commonResponse.Payload.ToByteArray();
+            PackData output = (messageBody == null || messageBody.Length <= 0) ? null : m_protocol.ParserOutput(messageBody, messageBody.Length);
 
             if (output != null)
             {
                 HttpDispatcher.Instance.PushEvent(HttpDispatcher.EventType.HttpRecieve, string.Format("P{0}_Response", output.msgId), output.pbData);
             }
 
-            if (headers.ContainsKey(X_TIME_STAMP))
-            {
-                long serverTs;
-                long.TryParse(headers[X_TIME_STAMP], out serverTs);
-                Clock.SetServerTime(serverTs, sendTime);
-            }
+            Clock.SetServerTime(commonResponse.Ts, sendTime);
             
             //status code 处理
-            bool statuOk = sign == null ? true : ProcessStatues((StatusCode)stateCode, output, sign);
+            bool statuOk = sign == null ? true : ProcessStatues(commonResponse.Status, output, sign);
             if (statuOk)
             {
                 HttpDispatcher.Instance.PushMsg(output.msgId, output.pbData, output.pid, cachedData, req);
