@@ -10,7 +10,7 @@ using GoogleMobileAds.Editor;
 
 public static class PListProcessor
 {
-    [PostProcessBuild]
+    [PostProcessBuild(1000)]
     public static void OnPostProcessBuild(BuildTarget buildTarget, string path)
     {
         string plistPath = Path.Combine(path, "Info.plist");
