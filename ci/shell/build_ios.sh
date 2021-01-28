@@ -34,7 +34,7 @@ fi
 if [[ ${BUILD_TYPE} == "adhoc" ]]; then
     # ad hoc
     DEV_TEAM=${DEV_TEAM:-LQ497AGR75}
-    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-8e985bd6-2374-4b31-9c6e-da69326ad483}
+    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-1a25362f-c300-4a7c-ba90-7d3ea50265d3}
     CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Distribution"}
     BUNDLE_METHOD=${BUNDLE_METHOD:-ad-hoc}
 elif [[ ${BUILD_TYPE} == "development" ]]; then
