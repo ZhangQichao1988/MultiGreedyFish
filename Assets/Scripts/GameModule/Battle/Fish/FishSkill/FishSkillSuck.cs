@@ -38,4 +38,20 @@ public class FishSkillSuck : FishSkillBase
 	{
 		currentGauge += listParam[0];
 	}
+	public override void CalcAI()
+	{
+		if (currentGauge < 1) { return; }
+		// 若有受伤buff，就发动技能
+		FishBase targetFish = ((PlayerRobotBase)playerBase).targetFish;
+		if (targetFish.fishType == FishBase.FishType.Player)
+		{
+			Vector3 playerToTargetDir = targetFish.transform.position - playerBase.transform.position;
+			float distance = playerToTargetDir.magnitude;
+			if (distance <= listParam[1])
+			{
+				RunSkill();
+			}
+		}
+	}
+
 }

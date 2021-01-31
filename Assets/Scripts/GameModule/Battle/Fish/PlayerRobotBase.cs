@@ -16,7 +16,7 @@ public class PlayerRobotBase : PlayerBase
     // 鱼白名单，不会攻击的鱼
     protected FishBase whiteFish;
     // 目标鱼
-    protected FishBase targetFish;
+    public FishBase targetFish;
     // 锁定同一目标鱼时间，用来规避穷追不舍
     protected float targetCntTime;
     protected float targetCntTimeLimit;
@@ -43,9 +43,17 @@ public class PlayerRobotBase : PlayerBase
 
         // 判定是否有白名单的鱼
         bool hasWhiteFish = false;
-
+        // 是否在视野外？
+        bool isEyeOver = BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
+        
         for (int i = listFish.Count - 1; i >= 0; --i)
         {
+            // 如果玩家不在视野范围，就不攻击玩家和机器人
+            if (isEyeOver && listFish[i].fishType == FishType.PlayerRobot)
+            {
+                listFish.RemoveAt(i);
+                continue;
+            }
             // 剔除白名单的鱼
             if (whiteFish == listFish[i])
             {

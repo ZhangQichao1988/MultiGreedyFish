@@ -33,7 +33,7 @@ public class FishSkillSwelling : FishSkillBase
 		//if (buff != null) { buff.remainingTime = listParam[1]; }
 
 		// 无敌护盾buff
-		BuffBase buff = playerBase.AddBuff(playerBase, 4);
+		BuffBase buff = playerBase.AddBuff(playerBase, 11);
 		if (buff != null) { buff.remainingTime = listParam[1]; }
 
 		return true;

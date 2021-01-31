@@ -14,6 +14,7 @@ public abstract class BuffBase
         Heal,                             // 回血
         Frozen,                         // 冰冻
         Stealth,                         // 隐身
+        Swelling,                       // 河豚肿胀
     };
     public abstract BuffType buffType { get; }
     public FishBuffDataInfo baseData;
