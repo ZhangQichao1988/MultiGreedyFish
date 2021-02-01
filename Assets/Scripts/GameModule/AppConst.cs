@@ -96,7 +96,7 @@ public class AppConst
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
     public static string ApiPath = "/fishgame/call";
     public static string VersionPath = "/assets/version";
-    public static string DownloadPath = "/assets/json-output.zip";
+    public static string DownloadPath = "/assets/res_{0}.zip";
 
     public static string HttpEndPoint
     {

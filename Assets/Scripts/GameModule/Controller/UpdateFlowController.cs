@@ -42,7 +42,7 @@ public class UpdateFlowController
     //更新
     private static void DoUpdate(string currVersion)
     {
-        NetWorkManager.SimpleGet<byte[]>(AppConst.HttpDownloadPoint, (bytes)=>{
+        NetWorkManager.SimpleGet<byte[]>(string.Format(AppConst.HttpDownloadPoint, currVersion), (bytes)=>{
             //保存 & 解压
             // File.WriteAllBytes(GetMasterSavedPath, bytes);
             if (Directory.Exists(AppConst.MasterSavedPath))
