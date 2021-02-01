@@ -87,6 +87,7 @@ Shader "UI/UIScrollBg"
                 float4 _MainTex_ST;
                 float4 _ScrollTex_ST;
                 float4 _ScrollParam;
+                float _RealTime;
                 v2f vert(appdata_t v)
                 {
                     v2f OUT;
@@ -96,7 +97,7 @@ Shader "UI/UIScrollBg"
                     OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
 
                     OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
-                    v.texcoord += _ScrollParam.xy * _Time.x;
+                    v.texcoord += _ScrollParam.xy * _RealTime;
                     OUT.texcoord1 = TRANSFORM_TEX(v.texcoord, _ScrollTex);
                     OUT.color = v.color * _Color;
                     return OUT;
@@ -106,7 +107,7 @@ Shader "UI/UIScrollBg"
                 {
                     half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd);
 
-                    half4 addColor = (tex2D(_ScrollTex, IN.texcoord1) + _TextureSampleAdd);
+                    half4 addColor = (tex2D(_ScrollTex, IN.texcoord1));
                     color += addColor;
                     color *= IN.color;
                     #ifdef UNITY_UI_CLIP_RECT

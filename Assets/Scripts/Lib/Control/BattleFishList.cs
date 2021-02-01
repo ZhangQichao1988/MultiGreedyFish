@@ -7,6 +7,7 @@ public class BattleFishList : MonoBehaviour
 {
     public Text textRemaining;
     public Text[] textsPlayerName;
+    public Image[] imagesPlayerName;
     private uint runCnt = 0;
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class BattleFishList : MonoBehaviour
         }
         if (plyaerRank > 4)
         {
+            fishs.Remove(player);
             fishs.Insert(4, player);
         }
         SetRemainingCnt(fishs.Count) ;
@@ -42,15 +44,15 @@ public class BattleFishList : MonoBehaviour
         {
             if (i < fishs.Count)
             {
-                textsPlayerName[i].text = string.Format("{0}.{1}", ((PlayerBase)fishs[i]).battleLevelRanking + 1, fishs[i].data.name);
+                textsPlayerName[i].text = fishs[i].data.name;
                 textsPlayerName[i].gameObject.SetActive(true);
                 if (fishs[i].fishType == FishBase.FishType.Player)
                 {
-                    textsPlayerName[i].color = Color.green;
+                    imagesPlayerName[i].color = Color.white;
                 }
                 else
                 {
-                    textsPlayerName[i].color = new Color(1f,0.73f,0f);
+                    imagesPlayerName[i].color = Color.white * 0.5f;
                 }
             }
             else

@@ -24,6 +24,9 @@ public class ShowTreasure : UIBase
     List<ShowTreansureItem> listItems = new List<ShowTreansureItem>();
     Animator animator;
     RewardMapVo mapVo;
+
+    public Image image;
+
     public override void OnEnter(object obj)
     {
         base.OnEnter(obj);
@@ -107,6 +110,7 @@ public class ShowTreasure : UIBase
     private void Update()
     {
         radiationAngle += Time.deltaTime * 3f;
+        image.material.SetFloat("_RealTime", radiationAngle * 0.05f);
         if (imageRadiation.gameObject.activeSelf) 
         {
             imageRadiation.transform.rotation = Quaternion.AngleAxis(radiationAngle, Vector3.forward);

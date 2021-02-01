@@ -6,7 +6,7 @@ Shader "UI/AddColor"
     {
         [PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
         [HDR]_Color("Tint", Color) = (1,1,1,1)
-
+        _AddColor("AddColor", Color) = (1,1,1,1)
         _StencilComp("Stencil Comparison", Float) = 8
         _Stencil("Stencil ID", Float) = 0
         _StencilOp("Stencil Operation", Float) = 0
@@ -78,6 +78,7 @@ Shader "UI/AddColor"
 
                 sampler2D _MainTex;
                 fixed4 _Color;
+                fixed4 _AddColor;
                 fixed4 _TextureSampleAdd;
                 float4 _ClipRect;
                 float4 _MainTex_ST;
@@ -98,7 +99,7 @@ Shader "UI/AddColor"
 
                 fixed4 frag(v2f IN) : SV_Target
                 {
-                    half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
+                    half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color + _AddColor;
                     //color = float4(0,0,0,0);
                     #ifdef UNITY_UI_CLIP_RECT
                     color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);

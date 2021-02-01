@@ -1054,6 +1054,7 @@ MonoBehaviour:
   imageLight: {fileID: 52400839454550161}
   imageCricle: {fileID: 7433542873881016731}
   imageTreansure: {fileID: 1646030139061467357}
+  image: {fileID: 2104741576428749116}
 --- !u!1 &6659571861509235252
 GameObject:
   m_ObjectHideFlags: 0
