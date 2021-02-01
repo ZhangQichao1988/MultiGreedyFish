@@ -20,7 +20,7 @@ public class UpdateFlowController
             if (PlayerPrefs.GetString(CURRENT_VERSION, "") != str)
             {
                 retryTime = 3;
-                DoUpdate(str);
+                DoUpdate(str.Trim());
             }
             else
             {
@@ -42,6 +42,7 @@ public class UpdateFlowController
     //更新
     private static void DoUpdate(string currVersion)
     {
+        Debug.LogWarning(string.Format(AppConst.HttpDownloadPoint, currVersion));
         NetWorkManager.SimpleGet<byte[]>(string.Format(AppConst.HttpDownloadPoint, currVersion), (bytes)=>{
             //保存 & 解压
             // File.WriteAllBytes(GetMasterSavedPath, bytes);
