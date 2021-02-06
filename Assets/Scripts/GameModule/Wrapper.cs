@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,19 @@ public class Wrapper
         {
             list.Add(cache[i]);
         }
-    return list;
+        return list;
+    }
+    public static DateTime ConvertIntDatetime(double utc)
+
+    {
+
+        System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+
+        startTime = startTime.AddSeconds(utc);
+
+        //startTime = startTime.AddHours(8);//转化为北京时间(北京时间=UTC时间+8小时 )            
+
+        return startTime;
+
     }
 }

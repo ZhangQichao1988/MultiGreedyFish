@@ -25,6 +25,7 @@ public class UIHomeCommon : UIBase
             case "Shop/Shop":
             case "RankBonus/RankBonus":
             case "PlayerRanking/PlayerRanking":
+            case "Mission/Mission":
             case "Option":
                 goBack.SetActive(true);
                 break;

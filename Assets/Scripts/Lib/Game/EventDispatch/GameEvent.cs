@@ -42,4 +42,6 @@ public class GameEvent
 
     public static string RECIEVE_P19_RESPONSE = "RECIEVE_P19_RESPONSE";
 
+    public static string RECIEVE_P20_RESPONSE = "RECIEVE_P20_RESPONSE";
+
 }

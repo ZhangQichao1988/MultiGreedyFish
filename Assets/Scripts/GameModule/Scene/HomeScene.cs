@@ -14,6 +14,7 @@ public class HomeScene : BaseScene
         "Shop/Shop",
         "RankBonus/RankBonus",
         "PlayerRanking/PlayerRanking",
+        "Mission/Mission",
         "Option",
     };
     private UIHomeCommon homeCommon;

@@ -104,6 +104,7 @@ public class UIHome : UIBase
         Debug.Log("On Getted GoldPool!");
         textGoldPool.gameObject.SetActive(true);
         goldPoolResponse = response as P14_Response;
+
         PlayerModel.Instance.goldPoolLevel = goldPoolResponse.Level;
         backupTime = Time.realtimeSinceStartup;
         goldPoolData = GoldPoolDataTableProxy.Instance.GetDataById(goldPoolResponse.Level);
@@ -215,6 +216,12 @@ public class UIHome : UIBase
     {
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
         homeScene.GotoSceneUI("PlayerRanking/PlayerRanking");
+    }
+
+    public void OnClickMission()
+    {
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        homeScene.GotoSceneUI("Mission/Mission");
     }
 
     public void OnClickOption()

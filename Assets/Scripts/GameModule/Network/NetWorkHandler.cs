@@ -78,7 +78,7 @@ public class NetWorkHandler
             {"P17_Response", P17_Response.Parser},
             {"P18_Response", P18_Response.Parser},
             {"P19_Response", P19_Response.Parser},
-
+            {"P20_Response", P20_Response.Parser},
         };
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
@@ -399,6 +399,11 @@ public class NetWorkHandler
 
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P19_Request", requestByteData);
+    }
+
+    public static void RequestGetMissionList()
+    {
+        NetWorkManager.Request("P20_Request", null);
     }
 
     #endregion
