@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class FishManager : MonoBehaviour
 {
-	static public float FlipFrequency = 2f;
-	static public float MoveSpeed = 0.2f;
 	public List<FishBase> listFish = new List<FishBase>();
 
-
-	public PlayerBase CreatePlayer()
+    private void Awake()
+    {
+		FishBase.uidCnt = (uint)Wrapper.GetRandom(0,9);
+	}
+    public PlayerBase CreatePlayer()
 	{
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();

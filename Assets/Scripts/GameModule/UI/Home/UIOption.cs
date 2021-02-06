@@ -22,18 +22,20 @@ public class UIOption : UIBase
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.EN, languageValue = "English"},
         new LanguageSelectNote(){ languageMode = LanguageDataTableProxy.LanguageMode.JP, languageValue = "日本語"},
     };
-    public Dropdown languageSelect;
+    public DropdownPlus languageSelect;
     public AudioMixer audioMixer;
     public Text textPlayerID;
     public Text textNickName;
     public Slider sliderBgmValue;
     public Slider sliderSeValue;
+    public GameObject goLanguageSelectFullBg;
 
     string setNickName;
 
     public override void Init()
     {
         base.Init();
+        goLanguageSelectFullBg.SetActive(false);
         textPlayerID.text = PlayerModel.Instance.playerId.ToString();
         textNickName.text = PlayerModel.Instance.player.Nickname;
         int languageModeIndex = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
@@ -44,6 +46,14 @@ public class UIOption : UIBase
             languageSelect.options.Add(new Dropdown.OptionData(note.languageValue));
         }
         languageSelect.SetValueWithoutNotify(languageModeIndex);
+        languageSelect.onClickFrame = () => 
+        {
+            OnClickFrame();
+        };
+    }
+    public void OnClickFrame()
+    {
+        goLanguageSelectFullBg.SetActive(!goLanguageSelectFullBg.activeSelf);
     }
     public void SelectLangauge(int n)
     {

@@ -39,7 +39,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa60eed8b05aaa74f8d0360ee338ed2a, type: 3}
   - {fileID: 21300000, guid: 29e1f2e8910582e43a09264621d67640, type: 3}
   - {fileID: 21300000, guid: dc4f592a9a5c6254999be647cfbfe05c, type: 3}
-  - {fileID: 21300000, guid: 98b02f6b43d61c444b906b0a0e3740ca, type: 3}
   - {fileID: 21300000, guid: 59b8d46e455232b4facf8a6c1f25e1ff, type: 3}
   - {fileID: 21300000, guid: 53a8dd5fe9ca358499a3d5600f73986a, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -48,7 +47,6 @@ SpriteAtlas:
   - UIRanking3
   - JoyBack
   - UIRankingFrame
-  - UIRankingPlayerNameBg
   - UIRanking2
   - UIRanking1
   m_Tag: BattleAtlas

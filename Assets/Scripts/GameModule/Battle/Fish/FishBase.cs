@@ -49,9 +49,9 @@ public class FishBase : MonoBehaviour
             this.isShield = false;
         }
     }
-    static protected int uidCnt = 0;
+    static public uint uidCnt = 0;
 
-    protected int uid = -1;
+    protected uint uid = 0;
     protected uint actionWaitCnt = 0;
     public float fishLevel;
     public float battleLevel;
@@ -98,9 +98,6 @@ public class FishBase : MonoBehaviour
     // 是否在屏幕内
     public bool isBecameInvisible = true;
     //private uint updateCnt = 0;
-
-
-    static readonly string blisterParticlePath = "ArtResources/Particles/Prefabs/blister";
     
     public LifeGauge lifeGauge = null;
     public Text lifeText = null;

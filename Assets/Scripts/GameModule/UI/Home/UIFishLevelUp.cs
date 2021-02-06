@@ -49,7 +49,7 @@ public class UIFishLevelUp : UIBase
         plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
         textHpPlus.text = "+" + plus.ToString();
 
-        textChip.text = playerFishLevelInfo.FishChip.ToString();
+        textChip.text = dataInfo.useChip.ToString();
     }
 
     public void OnClickFishLevelUp()

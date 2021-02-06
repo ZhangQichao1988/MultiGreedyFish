@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OptionAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3e8e1e4af4645de478570e0d676b72f2, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cf1720d00cd53a741ab5c9d9b115850e, type: 3}
+  - {fileID: 21300000, guid: 8529c5a138ea295418aedeab58b52ce2, type: 3}
+  - {fileID: 21300000, guid: 3ec8153373bc61449bff44f13e6f15f2, type: 3}
+  - {fileID: 21300000, guid: 82f651046a30b994db4eba91a3d9df14, type: 3}
+  - {fileID: 21300000, guid: 8506fad5b6383c54abbd046ddd479a41, type: 3}
+  - {fileID: 21300000, guid: f71082b6366b91d49985260490dcdb07, type: 3}
+  - {fileID: 21300000, guid: 2487d209a30f8814cb19269e738f0bb5, type: 3}
+  - {fileID: 21300000, guid: 7cfa822b7d3c2334cb4cc1ec7d8e434b, type: 3}
+  - {fileID: 21300000, guid: a414026d14dff314785aa57b22c2981a, type: 3}
+  - {fileID: 21300000, guid: 479bebdfa229a844ea797420b5392450, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_setting_progressbar01
+  - ui_setting_arrow
+  - ui_setting_line
+  - ui_setting_frame02
+  - ui_setting_scrollbar
+  - ui_setting_frame01
+  - ui_setting_pencil
+  - ui_setting_choosing
+  - ui_setting_progressbar02
+  - ui_setting_bg
+  m_Tag: OptionAtlas
+  m_IsVariant: 0
