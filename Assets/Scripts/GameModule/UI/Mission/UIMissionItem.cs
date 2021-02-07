@@ -18,6 +18,7 @@ public class UIMissionItem : SimpleScrollingCell
     public GameObject goRewardBtn;
     public GameObject goMask;
     public GameObject goTimeout;
+    public GameObject goComplete;
 
     PBMission pBMission;
     float backupTime;
@@ -36,12 +37,16 @@ public class UIMissionItem : SimpleScrollingCell
         {
             case MissionType.MissionDaily:
                 secTime = secOfDay;
+                remainingTime = secTime - (float)1612662112 % secTime;
                 break;
             case MissionType.MissionWeekly:
                 secTime = secOfWeek;
+                remainingTime = secTime - (float)1612662112 % secTime;
+                break;
+            default:
+                remainingTime = 0;
                 break;
         }
-        remainingTime = secTime - (float)1612662112 % secTime;
 
         var actionData =  MissionActionDataTableProxy.Instance.GetDataById(pBMission.ActionId);
         textBody.text = string.Format( LanguageDataTableProxy.GetText(actionData.desc), pBMission.Trigger);
@@ -51,13 +56,18 @@ public class UIMissionItem : SimpleScrollingCell
         {
             goMask.SetActive(pBMission.IsComplete);
             goRewardBtn.SetActive(!pBMission.IsComplete);
+            goComplete.SetActive(pBMission.IsComplete);
             textRemainingTime.text = LanguageDataTableProxy.GetText(701);
         }
         else
         {
             goMask.SetActive(false);
             goRewardBtn.SetActive(false);
-
+            goComplete.SetActive(false);
+            if (pBMission.Type == MissionType.MissionAchievement)
+            {
+                textRemainingTime.gameObject.SetActive(false);
+            }
         }
 
         // 报酬图标显示
@@ -112,20 +122,24 @@ public class UIMissionItem : SimpleScrollingCell
     }
     private void Update()
     {
-        if (!isReach)
+        if (pBMission.Type != MissionType.MissionAchievement && !isReach)
         {   
             int nowRemainingTime = (int)(remainingTime - Time.realtimeSinceStartup - backupTime);
-            if (nowRemainingTime > 3600)
+            if (nowRemainingTime > secOfDay)
             {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / 3600 + "h");
+                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / secOfDay);
+            }
+            else if (nowRemainingTime > 3600)
+            {
+                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(705), nowRemainingTime / 3600);
             }
             else if (nowRemainingTime > 60)
             {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / 60 + "m");
+                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(706), nowRemainingTime / 60);
             }
             else if (nowRemainingTime > 0)
             {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime + "s");
+                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(707), nowRemainingTime);
             }
             else
             {
