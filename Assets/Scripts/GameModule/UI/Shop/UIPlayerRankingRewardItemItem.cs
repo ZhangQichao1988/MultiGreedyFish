@@ -14,5 +14,7 @@ public class UIPlayerRankingRewardItemItem : MonoBehaviour
         var spAsset = ResourceManager.LoadSync<Sprite>(itemImgPath);
         Debug.Assert(spAsset != null, "Not found ItemImage:" + itemImgPath);
         imageItem.sprite = spAsset.Asset;
+
+        textCount.text = count.ToString();
     }
 }

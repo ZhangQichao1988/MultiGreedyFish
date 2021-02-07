@@ -58,6 +58,7 @@ public class NetWorkHandler
             {"P16_Request", P16_Request.Parser},
             {"P17_Request", P17_Request.Parser},
             {"P19_Request", P19_Request.Parser},
+            {"P21_Request", P21_Request.Parser},
             {"P0_Response", P0_Response.Parser},
             {"P1_Response", P1_Response.Parser},
             {"P2_Response", P2_Response.Parser},
@@ -79,6 +80,7 @@ public class NetWorkHandler
             {"P18_Response", P18_Response.Parser},
             {"P19_Response", P19_Response.Parser},
             {"P20_Response", P20_Response.Parser},
+            {"P21_Response", P21_Response.Parser},
         };
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
@@ -406,6 +408,17 @@ public class NetWorkHandler
         NetWorkManager.Request("P20_Request", null);
     }
 
+    /// <summary>
+    /// 获取任务奖励
+    /// </summary>
+    public static void RequestGetMissionBonus(int missionId)
+    {
+        var request = new P21_Request();
+        request.MissionId = missionId;
+
+        byte[] requestByteData = GetStreamBytes(request);
+        NetWorkManager.Request("P21_Request", requestByteData);
+    }
     #endregion
 
     #region ServerResponse

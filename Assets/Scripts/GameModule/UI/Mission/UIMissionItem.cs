@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class UIMissionItem : SimpleScrollingCell
 {
+    // 一天的秒数
+    static readonly int secOfDay = 86400;
+    // 一周的秒数
+    static readonly int secOfWeek = secOfDay * 7;
     public Text textProcess;
     public Text textRemainingTime;
     public Text textBody;
@@ -19,23 +23,26 @@ public class UIMissionItem : SimpleScrollingCell
     float backupTime;
     float remainingTime;
     bool isReach;
-    private void Awake()
-    {
-    }
     public void Setup(PBMission pBMission)
     {
         this.pBMission = pBMission;
+        goTimeout.SetActive(false);
         isReach = pBMission.CurrTrigger >= pBMission.Trigger;
-        if (isReach)
-        {
-            textProcess.text = LanguageDataTableProxy.GetText(701);
-        }
-        else 
-        {
-            textProcess.text = string.Format(LanguageDataTableProxy.GetText(700), pBMission.CurrTrigger, pBMission.Trigger);
-        }
+        textProcess.text = string.Format(LanguageDataTableProxy.GetText(700), pBMission.CurrTrigger, pBMission.Trigger);
         backupTime = Time.realtimeSinceStartup;
-        remainingTime = 1601719931 % 86400;
+        //remainingTime = (float)Clock.Timestamp % 86400;
+        int secTime = 0;
+        switch (pBMission.Type)
+        {
+            case MissionType.MissionDaily:
+                secTime = secOfDay;
+                break;
+            case MissionType.MissionWeekly:
+                secTime = secOfWeek;
+                break;
+        }
+        remainingTime = secTime - (float)1612662112 % secTime;
+
         var actionData =  MissionActionDataTableProxy.Instance.GetDataById(pBMission.ActionId);
         textBody.text = string.Format( LanguageDataTableProxy.GetText(actionData.desc), pBMission.Trigger);
 
@@ -44,13 +51,17 @@ public class UIMissionItem : SimpleScrollingCell
         {
             goMask.SetActive(pBMission.IsComplete);
             goRewardBtn.SetActive(!pBMission.IsComplete);
+            textRemainingTime.text = LanguageDataTableProxy.GetText(701);
         }
         else
         {
             goMask.SetActive(false);
+            goRewardBtn.SetActive(false);
+
         }
 
         // 报酬图标显示
+        GameObjectUtil.DestroyAllChildren(goRewardRoot);
         var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.uiRootPath, "PlayerRanking/PlayerRankingRewardItemItem"));
         var listReward = ItemDataTableProxy.GetRewardList(pBMission.Reward);
         GameObject tmp;
@@ -65,8 +76,39 @@ public class UIMissionItem : SimpleScrollingCell
         }
     }
     public void GetReward()
-    { 
-        
+    {
+        NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
+        NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
+
+    }
+    void OnRecvGetBonus<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P21_RESPONSE);
+        Debug.Log("OnRecvGetBonus!");
+        var res = response as P21_Response;
+        if (res.Result.Code == NetWorkResponseCode.SUCEED)
+        {
+            
+            
+            var rewardVO = RewardMapVo.From(res);
+            var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+            PlayerModel.Instance.UpdateAssets(rewardVO);
+            homeScene.OnGettedItemNormal(rewardVO);
+            if (res.NewMission == null)
+            { // 没有更新任务
+                pBMission.IsComplete = true;
+            }
+            else
+            {
+                pBMission = res.NewMission;
+            }
+            Setup(pBMission);
+        }
+        else
+        {
+            //todo l10n
+            MsgBox.OpenTips(res.Result.Desc);
+        }
     }
     private void Update()
     {
