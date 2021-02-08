@@ -118,6 +118,9 @@ public class NetWorkHandler
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidUpdateGooldPool, OnRecvUpdateGooldPool);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidRankListGet, OnRecvRankList);
+
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidMissionListGet, OnRecvMissionGet);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidCompleteMission, OnRecvMissionComplete);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -593,6 +596,20 @@ public class NetWorkHandler
         var response = P19_Response.Parser.ParseFrom(msg.Body);
         errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P19_Response>(GetDispatchKey(msg.Key), response);
+    }
+    
+    static void OnRecvMissionGet(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P20_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P20_Response>(GetDispatchKey(msg.Key), response);
+    }
+    
+    static void OnRecvMissionComplete(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P21_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P21_Response>(GetDispatchKey(msg.Key), response);
     }
 
 #endregion
