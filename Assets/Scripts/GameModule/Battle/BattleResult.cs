@@ -43,6 +43,7 @@ public class BattleResult : UIBase
     private P5_Response response;
     PBPlayerFishLevelInfo levelInfo;
     int retryTimes;
+    AudioSource countAudioSource;
 
     // 演出相关
     int animStep = 0;
@@ -52,6 +53,7 @@ public class BattleResult : UIBase
     public GameObject goAddGoldBattleRanking;
     public GameObject goAddGoldRankUp;
     public GameObject goAddGoldStreak;
+
 
     protected override string uiName { get { return "BattleResult"; } }
 
@@ -200,6 +202,7 @@ public class BattleResult : UIBase
                 }
                 animTime = 0.5f;
                 animStep = 2;
+                countAudioSource = SoundManager.PlaySE(1004);
                 break;
             case 2:
                 if (response.GainRankLevel > 0)
@@ -208,6 +211,7 @@ public class BattleResult : UIBase
                 }
                 if (animTime <= 0f) 
                 {
+                    countAudioSource.Stop();
                     // 判定是否2连胜以上
                     int currentWin = response.FightFish.CurrentWin;
                     if (currentWin > 0)
@@ -221,6 +225,7 @@ public class BattleResult : UIBase
                         textStreakAddRankLevel.text = "+" + response.ContWinRankAdded;
                         goStreakRankupRewardRoot.SetActive(true);
                         animTime = 0.5f;
+                        countAudioSource = SoundManager.PlaySE(1004);
                         animStep = 5;
                     }
                     else
@@ -234,6 +239,7 @@ public class BattleResult : UIBase
                 textTotalAddRankLevel.text = "+" + (response.GainRankLevel + (int)Mathf.Lerp(response.ContWinRankAdded, 0f, animTime * 2f));
                 if (animTime <= 0f)
                 {
+                    countAudioSource.Stop();
                     textTotalAddRankLevel.text = "+" + (response.GainRankLevel + response.ContWinRankAdded);
                     animTime = 0.5f;
                     animStep = 6;
@@ -244,6 +250,7 @@ public class BattleResult : UIBase
                 {
                     animTime = 0.5f;
                     animStep = 10;
+                    countAudioSource = SoundManager.PlaySE(1004);
                 }
                 break;
             case 10:// 加算经验条
@@ -263,11 +270,13 @@ public class BattleResult : UIBase
                 levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded - totalRankLevel;
                 if (animTime <= 0f)
                 {
+                    countAudioSource.Stop();
                     levelInfo.RankLevel = rankStart + response.GainRankLevel + response.ContWinRankAdded;
                     textTotalAddRankLevel.gameObject.SetActive(false);
                     // 显示金币明细（战斗排名）
                     textBattleRankingReward.text = "0";
                     goAddGoldBattleRanking.SetActive(true);
+                    countAudioSource = SoundManager.PlaySE(1002);
                     animTime = 0.5f;
                     animStep = 15;
                 }
@@ -296,11 +305,13 @@ public class BattleResult : UIBase
                 textGoldPool.text = (response.GoldPoolCurrGold - tmp).ToString();
                 if (animTime <= 0f)
                 {
+                    countAudioSource.Stop();
                     if (response.GainRankLevelupBonusGold > 0)
                     {   // 是否有段位升级奖励
                         textRankUpReward.text = "0";
                         goAddGoldRankUp.SetActive(true);
                         animTime = 0.5f;
+                        countAudioSource = SoundManager.PlaySE(1002);
                         animStep = 20;
                     }
                     else if (response.ContWinGoldAdded > 0)
@@ -315,24 +326,27 @@ public class BattleResult : UIBase
                 break;
             case 20: // 段位升级金币加算
                 AddRankUpRewardRate = 1 - animTime * 2f;
-                textRankUpReward.text = Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate).ToString();
+                textRankUpReward.text = ((int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate)).ToString();
                 if (animTime <= 0f)
                 {
+                    countAudioSource.Stop();
                     animStep = 25;
                 }
                 break;
             case 25:// 连胜金币加算初始化
                 textStreakReward.text = "0";
                 goAddGoldStreak.SetActive(true);
+                countAudioSource = SoundManager.PlaySE(1002);
                 animTime = 0.5f;
                 animStep = 26;
                 break;
             case 26:
                 AddContWinRewardRate = 1 - animTime * 2f;
-                textStreakReward.text = Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate).ToString();
+                textStreakReward.text = ((int)Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate)).ToString();
 
                 if (animTime <= 0f)
                 {
+                    countAudioSource.Stop();
                     animStep = 30;
                 }
                 break;

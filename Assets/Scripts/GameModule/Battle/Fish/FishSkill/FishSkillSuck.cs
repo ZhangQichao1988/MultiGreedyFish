@@ -28,7 +28,7 @@ public class FishSkillSuck : FishSkillBase
 			dot = Vector3.Dot(playerBase.transModel.transform.forward, playerToTargetDir);
 			if (dot > 0.5f && distance <= listParam[1])
 			{
-				++cnt;
+				if (listFish[i].fishType == FishBase.FishType.PlayerRobot) { ++cnt; }
 				listFish[i].AddBuff(playerBase, 1);
 			}
 		}

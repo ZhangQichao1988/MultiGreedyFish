@@ -46,6 +46,7 @@ public class FishSkillShield : FishSkillBase
 						// 被敌人弹开
 						if(playerBase.AddBuff(listFish[i], 2) != null)
                         {
+							SoundManager.PlaySE(15, playerBase.audioSource);
 							if (playerBase.fishType == FishBase.FishType.Player)
 							{
 								PlayerModel.Instance.MissionActionTriggerAdd(18, 1);

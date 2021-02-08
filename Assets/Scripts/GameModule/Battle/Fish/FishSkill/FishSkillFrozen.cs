@@ -28,6 +28,7 @@ public class FishSkillFrozen : FishSkillBase
 				!listFish[i].ContainsBuffType(BuffBase.BuffType.ShieldGold))
 			{
 				listFish[i].AddBuff(playerBase, (int)listParam[2]);
+				if (listFish[i].fishType == FishBase.FishType.PlayerRobot) { ++cnt; }
 			}
 		}
 		if (playerBase.fishType == FishBase.FishType.Player)

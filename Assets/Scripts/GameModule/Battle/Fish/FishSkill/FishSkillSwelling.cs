@@ -68,7 +68,7 @@ public class FishSkillSwelling : FishSkillBase
 							SoundManager.PlaySE(13, playerBase.audioSource);
 							// 伤害
 							listFish[i].Damage((int)(playerBase.data.atk * listParam[2]), null);
-							++cnt;
+							if (listFish[i].fishType == FishBase.FishType.PlayerRobot) { ++cnt; }
 						}
 					}
 				}

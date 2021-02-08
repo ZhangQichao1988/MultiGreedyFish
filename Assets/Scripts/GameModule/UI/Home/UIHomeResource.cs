@@ -15,6 +15,7 @@ public class UIHomeResource : UIBase
     public Text textDiamond;
 
     private Animator animator;
+    private AudioSource audioSource;
 
     bool isGoldAddCalc = false;
     float goldAddCalcRemainingTime = 0f;
@@ -66,6 +67,7 @@ public class UIHomeResource : UIBase
         if (isGoldAddCalc) { return; }
         isGoldAddCalc = true;
         goldAddCalcRemainingTime = 1f;
+        audioSource = SoundManager.PlaySE(1002);
     }
     private void Update()
     {
@@ -76,6 +78,7 @@ public class UIHomeResource : UIBase
             {
                 goldAddCalcRemainingTime = 0f;
                 isGoldAddCalc = false;
+                audioSource.Stop();
             }
 
             PlayerModel.Instance.gainGold = (int)Mathf.Lerp(PlayerModel.Instance.gainGold, 0, 1f - goldAddCalcRemainingTime);

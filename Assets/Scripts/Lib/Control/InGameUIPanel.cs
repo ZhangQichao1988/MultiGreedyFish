@@ -91,8 +91,10 @@ public class InGameUIPanel : MonoBehaviour
             {
                 if (note.fishType == FishBase.FishType.PlayerRobot)
                 {
-                    note.Damage(999999, null);
-                    break;
+                    if (note.Damage(999999, null))
+                    {
+                        break;
+                    }
                 }
             }
         }

@@ -206,13 +206,16 @@ public class PlayerBase : FishBase
 					case 11: actionId = 28; break;
 				}
 				PlayerModel.Instance.MissionActionTriggerAdd(actionId, 1);
-				if (data.isShield)
+				if (fish.fishType == FishType.PlayerRobot)
 				{
-					PlayerModel.Instance.MissionActionTriggerAdd(22, 1);
-				}
-				if (isStealth)
-				{
-					PlayerModel.Instance.MissionActionTriggerAdd(23, 1);
+					if (data.isShield)
+					{
+						PlayerModel.Instance.MissionActionTriggerAdd(22, 1);
+					}
+					if (isStealth)
+					{
+						PlayerModel.Instance.MissionActionTriggerAdd(23, 1);
+					}
 				}
 			}
 			
