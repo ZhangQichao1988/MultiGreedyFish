@@ -22,7 +22,7 @@ public class AppConst
     public static bool EnabledGameServices = true;
 
 
-	public static ESeverType DefaultServerType = ESeverType.TENCENT_DEV;
+	public static ESeverType DefaultServerType = ESeverType.LOCAL_SERVER;
 
 	public static ESeverType ServerType
     {
@@ -96,7 +96,20 @@ public class AppConst
     public static byte[] StartUpKey = Encoding.UTF8.GetBytes("hello world");
     public static string ApiPath = "/fishgame/call";
     public static string VersionPath = "/assets/version";
-    public static string DownloadPath = "/assets/res_{0}.zip";
+    public static string DownloadPath
+    {
+        get
+        {
+            if (ServerType == ESeverType.LOCAL_SERVER)
+            {
+                return "/assets/json-output.zip";
+            }
+            else
+            {
+                return "/assets/res_{0}.zip";
+            }
+        }
+    }
 
     public static string HttpEndPoint
     {
