@@ -106,9 +106,14 @@ public class UIMissionItem : SimpleScrollingCell
             }
             else
             {
+                int index = PlayerModel.Instance.pBMissions.IndexOf(pBMission);
+                Debug.Assert(index >= 0, "UIMissionItem.OnRecvGetBonus()_1");
+                PlayerModel.Instance.pBMissions.Remove(pBMission);
                 pBMission = res.NewMission;
+                PlayerModel.Instance.pBMissions.Insert(index, pBMission);
             }
             Setup(pBMission);
+
         }
         else
         {

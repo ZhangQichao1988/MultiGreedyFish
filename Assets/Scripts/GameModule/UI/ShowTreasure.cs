@@ -30,7 +30,7 @@ public class ShowTreasure : UIBase
     public override void OnEnter(object obj)
     {
         base.OnEnter(obj);
-        PlayerModel.Instance.MissionActionTriggerAdd(9, 1);
+        
         imageRadiation.gameObject.SetActive(false);
         imageRadiationAll.gameObject.SetActive(false);
 
@@ -49,6 +49,10 @@ public class ShowTreasure : UIBase
             listItems.Add(showTreansureItem);
             showTreansureItem.Init(note.masterDataItem.resIcon, note.Amount);
         }
+    }
+    private void OnDestroy()
+    {
+        PlayerModel.Instance.MissionActionTriggerAdd(9, 1);
     }
     public static void ShowGettedItem(RewardMapVo res)
     {

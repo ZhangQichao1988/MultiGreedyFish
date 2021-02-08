@@ -17,7 +17,6 @@ public class PlayerModel : BaseModel<PlayerModel>
     }
     public void BattleStart()
     {
-        MissionActionTriggerAdd(3, 1);
         dicBattleMissionActionAddTrigger.Clear();
     }
     public int GetMissionActionTrigger(int actionId)
@@ -36,7 +35,7 @@ public class PlayerModel : BaseModel<PlayerModel>
         int maxWin = PlayerModel.Instance.GetMissionActionTrigger(actionId);
         if (value > maxWin)
         {
-            PlayerModel.Instance.MissionActionTriggerAdd(2, value - maxWin);
+            PlayerModel.Instance.MissionActionTriggerAdd(actionId, value - maxWin);
         }
     }
     public void MissionActionTriggerAdd(int actionId, int addValue)

@@ -62,7 +62,7 @@ public class UIHome : UIBase
         base.Init();
 
         // 实例化任务弹窗
-        UIBase.Open<UIPopupMissionComplete>("ArtResources/UI/Prefabs/PopupMissionComplete", UILayers.OVERLAY);
+        UIBase.Open<UIPopupMissionComplete>("ArtResources/UI/Prefabs/PopupMissionComplete", UILayers.POPUP);
 
         textPlayerCnt.gameObject.SetActive(false);
 
@@ -184,8 +184,7 @@ public class UIHome : UIBase
     {
         isStartGoldCnt = true;
         var asset = ResourceManager.LoadSync<GameObject>(AssetPathConst.uiRootPath + "HomePoolGold");
-        int goldCnt = PlayerModel.Instance.gainGold/10 + 1;
-        GameObject go;
+        int goldCnt = PlayerModel.Instance.gainGold/5 + 1;
         for (int i = 0; i < goldCnt; ++i)
         {
             var poolGold = GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool).GetComponent<PoolGoldAnim>(); ;

@@ -78,6 +78,7 @@ public class BattleResult : UIBase
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
             PlayerModel.Instance.player.Gold += res.RewardMoney;
+            PlayerModel.Instance.MissionActionTriggerAdd(3, 1);
             PlayerModel.Instance.MissionActionTriggerAdd(14, res.RewardMoney);
             BackToHome();
         }
@@ -283,17 +284,17 @@ public class BattleResult : UIBase
                 gaugeRank.Refash(levelInfo);
                 if (response.GainRankLevel > 0 && preRankGaugeRate > gaugeRank.sliderRankLevel.value)
                 {
-                    if (gaugeRank.rankId >= 6)
-                    {   // 白银
-                        PlayerModel.Instance.MissionActionTrigger(33, 1);
+                    if (gaugeRank.rankId >= 16)
+                    {   // 传说
+                        PlayerModel.Instance.MissionActionTrigger(35, 1);
                     }
                     else if (gaugeRank.rankId >= 11)
                     {   // 黄金
                         PlayerModel.Instance.MissionActionTrigger(34, 1);
                     }
-                    else if (gaugeRank.rankId >= 16)
-                    {   // 传说
-                        PlayerModel.Instance.MissionActionTrigger(35, 1);
+                    else if(gaugeRank.rankId >= 6)
+                    {   // 白银
+                        PlayerModel.Instance.MissionActionTrigger(33, 1);
                     }
                     animator.SetTrigger("RankUp");
                 }

@@ -29,29 +29,33 @@ public class UIMission : UIBase
     {
         var MissionList = PlayerModel.Instance.pBMissions;
 
-        // 获得过奖励的靠后
-        MissionList.Sort((a,b)=> 
-        {
-            if (a.IsComplete && !b.IsComplete)
-            {
-                return 1;
-            }
-            else if (!a.IsComplete && b.IsComplete)
-            {
-                return -1;
-            }
-            return 0;
-                });
-
         // 每日-》每周-》成就
-        MissionList.Sort((a, b) => { return a.Type - b.Type; });
+        //MissionList.Sort((a, b) => { return a.Type - b.Type; });
+        MissionList.Sort((a, b) => { return a.MissionId - b.MissionId; });
 
-        // 没拿报酬的靠前
-        var topList = MissionList.Where<PBMission>((a) => a.CurrTrigger >= a.Trigger && !a.IsComplete).ToList();
-        var otherList = MissionList.Where<PBMission>((a) => a.CurrTrigger < a.Trigger || a.IsComplete).ToList();
+
+        //// 获得过奖励的靠后
+        //MissionList.Sort((a, b) =>
+        //{
+        //    if (a.IsComplete && !b.IsComplete)
+        //    {
+        //        return 1;
+        //    }
+        //    else if (!a.IsComplete && b.IsComplete)
+        //    {
+        //        return -1;
+        //    }
+        //    return 0;
+        //});
+
+        // 获得过奖励的靠后,没拿报酬的靠前
+        List<PBMission> list1 = MissionList.Where<PBMission>((a) => a.CurrTrigger >= a.Trigger && !a.IsComplete).ToList();
+        List<PBMission> list2 = MissionList.Where<PBMission>((a) => a.CurrTrigger < a.Trigger && !a.IsComplete).ToList();
+        List<PBMission> list3 = MissionList.Where<PBMission>((a) => a.CurrTrigger >= a.Trigger && a.IsComplete).ToList();
         MissionList.Clear();
-        MissionList.AddRange(topList);
-        MissionList.AddRange(otherList);
+        MissionList.AddRange(list1);
+        MissionList.AddRange(list2);
+        MissionList.AddRange(list3);
 
         if (listMissionItem.Count <= 0)
         {

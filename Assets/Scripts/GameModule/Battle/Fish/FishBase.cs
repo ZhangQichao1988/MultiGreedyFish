@@ -516,7 +516,6 @@ public class FishBase : MonoBehaviour
     }
     public BuffBase AddBuff(FishBase Initiator, int buffId)
     {
-        
         BuffBase note;
         for (int i = listBuff.Count - 1; i >= 0; --i)
         {
@@ -525,18 +524,15 @@ public class FishBase : MonoBehaviour
             {
                 return null;
             }
-            
         }
 
         BuffBase buff = FishBuffDataTableProxy.Instance.SetBuff(Initiator, buffId, this);
         for (int i = listBuff.Count - 1; i >= 0; --i)
         {
             note = listBuff[i];
-            
             // Buff类型一样覆盖元Buff
             if (buff.buffType == note.buffType)
             {
-                //listBuff[i].Destory();
                 listBuff.RemoveAt(i);
             }
         }

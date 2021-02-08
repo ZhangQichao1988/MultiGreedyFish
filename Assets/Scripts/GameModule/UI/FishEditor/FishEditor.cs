@@ -16,7 +16,15 @@ public class FishEditor : UIBase
 
         GameObject go;
         FishEditorItem fishEditorItem;
-        foreach (var note in PlayerModel.Instance.player.AryPlayerFishInfo)
+        List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos = new List<PBPlayerFishLevelInfo>(PlayerModel.Instance.player.AryPlayerFishInfo);
+        
+        // 根据稀有度排序
+        pBPlayerFishLevelInfos.Sort((a,b)=> 
+        {
+            return FishDataTableProxy.Instance.GetDataById(a.FishId).rare - FishDataTableProxy.Instance.GetDataById(b.FishId).rare;
+            });
+
+        foreach (var note in pBPlayerFishLevelInfos)
         {
             // 已有的鱼只是更新信息，不重新实例化
             fishEditorItem = aryFishEditorItem.Find((a) => a.pBPlayerFishLevelInfo.FishId == note.FishId);
