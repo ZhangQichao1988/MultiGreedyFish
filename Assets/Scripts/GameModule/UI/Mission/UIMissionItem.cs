@@ -7,10 +7,6 @@ using UnityEngine.UI;
 
 public class UIMissionItem : SimpleScrollingCell
 {
-    // 一天的秒数
-    static readonly int secOfDay = 86400;
-    // 一周的秒数
-    static readonly int secOfWeek = secOfDay * 7;
     public Text textProcess;
     public Text textRemainingTime;
     public Text textBody;
@@ -36,11 +32,11 @@ public class UIMissionItem : SimpleScrollingCell
         switch (pBMission.Type)
         {
             case MissionType.MissionDaily:
-                secTime = secOfDay;
+                secTime = Clock.SecOfDay;
                 remainingTime = secTime - (float)1612662112 % secTime;
                 break;
             case MissionType.MissionWeekly:
-                secTime = secOfWeek;
+                secTime = Clock.SecOfWeek;
                 remainingTime = secTime - (float)1612662112 % secTime;
                 break;
             default:
@@ -125,9 +121,9 @@ public class UIMissionItem : SimpleScrollingCell
         if (pBMission.Type != MissionType.MissionAchievement && !isReach)
         {   
             int nowRemainingTime = (int)(remainingTime - Time.realtimeSinceStartup - backupTime);
-            if (nowRemainingTime > secOfDay)
+            if (nowRemainingTime > Clock.SecOfDay)
             {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / secOfDay);
+                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / Clock.SecOfDay);
             }
             else if (nowRemainingTime > 3600)
             {

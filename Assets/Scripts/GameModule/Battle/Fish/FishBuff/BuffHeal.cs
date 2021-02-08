@@ -17,7 +17,12 @@ public class BuffHeal : BuffBase
         if (nowCnt >= healCnt)
         {
             ++healCnt;
-            fish.Heal((int)(aryParam[1] * fish.data.lifeMax));
+            int healLife = (int)(aryParam[1] * fish.data.lifeMax);
+            fish.Heal(healLife);
+            if (fish.fishType == FishBase.FishType.Player)
+            {
+                PlayerModel.Instance.MissionActionTriggerAdd(17, healLife);
+            }
             if (fish.isBecameInvisible) { BattleEffectManager.CreateEffect(0, fish.transModel); }
         }
 

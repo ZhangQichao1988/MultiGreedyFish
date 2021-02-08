@@ -9,9 +9,6 @@ public class FishSkillHealLife : FishSkillBase
 		if (playerBase.lifeRate >= 1f)
 		{ return false; }
 		playerBase.AddBuff(playerBase, (int)listParam[1]);
-		//int healLife = (int)((float)playerBase.lifeMax * listParam[1]);
-		//playerBase.Heal(System.Math.Min(healLife, playerBase.lifeMax - playerBase.life));
-		//if (playerBase.isBecameInvisible) { BattleEffectManager.CreateEffect(0, playerBase.transform); }
 
 		return true;
 	}

@@ -23,22 +23,40 @@ public class UIMission : UIBase
         base.OnEnter(obj);
         FetchMission();
     }
-    // 设置昵称
+
+    // 获取任务列表
     public void FetchMission()
     {
-        NetWorkHandler.GetDispatch().AddListener<P20_Response>(GameEvent.RECIEVE_P20_RESPONSE, OnRecvFetchMision);
-        NetWorkHandler.RequestGetMissionList();
+        var MissionList = PlayerModel.Instance.pBMissions;
 
-    }
-    void OnRecvFetchMision<T>(T response)
-    {
-        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P20_RESPONSE);
-        res = response as P20_Response;
-        
+        // 获得过奖励的靠后
+        MissionList.Sort((a,b)=> 
+        {
+            if (a.IsComplete && !b.IsComplete)
+            {
+                return 1;
+            }
+            else if (!a.IsComplete && b.IsComplete)
+            {
+                return -1;
+            }
+            return 0;
+                });
+
+        // 每日-》每周-》成就
+        MissionList.Sort((a, b) => { return a.Type - b.Type; });
+
+        // 没拿报酬的靠前
+        var topList = MissionList.Where<PBMission>((a) => a.CurrTrigger >= a.Trigger && !a.IsComplete).ToList();
+        var otherList = MissionList.Where<PBMission>((a) => a.CurrTrigger < a.Trigger || a.IsComplete).ToList();
+        MissionList.Clear();
+        MissionList.AddRange(topList);
+        MissionList.AddRange(otherList);
+
         if (listMissionItem.Count <= 0)
         {
             scrollingView.Init(AssetPathConst.uiRootPath + "Mission/MissionItem");
-            var listCell = scrollingView.Fill(res.MissionList.Count);
+            var listCell = scrollingView.Fill(MissionList.Count);
 
             UIMissionItem uIItem;
             for (int i = 0; i < listCell.Count; ++i)
@@ -49,7 +67,7 @@ public class UIMission : UIBase
         }
         for (int i = 0; i < listMissionItem.Count; ++i)
         {
-            listMissionItem[i].Setup( res.MissionList[i]);
+            listMissionItem[i].Setup(MissionList[i]);
         }
     }
 }

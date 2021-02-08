@@ -20,10 +20,10 @@ public class ProcesserP20Res : BaseDummyProcesser<NullMessage, P20_Response>
     {
         var res = new P20_Response();
         res.Result = new PBResult() { Code = 0 };
-        res.MissionList.Add(new PBMission() { MissionId = 1, ActionId = 1, IsComplete = false, CurrTrigger = 50, Trigger = 50, Type = MissionType.MissionDaily, Reward = "[{\"id\":2, \"amount\":100},{\"id\":200, \"amount\":5}]" });
-        res.MissionList.Add(new PBMission() { MissionId = 2, ActionId = 2, IsComplete = false, CurrTrigger = 30, Trigger = 100, Type = MissionType.MissionWeekly, Reward = "[{\"id\":2, \"amount\":100}]" });
-        res.MissionList.Add(new PBMission() { MissionId = 3, ActionId = 3, IsComplete = true, CurrTrigger = 30, Trigger = 80, Type = MissionType.MissionAchievement, Reward = "[{\"id\":2, \"amount\":100}]" });
-        res.MissionList.Add(new PBMission() { MissionId = 4, ActionId = 4, IsComplete = false, CurrTrigger = 30, Trigger = 50, Type = MissionType.MissionAchievement, Reward = "[{\"id\":2, \"amount\":100}]" });
+        res.MissionList.Add(new PBMission() { MissionId = 2, ActionId = 2, IsComplete = false, CurrTrigger = 99, Trigger = 100, Type = MissionType.MissionWeekly, Reward = "[{\"id\":2, \"amount\":100}]" });
+        res.MissionList.Add(new PBMission() { MissionId = 3, ActionId = 3, IsComplete = true, CurrTrigger = 80, Trigger = 80, Type = MissionType.MissionAchievement, Reward = "[{\"id\":2, \"amount\":100}]" });
+        res.MissionList.Add(new PBMission() { MissionId = 4, ActionId = 4, IsComplete = false, CurrTrigger = 50, Trigger = 50, Type = MissionType.MissionAchievement, Reward = "[{\"id\":2, \"amount\":100}]" });
+        res.MissionList.Add(new PBMission() { MissionId = 1, ActionId = 1, IsComplete = false, CurrTrigger = 49, Trigger = 50, Type = MissionType.MissionDaily, Reward = "[{\"id\":2, \"amount\":100}]" });
         return res;
     }
 }

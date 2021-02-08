@@ -80,8 +80,11 @@ public class ShellControl : MonoBehaviour
         else if (CanEatPearl())
         {
             goPearl.SetActive(false);
-            //fish.Heal(fish.lifeMax);
             fish.Eat(ConfigTableProxy.Instance.GetDataById(22).floatValue);
+            if (fish.fishType == FishBase.FishType.Player)
+            {
+                PlayerModel.Instance.MissionActionTriggerAdd(10, 1);
+            }
             return true;
         }
         return false;

@@ -30,7 +30,7 @@ public class ShowTreasure : UIBase
     public override void OnEnter(object obj)
     {
         base.OnEnter(obj);
-
+        PlayerModel.Instance.MissionActionTriggerAdd(9, 1);
         imageRadiation.gameObject.SetActive(false);
         imageRadiationAll.gameObject.SetActive(false);
 

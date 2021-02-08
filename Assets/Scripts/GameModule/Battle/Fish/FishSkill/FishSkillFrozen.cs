@@ -20,6 +20,7 @@ public class FishSkillFrozen : FishSkillBase
 		BattleEffectManager.CreateEffect(baseData.effectId, playerBase.transModel);
 
 		// 范围内敌人冰冻
+		int cnt = 0;
 		var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, listParam[1]);
 		for (int i = 0; i < listFish.Count; ++i)
 		{
@@ -29,7 +30,10 @@ public class FishSkillFrozen : FishSkillBase
 				listFish[i].AddBuff(playerBase, (int)listParam[2]);
 			}
 		}
-
+		if (playerBase.fishType == FishBase.FishType.Player)
+		{
+			PlayerModel.Instance.MissionActionTriggerAdd(24, cnt);
+		}
 
 		return true;
 	}

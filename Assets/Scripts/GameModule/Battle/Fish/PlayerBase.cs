@@ -187,6 +187,35 @@ public class PlayerBase : FishBase
 		fish.Damage(data.atk, colliderMouth.transform);
 		if (fish.life <= 0)
 		{
+			if(fishType == FishType.Player)
+			{	// 任务相关
+				int actionId = 0;
+				switch (fish.originalData.fishId)
+				{
+					case 0: actionId = 1; break;
+					case 1: actionId = 30; break;
+					case 2: actionId = 11; break;
+					case 3: actionId = 25; break;
+					case 4: actionId = 8; break;
+					case 5: actionId = 7; break;
+					case 6: actionId = 31; break;
+					case 7: actionId = 32; break;
+					case 8: actionId = 26; break;
+					case 9: actionId = 27; break;
+					case 10: actionId = 29; break;
+					case 11: actionId = 28; break;
+				}
+				PlayerModel.Instance.MissionActionTriggerAdd(actionId, 1);
+				if (data.isShield)
+				{
+					PlayerModel.Instance.MissionActionTriggerAdd(22, 1);
+				}
+				if (isStealth)
+				{
+					PlayerModel.Instance.MissionActionTriggerAdd(23, 1);
+				}
+			}
+			
 			Eat(fish.battleLevel);
 		}
 

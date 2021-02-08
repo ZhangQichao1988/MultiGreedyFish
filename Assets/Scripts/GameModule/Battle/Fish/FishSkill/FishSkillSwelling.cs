@@ -49,12 +49,10 @@ public class FishSkillSwelling : FishSkillBase
 				var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
 				//Vector3 playerToTargetDir;
 				//float distance;
+				int cnt = 0;
 				for (int i = 0; i < listFish.Count; ++i)
 				{
 					if(playerBase.colliderBody.bounds.Intersects(listFish[i].colliderBody.bounds))
-					//playerToTargetDir = listFish[i].transform.position - playerBase.transform.position;
-					//distance = playerToTargetDir.magnitude;
-					//if (playerToTargetDir.magnitude <= 2f)
 					{
 						//// 解除膨胀
 						//step = 2;
@@ -70,8 +68,13 @@ public class FishSkillSwelling : FishSkillBase
 							SoundManager.PlaySE(13, playerBase.audioSource);
 							// 伤害
 							listFish[i].Damage((int)(playerBase.data.atk * listParam[2]), null);
+							++cnt;
 						}
 					}
+				}
+				if (playerBase.fishType == FishBase.FishType.Player)
+				{
+					PlayerModel.Instance.MissionActionTriggerAdd(20, cnt);
 				}
 
 				if (process < 100) 

@@ -19,6 +19,7 @@ public class FishSkillSuck : FishSkillBase
 		Vector3 playerToTargetDir;
 		float dot;
 		float distance;
+		int cnt = 0;
 		for (int i = 0; i < listFish.Count; ++i)
 		{
 			playerToTargetDir = listFish[i].transform.position - playerBase.transform.position;
@@ -27,11 +28,14 @@ public class FishSkillSuck : FishSkillBase
 			dot = Vector3.Dot(playerBase.transModel.transform.forward, playerToTargetDir);
 			if (dot > 0.5f && distance <= listParam[1])
 			{
+				++cnt;
 				listFish[i].AddBuff(playerBase, 1);
-
 			}
 		}
-
+		if (playerBase.fishType == FishBase.FishType.Player)
+		{
+			PlayerModel.Instance.MissionActionTriggerAdd(19, cnt);
+		}
 		return true;
 	}
 	public override void CbAttack()

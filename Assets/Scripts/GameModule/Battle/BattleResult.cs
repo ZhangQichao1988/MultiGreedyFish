@@ -76,6 +76,7 @@ public class BattleResult : UIBase
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
             PlayerModel.Instance.player.Gold += res.RewardMoney;
+            PlayerModel.Instance.MissionActionTriggerAdd(14, res.RewardMoney);
             BackToHome();
         }
         else if (res.Result.Code == NetWorkResponseCode.ADS_NEED_RETRY)
@@ -173,7 +174,10 @@ public class BattleResult : UIBase
 
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
         textGoldPool.text = response.GoldPoolCurrGold.ToString();
-
+        if (StageModel.Instance.battleRanking <= 3)
+        {
+            PlayerModel.Instance.MissionActionTriggerAdd(4, 1);
+        }
 
     }
 
@@ -206,6 +210,10 @@ public class BattleResult : UIBase
                 {
                     // 判定是否2连胜以上
                     int currentWin = response.FightFish.CurrentWin;
+                    if (currentWin > 0)
+                    {
+                        PlayerModel.Instance.MissionActionTrigger(2, currentWin);
+                    }
                     levelInfo.CurrentWin = currentWin;
                     if (currentWin >= 2)
                     {
@@ -266,6 +274,18 @@ public class BattleResult : UIBase
                 gaugeRank.Refash(levelInfo);
                 if (response.GainRankLevel > 0 && preRankGaugeRate > gaugeRank.sliderRankLevel.value)
                 {
+                    if (gaugeRank.rankId >= 6)
+                    {   // 白银
+                        PlayerModel.Instance.MissionActionTrigger(33, 1);
+                    }
+                    else if (gaugeRank.rankId >= 11)
+                    {   // 黄金
+                        PlayerModel.Instance.MissionActionTrigger(34, 1);
+                    }
+                    else if (gaugeRank.rankId >= 16)
+                    {   // 传说
+                        PlayerModel.Instance.MissionActionTrigger(35, 1);
+                    }
                     animator.SetTrigger("RankUp");
                 }
                 break;

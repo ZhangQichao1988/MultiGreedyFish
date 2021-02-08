@@ -12,7 +12,7 @@ public class GaugeRank : MonoBehaviour
 
     public Slider sliderRankLevel;
 
-
+    public int rankId;
     private void Awake()
     {
         sliderRankLevel = GetComponent<Slider>();
@@ -24,6 +24,7 @@ public class GaugeRank : MonoBehaviour
         sliderRankLevel.value = nextRankData == null ? 1f : (float)(pBPlayerFishLevelInfo.RankLevel - currentRankData.rankLevel) / (float)(nextRankData.rankLevel - currentRankData.rankLevel);
         textRankLevel.text = pBPlayerFishLevelInfo.RankLevel.ToString();
         textRank.text = currentRankData.ID.ToString();
+        rankId = currentRankData.ID;
         rankIcon.gameObject.SetActive(pBPlayerFishLevelInfo.FishLevel > 0);
         if (rankIcon.IsActive())
         {

@@ -62,8 +62,15 @@ public class UIFishLevelUp : UIBase
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P7_RESPONSE);
         var realResponse = response as P7_Response;
+        if (realResponse.FishInfo.FishLevel == 1)
+        {   // 解锁
+            PlayerModel.Instance.MissionActionTriggerAdd(16, 1);
+        }
+        PlayerModel.Instance.MissionActionTriggerAdd(13, 1);
+        PlayerModel.Instance.MissionActionTriggerAdd(15, realResponse.FishInfo.FishLevel);
         PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
         PlayerModel.Instance.player.Gold -= dataInfo.useGold;
+        PlayerModel.Instance.MissionActionTriggerAdd(5, dataInfo.useGold);
         UIHomeResource.Instance.UpdateAssets();
         Close();
     }

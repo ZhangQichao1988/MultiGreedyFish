@@ -8,9 +8,60 @@ public class PlayerModel : BaseModel<PlayerModel>
     public long playerId;
     public PBPlayer player;
     public int goldPoolLevel;
+    public List<PBMission> pBMissions;
+    public Dictionary<int, int> dicBattleMissionActionAddTrigger = new Dictionary<int, int>();
+    public long fetchMissionTime;
     public PlayerModel() : base()
     {
 
+    }
+    public void BattleStart()
+    {
+        MissionActionTriggerAdd(3, 1);
+        dicBattleMissionActionAddTrigger.Clear();
+    }
+    public int GetMissionActionTrigger(int actionId)
+    {
+        foreach (var note in pBMissions)
+        {
+            if (note.ActionId == actionId)
+            {
+                return note.CurrTrigger;
+            }
+        }
+        return 0;
+    }
+    public void MissionActionTrigger(int actionId, int value)
+    {
+        int maxWin = PlayerModel.Instance.GetMissionActionTrigger(actionId);
+        if (value > maxWin)
+        {
+            PlayerModel.Instance.MissionActionTriggerAdd(2, value - maxWin);
+        }
+    }
+    public void MissionActionTriggerAdd(int actionId, int addValue)
+    {
+        bool isReach = false;
+        foreach (var note in pBMissions)
+        {
+            isReach = note.CurrTrigger >= note.Trigger;
+            if (note.ActionId == actionId)
+            {
+                if (!dicBattleMissionActionAddTrigger.ContainsKey(actionId))
+                {
+                    dicBattleMissionActionAddTrigger.Add(actionId, addValue);
+                }
+                else
+                {
+                    dicBattleMissionActionAddTrigger[actionId] += addValue;
+                }
+                note.CurrTrigger += addValue;
+                if (note.CurrTrigger >= note.Trigger && !isReach)
+                {
+                    UIPopupMissionComplete.Instance.AddCompleteMission(note);
+                }
+            }
+        }
     }
     public int gainGold { set; get; }
     public PBPlayerFishLevelInfo GetCurrentPlayerFishLevelInfo()
@@ -60,6 +111,7 @@ public class PlayerModel : BaseModel<PlayerModel>
         else if (itemVo.Paytype == PayType.Gold)
         {
             player.Gold -= itemVo.Price;
+            MissionActionTriggerAdd(5, itemVo.Price);
         }
         UpdateAssets(rewardVo);
     }
@@ -86,6 +138,7 @@ public class PlayerModel : BaseModel<PlayerModel>
             else if (vo.masterDataItem.type == FishItemType.Gold)
             {
                 player.Gold += vo.Amount;
+                PlayerModel.Instance.MissionActionTriggerAdd(14, vo.Amount);
             }
             else if (vo.masterDataItem.type == FishItemType.Piece)
             {

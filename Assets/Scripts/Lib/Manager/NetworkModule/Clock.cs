@@ -8,6 +8,11 @@ namespace NetWorkModule
     /// </summary>
     public static class Clock
     {
+        // 一天的秒数
+        static public readonly int SecOfDay = 86400;
+        // 一周的秒数
+        static public readonly int SecOfWeek = SecOfDay * 7;
+
         /// <summary>
         /// サーバとの差分
         /// </summary>
@@ -39,7 +44,7 @@ namespace NetWorkModule
         /// 推定時刻 (unixtime 秒)
         /// </summary>
         public static long? Timestamp => MilliTimestamp / 1000;
-
+        //public static long Timestamp { get { return 1612674349; } }
         /// <summary>
         /// 時差を取得する
         /// </summary>

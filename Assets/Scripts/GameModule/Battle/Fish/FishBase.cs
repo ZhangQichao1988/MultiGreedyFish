@@ -130,7 +130,10 @@ public class FishBase : MonoBehaviour
     public virtual bool Damage(int dmg, Transform hitmanTrans)
     {
         if (dmgTime > 0) { return false; }
-        if (data.isShield) { return false; }
+        if (data.isShield) 
+        {
+            return false; 
+        }
         life -= dmg;
         // 取消隐身buff
         RemoveBuff(10);
@@ -447,6 +450,10 @@ public class FishBase : MonoBehaviour
             int healLife = (int)(BattleConst.instance.AquaticHeal * (float)lifeMax);
             healLife = Mathf.Min(lifeMax - life, healLife);
             Heal(healLife);
+            if (fishType == FishType.Player)
+            {
+                PlayerModel.Instance.MissionActionTriggerAdd(6, healLife);
+            }
         }
 
         // 在水草里透明

@@ -46,6 +46,10 @@ public class FishSkillShield : FishSkillBase
 						// 被敌人弹开
 						if(playerBase.AddBuff(listFish[i], 2) != null)
                         {
+							if (playerBase.fishType == FishBase.FishType.Player)
+							{
+								PlayerModel.Instance.MissionActionTriggerAdd(18, 1);
+							}
 							if (--defenseCnt <= 0)
 							{
 								effect.Destroy();

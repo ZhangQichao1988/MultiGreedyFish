@@ -35,6 +35,7 @@ public class FishSkillVoltage : FishSkillBase
 		{
 			case 1:
 				// 伤害判定
+				int cnt = 0;
 				var listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(playerBase, playerBase.transform.position, BattleConst.instance.RobotVision);
 				for (int i = 0; i < listFish.Count; ++i)
 				{
@@ -48,10 +49,16 @@ public class FishSkillVoltage : FishSkillBase
 							{
 								var buff = listFish[i].AddBuff(playerBase, buffId);
 								BattleEffectManager.CreateEffect(5, listFish[i].transModel, listFish[i].transform.localScale.x);
+								++cnt;
 							}
 						}
 					}
 				}
+				if (playerBase.fishType == FishBase.FishType.Player)
+				{
+					PlayerModel.Instance.MissionActionTriggerAdd(21, cnt);
+				}
+
 				remainingTime -= Time.deltaTime;
 				if (remainingTime <= 0f)
 				{

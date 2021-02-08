@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using TimerModule;
 using System;
+using NetWorkModule;
 
 public class UIHome : UIBase
 {
@@ -59,6 +60,10 @@ public class UIHome : UIBase
     public override void Init()
     {
         base.Init();
+
+        // 实例化任务弹窗
+        UIBase.Open<UIPopupMissionComplete>("ArtResources/UI/Prefabs/PopupMissionComplete", UILayers.OVERLAY);
+
         textPlayerCnt.gameObject.SetActive(false);
 
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
@@ -97,6 +102,11 @@ public class UIHome : UIBase
         {
             textStreakCnt.gameObject.SetActive(false);
         }
+
+        if (PlayerModel.Instance.fetchMissionTime / Clock.SecOfDay < (long)Clock.Timestamp / Clock.SecOfDay)
+        {   // 当日期发生变化时请求任务列表
+            FetchMission();
+        }
     }
     void OnRecvGetGoldPool<T>(T response)
     {
@@ -118,10 +128,23 @@ public class UIHome : UIBase
             animator.SetTrigger("DropGold");
 
         }
-
-
+        
     }
+    // 获取任务列表
+    public void FetchMission()
+    {
+        NetWorkHandler.GetDispatch().AddListener<P20_Response>(GameEvent.RECIEVE_P20_RESPONSE, OnRecvFetchMision);
+        NetWorkHandler.RequestGetMissionList();
+    }
+    void OnRecvFetchMision<T>(T response)
+    {
+        NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P20_RESPONSE);
+        Debug.Log("OnRecvFetchMision!");
 
+        var res = response as P20_Response;
+        PlayerModel.Instance.pBMissions = res.MissionList.ToList<PBMission>();
+        PlayerModel.Instance.fetchMissionTime = (long)Clock.Timestamp;
+    }
     private void GoldPoolUpdate()
     {
         if (isStartGoldCnt)
@@ -237,6 +260,7 @@ public class UIHome : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             battleRequestSuccess = true;
+            PlayerModel.Instance.BattleStart();
             StageModel.Instance.SetStartBattleRes(realResponse);
         }
 
@@ -249,7 +273,11 @@ public class UIHome : UIBase
     {
         UIGoldPoolLevelUp.Open();
     }
-
+    //public void DebugAddAction()
+    //{
+    //    PlayerModel.Instance.MissionActionTriggerAdd(1, 100);
+    //    //PlayerModel.Instance.MissionActionTriggerAdd(2, 10);
+    //}
     private void Update()
     {
         if (goldPoolData != null)
