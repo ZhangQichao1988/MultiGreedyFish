@@ -12,10 +12,12 @@ public class InGameUIPanel : MonoBehaviour
     public RectTransform TouchTF;
     public Transform TouchStickTF;
     public CameraFollow cameraFollow;
-    public Image skillGuage;
-    public Button skillBtn;
+    public Image skillGauge;
+    //public GameObject goSkillBtnDisable;
+    //public GameObject goSkillBtnEnable;
 
     public int alivePlayerNum;
+    private Animator animator;
     private PlayerBase Player;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
@@ -25,15 +27,14 @@ public class InGameUIPanel : MonoBehaviour
         SelfRectTF = GetComponent<RectTransform>();
         TouchTF.anchoredPosition = new Vector2(200f, 200f);
         TouchStickTF.transform.localPosition = Vector3.zero;
-        //TouchTF.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
+        animator.SetBool("skill_enable", false);
+
     }
 
-	public void Init()
+    public void Init()
 	{
         Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
-        Image image = skillBtn.GetComponent<Image>();
-        var asset = ResourceManager.LoadSync(AssetPathConst.skillIconPath, typeof(Sprite));
-        image.sprite = asset.Asset as Sprite;
         cameraFollow.Target = Player.transform;
     }
 
@@ -63,12 +64,20 @@ public class InGameUIPanel : MonoBehaviour
     public void TouchDrag(BaseEventData data)
     {
         Vector2 pos = ((PointerEventData)data).position - (Vector2)TouchTF.position;
+        Vector2 posStick = pos;
         float length = pos.magnitude;
         if (length > MaxLength)
         {
             pos = pos * MaxLength / length;
         }
-        TouchStickTF.localPosition = pos;
+
+        // 虚位
+        if (length > MaxLength + 15)
+        {
+            posStick = posStick * (MaxLength+15) / length;
+        }
+        TouchStickTF.localPosition = posStick;
+
         if (Player != null) 
         {
             Player.TouchDrag(data, pos, MaxLength);
@@ -130,8 +139,9 @@ public class InGameUIPanel : MonoBehaviour
 
 #endif
 
-        skillGuage.fillAmount = Player.fishSkill.currentGauge;
-        skillBtn.interactable = Player.fishSkill.currentGauge >= 1f;
+        skillGauge.fillAmount = Player.fishSkill.currentGauge;
+        animator.SetBool("skill_enable", Player.fishSkill.currentGauge >= 1f);
+
     }
     public void PlayerRunSkill()
     {

@@ -15,7 +15,6 @@ public class AssetPathConst
 	public static readonly string soundRootPath = "SoundResources/Se/se_{0}";
 	public static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/PlayerNameplate";
 	public static readonly string robotNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/RobotNameplate";
-	public static readonly string skillIconPath = "ArtResources/UI/Textures/Atlas/Common/SkillIcon";
 
 	public static readonly string shopItemCellPath = "ArtResources/UI/Prefabs/Shop/ShopItem";
 	public static readonly string shopRewardCellPath = "ArtResources/UI/Prefabs/Shop/ShopRewardCell";

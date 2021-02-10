@@ -5,8 +5,8 @@ Shader "UI/AddColor"
     Properties
     {
         [PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-        [HDR]_Color("Tint", Color) = (1,1,1,1)
-        _AddColor("AddColor", Color) = (1,1,1,1)
+        _Color("Tint", Color) = (1,1,1,1)
+
         _StencilComp("Stencil Comparison", Float) = 8
         _Stencil("Stencil ID", Float) = 0
         _StencilOp("Stencil Operation", Float) = 0
@@ -42,7 +42,7 @@ Shader "UI/AddColor"
             Lighting Off
             ZWrite Off
             ZTest[unity_GUIZTestMode]
-            Blend SrcAlpha One, SrcAlpha OneMinusSrcAlpha
+            Blend SrcAlpha OneMinusSrcAlpha
             ColorMask[_ColorMask]
 
             Pass
@@ -58,6 +58,7 @@ Shader "UI/AddColor"
 
                 #pragma multi_compile __ UNITY_UI_CLIP_RECT
                 #pragma multi_compile __ UNITY_UI_ALPHACLIP
+                #pragma shader_feature GRAY_SCALE
 
                 struct appdata_t
                 {
@@ -78,7 +79,6 @@ Shader "UI/AddColor"
 
                 sampler2D _MainTex;
                 fixed4 _Color;
-                fixed4 _AddColor;
                 fixed4 _TextureSampleAdd;
                 float4 _ClipRect;
                 float4 _MainTex_ST;
@@ -99,11 +99,13 @@ Shader "UI/AddColor"
 
                 fixed4 frag(v2f IN) : SV_Target
                 {
-                    half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color + _AddColor;
-                    //color = float4(0,0,0,0);
+                    half4 tex = tex2D(_MainTex, IN.texcoord);
+                    half4 color = (tex + _TextureSampleAdd) + IN.color;
+                    color.a = tex.a * IN.color.a;
                     #ifdef UNITY_UI_CLIP_RECT
                     color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
                     #endif
+
                     #ifdef UNITY_UI_ALPHACLIP
                     clip(color.a - 0.001);
                     #endif

@@ -123,7 +123,7 @@ public class UIMissionItem : SimpleScrollingCell
     }
     private void Update()
     {
-        if (pBMission.Type != MissionType.MissionAchievement && !isReach)
+        if (pBMission != null && pBMission.Type != MissionType.MissionAchievement && !isReach)
         {   
             int nowRemainingTime = (int)(remainingTime - Time.realtimeSinceStartup - backupTime);
             if (nowRemainingTime > Clock.SecOfDay)

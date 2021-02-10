@@ -188,7 +188,8 @@ public class PlayerBase : FishBase
 		if (fish.life <= 0)
 		{
 			if(fishType == FishType.Player)
-			{	// 任务相关
+			{   // 任务相关
+				VibrationMng.ShortVibration();
 				int actionId = 0;
 				switch (fish.originalData.fishId)
 				{

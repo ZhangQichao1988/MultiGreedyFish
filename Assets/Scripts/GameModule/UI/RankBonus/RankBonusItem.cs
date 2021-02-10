@@ -75,8 +75,14 @@ public class RankBonusItem : MonoBehaviour
         dataInfo = rankBonusDataInfo;
         var itemDataInfo = ItemDataTableProxy.GetRewardList(dataInfo.productContent);
         var itemData = ItemDataTableProxy.Instance.GetDataById(itemDataInfo[0].id);
-
-        textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID);
+        if (itemData.type == "cTreasure")
+        {
+            textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID);
+        }
+        else
+        {
+            textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID) + "x" + itemDataInfo[0].amount;
+        }
         textRankPoint.text = dataInfo.rankLevel.ToString();
 
         // 奖励物品图标显示
