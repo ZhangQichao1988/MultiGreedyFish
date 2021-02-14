@@ -16,11 +16,12 @@ public class UpdateFlowController
         finishCb = callback;
         Debug.LogWarning(AppConst.HttpVersionPoint);
         NetWorkManager.SimpleGet<string>(AppConst.HttpVersionPoint, (str)=>{
+            str = str.Trim();
             Debug.Log("Version Num " + str);
             if (PlayerPrefs.GetString(CURRENT_VERSION, "") != str)
             {
                 retryTime = 3;
-                DoUpdate(str.Trim());
+                DoUpdate(str);
             }
             else
             {
