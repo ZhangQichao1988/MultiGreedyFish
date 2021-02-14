@@ -121,7 +121,7 @@ public class FishManager : MonoBehaviour
 		}
 	}
 
-	void EatCheck(PlayerBase player, BoxCollider atkCollider, List<FishBase> listFish)
+	public void EatCheck(PlayerBase player, BoxCollider atkCollider, List<FishBase> listFish)
 	{
 		FishBase fb;
 		for (int i = listFish.Count - 1; i >= 0; --i)
@@ -136,11 +136,12 @@ public class FishManager : MonoBehaviour
 			}
 		}
 	}
-	public void EatEnemyCheck(PlayerBase player, BoxCollider atkCollider)
+	public List<FishBase> EatEnemyCheck(PlayerBase player, BoxCollider atkCollider)
 	{
 		
 		List<FishBase> listFish = GetEnemiesInRange(player, player.transform.position, BattleConst.instance.RobotVision);
 		EatCheck(player, atkCollider, listFish);
+		return listFish;
 	}
 
 	public List<FishBase> GetEnemiesInRange(FishBase me, Vector3 pos, Vector2 range)

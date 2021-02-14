@@ -61,6 +61,7 @@ public class FishBase : MonoBehaviour
     protected Animator animator = null;
     public Transform transModel = null;
     protected Renderer[] renderers = null;
+    protected List<MaterialPropertyBlock> mpbs;
     public BoxCollider colliderBody;
     public ActionType actionStep;
     public AudioSource audioSource;
@@ -200,6 +201,14 @@ public class FishBase : MonoBehaviour
         go = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
         transModel = go.transform;
         renderers = transModel.GetComponentsInChildren<Renderer>();
+        mpbs = new List<MaterialPropertyBlock>();
+        MaterialPropertyBlock materialPropertyBlock;
+        foreach (var note in renderers)
+        {
+            materialPropertyBlock = new MaterialPropertyBlock();
+            note.GetPropertyBlock(materialPropertyBlock);
+            mpbs.Add(materialPropertyBlock);
+        }
         transform.position = GetBornPosition();
 
         audioSource = SoundManager.CreateAudioSource(gameObject);
@@ -305,10 +314,12 @@ public class FishBase : MonoBehaviour
         BuffUpdate();
         AquaticCheck();
         PoisonRingCheck();
+        MoveInit();
         MoveUpdate();
 
     }
-
+    protected virtual void MoveInit()
+    { }
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
@@ -380,19 +391,19 @@ public class FishBase : MonoBehaviour
 
     protected virtual float SetAlpha(float alpha)
     {
-        GameObjectUtil.SetActive(transModel.gameObject, alpha > 0);
+        bool isActive = alpha > 0;
+        GameObjectUtil.SetActive(transModel.gameObject, isActive);
         if (lifeGauge && isBecameInvisible)
         {
-            GameObjectUtil.SetActive(lifeGauge.gameObject, alpha > 0);
+            GameObjectUtil.SetActive(lifeGauge.gameObject, isActive);
         }
+        if (!isActive) { return 0f; }
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
-        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        foreach (Renderer renderer in renderers)
+        for (int i = 0; i < renderers.Length; ++i)
         {
-            renderer.GetPropertyBlock( mpb );
-            mpb.SetFloat("_Alpha", alpha);
-            renderer.SetPropertyBlock(mpb);
+            mpbs[i].SetFloat("_Alpha", alpha);
+            renderers[i].SetPropertyBlock(mpbs[i]);
         }
         return alpha; 
     }
@@ -421,53 +432,8 @@ public class FishBase : MonoBehaviour
         }
     }
 
-    protected void AquaticCheck()
+    protected virtual void AquaticCheck()
     {
-        if (!isBecameInvisible) { return; }
-        
-        canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
-        if ((actionWaitCnt + uid) % 3 != 0) { return; }
-        // 在水草里恢复血量
-        if (BattleManagerGroup.GetInstance().aquaticManager.IsInAquatic(this) && canStealthRemainingTime <= 0f)
-        {
-            if (!beforeInAquatic)
-            {
-                inAquaticHealCnt = 0;
-            }
-            beforeInAquatic = true;
-            inAquaticTime += Time.deltaTime;
-        }
-        else
-        {
-
-            inAquaticTime = 0;
-            beforeInAquatic = false;
-        }
-
-        if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
-        {
-            inAquaticHealCnt++;
-            int healLife = (int)(BattleConst.instance.AquaticHeal * (float)lifeMax);
-            healLife = Mathf.Min(lifeMax - life, healLife);
-            Heal(healLife);
-            if (fishType == FishType.Player)
-            {
-                PlayerModel.Instance.MissionActionTriggerAdd(6, healLife);
-            }
-        }
-
-        // 在水草里透明
-        float stealthAlpha = 1f;
-        switch (fishType)
-        {
-            case FishType.Player:
-                stealthAlpha = 0.3f;
-                break;
-            case FishType.PlayerRobot:
-                stealthAlpha = 0f;
-                break;
-        }
-        SetAlpha(beforeInAquatic || isStealth ? stealthAlpha : 1f);
     }
 
     // 毒圈判定

@@ -7,10 +7,13 @@ using UnityEngine.UI;
 using TimerModule;
 using System;
 using NetWorkModule;
+using UnityEngine.Audio;
 
 public class UIHome : UIBase
 {
     static public UIHome Instance { private set; get; }
+
+    public AudioMixer audioMixer;
 
     // FaceIcon
     public Text textPlayerName;
@@ -56,6 +59,7 @@ public class UIHome : UIBase
         Instance = this;
         textGoldPool.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
+        SetSoundValue();
     }
     public override void Init()
     {
@@ -72,6 +76,16 @@ public class UIHome : UIBase
 
         FetchGoldPool();
     }
+    public void SetSoundValue()
+    {
+        audioMixer.SetFloat("BgmValue", AppConst.BgmValue);
+        audioMixer.SetFloat("SeValue", AppConst.SeValue);
+    }
+    public void SetPowerMode()
+    {
+        Application.targetFrameRate = AppConst.IsEco == 1 ? 30 : 60;
+    }
+
     public void FetchGoldPool()
     {
         NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);

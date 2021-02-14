@@ -39,12 +39,12 @@ public class PlayerRobotBase : PlayerBase
         changeVectorRemainingTime -= Time.deltaTime;
 
         // 搜索附近的鱼
-        List<FishBase> listFish = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
-
+        var listFish = new List<FishBase>(fishBasesInRange);
         // 判定是否有白名单的鱼
         bool hasWhiteFish = false;
+        Vector3 myPos = transform.position;
         // 是否在视野外？
-        bool isEyeOver = BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position);
+        bool isEyeOver = BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - myPos);
         
         for (int i = listFish.Count - 1; i >= 0; --i)
         {
@@ -108,7 +108,7 @@ public class PlayerRobotBase : PlayerBase
         }
 
         // 按距离升序排序
-        listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, transform.position) - Vector3.Distance(b.transform.position, transform.position)); });
+        listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, myPos) - Vector3.Distance(b.transform.position, myPos)); });
         listFindedFish = listFish;
         if (listFish.Count > 0)
         {
@@ -156,25 +156,16 @@ public class PlayerRobotBase : PlayerBase
         fishSkill.CalcAI();
         base.CustomUpdate();
     }
+    
     protected bool GotoAquatic()
     {
-        List<Transform> listTransAquatic = new List<Transform>( BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic);
-        for (int i = listTransAquatic.Count - 1; i >= 0; --i)
-        {
-            if (listTransAquatic[i].position.sqrMagnitude > Mathf.Pow(GetSafeRudius(), 2))
-            {
-                listTransAquatic.RemoveAt(i);
-            }
-        }
-        if (listTransAquatic.Count <= 0) { return false; }
-        listTransAquatic.Sort((a, b) => { return (int)(Vector3.Distance(transform.position, a.position) - Vector3.Distance(transform.position, b.position)); });
-        Vector3 targetPos = new Vector3(listTransAquatic[0].transform.position.x, 0f, listTransAquatic[0].transform.position.z);
-        if (Vector3.Distance(targetPos, transform.position) < BattleConst.instance.AquaticRange)
+        
+        if (beforeInAquatic)
         {
             data.moveSpeed = 0.01f;
         }
 
-        MoveToTarget(targetPos);
+        MoveToTarget(closestAquatic);
         return true;
     }
     public override bool Heal(int value)
@@ -186,7 +177,7 @@ public class PlayerRobotBase : PlayerBase
     protected virtual void CalcMoveAction()
     {
         
-        if ((actionWaitCnt + uid) % 2 != 0) { return; }
+        if ((actionWaitCnt + uid) % 4 != 0) { return; }
         // 当血量过低时，去找水草回血
         if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
         {

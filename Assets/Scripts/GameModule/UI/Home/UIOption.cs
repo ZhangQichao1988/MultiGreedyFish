@@ -28,6 +28,7 @@ public class UIOption : UIBase
     public Text textNickName;
     public Slider sliderBgmValue;
     public Slider sliderSeValue;
+    public Toggle isEco;
     public GameObject goLanguageSelectFullBg;
 
     string setNickName;
@@ -38,9 +39,15 @@ public class UIOption : UIBase
         goLanguageSelectFullBg.SetActive(false);
         textPlayerID.text = PlayerModel.Instance.playerId.ToString();
         textNickName.text = PlayerModel.Instance.player.Nickname;
-        int languageModeIndex = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
-        sliderBgmValue.value = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
-        sliderSeValue.value = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
+        int languageModeIndex = (int)AppConst.languageMode;
+        sliderBgmValue.value = AppConst.BgmValue;
+        sliderSeValue.value = AppConst.SeValue;
+        isEco.isOn = AppConst.IsEco == 1;
+        isEco.onValueChanged.AddListener(isOn => 
+        {
+            AppConst.IsEco = isOn ? 1 : 0;
+            UIHome.Instance.SetPowerMode();
+        } );
         foreach (var note in languageModes)
         {
             languageSelect.options.Add(new Dropdown.OptionData(note.languageValue));
@@ -62,11 +69,13 @@ public class UIOption : UIBase
     }
     public void SetBgmValue(float n)
     {
-        audioMixer.SetFloat("BgmValue", n);
+        AppConst.BgmValue = n;
+        UIHome.Instance.SetSoundValue();
     }
     public void SetSeValue(float n)
     {
-        audioMixer.SetFloat("SeValue", n);
+        AppConst.SeValue = n;
+        UIHome.Instance.SetSoundValue();
     }
     // 通知开关
     public void SetNoticeEnable(bool n)
@@ -99,5 +108,13 @@ public class UIOption : UIBase
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P9_RESPONSE);
         var res = response as P9_Response;
         PlayerModel.Instance.player.Nickname = setNickName;
+    }
+
+    public override void Hide()
+    {
+        PlayerPrefs.SetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
+        PlayerPrefs.SetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
+        PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionIsEco, AppConst.IsEco);
+        base.Hide();
     }
 }

@@ -5,7 +5,7 @@ using TimerModule;
 using System;
 using IFix.Core;
 using System.IO;
-
+using UnityEngine.Audio;
 
 public class Intro : MonoBehaviour
 {
@@ -22,6 +22,7 @@ public class Intro : MonoBehaviour
 
     [NonSerialized]
     public FireBaseController FireBaseCtrl;
+
 
     static BlUIManager uiManager;
 
@@ -46,7 +47,7 @@ public class Intro : MonoBehaviour
 
         Screen.orientation = ScreenOrientation.AutoRotation;//再设置为允许自动旋转
     }
-
+    
     public void Awake()
     {
         if (Instance == null)
@@ -55,12 +56,11 @@ public class Intro : MonoBehaviour
         }
         SetLandscape();
 
-        // 设置语言
+        // 设置读取
         AppConst.languageMode = (LanguageDataTableProxy.LanguageMode)PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionLangauge, (int)AppConst.languageMode);
-       
-        // 设置音量
         AppConst.BgmValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
         AppConst.SeValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
+        AppConst.IsEco = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionIsEco, AppConst.IsEco);
 
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -110,7 +110,7 @@ public class Intro : MonoBehaviour
         }
         else
         {
-            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, "检查是否有更新...");
+            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, LanguageDataTableProxy.GetText(100)) ;
             UpdateFlowController.StartUpdateFlow(StartLogin);
         }
     }

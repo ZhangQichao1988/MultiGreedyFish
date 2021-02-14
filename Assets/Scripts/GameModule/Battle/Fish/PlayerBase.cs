@@ -24,6 +24,9 @@ public class PlayerBase : FishBase
 	public FishSkillBase fishSkill { get; private set; }
 
 
+	protected List<FishBase> fishBasesInRange;
+	protected Vector3 closestAquatic;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -43,12 +46,17 @@ public class PlayerBase : FishBase
 		{
 			CreateNameplate(data.name);
 		}
+		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{
 		bool ret = base.Damage(dmg, hitmanTrans);
 		if (ret)
 		{
+			if (fishType == FishType.Player)
+			{
+				StartCoroutine(Vibrate(VibrationMng.VibrationType.Normal));
+			}
 			animator.SetTrigger("Damage");
 		}
 		return ret;
@@ -96,7 +104,11 @@ public class PlayerBase : FishBase
 				curDir = transform.forward;
 		}
 	}
-
+	protected override void MoveInit()
+	{
+		if ((actionWaitCnt + uid) % 4 != 0) { return; }
+		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
+	}
 	protected override void MoveUpdate()
 	{
 		switch (actionStep)
@@ -115,7 +127,6 @@ public class PlayerBase : FishBase
 				DieWait();
 				break;
 		}
-
 	}
 
     public override void CustomUpdate()
@@ -162,7 +173,7 @@ public class PlayerBase : FishBase
 		base.MoveUpdate();
 
 		// 吞噬
-		BattleManagerGroup.GetInstance().fishManager.EatEnemyCheck(this, colliderMouth);
+		BattleManagerGroup.GetInstance().fishManager.EatCheck(this, colliderMouth, fishBasesInRange);
 
 		// 吃珍珠判定
 		EatPearlCheck();
@@ -177,6 +188,15 @@ public class PlayerBase : FishBase
 	{
 		BattleManagerGroup.GetInstance().shellManager.EatPearl(this);
 	}
+	IEnumerator Vibrate(VibrationMng.VibrationType vibrationType)
+	{
+#if UNITY_ANDROID && !UNITY_EDITOR
+		yield return new WaitForSeconds(0.15f);
+#endif
+		VibrationMng.ShortVibration(vibrationType);
+		yield return null;
+
+	}
 	public void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
@@ -189,7 +209,6 @@ public class PlayerBase : FishBase
 		{
 			if(fishType == FishType.Player)
 			{   // 任务相关
-				VibrationMng.ShortVibration();
 				int actionId = 0;
 				switch (fish.originalData.fishId)
 				{
@@ -226,6 +245,7 @@ public class PlayerBase : FishBase
 	}
 	public virtual void Eat(float fishLevel)
 	{
+		
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
 		this.battleLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
 		//fishLevel += fish.fishLevel * 0.1f;
@@ -241,9 +261,11 @@ public class PlayerBase : FishBase
 		animator.SetTrigger("Eat");
 		if (isBecameInvisible)
 		{
+			VibrationMng.VibrationType vibrationType = VibrationMng.VibrationType.Short;
 			if (fishLevel > 5)
 			{
 				BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
+				vibrationType = VibrationMng.VibrationType.Normal;
 			}
 			else if (fishLevel > 1)
 			{
@@ -252,6 +274,10 @@ public class PlayerBase : FishBase
 			else
 			{
 				BattleEffectManager.CreateEffect(2, lifeGauge.dmgExpLocation.transform);
+			}
+			if (fishType == FishType.Player)
+			{
+				StartCoroutine(Vibrate(vibrationType));
 			}
 		}
         
@@ -267,6 +293,77 @@ public class PlayerBase : FishBase
 		// 战斗结果检测
 		BattleManagerGroup.GetInstance().inGameUIPanel.CheckBattleEnd();
 	}
+	protected override void AquaticCheck()
+	{
+		if (!isBecameInvisible) { return; }
 
+		canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
+		Vector3 myPos = transform.position;
+		if ((actionWaitCnt + uid) % 4 != 0) 
+		{
+			List<Transform> listTransAquatic = new List<Transform>(BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic);
+			float minDistance = float.MaxValue;
+			float distance;
+			closestAquatic = Vector3.zero;
+			Vector3 tmpPos;
+			for (int i = 0; i < listTransAquatic.Count; ++i)
+			{
+				tmpPos = listTransAquatic[i].position;
+				if (tmpPos.sqrMagnitude > Mathf.Pow(GetSafeRudius(), 2))
+				{ continue; }
+				distance = Vector3.Distance(myPos, tmpPos);
+				if (distance < minDistance)
+				{
+					minDistance = distance;
+					closestAquatic = tmpPos;
+				}
+			}
+		}
+		
+
+		// 在水草里恢复血量
+		if (closestAquatic != Vector3.zero && 
+			Vector3.Distance(closestAquatic, myPos) <= BattleConst.instance.AquaticRange && 
+			canStealthRemainingTime <= 0f)
+		{
+			if (!beforeInAquatic)
+			{
+				inAquaticHealCnt = 0;
+			}
+			beforeInAquatic = true;
+			inAquaticTime += Time.deltaTime;
+		}
+		else
+		{
+
+			inAquaticTime = 0;
+			beforeInAquatic = false;
+		}
+
+		if (beforeInAquatic && inAquaticTime >= inAquaticHealCnt * BattleConst.instance.AquaticHealCoolTime)
+		{
+			inAquaticHealCnt++;
+			int healLife = (int)(BattleConst.instance.AquaticHeal * (float)lifeMax);
+			healLife = Mathf.Min(lifeMax - life, healLife);
+			Heal(healLife);
+			if (fishType == FishType.Player)
+			{
+				PlayerModel.Instance.MissionActionTriggerAdd(6, healLife);
+			}
+		}
+
+		// 在水草里透明
+		float stealthAlpha = 1f;
+		switch (fishType)
+		{
+			case FishType.Player:
+				stealthAlpha = 0.3f;
+				break;
+			case FishType.PlayerRobot:
+				stealthAlpha = 0f;
+				break;
+		}
+		SetAlpha(beforeInAquatic || isStealth ? stealthAlpha : 1f);
+	}
 
 }

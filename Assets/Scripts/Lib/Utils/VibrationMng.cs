@@ -5,13 +5,27 @@ using System.Runtime.InteropServices;
 
 public static class VibrationMng
 {
+    public enum VibrationType
+    {
+        Short,
+        Normal,
+    };
     // 振動
-    public static void ShortVibration()
+    public static void ShortVibration(VibrationType vibrationType)
     {
         if (SystemInfo.supportsVibration)
         {
-            PlaySystemSound(1519);
-            Vibrate(3);
+            switch (vibrationType)
+            {
+                case VibrationType.Short:
+                    PlaySystemSound(1519);
+                    Vibrate(20);
+                    break;
+                case VibrationType.Normal:
+                    PlaySystemSound(1520);
+                    Vibrate(35);
+                    break;
+            }
         }
     }
 

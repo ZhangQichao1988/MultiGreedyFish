@@ -71,7 +71,6 @@ public class UIBase : MonoBehaviour
     {
         
     }
-
     public virtual void Show()
     {
         if (root != null)

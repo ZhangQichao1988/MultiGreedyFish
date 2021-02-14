@@ -685,9 +685,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: 
-    4: 
-    7: 
+    1: CONSOLE_ENABLE
+    4: CONSOLE_ENABLE
+    7: CONSOLE_ENABLE
   platformArchitecture:
     iPhone: 1
   scriptingBackend:

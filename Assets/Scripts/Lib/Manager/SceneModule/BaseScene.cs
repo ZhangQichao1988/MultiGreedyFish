@@ -94,12 +94,12 @@ public class BaseScene
         // 隐藏所有UI
         foreach (var note in dicUI.Values)
         {
-            note.gameObject.SetActive(false);
+            if (note.isActiveAndEnabled) { note.Hide(); }
         }
 
         if (dicUI.ContainsKey(uiName))
         {
-            dicUI[uiName].gameObject.SetActive(true);
+            dicUI[uiName].Show();
             dicUI[uiName].OnEnter(parms);
             return dicUI[uiName];
         }

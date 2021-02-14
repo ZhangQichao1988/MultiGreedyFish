@@ -4269,6 +4269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6812c597f3f0c4f43b1ae1fef73b52cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 843ae87f2fe2f8c49843689a274e730d, type: 2}
   textPlayerName: {fileID: 2723743248378741214}
   imgPlayerFaceIcon: {fileID: 3106891487403563623}
   sliderRankProcess: {fileID: 7896619691530082689}

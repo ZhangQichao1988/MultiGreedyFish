@@ -37,18 +37,19 @@ public class AquaticManager : MonoBehaviour
         }
 #endif
     }
-    public bool IsInAquatic(FishBase fish)
-	{
-		for (int i = 0; i < listTransAquatic.Count; ++i)
-		{
-			//if (!listTransAquatic[i].gameObject.activeSelf) { continue; }
+ //   public bool IsInAquatic(FishBase fish)
+	//{
+	//	Vector3 myPos = fish.transform.position;
+	//	for (int i = 0; i < listTransAquatic.Count; ++i)
+	//	{
+	//		//if (!listTransAquatic[i].gameObject.activeSelf) { continue; }
 
-			float distance = Vector3.Distance(listTransAquatic[i].position, fish.transform.position);
-			if (distance <= BattleConst.instance.AquaticRange)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+	//		float distance = Vector3.Distance(listTransAquatic[i].position, myPos);
+	//		if (distance <= BattleConst.instance.AquaticRange)
+	//		{
+	//			return true;
+	//		}
+	//	}
+	//	return false;
+	//}
 }
