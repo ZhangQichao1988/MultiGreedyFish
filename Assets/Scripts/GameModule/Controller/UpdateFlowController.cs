@@ -55,6 +55,7 @@ public class UpdateFlowController
 
             PlayerPrefs.SetString(CURRENT_VERSION, currVersion);
             PlayerPrefs.Save();
+            BaseDataTableProxyMgr.ResetCache();
             finishCb();
         }, ()=>{
             if (retryTime-- < 0)

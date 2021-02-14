@@ -110,7 +110,7 @@ public class Intro : MonoBehaviour
         }
         else
         {
-            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, LanguageDataTableProxy.GetText(100)) ;
+            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, LanguageDataTableProxy.GetText(100, "")) ;
             UpdateFlowController.StartUpdateFlow(StartLogin);
         }
     }

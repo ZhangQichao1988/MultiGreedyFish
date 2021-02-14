@@ -20,13 +20,13 @@ public class LanguageDataTableProxy : BaseDataTableProxy<LanguageDataTable, Lang
 		JP
 	};
 
-	static public string GetText(int Id)
+	static public string GetText(int Id, string defaultText = null)
 	{
 		var data = LanguageDataTableProxy.Instance.GetDataById(Id);
 		// Debug.Assert(data != null, "not found id:" + Id);
 		if (data == null)
 		{
-			return Id.ToString();
+			return defaultText == null ? Id.ToString() : defaultText;
 		}
 		switch (AppConst.languageMode)
 		{

@@ -33,6 +33,12 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
         Cached();
     }
 
+    public void ResetCache()
+    {
+        hasCached = false;
+        Cached();
+    }
+
     public virtual void Cached()
     {
         if (!hasCached)
@@ -46,6 +52,11 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
             else
             {
                 string jsonText = ReadFromLocalStorage(tableName);
+                if (jsonText == null)
+                {
+                    Debug.LogError("Master Data is not exist");
+                    return;
+                }
                 entity = JsonUtility.FromJson<T>(jsonText);
             }
 
@@ -70,6 +81,10 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
     private string ReadFromLocalStorage(string tableName)
     {
         string localFileName = Path.Combine( AppConst.MasterSavedPath, tableName.Replace("JsonData/", "") + ".json.enc");
+        if (!File.Exists(localFileName))
+        {
+            return null;
+        }
         byte[] fileBytes = File.ReadAllBytes(localFileName);
         ZipHelper.DesMasterFile(fileBytes);
         return System.Text.Encoding.UTF8.GetString(fileBytes);
@@ -82,7 +97,7 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
 
     public V GetDataById(int id)
     {
-        return content.ContainsKey(id) ? content[id] : null;
+        return (content != null && content.ContainsKey(id)) ? content[id] : null;
     }
 
     public void Destory()
@@ -139,6 +154,14 @@ public static class BaseDataTableProxyMgr
                 proxyDic[name].Destory();
                 proxyDic.Remove(name);
             }
+        }
+    }
+
+    public static void ResetCache()
+    {
+        foreach (var proxy in proxyDic.Values)
+        {
+            proxy.ResetCache();
         }
     }
 
