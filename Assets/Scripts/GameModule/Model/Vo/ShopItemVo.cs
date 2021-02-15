@@ -48,6 +48,13 @@ public class ShopItemVo
         }
     }
 
+    public int OriginPrice
+    {
+        get
+        {
+            return pbItems.OriginPrice;
+        }
+    }
     public int Price
     {
         get

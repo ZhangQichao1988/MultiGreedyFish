@@ -43,8 +43,20 @@ namespace NetWorkModule
         /// <summary>
         /// 推定時刻 (unixtime 秒)
         /// </summary>
-        public static long? Timestamp => MilliTimestamp / 1000;
-        //public static long Timestamp { get { return 1612674349; } }
+        //public static long? Timestamp => MilliTimestamp / 1000;
+        public static long? Timestamp { 
+            get 
+            {
+                if (AppConst.ServerType == ESeverType.OFFLINE)
+                {
+                    return 1612674349;
+                }
+                else
+                { 
+                    return MilliTimestamp / 1000;
+                }
+            } 
+        }
         /// <summary>
         /// 時差を取得する
         /// </summary>
