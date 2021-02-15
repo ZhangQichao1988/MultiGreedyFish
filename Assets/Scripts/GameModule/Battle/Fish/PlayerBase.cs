@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -31,9 +32,9 @@ public class PlayerBase : FishBase
 	{
 		base.Awake();
 	}
-	public override void Init(int fishId, string playerName, float level)
+	public override void Init(int fishId, string playerName, float level, string rankIcon = "")
 	{
-		base.Init(fishId, playerName, level);
+		base.Init(fishId, playerName, level, rankIcon);
 
 		fishSkill = FishSkillBase.SetFishSkill(this, fishBaseData.skillId);
 
@@ -44,7 +45,7 @@ public class PlayerBase : FishBase
 		Debug.Assert(colliderMouth, "colliderMouth is not found.");
 		if (showNameplate)
 		{
-			CreateNameplate(data.name);
+			CreateNameplate(data.name, level, rankIcon);
 		}
 		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}
@@ -61,17 +62,24 @@ public class PlayerBase : FishBase
 		}
 		return ret;
 	}
-	protected void CreateNameplate(string playerName)
+	protected void CreateNameplate(string playerName, float level, string rankIcon)
 	{
 		// 生命条
-		string prefabPath = fishType == FishType.Player ? AssetPathConst.playerNameplatePrefabPath : AssetPathConst.robotNameplatePrefabPath;
-		GameObject go = ResourceManager.LoadSync(prefabPath, typeof(GameObject)).Asset as GameObject;
+		GameObject go = ResourceManager.LoadSync(AssetPathConst.playerNameplatePrefabPath, typeof(GameObject)).Asset as GameObject;
 		goNamepalte = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
 		//UnityEngine.Object obj = Resources.Load(prefabPath);
 		//goNamepalte = Wrapper.CreateGameObject(obj, transform) as GameObject;
-		Text textName = goNamepalte.GetComponentInChildren<Text>();
+		var textName = goNamepalte.transform.Find("TextName").GetComponent<Text>();
 		textName.text = playerName;
+		if (fishType == FishType.PlayerRobot)
+		{
+			textName.color = Color.red;
+		}
 
+		goNamepalte.transform.Find("TextLevel").GetComponent<Text>().text = "Lv" + level;
+
+		var spAsset = ResourceManager.LoadSync<Sprite>(Path.Combine(AssetPathConst.texCommonPath, rankIcon));
+		goNamepalte.transform.Find("ImageRank").GetComponent<Image>().sprite = spAsset.Asset;
 	}
 
 	protected override float SetAlpha(float alpha)

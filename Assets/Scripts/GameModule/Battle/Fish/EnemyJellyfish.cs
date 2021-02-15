@@ -20,7 +20,7 @@ public class EnemyJellyfish : EnemyBase
     float changeStatusRemainingTime = 0f;
     Status statusChangeStep = Status.Cloud;
 
-    public override void Init(int fishId, string playerName, float level)
+    public override void Init(int fishId, string playerName, float level, string rankIcon = "")
     {
         base.Init(fishId, playerName, level);
 

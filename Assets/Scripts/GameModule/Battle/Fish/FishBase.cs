@@ -180,7 +180,7 @@ public class FishBase : MonoBehaviour
     }
 
 
-    public virtual void Init(int fishId, string playerName, float level)
+    public virtual void Init(int fishId, string playerName, float level, string rankIcon = "")
     {
         foreach (BuffBase bb in listBuff)
         { bb.Destory(); }

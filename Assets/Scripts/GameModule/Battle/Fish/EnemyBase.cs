@@ -8,7 +8,7 @@ public class EnemyBase : FishBase
     public override FishType fishType { get { return FishType.Enemy; } }
 
 
-    public override void Init(int fishId, string playerName, float level)
+    public override void Init(int fishId, string playerName, float level, string rankIcon = "")
     {
         base.Init(fishId, playerName, level);
         localScaleBackup = transform.localScale.x;

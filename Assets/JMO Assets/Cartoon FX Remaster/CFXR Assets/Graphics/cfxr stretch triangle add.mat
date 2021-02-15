@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3500
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -49,6 +49,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BlendingType: 3
+    - _CFXR_DITHERED_SHADOWS: 0
+    - _CFXR_OVERLAYBLEND: 0
+    - _CFXR_OVERLAYTEX: 0
     - _Cutoff: 0.1
     - _DissolveSmooth: 0.1
     - _Distort: 0.1
@@ -61,7 +64,6 @@ Material:
     - _OVERLAYBLEND: 0
     - _OVERLAYTEX: 0
     - _ReceivedShadowsStrength: 0.5
-    - _CFXR_DITHERED_SHADOWS: 0
     - _SecondColorSmooth: 0.2
     - _ShadowStrength: 1
     - _SingleChannel: 1
@@ -73,6 +75,7 @@ Material:
     - _UseDissolve: 1
     - _UseEF: 0
     - _UseFB: 0
+    - _UseFontColor: 0
     - _UseGradientMap: 0
     - _UseSP: 1
     - _UseSecondColor: 0

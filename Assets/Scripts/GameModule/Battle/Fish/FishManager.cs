@@ -13,11 +13,14 @@ public class FishManager : MonoBehaviour
 	}
     public PlayerBase CreatePlayer()
 	{
+		FishRankLevelDataInfo currentRankData, nextRankData;
+		FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel, out currentRankData, out nextRankData);
+
 		GameObject go = Wrapper.CreateEmptyGameObject(transform, "Player");
 		PlayerBase player = go.AddComponent<PlayerBase>();
 		listFish.Add(player);
 		var playerData = PlayerModel.Instance.player;
-		player.Init(playerData.FightFish, playerData.Nickname, PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishLevel);
+		player.Init(playerData.FightFish, playerData.Nickname, PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishLevel, currentRankData.rankIcon);
 		player.gameObject.AddComponent<AudioListener>();
 		//GameObjectUtil.InstantiatePrefab(ResourceManager.LoadSync<GameObject>("SoundManager").Asset, player.gameObject);
 
@@ -43,13 +46,20 @@ public class FishManager : MonoBehaviour
 		var aryRobotDataInfo = StageModel.Instance.aryRobotDataInfo;
 		int robotCount = aryRobotDataInfo.Length;
 		var listName = RobotNameDataTableProxy.Instance.GetAllRobotNames();
+
+		FishRankLevelDataInfo currentRankData, nextRankData;
+		FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel, out currentRankData, out nextRankData);
+
+
 		for (int i = 0; i < robotCount; ++i)
 		{
 			pBRobotDataInfo = aryRobotDataInfo[i];
 			goEnemy = Wrapper.CreateEmptyGameObject(transform);
 			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
 			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level);
+
+			int rankId = Mathf.Clamp( currentRankData.ID + Wrapper.GetRandom(-2, 2), 1, 20);
+			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level, FishRankLevelDataTableProxy.Instance.GetDataById(rankId).rankIcon);
 			prb.SetRobot(playerRobotAiBaseData, pBRobotDataInfo.Growth/100f);
 			listFish.Add(prb);
 		}

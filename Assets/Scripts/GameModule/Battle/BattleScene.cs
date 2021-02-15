@@ -17,7 +17,6 @@ public class BattleScene : BaseScene
         // Other
         m_sceneData.Add(new SceneData(){ Resource = Path.Combine(AssetPathConst.lifeGaugePath), ResType = typeof(GameObject) });
         m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.playerNameplatePrefabPath), ResType = typeof(GameObject) });
-        m_sceneData.Add(new SceneData() { Resource = Path.Combine(AssetPathConst.robotNameplatePrefabPath), ResType = typeof(GameObject) });
 
         // 鱼
         List<int> listFishIds = new List<int>();

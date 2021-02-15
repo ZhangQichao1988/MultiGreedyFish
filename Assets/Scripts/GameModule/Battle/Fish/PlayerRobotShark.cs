@@ -7,7 +7,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	public override FishType fishType { get { return FishType.Boss; } }
 	protected override bool showLifeGauge { get { return true; } }
 	protected override bool showNameplate { get { return false; } }
-	public override void Init(int fishId, string playerName, float level)
+	public override void Init(int fishId, string playerName, float level, string rankIcon = "")
 	{
 		base.Init(fishId, playerName, level);
 		battleLevel = 10;
