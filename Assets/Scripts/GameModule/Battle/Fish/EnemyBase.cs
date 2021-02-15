@@ -43,7 +43,7 @@ public class EnemyBase : FishBase
 
     protected override Vector3 GetBornPosition()
     {
-        return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, BattleManagerGroup.GetInstance().poisonRing.GetSafeRudius() - 5f);
+        return Quaternion.AngleAxis(Wrapper.GetRandom(0f, 360f), Vector3.up) * Vector3.right * Wrapper.GetRandom(0f, BattleConst.instance.BgBound - 5f);
     }
     protected void DieWait()
     {
