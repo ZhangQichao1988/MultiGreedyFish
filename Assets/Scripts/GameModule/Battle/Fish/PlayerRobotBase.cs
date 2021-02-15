@@ -74,7 +74,7 @@ public class PlayerRobotBase : PlayerBase
                 continue;
             }
             // 剔除毒圈的敌人
-            if (listFish[i].transform.position.sqrMagnitude > Mathf.Pow(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
+            if (listFish[i].transform.position.sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
             {
                 listFish.RemoveAt(i);
                 continue;
@@ -177,7 +177,7 @@ public class PlayerRobotBase : PlayerBase
     protected virtual void CalcMoveAction()
     {
         
-        if ((actionWaitCnt + uid) % 4 != 0) { return; }
+        if ((actionWaitCnt + uid) % 3 != 0) { return; }
         // 当血量过低时，去找水草回血
         if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
         {
@@ -224,7 +224,7 @@ public class PlayerRobotBase : PlayerBase
             hitWallCoolTime -= Time.deltaTime;
             if (hitWallCoolTime < 0)
             {
-                if (transform.position.sqrMagnitude >= Math.Pow(GetSafeRudius(), 2) - 5)
+                if (transform.position.sqrMagnitude >= BattleManagerGroup.GetInstance().poisonRing.GetSafeRudiusPow() - 5)
                 {
                     Dir = -Dir;
                     hitWallCoolTime = hitWallCoolTimeMax;

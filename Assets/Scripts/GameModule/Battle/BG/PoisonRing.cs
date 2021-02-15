@@ -11,7 +11,10 @@ public class PoisonRing : MonoBehaviour
 	MeshRenderer[] aryMeshRenderer = null;
 
 	float poisonRange;
+	float poisonRangePow;
 	float beforePoisonRange;
+	float safeRudius;
+	float safeRudiusPow;
 
 	public void Init()
 	{
@@ -21,7 +24,10 @@ public class PoisonRing : MonoBehaviour
 	private void Awake()
 	{
 		poisonRange = BattleConst.instance.PoisonRingRadiusMax;
+		poisonRangePow = Mathf.Pow(poisonRange, 2);
 		beforePoisonRange = BattleConst.instance.PoisonRingRadiusMax;
+		ApplyPublicPoisonRange();
+
 		listMaterialBlock.Clear();
 		aryMeshRenderer = GetComponentsInChildren<MeshRenderer>();
 		MaterialPropertyBlock materialProperty;
@@ -35,12 +41,19 @@ public class PoisonRing : MonoBehaviour
 	public void CustomUpdate()
 	{
 		poisonRange -= Time.deltaTime * ConfigTableProxy.Instance.GetDataByKey("PoisonRingScaleSpeed");
+		poisonRangePow = Mathf.Pow(poisonRange, 2);
+
 		if (beforePoisonRange - poisonRange > 0.03f)
 		{
 			ApplyRange( poisonRange);
 		}
+		ApplyPublicPoisonRange();
 	}
-
+	void ApplyPublicPoisonRange()
+	{
+		safeRudius = Mathf.Min(poisonRange, BattleConst.instance.BgBound);
+		safeRudiusPow = Mathf.Pow(safeRudius, 2);
+	}
 	void ApplyRange(float value)
 	{
 		poisonRange = Math.Max(value, BattleConst.instance.PoisonRingRadiusMin);
@@ -56,5 +69,17 @@ public class PoisonRing : MonoBehaviour
 	public float GetPoisonRange()
 	{
 		return poisonRange;
+	}
+	public float GetPoisonRangePow()
+	{
+		return poisonRangePow;
+	}
+	public float GetSafeRudius()
+	{
+		return safeRudius;
+	}
+	public float GetSafeRudiusPow()
+	{
+		return safeRudiusPow;
 	}
 }

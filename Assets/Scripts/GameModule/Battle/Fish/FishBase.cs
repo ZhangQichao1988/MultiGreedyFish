@@ -384,10 +384,7 @@ public class FishBase : MonoBehaviour
         size = Mathf.Min(3f, size);
         transform.localScale = new Vector3(size, size, size);
     }
-    protected float GetSafeRudius()
-    {
-        return Mathf.Min(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), BattleConst.instance.BgBound);
-    }
+    
 
     protected virtual float SetAlpha(float alpha)
     {
@@ -415,12 +412,10 @@ public class FishBase : MonoBehaviour
     protected virtual void SetBrightness(float brightness)
     {
         brightness = Mathf.Clamp(brightness, 0f, 1f);
-        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        foreach (Renderer renderer in renderers)
+        for (int i = 0; i < renderers.Length; ++i)
         {
-            renderer.GetPropertyBlock(mpb);
-            mpb.SetColor("_MulColor", Color.white * brightness);
-            renderer.SetPropertyBlock(mpb);
+            mpbs[i].SetColor("_MulColor", Color.white * brightness);
+            renderers[i].SetPropertyBlock(mpbs[i]);
         }
     }
         void SetCastShadowMode(bool isEnable)
@@ -442,7 +437,7 @@ public class FishBase : MonoBehaviour
         if (actionStep == ActionType.Die ||
             actionStep == ActionType.Born ||
             actionStep == ActionType.BornWaitting) { return; }
-        if (transform.position.sqrMagnitude >= Math.Pow(BattleManagerGroup.GetInstance().poisonRing.GetPoisonRange(), 2))
+        if (transform.position.sqrMagnitude >= BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
         {
             if (!beforeInPoisonRing)
             {

@@ -106,7 +106,7 @@ public class PlayerBase : FishBase
 	}
 	protected override void MoveInit()
 	{
-		if ((actionWaitCnt + uid) % 4 != 0) { return; }
+		if ((actionWaitCnt + uid) % 3 != 0) { return; }
 		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}
 	protected override void MoveUpdate()
@@ -181,7 +181,7 @@ public class PlayerBase : FishBase
 
 	protected override Vector3 GetBornPosition()
 	{
-		return Quaternion.AngleAxis(uid * 36f, Vector3.up) * Vector3.right * (GetSafeRudius() - 5f);
+		return Quaternion.AngleAxis(uid * 36f, Vector3.up) * Vector3.right * (BattleManagerGroup.GetInstance().poisonRing.GetSafeRudius() - 5f);
 	}
 
 	protected void EatPearlCheck()
@@ -299,7 +299,7 @@ public class PlayerBase : FishBase
 
 		canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
 		Vector3 myPos = transform.position;
-		if ((actionWaitCnt + uid) % 4 != 0) 
+		if ((actionWaitCnt + uid) % 3 != 0) 
 		{
 			List<Transform> listTransAquatic = new List<Transform>(BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic);
 			float minDistance = float.MaxValue;
@@ -309,7 +309,7 @@ public class PlayerBase : FishBase
 			for (int i = 0; i < listTransAquatic.Count; ++i)
 			{
 				tmpPos = listTransAquatic[i].position;
-				if (tmpPos.sqrMagnitude > Mathf.Pow(GetSafeRudius(), 2))
+				if (new Vector2(tmpPos.x, tmpPos.z).sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
 				{ continue; }
 				distance = Vector3.Distance(myPos, tmpPos);
 				if (distance < minDistance)
@@ -319,7 +319,8 @@ public class PlayerBase : FishBase
 				}
 			}
 		}
-		
+
+		closestAquatic = new Vector3(closestAquatic.x, 0f, closestAquatic.z);
 
 		// 在水草里恢复血量
 		if (closestAquatic != Vector3.zero && 

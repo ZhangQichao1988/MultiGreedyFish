@@ -13,6 +13,10 @@ public class InGameUIPanel : MonoBehaviour
     public Transform TouchStickTF;
     public CameraFollow cameraFollow;
     public Image skillGauge;
+
+    static readonly float miniMapPointSize = 5f;
+    public RectTransform transMiniMap, transPlayerPoint;
+    private float miniMapSize;
     //public GameObject goSkillBtnDisable;
     //public GameObject goSkillBtnEnable;
 
@@ -30,14 +34,21 @@ public class InGameUIPanel : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("skill_enable", false);
 
+        miniMapSize = transMiniMap.sizeDelta.x / 2 - miniMapPointSize;
     }
 
     public void Init()
 	{
         Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
         cameraFollow.Target = Player.transform;
+        ApplyMiniMap();
     }
-
+    private void ApplyMiniMap()
+    {
+        Vector3 myPos = Player.transform.position;
+        transPlayerPoint.anchoredPosition = new Vector2(myPos.x / BattleConst.instance.BgBound * miniMapSize,
+                                                                                    myPos.z / BattleConst.instance.BgBound * miniMapSize);
+    }
 	public void TouchDown(BaseEventData data)
     {
         //TouchTF.gameObject.SetActive(true);
@@ -142,6 +153,7 @@ public class InGameUIPanel : MonoBehaviour
         skillGauge.fillAmount = Player.fishSkill.currentGauge;
         animator.SetBool("skill_enable", Player.fishSkill.currentGauge >= 1f);
 
+        ApplyMiniMap();
     }
     public void PlayerRunSkill()
     {

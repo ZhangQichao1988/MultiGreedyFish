@@ -96,7 +96,7 @@ public class EnemyJellyfish : EnemyBase
                 {
                     animator.SetTrigger("Jump");
                     SoundManager.PlaySE(8, audioSource);
-                    if (transform.position.sqrMagnitude >= Math.Pow(GetSafeRudius(), 2) - 5)
+                    if (transform.position.sqrMagnitude >= BattleManagerGroup.GetInstance().poisonRing.GetSafeRudiusPow() - 5)
                     {
                         Dir = -Dir;
                     }
