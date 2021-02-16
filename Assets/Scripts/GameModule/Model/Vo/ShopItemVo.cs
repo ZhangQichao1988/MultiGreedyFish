@@ -48,11 +48,11 @@ public class ShopItemVo
         }
     }
 
-    public int OriginPrice
+    public float PriceRate
     {
         get
         {
-            return pbItems.OriginPrice;
+            return pbItems.PriceRate;
         }
     }
     public int Price

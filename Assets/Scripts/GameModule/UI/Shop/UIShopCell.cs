@@ -30,21 +30,35 @@ public class UIShopCell : SimpleScrollingCell
         {
             images.sprite = assRef.Asset;
         }
-        priceText.text = shopData.Paytype == PayType.Money ? shopData.BillingFormatPrice : shopData.Price.ToString();
-        float proceOff = float.Parse(priceText.text);
-        if (proceOff < shopData.OriginPrice)
+
+        int proceOff;
+        if (shopData.Paytype == PayType.Money)
         {
-            proceOff = 1 - proceOff / shopData.OriginPrice;
-            offText.text = (int)(proceOff * 100) + "%OFF";
-            originPriceText.text = shopData.OriginPrice.ToString();
+            priceText.text = shopData.BillingFormatPrice;
+            proceOff = int.Parse(shopData.BillingPrice);
+            buyIcon.gameObject.SetActive(false);
+        }
+        else
+        {
+            priceText.text = shopData.Price.ToString();
+            proceOff = shopData.Price;
+            buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
+                                        ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
+
+        }
+
+        if ( shopData.PriceRate < 1)
+        {
+            proceOff = (int)((float)proceOff / shopData.PriceRate);
+            offText.text = (int)((1-shopData.PriceRate) * 100) + "%OFF";
+            originPriceText.text = proceOff.ToString();
         }
         else
         {
             offText.gameObject.SetActive(false);
             originPriceText.gameObject.SetActive(false);
         }
-        buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
-                                                ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
+
 
 
         buyBtn.interactable = shopData.CanBuy;

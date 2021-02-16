@@ -122,52 +122,52 @@ public static partial class ProtocolReflection {
           "CgZmaXNoSWQYASABKAUSEQoJZmlzaExldmVsGAIgASgFEhQKDGZpc2hDb3Vu",
           "dE1heBgDIAEoBRIUCgxmaXNoQ291bnRNaW4YBCABKAUiTgoPUEJSb2JvdERh",
           "dGFJbmZvEg4KBmZpc2hJZBgBIAEoBRIMCgRhaUlkGAIgASgFEg0KBWxldmVs",
-          "GAMgASgFEg4KBmdyb3d0aBgEIAEoBSLZAQoSU2hvcEJpbGxpbmdQcm9kdWN0",
-          "EgoKAmlkGAEgAigFEhkKB3BheVR5cGUYAiACKA4yCC5QYXlUeXBlEhMKC29y",
-          "aWdpblByaWNlGAMgAigFEg0KBXByaWNlGAQgAigFEg8KB3Jlc0ljb24YBSAC",
-          "KAkSJwoOcHJvZHVjdENvbnRlbnQYBiADKAsyDy5Qcm9kdWN0Q29udGVudBIZ",
-          "ChFwbGF0Zm9ybVByb2R1Y3RJZBgHIAEoCRIjCgtsaW1pdERldGFpbBgIIAEo",
-          "CzIOLkxpbWl0ZWREZXRhaWwiMwoOUHJvZHVjdENvbnRlbnQSDgoGYW1vdW50",
-          "GAEgAigFEhEKCWNvbnRlbnRJZBgCIAIoBSJoCg1MaW1pdGVkRGV0YWlsEg8K",
-          "B2JlZ2luQXQYASABKAQSEQoJc2FsZUVuZEF0GAIgASgEEhMKC2xpbWl0QW1v",
-          "dW50GAMgASgFEh4KFmxpbWl0ZWRSZW1haW5pbmdBbW91bnQYBCABKAUiQgoQ",
-          "QmlsbGluZ1N0YXRlSW5mbxILCgNhZ2UYASABKAUSIQoZY3VycmVudE1vbnRo",
-          "UHVyY2hhc2VQcmljZRgCIAIoBSI/CgpSYW5rUGxheWVyEhAKCHBsYXllcklk",
-          "GAEgAigDEhAKCG5pY2tuYW1lGAIgAigJEg0KBXNjb3JlGAMgAigDKlAKE0Rh",
-          "dGFMaW5rU2VydmljZVR5cGUSCAoEbm9uZRAAEg8KC2dhbWVfY2VudGVyEAES",
-          "DwoLZ29vZ2xlX3BsYXkQAhINCglhcHBfbG92aW4QAypNCgtNaXNzaW9uVHlw",
-          "ZRIRCg1NSVNTSU9OX0RBSUxZEAASEgoOTUlTU0lPTl9XRUVLTFkQARIXChNN",
-          "SVNTSU9OX0FDSElFVkVNRU5UEAIq3gMKCU1lc3NhZ2VJZBIPCgtNSURfU1RB",
-          "UlRVUBAAEhsKF01JRF9MT0dJTl9XSVRIX1BMQVRGT1JNEAESDQoJTUlEX0xP",
-          "R0lOEAISFwoTTUlEX0dFVF9QTEFZRVJfSU5GTxADEhMKD01JRF9TVEFSVF9G",
-          "SUdIVBAEEhEKDU1JRF9FTkRfRklHSFQQBRIWChJNSURfU0VUX0ZJR0hUX0ZJ",
-          "U0gQBhIVChFNSURfRklTSF9MRVZFTF9VUBAHEhIKDk1JRF9CT1VORFNfR0VU",
-          "EAgSEwoPTUlEX01PRElGWV9OSUNLEAkSFAoQTUlEX0dFVF9TSE9QSVRFTRAK",
-          "EhIKDk1JRF9CVVlfTk9STUFMEAsSDwoLTUlEX1BSRV9QQVkQDBIPCgtNSURf",
-          "QlVZX1BBWRANEhkKFU1JRF9HT0xEX1BPT0xfUkVGUkVTSBAOEhUKEU1JRF9E",
-          "RUJVR19CSUxMSU5HEA8SFwoTTUlEX1JBTktfUkVXQVJEX0dFVBAQEhkKFU1J",
-          "RF9VUERBVEVfR09PTERfUE9PTBASEhUKEU1JRF9SQU5LX0xJU1RfR0VUEBMS",
-          "GAoUTUlEX01JU1NJT05fTElTVF9HRVQQFBIYChRNSURfQ09NUExFVEVfTUlT",
-          "U0lPThAVKm0KClN0YXR1c0NvZGUSBgoCT0sQABIKCgZGQUlMRUQQARITCg9T",
-          "SUdOQVRVUkVfRVJST1IQAhIXChNLSUNLX09VVF9MT0dJTl9VU0VSEAMSCwoH",
-          "Q0FVVElPThAEEhAKDENMSUVOVF9FUlJPUhAFKiQKClBCUmFua1R5cGUSCgoG",
-          "V0VFS0xZEAASCgoGU0VBU09OEAEqHgoIU2hvcFR5cGUSCQoFb3RoZXIQARIH",
-          "CgNwYXkQAiorCgdQYXlUeXBlEggKBGdvbGQQARILCgdkaWFtb25kEAISCQoF",
-          "bW9uZXkQAypBCgtDb250ZW50VHlwZRIMCghjRGlhbW9uZBABEgkKBWNHb2xk",
-          "EAISCgoGY1BpZWNlEAMSDQoJY1RyZWFzdXJlEAQqOwoGRGV2aWNlEhEKDW5v",
-          "dF9zcGVjaWZpZWQQARIJCgVhcHBsZRACEgoKBmdvb2dsZRADEgcKA2FsbBAE",
-          "KuADChVQdXJjaGFzZWRSZXNwb25zZUtpbmQSGgoWcHJvY2Vzc2VkX3N1Y2Nl",
-          "c3NmdWxseRABEhUKEWFscmVhZHlfcHJvY2Vzc2VkEAISCwoHdW5rbm93bhAD",
-          "EhEKDWludmFsaWRfcGFyYW0QChITCg9pbnZhbGlkX3JlY2VpcHQQCxIiCh5m",
-          "YWlsZWRfdG9fY29ubmVjdF90b19hcHBfc3RvcmUQDBIWChJpbnZhbGlkX3By",
-          "b2R1Y3RfaWQQDRIXChNyZWNlaXB0X291dF9vZl9kYXRlEA4SIAocdW5leHBl",
-          "Y3RlZF92YWxpZGFzdGlvbl9lcnJvchATEhoKFmNvbnRlbnRfZGVsaXZlcl9m",
-          "YWlsZWQQHhITCg9wcm9kdWN0X2V4cGlyZWQQKBIYChRmYWlsdXJlX3ByZV9w",
-          "dXJjaGFzZRBlEhIKDWRlYnVnX3N1Y2Nlc3MQyAESEgoNZGVidWdfdW5rbm93",
-          "bhDJARIcChdkZWJ1Z19hbHJlYWR5X3Byb2Nlc3NlZBDKARIcChdkZWJ1Z19k",
-          "ZWZlcnJlZF9wdXJjaGFzZRDLARIiCh1kZWJ1Z19mYWlsZWRfY29ubmVjdF9w",
-          "bGF0Zm9ybRDMARIVChBkZWJ1Z19vbGRfcmVjaXBlEM0BQjAKIGNvbS5jaGFv",
-          "LmZpc2guc2VydmVyLmZpc2hnYW1lLnBiQglQQk1lc3NhZ2WIAQA="));
+          "GAMgASgFEg4KBmdyb3d0aBgEIAEoBSLXAQoSU2hvcEJpbGxpbmdQcm9kdWN0",
+          "EgoKAmlkGAEgAigFEhkKB3BheVR5cGUYAiACKA4yCC5QYXlUeXBlEhEKCXBy",
+          "aWNlUmF0ZRgDIAIoAhINCgVwcmljZRgEIAIoBRIPCgdyZXNJY29uGAUgAigJ",
+          "EicKDnByb2R1Y3RDb250ZW50GAYgAygLMg8uUHJvZHVjdENvbnRlbnQSGQoR",
+          "cGxhdGZvcm1Qcm9kdWN0SWQYByABKAkSIwoLbGltaXREZXRhaWwYCCABKAsy",
+          "Di5MaW1pdGVkRGV0YWlsIjMKDlByb2R1Y3RDb250ZW50Eg4KBmFtb3VudBgB",
+          "IAIoBRIRCgljb250ZW50SWQYAiACKAUiaAoNTGltaXRlZERldGFpbBIPCgdi",
+          "ZWdpbkF0GAEgASgEEhEKCXNhbGVFbmRBdBgCIAEoBBITCgtsaW1pdEFtb3Vu",
+          "dBgDIAEoBRIeChZsaW1pdGVkUmVtYWluaW5nQW1vdW50GAQgASgFIkIKEEJp",
+          "bGxpbmdTdGF0ZUluZm8SCwoDYWdlGAEgASgFEiEKGWN1cnJlbnRNb250aFB1",
+          "cmNoYXNlUHJpY2UYAiACKAUiPwoKUmFua1BsYXllchIQCghwbGF5ZXJJZBgB",
+          "IAIoAxIQCghuaWNrbmFtZRgCIAIoCRINCgVzY29yZRgDIAIoAypQChNEYXRh",
+          "TGlua1NlcnZpY2VUeXBlEggKBG5vbmUQABIPCgtnYW1lX2NlbnRlchABEg8K",
+          "C2dvb2dsZV9wbGF5EAISDQoJYXBwX2xvdmluEAMqTQoLTWlzc2lvblR5cGUS",
+          "EQoNTUlTU0lPTl9EQUlMWRAAEhIKDk1JU1NJT05fV0VFS0xZEAESFwoTTUlT",
+          "U0lPTl9BQ0hJRVZFTUVOVBACKt4DCglNZXNzYWdlSWQSDwoLTUlEX1NUQVJU",
+          "VVAQABIbChdNSURfTE9HSU5fV0lUSF9QTEFURk9STRABEg0KCU1JRF9MT0dJ",
+          "ThACEhcKE01JRF9HRVRfUExBWUVSX0lORk8QAxITCg9NSURfU1RBUlRfRklH",
+          "SFQQBBIRCg1NSURfRU5EX0ZJR0hUEAUSFgoSTUlEX1NFVF9GSUdIVF9GSVNI",
+          "EAYSFQoRTUlEX0ZJU0hfTEVWRUxfVVAQBxISCg5NSURfQk9VTkRTX0dFVBAI",
+          "EhMKD01JRF9NT0RJRllfTklDSxAJEhQKEE1JRF9HRVRfU0hPUElURU0QChIS",
+          "Cg5NSURfQlVZX05PUk1BTBALEg8KC01JRF9QUkVfUEFZEAwSDwoLTUlEX0JV",
+          "WV9QQVkQDRIZChVNSURfR09MRF9QT09MX1JFRlJFU0gQDhIVChFNSURfREVC",
+          "VUdfQklMTElORxAPEhcKE01JRF9SQU5LX1JFV0FSRF9HRVQQEBIZChVNSURf",
+          "VVBEQVRFX0dPT0xEX1BPT0wQEhIVChFNSURfUkFOS19MSVNUX0dFVBATEhgK",
+          "FE1JRF9NSVNTSU9OX0xJU1RfR0VUEBQSGAoUTUlEX0NPTVBMRVRFX01JU1NJ",
+          "T04QFSptCgpTdGF0dXNDb2RlEgYKAk9LEAASCgoGRkFJTEVEEAESEwoPU0lH",
+          "TkFUVVJFX0VSUk9SEAISFwoTS0lDS19PVVRfTE9HSU5fVVNFUhADEgsKB0NB",
+          "VVRJT04QBBIQCgxDTElFTlRfRVJST1IQBSokCgpQQlJhbmtUeXBlEgoKBldF",
+          "RUtMWRAAEgoKBlNFQVNPThABKh4KCFNob3BUeXBlEgkKBW90aGVyEAESBwoD",
+          "cGF5EAIqKwoHUGF5VHlwZRIICgRnb2xkEAESCwoHZGlhbW9uZBACEgkKBW1v",
+          "bmV5EAMqQQoLQ29udGVudFR5cGUSDAoIY0RpYW1vbmQQARIJCgVjR29sZBAC",
+          "EgoKBmNQaWVjZRADEg0KCWNUcmVhc3VyZRAEKjsKBkRldmljZRIRCg1ub3Rf",
+          "c3BlY2lmaWVkEAESCQoFYXBwbGUQAhIKCgZnb29nbGUQAxIHCgNhbGwQBCrg",
+          "AwoVUHVyY2hhc2VkUmVzcG9uc2VLaW5kEhoKFnByb2Nlc3NlZF9zdWNjZXNz",
+          "ZnVsbHkQARIVChFhbHJlYWR5X3Byb2Nlc3NlZBACEgsKB3Vua25vd24QAxIR",
+          "Cg1pbnZhbGlkX3BhcmFtEAoSEwoPaW52YWxpZF9yZWNlaXB0EAsSIgoeZmFp",
+          "bGVkX3RvX2Nvbm5lY3RfdG9fYXBwX3N0b3JlEAwSFgoSaW52YWxpZF9wcm9k",
+          "dWN0X2lkEA0SFwoTcmVjZWlwdF9vdXRfb2ZfZGF0ZRAOEiAKHHVuZXhwZWN0",
+          "ZWRfdmFsaWRhc3Rpb25fZXJyb3IQExIaChZjb250ZW50X2RlbGl2ZXJfZmFp",
+          "bGVkEB4SEwoPcHJvZHVjdF9leHBpcmVkECgSGAoUZmFpbHVyZV9wcmVfcHVy",
+          "Y2hhc2UQZRISCg1kZWJ1Z19zdWNjZXNzEMgBEhIKDWRlYnVnX3Vua25vd24Q",
+          "yQESHAoXZGVidWdfYWxyZWFkeV9wcm9jZXNzZWQQygESHAoXZGVidWdfZGVm",
+          "ZXJyZWRfcHVyY2hhc2UQywESIgodZGVidWdfZmFpbGVkX2Nvbm5lY3RfcGxh",
+          "dGZvcm0QzAESFQoQZGVidWdfb2xkX3JlY2lwZRDNAUIwCiBjb20uY2hhby5m",
+          "aXNoLnNlcnZlci5maXNoZ2FtZS5wYkIJUEJNZXNzYWdliAEA"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::DataLinkServiceType), typeof(global::MissionType), typeof(global::MessageId), typeof(global::StatusCode), typeof(global::PBRankType), typeof(global::ShopType), typeof(global::PayType), typeof(global::ContentType), typeof(global::Device), typeof(global::PurchasedResponseKind), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -219,7 +219,7 @@ public static partial class ProtocolReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::PBPlayer), global::PBPlayer.Parser, new[]{ "PlayerId", "Nickname", "FaceIconId", "RegTime", "LoginLast", "Diamond", "Gold", "Power", "PowerAt", "FightFish", "AryPlayerFishInfo", "GettedBoundsId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBEnemyDataInfo), global::PBEnemyDataInfo.Parser, new[]{ "FishId", "FishLevel", "FishCountMax", "FishCountMin" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PBRobotDataInfo), global::PBRobotDataInfo.Parser, new[]{ "FishId", "AiId", "Level", "Growth" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ShopBillingProduct), global::ShopBillingProduct.Parser, new[]{ "Id", "PayType", "OriginPrice", "Price", "ResIcon", "ProductContent", "PlatformProductId", "LimitDetail" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ShopBillingProduct), global::ShopBillingProduct.Parser, new[]{ "Id", "PayType", "PriceRate", "Price", "ResIcon", "ProductContent", "PlatformProductId", "LimitDetail" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ProductContent), global::ProductContent.Parser, new[]{ "Amount", "ContentId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LimitedDetail), global::LimitedDetail.Parser, new[]{ "BeginAt", "SaleEndAt", "LimitAmount", "LimitedRemainingAmount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BillingStateInfo), global::BillingStateInfo.Parser, new[]{ "Age", "CurrentMonthPurchasePrice" }, null, null, null, null),
@@ -11599,7 +11599,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     _hasBits0 = other._hasBits0;
     id_ = other.id_;
     payType_ = other.payType_;
-    originPrice_ = other.originPrice_;
+    priceRate_ = other.priceRate_;
     price_ = other.price_;
     resIcon_ = other.resIcon_;
     productContent_ = other.productContent_.Clone();
@@ -11661,27 +11661,27 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     _hasBits0 &= ~2;
   }
 
-  /// <summary>Field number for the "originPrice" field.</summary>
-  public const int OriginPriceFieldNumber = 3;
-  private readonly static int OriginPriceDefaultValue = 0;
+  /// <summary>Field number for the "priceRate" field.</summary>
+  public const int PriceRateFieldNumber = 3;
+  private readonly static float PriceRateDefaultValue = 0F;
 
-  private int originPrice_;
+  private float priceRate_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public int OriginPrice {
-    get { if ((_hasBits0 & 4) != 0) { return originPrice_; } else { return OriginPriceDefaultValue; } }
+  public float PriceRate {
+    get { if ((_hasBits0 & 4) != 0) { return priceRate_; } else { return PriceRateDefaultValue; } }
     set {
       _hasBits0 |= 4;
-      originPrice_ = value;
+      priceRate_ = value;
     }
   }
-  /// <summary>Gets whether the "originPrice" field is set</summary>
+  /// <summary>Gets whether the "priceRate" field is set</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool HasOriginPrice {
+  public bool HasPriceRate {
     get { return (_hasBits0 & 4) != 0; }
   }
-  /// <summary>Clears the value of the "originPrice" field</summary>
+  /// <summary>Clears the value of the "priceRate" field</summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void ClearOriginPrice() {
+  public void ClearPriceRate() {
     _hasBits0 &= ~4;
   }
 
@@ -11791,7 +11791,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     }
     if (Id != other.Id) return false;
     if (PayType != other.PayType) return false;
-    if (OriginPrice != other.OriginPrice) return false;
+    if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PriceRate, other.PriceRate)) return false;
     if (Price != other.Price) return false;
     if (ResIcon != other.ResIcon) return false;
     if(!productContent_.Equals(other.productContent_)) return false;
@@ -11805,7 +11805,7 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     int hash = 1;
     if (HasId) hash ^= Id.GetHashCode();
     if (HasPayType) hash ^= PayType.GetHashCode();
-    if (HasOriginPrice) hash ^= OriginPrice.GetHashCode();
+    if (HasPriceRate) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PriceRate);
     if (HasPrice) hash ^= Price.GetHashCode();
     if (HasResIcon) hash ^= ResIcon.GetHashCode();
     hash ^= productContent_.GetHashCode();
@@ -11832,9 +11832,9 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
       output.WriteRawTag(16);
       output.WriteEnum((int) PayType);
     }
-    if (HasOriginPrice) {
-      output.WriteRawTag(24);
-      output.WriteInt32(OriginPrice);
+    if (HasPriceRate) {
+      output.WriteRawTag(29);
+      output.WriteFloat(PriceRate);
     }
     if (HasPrice) {
       output.WriteRawTag(32);
@@ -11867,8 +11867,8 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     if (HasPayType) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) PayType);
     }
-    if (HasOriginPrice) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(OriginPrice);
+    if (HasPriceRate) {
+      size += 1 + 4;
     }
     if (HasPrice) {
       size += 1 + pb::CodedOutputStream.ComputeInt32Size(Price);
@@ -11900,8 +11900,8 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
     if (other.HasPayType) {
       PayType = other.PayType;
     }
-    if (other.HasOriginPrice) {
-      OriginPrice = other.OriginPrice;
+    if (other.HasPriceRate) {
+      PriceRate = other.PriceRate;
     }
     if (other.HasPrice) {
       Price = other.Price;
@@ -11938,8 +11938,8 @@ public sealed partial class ShopBillingProduct : pb::IMessage<ShopBillingProduct
           PayType = (global::PayType) input.ReadEnum();
           break;
         }
-        case 24: {
-          OriginPrice = input.ReadInt32();
+        case 29: {
+          PriceRate = input.ReadFloat();
           break;
         }
         case 32: {
