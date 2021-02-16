@@ -429,14 +429,14 @@ public static class BillingManager
         string errMsg = "";
         if (err.IsBillingNotSupported)
         {
-            errMsg = LanguageDataTableProxy.GetText(50001);
+            errMsg = LanguageDataTableProxy.GetText(60001);
             //_("PageShop_not_billing_supported")
         }
 
         if (err.IsCancelled)
         {
 
-            errMsg = LanguageDataTableProxy.GetText(50002);
+            errMsg = LanguageDataTableProxy.GetText(60002);
             // _("PageShop_billing_purchase_cancel")
         }
         
@@ -444,19 +444,19 @@ public static class BillingManager
         {   
             if (err.PurchasedResponseKind == Jackpot.Billing.PurchasedResponseKind.ReceiptOutOfDate)
             {
-                errMsg =  LanguageDataTableProxy.GetText(50003);
+                errMsg =  LanguageDataTableProxy.GetText(60003);
                 //errMsg = _("PageShop_billing_expired_product")
             }
             else
             {
-                errMsg =  LanguageDataTableProxy.GetText(50004);
+                errMsg =  LanguageDataTableProxy.GetText(60004);
                 // errMsg = _("PageShop_billing_failure_platform_connect_shop")
             }
         }
 
         if (errMsg == "")
         {
-            errMsg = LanguageDataTableProxy.GetText(50007);
+            errMsg = LanguageDataTableProxy.GetText(60007);
 
             //  取得できないときの汎用エラー
             // errMsg = _("PageShop_billing_failure_purchase_shop")

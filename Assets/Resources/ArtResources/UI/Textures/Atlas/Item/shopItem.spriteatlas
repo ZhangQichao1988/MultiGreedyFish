@@ -38,7 +38,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 26651ea2c9ea10542b9c612c6e1e33bc, type: 3}
   - {fileID: 21300000, guid: 13b1e823f8ca1674ab8f78fe660ba95c, type: 3}
   - {fileID: 21300000, guid: 8a75da33df231d34e9462b738ff8b69e, type: 3}
-  - {fileID: 21300000, guid: b8ad00d45c5cb4b54a8992e95fe29fec, type: 3}
   - {fileID: 21300000, guid: 7d2faa750909990489b23f85485e1bbb, type: 3}
   - {fileID: 21300000, guid: dcf7f606d1fa15345b476f3b811cfa77, type: 3}
   - {fileID: 21300000, guid: 1c3bd536488ab475086936a2d9004ee2, type: 3}
@@ -59,7 +58,6 @@ SpriteAtlas:
   - item_piece008
   - icon_coin_01
   - icon_diamond_03
-  - shopItem001
   - item_trea003
   - item_piece011
   - item_trea001

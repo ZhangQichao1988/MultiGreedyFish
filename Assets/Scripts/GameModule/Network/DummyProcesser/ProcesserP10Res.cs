@@ -24,7 +24,7 @@ public class ProcesserP10Res : BaseDummyProcesser<P10_Request, P10_Response>
         {  
             for (int i = 0; i < 10; i++)
             {
-                var shopItem = new ShopBillingProduct(){ Id = 1, PayType = PayType.Diamond, Price = 1, PriceRate = 0.5f };
+                var shopItem = new ShopBillingProduct(){ Id = 1, PayType = PayType.Diamond, Price = 1, PriceRate = 1f };
                 shopItem.ProductContent.Add(new ProductContent(){ Amount = 1, ContentId = 1});
                 res.ProductList.Add(shopItem);
             }

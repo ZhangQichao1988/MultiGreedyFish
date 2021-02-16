@@ -10,7 +10,8 @@ public class UIShopCell : SimpleScrollingCell
     public Button buyBtn;
 
     public Text priceText;
-    public Text originPriceText;
+    public Text priceMoneyText;
+    public Text priceRateText;
     public Text offText;
 
     public Image images;
@@ -34,13 +35,17 @@ public class UIShopCell : SimpleScrollingCell
         int proceOff;
         if (shopData.Paytype == PayType.Money)
         {
-            priceText.text = shopData.BillingFormatPrice;
+            priceMoneyText.text = shopData.BillingFormatPrice;
+            priceMoneyText.gameObject.SetActive(true);
+            priceText.gameObject.SetActive(false);
             proceOff = int.Parse(shopData.BillingPrice);
             buyIcon.gameObject.SetActive(false);
         }
         else
         {
             priceText.text = shopData.Price.ToString();
+            priceText.gameObject.SetActive(true);
+            priceMoneyText.gameObject.SetActive(false);
             proceOff = shopData.Price;
             buyIcon.sprite = shopData.Paytype == PayType.Gold ? ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_goldcoin").Asset :
                                         ResourceManager.LoadSync<Sprite>(AssetPathConst.texCommonPath + "UI_diamond").Asset;
@@ -51,12 +56,12 @@ public class UIShopCell : SimpleScrollingCell
         {
             proceOff = (int)((float)proceOff / shopData.PriceRate);
             offText.text = (int)((1-shopData.PriceRate) * 100) + "%OFF";
-            originPriceText.text = proceOff.ToString();
+            priceRateText.text = proceOff.ToString();
         }
         else
         {
             offText.gameObject.SetActive(false);
-            originPriceText.gameObject.SetActive(false);
+            priceRateText.gameObject.SetActive(false);
         }
 
 
