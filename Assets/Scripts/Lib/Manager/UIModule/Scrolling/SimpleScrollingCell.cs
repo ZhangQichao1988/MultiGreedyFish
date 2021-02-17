@@ -8,4 +8,9 @@ public class SimpleScrollingCell : MonoBehaviour
     {
 
     }
+
+    public virtual void Refresh()
+    {
+
+    }
 }

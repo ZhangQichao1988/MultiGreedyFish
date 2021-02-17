@@ -51,6 +51,13 @@ public class SimpleScrollingView : MonoBehaviour
         
     }
 
+    public void Refresh()
+    {
+        cells.ForEach(t=>{
+            t.Refresh();
+        });
+    }
+
     public void Clear()
     {
         foreach (var item in cells)

@@ -71,6 +71,15 @@ public class UIShopCell : SimpleScrollingCell
 
     }
 
+    public override void Refresh()
+    {
+        if (shopData != null)
+        {
+            buyBtn.interactable = shopData.CanBuy;
+            banObject.SetActive(!shopData.CanBuy);
+        }
+    }
+
     public void OnCellClick()
     {
         if (shopData.CanBuy)

@@ -49,14 +49,26 @@ public class UIShop : UIBase
         InitContent((ShopType)type);
     }
 
+    void OnBuyEnd(System.Object vo)
+    {
+        //购买完成刷新cell
+        if (scrollingView != null)
+        {
+            scrollingView.Refresh();
+        }
+    }
+
     protected override void OnRegisterEvent()
     {
         ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_SHOP_LIST, OnGetted);
+        ShopModel.Instance.AddListener(ShopEvent.ON_GETTED_ITEM, OnBuyEnd);
+        
     }
 
     protected override void OnUnRegisterEvent()
     {
         ShopModel.Instance.RemoveListener(ShopEvent.ON_GETTED_SHOP_LIST, OnGetted);
+        ShopModel.Instance.RemoveListener(ShopEvent.ON_GETTED_ITEM, OnBuyEnd);
     }
 
     //void AllActiveBtn()
