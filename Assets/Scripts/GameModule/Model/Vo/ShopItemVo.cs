@@ -81,7 +81,7 @@ public class ShopItemVo
             }
             else
             {
-                return pbItems.LimitDetail.LimitedRemainingAmount > 0;
+                return pbItems.LimitDetail.LimitAmount < 0 || pbItems.LimitDetail.LimitedRemainingAmount > 0;
             }
         }
     }

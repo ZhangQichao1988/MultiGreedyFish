@@ -18,7 +18,7 @@ public class UIMissionItem : SimpleScrollingCell
 
     PBMission pBMission;
     float backupTime;
-    float remainingTime;
+    long remainingTime;
     bool isReach;
     public void Setup(PBMission pBMission)
     {
@@ -28,16 +28,16 @@ public class UIMissionItem : SimpleScrollingCell
         textProcess.text = string.Format(LanguageDataTableProxy.GetText(700), pBMission.CurrTrigger, pBMission.Trigger);
         backupTime = Time.realtimeSinceStartup;
         //remainingTime = (float)Clock.Timestamp % 86400;
-        int secTime = 0;
+        long secTime = 0;
         switch (pBMission.Type)
         {
             case MissionType.MissionDaily:
                 secTime = Clock.SecOfDay;
-                remainingTime = secTime - (float)1612662112 % secTime;
+                remainingTime = secTime - (long)Clock.Timestamp % secTime;
                 break;
             case MissionType.MissionWeekly:
                 secTime = Clock.SecOfWeek;
-                remainingTime = secTime - (float)1612662112 % secTime;
+                remainingTime = secTime - (long)Clock.Timestamp % secTime;
                 break;
             default:
                 remainingTime = 0;
@@ -69,6 +69,8 @@ public class UIMissionItem : SimpleScrollingCell
             goRewardBtn.SetActive(false);
             goMask.SetActive(false);
             textRemainingTime.gameObject.SetActive(pBMission.Type != MissionType.MissionAchievement);
+            textRemainingTime.gameObject.SetActive(true);
+
         }
 
         // 报酬图标显示
@@ -140,6 +142,7 @@ public class UIMissionItem : SimpleScrollingCell
             {
                 goMask.SetActive(true);
                 goTimeout.SetActive(true);
+                textRemainingTime.gameObject.SetActive(false);
             }
         }
 
