@@ -26,6 +26,7 @@ public class UIShopCell : SimpleScrollingCell
     {
         shopData = data as ShopItemVo;
         text.text = shopData.Name;
+
         AssetRef<Sprite> assRef = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + shopData.ResIcon);
         if (assRef != null)
         {
@@ -38,7 +39,7 @@ public class UIShopCell : SimpleScrollingCell
             priceMoneyText.text = shopData.BillingFormatPrice;
             priceMoneyText.gameObject.SetActive(true);
             priceText.gameObject.SetActive(false);
-            proceOff = int.Parse(shopData.BillingPrice);
+            proceOff = (int)float.Parse(shopData.BillingPrice);
             buyIcon.gameObject.SetActive(false);
         }
         else
@@ -64,6 +65,8 @@ public class UIShopCell : SimpleScrollingCell
             priceRateText.gameObject.SetActive(false);
         }
 
+        Debug.LogWarning("can buy item " + shopData.CanBuy);
+        Debug.LogWarningFormat("pb info {0} {1} {2}", shopData.pbItems.Id, shopData.pbItems.PlatformProductId, shopData.pbItems.LimitDetail != null ? shopData.pbItems.LimitDetail.LimitedRemainingAmount.ToString() : "null");
 
 
         buyBtn.interactable = shopData.CanBuy;
