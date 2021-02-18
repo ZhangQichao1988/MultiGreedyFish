@@ -10,11 +10,11 @@ public class UIMissionItem : SimpleScrollingCell
     public Text textProcess;
     public Text textRemainingTime;
     public Text textBody;
-    public GameObject goRewardRoot;
+    public Text textStatus;
+    public Text textGold;
     public GameObject goRewardBtn;
     public GameObject goMask;
     public GameObject goTimeout;
-    public GameObject goComplete;
 
     PBMission pBMission;
     float backupTime;
@@ -52,34 +52,28 @@ public class UIMissionItem : SimpleScrollingCell
         {
             goMask.SetActive(pBMission.IsComplete);
             goRewardBtn.SetActive(!pBMission.IsComplete);
-            goComplete.SetActive(pBMission.IsComplete);
-            textRemainingTime.text = LanguageDataTableProxy.GetText(701);
+            goMask.SetActive(pBMission.IsComplete);
+            if (pBMission.IsComplete)
+            {
+                textRemainingTime.text = LanguageDataTableProxy.GetText(708);
+                textRemainingTime.gameObject.SetActive(true);
+            }
+            else
+            {
+                textRemainingTime.gameObject.SetActive(false);
+            }
         }
         else
         {
             goMask.SetActive(false);
             goRewardBtn.SetActive(false);
-            goComplete.SetActive(false);
-            if (pBMission.Type == MissionType.MissionAchievement)
-            {
-                textRemainingTime.gameObject.SetActive(false);
-            }
+            goMask.SetActive(false);
+            textRemainingTime.gameObject.SetActive(pBMission.Type != MissionType.MissionAchievement);
         }
 
         // 报酬图标显示
-        GameObjectUtil.DestroyAllChildren(goRewardRoot);
-        var asset = ResourceManager.LoadSync<GameObject>(Path.Combine(AssetPathConst.uiRootPath, "PlayerRanking/PlayerRankingRewardItemItem"));
         var listReward = ItemDataTableProxy.GetRewardList(pBMission.Reward);
-        GameObject tmp;
-        UIPlayerRankingRewardItemItem uIPlayerRankingRewardItemItem;
-        ItemData itemData;
-        foreach (var note in listReward)
-        {
-            tmp = GameObjectUtil.InstantiatePrefab(asset.Asset, goRewardRoot);
-            uIPlayerRankingRewardItemItem = tmp.GetComponent<UIPlayerRankingRewardItemItem>();
-            itemData = ItemDataTableProxy.Instance.GetDataById(note.id);
-            uIPlayerRankingRewardItemItem.Init(itemData.resIcon, note.amount);
-        }
+        textGold.text = listReward[0].amount.ToString();
     }
     public void GetReward()
     {

@@ -36,7 +36,6 @@ public class FishBase : MonoBehaviour
         public int lifeMax;
         public int atk;
         public float moveSpeed;
-        public bool isShield;           // 护盾，不受伤害
 
         public Data(int fishId, string name, int life, int atk, float moveSpeed)
         {
@@ -46,7 +45,6 @@ public class FishBase : MonoBehaviour
             this.lifeMax = life;
             this.atk = atk;
             this.moveSpeed = moveSpeed;
-            this.isShield = false;
         }
     }
     static public uint uidCnt = 0;
@@ -131,7 +129,7 @@ public class FishBase : MonoBehaviour
     public virtual bool Damage(int dmg, Transform hitmanTrans)
     {
         if (dmgTime > 0) { return false; }
-        if (data.isShield) 
+        if (isShield) 
         {
             return false; 
         }
@@ -172,6 +170,8 @@ public class FishBase : MonoBehaviour
 
     // 是否隐身
     public bool isStealth { get; set; }
+    // 是否无敌
+    public bool isShield { get; set; }
     // 是否冰冻
     public bool isFrozen { get; set; }
     //Vector3 pos;
@@ -323,7 +323,7 @@ public class FishBase : MonoBehaviour
     void BuffUpdate()
     { 
         data.moveSpeed = originalData.moveSpeed;
-        data.isShield = originalData.isShield;
+        isShield = false;
         isFrozen = false;
         isStealth = false;
 

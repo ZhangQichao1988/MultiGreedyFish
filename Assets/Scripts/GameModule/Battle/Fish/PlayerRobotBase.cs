@@ -61,8 +61,8 @@ public class PlayerRobotBase : PlayerBase
                 listFish.RemoveAt(i);
                 continue;
             }
-            // 排除隐身的鱼
-            if (listFish[i].isStealth) 
+            // 排除隐身，无敌的鱼
+            if (listFish[i].isStealth || listFish[i].isShield) 
             {
                 listFish.RemoveAt(i);
                 continue;
@@ -149,6 +149,14 @@ public class PlayerRobotBase : PlayerBase
         else
         {
             EnemyIdle();
+        }
+    }
+    public override void Atk(FishBase fish)
+    {
+        base.Atk(fish);
+        if (fish == targetFish)
+        {   //如果咬到了就继续追
+            targetCntTime = targetCntTimeLimit;
         }
     }
     public override void CustomUpdate()

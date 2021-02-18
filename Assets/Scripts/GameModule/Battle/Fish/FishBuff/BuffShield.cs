@@ -13,7 +13,7 @@ public class BuffShield : BuffBase
     }
     public override void ApplyStatus()
     {
-        fish.data.isShield = true;
+        fish.isShield = true;
     }
 
 }

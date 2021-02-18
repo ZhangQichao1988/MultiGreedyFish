@@ -10,7 +10,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	public override void Init(int fishId, string playerName, float level, string rankIcon = "")
 	{
 		base.Init(fishId, playerName, level);
-		battleLevel = 10;
+		battleLevel = 100;
 	}
 	protected override Vector3 GetBornPosition()
 	{
@@ -60,7 +60,7 @@ public class PlayerRobotShark : PlayerRobotBase
 				continue;
 			}
 			// 排除隐身的鱼
-			if (listFish[i].isStealth)
+			if (listFish[i].isStealth || listFish[i].isShield)
 			{
 				listFish.RemoveAt(i);
 				continue;

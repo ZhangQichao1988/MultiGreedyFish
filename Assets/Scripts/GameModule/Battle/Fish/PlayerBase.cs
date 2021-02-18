@@ -205,7 +205,7 @@ public class PlayerBase : FishBase
 		yield return null;
 
 	}
-	public void Atk(FishBase fish)
+	public virtual void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
 		//remainingTime = BattleConst.instance.AttackHardTime;
@@ -236,7 +236,7 @@ public class PlayerBase : FishBase
 				PlayerModel.Instance.MissionActionTriggerAdd(actionId, 1);
 				if (fish.fishType == FishType.PlayerRobot)
 				{
-					if (data.isShield)
+					if (isShield)
 					{
 						PlayerModel.Instance.MissionActionTriggerAdd(22, 1);
 					}
