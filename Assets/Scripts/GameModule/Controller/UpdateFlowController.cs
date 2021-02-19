@@ -8,13 +8,14 @@ using NetWorkModule;
 /// </summary>
 public class UpdateFlowController
 {
-    static string CURRENT_VERSION = "CURRENT_VERSION";
+    public static string CURRENT_VERSION = "CURRENT_VERSION";
     static Action finishCb;
     static int retryTime = 3;
     public static void StartUpdateFlow(Action callback)
     {
         finishCb = callback;
         Debug.LogWarning(AppConst.HttpVersionPoint);
+
         NetWorkManager.SimpleGet<string>(AppConst.HttpVersionPoint, (str)=>{
             str = str.Trim();
             Debug.Log("Version Num " + str);

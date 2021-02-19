@@ -49,7 +49,7 @@ namespace NetWorkModule
             {
                 if (AppConst.ServerType == ESeverType.OFFLINE)
                 {
-                    return 1612674349;
+                    return 1613692770;
                 }
                 else
                 { 

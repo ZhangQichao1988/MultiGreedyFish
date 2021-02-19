@@ -88,7 +88,7 @@ public class Intro : MonoBehaviour
         }
     }
 
-    static int a = 0;
+    GameObject repairBtn;
 
     IEnumerator Start()
     {
@@ -102,7 +102,7 @@ public class Intro : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         UIManager.Init();
-        //UIBase.Open("ArtResources/UI/Prefabs/Title");
+        
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
         {
@@ -110,8 +110,15 @@ public class Intro : MonoBehaviour
         }
         else
         {
-            LoadingMgr.Show(LoadingMgr.LoadingType.Progress, LanguageDataTableProxy.GetText(100, "")) ;
-            UpdateFlowController.StartUpdateFlow(StartLogin);
+            try
+            {
+                LoadingMgr.Show(LoadingMgr.LoadingType.Progress, LanguageDataTableProxy.GetText(100, "update...")) ;
+                UpdateFlowController.StartUpdateFlow(StartLogin);
+            }
+            catch (Exception ex)
+            {
+                repairBtn = UIBase.Open("ArtResources/UI/Prefabs/Msg/RepairBtn", UIBase.UILayers.POPUP);
+            }
         }
     }
     
@@ -126,6 +133,11 @@ public class Intro : MonoBehaviour
         }
 
         UserLoginFlowController.StartLoginFlow(()=>{
+                if (repairBtn != null)
+                {
+                    Destroy(repairBtn);
+                    repairBtn = null;
+                }
                 BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
             });
     }
@@ -157,6 +169,7 @@ public class Intro : MonoBehaviour
         System.GC.Collect();
         NetWorkHandler.Dispose();
         PlayerModel.Instance.Dispose();
+        BaseDataTableProxyMgr.Destory();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Intro");
     }
 
