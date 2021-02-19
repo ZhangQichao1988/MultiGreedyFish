@@ -129,13 +129,13 @@ public class BattleResult : UIBase
     public void OnClickGetRewardAdvert()
     {
         Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
-            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
             TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
                 LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
             }, null);
         };
-        Intro.Instance.AdsController.Show();
+        
+        Intro.Instance.AdsController.Show(GameHelper.AdmobCustomGenerator(AdmobEvent.BattleReward));
     }
 
     void BackToHome()
