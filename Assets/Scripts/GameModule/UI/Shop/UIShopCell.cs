@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIShopCell : SimpleScrollingCell
 {
     public Text text;
+    public Text textReward;
 
     public Image buyIcon;
     public Button buyBtn;
@@ -26,6 +27,9 @@ public class UIShopCell : SimpleScrollingCell
     {
         shopData = data as ShopItemVo;
         text.text = shopData.Name;
+
+        string itemName = ItemDataTableProxy.GetItemName(shopData.pbItems.ProductContent[0].ContentId);
+        textReward.text = string.Format( LanguageDataTableProxy.GetText(204), itemName, shopData.pbItems.ProductContent[0].Amount);
 
         AssetRef<Sprite> assRef = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + shopData.ResIcon);
         if (assRef != null)

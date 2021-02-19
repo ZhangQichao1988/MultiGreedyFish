@@ -104,7 +104,7 @@ public class ShowTreasure : UIBase
             imageLight.gameObject.SetActive(true);
         }
         animator.SetTrigger("ShowItem");
-        textItemName.text = ItemDataTableProxy.Instance.GetItemName(mapVo.TreasureContent[showItemIndex].masterDataItem.ID);
+        textItemName.text = ItemDataTableProxy.GetItemName(mapVo.TreasureContent[showItemIndex].masterDataItem.ID);
         string imgPath = mapVo.TreasureContent[showItemIndex].masterDataItem.resIcon;
         imageItem.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + imgPath).Asset;
         textItemCount.text = "x" + mapVo.TreasureContent[showItemIndex].Amount;
