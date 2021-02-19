@@ -48,13 +48,13 @@ public class AdsController : MonoBehaviour
     }
 
     RewardedAd rewardAd;
-    public void PreLoad()
+    public void PreLoad(string customize)
     {
         if (isInited)
         {
             Debug.Log("Started to preload");
             LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
-            rewardAd = CreateAndLoadRewardedAd(appId);
+            rewardAd = CreateAndLoadRewardedAd(appId, customize);
             rewardAd.LoadAd(GetRequest());
         }
         else
@@ -68,8 +68,9 @@ public class AdsController : MonoBehaviour
         return new AdRequest.Builder().Build();
     }
 
-    public void Show()
+    public void Show(string customize = null)
     {
+        LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
         if (rewardAd != null)
         {
             if (rewardAd.IsLoaded())
@@ -78,17 +79,17 @@ public class AdsController : MonoBehaviour
             }
             else if (isLoadFailed)
             {
-                PreLoad();
+                PreLoad(customize);
             }
         }
         else
         {
             Debug.Log("have not been Loaded");
-            PreLoad();
+            PreLoad(customize);
         }
     }
 
-    private RewardedAd CreateAndLoadRewardedAd(string adUnitId)
+    private RewardedAd CreateAndLoadRewardedAd(string adUnitId, string customizeData)
     {
         RewardedAd rewardedAd = new RewardedAd(adUnitId);
 
@@ -99,6 +100,7 @@ public class AdsController : MonoBehaviour
         
         rewardedAd.SetServerSideVerificationOptions((new ServerSideVerificationOptions.Builder()).
                 SetUserId(PlayerModel.Instance.player.PlayerId.ToString()).
+                SetCustomData(customizeData).
                 Build());
 
         return rewardedAd;
@@ -110,7 +112,10 @@ public class AdsController : MonoBehaviour
         isLoadFailed = false;
         MainThreadDispatcher.Post(()=>{
             LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-            Show();
+            if (rewardAd != null)
+            {   
+                rewardAd.Show();
+            }
         });
     }
 
