@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UIShopCell : SimpleScrollingCell
 {
     public Text text;
+    public Text textReward;
 
     public Image buyIcon;
     public Button buyBtn;
@@ -25,7 +26,9 @@ public class UIShopCell : SimpleScrollingCell
     public override void UpdateData(System.Object data)
     {
         shopData = data as ShopItemVo;
-        text.text = shopData.Name;
+
+        string itemName = ItemDataTableProxy.GetItemName(shopData.pbItems.ProductContent[0].ContentId);
+        textReward.text = string.Format( LanguageDataTableProxy.GetText(204), itemName, shopData.pbItems.ProductContent[0].Amount);
 
         AssetRef<Sprite> assRef = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + shopData.ResIcon);
         if (assRef != null)
@@ -68,9 +71,7 @@ public class UIShopCell : SimpleScrollingCell
         Debug.LogWarning("can buy item " + shopData.CanBuy);
         Debug.LogWarningFormat("pb info {0} {1} {2}", shopData.pbItems.Id, shopData.pbItems.PlatformProductId, shopData.pbItems.LimitDetail != null ? shopData.pbItems.LimitDetail.LimitedRemainingAmount.ToString() : "null");
 
-
-        buyBtn.interactable = shopData.CanBuy;
-        banObject.SetActive(!shopData.CanBuy);
+        Refresh();
 
     }
 
@@ -78,12 +79,20 @@ public class UIShopCell : SimpleScrollingCell
     {
         if (shopData != null)
         {
+            if (shopData.pbItems.LimitDetail != null)
+            {
+                text.text = string.Format(shopData.Name, shopData.pbItems.LimitDetail.LimitedRemainingAmount);
+            }
+            else
+            {
+                text.text = shopData.Name;
+            }
             buyBtn.interactable = shopData.CanBuy;
             banObject.SetActive(!shopData.CanBuy);
         }
     }
 
-    public void OnCellClick()
+    public virtual void OnCellClick()
     {
         if (shopData.CanBuy)
         {

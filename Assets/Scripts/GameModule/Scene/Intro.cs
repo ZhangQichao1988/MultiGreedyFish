@@ -61,6 +61,7 @@ public class Intro : MonoBehaviour
         AppConst.BgmValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionBgmValue, AppConst.BgmValue);
         AppConst.SeValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
         AppConst.IsEco = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionIsEco, AppConst.IsEco);
+        AppConst.NotShowAdvert = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
 
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;

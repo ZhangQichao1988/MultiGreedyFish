@@ -65,7 +65,7 @@ Shader "Custom/Seabed"
                 // Unity defined keywords
                 #pragma multi_compile_fog
                 #pragma multi_compile_instancing
-
+                 
                 #include "UnlitInput.hlsl"
 
                 struct Attributes

@@ -120,7 +120,6 @@ public class BattleResult : UIBase
                 NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
             }, null);
         };
-        
         Intro.Instance.AdsController.Show(GameHelper.AdmobCustomGenerator(AdmobEvent.BattleReward));
     }
 

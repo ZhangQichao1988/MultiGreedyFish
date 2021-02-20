@@ -29,6 +29,7 @@ public class UIOption : UIBase
     public Slider sliderBgmValue;
     public Slider sliderSeValue;
     public Toggle isEco;
+    public Toggle showAdvert;
     public GameObject goLanguageSelectFullBg;
 
     string setNickName;
@@ -48,6 +49,14 @@ public class UIOption : UIBase
             AppConst.IsEco = isOn ? 1 : 0;
             UIHome.Instance.SetPowerMode();
         } );
+
+        showAdvert.isOn = AppConst.NotShowAdvert == 0;
+        showAdvert.onValueChanged.AddListener(isOn =>
+        {
+            AppConst.NotShowAdvert = isOn ? 0 : 1;
+            PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
+        });
+
         foreach (var note in languageModes)
         {
             languageSelect.options.Add(new Dropdown.OptionData(note.languageValue));

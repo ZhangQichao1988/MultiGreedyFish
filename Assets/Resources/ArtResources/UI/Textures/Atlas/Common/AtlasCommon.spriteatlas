@@ -82,6 +82,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9b90bf2e2bb986f4e943516865fba4d5, type: 3}
   - {fileID: 21300000, guid: 384c5a3ebd0346a44836f1e2c091371e, type: 3}
   - {fileID: 21300000, guid: 619d985e9400ad841af834563317e940, type: 3}
+  - {fileID: 21300000, guid: c6bd74cf03e9234428156f5379694ee7, type: 3}
   m_PackedSpriteNamesToIndex:
   - UI_radiation
   - UI_Energy
@@ -131,5 +132,6 @@ SpriteAtlas:
   - UI_RankIcon_51
   - UI_dialog_line
   - UI_RankIcon_11
+  - arrow
   m_Tag: AtlasCommon
   m_IsVariant: 0

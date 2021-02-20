@@ -31,6 +31,7 @@ public class RankBonusItem : MonoBehaviour
     [SerializeField]
     private Button rootButton;
 
+    private ItemDataTableProxy.RewardData rewardData;
     public void Refash(Status status)
     {
         if (material == null)
@@ -75,13 +76,14 @@ public class RankBonusItem : MonoBehaviour
         dataInfo = rankBonusDataInfo;
         var itemDataInfo = ItemDataTableProxy.GetRewardList(dataInfo.productContent);
         var itemData = ItemDataTableProxy.Instance.GetDataById(itemDataInfo[0].id);
+        rewardData = new ItemDataTableProxy.RewardData() { id = itemDataInfo[0].id, amount = itemDataInfo[0].amount };
         if (itemData.type == "cTreasure")
         {
-            textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID);
+            textItemName.text = ItemDataTableProxy.GetItemName(itemData.ID);
         }
         else
         {
-            textItemName.text = ItemDataTableProxy.Instance.GetItemName(itemData.ID) + "x" + itemDataInfo[0].amount;
+            textItemName.text = ItemDataTableProxy.GetItemName(itemData.ID) + "x" + itemDataInfo[0].amount;
         }
         textRankPoint.text = dataInfo.rankLevel.ToString();
 
@@ -97,9 +99,25 @@ public class RankBonusItem : MonoBehaviour
     }
     public void OnClickGetBonus()
     {
-        NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
-        NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
-
+        if (AppConst.NotShowAdvert == 0)
+        {
+            UIGetReward.Open(rewardData,
+            () =>
+            {
+                NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
+                NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
+            },
+            () =>
+            {
+                // TODO:看广告双倍奖励
+            }
+            );
+        }
+        else
+        {
+            NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
+            NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
+        }
     }
     void OnRecvGetBonus<T>(T response)
     {

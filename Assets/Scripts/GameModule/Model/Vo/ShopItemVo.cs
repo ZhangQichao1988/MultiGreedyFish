@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class ShopItemVo
 {
+    public enum Type
+    { 
+        NORMAL,
+        ADVERT_REWARD,
+    };
+
     public static int SHOP_LANG_ST_ID = 30000;
     public ShopBillingProduct pbItems;
 
@@ -17,6 +23,7 @@ public class ShopItemVo
     /// </summary>
     public bool IsVaildItem = false;
 
+    public Type type = Type.NORMAL;
     public int ID
     {
         get
@@ -35,10 +42,7 @@ public class ShopItemVo
 
     public string Name
     {
-        get
-        {
-            return LanguageDataTableProxy.GetText(SHOP_LANG_ST_ID + pbItems.Id);
-        }
+        get;set;
     }
     public string ResIcon
     {
@@ -109,7 +113,7 @@ public class ShopItemVo
     {
         var result = new ShopItemVo();
         result.pbItems = item;
-
+        result.Name = LanguageDataTableProxy.GetText(SHOP_LANG_ST_ID + item.Id);
         return result;
     }
 }

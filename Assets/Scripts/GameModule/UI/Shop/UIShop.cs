@@ -11,6 +11,8 @@ public class UIShop : UIBase
     [SerializeField]
     SimpleScrollingView scrollingView;
 
+    [SerializeField]
+    UIShopCellAdvert cellAdvert;
 
     private GameObject btnTagDiamond;
     //private GameObject selTagDiamond;
@@ -116,11 +118,26 @@ public class UIShop : UIBase
             scrollingView.Fill(0);
             return;
         }
+
+        //// 添加看广告获钻石商品
+        //var limitDetail = new LimitedDetail();
+        //limitDetail.LimitAmount = ConfigTableProxy.Instance.GetDataById(3100).intValue;
+
+        //ShopItemVo advertRewardItem = ShopItemVo.FromItem(new ShopBillingProduct() { LimitDetail = limitDetail,  });
+        //advertRewardItem.Name = LanguageDataTableProxy.GetText(205);
+
+        //items.Insert(0, advertRewardItem);
+        //var cellObj = ResourceManager.LoadSync<GameObject>(AssetPathConst.shopItemCellPath).Asset;
+        //GameObjectUtil.InstantiatePrefab(cellObj, scrollingView.content.gameObject);
         var uiObjs = scrollingView.Fill(items.Count);
+
         uiObjs.ForEach(cell=>{
             var idx = uiObjs.IndexOf(cell);
             cell.UpdateData(items[idx]);
         });
+
+        cellAdvert.UpdateData(null);
+        scrollingView.InsertCell(cellAdvert, 0);
     }
 
     private void OnDestroy()

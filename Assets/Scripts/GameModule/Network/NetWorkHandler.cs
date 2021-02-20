@@ -81,6 +81,7 @@ public class NetWorkHandler
             {"P19_Response", P19_Response.Parser},
             {"P20_Response", P20_Response.Parser},
             {"P21_Response", P21_Response.Parser},
+            {"P22_Response", P22_Response.Parser},
         };
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
@@ -422,6 +423,15 @@ public class NetWorkHandler
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P21_Request", requestByteData);
     }
+
+    /// <summary>
+    /// 获取剩余观看广告次数
+    /// </summary>
+    public static void RequestGetAdvertRemainingCnt()
+    {
+        NetWorkManager.Request("P22_Request", null);
+    }
+
     #endregion
 
     #region ServerResponse

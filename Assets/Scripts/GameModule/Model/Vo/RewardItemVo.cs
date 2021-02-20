@@ -13,7 +13,7 @@ public class RewardItemVo
     {
         get
         {
-            return ItemDataTableProxy.Instance.GetItemName(masterDataItem.ID);
+            return ItemDataTableProxy.GetItemName(masterDataItem.ID);
         }
     }
 

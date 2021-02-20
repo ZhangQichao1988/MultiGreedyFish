@@ -20,6 +20,7 @@ public class UIMissionItem : SimpleScrollingCell
     float backupTime;
     long remainingTime;
     bool isReach;
+    ItemDataTableProxy.RewardData rewardData;
     public void Setup(PBMission pBMission)
     {
         this.pBMission = pBMission;
@@ -75,13 +76,30 @@ public class UIMissionItem : SimpleScrollingCell
 
         // 报酬图标显示
         var listReward = ItemDataTableProxy.GetRewardList(pBMission.Reward);
-        textGold.text = listReward[0].amount.ToString();
+        rewardData = listReward[0];
+        textGold.text = rewardData.amount.ToString();
     }
     public void GetReward()
     {
-        NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
-        NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
-
+        if (AppConst.NotShowAdvert == 0)
+        {
+            UIGetReward.Open(rewardData,
+            () =>
+            {
+                NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
+                NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
+            },
+            () =>
+            {
+                // TODO:看广告双倍奖励
+            }
+            );
+        }
+        else
+        {
+            NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
+            NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
+        }
     }
     void OnRecvGetBonus<T>(T response)
     {
@@ -90,8 +108,6 @@ public class UIMissionItem : SimpleScrollingCell
         var res = response as P21_Response;
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
-            
-            
             var rewardVO = RewardMapVo.From(res);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
             PlayerModel.Instance.UpdateAssets(rewardVO);
