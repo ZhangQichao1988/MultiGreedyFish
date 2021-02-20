@@ -6,6 +6,10 @@ using TimerModule;
 
 public class BattleResult : UIBase
 {
+
+    public Text textRewardGold;
+    public Text textRewardGoldAdvert;
+
     public Text textRewardRank;
 
     public Text textGoldPool;
@@ -25,6 +29,7 @@ public class BattleResult : UIBase
     public GameObject goStreakRankupRewardRoot;
 
     public Button btnGetReward;
+    public Button btnGetRewardAdvert;
 
     // 动画演出用参数
     public float AddBattleRankingRewardRate;
@@ -32,15 +37,13 @@ public class BattleResult : UIBase
     public float AddContWinRewardRate;
 
     Animator animator;
-    int rankStart;
-    float preRankGaugeRate;
-    ItemDataTableProxy.RewardData rewardData;
+    private int rankStart;
+    private float preRankGaugeRate;
 
-    P5_Response response;
+    private P5_Response response;
     PBPlayerFishLevelInfo levelInfo;
     int retryTimes;
     AudioSource countAudioSource;
-    
 
     // 演出相关
     int animStep = 0;
@@ -103,24 +106,7 @@ public class BattleResult : UIBase
     /// </summary>
     public void OnClickGetReward()
     {
-        if (AppConst.NotShowAdvert == 0)
-        {
-            UIGetReward.Open(rewardData,
-            () =>
-            {
-                NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, false);
-            },
-            () =>
-            {
-                OnClickGetRewardAdvert();
-            }
-            );
-        }
-        else
-        {
-            NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, false);
-        }
-
+        NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, false);
     }
 
     /// <summary>
@@ -134,7 +120,6 @@ public class BattleResult : UIBase
                 NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
             }, null);
         };
-        
         Intro.Instance.AdsController.Show(GameHelper.AdmobCustomGenerator(AdmobEvent.BattleReward));
     }
 
@@ -151,9 +136,6 @@ public class BattleResult : UIBase
         animator = GetComponent<Animator>();
 
         response = StageModel.Instance.resultResponse;
-
-        int totalGold = response.GainGold + response.GainRankLevelupBonusGold + response.ContWinGoldAdded;
-        rewardData = new ItemDataTableProxy.RewardData() { id = 2, amount = totalGold };
 
         levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
 
@@ -178,7 +160,20 @@ public class BattleResult : UIBase
         // 中间的鱼
         fishControl.CreateFishModel(levelInfo.FishId);
 
+        btnGetRewardAdvert.gameObject.SetActive( response.GainGold > 0 );
+
         rankStart = levelInfo.RankLevel;
+        //int totalGold = response.GainGold + response.GainRankLevelupBonusGold;
+
+        //textBattleRankingReward.text = response.GainGold.ToString();
+
+        //// 荣誉提升奖励
+        //goRankupRewardRoot.SetActive(response.GainRankLevelupBonusGold > 0);
+        //if (goRankupRewardRoot.activeSelf)
+        //{
+        //    textRankUpReward.text = response.GainRankLevelupBonusGold.ToString();
+        //}
+
         textBattleRanking.text = string.Format(LanguageDataTableProxy.GetText(9), StageModel.Instance.battleRanking);
         textGoldPool.text = response.GoldPoolCurrGold.ToString();
         if (StageModel.Instance.battleRanking <= 3)
@@ -357,15 +352,42 @@ public class BattleResult : UIBase
                 break;
             case 30:
                 btnGetReward.interactable = true;
+                btnGetRewardAdvert.interactable = true;
                 animStep = 40;
                 break;
         }
 
 
+        //// rank条更新
+        //if(AddStreakRankRate <= 1f)
+        //{
+        //    int rankUp = response.GainRankLevel;
+        //    int streakRankUp = response.ContWinRankAdded;
+        //    int totalRankUp = (int)(Mathf.Lerp(0, rankUp, AddRankRate) + Mathf.Lerp(0, streakRankUp, AddStreakRankRate));
+        //    if (totalRankUp < 0)
+        //    {
+        //        textRewardRank.text = "-" + totalRankUp;
+        //    }
+        //    else
+        //    {
+        //        textRewardRank.text = "+" + totalRankUp;
+        //    }
+        //    levelInfo.RankLevel = totalRankUp;
+        //    gaugeRank.Refash(levelInfo);
+
+        //}
+
+        //// 明细显示
+        //if (AddBattleRankingRewardRate <= 1f || AddRankUpRewardRate <= 1f)
+        //{
         int AddBattleRankingReward = (int)Mathf.Lerp(0, response.GainGold, AddBattleRankingRewardRate);
         int AddRankUpReward = (int)Mathf.Lerp(0, response.GainRankLevelupBonusGold, AddRankUpRewardRate);
         int AddContWinReward = (int)Mathf.Lerp(0, response.ContWinGoldAdded, AddContWinRewardRate);
         int totalGold = AddBattleRankingReward + AddRankUpReward + AddContWinReward;
         textTotalReward.text = totalGold.ToString();
+        textRewardGold.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold);
+        textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
+
+        //}
     }
 }
