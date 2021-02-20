@@ -83,17 +83,12 @@ public class UIMissionItem : SimpleScrollingCell
     {
         if (AppConst.NotShowAdvert == 0)
         {
-            UIGetReward.Open(rewardData,
-            () =>
+            UIGetReward.Open(rewardData, GameHelper.AdmobCustomGenerator(AdmobEvent.MissionReward, pBMission.MissionId.ToString()),
+            (isDouble) =>
             {
                 NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
-                NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
-            },
-            () =>
-            {
-                // TODO:看广告双倍奖励
-            }
-            );
+                NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId, isDouble);
+            });
         }
         else
         {

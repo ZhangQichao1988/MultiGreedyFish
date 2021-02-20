@@ -101,17 +101,12 @@ public class RankBonusItem : MonoBehaviour
     {
         if (AppConst.NotShowAdvert == 0)
         {
-            UIGetReward.Open(rewardData,
-            () =>
+            UIGetReward.Open(rewardData, GameHelper.AdmobCustomGenerator(AdmobEvent.RankReward, dataInfo.ID.ToString()),
+            (isDouble) =>
             {
                 NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
-                NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
-            },
-            () =>
-            {
-                // TODO:看广告双倍奖励
-            }
-            );
+                NetWorkHandler.RequestGetRankBonus(dataInfo.ID, isDouble);
+            });
         }
         else
         {
