@@ -378,10 +378,11 @@ public class NetWorkHandler
     /// <summary>
     /// 获取段位奖励
     /// </summary>
-    public static void RequestGetRankBonus(int rankBonusDataId)
+    public static void RequestGetRankBonus(int rankBonusDataId, bool isDouble = false)
     {
         var request = new P16_Request();
         request.RankBoundsId = rankBonusDataId;
+        request.IsDouble = isDouble;
 
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P16_Request", requestByteData);
@@ -415,10 +416,11 @@ public class NetWorkHandler
     /// <summary>
     /// 获取任务奖励
     /// </summary>
-    public static void RequestGetMissionBonus(int missionId)
+    public static void RequestGetMissionBonus(int missionId, bool isDouble = false)
     {
         var request = new P21_Request();
         request.MissionId = missionId;
+        request.IsDouble = isDouble;
 
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P21_Request", requestByteData);

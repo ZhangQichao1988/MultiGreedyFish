@@ -134,6 +134,7 @@ public class AdsController : MonoBehaviour
     {
         Debug.Log("HandleRewardBasedVideoLoaded Reward");
         MainThreadDispatcher.Post(()=>{
+            LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
             OnAdRewardGetted?.Invoke();
             OnAdRewardGetted = null;
         });

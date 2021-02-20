@@ -17,18 +17,19 @@ public class UIGetReward : UIBase
 
     public Toggle isShowAdvert;
 
-    private Action normalCb;
-    private Action doubleCb;
+    public string customData;
 
-    static public void Open(ItemDataTableProxy.RewardData rewardData, Action normalCb, Action doubleCb)
+    private Action<bool> normalCb;
+
+    static public void Open(ItemDataTableProxy.RewardData rewardData, string admobCustom, Action<bool> callback)
     {
         var ui = UIBase.Open<UIGetReward>("ArtResources/UI/Prefabs/GetReward", UILayers.POPUP);
-        ui.Init(rewardData, normalCb, doubleCb);
+        ui.Init(rewardData, admobCustom, callback);
     }
-    public void Init(ItemDataTableProxy.RewardData rewardData, Action normalCb, Action doubleCb)
+    public void Init(ItemDataTableProxy.RewardData rewardData, string customData, Action<bool> callback)
     {
-        this.normalCb = normalCb;
-        this.doubleCb = doubleCb;
+        this.normalCb = callback;
+        this.customData = customData;
         string resIcon = ItemDataTableProxy.Instance.GetDataById(rewardData.id).resIcon;
         imageReward.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + resIcon).Asset;
         imageRewardDouble.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + resIcon).Asset;
@@ -45,12 +46,15 @@ public class UIGetReward : UIBase
 
     public void OnNormal()
     {
-        normalCb();
+        this.normalCb(false);
         this.Close();
     }
     public void OnDouble()
     {
-        doubleCb();
-        this.Close();
+        Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
+            this.normalCb(true);
+            this.Close();
+        };
+        Intro.Instance.AdsController.Show(this.customData);
     }
 }
