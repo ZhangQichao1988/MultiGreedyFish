@@ -50,7 +50,11 @@ public class SimpleScrollingView : MonoBehaviour
         }
         
     }
-
+    public void InsertCell(SimpleScrollingCell cell, int index)
+    {
+        cells.Insert(index, cell);
+        RestScrollingArea();
+    }
     public void Refresh()
     {
         cells.ForEach(t=>{

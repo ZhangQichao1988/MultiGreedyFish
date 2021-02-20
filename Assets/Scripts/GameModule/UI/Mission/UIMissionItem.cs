@@ -108,8 +108,6 @@ public class UIMissionItem : SimpleScrollingCell
         var res = response as P21_Response;
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
-            
-            
             var rewardVO = RewardMapVo.From(res);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
             PlayerModel.Instance.UpdateAssets(rewardVO);

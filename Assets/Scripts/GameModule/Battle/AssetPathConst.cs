@@ -16,6 +16,7 @@ public class AssetPathConst
 	public static readonly string playerNameplatePrefabPath = "ArtResources/UI/Prefabs/Parts/PlayerNameplate";
 
 	public static readonly string shopItemCellPath = "ArtResources/UI/Prefabs/Shop/ShopItem";
+	public static readonly string shopItemAdvertCellPath = "ArtResources/UI/Prefabs/Shop/ShopItemAdvert";
 	public static readonly string shopRewardCellPath = "ArtResources/UI/Prefabs/Shop/ShopRewardCell";
 
 	public static readonly string playerRankingRewardListPrefabPath = "ArtResources/UI/Prefabs/PlayerRanking/PlayerRankingRewardList";

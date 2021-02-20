@@ -26,7 +26,8 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
             Diamond = 1000,
             Nickname = "孙小杰",
             Power = 100,
-            PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L
+            PowerAt = System.DateTime.Now.Ticks + 3600L * 1000L,
+            AdvertRewardRemainingCnt = 5
         };
         res.Result = new PBResult(){
             Code = 0

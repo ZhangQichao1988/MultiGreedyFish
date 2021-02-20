@@ -11,6 +11,7 @@ public class PlayerModel : BaseModel<PlayerModel>
     public List<PBMission> pBMissions;
     public Dictionary<int, int> dicBattleMissionActionAddTrigger = new Dictionary<int, int>();
     public long fetchMissionTime;
+
     public PlayerModel() : base()
     {
 
