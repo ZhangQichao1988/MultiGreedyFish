@@ -107,6 +107,7 @@ public class BaseDataTableProxy<T, V, U> : IDataTableProxy where T : BaseDataTab
             ResourceManager.Unload(assetRef);
             assetRef = null;
         }
+        _instance = default(U);
         hasCached = false;
         content = null;
     }
