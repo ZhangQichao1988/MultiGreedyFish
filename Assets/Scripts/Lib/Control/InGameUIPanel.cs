@@ -15,7 +15,7 @@ public class InGameUIPanel : MonoBehaviour
     public Image skillGauge;
 
     static readonly float miniMapPointSize = 5f;
-    public RectTransform transMiniMap, transPlayerPoint;
+    public RectTransform transMiniMap, transPlayerPoint, transBossPoint;
     private float miniMapSize;
     //public GameObject goSkillBtnDisable;
     //public GameObject goSkillBtnEnable;
@@ -23,6 +23,7 @@ public class InGameUIPanel : MonoBehaviour
     public int alivePlayerNum;
     private Animator animator;
     private PlayerBase Player;
+    private PlayerRobotShark Boss;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
     // Start is called before the first frame update
@@ -45,9 +46,16 @@ public class InGameUIPanel : MonoBehaviour
     }
     private void ApplyMiniMap()
     {
-        Vector3 myPos = Player.transform.position;
-        transPlayerPoint.anchoredPosition = new Vector2(myPos.x / BattleConst.instance.BgBound * miniMapSize,
-                                                                                    myPos.z / BattleConst.instance.BgBound * miniMapSize);
+        Vector3 tmpPos = Player.transform.position;
+        transPlayerPoint.anchoredPosition = new Vector2(tmpPos.x / BattleConst.instance.BgBound * miniMapSize,
+                                                                                    tmpPos.z / BattleConst.instance.BgBound * miniMapSize);
+
+        if (BattleManagerGroup.GetInstance().fishManager.boss != null)
+        {
+            tmpPos = BattleManagerGroup.GetInstance().fishManager.boss.transform.position;
+            transBossPoint.anchoredPosition = new Vector2(tmpPos.x / BattleConst.instance.BgBound * miniMapSize,
+                                                                                        tmpPos.z / BattleConst.instance.BgBound * miniMapSize);
+        }
     }
 	public void TouchDown(BaseEventData data)
     {

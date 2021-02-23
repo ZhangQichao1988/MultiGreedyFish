@@ -10,7 +10,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	public override void Init(int fishId, string playerName, float level, string rankIcon = "")
 	{
 		base.Init(fishId, playerName, level);
-		battleLevel = 100;
+		battleLevel = ConfigTableProxy.Instance.GetDataById(36).floatValue;
 	}
 	protected override Vector3 GetBornPosition()
 	{

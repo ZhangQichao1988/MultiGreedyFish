@@ -7,6 +7,8 @@ public class FishManager : MonoBehaviour
 {
 	public List<FishBase> listFish = new List<FishBase>();
 
+	public PlayerRobotBase boss;
+
     private void Awake()
     {
 		FishBase.uidCnt = (uint)Wrapper.GetRandom(0,9);
@@ -67,10 +69,10 @@ public class FishManager : MonoBehaviour
 		// Boss
 		goEnemy = Wrapper.CreateEmptyGameObject(transform);
 		playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
-		prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-		prb.Init(2, "BOSS", 1);
-		prb.SetRobot(playerRobotAiBaseData, 0f);
-		listFish.Add(prb);
+		boss = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
+		boss.Init(2, "BOSS", 1);
+		boss.SetRobot(playerRobotAiBaseData, 0f);
+		listFish.Add(boss);
 
 		List<FishBase> listEnemy = new List<FishBase>();
 		FishBase fb = null;

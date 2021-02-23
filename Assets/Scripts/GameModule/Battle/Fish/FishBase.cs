@@ -475,13 +475,13 @@ public class FishBase : MonoBehaviour
             }
         }
     }
-    public BuffBase AddBuff(FishBase Initiator, int buffId)
+    public BuffBase AddBuff(FishBase Initiator, int buffId, bool isCheckRepeat = true)
     {
         BuffBase note;
         for (int i = listBuff.Count - 1; i >= 0; --i)
         {
             note = listBuff[i];
-            if (note.Initiator == Initiator && note.baseData.ID == buffId)
+            if (isCheckRepeat && note.Initiator == Initiator && note.baseData.ID == buffId)
             {
                 return null;
             }
