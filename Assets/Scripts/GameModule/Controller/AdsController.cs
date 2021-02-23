@@ -70,7 +70,6 @@ public class AdsController : MonoBehaviour
 
     public void Show(string customize = null)
     {
-        LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
         if (rewardAd != null)
         {
             if (rewardAd.IsLoaded())
