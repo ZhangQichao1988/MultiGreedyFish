@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public class GameHelper
 {
@@ -9,6 +10,15 @@ public class GameHelper
         public int eventId;
         public string arg1;
         public string arg2;
+
+        public Dictionary<string, System.Object> toDictionary()
+        {
+            Dictionary<string, System.Object> result = new Dictionary<string, System.Object>();
+            result["eventId"] = eventId;
+            result["arg1"] = arg1;
+            result["arg2"] = arg2;
+            return result;
+        }
     }
 
     public static void Repair()
@@ -30,6 +40,6 @@ public class GameHelper
             arg1 = parm1,
             arg2 = parm2
         };
-        return MiniJSON.Json.Serialize(customData);
+        return MiniJSON.Json.Serialize(customData.toDictionary());
     }
 }
