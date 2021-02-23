@@ -25,6 +25,8 @@ public class UIFishStatus : UIBase
 
     public Text textLvUpBtn;
 
+    public Animator animatorLvupEffect;
+
     public GameObject[] goListAtkValue;
     public GameObject[] goListHpValue;
     public GameObject[] goListSpdValue;
@@ -115,6 +117,10 @@ public class UIFishStatus : UIBase
     {
         var uiFishLevelUp = UIBase.Open<UIFishLevelUp>(Path.Combine( AssetPathConst.uiRootPath, "PopupFishLevelUp"), UILayers.POPUP);
         uiFishLevelUp.Setup(playerFishLevelInfo);
-        uiFishLevelUp.onClose = () => { Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId)); };
+        uiFishLevelUp.onClose = () => 
+        {
+            Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId));
+            animatorLvupEffect.SetTrigger("show");
+        };
 }
 }

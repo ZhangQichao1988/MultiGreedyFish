@@ -10,7 +10,7 @@ public class EnemyTortoise : EnemyBase
         bool isHit = base.EatCheck(player, atkCollider);
         if (isHit)
         {
-            player.AddBuff(this, 7);
+            player.AddBuff(this, 7, false);
         }
         return isHit;
     }
