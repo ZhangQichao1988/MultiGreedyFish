@@ -2,7 +2,7 @@
   <packages>
     <package>androidx.legacy:legacy-support-v4:1.0.0</package>
     <package>com.android.billingclient:billing:3.0.0</package>
-    <package>com.google.android.gms:play-services-ads:19.3.0</package>
+    <package>com.google.android.gms:play-services-ads:19.5.0</package>
     <package>com.google.android.gms:play-services-ads-identifier:17.0.0</package>
     <package>com.google.firebase:firebase-analytics:17.4.1</package>
     <package>com.google.firebase:firebase-analytics-unity:6.15.2</package>
@@ -16,13 +16,13 @@
   </packages>
   <files>
     <file>Assets/Plugins/Android/androidx.annotation.annotation-1.1.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.arch.core.core-common-2.0.0.jar</file>
-    <file>Assets/Plugins/Android/androidx.arch.core.core-runtime-2.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.arch.core.core-common-2.0.1.jar</file>
+    <file>Assets/Plugins/Android/androidx.arch.core.core-runtime-2.0.1.aar</file>
     <file>Assets/Plugins/Android/androidx.asynclayoutinflater.asynclayoutinflater-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.browser.browser-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.collection.collection-1.0.0.jar</file>
     <file>Assets/Plugins/Android/androidx.coordinatorlayout.coordinatorlayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.core.core-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.core.core-1.2.0.aar</file>
     <file>Assets/Plugins/Android/androidx.cursoradapter.cursoradapter-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.customview.customview-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.documentfile.documentfile-1.0.0.aar</file>
@@ -36,31 +36,37 @@
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-livedata-core-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-runtime-2.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-service-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.lifecycle.lifecycle-viewmodel-2.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.loader.loader-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.localbroadcastmanager.localbroadcastmanager-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.media.media-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.print.print-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.room.room-common-2.1.0.jar</file>
+    <file>Assets/Plugins/Android/androidx.room.room-runtime-2.1.0.aar</file>
     <file>Assets/Plugins/Android/androidx.slidingpanelayout.slidingpanelayout-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.sqlite.sqlite-2.0.1.aar</file>
+    <file>Assets/Plugins/Android/androidx.sqlite.sqlite-framework-2.0.1.aar</file>
     <file>Assets/Plugins/Android/androidx.swiperefreshlayout.swiperefreshlayout-1.0.0.aar</file>
-    <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.1.0.aar</file>
     <file>Assets/Plugins/Android/androidx.viewpager.viewpager-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/androidx.work.work-runtime-2.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.billingclient.billing-3.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-api-2.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-backend-cct-2.2.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.datatransport.transport-runtime-2.2.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-19.3.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-19.3.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-19.5.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-19.5.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-19.3.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-19.5.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-18.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-api-phone-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-base-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-17.1.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-17.1.1.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-17.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-drive-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-games-19.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-19.3.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-gass-19.5.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-17.4.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-api-17.4.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-base-17.4.1.aar</file>
@@ -69,7 +75,7 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-sdk-api-17.4.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-nearby-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-stats-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.1.0.aar</file>
     <file>Assets/Plugins/Android/com.google.auto.value.auto-value-annotations-1.6.5.jar</file>
     <file>Assets/Plugins/Android/com.google.dagger.dagger-2.27.jar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-17.4.1.aar</file>
@@ -89,6 +95,7 @@
     <file>Assets/Plugins/Android/com.google.firebase.firebase-messaging-20.1.7.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-messaging-unity-6.15.2.aar</file>
     <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.10.09.aar</file>
+    <file>Assets/Plugins/Android/com.google.guava.listenablefuture-1.0.jar</file>
     <file>Assets/Plugins/Android/com.squareup.okhttp3.okhttp-3.12.1.jar</file>
     <file>Assets/Plugins/Android/com.squareup.okio.okio-1.15.0.jar</file>
     <file>Assets/Plugins/Android/javax.inject.javax.inject-1.jar</file>
@@ -98,6 +105,7 @@
     <setting name="bundleId" value="jp.co.cad.crazyfish" />
     <setting name="explodeAars" value="False" />
     <setting name="gradleBuildEnabled" value="True" />
+    <setting name="gradlePropertiesTemplateEnabled" value="False" />
     <setting name="gradleTemplateEnabled" value="False" />
     <setting name="installAndroidPackages" value="False" />
     <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />

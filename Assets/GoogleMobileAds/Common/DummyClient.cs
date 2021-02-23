@@ -17,6 +17,7 @@ using System.Reflection;
 
 using GoogleMobileAds.Unity;
 using GoogleMobileAds.Api;
+
 using UnityEngine;
 
 namespace GoogleMobileAds.Common
@@ -53,6 +54,7 @@ namespace GoogleMobileAds.Common
         public event EventHandler<CustomNativeClientEventArgs> OnCustomNativeTemplateAdLoaded;
 
         public event EventHandler<CustomNativeClientEventArgs> OnCustomNativeTemplateAdClicked;
+
 #pragma warning restore 67
 
         public string UserId
