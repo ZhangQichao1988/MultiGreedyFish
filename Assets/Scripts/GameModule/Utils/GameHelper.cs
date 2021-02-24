@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public class GameHelper
 {
@@ -34,12 +35,6 @@ public class GameHelper
 
     public static string AdmobCustomGenerator(AdmobEvent adEvent, string parm1 = null, string parm2 = null)
     {
-        var customData = new AdmobCustomData()
-        {
-            eventId = (int)adEvent,
-            arg1 = parm1,
-            arg2 = parm2
-        };
-        return MiniJSON.Json.Serialize(customData.toDictionary());
+        return ((int)adEvent).ToString() + "." + (parm1 == null ? "null" : parm1) + "." + (parm2 == null ? "null" : parm2);
     }
 }
