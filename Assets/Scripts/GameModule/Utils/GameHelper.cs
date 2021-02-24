@@ -35,6 +35,6 @@ public class GameHelper
 
     public static string AdmobCustomGenerator(AdmobEvent adEvent, string parm1 = null, string parm2 = null)
     {
-        return ((int)adEvent).ToString() + "." + parm1 + "." + parm2;
+        return ((int)adEvent).ToString() + "." + (parm1 == null ? "null" : parm1) + "." + (parm2 == null ? "null" : parm2);
     }
 }
