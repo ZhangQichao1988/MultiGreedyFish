@@ -116,6 +116,7 @@ public class BattleResult : UIBase
     {
         Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
             TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 NetWorkHandler.RequestGetBattleBounds(StageModel.Instance.battleId, true);
             }, null);
         };

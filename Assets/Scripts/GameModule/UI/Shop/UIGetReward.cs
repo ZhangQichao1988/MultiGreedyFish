@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using TimerModule;
 
 public class UIGetReward : UIBase
 {
@@ -52,8 +52,12 @@ public class UIGetReward : UIBase
     public void OnDouble()
     {
         Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
-            this.normalCb(true);
-            this.Close();
+            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+            TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                this.normalCb(true);
+                this.Close();
+            }, null);
         };
         Intro.Instance.AdsController.Show(this.customData);
     }

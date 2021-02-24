@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using TimerModule;
 
 public class UIMissionItem : SimpleScrollingCell
 {
@@ -96,6 +97,18 @@ public class UIMissionItem : SimpleScrollingCell
             NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId);
         }
     }
+
+    void GetRewardDirect()
+    {
+        LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+        AdsController.RewardHttpRetryTimes++;
+        TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                NetWorkHandler.GetDispatch().AddListener<P21_Response>(GameEvent.RECIEVE_P21_RESPONSE, OnRecvGetBonus);
+                NetWorkHandler.RequestGetMissionBonus(pBMission.MissionId, true);
+            }, null);
+    }
+
     void OnRecvGetBonus<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P21_RESPONSE);
@@ -120,12 +133,19 @@ public class UIMissionItem : SimpleScrollingCell
                 PlayerModel.Instance.pBMissions.Insert(index, pBMission);
             }
             Setup(pBMission);
+            AdsController.RewardHttpRetryTimes = 0;
 
+        }
+        else if (res.Result.Code == NetWorkResponseCode.DOUBLE_REWADR_ERROR && AdsController.RewardHttpRetryTimes < 2)
+        {
+            //双倍错误 进行重发
+            GetRewardDirect();
         }
         else
         {
             //todo l10n
             MsgBox.OpenTips(res.Result.Desc);
+            AdsController.RewardHttpRetryTimes = 0;
         }
     }
     private void Update()

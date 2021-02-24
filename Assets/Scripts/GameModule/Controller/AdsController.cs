@@ -6,8 +6,9 @@ using Jackpot;
 
 public class AdsController : MonoBehaviour
 {
+    public static int RewardHttpRetryTimes = 0;
     public static int RewardRetryTimes = 3;
-    public static int RewardWaitTime = 1;
+    public static int RewardWaitTime = 2;
 
     //使用测试的广告单元
 #if UNITY_ANDROID
@@ -133,7 +134,6 @@ public class AdsController : MonoBehaviour
     {
         Debug.Log("HandleRewardBasedVideoLoaded Reward");
         MainThreadDispatcher.Post(()=>{
-            LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
             OnAdRewardGetted?.Invoke();
             OnAdRewardGetted = null;
         });

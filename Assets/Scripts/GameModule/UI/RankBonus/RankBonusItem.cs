@@ -4,6 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TimerModule;
 
 public class RankBonusItem : MonoBehaviour
 {
@@ -114,6 +115,16 @@ public class RankBonusItem : MonoBehaviour
             NetWorkHandler.RequestGetRankBonus(dataInfo.ID);
         }
     }
+    void GetRewardDirect()
+    {
+        LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+        AdsController.RewardHttpRetryTimes++;
+        TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
+                NetWorkHandler.GetDispatch().AddListener<P16_Response>(GameEvent.RECIEVE_P16_RESPONSE, OnRecvGetBonus);
+                NetWorkHandler.RequestGetRankBonus(dataInfo.ID, true);
+            }, null);
+    }
     void OnRecvGetBonus<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P16_RESPONSE);
@@ -128,11 +139,17 @@ public class RankBonusItem : MonoBehaviour
             PlayerModel.Instance.UpdateAssets(rewardVO);
             homeScene.OnGettedItemNormal(rewardVO);
             Refash(Status.Getted);
+            AdsController.RewardHttpRetryTimes = 0;
+        }
+        else if (res.Result.Code == NetWorkResponseCode.RANK_BOARD_NO_EXIST && AdsController.RewardHttpRetryTimes < 2)
+        {
+            GetRewardDirect();
         }
         else
         {
             //todo l10n
             MsgBox.OpenTips(res.Result.Desc);
+            AdsController.RewardHttpRetryTimes = 0;
         }
     }
     private void OnDestroy()

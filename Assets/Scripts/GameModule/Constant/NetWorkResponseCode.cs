@@ -16,4 +16,6 @@ public class NetWorkResponseCode
 
     //排行榜数据为空
     public static int NO_RANK_DATA = 10;
+
+    public static int DOUBLE_REWADR_ERROR = 12;
 }
