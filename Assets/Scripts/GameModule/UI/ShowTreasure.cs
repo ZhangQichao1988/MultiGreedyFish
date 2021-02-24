@@ -12,7 +12,7 @@ public class ShowTreasure : UIBase
     public GameObject goGrid;
     public Image imageRadiation;
     public Image imageRadiationAll;
-    public Image imageLight;
+    //public Image imageLight;
     public Image imageCricle;
     public Image imageTreansure;
 
@@ -83,13 +83,13 @@ public class ShowTreasure : UIBase
         if (mapVo.TreasureContent[showItemIndex].masterDataItem.type != "cPiece")
         {   // 不是鱼碎片的话不显示放射特效
             imageRadiation.gameObject.SetActive(false);
-            imageLight.gameObject.SetActive(false);
+            //imageLight.gameObject.SetActive(false);
         }
         else
         {
             imageRadiation.gameObject.SetActive(true);
             var fishData = FishDataTableProxy.Instance.GetDataById(mapVo.TreasureContent[showItemIndex].masterDataItem.extra);
-            Color color = new Color(0.12f, 0.24f, 0.63f, 0.7f);
+            Color color = new Color(0.12f, 0.57f, 0.63f, 0.7f);
             switch (fishData.rare)
             {
                 case 3:
@@ -100,8 +100,8 @@ public class ShowTreasure : UIBase
                     break;
             }
             imageCricle.color = color;
-            imageLight.color = color;
-            imageLight.gameObject.SetActive(true);
+            //imageLight.color = color;
+            //imageLight.gameObject.SetActive(true);
         }
         animator.SetTrigger("ShowItem");
         textItemName.text = ItemDataTableProxy.GetItemName(mapVo.TreasureContent[showItemIndex].masterDataItem.ID);

@@ -15,8 +15,7 @@ public class UIRewardCell : SimpleScrollingCell
     public override void UpdateData(System.Object data)
     {
         rewardData = data as RewardItemVo;
-        text.text = rewardData.Name;
+        text.text = string.Format(LanguageDataTableProxy.GetText(204), rewardData.Name, rewardData.Amount);
         images.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + rewardData.ResIcon).Asset;
-        numText.text = "x" + rewardData.Amount.ToString();
     }
 }

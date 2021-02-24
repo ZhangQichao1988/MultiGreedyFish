@@ -254,11 +254,11 @@ public class FishBase : MonoBehaviour
         if (dir.sqrMagnitude > 0)
         {
             float angle = Vector3.Angle(curDir.normalized, dir.normalized);
-            curDir = Vector3.Slerp(curDir.normalized, dir.normalized, 520 / angle * Time.deltaTime);
+            curDir = Vector3.Slerp(curDir.normalized, dir.normalized,  Mathf.Lerp(520f, 350f, 2 / (transform.localScale.x - 1)) / angle * Time.deltaTime);
             moveDir = Vector3.Lerp(moveDir, dir, 360 / angle * Time.deltaTime);
             pos += moveDir * 10 * Time.deltaTime;
             pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
-            animator.SetFloat("Speed", Mathf.Clamp(moveDir.magnitude, 0.101f, 1f));
+            animator.SetFloat("Speed", Mathf.Clamp(Mathf.Max(angle, moveDir.magnitude), 0.101f, 1f));
         }
         else
         {
@@ -283,7 +283,6 @@ public class FishBase : MonoBehaviour
     public virtual void CustomUpdate()
     {
         if (actionWaitCnt++ >= uint.MaxValue) { actionWaitCnt = 0; }
-#if !UNITY_EDITOR  // 性能优化相关，编辑器模式方便debug所以关闭
         // 计算离相机目标的距离太远的话就不显示（优化）
         if((actionWaitCnt + uid) % 3 == 1)
         {
@@ -291,25 +290,28 @@ public class FishBase : MonoBehaviour
             {
                 if (BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position))
                 {
+#if !UNITY_EDITOR  // 性能优化相关，编辑器模式方便debug所以关闭
                     foreach (var note in renderers)
                     { if (note.enabled) note.enabled = false; }
                     if(lifeGauge) GameObjectUtil.SetActive(lifeGauge.gameObject, false);
+#endif
                     isBecameInvisible = false;
-                }
 
+                }
             }
             else
             {
                 if (BattleConst.instance.RobotVisionRange - 5f > Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - transform.position))
                 {
+#if !UNITY_EDITOR  // 性能优化相关，编辑器模式方便debug所以关闭
                     foreach (var note in renderers)
                     { if (!note.enabled) note.enabled = true; }
                     if (lifeGauge) GameObjectUtil.SetActive(lifeGauge.gameObject, true);
+#endif
                     isBecameInvisible = true;
                 }
             }
         }
-#endif
         if (dmgTime > 0f) { dmgTime -= Time.deltaTime; }
         BuffUpdate();
         AquaticCheck();
