@@ -45,70 +45,97 @@ public class PlayerRobotBase : PlayerBase
         Vector3 myPos = transform.position;
         // 是否在视野外？
         bool isEyeOver = BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - myPos);
-        
-        for (int i = listFish.Count - 1; i >= 0; --i)
+
+        List<FishBase> listTargets = new List<FishBase>();
+
+        // 如果视野里有金龟，就优先吃金龟
+        listFish.ForEach((a)=> { if (a.data.fishId == 5) 
+            {
+                listTargets.Add(a);
+            } });
+
+        // 没有金龟的话就找最近的鱼
+        if (listTargets.Count == 0)
         {
-            // 如果玩家不在视野范围，就不攻击玩家和机器人
-            if (isEyeOver && listFish[i].fishType == FishType.PlayerRobot)
+            for (int i = listFish.Count - 1; i >= 0; --i)
             {
-                listFish.RemoveAt(i);
-                continue;
-            }
-            // 剔除白名单的鱼
-            if (whiteFish == listFish[i])
-            {
-                hasWhiteFish = true;
-                listFish.RemoveAt(i);
-                continue;
-            }
-            // 排除隐身，无敌的鱼
-            if (listFish[i].isStealth || listFish[i].isShield) 
-            {
-                listFish.RemoveAt(i);
-                continue;
-            }
-            // 排除鲨鱼
-            if (listFish[i].fishType == FishType.Boss)
-            {
-                listFish.RemoveAt(i);
-                continue;
-            }
-            // 剔除毒圈的敌人
-            if (listFish[i].transform.position.sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
-            {
-                listFish.RemoveAt(i);
-                continue;
-            }
-            // 如果不是无敌状态，剔除乌云状态水母
-            if (!ContainsBuffType(BuffBase.BuffType.Shield) &&
-                !ContainsBuffType(BuffBase.BuffType.ShieldGold))
-            {
-                if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
+                // 如果玩家不在视野范围，就不攻击玩家和机器人
+                if (isEyeOver && listFish[i].fishType == FishType.PlayerRobot)
                 {
                     listFish.RemoveAt(i);
                     continue;
                 }
-            }
-            
-            // 新发现的鱼
-            if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
-            {
-                if ( listFish[i].beforeInAquatic)
+                // 剔除白名单的鱼
+                if (whiteFish == listFish[i])
+                {
+                    hasWhiteFish = true;
+                    listFish.RemoveAt(i);
+                    continue;
+                }
+                // 排除隐身，无敌的鱼
+                if (listFish[i].isStealth || listFish[i].isShield)
                 {
                     listFish.RemoveAt(i);
                     continue;
                 }
+                
+                // 剔除毒圈的敌人
+                if (listFish[i].transform.position.sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
+                {
+                    listFish.RemoveAt(i);
+                    continue;
+                }
+                
+
+                // 新发现的鱼
+                if (listFindedFish != null && !listFindedFish.Contains(listFish[i]))
+                {
+                    if (listFish[i].beforeInAquatic)
+                    {
+                        listFish.RemoveAt(i);
+                        continue;
+                    }
+                }
+
+                // 如果不是无敌状态
+                if (!isShield)
+                {
+                    // 排除鲨鱼
+                    if (listFish[i].fishType == FishType.Boss)
+                    {
+                        listFish.RemoveAt(i);
+                        continue;
+                    }
+                    // 剔除乌云状态水母
+                    if (listFish[i].originalData.fishId == 4 && ((EnemyJellyfish)listFish[i]).isDark)
+                    {
+                        listFish.RemoveAt(i);
+                        continue;
+                    }
+                    // 剔除比自己血多的玩家
+                    if ((listFish[i].fishType == FishType.Player || listFish[i].fishType == FishType.PlayerRobot) && data.life < listFish[i].life)
+                    {
+                        listFish.RemoveAt(i);
+                        continue;
+                    }
+                }
+                
+            }
+
+            // 视野范围没有白名单的鱼的话
+            if (!hasWhiteFish)
+            {
+                whiteFish = null;
             }
         }
-
-        // 视野范围没有白名单的鱼的话
-        if (!hasWhiteFish)
+        else
         {
-            whiteFish = null;
+            listFish = listTargets;
         }
 
         // 按距离升序排序
         listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, myPos) - Vector3.Distance(b.transform.position, myPos)); });
+
         listFindedFish = listFish;
         if (listFish.Count > 0)
         {
@@ -239,12 +266,12 @@ public class PlayerRobotBase : PlayerBase
                 }
             }
 
-            // 让它不走直线
-            else if (Wrapper.GetRandom(0f, 1f) > 0.95f)
-            {
-                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
-                Dir.Normalize();
-            }
+            //// 让它不走直线
+            //else if (Wrapper.GetRandom(0f, 1f) > 0.95f)
+            //{
+            //    Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
+            //    Dir.Normalize();
+            //}
 
             return;
         }

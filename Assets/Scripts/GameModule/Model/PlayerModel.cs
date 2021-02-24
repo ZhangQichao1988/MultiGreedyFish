@@ -114,6 +114,18 @@ public class PlayerModel : BaseModel<PlayerModel>
             MissionActionTriggerAdd(5, itemVo.Price);
         }
         UpdateAssets(rewardVo);
+
+        Firebase.Analytics.FirebaseAnalytics.LogEvent(
+  Firebase.Analytics.FirebaseAnalytics.EventSpendVirtualCurrency,
+  new Firebase.Analytics.Parameter[] {
+    new Firebase.Analytics.Parameter(
+      Firebase.Analytics.FirebaseAnalytics.ParameterItemName, rewardVo.Content[0].masterDataItem.ID),
+    new Firebase.Analytics.Parameter(
+      Firebase.Analytics.FirebaseAnalytics.ParameterValue, itemVo.Price),
+    new Firebase.Analytics.Parameter(
+      Firebase.Analytics.FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()),
+  }
+);
     }
     public void UpdateAssets(RewardMapVo rewardVo)
     {

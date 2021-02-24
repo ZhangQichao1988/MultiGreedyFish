@@ -72,6 +72,16 @@ public class UIFishLevelUp : UIBase
         PlayerModel.Instance.player.Gold -= dataInfo.useGold;
         PlayerModel.Instance.MissionActionTriggerAdd(5, dataInfo.useGold);
         UIHomeResource.Instance.UpdateAssets();
+
+        Firebase.Analytics.FirebaseAnalytics.LogEvent(
+          Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
+          new Firebase.Analytics.Parameter[] {
+            new Firebase.Analytics.Parameter(
+              Firebase.Analytics.FirebaseAnalytics.ParameterCharacter, realResponse.FishInfo.FishId),
+            new Firebase.Analytics.Parameter(
+              Firebase.Analytics.FirebaseAnalytics.ParameterLevel, realResponse.FishInfo.FishLevel),
+          }
+        );
         Close();
     }
 

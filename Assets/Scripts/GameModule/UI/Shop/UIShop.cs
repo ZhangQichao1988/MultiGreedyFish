@@ -127,8 +127,14 @@ public class UIShop : UIBase
         //advertRewardItem.Name = LanguageDataTableProxy.GetText(205);
 
         //items.Insert(0, advertRewardItem);
-        //var cellObj = ResourceManager.LoadSync<GameObject>(AssetPathConst.shopItemCellPath).Asset;
-        //GameObjectUtil.InstantiatePrefab(cellObj, scrollingView.content.gameObject);
+        if (type == ShopType.Other)
+        {
+            var cellObj = ResourceManager.LoadSync<GameObject>(AssetPathConst.shopItemAdvertCellPath).Asset;
+            var go = GameObjectUtil.InstantiatePrefab(cellObj, scrollingView.content.gameObject);
+            cellAdvert = go.GetComponent<UIShopCellAdvert>();
+            cellAdvert.UpdateData(null);
+        }
+
         var uiObjs = scrollingView.Fill(items.Count);
 
         uiObjs.ForEach(cell=>{
@@ -136,8 +142,12 @@ public class UIShop : UIBase
             cell.UpdateData(items[idx]);
         });
 
-        cellAdvert.UpdateData(null);
-        scrollingView.InsertCell(cellAdvert, 0);
+        if (type == ShopType.Other)
+        {
+            scrollingView.InsertCell(cellAdvert, 0);
+        }
+
+
     }
 
     private void OnDestroy()

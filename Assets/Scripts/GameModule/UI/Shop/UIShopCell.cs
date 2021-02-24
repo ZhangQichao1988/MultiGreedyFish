@@ -96,7 +96,7 @@ public class UIShopCell : SimpleScrollingCell
     {
         if (shopData.CanBuy)
         {
-            ShopModel.Instance.BuyItemNormal(shopData);
+            UIPopupBuyConfirm.Open(shopData);
         }
         else
         {
