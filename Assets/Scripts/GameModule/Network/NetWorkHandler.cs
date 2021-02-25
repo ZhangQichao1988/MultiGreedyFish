@@ -122,6 +122,9 @@ public class NetWorkHandler
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidMissionListGet, OnRecvMissionGet);
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidCompleteMission, OnRecvMissionComplete);
+
+
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidAdDiamond, OnRecvAdDiamond);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -623,7 +626,15 @@ public class NetWorkHandler
         errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P21_Response>(GetDispatchKey(msg.Key), response);
     }
-
+    
+    static void OnRecvAdDiamond(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P22_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P22_Response>(GetDispatchKey(msg.Key), response);
+    }
+    
+    
 #endregion
 
     public static string GetDispatchKey(int msgId)
