@@ -17,7 +17,7 @@ public class GaugeLevel : MonoBehaviour
     {
         var fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
         sliderFishLevel.value = (float)pBPlayerFishLevelInfo.FishChip / (float)fishLevelUpData.useChip;
-        textFishChip.text = string.Format("{0}/{1}", pBPlayerFishLevelInfo.FishChip, fishLevelUpData.useChip);
+        textFishChip.text = string.Format("{0}/{1}", fishLevelUpData.useChip, pBPlayerFishLevelInfo.FishChip);
 
     }
 }

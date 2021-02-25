@@ -52,18 +52,28 @@ public class UIGoldPoolLevelUp : UIBase
 
     public void OnClickLevelUp()
     {
-        NetWorkHandler.GetDispatch().AddListener<P18_Response>(GameEvent.RECIEVE_P18_RESPONSE, OnRecvLevelUp);
-        NetWorkHandler.RequestGoldPoolLevelUp();
+        if (PlayerModel.Instance.player.Diamond >= nowLvData.useDiamond)
+        {
+            NetWorkHandler.GetDispatch().AddListener<P18_Response>(GameEvent.RECIEVE_P18_RESPONSE, OnRecvLevelUp);
+            NetWorkHandler.RequestGoldPoolLevelUp();
+        }
+        else
+        {
+            UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.DIAMOND, () => { Close(); });
+        }
     }
 
     void OnRecvLevelUp<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P18_RESPONSE);
         var realResponse = response as P18_Response;
-        UIHome.Instance.FetchGoldPool();
-        PlayerModel.Instance.player.Diamond -= nowLvData.useDiamond;
-        UIHomeResource.Instance.UpdateAssets();
-        Close();
+        if (realResponse.Result.Code == NetworkConst.CODE_OK)
+        {
+            UIHome.Instance.FetchGoldPool();
+            PlayerModel.Instance.player.Diamond -= nowLvData.useDiamond;
+            UIHomeResource.Instance.UpdateAssets();
+            Close();
+        }
     }
 
 }

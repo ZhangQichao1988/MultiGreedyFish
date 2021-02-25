@@ -145,7 +145,7 @@ public class PlayerRobotShark : PlayerRobotBase
 						atkMax = note.data.atk;
 					}
 				}
-				data.atk = atkMax;
+				data.atk = atkMax / 2;
 			}
 		}
 

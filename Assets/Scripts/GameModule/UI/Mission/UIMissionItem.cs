@@ -71,7 +71,6 @@ public class UIMissionItem : SimpleScrollingCell
             goRewardBtn.SetActive(false);
             goMask.SetActive(false);
             textRemainingTime.gameObject.SetActive(pBMission.Type != MissionType.MissionAchievement);
-            textRemainingTime.gameObject.SetActive(true);
 
         }
 

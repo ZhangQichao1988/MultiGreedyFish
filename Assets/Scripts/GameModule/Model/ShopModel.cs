@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using Firebase.Analytics;
 
 public class ShopModel : BaseModel<ShopModel>
 {
@@ -88,6 +88,18 @@ public class ShopModel : BaseModel<ShopModel>
             //update player assets
             PlayerModel.Instance.UpdateAssets(reqItem, rewardVO);
             Dispatch(ShopEvent.ON_GETTED_ITEM, rewardVO);
+
+            FirebaseAnalytics.LogEvent(
+              FirebaseAnalytics.EventSpendVirtualCurrency,
+              new Parameter[] {
+                new Parameter(
+                  FirebaseAnalytics.ParameterItemName, reqItem.ID),
+                new Parameter(
+                  FirebaseAnalytics.ParameterValue, reqItem.Price),
+                new Parameter(
+                  FirebaseAnalytics.ParameterVirtualCurrencyName, reqItem.Paytype.ToString()),
+              }
+            );
         }
         else
         {

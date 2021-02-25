@@ -255,7 +255,7 @@ public class FishBase : MonoBehaviour
         {
             float angle = Vector3.Angle(curDir.normalized, dir.normalized);
             curDir = Vector3.Slerp(curDir.normalized, dir.normalized,  Mathf.Lerp(520f, 350f, 2 / (transform.localScale.x - 1)) / angle * Time.deltaTime);
-            moveDir = Vector3.Lerp(moveDir, dir, 360 / angle * Time.deltaTime);
+            moveDir = curDir * Mathf.Sqrt(dir.sqrMagnitude);
             pos += moveDir * 10 * Time.deltaTime;
             pos = ObstacleGrid.ObstacleClamp(pos, moveDir);
             animator.SetFloat("Speed", Mathf.Clamp(Mathf.Max(angle, moveDir.magnitude), 0.101f, 1f));

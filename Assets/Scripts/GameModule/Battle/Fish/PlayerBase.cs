@@ -303,7 +303,7 @@ public class PlayerBase : FishBase
 	}
 	protected override void AquaticCheck()
 	{
-		if (!isBecameInvisible) { return; }
+		//if (!isBecameInvisible) { return; }
 
 		canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
 		Vector3 myPos = transform.position;
@@ -317,7 +317,7 @@ public class PlayerBase : FishBase
 			for (int i = 0; i < listTransAquatic.Count; ++i)
 			{
 				tmpPos = listTransAquatic[i].position;
-				if (new Vector2(tmpPos.x, tmpPos.z).sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
+				if (new Vector2(tmpPos.x, tmpPos.z).sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow() - 5)
 				{ continue; }
 				distance = Vector3.Distance(myPos, tmpPos);
 				if (distance < minDistance)

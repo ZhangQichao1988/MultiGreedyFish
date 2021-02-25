@@ -80,7 +80,7 @@ public class PlayerRobotBase : PlayerBase
                 }
                 
                 // 剔除毒圈的敌人
-                if (listFish[i].transform.position.sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow())
+                if (listFish[i].transform.position.sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow() - 5)
                 {
                     listFish.RemoveAt(i);
                     continue;
@@ -217,12 +217,17 @@ public class PlayerRobotBase : PlayerBase
         if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
         {
             Vector3 myPos = transform.position;
-            var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);
-            if (fishs.Count > 1 && Vector3.SqrMagnitude(fishs[1].transform.position - myPos) > ConfigTableProxy.Instance.GetDataById(35).floatValue)
-            {   // 附近没有其他玩家鱼的话躲草丛
-                isGotoAquatic = GotoAquatic();
-                if (isGotoAquatic) { return; }
+            float eyeRange = ConfigTableProxy.Instance.GetDataById(35).floatValue;
+            if (BattleManagerGroup.GetInstance().fishManager.boss != null && Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().fishManager.boss.transform.position - myPos) > eyeRange)
+            {
+                var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);
+                if (fishs.Count > 1 && Vector3.SqrMagnitude(fishs[1].transform.position - myPos) > eyeRange)
+                {   // 附近没有其他玩家鱼的话躲草丛
+                    isGotoAquatic = GotoAquatic();
+                    if (isGotoAquatic) { return; }
+                }
             }
+            
         }
 
         var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);

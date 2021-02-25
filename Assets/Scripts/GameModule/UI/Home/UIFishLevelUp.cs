@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using Firebase.Analytics;
 
 public class UIFishLevelUp : UIBase
 {
@@ -24,8 +25,11 @@ public class UIFishLevelUp : UIBase
 
     public Text textChip;
 
-    public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo)
+    public Action onSuccess = null;
+
+    public void Setup(PBPlayerFishLevelInfo playerFishLevelInfo, Action onSuccess)
     {
+        this.onSuccess = onSuccess;
         this.playerFishLevelInfo = playerFishLevelInfo;
         dataInfo = FishLevelUpDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishLevel);
         textLevelupUseGold.text = dataInfo.useGold.ToString();
@@ -54,35 +58,51 @@ public class UIFishLevelUp : UIBase
 
     public void OnClickFishLevelUp()
     {
-        NetWorkHandler.GetDispatch().AddListener<P7_Response>(GameEvent.RECIEVE_P7_RESPONSE, OnRecvFishLevelUp);
-        NetWorkHandler.RequesFishLevelUp(playerFishLevelInfo.FishId);
+        if (dataInfo.useGold > PlayerModel.Instance.player.Gold)
+        {
+            UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.GOLD, ()=> { Close(); });
+        }
+        else if (dataInfo.useChip > PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishChip)
+        {
+            UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.CHIP, () => { Close(); });
+        }
+        else
+        {
+            NetWorkHandler.GetDispatch().AddListener<P7_Response>(GameEvent.RECIEVE_P7_RESPONSE, OnRecvFishLevelUp);
+            NetWorkHandler.RequesFishLevelUp(playerFishLevelInfo.FishId);
+        }
     }
 
     void OnRecvFishLevelUp<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P7_RESPONSE);
         var realResponse = response as P7_Response;
-        if (realResponse.FishInfo.FishLevel == 1)
-        {   // 解锁
-            PlayerModel.Instance.MissionActionTriggerAdd(16, 1);
-        }
-        PlayerModel.Instance.MissionActionTriggerAdd(13, 1);
-        PlayerModel.Instance.MissionActionTriggerAdd(15, realResponse.FishInfo.FishLevel);
-        PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
-        PlayerModel.Instance.player.Gold -= dataInfo.useGold;
-        PlayerModel.Instance.MissionActionTriggerAdd(5, dataInfo.useGold);
-        UIHomeResource.Instance.UpdateAssets();
+        if (realResponse.Result.Code == NetworkConst.CODE_OK)
+        {
+            if (realResponse.FishInfo.FishLevel == 1)
+            {   // 解锁
+                PlayerModel.Instance.MissionActionTriggerAdd(16, 1);
+            }
+            PlayerModel.Instance.MissionActionTriggerAdd(13, 1);
+            PlayerModel.Instance.MissionActionTriggerAdd(15, realResponse.FishInfo.FishLevel);
+            PlayerModel.Instance.SetPlayerFishLevelInfo(playerFishLevelInfo.FishId, realResponse.FishInfo);
+            PlayerModel.Instance.player.Gold -= dataInfo.useGold;
+            PlayerModel.Instance.MissionActionTriggerAdd(5, dataInfo.useGold);
+            UIHomeResource.Instance.UpdateAssets();
 
-        Firebase.Analytics.FirebaseAnalytics.LogEvent(
-          Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
-          new Firebase.Analytics.Parameter[] {
-            new Firebase.Analytics.Parameter(
-              Firebase.Analytics.FirebaseAnalytics.ParameterCharacter, realResponse.FishInfo.FishId),
-            new Firebase.Analytics.Parameter(
-              Firebase.Analytics.FirebaseAnalytics.ParameterLevel, realResponse.FishInfo.FishLevel),
-          }
-        );
-        Close();
+            FirebaseAnalytics.LogEvent(
+              FirebaseAnalytics.EventLevelUp,
+              new Parameter[] {
+            new Parameter(
+              FirebaseAnalytics.ParameterCharacter, realResponse.FishInfo.FishId),
+            new Parameter(
+              FirebaseAnalytics.ParameterLevel, realResponse.FishInfo.FishLevel),
+              }
+            );
+            onSuccess();
+            Close();
+        }
+
     }
 
 }

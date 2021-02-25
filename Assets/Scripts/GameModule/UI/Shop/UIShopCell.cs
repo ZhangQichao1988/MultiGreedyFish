@@ -94,13 +94,33 @@ public class UIShopCell : SimpleScrollingCell
 
     public virtual void OnCellClick()
     {
-        if (shopData.CanBuy)
+        bool isEnough = true;
+        UIPopupGotoResGet.ResType resType = UIPopupGotoResGet.ResType.DIAMOND;
+        switch (shopData.Paytype)
         {
-            UIPopupBuyConfirm.Open(shopData);
+            case PayType.Diamond:
+                isEnough = PlayerModel.Instance.player.Diamond >= shopData.Price;
+                resType = UIPopupGotoResGet.ResType.DIAMOND;
+                break;
+            case PayType.Gold:
+                isEnough = PlayerModel.Instance.player.Gold >= shopData.Price;
+                resType = UIPopupGotoResGet.ResType.GOLD;
+                break;
+        }
+        if (isEnough)
+        {
+            if (shopData.CanBuy)
+            {
+                UIPopupBuyConfirm.Open(shopData);
+            }
+            else
+            {
+                MsgBox.OpenTips("达到商品的购买上限");
+            }
         }
         else
         {
-            MsgBox.OpenTips("达到商品的购买上限");
+            UIPopupGotoResGet.Open(resType, null, false);
         }
     }
 }

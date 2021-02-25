@@ -94,7 +94,7 @@ public class UIFishStatus : UIBase
 
         gauageLevel.Refash(playerFishLevelInfo);
         gauageRank.Refash(playerFishLevelInfo);
-        btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f && PlayerModel.Instance.player.Gold >= fishLevelData.useGold;
+        //btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f && PlayerModel.Instance.player.Gold >= fishLevelData.useGold;
 
     }
     
@@ -116,11 +116,10 @@ public class UIFishStatus : UIBase
     public void OpenLevelUpDialog()
     {
         var uiFishLevelUp = UIBase.Open<UIFishLevelUp>(Path.Combine( AssetPathConst.uiRootPath, "PopupFishLevelUp"), UILayers.POPUP);
-        uiFishLevelUp.Setup(playerFishLevelInfo);
+        uiFishLevelUp.Setup(playerFishLevelInfo, ()=> { animatorLvupEffect.SetTrigger("show"); });
         uiFishLevelUp.onClose = () => 
         {
             Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId));
-            animatorLvupEffect.SetTrigger("show");
         };
 }
 }
