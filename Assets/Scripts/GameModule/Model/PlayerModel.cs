@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Firebase.Analytics;
+
 public class PlayerModel : BaseModel<PlayerModel>
 {
     public long playerId;
@@ -58,6 +60,8 @@ public class PlayerModel : BaseModel<PlayerModel>
                 if (note.CurrTrigger >= note.Trigger && !isReach)
                 {
                     UIPopupMissionComplete.Instance.AddCompleteMission(note);
+
+                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.ParameterAchievementId, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
                 }
             }
         }
@@ -156,6 +160,10 @@ public class PlayerModel : BaseModel<PlayerModel>
                 }
                 fishItem.FishChip += vo.Amount;
             }
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
+                                                new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
+
         }
     }
     

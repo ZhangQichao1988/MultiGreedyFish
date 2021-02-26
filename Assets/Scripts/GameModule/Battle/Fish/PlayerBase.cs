@@ -317,7 +317,7 @@ public class PlayerBase : FishBase
 			for (int i = 0; i < listTransAquatic.Count; ++i)
 			{
 				tmpPos = listTransAquatic[i].position;
-				if (new Vector2(tmpPos.x, tmpPos.z).sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow() - 5)
+				if (new Vector2(tmpPos.x, tmpPos.z).sqrMagnitude > BattleManagerGroup.GetInstance().poisonRing.GetPoisonRangePow() - 50)
 				{ continue; }
 				distance = Vector3.Distance(myPos, tmpPos);
 				if (distance < minDistance)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using UnityEngine.UI;
 using TimerModule;
+using Firebase.Analytics;
 
 public class BattleResult : UIBase
 {
@@ -180,6 +181,12 @@ public class BattleResult : UIBase
         {
             PlayerModel.Instance.MissionActionTriggerAdd(4, 1);
         }
+        FirebaseAnalytics.LogEvent(   FirebaseAnalytics.EventLevelEnd, 
+                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
+                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
+                                                        new Parameter(FirebaseAnalytics.ParameterLevel, StageModel.Instance.battleRanking)
+                                                        );
+
 
     }
 

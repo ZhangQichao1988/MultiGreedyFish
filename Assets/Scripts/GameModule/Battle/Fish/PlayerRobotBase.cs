@@ -60,7 +60,7 @@ public class PlayerRobotBase : PlayerBase
             for (int i = listFish.Count - 1; i >= 0; --i)
             {
                 // 如果玩家不在视野范围，就不攻击玩家和机器人
-                if (isEyeOver && listFish[i].fishType == FishType.PlayerRobot)
+                if (isEyeOver && (listFish[i].fishType == FishType.PlayerRobot || listFish[i].fishType == FishType.Boss))
                 {
                     listFish.RemoveAt(i);
                     continue;

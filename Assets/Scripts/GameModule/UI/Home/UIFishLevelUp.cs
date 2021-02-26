@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using System;
-using Firebase.Analytics;
 
 public class UIFishLevelUp : UIBase
 {
@@ -90,15 +89,7 @@ public class UIFishLevelUp : UIBase
             PlayerModel.Instance.MissionActionTriggerAdd(5, dataInfo.useGold);
             UIHomeResource.Instance.UpdateAssets();
 
-            FirebaseAnalytics.LogEvent(
-              FirebaseAnalytics.EventLevelUp,
-              new Parameter[] {
-            new Parameter(
-              FirebaseAnalytics.ParameterCharacter, realResponse.FishInfo.FishId),
-            new Parameter(
-              FirebaseAnalytics.ParameterLevel, realResponse.FishInfo.FishLevel),
-              }
-            );
+            
             onSuccess();
             Close();
         }
