@@ -61,7 +61,7 @@ public class UIFishLevelUp : UIBase
         {
             UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.GOLD, ()=> { Close(); });
         }
-        else if (dataInfo.useChip > PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().FishChip)
+        else if (dataInfo.useChip > playerFishLevelInfo.FishChip)
         {
             UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.CHIP, () => { Close(); });
         }

@@ -43,6 +43,8 @@ public class PlayerRobotBase : PlayerBase
         // 判定是否有白名单的鱼
         bool hasWhiteFish = false;
         Vector3 myPos = transform.position;
+        FishBase target = null;
+
         // 是否在视野外？
         bool isEyeOver = BattleConst.instance.RobotVisionRange + 5f < Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().cameraFollow.targetPlayerPos - myPos);
 
@@ -64,6 +66,12 @@ public class PlayerRobotBase : PlayerBase
                 {
                     listFish.RemoveAt(i);
                     continue;
+                }
+                // 当鲨鱼血量低于一定量时，优先攻击
+                if (listFish[i].fishType == FishType.Boss && listFish[i].life <= BattleConst.instance.SharkLifeRateFirstAtk)
+                {
+                    target = listFish[i];
+                    break;
                 }
                 // 剔除白名单的鱼
                 if (whiteFish == listFish[i])
@@ -133,12 +141,18 @@ public class PlayerRobotBase : PlayerBase
             listFish = listTargets;
         }
 
-        // 按距离升序排序
-        listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, myPos) - Vector3.Distance(b.transform.position, myPos)); });
-
-        listFindedFish = listFish;
-        if (listFish.Count > 0)
+        // 当有优先攻击目标时
+        if (target != null)
         {
+            targetFish = target;
+            MoveToTarget(targetFish.transform.position);
+        }
+        else if (listFish.Count > 0)
+        {
+            // 按距离升序排序
+            listFish.Sort((a, b) => { return (int)(Vector3.Distance(a.transform.position, myPos) - Vector3.Distance(b.transform.position, myPos)); });
+            listFindedFish = listFish;
+
             // 当体力较多时，追踪大鱼
             if (lifeRate > aiParamRobotGotoAquaticLifeRate ||
                 ContainsBuffType(BuffBase.BuffType.Shield) ||
@@ -150,7 +164,6 @@ public class PlayerRobotBase : PlayerBase
             {
                 listFish.Sort((a, b) => { return a.lifeMax - b.lifeMax; });
             }
-            FishBase target;
             if (targetFish == listFish[0])
             {
                 targetCntTime -= Time.deltaTime;

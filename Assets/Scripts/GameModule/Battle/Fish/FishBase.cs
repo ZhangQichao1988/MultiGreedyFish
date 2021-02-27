@@ -323,8 +323,15 @@ public class FishBase : MonoBehaviour
     protected virtual void MoveInit()
     { }
     void BuffUpdate()
-    { 
-        data.moveSpeed = originalData.moveSpeed;
+    {
+        if (lifeGauge == null)
+        {
+            data.moveSpeed = originalData.moveSpeed;
+        }
+        else
+        {
+            data.moveSpeed = originalData.moveSpeed * (1 + (1 - lifeRate) * 1f);
+        }
         isShield = false;
         isFrozen = false;
         isStealth = false;

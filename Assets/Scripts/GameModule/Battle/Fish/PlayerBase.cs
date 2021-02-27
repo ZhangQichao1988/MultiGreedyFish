@@ -278,6 +278,7 @@ public class PlayerBase : FishBase
 			else if (fishLevel > 1)
 			{
 				BattleEffectManager.CreateEffect(3, lifeGauge.dmgExpLocation.transform);
+				vibrationType = VibrationMng.VibrationType.Normal;
 			}
 			else
 			{

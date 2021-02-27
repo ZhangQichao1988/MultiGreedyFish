@@ -82,6 +82,7 @@ public class NetWorkHandler
             {"P20_Response", P20_Response.Parser},
             {"P21_Response", P21_Response.Parser},
             {"P22_Response", P22_Response.Parser},
+            {"P23_Response", P23_Response.Parser},
         };
 
         if (AppConst.ServerType == ESeverType.OFFLINE)
@@ -376,6 +377,10 @@ public class NetWorkHandler
     public static void RequestGoldPoolLevelUp()
     {
         NetWorkManager.Request("P18_Request", null);
+    }
+    public static void RequestGoldPoolRecover()
+    {
+        NetWorkManager.Request("P23_Request", null);
     }
 
     /// <summary>

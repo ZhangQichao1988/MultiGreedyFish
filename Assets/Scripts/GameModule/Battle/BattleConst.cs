@@ -41,6 +41,7 @@ public class BattleConst
 		ShellOpenningTime = ConfigTableProxy.Instance.GetDataByKey("ShellOpenningTime");
 		ShellCloseDmg = (int)ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
 		ShellPearlResetRate = ConfigTableProxy.Instance.GetDataByKey("ShellPearlResetRate");
+		SharkLifeRateFirstAtk = ConfigTableProxy.Instance.GetDataById(37).intValue;
 	}
 	public readonly bool FreeMode = false;																											// 只剩自己也不会胜利
 
@@ -77,6 +78,7 @@ public class BattleConst
 	public float ShellOpenningTime = 2f;                                                        // 贝壳开着的时间
 	public int ShellCloseDmg = 100;                                                                  // 贝壳关闭伤害
 	public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
+	public float SharkLifeRateFirstAtk = 0f;                                                       // 鲨鱼血量低于多少时机器人优先攻击鲨鱼
 
 
 

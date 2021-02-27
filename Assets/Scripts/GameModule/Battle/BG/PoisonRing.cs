@@ -47,7 +47,7 @@ public class PoisonRing : MonoBehaviour
 		{
 			ApplyRange( poisonRange);
 		}
-		ApplyPublicPoisonRange();
+		
 	}
 	void ApplyPublicPoisonRange()
 	{
@@ -58,6 +58,7 @@ public class PoisonRing : MonoBehaviour
 	{
 		poisonRange = Math.Max(value, BattleConst.instance.PoisonRingRadiusMin);
 		beforePoisonRange = poisonRange;
+		ApplyPublicPoisonRange();
 		for (int i =0; i < listMaterialBlock.Count; ++i)
 		{
 			listMaterialBlock[i].SetFloat("_SafeAreaRange", poisonRange);
