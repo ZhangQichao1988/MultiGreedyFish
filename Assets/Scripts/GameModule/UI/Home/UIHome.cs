@@ -32,6 +32,7 @@ public class UIHome : UIBase
     public Text textGoldPool_1;
 
     public Text textStreakCnt;
+    public GameObject goStreakCntRoot;
     private float backupTime;
     private P14_Response goldPoolResponse;
 
@@ -41,6 +42,7 @@ public class UIHome : UIBase
     GoldPoolDataInfo goldPoolData = null;
 
     public Text textPlayerCnt;
+    public GameObject goMatchingRoot;
     private string strPlayerCnt;
     private float playerCntCurrentTime;
     private float playerCntTargetTime;
@@ -70,7 +72,7 @@ public class UIHome : UIBase
         // 实例化任务弹窗
         UIBase.Open<UIPopupMissionComplete>("ArtResources/UI/Prefabs/PopupMissionComplete", UILayers.POPUP);
 
-        textPlayerCnt.gameObject.SetActive(false);
+        goMatchingRoot.SetActive(false);
 
         strPlayerCnt = LanguageDataTableProxy.GetText(60);
         listBtn = new List<Button>(GetComponentsInChildren<Button>());
@@ -116,11 +118,11 @@ public class UIHome : UIBase
         if (currentWin > 1)
         {
             textStreakCnt.text = string.Format(LanguageDataTableProxy.GetText(62), currentWin);
-            textStreakCnt.gameObject.SetActive(true);
+            goStreakCntRoot.SetActive(true);
         }
         else
         {
-            textStreakCnt.gameObject.SetActive(false);
+            goStreakCntRoot.SetActive(false);
         }
 
         if (PlayerModel.Instance.fetchMissionTime / Clock.SecOfDay < (long)Clock.Timestamp / Clock.SecOfDay)
@@ -226,7 +228,7 @@ public class UIHome : UIBase
         NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
         NetWorkHandler.RequestBattle();
 
-        textPlayerCnt.gameObject.SetActive(true);
+        goMatchingRoot.SetActive(true);
 
         playerCnt = 1;
         textPlayerCnt.text = string.Format(strPlayerCnt, playerCnt);
@@ -287,6 +289,7 @@ public class UIHome : UIBase
     public void OnClickBattleCancel()
     {
         animator.SetTrigger("BattleCancel");
+        goMatchingRoot.SetActive(false);
     }
     public void OnClickGoldPool()
     {
@@ -304,7 +307,7 @@ public class UIHome : UIBase
             GoldPoolUpdate();
         }
 
-        if (textPlayerCnt.gameObject.activeSelf)
+        if (goMatchingRoot.activeSelf)
         {
             playerCntCurrentTime += Time.deltaTime;
             if (playerCntCurrentTime > playerCntTargetTime && playerCnt <= 9)

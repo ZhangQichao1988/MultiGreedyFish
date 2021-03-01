@@ -70,6 +70,7 @@ public class UIOption : UIBase
     public void OnClickFrame()
     {
         goLanguageSelectFullBg.SetActive(!goLanguageSelectFullBg.activeSelf);
+        SelectLangauge(languageSelect.value);
     }
     public void SelectLangauge(int n)
     {
