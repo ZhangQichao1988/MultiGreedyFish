@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// 用户登录相关流程 控制器
@@ -156,6 +157,31 @@ public class UserLoginFlowController
 
         Intro.Instance.FireBaseCtrl.SetUserId(realResponse.Player.PlayerId.ToString());
         PlayerModel.Instance.player = realResponse.Player;
+        List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos = new List<PBPlayerFishLevelInfo>();
+        List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos_ = new List<PBPlayerFishLevelInfo>(PlayerModel.Instance.player.AryPlayerFishInfo);
+
+        // 把没获得的鱼信息补充全
+        var fishs = FishDataTableProxy.Instance.GetAll();
+        for (int i = fishs.Count - 1; i >= 0; --i)
+        {
+            if (fishs[i].isPlayerFish == 0)
+            {
+                fishs.RemoveAt(i);
+                continue;
+            }
+            var tmp = pBPlayerFishLevelInfos_.Find((a) => { return a.FishId == fishs[i].ID; });
+            if (tmp != null)
+            {
+                pBPlayerFishLevelInfos.Add(tmp);
+            }
+            else
+            {
+                pBPlayerFishLevelInfos.Add(new PBPlayerFishLevelInfo() { FishId = fishs[i].ID });
+            }
+        }
+        PlayerModel.Instance.player.AryPlayerFishInfo.Clear();
+        PlayerModel.Instance.player.AryPlayerFishInfo.AddRange( pBPlayerFishLevelInfos.ToArray() );
+
         finishCb?.Invoke();
     }
 }

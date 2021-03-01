@@ -17,8 +17,14 @@ public class FishEditor : UIBase
         GameObject go;
         FishEditorItem fishEditorItem;
         List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos = new List<PBPlayerFishLevelInfo>(PlayerModel.Instance.player.AryPlayerFishInfo);
-        
+
+
+
         // 根据稀有度排序
+        pBPlayerFishLevelInfos.Sort((a, b) =>
+        {
+            return a.FishId - b.FishId;
+        });
         pBPlayerFishLevelInfos.Sort((a,b)=> 
         {
             return FishDataTableProxy.Instance.GetDataById(a.FishId).rare - FishDataTableProxy.Instance.GetDataById(b.FishId).rare;

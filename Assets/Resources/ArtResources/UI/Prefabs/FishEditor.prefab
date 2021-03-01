@@ -154,7 +154,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
-  m_StartAxis: 0
+  m_StartAxis: 1
   m_CellSize: {x: 351, y: 324}
   m_Spacing: {x: 42.76, y: 108.09}
   m_Constraint: 2
