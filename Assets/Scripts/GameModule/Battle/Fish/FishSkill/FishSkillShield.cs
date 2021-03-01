@@ -21,7 +21,7 @@ public class FishSkillShield : FishSkillBase
 		step = 1;
 
 		SoundManager.PlaySE(14, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transModel);
+		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transModel, playerBase.transform.localScale.x);
 		effect = EffectManager.GetEffect(effectId);
 		// 无敌护盾buff
 		buff = playerBase.AddBuff(playerBase, 4);

@@ -61,7 +61,7 @@ public class PlayerModel : BaseModel<PlayerModel>
                 {
                     UIPopupMissionComplete.Instance.AddCompleteMission(note);
 
-                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.ParameterAchievementId, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
+                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventUnlockAchievement, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
                 }
             }
         }
@@ -116,6 +116,12 @@ public class PlayerModel : BaseModel<PlayerModel>
             player.Gold -= itemVo.Price;
             MissionActionTriggerAdd(5, itemVo.Price);
         }
+
+        FirebaseAnalytics.LogEvent(
+              FirebaseAnalytics.EventSpendVirtualCurrency,
+              new Parameter( FirebaseAnalytics.ParameterValue, itemVo.Price),
+              new Parameter( FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()));
+
         UpdateAssets(rewardVo);
 
         
@@ -139,11 +145,19 @@ public class PlayerModel : BaseModel<PlayerModel>
             if (vo.masterDataItem.type == FishItemType.Diamond)
             {
                 player.Diamond += vo.Amount;
+
+                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
+                                                new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
             }
             else if (vo.masterDataItem.type == FishItemType.Gold)
             {
                 player.Gold += vo.Amount;
                 PlayerModel.Instance.MissionActionTriggerAdd(14, vo.Amount);
+
+                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
+                                                new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
             }
             else if (vo.masterDataItem.type == FishItemType.Piece)
             {
@@ -159,10 +173,13 @@ public class PlayerModel : BaseModel<PlayerModel>
                     player.AryPlayerFishInfo.Add(fishItem);
                 }
                 fishItem.FishChip += vo.Amount;
-            }
-            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
+
+                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
                                                 new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
-                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()),
+                                                new Parameter(FirebaseAnalytics.ParameterItemId, fishItem.FishId) );
+            }
+            
 
         }
     }

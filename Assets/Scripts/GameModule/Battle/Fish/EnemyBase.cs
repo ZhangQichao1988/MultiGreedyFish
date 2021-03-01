@@ -100,12 +100,12 @@ public class EnemyBase : FishBase
                 }
             }
 
-            // 让它不走直线
-            else if (Wrapper.GetRandom(0f, 1f) > 0.95f)
-            {
-                Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
-                Dir.Normalize();
-            }
+            //// 让它不走直线
+            //else if (Wrapper.GetRandom(0f, 1f) > 0.95f)
+            //{
+            //    Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
+            //    Dir.Normalize();
+            //}
 
         }
         else

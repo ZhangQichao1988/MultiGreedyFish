@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ public class PlayerBase : FishBase
 	public override FishType fishType { get { return FishType.Player; } }
 
 	public FishSkillBase fishSkill { get; private set; }
+
+	protected virtual int thinkingTime{ get { return 15; } }
 
 
 	protected List<FishBase> fishBasesInRange;
@@ -111,11 +114,6 @@ public class PlayerBase : FishBase
 			if (curDir.sqrMagnitude < 0.001f)
 				curDir = transform.forward;
 		}
-	}
-	protected override void MoveInit()
-	{
-		if ((actionWaitCnt + uid) % 3 != 0) { return; }
-		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}
 	protected override void MoveUpdate()
 	{
@@ -212,11 +210,14 @@ public class PlayerBase : FishBase
 		//actionStep = ActionType.Eatting;
 		//canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
+		
 		fish.Damage(data.atk, colliderMouth.transform);
 		if (fish.life <= 0)
 		{
-			if(fishType == FishType.Player)
-			{   // 任务相关
+			if (fishType == FishType.Player)
+			{
+				
+				// 任务相关
 				int actionId = 0;
 				switch (fish.originalData.fishId)
 				{
@@ -236,6 +237,11 @@ public class PlayerBase : FishBase
 				PlayerModel.Instance.MissionActionTriggerAdd(actionId, 1);
 				if (fish.fishType == FishType.PlayerRobot)
 				{
+					FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventPostScore,
+												new Parameter(FirebaseAnalytics.ParameterContentType, 0),
+												new Parameter(FirebaseAnalytics.ParameterValue, 1));
+
+					BattleManagerGroup.GetInstance().AddPlayerKilledCnt();
 					if (isShield)
 					{
 						PlayerModel.Instance.MissionActionTriggerAdd(22, 1);
@@ -246,7 +252,12 @@ public class PlayerBase : FishBase
 					}
 				}
 			}
-			
+			else 
+			{
+				FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventPostScore,
+												new Parameter(FirebaseAnalytics.ParameterContentType, 0),
+												new Parameter(FirebaseAnalytics.ParameterValue, 0));
+			}
 			Eat(fish.battleLevel);
 		}
 
@@ -291,6 +302,11 @@ public class PlayerBase : FishBase
 		}
         
     }
+	protected override void MoveInit()
+	{
+		if ((actionWaitCnt + uid) % thinkingTime != 0) { return; }
+		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
+	}
 
 	public override void Die( Transform eatFishTrans )
 	{
@@ -308,7 +324,7 @@ public class PlayerBase : FishBase
 
 		canStealthRemainingTime = Math.Max(0f, canStealthRemainingTime - Time.deltaTime);
 		Vector3 myPos = transform.position;
-		if ((actionWaitCnt + uid) % 3 != 0) 
+		if ((actionWaitCnt + uid) % thinkingTime == 0) 
 		{
 			List<Transform> listTransAquatic = new List<Transform>(BattleManagerGroup.GetInstance().aquaticManager.listTransAquatic);
 			float minDistance = float.MaxValue;
@@ -370,7 +386,15 @@ public class PlayerBase : FishBase
 				stealthAlpha = 0.3f;
 				break;
 			case FishType.PlayerRobot:
-				stealthAlpha = 0f;
+				PlayerBase player = BattleManagerGroup.GetInstance().inGameUIPanel.Player;
+				if (player.beforeInAquatic && Vector3.Distance(player.transform.position, transform.position) < 10)
+				{
+					stealthAlpha = 0.3f;
+				}
+				else
+				{
+					stealthAlpha = 0f;
+				}
 				break;
 		}
 		SetAlpha(beforeInAquatic || isStealth ? stealthAlpha : 1f);

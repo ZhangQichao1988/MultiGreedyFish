@@ -37,9 +37,9 @@ public class EnemyJellyfish : EnemyBase
 
     protected override void Idle()
     {
-        if (!isBecameInvisible) { return; }
-
         StatusUpdate();
+
+        if (!isBecameInvisible) { return; }
         Move();
     }
     protected void StatusUpdate()
@@ -51,7 +51,7 @@ public class EnemyJellyfish : EnemyBase
                 //goDarkCloud.SetActive(false);
                 SetBrightness(0.5f);
                 statusChangeStep = Status.DarkCloud;
-                changeStatusRemainingTime = ConfigTableProxy.Instance.GetDataById(32).floatValue;
+                changeStatusRemainingTime = BattleConst.instance.JellyDarkTime;
                 break;
             case Status.DarkCloud: // 乌云状态阶段
                 changeStatusRemainingTime -= Time.deltaTime;
@@ -65,7 +65,7 @@ public class EnemyJellyfish : EnemyBase
                     goCloud.gameObject.SetActive(false);
                     //goDarkCloud.SetActive(true);
                     SetBrightness(1f);
-                    changeStatusRemainingTime = ConfigTableProxy.Instance.GetDataById(33).floatValue;
+                    changeStatusRemainingTime = BattleConst.instance.JellySunnyTime;
                     statusChangeStep = Status.Cloud;
                 }
                 break;

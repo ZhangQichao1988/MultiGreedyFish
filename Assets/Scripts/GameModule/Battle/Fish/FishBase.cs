@@ -324,6 +324,7 @@ public class FishBase : MonoBehaviour
     { }
     void BuffUpdate()
     {
+        
         if (lifeGauge == null)
         {
             data.moveSpeed = originalData.moveSpeed;

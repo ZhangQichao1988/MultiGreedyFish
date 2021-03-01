@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,8 @@ public class BattleManagerGroup : MonoBehaviour
     public bool isPause = false;
     private int battleRanking = 0;
     private bool isResult = false;
+
+    private int playerKilledCnt = 0;
     private void Awake()
 	{
         instance = this;
@@ -39,8 +42,11 @@ public class BattleManagerGroup : MonoBehaviour
     static public BattleManagerGroup GetInstance()
     { return instance; }
 
-    
 
+    public void AddPlayerKilledCnt()
+    {
+        ++playerKilledCnt;
+    }
     public void GotoBattle()
     {
         //resultRoot.SetActive(false);
@@ -62,6 +68,15 @@ public class BattleManagerGroup : MonoBehaviour
         NetWorkHandler.GetDispatch().AddListener<P5_Response>(GameEvent.RECIEVE_P5_RESPONSE, OnRecvBattleResult);
         NetWorkHandler.RequestBattleResult(StageModel.Instance.battleId, battleRanking);
         StageModel.Instance.battleRanking = battleRanking;
+
+        var levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelEnd,
+                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
+                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
+                                                        new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
+                                                        new Parameter(FirebaseAnalytics.ParameterScore, StageModel.Instance.battleRanking),
+                                                        new Parameter(FirebaseAnalytics.ParameterValue, playerKilledCnt)
+                                                        );
     }
 
     void OnRecvBattleResult<T>(T response)

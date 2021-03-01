@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GaugeLevel : MonoBehaviour
 {
     public Text textFishChip;
-    public Slider sliderFishLevel;
+
+    Slider sliderFishLevel;
 
     private void Awake()
     {
@@ -16,8 +17,17 @@ public class GaugeLevel : MonoBehaviour
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
         var fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
-        sliderFishLevel.value = (float)pBPlayerFishLevelInfo.FishChip / (float)fishLevelUpData.useChip;
-        textFishChip.text = string.Format("{0}/{1}", fishLevelUpData.useChip, pBPlayerFishLevelInfo.FishChip);
+        
+        if (fishLevelUpData.useChip < 0)
+        {
+            textFishChip.text = pBPlayerFishLevelInfo.FishChip.ToString();
+            sliderFishLevel.value = 1;
+        }
+        else
+        {
+            textFishChip.text = string.Format("{0}/{1}", fishLevelUpData.useChip, pBPlayerFishLevelInfo.FishChip);
+            sliderFishLevel.value = (float)pBPlayerFishLevelInfo.FishChip / (float)fishLevelUpData.useChip;
+        }
 
     }
 }

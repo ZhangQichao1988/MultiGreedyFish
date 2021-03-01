@@ -60,6 +60,8 @@ public class UIHome : UIBase
         textGoldPool.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
         SetSoundValue();
+        SetPowerMode();
+        SetShowAdvertSwitch();
     }
     public override void Init()
     {
@@ -84,6 +86,10 @@ public class UIHome : UIBase
     public void SetPowerMode()
     {
         Application.targetFrameRate = AppConst.IsEco == 1 ? 30 : 60;
+    }
+    public void SetShowAdvertSwitch()
+    {
+        PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
     }
 
     public void FetchGoldPool()

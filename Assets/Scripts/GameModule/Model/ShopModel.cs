@@ -90,16 +90,9 @@ public class ShopModel : BaseModel<ShopModel>
             Dispatch(ShopEvent.ON_GETTED_ITEM, rewardVO);
 
             FirebaseAnalytics.LogEvent(
-              FirebaseAnalytics.EventSpendVirtualCurrency,
-              new Parameter[] {
-                new Parameter(
-                  FirebaseAnalytics.ParameterItemName, reqItem.ID),
-                new Parameter(
-                  FirebaseAnalytics.ParameterValue, reqItem.Price),
-                new Parameter(
-                  FirebaseAnalytics.ParameterVirtualCurrencyName, reqItem.Paytype.ToString()),
-              }
-            );
+              FirebaseAnalytics.EventSelectContent,
+              new Parameter( FirebaseAnalytics.ParameterContentType, 0),
+              new Parameter(FirebaseAnalytics.ParameterItemId, request.ShopItemId));
         }
         else
         {

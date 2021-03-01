@@ -73,7 +73,7 @@ public class ShellControl : MonoBehaviour
     {
         if (shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
         {
-            fish.Damage(BattleConst.instance.ShellCloseDmg, null);
+            fish.Damage((int)(fish.life * BattleConst.instance.ShellCloseDmg), null);
             listDamagedFish.Add(fish);
             return false;
         }
