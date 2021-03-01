@@ -126,6 +126,7 @@ public class NetWorkHandler
 
 
         HttpDispatcher.Instance.AddObserver((int)MessageId.MidAdDiamond, OnRecvAdDiamond);
+        HttpDispatcher.Instance.AddObserver((int)MessageId.MidGoldPoolRecover, OnRecvGoldPoolRecover);
     }
     
     static void OnServerEvent(HttpDispatcher.EventType type, string msg, System.Object obj)
@@ -637,6 +638,13 @@ public class NetWorkHandler
         var response = P22_Response.Parser.ParseFrom(msg.Body);
         errorCodeProcesser.Process(response.Result.Code);
         GetDispatch().Dispatch<P22_Response>(GetDispatchKey(msg.Key), response);
+    }
+
+    static void OnRecvGoldPoolRecover(HttpDispatcher.NodeMsg msg)
+    {
+        var response = P23_Response.Parser.ParseFrom(msg.Body);
+        errorCodeProcesser.Process(response.Result.Code);
+        GetDispatch().Dispatch<P23_Response>(GetDispatchKey(msg.Key), response);
     }
     
     
