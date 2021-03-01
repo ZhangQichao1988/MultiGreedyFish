@@ -54,7 +54,7 @@ public class UIOption : UIBase
         showAdvert.onValueChanged.AddListener(isOn =>
         {
             AppConst.NotShowAdvert = isOn ? 0 : 1;
-            PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
+            UIHome.Instance.SetShowAdvertSwitch();
         });
 
         foreach (var note in languageModes)

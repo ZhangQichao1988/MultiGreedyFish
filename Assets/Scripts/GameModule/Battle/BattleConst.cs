@@ -39,9 +39,12 @@ public class BattleConst
 		EatPearlRange = ConfigTableProxy.Instance.GetDataByKey("EatPearlRange");
 		OpenShellRemainingTime = ConfigTableProxy.Instance.GetDataByKey("OpenShellRemainingTime");
 		ShellOpenningTime = ConfigTableProxy.Instance.GetDataByKey("ShellOpenningTime");
-		ShellCloseDmg = (int)ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
+		ShellCloseDmg = ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
 		ShellPearlResetRate = ConfigTableProxy.Instance.GetDataByKey("ShellPearlResetRate");
 		SharkLifeRateFirstAtk = ConfigTableProxy.Instance.GetDataById(37).intValue;
+		JellyDarkTime = ConfigTableProxy.Instance.GetDataById(32).floatValue;
+		JellySunnyTime = ConfigTableProxy.Instance.GetDataById(33).floatValue;
+
 	}
 	public readonly bool FreeMode = false;																											// 只剩自己也不会胜利
 
@@ -76,9 +79,12 @@ public class BattleConst
 	public float EatPearlRange = 3f;                                                                 // 吃珍珠的判定半径
 	public float OpenShellRemainingTime = 5f;												// 打开贝壳的时间间隔
 	public float ShellOpenningTime = 2f;                                                        // 贝壳开着的时间
-	public int ShellCloseDmg = 100;                                                                  // 贝壳关闭伤害
+	public float ShellCloseDmg = 100f;                                                                  // 贝壳关闭伤害
 	public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
 	public float SharkLifeRateFirstAtk = 0f;                                                       // 鲨鱼血量低于多少时机器人优先攻击鲨鱼
+
+	public float JellyDarkTime = 0f;                                                                    // 水母乌云状态时间
+	public float JellySunnyTime = 0f;                                                                    // 水母晴天状态时间
 
 
 

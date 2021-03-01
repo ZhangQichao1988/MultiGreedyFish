@@ -164,7 +164,7 @@ public class FishManager : MonoBehaviour
 		{
 			if (me == listFish[i]) { continue; }
 			if (listFish[i].actionStep == FishBase.ActionType.Die ||
-				listFish[i].actionStep == FishBase.ActionType.Born ||
+				//listFish[i].actionStep == FishBase.ActionType.Born ||
 				listFish[i].actionStep == FishBase.ActionType.BornWaitting){ continue; }
 				//listFish[i].fishType == FishBase.FishType.Boss
 
@@ -187,7 +187,7 @@ public class FishManager : MonoBehaviour
 		{
 			if (me == listFish[i]) { continue; }
 			if (listFish[i].actionStep == FishBase.ActionType.Die ||
-				listFish[i].actionStep == FishBase.ActionType.Born ||
+				//listFish[i].actionStep == FishBase.ActionType.Born ||
 				listFish[i].actionStep == FishBase.ActionType.BornWaitting) { continue; }
 			//listFish[i].fishType == FishBase.FishType.Boss
 

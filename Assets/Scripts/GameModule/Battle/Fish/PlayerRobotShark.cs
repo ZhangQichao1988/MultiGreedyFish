@@ -40,7 +40,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	protected override void MoveInit()
 	{
-		if ((actionWaitCnt + uid) % 3 != 0) { return; }
+		if ((actionWaitCnt + uid) % thinkingTime != 0) { return; }
 		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayer();
 	}
 
@@ -52,11 +52,15 @@ public class PlayerRobotShark : PlayerRobotBase
 		// 判定是否有白名单的鱼
 		//bool hasWhiteFish = false;
 		float nearestDis = float.MaxValue;
-		FishBase target = null;
 		float tmp;
 		// 把新发现的，隐身的鱼排除
 		for (int i = listFish.Count - 1; i >= 0; --i)
 		{
+			if (listFish[i] == null)
+			{
+				listFish.RemoveAt(i);
+				continue;
+			}
 			// 排除隐身的鱼
 			if (listFish[i].isStealth || listFish[i].isShield)
 			{
@@ -77,19 +81,15 @@ public class PlayerRobotShark : PlayerRobotBase
 			if (nearestDis > tmp)
 			{
 				nearestDis = tmp;
-				target = listFish[i];
+				targetFish = listFish[i];
 			}
+		}
+		if (targetFish != null)
+		{
+			targetPos = targetFish.transform.position;
 		}
 
 		listFindedFish = listFish;
-		if (target != null)
-		{
-			MoveToTarget(target.transform.position);
-		}
-		else
-		{
-			EnemyIdle();
-		}
 	}
 
 	public override void SetRobot(RobotAiDataInfo aiData, float growth)

@@ -22,7 +22,7 @@ public class FishSkillVoltage : FishSkillBase
 		step = 1;
 
 		SoundManager.PlaySE(16, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transModel);
+		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transModel, playerBase.transform.localScale.x);
 		effect = EffectManager.GetEffect(effectId);
 
 		return true;

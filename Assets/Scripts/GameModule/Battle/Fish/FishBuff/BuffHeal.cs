@@ -23,7 +23,7 @@ public class BuffHeal : BuffBase
             {
                 PlayerModel.Instance.MissionActionTriggerAdd(17, healLife);
             }
-            if (fish.isBecameInvisible) { BattleEffectManager.CreateEffect(0, fish.transModel); }
+            if (fish.isBecameInvisible) { BattleEffectManager.CreateEffect(0, fish.transModel, fish.transform.localScale.x); }
         }
 
     }

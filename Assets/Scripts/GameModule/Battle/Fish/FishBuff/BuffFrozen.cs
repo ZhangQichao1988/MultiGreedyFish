@@ -11,7 +11,7 @@ public class BuffFrozen : BuffBase
     Effect effect;
     public BuffFrozen(FishBase Initiator, FishBase fish, FishBuffDataInfo baseData) : base(Initiator, fish, baseData)
     {
-        int effectId = BattleEffectManager.CreateEffect(10, fish.transModel);
+        int effectId = BattleEffectManager.CreateEffect(10, fish.transModel, fish.transform.localScale.x);
         effect = EffectManager.GetEffect(effectId);
     }
     public override void ApplyStatus()

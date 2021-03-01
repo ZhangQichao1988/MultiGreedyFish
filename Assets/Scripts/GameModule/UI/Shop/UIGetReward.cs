@@ -40,7 +40,7 @@ public class UIGetReward : UIBase
         isShowAdvert.onValueChanged.AddListener(isOn =>
         {
             AppConst.NotShowAdvert = isOn ? 1 : 0;
-            PlayerPrefs.SetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
+            UIHome.Instance.SetShowAdvertSwitch();
         });
     }
 

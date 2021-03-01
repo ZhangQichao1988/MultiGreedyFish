@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerRobotBase : PlayerBase
 {
-    //protected float aiParamRobotFollowBigFishLifeRate = 0f;
     protected float aiParamRobotGotoAquaticLifeRate = 0f;
     protected float aiParamRobotGotoHealLifeRate = 0f;
     protected bool isGotoAquatic = false;
+    protected bool isIdle = false;
     protected float growth = 0f;
 
     protected List<FishBase> listFindedFish;
@@ -17,11 +17,15 @@ public class PlayerRobotBase : PlayerBase
     protected FishBase whiteFish;
     // 目标鱼
     public FishBase targetFish;
+    // 目标点
+    protected Vector3 targetPos;
     // 锁定同一目标鱼时间，用来规避穷追不舍
     protected float targetCntTime;
     protected float targetCntTimeLimit;
     protected override bool showLifeGauge { get { return true; } }
     public override FishType fishType { get { return FishType.PlayerRobot; } }
+
+    protected override int thinkingTime { get { return 15; } }
 
     public virtual void SetRobot(RobotAiDataInfo aiData, float growth)
     {
@@ -37,7 +41,7 @@ public class PlayerRobotBase : PlayerBase
     {
         // 过一段时间改变一下方向
         changeVectorRemainingTime -= Time.deltaTime;
-
+        isIdle = false;
         // 搜索附近的鱼
         var listFish = new List<FishBase>(fishBasesInRange);
         // 判定是否有白名单的鱼
@@ -61,6 +65,11 @@ public class PlayerRobotBase : PlayerBase
         {
             for (int i = listFish.Count - 1; i >= 0; --i)
             {
+                if (listFish[i] == null)
+                {
+                    listFish.RemoveAt(i);
+                    continue;
+                }
                 // 如果玩家不在视野范围，就不攻击玩家和机器人
                 if (isEyeOver && (listFish[i].fishType == FishType.PlayerRobot || listFish[i].fishType == FishType.Boss))
                 {
@@ -145,7 +154,7 @@ public class PlayerRobotBase : PlayerBase
         if (target != null)
         {
             targetFish = target;
-            MoveToTarget(targetFish.transform.position);
+            targetPos = target.transform.position;
         }
         else if (listFish.Count > 0)
         {
@@ -183,11 +192,12 @@ public class PlayerRobotBase : PlayerBase
                 targetCntTime = targetCntTimeLimit;
             }
             targetFish = target;
-            MoveToTarget(targetFish.transform.position);
-            
+            targetPos = targetFish.transform.position;
+
         }
         else
         {
+            isIdle = true;
             EnemyIdle();
         }
     }
@@ -205,16 +215,9 @@ public class PlayerRobotBase : PlayerBase
         base.CustomUpdate();
     }
     
-    protected bool GotoAquatic()
+    protected void GotoAquatic()
     {
-        
-        if (beforeInAquatic)
-        {
-            data.moveSpeed = 0.01f;
-        }
-
-        MoveToTarget(closestAquatic);
-        return true;
+        targetPos = closestAquatic;
     }
     public override bool Heal(int value)
     {
@@ -222,11 +225,13 @@ public class PlayerRobotBase : PlayerBase
         if (life == lifeMax) { isGotoAquatic = false; }
         return ret;
     }
+
     protected virtual void CalcMoveAction()
     {
         
-        if ((actionWaitCnt + uid) % 3 != 0) { return; }
+        if ((actionWaitCnt + uid) % thinkingTime != 0) { return; }
         // 当血量过低时，去找水草回血
+        isGotoAquatic = false;
         if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
         {
             Vector3 myPos = transform.position;
@@ -236,8 +241,9 @@ public class PlayerRobotBase : PlayerBase
                 var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);
                 if (fishs.Count > 1 && Vector3.SqrMagnitude(fishs[1].transform.position - myPos) > eyeRange)
                 {   // 附近没有其他玩家鱼的话躲草丛
-                    isGotoAquatic = GotoAquatic();
-                    if (isGotoAquatic) { return; }
+                    GotoAquatic();
+                    isGotoAquatic = true;
+                    return;
                 }
             }
             
@@ -246,7 +252,7 @@ public class PlayerRobotBase : PlayerBase
         var shell = BattleManagerGroup.GetInstance().shellManager.GetPearlWithRange(transform.position, BattleConst.instance.RobotVision);
         if (shell)
         {   // 吃珍珠
-            MoveToTarget(new Vector3(shell.transform.position.x, 0f, shell.transform.position.z));
+            targetPos = new Vector3(shell.transform.position.x, 0f, shell.transform.position.z);
         }
         else
         {   // 吃鱼
@@ -258,14 +264,15 @@ public class PlayerRobotBase : PlayerBase
 
     protected void MoveToTarget(Vector3 targetPos)
     {
-        Dir = targetPos - transform.position;
-        Dir.Normalize();
+        Vector3 tmpDir = targetPos - transform.position;
+        tmpDir.Normalize();
+        Dir = Vector3.Lerp(Dir, tmpDir, 0.5f);
 
-        if (changeVectorRemainingTime <= 0)
-        {
-            changeVectorRemainingTime = Wrapper.GetRandom(1f, 2f);
-            Dir = Quaternion.AngleAxis(Wrapper.GetRandom(-20f, 20f), Vector3.up) * Dir;
-        }
+        //if (changeVectorRemainingTime <= 0)
+        //{
+        //    changeVectorRemainingTime = Wrapper.GetRandom(1f, 2f);
+        //    Dir = Quaternion.AngleAxis(Wrapper.GetRandom(-20f, 20f), Vector3.up) * Dir;
+        //}
     }
 
     protected void EnemyIdle()
@@ -283,14 +290,6 @@ public class PlayerRobotBase : PlayerBase
                     hitWallCoolTime = hitWallCoolTimeMax;
                 }
             }
-
-            //// 让它不走直线
-            //else if (Wrapper.GetRandom(0f, 1f) > 0.95f)
-            //{
-            //    Dir += new Vector3(Wrapper.GetRandom(-0.1f, 0.1f), 0, Wrapper.GetRandom(-0.1f, 0.1f));
-            //    Dir.Normalize();
-            //}
-
             return;
         }
 
@@ -302,10 +301,22 @@ public class PlayerRobotBase : PlayerBase
         // 设置下次更改方向的剩余时间
         changeVectorRemainingTime = Wrapper.GetRandom(1f, 3f);
     }
+    protected override void MoveInit()
+    {
+        if (beforeInAquatic && isGotoAquatic)
+        {
+            data.moveSpeed = 0f;
+        }
+        base.MoveInit();
+    }
 
     protected override void MoveUpdate()
     {
         CalcMoveAction();
+        if (!isIdle || isGotoAquatic)
+        {
+            MoveToTarget(targetPos);
+        }
 
         base.MoveUpdate();
     }

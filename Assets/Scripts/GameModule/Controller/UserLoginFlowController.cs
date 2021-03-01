@@ -133,7 +133,7 @@ public class UserLoginFlowController
         var realResponse = response as P2_Response;
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
-            Firebase.Analytics.FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
+            //Firebase.Analytics.FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
             GameTimeUtil.SetServerTime(realResponse.ServerTime);
             PlayerModel.Instance.playerId = realResponse.PlayerId;
             NetWorkHandler.GetDispatch().AddListener<P3_Response>(GameEvent.RECIEVE_P3_RESPONSE, OnRecvGetPlayerInfo);

@@ -182,12 +182,7 @@ public class BattleResult : UIBase
         {
             PlayerModel.Instance.MissionActionTriggerAdd(4, 1);
         }
-        FirebaseAnalytics.LogEvent(   FirebaseAnalytics.EventLevelEnd, 
-                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
-                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterValue, StageModel.Instance.battleRanking)
-                                                        );
+        
 
 
     }

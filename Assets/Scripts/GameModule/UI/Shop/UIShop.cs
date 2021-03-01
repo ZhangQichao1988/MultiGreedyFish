@@ -112,6 +112,16 @@ public class UIShop : UIBase
     {
         //tmp data;
         var items = ShopModel.Instance.GetShopItemByType(type);
+
+        // 删除无法抽选的商品
+        for (int i = items.Count - 1; i >= 0; --i)
+        {
+            if (items[i].pbItems.LimitDetail != null && items[i].pbItems.LimitDetail.LimitedRemainingAmount <= 0)
+            {
+                items.RemoveAt(i);
+            }
+        }
+
         if (items.Count <= 0)
         {
             MsgBox.OpenTips("无法读取商店物品");

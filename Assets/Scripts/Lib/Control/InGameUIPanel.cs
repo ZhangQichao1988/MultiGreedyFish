@@ -22,7 +22,7 @@ public class InGameUIPanel : MonoBehaviour
 
     public int alivePlayerNum;
     private Animator animator;
-    private PlayerBase Player;
+    public PlayerBase Player;
     private PlayerRobotShark Boss;
     private RectTransform SelfRectTF;
     private float MaxLength = 60;
@@ -46,10 +46,18 @@ public class InGameUIPanel : MonoBehaviour
     }
     private void ApplyMiniMap()
     {
-        Vector3 tmpPos = Player.transform.position;
-        transPlayerPoint.anchoredPosition = new Vector2(tmpPos.x / BattleConst.instance.BgBound * miniMapSize,
-                                                                                    tmpPos.z / BattleConst.instance.BgBound * miniMapSize);
+        Vector3 tmpPos;
 
+        GameObjectUtil.SetActive(transPlayerPoint.gameObject, Player != null);
+
+        if (Player != null)
+        {
+            tmpPos = Player.transform.position;
+            transPlayerPoint.anchoredPosition = new Vector2(tmpPos.x / BattleConst.instance.BgBound * miniMapSize,
+                                                                                        tmpPos.z / BattleConst.instance.BgBound * miniMapSize);
+        }
+
+        GameObjectUtil.SetActive(transBossPoint.gameObject, BattleManagerGroup.GetInstance().fishManager.boss != null);
         if (BattleManagerGroup.GetInstance().fishManager.boss != null)
         {
             tmpPos = BattleManagerGroup.GetInstance().fishManager.boss.transform.position;
@@ -148,6 +156,8 @@ public class InGameUIPanel : MonoBehaviour
         }
 #endif
 
+        ApplyMiniMap();
+
         if (!Player) { return; }
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
@@ -161,7 +171,6 @@ public class InGameUIPanel : MonoBehaviour
         skillGauge.fillAmount = Player.fishSkill.currentGauge;
         animator.SetBool("skill_enable", Player.fishSkill.currentGauge >= 1f);
 
-        ApplyMiniMap();
     }
     public void PlayerRunSkill()
     {
