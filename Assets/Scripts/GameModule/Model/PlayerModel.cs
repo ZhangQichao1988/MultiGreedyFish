@@ -42,20 +42,20 @@ public class PlayerModel : BaseModel<PlayerModel>
     }
     public void MissionActionTriggerAdd(int actionId, int addValue)
     {
+        if (!dicBattleMissionActionAddTrigger.ContainsKey(actionId))
+        {
+            dicBattleMissionActionAddTrigger.Add(actionId, addValue);
+        }
+        else
+        {
+            dicBattleMissionActionAddTrigger[actionId] += addValue;
+        }
         bool isReach = false;
         foreach (var note in pBMissions)
         {
             isReach = note.CurrTrigger >= note.Trigger;
             if (note.ActionId == actionId)
             {
-                if (!dicBattleMissionActionAddTrigger.ContainsKey(actionId))
-                {
-                    dicBattleMissionActionAddTrigger.Add(actionId, addValue);
-                }
-                else
-                {
-                    dicBattleMissionActionAddTrigger[actionId] += addValue;
-                }
                 note.CurrTrigger += addValue;
                 if (note.CurrTrigger >= note.Trigger && !isReach)
                 {

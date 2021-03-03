@@ -276,30 +276,9 @@ public class PlayerRobotBase : PlayerBase
     }
 
     protected void EnemyIdle()
-    {       
-        // 更改方向的倒计时还有
-        if (changeVectorRemainingTime > 0)
-        {
-            // 撞墙前改变方向
-            hitWallCoolTime -= Time.deltaTime;
-            if (hitWallCoolTime < 0)
-            {
-                if (transform.position.sqrMagnitude >= BattleManagerGroup.GetInstance().poisonRing.GetSafeRudiusPow() - 5)
-                {
-                    Dir = -Dir;
-                    hitWallCoolTime = hitWallCoolTimeMax;
-                }
-            }
-            return;
-        }
+    {
+        Dir = -Vector3.Normalize(transform.position);
 
-        // 改变方向
-        Vector2 moveVec = new Vector2(Wrapper.GetRandom(-1f, 1f), Wrapper.GetRandom(-1f, 1f));
-        moveVec.Normalize();
-        Dir = new Vector3(moveVec.x, 0, moveVec.y);
-
-        // 设置下次更改方向的剩余时间
-        changeVectorRemainingTime = Wrapper.GetRandom(1f, 3f);
     }
     protected override void MoveInit()
     {

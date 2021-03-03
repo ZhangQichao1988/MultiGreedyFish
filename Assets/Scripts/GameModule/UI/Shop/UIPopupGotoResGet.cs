@@ -49,7 +49,10 @@ public class UIPopupGotoResGet : UIBase
     }
     public void Init(ResType resType, Action onClose, bool hasShop = true)
     {
-        gotoAction = onClose;
+        if (onClose != null)
+        {
+            gotoAction = onClose;
+        }
         gotoAction += Close;
         string strResName = "";
         switch (resType)

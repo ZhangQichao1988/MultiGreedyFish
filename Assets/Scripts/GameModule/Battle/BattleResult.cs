@@ -78,6 +78,7 @@ public class BattleResult : UIBase
     {
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
+            PlayerModel.Instance.gainGold = res.RewardMoney;
             PlayerModel.Instance.player.Gold += res.RewardMoney;
             PlayerModel.Instance.MissionActionTriggerAdd(3, 1);
             PlayerModel.Instance.MissionActionTriggerAdd(14, res.RewardMoney);

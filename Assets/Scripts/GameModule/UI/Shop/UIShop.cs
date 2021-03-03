@@ -116,11 +116,13 @@ public class UIShop : UIBase
         // 删除无法抽选的商品
         for (int i = items.Count - 1; i >= 0; --i)
         {
-            if (items[i].pbItems.LimitDetail != null && items[i].pbItems.LimitDetail.LimitedRemainingAmount <= 0)
+            if (items[i].pbItems.LimitDetail != null && items[i].pbItems.LimitDetail.LimitAmount > 0 &&  items[i].pbItems.LimitDetail.LimitedRemainingAmount == 0)
             {
                 items.RemoveAt(i);
             }
         }
+        // 排序
+        items.Sort((a,b)=> { return a.Priority - b.Priority; });
 
         if (items.Count <= 0)
         {

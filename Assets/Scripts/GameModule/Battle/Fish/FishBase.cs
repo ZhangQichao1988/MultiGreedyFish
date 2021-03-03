@@ -349,8 +349,7 @@ public class FishBase : MonoBehaviour
     }
     public virtual bool EatCheck(PlayerBase player, BoxCollider atkCollider)
     {
-        if (actionStep == ActionType.Born ||
-            actionStep == ActionType.BornWaitting ||
+        if (actionStep == ActionType.BornWaitting ||
             actionStep == ActionType.Die ||
             actionStep == ActionType.None)
         {

@@ -86,4 +86,12 @@ public class UIHomeResource : UIBase
             
         }
     }
+    public void OnClickGold()
+    {
+        UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.GOLD, null);
+    }
+    public void OnClickDiamond()
+    {
+        UIPopupGotoResGet.Open(UIPopupGotoResGet.ResType.DIAMOND, null);
+    }
 }

@@ -120,7 +120,7 @@ public class PlayerRobotShark : PlayerRobotBase
 						atkMax = note.data.atk;
 					}
 				}
-				data.atk = atkMax / 2;
+				data.atk = (int)(atkMax * ConfigTableProxy.Instance.GetDataById(39).floatValue);
 			}
 		}
 

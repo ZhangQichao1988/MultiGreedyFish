@@ -7,6 +7,7 @@ public static class VibrationMng
 {
     public enum VibrationType
     {
+        None,
         Short,
         Normal,
     };

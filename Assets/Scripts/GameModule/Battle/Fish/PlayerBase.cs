@@ -31,6 +31,8 @@ public class PlayerBase : FishBase
 	protected List<FishBase> fishBasesInRange;
 	protected Vector3 closestAquatic;
 
+	private VibrationMng.VibrationType vibrationType;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -59,7 +61,7 @@ public class PlayerBase : FishBase
 		{
 			if (fishType == FishType.Player)
 			{
-				StartCoroutine(Vibrate(VibrationMng.VibrationType.Normal));
+				SetVibrationType(VibrationMng.VibrationType.Normal);
 			}
 			animator.SetTrigger("Damage");
 		}
@@ -133,6 +135,10 @@ public class PlayerBase : FishBase
 				DieWait();
 				break;
 		}
+		if (fishType == FishType.Player && vibrationType != VibrationMng.VibrationType.None)
+		{
+			StartCoroutine(Vibrate(vibrationType));
+		}
 	}
 
     public override void CustomUpdate()
@@ -203,6 +209,13 @@ public class PlayerBase : FishBase
 		yield return null;
 
 	}
+	private void SetVibrationType(VibrationMng.VibrationType vibrationType)
+	{
+		if (vibrationType > this.vibrationType)
+		{
+			this.vibrationType = vibrationType;
+		}
+	}
 	public virtual void Atk(FishBase fish)
 	{
 		animator.SetTrigger("Attack");
@@ -210,8 +223,14 @@ public class PlayerBase : FishBase
 		//actionStep = ActionType.Eatting;
 		//canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 		fishSkill.CbAttack();
-		
-		fish.Damage(data.atk, colliderMouth.transform);
+
+		if (fish.Damage(data.atk, colliderMouth.transform))
+		{
+			if (fishType == FishType.Player)
+			{
+				SetVibrationType(VibrationMng.VibrationType.Normal);
+			}
+		}
 		if (fish.life <= 0)
 		{
 			if (fishType == FishType.Player)
@@ -280,30 +299,28 @@ public class PlayerBase : FishBase
 		animator.SetTrigger("Eat");
 		if (isBecameInvisible)
 		{
-			VibrationMng.VibrationType vibrationType = VibrationMng.VibrationType.Short;
 			if (fishLevel > 5)
 			{
 				BattleEffectManager.CreateEffect(4, lifeGauge.dmgExpLocation.transform);
-				vibrationType = VibrationMng.VibrationType.Normal;
+				SetVibrationType(VibrationMng.VibrationType.Normal);
 			}
 			else if (fishLevel > 1)
 			{
 				BattleEffectManager.CreateEffect(3, lifeGauge.dmgExpLocation.transform);
-				vibrationType = VibrationMng.VibrationType.Normal;
+				SetVibrationType(VibrationMng.VibrationType.Normal);
 			}
 			else
 			{
 				BattleEffectManager.CreateEffect(2, lifeGauge.dmgExpLocation.transform);
+				SetVibrationType(VibrationMng.VibrationType.Short);
 			}
-			if (fishType == FishType.Player)
-			{
-				StartCoroutine(Vibrate(vibrationType));
-			}
+			
 		}
         
     }
 	protected override void MoveInit()
 	{
+		vibrationType = VibrationMng.VibrationType.None;
 		if ((actionWaitCnt + uid) % thinkingTime != 0) { return; }
 		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}

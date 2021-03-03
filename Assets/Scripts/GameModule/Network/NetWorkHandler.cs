@@ -267,7 +267,12 @@ public class NetWorkHandler
         var request = new P5_Request();
         request.BattleRanking = battleRanking;
         request.BattleId = battleId;
-        
+        foreach (var note in PlayerModel.Instance.dicBattleMissionActionAddTrigger.Keys)
+        {
+            request.ActionList.Add(new PBAction() { ActionId = note, TriggerNumber = PlayerModel.Instance.dicBattleMissionActionAddTrigger[note] });
+        }
+
+
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P5_Request", requestByteData);
     }

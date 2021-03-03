@@ -209,7 +209,7 @@ public class UIHome : UIBase
         int goldCnt = PlayerModel.Instance.gainGold/5 + 1;
         for (int i = 0; i < goldCnt; ++i)
         {
-            var poolGold = GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool).GetComponent<PoolGoldAnim>(); ;
+            var poolGold = GameObjectUtil.InstantiatePrefab(asset.Asset, transGoldPool).GetComponent<PoolGoldAnim>();
             poolGold.Init(transPoolGoldGotoTarget.position);
         }
     }

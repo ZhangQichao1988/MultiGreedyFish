@@ -31,6 +31,13 @@ public class ShopItemVo
             return pbItems.Id;
         }
     }
+    public int Priority
+    {
+        get
+        {
+            return pbItems.Priority;
+        }
+    }
 
     public string PlatformID
     {
