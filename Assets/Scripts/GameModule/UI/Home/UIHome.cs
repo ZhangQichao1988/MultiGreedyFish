@@ -33,6 +33,10 @@ public class UIHome : UIBase
 
     public Text textStreakCnt;
     public GameObject goStreakCntRoot;
+
+    public GameObject[] goNewIcons;
+    
+
     private float backupTime;
     private P14_Response goldPoolResponse;
 
@@ -54,6 +58,7 @@ public class UIHome : UIBase
     private bool battleRequestSuccess;
     private Animator animator;
 
+    private long beforeTime;
 
     protected override void Awake()
     {
@@ -99,10 +104,92 @@ public class UIHome : UIBase
         NetWorkHandler.GetDispatch().AddListener<P14_Response>(GameEvent.RECIEVE_P14_RESPONSE, OnRecvGetGoldPool);
         NetWorkHandler.RequestGoldPoolFetch();
     }
+
+    /// <summary>
+    /// 提示点更新
+    /// </summary>
+    private void ApplyNews()
+    {
+        bool isTrigger = false;
+        // 任务
+        if (PlayerModel.Instance.pBMissions != null)
+        {
+            foreach (var note in PlayerModel.Instance.pBMissions)
+            {
+                if (note.CurrTrigger >= note.Trigger && !note.IsComplete)
+                {
+                    isTrigger = true;
+                    break;
+                    
+                }
+            }
+            SetNewTrigger(PBNewType.Mission, isTrigger);
+        }
+
+        // 商店
+        SetNewTrigger(PBNewType.Shop, PlayerModel.Instance.player.AdvertRewardRemainingCnt < ConfigTableProxy.Instance.GetDataById(3100).intValue);
+
+        // 一周更替时，排名奖励获取
+        SetNewTrigger(PBNewType.Ranking, beforeTime != 0 && beforeTime / Clock.SecOfWeek < Clock.Timestamp / Clock.SecOfWeek);
+        beforeTime = (long)Clock.Timestamp;
+
+        // 鱼升级
+        isTrigger = false;
+        foreach (var note in PlayerModel.Instance.player.AryPlayerFishInfo)
+        {
+            var lvData = FishLevelUpDataTableProxy.Instance.GetDataById(note.FishLevel);
+            if (note.FishChip >= lvData.useChip && PlayerModel.Instance.player.Gold >= lvData.useGold)
+            {
+                isTrigger = true;
+                break;
+            }
+        }
+        SetNewTrigger( PBNewType.FishEditor, isTrigger);
+
+        //积分奖励
+        isTrigger = false;
+        int playerTotalRankLevel = PlayerModel.Instance.GetTotalRankLevel();
+        var rankBonusDataInfos = RankBonusDataTableProxy.Instance.GetAll();
+        foreach (var note in rankBonusDataInfos)
+        {
+            if (playerTotalRankLevel >= note.rankLevel && !PlayerModel.Instance.player.GettedBoundsId.Contains(note.ID))
+            {
+                isTrigger = true;
+                break;
+            }
+        }
+        SetNewTrigger(PBNewType.RankBonus, isTrigger);
+
+        for (int i = 0; i < goNewIcons.Length; ++i)
+        {
+            goNewIcons[i].SetActive(PlayerModel.Instance.news.Contains((PBNewType)i));
+        }
+    }
+    private void SetNewTrigger(PBNewType pBNewType, bool isTrigger)
+    {
+        if (isTrigger)
+        {
+            if (!PlayerModel.Instance.news.Contains(pBNewType))
+            {
+                PlayerModel.Instance.news.Add(pBNewType);
+            }
+        }
+        else
+        {
+            if (PlayerModel.Instance.news.Contains(pBNewType))
+            {
+                PlayerModel.Instance.news.Remove(pBNewType);
+            }
+        }
+    }
     public override void OnEnter(System.Object parms)
     {
+
         PBPlayer pBPlayer = PlayerModel.Instance.player;
         OnGetPlayer(pBPlayer);
+
+        // 提示点更新
+        ApplyNews();
 
         // FaceIcon
         textPlayerName.text = pBPlayer.Nickname;
@@ -166,6 +253,7 @@ public class UIHome : UIBase
         var res = response as P20_Response;
         PlayerModel.Instance.pBMissions = res.MissionList.ToList<PBMission>();
         PlayerModel.Instance.fetchMissionTime = (long)Clock.Timestamp;
+        ApplyNews();
     }
     private void GoldPoolUpdate()
     {

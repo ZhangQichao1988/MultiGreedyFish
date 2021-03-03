@@ -70,6 +70,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa913f4957dae7c45a18d1643b162dfe, type: 3}
   - {fileID: 21300000, guid: d3fc571a3d0e5ab42b82318b767f8452, type: 3}
   - {fileID: 21300000, guid: d070506ad9a6baf4ba6dfa90349da1cb, type: 3}
+  - {fileID: 21300000, guid: 8a80338af7f6df94f9bb612a7a15df2c, type: 3}
   - {fileID: 21300000, guid: b3deed5b52a009e4a8b808f34c9c193b, type: 3}
   - {fileID: 21300000, guid: 9db06edb5e14c1440816090c3ca3d138, type: 3}
   - {fileID: 21300000, guid: 98180f3c5f40d6b449191eaf3fafd7d8, type: 3}
@@ -120,6 +121,7 @@ SpriteAtlas:
   - UI_RankIcon_23
   - UI_RankIcon_22
   - UI_RankIcon_12
+  - UI_new
   - UI_diamond
   - UI_dialog_value_bg
   - UI_trophy_progress_bar_bg3

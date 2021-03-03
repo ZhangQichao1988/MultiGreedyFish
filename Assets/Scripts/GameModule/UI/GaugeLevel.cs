@@ -8,7 +8,7 @@ public class GaugeLevel : MonoBehaviour
 {
     public Text textFishChip;
 
-    Slider sliderFishLevel;
+    public Slider sliderFishLevel;
 
     private void Awake()
     {

@@ -6,21 +6,29 @@ using TimerModule;
 
 public class UIShopCellAdvert : UIShopCell
 {
-    
+    public GameObject goNew;
+
+    private int AdvertRewardLimitCnt;
+
+    private void Awake()
+    {
+        AdvertRewardLimitCnt = ConfigTableProxy.Instance.GetDataById(3100).intValue;
+    }
     public override void UpdateData(System.Object data)
     {
         string itemName = ItemDataTableProxy.GetItemName(1);
-        textReward.text = string.Format( LanguageDataTableProxy.GetText(204), itemName, ConfigTableProxy.Instance.GetDataById(3101).intValue);
+        var rewardList = ItemDataTableProxy.GetRewardList(ConfigTableProxy.Instance.GetDataById(3101).stringValue);
+        textReward.text = string.Format( LanguageDataTableProxy.GetText(204), itemName, rewardList[0].amount);
 
         Refresh();
     }
 
     public override void Refresh()
     {
-        text.text = string.Format(LanguageDataTableProxy.GetText(205), PlayerModel.Instance.player.AdvertRewardRemainingCnt);
-        buyBtn.interactable = PlayerModel.Instance.player.AdvertRewardRemainingCnt > 0;
+        text.text = string.Format(LanguageDataTableProxy.GetText(205), AdvertRewardLimitCnt - PlayerModel.Instance.player.AdvertRewardRemainingCnt);
+        buyBtn.interactable = PlayerModel.Instance.player.AdvertRewardRemainingCnt < AdvertRewardLimitCnt;
         banObject.SetActive(!buyBtn.interactable);
-
+        goNew.SetActive(buyBtn.interactable);
     }
 
     public override void OnCellClick()

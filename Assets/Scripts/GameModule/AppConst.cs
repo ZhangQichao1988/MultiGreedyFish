@@ -164,7 +164,7 @@ public class AppConst
         }
     }
 
-    // 本地化
+    // 设置配置
     public static LanguageDataTableProxy.LanguageMode languageMode = LanguageDataTableProxy.LanguageMode.CN;
     public static float BgmValue = -20f;
     public static float SeValue = 0f;

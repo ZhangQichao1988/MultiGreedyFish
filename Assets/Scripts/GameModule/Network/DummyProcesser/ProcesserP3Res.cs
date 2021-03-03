@@ -41,6 +41,9 @@ public class ProcesserP3Res : BaseDummyProcesser<NullMessage, P3_Response>
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 10, FishChip = 5, FishLevel = 1, RankLevel = 0, CurrentWin = 2, MaxWin = 3 });
         res.Player.AryPlayerFishInfo.Add(new PBPlayerFishLevelInfo() { FishId = 11, FishChip = 5, FishLevel = 1, RankLevel = 0, CurrentWin = 2, MaxWin = 3 });
 
+
+        res.News.Add( PBNewType.Mission);
+        res.News.Add( PBNewType.Shop);
         return res;
     }
 }

@@ -8,6 +8,7 @@ public class PlayerModel : BaseModel<PlayerModel>
 {
     public long playerId;
     public PBPlayer player;
+    public List<PBNewType> news;
     public int goldPoolLevel;
     public List<PBMission> pBMissions;
     public Dictionary<int, int> dicBattleMissionActionAddTrigger = new Dictionary<int, int>();

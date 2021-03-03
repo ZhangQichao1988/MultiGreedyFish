@@ -157,6 +157,7 @@ public class UserLoginFlowController
 
         Intro.Instance.FireBaseCtrl.SetUserId(realResponse.Player.PlayerId.ToString());
         PlayerModel.Instance.player = realResponse.Player;
+        PlayerModel.Instance.news =  new List<PBNewType>(realResponse.News);
         List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos = new List<PBPlayerFishLevelInfo>();
         List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos_ = new List<PBPlayerFishLevelInfo>(PlayerModel.Instance.player.AryPlayerFishInfo);
 

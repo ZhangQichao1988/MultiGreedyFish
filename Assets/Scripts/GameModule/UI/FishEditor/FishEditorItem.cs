@@ -18,6 +18,8 @@ public class FishEditorItem : MonoBehaviour
     public Text textFishName;
     public Text textFishLevel;
 
+    public GameObject goNew;
+
     FishDataInfo fishData;
 
     public PBPlayerFishLevelInfo pBPlayerFishLevelInfo;
@@ -53,6 +55,8 @@ public class FishEditorItem : MonoBehaviour
                 var ui = homeScene.GotoSceneUI("FishStatus") as UIFishStatus;
                 ui.Setup(pBPlayerFishLevelInfo);
             });
+
+        goNew.SetActive(gaugeLevel.sliderFishLevel.value >= 1);
     }
     public void Init(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {

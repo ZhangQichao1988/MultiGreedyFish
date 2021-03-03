@@ -12,7 +12,7 @@ public class RankBonus : UIBase
     public RectTransform transGrid = null;
     public RectTransform transContent = null;
 
-    List<RankBonusItem> aryFishEditorItem = null;
+    List<RankBonusItem> aryRankBonusItem = null;
     List<RankBonusDataInfo> rankBonusDataInfos;
 
     public override void OnEnter(System.Object parms)
@@ -23,7 +23,7 @@ public class RankBonus : UIBase
     {
         base.Init();
 
-        aryFishEditorItem = new List<RankBonusItem>();
+        aryRankBonusItem = new List<RankBonusItem>();
 
         GameObject go;
         RankBonusItem rankBonusItem;
@@ -34,7 +34,7 @@ public class RankBonus : UIBase
             go = GameObjectUtil.InstantiatePrefab(asset.Asset, transGrid.gameObject, false);
             rankBonusItem = go.GetComponent<RankBonusItem>();
             rankBonusItem.Init(note);
-            aryFishEditorItem.Add(rankBonusItem);
+            aryRankBonusItem.Add(rankBonusItem);
         }
         var rect = slider.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(350f * rankBonusDataInfos.Count, rect.sizeDelta.y);
@@ -48,7 +48,7 @@ public class RankBonus : UIBase
         bool firstReach = false;
         RankBonusItem.Status status;
 
-        foreach (var note in aryFishEditorItem)
+        foreach (var note in aryRankBonusItem)
         {
             if (playerTotalRankLevel >= note.dataInfo.rankLevel)
             {

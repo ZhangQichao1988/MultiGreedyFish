@@ -30,6 +30,8 @@ public class UIFishStatus : UIBase
 
     public Animator animatorLvupEffect;
 
+    public GameObject goNew;
+
     public GameObject[] goListAtkValue;
     public GameObject[] goListHpValue;
     public GameObject[] goListSpdValue;
@@ -47,6 +49,7 @@ public class UIFishStatus : UIBase
 
         this.playerFishLevelInfo = playerFishLevelInfo;
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
+
         textFishName.text = LanguageDataTableProxy.GetText(fishData.name);
         textFishComment.text = LanguageDataTableProxy.GetText(fishData.comment);
 
@@ -98,6 +101,9 @@ public class UIFishStatus : UIBase
             goTextMaxLevel.SetActive(false);
             btnLvUp.interactable = true;
             textLevelupUseGold.text = fishLevelData.useGold.ToString();
+
+            goNew.SetActive(PlayerModel.Instance.player.Gold >= fishLevelData.useGold && playerFishLevelInfo.FishChip >= fishLevelData.useChip);
+
         }
 
         bool canSelectFish = playerFishLevelInfo.FishLevel > 0;
