@@ -18,6 +18,18 @@ public class ShopModel : BaseModel<ShopModel>
     {
         var vos = ShopItemVo.FromList(response.ProductList);
         
+        // 删除无法抽选的商品
+        for (int i = vos.Count - 1; i >= 0; --i)
+        {
+            if (vos[i].pbItems.LimitDetail != null && vos[i].pbItems.LimitDetail.LimitAmount > 0 &&  vos[i].pbItems.LimitDetail.LimitedRemainingAmount == 0)
+            {
+                vos.RemoveAt(i);
+            }
+        }
+        // 排序
+        vos.Sort((a,b)=> { return a.Priority - b.Priority; });
+
+
         if (request.ProductType == ShopType.Pay)
         {
             LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
