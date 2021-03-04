@@ -23,6 +23,12 @@ namespace NetWorkModule
         /// </summary>
         static long? lowerLimit;
 
+#if CONSOLE_ENABLE
+        /// <summary>
+        /// 测试用偏移时间量
+        /// </summary>
+        static public long debugTimeOffset;
+#endif
         /// <summary>
         /// 推定時刻 (unixtime ミリ秒)
         /// DMHttpApi専用。DMではTimestampを使うこと
@@ -35,8 +41,11 @@ namespace NetWorkModule
                 {
                     return null;
                 }
-
+#if CONSOLE_ENABLE
+                return lowerLimit = System.Math.Max(lowerLimit.Value, (long)((Time.realtimeSinceStartup + delta.Value + debugTimeOffset) * 1000));
+#else
                 return lowerLimit = System.Math.Max(lowerLimit.Value, (long)((Time.realtimeSinceStartup + delta.Value) * 1000));
+#endif
             }
         }
 
@@ -72,7 +81,45 @@ namespace NetWorkModule
             }
         }
 
-    #if !LLAS_NODEBUG
+        public static string GetRemainingTimeStrWithDaily()
+        {
+            return GetRemainingTimeStr(GetRemaingingTimeWithDaily());
+        }
+        public static string GetRemainingTimeStrWithWeekly()
+        {
+            return GetRemainingTimeStr(GetRemaingingTimeWithWeekly());
+        }
+        public static string GetRemainingTimeStr(long remainingTime)
+        {
+            if (remainingTime > Clock.SecOfDay)
+            {
+                return string.Format(LanguageDataTableProxy.GetText(702), remainingTime / Clock.SecOfDay);
+            }
+            else if (remainingTime > 3600)
+            {
+                return string.Format(LanguageDataTableProxy.GetText(705), remainingTime / 3600);
+            }
+            else if (remainingTime > 60)
+            {
+                return string.Format(LanguageDataTableProxy.GetText(706), remainingTime / 60);
+            }
+            else if (remainingTime > 0)
+            {
+                return string.Format(LanguageDataTableProxy.GetText(707), remainingTime);
+            }
+            return "";
+        }
+
+        static public long GetRemaingingTimeWithDaily()
+        {
+            return SecOfDay - (long)Clock.Timestamp % SecOfDay;
+        }
+        static public long GetRemaingingTimeWithWeekly()
+        {
+            return SecOfWeek - (long)Clock.Timestamp % SecOfWeek;
+        }
+
+#if !LLAS_NODEBUG
         /// <summary>
         /// 現在時刻での時差を取得する
         /// </summary>
@@ -85,7 +132,7 @@ namespace NetWorkModule
                 return (localOffset.Hours * 60 * 60) + (localOffset.Minutes * 60) + localOffset.Seconds;
             }
         }
-    #endif
+#endif
 
         /// <summary>
         /// 受信時に時刻を設定する

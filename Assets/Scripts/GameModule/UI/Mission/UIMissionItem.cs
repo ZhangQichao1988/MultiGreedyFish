@@ -34,12 +34,10 @@ public class UIMissionItem : SimpleScrollingCell
         switch (pBMission.Type)
         {
             case MissionType.MissionDaily:
-                secTime = Clock.SecOfDay;
-                remainingTime = secTime - (long)Clock.Timestamp % secTime;
+                remainingTime = Clock.GetRemaingingTimeWithDaily();
                 break;
             case MissionType.MissionWeekly:
-                secTime = Clock.SecOfWeek;
-                remainingTime = secTime - (long)Clock.Timestamp % secTime;
+                remainingTime = Clock.GetRemaingingTimeWithWeekly();
                 break;
             default:
                 remainingTime = 0;
@@ -133,7 +131,7 @@ public class UIMissionItem : SimpleScrollingCell
             }
             Setup(pBMission);
             AdsController.RewardHttpRetryTimes = 0;
-
+            UIMission.instance.ApplyNewIcon();
         }
         else if (res.Result.Code == NetWorkResponseCode.DOUBLE_REWADR_ERROR && AdsController.RewardHttpRetryTimes < 2)
         {
@@ -152,21 +150,10 @@ public class UIMissionItem : SimpleScrollingCell
         if (pBMission != null && pBMission.Type != MissionType.MissionAchievement && !isReach)
         {   
             int nowRemainingTime = (int)(remainingTime - Time.realtimeSinceStartup - backupTime);
-            if (nowRemainingTime > Clock.SecOfDay)
+            string strRemainingTime = Clock.GetRemainingTimeStr(nowRemainingTime);
+            if (strRemainingTime != "")
             {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(702), nowRemainingTime / Clock.SecOfDay);
-            }
-            else if (nowRemainingTime > 3600)
-            {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(705), nowRemainingTime / 3600);
-            }
-            else if (nowRemainingTime > 60)
-            {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(706), nowRemainingTime / 60);
-            }
-            else if (nowRemainingTime > 0)
-            {
-                textRemainingTime.text = string.Format(LanguageDataTableProxy.GetText(707), nowRemainingTime);
+                textRemainingTime.text = strRemainingTime;
             }
             else
             {

@@ -80,6 +80,7 @@ public class ShowTreasure : UIBase
             }
             return;
         }
+        if (isShowAll) { return; }
         if (mapVo.TreasureContent[showItemIndex].masterDataItem.type != "cPiece")
         {   // 不是鱼碎片的话不显示放射特效
             imageRadiation.gameObject.SetActive(false);

@@ -9,44 +9,73 @@ using UnityEngine.Audio;
 
 public class UIMission : UIBase
 {
+    static public UIMission instance;
 
+    public GameObject goMission;
+    public GameObject goAchievement;
+    public GameObject goNewMission;
+    public GameObject goNewAchievement;
     public SimpleScrollingView scrollingView;
 
     List<UIMissionItem> listMissionItem = new List<UIMissionItem>();
     P20_Response res;
     public override void Init()
     {
+        instance = this;
+        scrollingView.Init(AssetPathConst.uiRootPath + "Mission/MissionItem");
         base.Init();
     }
     public override void OnEnter(object obj)
     {
         base.OnEnter(obj);
-        FetchMission();
+        FetchMission( 0);
+    }
+
+    public void ApplyNewIcon()
+    {
+        bool isNewMission = false;
+        bool isNewAchievement = false;
+        foreach (var note in PlayerModel.Instance.pBMissions)
+        {
+            if ( note.CurrTrigger >= note.Trigger && !note.IsComplete)
+            {
+                if (!isNewMission && note.Type != MissionType.MissionAchievement)
+                {
+                    isNewMission = true;
+                }
+                else if (!isNewAchievement && note.Type == MissionType.MissionAchievement)
+                {
+                    isNewAchievement = true;
+                }
+            }
+        }
+        goNewMission.SetActive(isNewMission);
+        goNewAchievement.SetActive(isNewAchievement);
     }
 
     // 获取任务列表
-    public void FetchMission()
+    public void FetchMission(int missionType)
     {
-        var MissionList = PlayerModel.Instance.pBMissions;
+        ApplyNewIcon();
+
+        List<PBMission> MissionList =  new List<PBMission>(PlayerModel.Instance.pBMissions);
+        switch (missionType)
+        {
+            case 0:
+                MissionList = MissionList.FindAll((a) => a.Type != global::MissionType.MissionAchievement);
+                goMission.SetActive(true);
+                goAchievement.SetActive(false);
+                break;
+            case 1:
+                MissionList = MissionList.FindAll((a) => a.Type == global::MissionType.MissionAchievement);
+                goMission.SetActive(false);
+                goAchievement.SetActive(true);
+                break;
+        }
 
         // 每日-》每周-》成就
         //MissionList.Sort((a, b) => { return a.Type - b.Type; });
         MissionList.Sort((a, b) => { return a.MissionId - b.MissionId; });
-
-
-        //// 获得过奖励的靠后
-        //MissionList.Sort((a, b) =>
-        //{
-        //    if (a.IsComplete && !b.IsComplete)
-        //    {
-        //        return 1;
-        //    }
-        //    else if (!a.IsComplete && b.IsComplete)
-        //    {
-        //        return -1;
-        //    }
-        //    return 0;
-        //});
 
         // 获得过奖励的靠后,没拿报酬的靠前
         List<PBMission> list1 = MissionList.Where<PBMission>((a) => a.CurrTrigger >= a.Trigger && !a.IsComplete).ToList();
@@ -57,21 +86,23 @@ public class UIMission : UIBase
         MissionList.AddRange(list2);
         MissionList.AddRange(list3);
 
-        if (listMissionItem.Count <= 0)
-        {
-            scrollingView.Init(AssetPathConst.uiRootPath + "Mission/MissionItem");
-            var listCell = scrollingView.Fill(MissionList.Count);
+        var listCell = scrollingView.Fill(MissionList.Count);
 
-            UIMissionItem uIItem;
-            for (int i = 0; i < listCell.Count; ++i)
-            {
-                uIItem = listCell[i] as UIMissionItem;
-                listMissionItem.Add(uIItem);
-            }
+        UIMissionItem uIItem;
+        listMissionItem.Clear();
+        for (int i = 0; i < listCell.Count; ++i)
+        {
+            uIItem = listCell[i] as UIMissionItem;
+            listMissionItem.Add(uIItem);
         }
+
         for (int i = 0; i < listMissionItem.Count; ++i)
         {
             listMissionItem[i].Setup(MissionList[i]);
         }
+    }
+    private void OnDestroy()
+    {
+        instance = null;
     }
 }

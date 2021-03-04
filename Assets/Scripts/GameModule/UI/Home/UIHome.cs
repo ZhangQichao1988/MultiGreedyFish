@@ -129,9 +129,11 @@ public class UIHome : UIBase
         // 商店
         SetNewTrigger(PBNewType.Shop, PlayerModel.Instance.player.AdvertRewardRemainingCnt < ConfigTableProxy.Instance.GetDataById(3100).intValue);
 
+#if false // 从服务器那边拿比较严谨
         // 一周更替时，排名奖励获取
         SetNewTrigger(PBNewType.Ranking, beforeTime != 0 && beforeTime / Clock.SecOfWeek < Clock.Timestamp / Clock.SecOfWeek);
         beforeTime = (long)Clock.Timestamp;
+#endif
 
         // 鱼升级
         isTrigger = false;

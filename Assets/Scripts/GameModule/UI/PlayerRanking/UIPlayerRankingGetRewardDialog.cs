@@ -9,12 +9,13 @@ using System.Collections.Generic;
 public class UIPlayerRankingGetRewardDialog : UIBase
 {
     public Text textTitle;
-    [SerializeField]
-    SimpleScrollingView scrollingView;
+    public UIRewardCell uiRewardCell;
+    //[SerializeField]
+    //SimpleScrollingView scrollingView;
 
     public override void Init()
     {
-        scrollingView.Init(AssetPathConst.shopRewardCellPath);
+        //scrollingView.Init(AssetPathConst.shopRewardCellPath);
     }
 
     public override void OnEnter(System.Object parms)
@@ -26,12 +27,12 @@ public class UIPlayerRankingGetRewardDialog : UIBase
         var items = RewardItemVo.FromList(rankReward.Content);
         PlayerModel.Instance.ProcessReward(items);
         UIHomeResource.Instance.UpdateAssets();
-
-        var uiObjs = scrollingView.Fill(items.Count);
-        uiObjs.ForEach(cell=>{
-            var idx = uiObjs.IndexOf(cell);
-            cell.UpdateData(items[idx]);
-        });
+        uiRewardCell.UpdateData(items[0]);
+        //var uiObjs = scrollingView.Fill(items.Count);
+        //uiObjs.ForEach(cell=>{
+        //    var idx = uiObjs.IndexOf(cell);
+        //    cell.UpdateData(items[idx]);
+        //});
     }
 
 }

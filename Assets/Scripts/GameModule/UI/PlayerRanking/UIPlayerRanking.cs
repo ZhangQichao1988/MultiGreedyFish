@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Audio;
+using NetWorkModule;
 
 public class UIPlayerRanking : UIBase
 {
@@ -84,7 +85,7 @@ public class UIPlayerRanking : UIBase
         {
             listPlayerRankingItem[i].Setup( res.RankPlayerList[i]);
         }
-        textRewardCalcTime.text = string.Format(LanguageDataTableProxy.GetText(617), batchData.endTime);
+        textRewardCalcTime.text =  string.Format(LanguageDataTableProxy.GetText(617), Clock.GetRemainingTimeStrWithWeekly());
 
         // 若获得奖励就弹窗
         if (res.RankReward != null)

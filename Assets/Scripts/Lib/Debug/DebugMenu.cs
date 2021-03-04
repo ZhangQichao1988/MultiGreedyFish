@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEditor;
+using NetWorkModule;
 
 public class DebugMenu :MonoBehaviour
 {
@@ -513,6 +514,8 @@ public class DebugMenu :MonoBehaviour
 
     void ShowToolWindow()
     {
+        DateTime dt1970 = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        GUILayout.Label("NowTimeUTC:" + new DateTime(dt1970.Ticks + (long)Clock.MilliTimestamp * 10000));
         string[] names = Enum.GetNames(typeof(ESeverType));
         if (PlayerModel.Instance != null) { GUILayout.Label("PlayerID:" + PlayerModel.Instance.playerId, GUILayout.Height(50)); }
         GUILayout.Label("测试登录 请输入PlayerID:");
@@ -553,8 +556,53 @@ public class DebugMenu :MonoBehaviour
             BillingManager.FinishPendingTransactions();
         }
 
+        // 时间偏移
+        GUILayout.BeginHorizontal();
+        {
+            if (GUILayout.Button("-1Week", GUI.skin.button))
+            {
+                Clock.debugTimeOffset -= Clock.SecOfWeek;
+            }
+            if (GUILayout.Button("-1Day", GUI.skin.button))
+            {
+                Clock.debugTimeOffset -= Clock.SecOfDay;
+            }
+            if (GUILayout.Button("-1Hour", GUI.skin.button))
+            {
+                Clock.debugTimeOffset -= 3600;
+            }
+            if (GUILayout.Button("-10Min", GUI.skin.button))
+            {
+                Clock.debugTimeOffset -= 600;
+            }
+            if (GUILayout.Button("-1Min", GUI.skin.button))
+            {
+                Clock.debugTimeOffset -= 60;
+            }
+            if (GUILayout.Button("+1Min", GUI.skin.button))
+            {
+                Clock.debugTimeOffset += 60;
+            }
+            if (GUILayout.Button("+10Min", GUI.skin.button))
+            {
+                Clock.debugTimeOffset += 600;
+            }
+            if (GUILayout.Button("+1Hour", GUI.skin.button))
+            {
+                Clock.debugTimeOffset += 3600;
+            }
+            if (GUILayout.Button("+1Day", GUI.skin.button))
+            {
+                Clock.debugTimeOffset += Clock.SecOfDay;
+            }
+            if (GUILayout.Button("+1Week", GUI.skin.button))
+            {
+                Clock.debugTimeOffset += Clock.SecOfWeek;
+            }
+        }
+        GUILayout.EndHorizontal();
+
         // 战斗debug
-#if CONSOLE_ENABLE
         GUILayout.BeginHorizontal();
         {
             if (GUILayout.Button("杀死一个敌人", GUI.skin.button))
@@ -575,7 +623,6 @@ public class DebugMenu :MonoBehaviour
             }
         }
         GUILayout.EndHorizontal();
-#endif
     }
     
 
