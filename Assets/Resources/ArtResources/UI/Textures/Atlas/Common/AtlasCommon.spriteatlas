@@ -47,6 +47,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1f0a65a3272364f458bada72caa15f55, type: 3}
   - {fileID: 21300000, guid: 4c33af046c31cae4aa52381183916c8d, type: 3}
   - {fileID: 21300000, guid: 72a51c34dd259114cb7a752b776bff53, type: 3}
+  - {fileID: 21300000, guid: 4868ad44152f41c48b85f04f9b3fa224, type: 3}
   - {fileID: 21300000, guid: e5f389353d98a7e4195d95c7e803fbb6, type: 3}
   - {fileID: 21300000, guid: 31c33f35b39f60642899344abf41e805, type: 3}
   - {fileID: 21300000, guid: 2502989575dd3ac41a6d7edecd8b82ac, type: 3}
@@ -83,6 +84,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9b90bf2e2bb986f4e943516865fba4d5, type: 3}
   - {fileID: 21300000, guid: 384c5a3ebd0346a44836f1e2c091371e, type: 3}
   - {fileID: 21300000, guid: 619d985e9400ad841af834563317e940, type: 3}
+  - {fileID: 21300000, guid: 0f47f71fcb650264184aeeab3cbbc502, type: 3}
+  - {fileID: 21300000, guid: 707fbf1f6f39d404cb196ca84dd36ea9, type: 3}
   - {fileID: 21300000, guid: c6bd74cf03e9234428156f5379694ee7, type: 3}
   m_PackedSpriteNamesToIndex:
   - UI_radiation
@@ -98,6 +101,7 @@ SpriteAtlas:
   - UI_RankIcon
   - UI_close
   - UI_dialog_bg
+  - ui_shop_frame_1
   - UI_RankIcon_35
   - UI_RankIcon_43
   - UI_RankIcon_52
@@ -134,6 +138,8 @@ SpriteAtlas:
   - UI_RankIcon_51
   - UI_dialog_line
   - UI_RankIcon_11
+  - ui_shop_frame_3
+  - ui_shop_frame_2
   - arrow
   m_Tag: AtlasCommon
   m_IsVariant: 0
