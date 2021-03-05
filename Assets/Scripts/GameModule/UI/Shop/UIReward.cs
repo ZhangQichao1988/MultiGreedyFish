@@ -8,28 +8,13 @@ using System.Collections.Generic;
 
 public class UIReward : UIBase
 {
-    
-    [SerializeField]
-    SimpleScrollingView scrollingView;
-
-    public override void Init()
-    {
-        scrollingView.Init(AssetPathConst.shopRewardCellPath);
-    }
+    public UIRewardCell rewardCell;
 
     public override void OnEnter(System.Object parms)
     {
         var items = parms as List<RewardItemVo>;
-        var uiObjs = scrollingView.Fill(items.Count);
-        uiObjs.ForEach(cell=>{
-            var idx = uiObjs.IndexOf(cell);
-            cell.UpdateData(items[idx]);
-        });
-    }
+        rewardCell.UpdateData(items[0]);
 
-    public void OnSure()
-    {
-        this.Close();
     }
 
 }

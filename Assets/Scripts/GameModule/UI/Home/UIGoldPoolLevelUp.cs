@@ -18,6 +18,7 @@ public class UIGoldPoolLevelUp : UIBase
     public Text textPlus2;
 
     public Text textLvUpUse;
+    public Text textLvUpValueUse;
     public Text textRecoverUse;
     public Text textRecoverValueUse;
 
@@ -37,6 +38,7 @@ public class UIGoldPoolLevelUp : UIBase
 
         textRecoverUse.text = recoverUseDiamond.ToString();
         textRecoverValueUse.text = string.Format(LanguageDataTableProxy.GetText(505), nowLvData.maxGold);
+        textLvUpValueUse.text = string.Format(LanguageDataTableProxy.GetText(506), nowLvData.maxGold);
 
         if (PlayerModel.Instance.goldPoolLevel >= GoldPoolDataTableProxy.Instance.GetAll().Count)
         {

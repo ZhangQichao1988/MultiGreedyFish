@@ -77,6 +77,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 98180f3c5f40d6b449191eaf3fafd7d8, type: 3}
   - {fileID: 21300000, guid: 6f38186c707cfdf4086d241c60c9b6b3, type: 3}
   - {fileID: 21300000, guid: 0e96f90dad1f50d47bb8bece179f08f8, type: 3}
+  - {fileID: 21300000, guid: f010f23d6340d454da1a25217c941e54, type: 3}
   - {fileID: 21300000, guid: 725fd86d435aee34290065ba3a0108b2, type: 3}
   - {fileID: 21300000, guid: 18443d9db7ebd2346b184b084bd7965d, type: 3}
   - {fileID: 21300000, guid: fbdd18ad5216f6e4c88516e34f4a2347, type: 3}
@@ -131,6 +132,7 @@ SpriteAtlas:
   - UI_trophy_progress_bar_bg3
   - UI_RankIcon_45
   - UI_RankIcon_14
+  - ui_frame
   - UI_RankIcon_34
   - ui_reward_unlocked_frame
   - UI_trophy_progress_bar

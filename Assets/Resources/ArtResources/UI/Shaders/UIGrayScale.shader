@@ -16,6 +16,7 @@ Shader "UI/GrayScale"
         _ColorMask("Color Mask", Float) = 15
 
         [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip("Use Alpha Clip", Float) = 0
+        [Toggle(GRAY_SCALE)] _GrayScale("Gray Scale", Float) = 0
     }
 
         SubShader

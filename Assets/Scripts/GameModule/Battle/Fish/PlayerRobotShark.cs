@@ -20,7 +20,7 @@ public class PlayerRobotShark : PlayerRobotBase
 	}
 	protected override void ApplySize()
 	{
-		transform.localScale = Vector3.one * 3;
+		transform.localScale = Vector3.one * (0.5f + 2.5f * lifeRate);
 	}
 	public override bool Damage(int dmg, Transform hitmanTrans)
 	{

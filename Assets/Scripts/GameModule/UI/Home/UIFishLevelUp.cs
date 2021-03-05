@@ -23,6 +23,7 @@ public class UIFishLevelUp : UIBase
     public Text textHpPlus;
 
     public Text textChip;
+    public Button btnLvUp;
 
     public Action onSuccess = null;
 
@@ -41,18 +42,44 @@ public class UIFishLevelUp : UIBase
 
         int currentValue, plus;
         var fishData = FishDataTableProxy.Instance.GetDataById(playerFishLevelInfo.FishId);
-        // 攻击力
-        currentValue = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel, 1);
-        textAtkValue.text = currentValue.ToString();
-        plus = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
-        textAtkPlus.text = "+" + plus.ToString();
-        // 体力
-        currentValue = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel, 1);
-        textHpValue.text = currentValue.ToString();
-        plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
-        textHpPlus.text = "+" + plus.ToString();
+        
+        if (!isLvUp)
+        {   // 解锁时只显示1级属性
+            // 攻击力
+            currentValue = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, 1, 1);
+            textAtkValue.text = currentValue.ToString();
+            textAtkPlus.text = "";
+
+            // 体力
+            currentValue = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, 1, 1);
+            textHpValue.text = currentValue.ToString();
+            textHpPlus.text = "";
+        }
+        else
+        {
+            // 攻击力
+            currentValue = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel, 1);
+            textAtkValue.text = currentValue.ToString();
+            plus = FishLevelUpDataTableProxy.Instance.GetFishAtk(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
+            textAtkPlus.text = "+" + plus.ToString();
+
+            // 体力
+            currentValue = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel, 1);
+            textHpValue.text = currentValue.ToString();
+            plus = FishLevelUpDataTableProxy.Instance.GetFishHp(fishData, playerFishLevelInfo.FishLevel + 1, 1) - currentValue;
+            textHpPlus.text = "+" + plus.ToString();
+        }
 
         textChip.text = dataInfo.useChip.ToString();
+
+        if (dataInfo.useGold > PlayerModel.Instance.player.Gold || dataInfo.useChip > playerFishLevelInfo.FishChip)
+        {
+            btnLvUp.image.material.EnableKeyword("GRAY_SCALE");
+        }
+        else
+        {
+            btnLvUp.image.material.DisableKeyword("GRAY_SCALE");
+        }
     }
 
     public void OnClickFishLevelUp()

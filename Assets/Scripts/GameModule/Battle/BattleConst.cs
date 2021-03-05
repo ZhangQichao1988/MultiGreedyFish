@@ -41,7 +41,7 @@ public class BattleConst
 		ShellOpenningTime = ConfigTableProxy.Instance.GetDataByKey("ShellOpenningTime");
 		ShellCloseDmg = ConfigTableProxy.Instance.GetDataByKey("ShellCloseDmg");
 		ShellPearlResetRate = ConfigTableProxy.Instance.GetDataByKey("ShellPearlResetRate");
-		SharkLifeRateFirstAtk = ConfigTableProxy.Instance.GetDataById(37).intValue;
+		AtkSharkExp = ConfigTableProxy.Instance.GetDataById(37).intValue;
 		JellyDarkTime = ConfigTableProxy.Instance.GetDataById(32).floatValue;
 		JellySunnyTime = ConfigTableProxy.Instance.GetDataById(33).floatValue;
 
@@ -81,7 +81,7 @@ public class BattleConst
 	public float ShellOpenningTime = 2f;                                                        // 贝壳开着的时间
 	public float ShellCloseDmg = 100f;                                                                  // 贝壳关闭伤害
 	public float ShellPearlResetRate = 0.2f;                                                       // 贝壳重置珍珠概率
-	public float SharkLifeRateFirstAtk = 0f;                                                       // 鲨鱼血量低于多少时机器人优先攻击鲨鱼
+	public float AtkSharkExp = 0f;																		// 攻击鲨鱼获得的经验
 
 	public float JellyDarkTime = 0f;                                                                    // 水母乌云状态时间
 	public float JellySunnyTime = 0f;                                                                    // 水母晴天状态时间

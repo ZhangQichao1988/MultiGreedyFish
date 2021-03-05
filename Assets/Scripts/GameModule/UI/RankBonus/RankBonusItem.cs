@@ -24,6 +24,7 @@ public class RankBonusItem : MonoBehaviour
 
     public GameObject goTick;
     public GameObject textNextBonus;
+    public GameObject goNew;
 
     public Animator animator;
     public RankBonusDataInfo dataInfo;
@@ -48,6 +49,7 @@ public class RankBonusItem : MonoBehaviour
                 animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
+                goNew.SetActive(false);
                 break;
             case Status.Next:
                 goTick.SetActive(false);
@@ -55,6 +57,7 @@ public class RankBonusItem : MonoBehaviour
                 animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
+                goNew.SetActive(false);
                 break;
             case Status.NoGet:
                 goTick.SetActive(false);
@@ -62,6 +65,7 @@ public class RankBonusItem : MonoBehaviour
                 animator.SetBool("Blinking", true);
                 rootButton.enabled = true;
                 imageItem.material.DisableKeyword("GRAY_SCALE");
+                goNew.SetActive(true);
                 break;
             case Status.NoReach:
                 goTick.SetActive(false);
@@ -69,6 +73,7 @@ public class RankBonusItem : MonoBehaviour
                 animator.SetBool("Blinking", false);
                 rootButton.enabled = false;
                 imageItem.material.EnableKeyword("GRAY_SCALE");
+                goNew.SetActive(false);
                 break;
         }
     }

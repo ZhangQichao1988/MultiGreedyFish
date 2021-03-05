@@ -48,6 +48,9 @@ public class UIShop : UIBase
 
     public override void OnEnter(System.Object parms)
     {
+        // 为了自动设定size功能正常
+        contentSizeFitter.gameObject.SetActive(false);
+
         requestFlag = new Dictionary<ShopType, bool>();
         ShopType sType = parms == null ? ShopType.Other : (ShopType)Enum.Parse( typeof(ShopType), parms.ToString());
         OnClickTag(sType.ToString());
@@ -123,8 +126,6 @@ public class UIShop : UIBase
 
     void InitContent(ShopType type)
     {
-        // 为了自动设定size功能正常
-        contentSizeFitter.gameObject.SetActive(false);
 
         //tmp data;
         foreach (var note in uIShopCells)

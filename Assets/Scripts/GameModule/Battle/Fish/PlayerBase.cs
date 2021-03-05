@@ -231,6 +231,11 @@ public class PlayerBase : FishBase
 				SetVibrationType(VibrationMng.VibrationType.Normal);
 			}
 		}
+		// 攻击鲨鱼会获得少许经验
+		if (fish.fishType == FishType.Boss)
+		{
+			Eat(BattleConst.instance.AtkSharkExp);
+		}
 		if (fish.life <= 0)
 		{
 			if (fishType == FishType.Player)

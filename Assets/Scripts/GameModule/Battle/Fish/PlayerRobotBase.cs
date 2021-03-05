@@ -7,6 +7,8 @@ public class PlayerRobotBase : PlayerBase
 {
     protected float aiParamRobotGotoAquaticLifeRate = 0f;
     protected float aiParamRobotGotoHealLifeRate = 0f;
+    protected float aiParamRobotAtkSharkLifeRate = 0f;
+    protected int aiParamRobotAtkSharkLife = 0;
     protected bool isGotoAquatic = false;
     protected bool isIdle = false;
     protected float growth = 0f;
@@ -34,6 +36,8 @@ public class PlayerRobotBase : PlayerBase
         targetCntTimeLimit = aryParam[0];
         aiParamRobotGotoAquaticLifeRate = aryParam[1];
         aiParamRobotGotoHealLifeRate = aryParam[2];
+        aiParamRobotAtkSharkLifeRate = aryParam[3];
+        aiParamRobotAtkSharkLife = (int)aryParam[4];
         targetCntTime = targetCntTimeLimit;
     }
 
@@ -77,7 +81,7 @@ public class PlayerRobotBase : PlayerBase
                     continue;
                 }
                 // 当鲨鱼血量低于一定量时，优先攻击
-                if (listFish[i].fishType == FishType.Boss && listFish[i].life <= BattleConst.instance.SharkLifeRateFirstAtk)
+                if (listFish[i].fishType == FishType.Boss && lifeRate >= aiParamRobotAtkSharkLifeRate &&  listFish[i].life <= aiParamRobotAtkSharkLife)
                 {
                     target = listFish[i];
                     break;
@@ -235,7 +239,8 @@ public class PlayerRobotBase : PlayerBase
         if (lifeRate < aiParamRobotGotoHealLifeRate || isGotoAquatic)
         {
             Vector3 myPos = transform.position;
-            float eyeRange = ConfigTableProxy.Instance.GetDataById(35).floatValue;
+            //float eyeRange = ConfigTableProxy.Instance.GetDataById(35).floatValue;
+            float eyeRange = 50f;
             if (BattleManagerGroup.GetInstance().fishManager.boss != null && Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().fishManager.boss.transform.position - myPos) > eyeRange)
             {
                 var fishs = BattleManagerGroup.GetInstance().fishManager.GetAlivePlayerSort(myPos);

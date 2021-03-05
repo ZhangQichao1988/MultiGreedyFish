@@ -164,6 +164,7 @@ public class FishBase : MonoBehaviour
     {
         get 
         {
+            if (lifeMax == 0) { return 1f; }
             return (float)life / (float)lifeMax;
         }
     }

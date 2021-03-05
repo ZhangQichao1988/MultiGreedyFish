@@ -20,8 +20,10 @@ public class UIFishStatus : UIBase
     public Text textFishComment;
     public Text textFishSkillName;
     public Text textLevelupUseGold;
+    public Text textLevelupUseChip;
 
     public Text textCurrentFishLevel;
+    public Text textCurrentFishLevelEffect;
 
     public Text textLvUpBtn;
 
@@ -37,6 +39,7 @@ public class UIFishStatus : UIBase
     public GameObject[] goListSpdValue;
 
     private PBPlayerFishLevelInfo playerFishLevelInfo;
+    private int showFishLevel;
 
     public override void OnEnter(System.Object obj)
     {
@@ -101,6 +104,7 @@ public class UIFishStatus : UIBase
             goTextMaxLevel.SetActive(false);
             btnLvUp.interactable = true;
             textLevelupUseGold.text = fishLevelData.useGold.ToString();
+            textLevelupUseChip.text = fishLevelData.useChip.ToString();
 
             goNew.SetActive(PlayerModel.Instance.player.Gold >= fishLevelData.useGold && playerFishLevelInfo.FishChip >= fishLevelData.useChip);
 
@@ -110,13 +114,14 @@ public class UIFishStatus : UIBase
         textLvUpBtn.text = LanguageDataTableProxy.GetText(canSelectFish ? 15 : 18);
         btnSelectFish.interactable = canSelectFish;
         textSelectFish.text = LanguageDataTableProxy.GetText(canSelectFish ? 16 : 17);
-        textCurrentFishLevel.text = canSelectFish ? 
-                                                    string.Format(LanguageDataTableProxy.GetText(10), playerFishLevelInfo.FishLevel) :
-                                                    LanguageDataTableProxy.GetText(17);
 
+        showFishLevel = playerFishLevelInfo.FishLevel;
+        textCurrentFishLevel.text = canSelectFish ? 
+                                                    string.Format(LanguageDataTableProxy.GetText(10), showFishLevel) :
+                                                    LanguageDataTableProxy.GetText(17);
+        textCurrentFishLevelEffect.text = textCurrentFishLevel.text;
         gauageLevel.Refash(playerFishLevelInfo);
         gauageRank.Refash(playerFishLevelInfo);
-        //btnLvUp.interactable = gauageLevel.sliderFishLevel.value >= 1f && PlayerModel.Instance.player.Gold >= fishLevelData.useGold;
 
     }
     
@@ -139,9 +144,9 @@ public class UIFishStatus : UIBase
     {
         var uiFishLevelUp = UIBase.Open<UIFishLevelUp>(Path.Combine( AssetPathConst.uiRootPath, "PopupFishLevelUp"), UILayers.POPUP);
         uiFishLevelUp.Setup(playerFishLevelInfo, ()=> { animatorLvupEffect.SetTrigger("show"); });
-        uiFishLevelUp.onClose = () => 
-        {
-            Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId));
-        };
-}
+    }
+    public void Reflash()
+    {
+        Setup(PlayerModel.Instance.GetPlayerFishLevelInfo(playerFishLevelInfo.FishId));
+    }
 }
