@@ -86,7 +86,6 @@ public class AdsController : MonoBehaviour
             if (rewardAd.IsLoaded())
             {
                 //cache has been completed 
-                LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
                 SetRewardData(rewardAd);
                 rewardAd.Show();
             }
@@ -135,9 +134,9 @@ public class AdsController : MonoBehaviour
         Debug.Log("HandleRewardBasedVideoLoaded event received");
         isLoadFailed = false;
         MainThreadDispatcher.Post(()=>{
-            LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
             if (rewardAd != null)
             {   
+                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
                 rewardAd.Show();
             }
         });
@@ -167,6 +166,8 @@ public class AdsController : MonoBehaviour
     {
         Debug.Log("HandleRewardBasedVideoLoaded Closed");
         rewardAd = null;
-        PreLoad(false);
+        MainThreadDispatcher.Post(()=>{
+            PreLoad(false);
+        });
     }
 }
