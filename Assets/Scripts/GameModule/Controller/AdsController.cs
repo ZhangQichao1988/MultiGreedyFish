@@ -45,7 +45,9 @@ public class AdsController : MonoBehaviour
             ).build());
 #endif
 
-            PreLoad(false);
+            MainThreadDispatcher.Post(()=>{
+                PreLoad(false);
+            }); 
         });
         
     }
@@ -56,7 +58,10 @@ public class AdsController : MonoBehaviour
         if (isInited)
         {
             Debug.Log("Started to preload");
-            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+            if (playOnComplete)
+            {
+                LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
+            }
             rewardAd = CreateAndLoadRewardedAd(appId, playOnComplete);
             rewardAd.LoadAd(GetRequest());
         }
@@ -80,6 +85,8 @@ public class AdsController : MonoBehaviour
         {
             if (rewardAd.IsLoaded())
             {
+                //cache has been completed 
+                LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
                 SetRewardData(rewardAd);
                 rewardAd.Show();
             }
