@@ -44,18 +44,20 @@ public class AdsController : MonoBehaviour
                 }
             ).build());
 #endif
+
+            PreLoad(false);
         });
         
     }
 
     RewardedAd rewardAd;
-    public void PreLoad(string customize)
+    public void PreLoad(bool playOnComplete = true)
     {
         if (isInited)
         {
             Debug.Log("Started to preload");
             LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
-            rewardAd = CreateAndLoadRewardedAd(appId, customize);
+            rewardAd = CreateAndLoadRewardedAd(appId, playOnComplete);
             rewardAd.LoadAd(GetRequest());
         }
         else
@@ -69,41 +71,56 @@ public class AdsController : MonoBehaviour
         return new AdRequest.Builder().Build();
     }
 
+    private string customizeData;
+
     public void Show(string customize = null)
     {
+        customizeData = customize;
         if (rewardAd != null)
         {
             if (rewardAd.IsLoaded())
             {
+                SetRewardData(rewardAd);
                 rewardAd.Show();
             }
             else if (isLoadFailed)
             {
-                PreLoad(customize);
+                PreLoad();
             }
         }
         else
         {
             Debug.Log("have not been Loaded");
-            PreLoad(customize);
+            PreLoad();
         }
     }
 
-    private RewardedAd CreateAndLoadRewardedAd(string adUnitId, string customizeData)
+    private RewardedAd CreateAndLoadRewardedAd(string adUnitId, bool playOnComplete)
     {
         RewardedAd rewardedAd = new RewardedAd(adUnitId);
 
-        rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
-        rewardedAd.OnAdFailedToLoad += HandleRewardedAdLoadedFailed;
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;
-        
-        rewardedAd.SetServerSideVerificationOptions((new ServerSideVerificationOptions.Builder()).
-                SetUserId(PlayerModel.Instance.player.PlayerId.ToString()).
-                SetCustomData(customizeData).
-                Build());
+
+        if (playOnComplete)
+        {
+            SetRewardData(rewardedAd);
+        }
 
         return rewardedAd;
+    }
+
+    private void SetRewardData(RewardedAd ad )
+    {
+        if (ad != null)
+        {
+            ad.OnAdLoaded += HandleRewardedAdLoaded;
+            ad.OnAdFailedToLoad += HandleRewardedAdLoadedFailed;
+            ad.SetServerSideVerificationOptions((new ServerSideVerificationOptions.Builder()).
+                    SetUserId(PlayerModel.Instance.player.PlayerId.ToString()).
+                    SetCustomData(customizeData).
+                    Build());
+        } 
     }
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
@@ -143,5 +160,6 @@ public class AdsController : MonoBehaviour
     {
         Debug.Log("HandleRewardBasedVideoLoaded Closed");
         rewardAd = null;
+        PreLoad(false);
     }
 }
