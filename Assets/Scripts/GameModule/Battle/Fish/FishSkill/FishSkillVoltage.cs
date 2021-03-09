@@ -22,7 +22,7 @@ public class FishSkillVoltage : FishSkillBase
 		step = 1;
 
 		SoundManager.PlaySE(16, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transModel, playerBase.transform.localScale.x);
+		var effectId = BattleEffectManager.CreateEffect(8, playerBase.transModel);
 		effect = EffectManager.GetEffect(effectId);
 
 		return true;
@@ -69,10 +69,7 @@ public class FishSkillVoltage : FishSkillBase
 		}
 		
 	}
-    public override void CbAttack()
-	{
-		currentGauge += listParam[0];
-	}
+
     public override void CalcAI()
     {
 		if (currentGauge < 1) { return; }

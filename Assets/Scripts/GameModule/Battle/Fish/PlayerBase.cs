@@ -222,7 +222,6 @@ public class PlayerBase : FishBase
 		//remainingTime = BattleConst.instance.AttackHardTime;
 		//actionStep = ActionType.Eatting;
 		//canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
-		fishSkill.CbAttack();
 
 		if (fish.Damage(data.atk, colliderMouth.transform))
 		{
@@ -288,7 +287,8 @@ public class PlayerBase : FishBase
 	}
 	public virtual void Eat(float fishLevel)
 	{
-		
+		fishSkill.CbAttack(fishLevel);
+
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
 		this.battleLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
 		//fishLevel += fish.fishLevel * 0.1f;

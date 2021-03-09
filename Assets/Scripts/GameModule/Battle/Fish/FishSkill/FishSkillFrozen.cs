@@ -38,10 +38,7 @@ public class FishSkillFrozen : FishSkillBase
 
 		return true;
 	}
-    public override void CbAttack()
-	{
-		currentGauge += listParam[0];
-	}
+
     public override void CalcAI()
     {
 		if (currentGauge < 1) { return; }

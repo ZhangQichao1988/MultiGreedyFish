@@ -48,12 +48,16 @@ public class BaseModel<T> where T : class, new()
     {
         if (dispatchDic.ContainsKey(evt))
         {
-            dispatchDic[evt] = dispatchDic[evt] - callback;
+            if (dispatchDic[evt] == null)
+            {
+                dispatchDic.Remove(evt);
+            }
+            else
+            {
+                dispatchDic[evt] = dispatchDic[evt] - callback;
+            }
         }
-        if (dispatchDic[evt] == null)
-        {
-            dispatchDic.Remove(evt);
-        }
+        
     }
 
     public void RemoveAllListener(string evt)

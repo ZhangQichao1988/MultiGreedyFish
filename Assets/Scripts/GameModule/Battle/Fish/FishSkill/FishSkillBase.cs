@@ -46,8 +46,9 @@ public class FishSkillBase
 		Debug.LogError("FishSkillBase.Skill()_1");
 		return false;
 	}
-	public virtual void CbAttack()
+	public virtual void CbAttack(float battleLevel)
 	{
+		currentGauge += listParam[0] * battleLevel;
 	}
 
 	public virtual void CbDamage()

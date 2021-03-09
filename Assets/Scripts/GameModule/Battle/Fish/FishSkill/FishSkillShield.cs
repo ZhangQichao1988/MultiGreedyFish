@@ -21,7 +21,7 @@ public class FishSkillShield : FishSkillBase
 		step = 1;
 
 		SoundManager.PlaySE(14, playerBase.audioSource);
-		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transModel, playerBase.transform.localScale.x);
+		var effectId = BattleEffectManager.CreateEffect(7, playerBase.transModel);
 		effect = EffectManager.GetEffect(effectId);
 		// 无敌护盾buff
 		buff = playerBase.AddBuff(playerBase, 4);
@@ -71,10 +71,7 @@ public class FishSkillShield : FishSkillBase
 		}
 		
 	}
-    public override void CbAttack()
-	{
-		currentGauge += listParam[0];
-	}
+
     public override void CalcAI()
     {
 		if (currentGauge < 1) { return; }
