@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using Firebase.Analytics;
 
 public class HomeScene : BaseScene
 {
@@ -45,6 +46,7 @@ public class HomeScene : BaseScene
 
     public override UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
+        FirebaseAnalytics.SetCurrentScreen("home", uiName);
         var uiBase = base.GotoSceneUI(uiName, parms, saveHistory);
         homeCommon.SetActiveByUIName(uiName);
         homeCommon.SetBgmValue(uiName); 

@@ -8,6 +8,7 @@ using TimerModule;
 using System;
 using NetWorkModule;
 using UnityEngine.Audio;
+using Firebase.Analytics;
 
 public class UIHome : UIBase
 {
@@ -374,6 +375,8 @@ public class UIHome : UIBase
             battleRequestSuccess = true;
             PlayerModel.Instance.BattleStart();
             StageModel.Instance.SetStartBattleRes(realResponse);
+
+            FirebaseAnalytics.SetCurrentScreen("battle", "battle");
         }
 
     }
