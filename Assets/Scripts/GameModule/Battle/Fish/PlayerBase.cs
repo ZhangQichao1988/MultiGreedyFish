@@ -253,7 +253,7 @@ public class PlayerBase : FishBase
 	}
 	public virtual void Eat(float fishLevel)
 	{
-		fishSkill.CbAttack();
+		fishSkill.CbAttack(fishLevel);
 		//Heal((int)(fish.lifeMax * BattleConst.instance.HealLifeFromEatRate));
 		this.battleLevel += fishLevel * ConfigTableProxy.Instance.GetDataById(8).floatValue;
 		//fishLevel += fish.fishLevel * 0.1f;

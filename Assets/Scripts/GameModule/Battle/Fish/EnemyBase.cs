@@ -11,6 +11,7 @@ public class EnemyBase : FishBase
     public override void Init(int fishId, string playerName, float level, string rankIcon = "")
     {
         base.Init(fishId, playerName, level);
+        battleLevel = level;
         localScaleBackup = transform.localScale.x;
         // 一开始不要一起出生
         remainingTime = Wrapper.GetRandom(0f, 10f);
