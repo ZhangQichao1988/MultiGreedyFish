@@ -275,11 +275,11 @@ public class PlayerBase : FishBase
 					}
 				}
 			}
-			else 
+			else if (fish.fishType == FishType.PlayerRobot)
 			{
-				FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventPostScore,
-												new Parameter(FirebaseAnalytics.ParameterContentType, 0),
-												new Parameter(FirebaseAnalytics.ParameterValue, 0));
+				FirebaseAnalytics.LogEvent(	FirebaseAnalytics.EventPostScore,
+															new Parameter(FirebaseAnalytics.ParameterContentType, 0),
+															new Parameter(FirebaseAnalytics.ParameterValue, 0));
 			}
 			Eat(fish.battleLevel);
 		}

@@ -36,6 +36,8 @@ public class InGameUIPanel : MonoBehaviour
         animator.SetBool("skill_enable", false);
 
         miniMapSize = transMiniMap.sizeDelta.x / 2 - miniMapPointSize;
+        // 减去边框余白厚度
+        miniMapSize -= 15f;
     }
 
     public void Init()

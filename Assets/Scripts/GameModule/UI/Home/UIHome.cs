@@ -325,6 +325,7 @@ public class UIHome : UIBase
         playerCntCurrentTime = 0f;
         playerCntTargetTime = Wrapper.GetRandom(0.5f, 1.5f);
         animator.SetTrigger("BattleStart");
+        UIHomeResource.Instance.SetBtnInteractable(false);
         //foreach (var btn in listBtn)
         //{
         //    btn.interactable = false;
@@ -380,6 +381,7 @@ public class UIHome : UIBase
     {
         animator.SetTrigger("BattleCancel");
         goMatchingRoot.SetActive(false);
+        UIHomeResource.Instance.SetBtnInteractable(true);
     }
     public void OnClickGoldPool()
     {

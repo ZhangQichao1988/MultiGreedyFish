@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class UIHomeResource : UIBase
 {
-    static public UIHomeResource Instance{ private set; get; }
+    static public UIHomeResource Instance { private set; get; }
     public GameObject goGold;
     public Image imgGold;
     public Text textGold;
 
     public GameObject goDiamond;
     public Text textDiamond;
+
+    public Button gtnAddGold;
+    public Button gtnAddDiamond;
 
     private Animator animator;
     private AudioSource audioSource;
@@ -24,6 +27,11 @@ public class UIHomeResource : UIBase
         base.Awake();
         Instance = this;
         animator = GetComponent<Animator>();
+    }
+    public void SetBtnInteractable(bool isEnable)
+    {
+        gtnAddGold.interactable = isEnable;
+        gtnAddDiamond.interactable = isEnable;
     }
     public void SetActiveScene(string sceneName)
     {
