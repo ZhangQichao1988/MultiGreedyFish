@@ -70,11 +70,11 @@ public class BattleManagerGroup : MonoBehaviour
         StageModel.Instance.battleRanking = battleRanking;
 
         var levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
-        FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelEnd,
+        FirebaseAnalytics.LogEvent("battle_end",
                                                         new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
                                                         new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
                                                         new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterScore, StageModel.Instance.battleRanking),
+                                                        new Parameter(FirebaseAnalytics.ParameterIndex, StageModel.Instance.battleRanking),
                                                         new Parameter(FirebaseAnalytics.ParameterValue, playerKilledCnt)
                                                         );
     }
