@@ -154,8 +154,8 @@ public class UserLoginFlowController
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P3_RESPONSE);
         Debug.Log("On Getted Userinfo!");
         var realResponse = response as P3_Response;
-
-        Intro.Instance.FireBaseCtrl.SetUserId(realResponse.Player.PlayerId.ToString());
+        Intro.Instance.googleAnalytics.SetUserIDOverride(realResponse.Player.PlayerId.ToString());
+        //Intro.Instance.FireBaseCtrl.SetUserId(realResponse.Player.PlayerId.ToString());
         PlayerModel.Instance.player = realResponse.Player;
         PlayerModel.Instance.news =  new List<PBNewType>(realResponse.News);
         List<PBPlayerFishLevelInfo> pBPlayerFishLevelInfos = new List<PBPlayerFishLevelInfo>();

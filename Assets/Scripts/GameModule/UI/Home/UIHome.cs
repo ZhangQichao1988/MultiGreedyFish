@@ -376,7 +376,9 @@ public class UIHome : UIBase
             PlayerModel.Instance.BattleStart();
             StageModel.Instance.SetStartBattleRes(realResponse);
 
-            FirebaseAnalytics.SetCurrentScreen("battle", "battle");
+            //FirebaseAnalytics.SetCurrentScreen("battle", "battle");
+            Intro.Instance.googleAnalytics.LogScreen(new AppViewHitBuilder()
+            .SetScreenName("battle"));
         }
 
     }

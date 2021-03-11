@@ -23,6 +23,7 @@ public class Intro : MonoBehaviour
     [NonSerialized]
     public FireBaseController FireBaseCtrl;
 
+    public GoogleAnalyticsV4 googleAnalytics;
 
     static BlUIManager uiManager;
 
@@ -75,8 +76,9 @@ public class Intro : MonoBehaviour
         
         AdsController = gameObject.AddComponent<AdsController>();
 
-        FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
-        
+        //FireBaseCtrl = gameObject.AddComponent<FireBaseController>();
+        //googleAnalytics.DispatchHits();
+
         clickEffect = gameObject.AddComponent<ClickEffect>();
 
     }

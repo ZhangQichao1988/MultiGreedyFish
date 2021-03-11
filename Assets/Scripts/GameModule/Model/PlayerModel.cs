@@ -62,7 +62,13 @@ public class PlayerModel : BaseModel<PlayerModel>
                 {
                     UIPopupMissionComplete.Instance.AddCompleteMission(note);
 
-                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventUnlockAchievement, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
+                    var actionData = MissionActionDataTableProxy.Instance.GetDataById(note.ActionId);
+                    string missionLabel = string.Format(LanguageDataTableProxy.GetText(actionData.desc), note.Trigger);
+                    //FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventUnlockAchievement, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
+                    Intro.Instance.googleAnalytics.LogEvent(new EventHitBuilder()
+                        .SetEventCategory("achievement_completed")
+                        .SetEventAction("Unlocked")
+                        .SetEventLabel(missionLabel) );
                 }
             }
         }

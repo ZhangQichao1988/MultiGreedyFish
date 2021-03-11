@@ -46,7 +46,9 @@ public class HomeScene : BaseScene
 
     public override UIBase GotoSceneUI(string uiName, System.Object parms = null, bool saveHistory = true)
     {
-        FirebaseAnalytics.SetCurrentScreen("home", uiName);
+        //FirebaseAnalytics.SetCurrentScreen("home", uiName);
+        Intro.Instance.googleAnalytics.LogScreen(new AppViewHitBuilder()
+            .SetScreenName(uiName));
         var uiBase = base.GotoSceneUI(uiName, parms, saveHistory);
         homeCommon.SetActiveByUIName(uiName);
         homeCommon.SetBgmValue(uiName); 

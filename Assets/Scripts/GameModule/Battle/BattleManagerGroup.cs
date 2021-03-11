@@ -70,13 +70,17 @@ public class BattleManagerGroup : MonoBehaviour
         StageModel.Instance.battleRanking = battleRanking;
 
         var levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
-        FirebaseAnalytics.LogEvent("battle_end",
-                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
-                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterIndex, StageModel.Instance.battleRanking),
-                                                        new Parameter(FirebaseAnalytics.ParameterValue, playerKilledCnt)
-                                                        );
+        //FirebaseAnalytics.LogEvent("battle_end",
+        //                                                new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
+        //                                                new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
+        //                                                new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
+        //                                                new Parameter(FirebaseAnalytics.ParameterIndex, StageModel.Instance.battleRanking),
+        //                                                new Parameter(FirebaseAnalytics.ParameterValue, playerKilledCnt)
+        //                                                );
+        Intro.Instance.googleAnalytics.LogEvent(new EventHitBuilder()
+                        .SetEventCategory("battle_end")
+                        .SetEventValue(StageModel.Instance.battleRanking)
+                        .SetEventLabel(string.Format("level:{0}/tscore:{1}/tkill_cnt:{2}", levelInfo.FishLevel, levelInfo.RankLevel, playerKilledCnt) ));
     }
 
     void OnRecvBattleResult<T>(T response)
