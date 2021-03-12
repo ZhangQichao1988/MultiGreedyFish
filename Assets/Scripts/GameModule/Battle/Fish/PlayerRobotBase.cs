@@ -139,6 +139,12 @@ public class PlayerRobotBase : PlayerBase
                         listFish.RemoveAt(i);
                         continue;
                     }
+                    // 排除鲨鱼附近的鱼
+                    if (BattleManagerGroup.GetInstance().fishManager.boss != null && Vector3.SqrMagnitude(BattleManagerGroup.GetInstance().fishManager.boss.transform.position - listFish[i].transform.position) < 30f)
+                    {
+                        listFish.RemoveAt(i);
+                        continue;
+                    }
                 }
                 
             }

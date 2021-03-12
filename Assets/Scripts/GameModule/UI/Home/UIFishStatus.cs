@@ -61,7 +61,7 @@ public class UIFishStatus : UIBase
         int intRate;
         rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2000).intValue,
                                                     ConfigTableProxy.Instance.GetDataById(2001).intValue, 
-                                                    fishData.atk);
+                                                    fishData.atkAdd);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)
         {
@@ -70,7 +70,7 @@ public class UIFishStatus : UIBase
 
         rate = Mathf.InverseLerp(   ConfigTableProxy.Instance.GetDataById(2002).intValue,
                                                     ConfigTableProxy.Instance.GetDataById(2003).intValue, 
-                                                    fishData.life);
+                                                    fishData.lifeAdd);
         intRate = Mathf.Clamp((int)(rate * 5) + 1, 1, 5);
         for (int i = 0; i < 5; ++i)
         {
