@@ -4,6 +4,7 @@
     <package>com.android.billingclient:billing:3.0.0</package>
     <package>com.google.android.gms:play-services-ads:19.3.0</package>
     <package>com.google.android.gms:play-services-ads-identifier:17.0.0</package>
+    <package>com.google.android.gms:play-services-analytics:LATEST</package>
     <package>com.google.firebase:firebase-analytics:17.4.1</package>
     <package>com.google.firebase:firebase-analytics-unity:6.15.2</package>
     <package>com.google.firebase:firebase-app-unity:6.15.2</package>
@@ -53,6 +54,8 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-19.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-19.3.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-analytics-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-analytics-impl-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-18.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-api-phone-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-base-17.0.0.aar</file>
@@ -69,6 +72,7 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-sdk-api-17.4.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-nearby-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-stats-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tagmanager-v4-impl-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.auto.value.auto-value-annotations-1.6.5.jar</file>
     <file>Assets/Plugins/Android/com.google.dagger.dagger-2.27.jar</file>
