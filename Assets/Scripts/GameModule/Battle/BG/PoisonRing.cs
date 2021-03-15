@@ -40,6 +40,7 @@ public class PoisonRing : MonoBehaviour
 	}
 	public void CustomUpdate()
 	{
+		if (!TutorialControl.IsStep(TutorialControl.Step.Completed)) { return; }
 		poisonRange -= Time.deltaTime * ConfigTableProxy.Instance.GetDataByKey("PoisonRingScaleSpeed");
 		poisonRangePow = Mathf.Pow(poisonRange, 2);
 

@@ -178,6 +178,8 @@ public class AppConst
     public static readonly string PlayerPrefabsOptionIsEco = "OPTION_IS_ECO";
     public static readonly string PlayerPrefabsOptionIsShowAdvert = "OPTION_NOT_SHOW_ADVERT";
 
+    public static readonly string PlayerPrefabsTutorialStep = "TUTORIAL_STEP";
+
     //// 上次启动的时间
     //public static readonly string PlayerPrefabsBeforeTime = "BEFORE_TIME";
 }

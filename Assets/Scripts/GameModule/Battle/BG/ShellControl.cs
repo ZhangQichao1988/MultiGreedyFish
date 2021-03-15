@@ -40,7 +40,7 @@ public class ShellControl : MonoBehaviour
                     animator.SetTrigger("open");
                     SoundManager.PlaySE(6, audioSource);
                     openReminingTime = BattleConst.instance.ShellOpenningTime;
-                    if (Wrapper.GetRandom(0f, 1f) < BattleConst.instance.ShellPearlResetRate)
+                    if (Wrapper.GetRandom(0f, 1f) < BattleConst.instance.ShellPearlResetRate || BattleManagerGroup.GetInstance().IsTutorialStep(BattleManagerGroup.TutorialStep.ShellMissionChecking))
                     {
                         goPearl.SetActive(true);
                     }
@@ -73,7 +73,7 @@ public class ShellControl : MonoBehaviour
     {
         if (shellStatus == ShellStatus.Closing && !listDamagedFish.Contains(fish))
         {
-            fish.Damage((int)(fish.life * BattleConst.instance.ShellCloseDmg), null);
+            fish.Damage((int)(fish.life * BattleConst.instance.ShellCloseDmg), null, FishBase.AttackerType.Shell);
             listDamagedFish.Add(fish);
             return false;
         }
@@ -84,6 +84,7 @@ public class ShellControl : MonoBehaviour
             if (fish.fishType == FishBase.FishType.Player)
             {
                 PlayerModel.Instance.MissionActionTriggerAdd(10, 1);
+                BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.ShellMissionChecking);
             }
             return true;
         }

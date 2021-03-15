@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using Firebase.Analytics;
 
 public class UIGoldPoolLevelUp : UIBase
 {
@@ -106,6 +107,7 @@ public class UIGoldPoolLevelUp : UIBase
         var realResponse = response as P18_Response;
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
+            FirebaseAnalytics.LogEvent("gold_pool_level_up", new Parameter(FirebaseAnalytics.ParameterLevel, (PlayerModel.Instance.goldPoolLevel + 1).ToString()));
             UIHome.Instance.FetchGoldPool();
             PlayerModel.Instance.player.Diamond -= nowLvData.useDiamond;
             UIHomeResource.Instance.UpdateAssets();

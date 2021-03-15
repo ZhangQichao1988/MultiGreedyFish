@@ -115,7 +115,7 @@ public class UIMissionItem : SimpleScrollingCell
         {
             var rewardVO = RewardMapVo.From(res);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-            PlayerModel.Instance.UpdateAssets(rewardVO);
+            PlayerModel.Instance.UpdateAssets(rewardVO, "get_mission_reward");
             homeScene.OnGettedItemNormal(rewardVO);
             if (res.NewMission == null)
             { // 没有更新任务

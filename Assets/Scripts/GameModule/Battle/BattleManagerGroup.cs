@@ -32,12 +32,59 @@ public class BattleManagerGroup : MonoBehaviour
     private bool isResult = false;
 
     private int playerKilledCnt = 0;
+
+    // 教学相关
+    public enum TutorialStep
+    { 
+        None,
+        Start,
+        BabyFishCreateWaiting,
+        BadyFishTips,
+        BadyFishMissionChecking,
+        BadyFishMissionCompleted,
+
+        JellyFishMissionChecking,
+        JellyFishMissionCompleted,
+
+        ShellMissionChecking,
+        ShellMissionCompleted,
+
+        TortoiseMissionChecking,
+        TortoiseMissionCompleted,
+
+        SkillMissionChecking,
+        SkillMissionCompleted,
+
+        KillSharkMissionChecking,
+        KillSharkMissionCompleted,
+
+        AquaticMissionChecking,
+        AquaticMissionCompleted,
+
+        CompletedAll,
+
+        
+    };
+    public Animator animTutorialMission;
+    public Text textMission1;
+    public Image imgMissionComplete1;
+    private TutorialStep tutorialStep = TutorialStep.None;
+    private float tutorialTime = 0f;
+    private int tutorialCntTarget = 0;
+    private int tutorialCntCurrent = 0;
     private void Awake()
 	{
         instance = this;
         animator = GetComponent<Animator>();
         BattleScene bs = BlSceneManager.GetCurrentScene() as BattleScene;
-        GotoBattle();
+        if (TutorialControl.IsStep(TutorialControl.Step.GotoTutorialBattle))
+        {
+            tutorialStep = TutorialStep.Start;
+        }
+        else
+        {
+            GotoBattle();
+        }
     }
     static public BattleManagerGroup GetInstance()
     { return instance; }
@@ -59,7 +106,7 @@ public class BattleManagerGroup : MonoBehaviour
 
         fishManager.Clean();
         inGameUIPanel.Init();
-        fishManager.CreateEnemy();
+        fishManager.CreateOtherFish();
         this.isPause = true;
     }
 
@@ -71,11 +118,11 @@ public class BattleManagerGroup : MonoBehaviour
 
         var levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
         FirebaseAnalytics.LogEvent("battle_end",
-                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId),
-                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel),
-                                                        new Parameter(FirebaseAnalytics.ParameterIndex, StageModel.Instance.battleRanking),
-                                                        new Parameter(FirebaseAnalytics.ParameterValue, playerKilledCnt)
+                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, levelInfo.FishId.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterScore, levelInfo.RankLevel.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterLevel, levelInfo.FishLevel.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterIndex, StageModel.Instance.battleRanking.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterValue, (long)playerKilledCnt)
                                                         );
     }
 
@@ -135,8 +182,202 @@ public class BattleManagerGroup : MonoBehaviour
 
 	private void Update()
 	{
+        TutorialUpdate();
         if (isPause) { return; }
         fishManager.CustomUpdate();
         poisonRing.CustomUpdate();
     }
+
+    private void TutorialUpdate()
+    {
+        if (tutorialStep == TutorialStep.None) { return; }
+        tutorialTime -= Time.deltaTime;
+        switch (tutorialStep)
+        {
+            case TutorialStep.Start:
+                cameraFollow.Init();
+                fishManager.Clean();
+                inGameUIPanel.Init();
+                this.isPause = true;
+                tutorialTime = 0.5f;
+                tutorialStep = TutorialStep.BabyFishCreateWaiting;
+                break;
+            case TutorialStep.BabyFishCreateWaiting: // 稍等一下再布置宝宝鱼
+                if (tutorialTime < 0f)
+                {
+                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 0, FishLevel = 1, FishCountMax = 150, FishCountMin = 150 } };
+                    fishManager.CreateEnemy(pBEnemyDataInfos);
+                    fishManager.SetShine( FishBase.FishType.Enemy);
+                    this.isPause = false;
+                    tutorialTime = 1f;
+                    tutorialStep = TutorialStep.BadyFishTips;
+                }
+                break;
+            case TutorialStep.BadyFishTips: // 布置完宝宝鱼弹出提示窗口
+                if (tutorialTime < 0f) 
+                {
+                    this.isPause = true;
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.BadyFishMissionChecking;
+                    tutorialCntTarget = 3;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(900), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+
+                    OpenTips();
+                }
+                break;
+            case TutorialStep.BadyFishMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    fishManager.Clean(FishBase.FishType.Enemy);
+                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 4, FishLevel = 5, FishCountMax = 50, FishCountMin = 50 } };
+                    fishManager.CreateEnemy(pBEnemyDataInfos);
+
+                    tutorialCntTarget = 2;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(901), tutorialCntCurrent, tutorialCntTarget);
+
+                    tutorialStep = TutorialStep.JellyFishMissionChecking;
+                    imgMissionComplete1.gameObject.SetActive(false);
+                    animTutorialMission.SetBool("Show", true);
+                    OpenTips();
+                }
+                break;
+            case TutorialStep.JellyFishMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    fishManager.Clean(FishBase.FishType.Enemy);
+                    this.isPause = true;
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.ShellMissionChecking;
+                    tutorialCntTarget = 2;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(902), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+                    OpenTips();
+                }
+                break;
+            case TutorialStep.ShellMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    this.isPause = true;
+                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 5, FishLevel = 5, FishCountMax = 20, FishCountMin = 20 } };
+                    fishManager.CreateEnemy(pBEnemyDataInfos);
+                    fishManager.CreateBoss();
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.TortoiseMissionChecking;
+                    tutorialCntTarget = 5;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(904), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+
+                    OpenTips();
+                }
+                break;
+
+            case TutorialStep.TortoiseMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    this.isPause = true;
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.SkillMissionChecking;
+                    tutorialCntTarget = 1;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(906), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+
+                    OpenTips();
+                }
+                break;
+            case TutorialStep.SkillMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.KillSharkMissionChecking;
+                    tutorialCntTarget = 1;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(905), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+
+                    //OpenTips();
+                }
+                break;
+            case TutorialStep.KillSharkMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    this.isPause = true;
+                    animTutorialMission.SetBool("Show", true);
+                    tutorialStep = TutorialStep.AquaticMissionChecking;
+                    tutorialCntTarget = 1;
+                    tutorialCntCurrent = 0;
+                    textMission1.text = string.Format(LanguageDataTableProxy.GetText(907), tutorialCntCurrent, tutorialCntTarget);
+                    imgMissionComplete1.gameObject.SetActive(false);
+
+                    OpenTips();
+                }
+                break;
+            case TutorialStep.AquaticMissionCompleted:
+                if (tutorialTime < 0f)
+                {
+                    tutorialStep = TutorialStep.CompletedAll;
+                    TutorialControl.NextStep();
+                    this.isPause = true;
+                    UIPopupBattleTutorialCompleted.Open();
+                }
+                break;
+        }
+    }
+    public void OpenTips()
+    {
+        this.isPause = true;
+        UIPopupBattleTpis.Type type = UIPopupBattleTpis.Type.BadyFish;
+        switch (tutorialStep)
+        {
+            case TutorialStep.BadyFishMissionChecking: type = UIPopupBattleTpis.Type.BadyFish; break;
+            case TutorialStep.JellyFishMissionChecking: type = UIPopupBattleTpis.Type.JellyFish; break;
+            case TutorialStep.ShellMissionChecking: type = UIPopupBattleTpis.Type.Shell; break;
+            case TutorialStep.TortoiseMissionChecking: type = UIPopupBattleTpis.Type.Tortoise; break;
+            case TutorialStep.AquaticMissionChecking: type = UIPopupBattleTpis.Type.Aquatic; break;
+            case TutorialStep.SkillMissionChecking: type = UIPopupBattleTpis.Type.Skill; break;
+        }
+        UIPopupBattleTpis.Open(type, () =>
+        {
+            this.isPause = false;
+        });
+    }
+    public bool IsTutorialStep(TutorialStep tutorialStep)
+    {
+        return this.tutorialStep == tutorialStep;
+    }
+    public void AddTutorialCnt(TutorialStep tutorialStep)
+    {
+        if (tutorialStep != this.tutorialStep) { return; }
+        int languageId = 0;
+        ++tutorialCntCurrent;
+        if (tutorialCntCurrent == tutorialCntTarget) 
+        {
+            animTutorialMission.SetBool("Show", false);
+            imgMissionComplete1.gameObject.SetActive(true);
+            ++this.tutorialStep;
+            tutorialTime = 1f;
+        }
+        switch (tutorialStep)
+        {
+            case TutorialStep.BadyFishMissionChecking: languageId = 900; break;
+            case TutorialStep.JellyFishMissionChecking: languageId = 901; break;
+            case TutorialStep.ShellMissionChecking: languageId = 902; break;
+            case TutorialStep.TortoiseMissionChecking: languageId = 904; break;
+            case TutorialStep.SkillMissionChecking: languageId = 906; break;
+            case TutorialStep.AquaticMissionChecking: languageId = 907; break;
+            case TutorialStep.KillSharkMissionChecking: languageId = 905; break;
+        }
+        textMission1.text = string.Format(LanguageDataTableProxy.GetText(languageId), tutorialCntCurrent, tutorialCntTarget);
+    }
+#if UNITY_EDITOR && CONSOLE_ENABLE
+    public void GotoTutorialNext()
+    {
+        ++this.tutorialStep;
+    }
+#endif
 }

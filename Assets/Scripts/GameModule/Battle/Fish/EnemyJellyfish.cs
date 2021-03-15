@@ -11,6 +11,7 @@ public class EnemyJellyfish : EnemyBase
         DarkCloud,
         Cloud,
     }
+
     static readonly float DarkBrightness = 0.5f;
     ParticleSystem goCloud;
     Vector3 startPos, endPos;
@@ -23,6 +24,11 @@ public class EnemyJellyfish : EnemyBase
     public override void Init(int fishId, string playerName, float level, string rankIcon = "")
     {
         base.Init(fishId, playerName, level);
+        if (goTargetIcon != null)
+        {
+            var boneTrans = transModel.Find("Bone001");
+            goTargetIcon.transform.parent = boneTrans;
+        }
 
         goCloud = transModel.gameObject.GetComponentInChildren<ParticleSystem>();
         goCloud.gameObject.SetActive(false);
@@ -35,7 +41,15 @@ public class EnemyJellyfish : EnemyBase
 
     }
 
-    protected override void Idle()
+    public override void SetShine(bool enable)
+    {
+        isShine = enable;
+        //if (isShine && !goCloud.gameObject.activeSelf)
+        //{
+        //    animator.SetBool("Shine", isShine);
+        //}
+    }
+protected override void Idle()
     {
         StatusUpdate();
 
@@ -51,6 +65,8 @@ public class EnemyJellyfish : EnemyBase
                 //goDarkCloud.SetActive(false);
                 SetBrightness(0.5f);
                 statusChangeStep = Status.DarkCloud;
+                //animator.SetBool("Shine", false);
+                if (goTargetIcon) { GameObjectUtil.SetActive(goTargetIcon, false); }
                 changeStatusRemainingTime = BattleConst.instance.JellyDarkTime;
                 break;
             case Status.DarkCloud: // 乌云状态阶段
@@ -66,6 +82,11 @@ public class EnemyJellyfish : EnemyBase
                     //goDarkCloud.SetActive(true);
                     SetBrightness(1f);
                     changeStatusRemainingTime = BattleConst.instance.JellySunnyTime;
+                    if (isShine)
+                    {
+                        //animator.SetBool("Shine", true);
+                        if (goTargetIcon) { GameObjectUtil.SetActive(goTargetIcon, isShine); }
+                    }
                     statusChangeStep = Status.Cloud;
                 }
                 break;

@@ -10,6 +10,7 @@ public class AssetPathConst
 	public static readonly string fishIconPath = "ArtResources/UI/Textures/Atlas/FishIcon/FishIcon_{0}";
 	public static readonly string fishEditorItemBgPath = "ArtResources/UI/Textures/Atlas/FishEditor/UI_listbox_{0}";
 	public static readonly string lifeGaugePath = "ArtResources/UI/Prefabs/Parts/PlayerLifeGauge";
+	public static readonly string targetIconPath = "ArtResources/UI/Prefabs/Parts/EnemyTargetIcon";
 	public static readonly string fishPrefabRootPath = "ArtResources/Models/Prefabs/fish/";
 	public static readonly string effectRootPath = "ArtResources/Effect/Prefab/FX/";
 	public static readonly string soundRootPath = "SoundResources/Se/se_{0}";

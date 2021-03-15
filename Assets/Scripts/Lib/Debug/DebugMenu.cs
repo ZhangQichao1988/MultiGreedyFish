@@ -515,7 +515,11 @@ public class DebugMenu :MonoBehaviour
     void ShowToolWindow()
     {
         DateTime dt1970 = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-        GUILayout.Label("NowTimeUTC:" + new DateTime(dt1970.Ticks + (long)Clock.MilliTimestamp * 10000));
+        try
+        {
+            GUILayout.Label("NowTimeUTC:" + new DateTime(dt1970.Ticks + (long)Clock.MilliTimestamp * 10000));
+        }
+        catch (Exception e) { }
         string[] names = Enum.GetNames(typeof(ESeverType));
         if (PlayerModel.Instance != null) { GUILayout.Label("PlayerID:" + PlayerModel.Instance.playerId, GUILayout.Height(50)); }
         GUILayout.Label("测试登录 请输入PlayerID:");
@@ -618,6 +622,14 @@ public class DebugMenu :MonoBehaviour
                 try
                 {
                     BattleManagerGroup.GetInstance().inGameUIPanel.KillSelf();
+                }
+                catch (Exception e) { }
+            }
+            if (GUILayout.Button("跳过教程关卡", GUI.skin.button))
+            {
+                try
+                {
+                    PlayerPrefs.SetInt(AppConst.PlayerPrefabsTutorialStep, (int)TutorialControl.Step.Completed);
                 }
                 catch (Exception e) { }
             }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.Audio;
 using NetWorkModule;
+using Firebase.Analytics;
 
 public class UIPlayerRanking : UIBase
 {
@@ -90,6 +91,7 @@ public class UIPlayerRanking : UIBase
         // 若获得奖励就弹窗
         if (res.RankReward != null)
         {
+            FirebaseAnalytics.LogEvent( "get_ranking_bonus",  new Parameter( FirebaseAnalytics.ParameterIndex, res.RankReward.Rank.ToString()));
             UIBase.Open<UIPlayerRankingGetRewardDialog>(AssetPathConst.playerRankingGetRewardDialogPrefabPath, UIBase.UILayers.POPUP, res.RankReward);
         }
         

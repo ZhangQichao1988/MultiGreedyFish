@@ -35,6 +35,8 @@ public class UIHome : UIBase
     public Text textStreakCnt;
     public GameObject goStreakCntRoot;
 
+    public GameObject goTutorial;
+
     public GameObject[] goNewIcons;
     
 
@@ -191,6 +193,9 @@ public class UIHome : UIBase
         PBPlayer pBPlayer = PlayerModel.Instance.player;
         OnGetPlayer(pBPlayer);
 
+        goTutorial.SetActive(TutorialControl.currStep == TutorialControl.Step.GotoTestBattle);
+
+
         // 提示点更新
         ApplyNews();
 
@@ -218,6 +223,13 @@ public class UIHome : UIBase
         if (PlayerModel.Instance.fetchMissionTime / Clock.SecOfDay < (long)Clock.Timestamp / Clock.SecOfDay)
         {   // 当日期发生变化时请求任务列表
             FetchMission();
+        }
+
+        // 升级诱导
+        if (StageModel.Instance.battleRanking > 4)
+        {
+            UIPopupGotoLevelUp.Open();
+            StageModel.Instance.battleRanking = 0;
         }
     }
     void OnRecvGetGoldPool<T>(T response)
@@ -318,9 +330,9 @@ public class UIHome : UIBase
         battleRequestSuccess = false;
         NetWorkHandler.GetDispatch().AddListener<P4_Response>(GameEvent.RECIEVE_P4_RESPONSE, OnRecvBattle);
         NetWorkHandler.RequestBattle();
-
+        
         goMatchingRoot.SetActive(true);
-
+        goTutorial.SetActive(false);
         playerCnt = 1;
         textPlayerCnt.text = string.Format(strPlayerCnt, playerCnt);
         playerCntCurrentTime = 0f;
@@ -365,7 +377,16 @@ public class UIHome : UIBase
         var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
         homeScene.GotoSceneUI("Option");
     }
+    //public void OnClickTutorialBattle()
+    //{
+    //    PlayerModel.Instance.BattleStart();
+    //    P4_Response realResponse = new P4_Response();
+    //    // TODO:做新手战斗数据
+    //    StageModel.Instance.SetStartBattleRes(realResponse);
 
+    //    Close();
+    //    BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+    //}
     void OnRecvBattle<T>(T response)
     {
         NetWorkHandler.GetDispatch().RemoveListener(GameEvent.RECIEVE_P4_RESPONSE);
@@ -377,14 +398,20 @@ public class UIHome : UIBase
             StageModel.Instance.SetStartBattleRes(realResponse);
 
             FirebaseAnalytics.SetCurrentScreen("battle", "battle");
+            
         }
-
+        else
+        {
+            battleRequestSuccess = false;
+            OnClickBattleCancel();
+        }
     }
     public void OnClickBattleCancel()
     {
         animator.SetTrigger("BattleCancel");
         goMatchingRoot.SetActive(false);
         UIHomeResource.Instance.SetBtnInteractable(true);
+        goTutorial.SetActive(TutorialControl.currStep == TutorialControl.Step.GotoTestBattle);
     }
     public void OnClickGoldPool()
     {
@@ -417,6 +444,8 @@ public class UIHome : UIBase
             {   // 进入战斗
                 Close();
                 BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+                TutorialControl.IsStep(TutorialControl.Step.GotoTestBattle, true);
+                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventTutorialComplete);
             }
         }
     }

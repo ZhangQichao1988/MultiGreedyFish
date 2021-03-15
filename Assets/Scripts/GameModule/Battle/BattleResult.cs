@@ -201,18 +201,27 @@ public class BattleResult : UIBase
             case 1: // 显示第几名
                 if (animTime > 0f) { return; }
                 goRewardRoot.SetActive(true);
-                if (response.GainRankLevel > 0)
+                if (response.GainRankLevel != 0)
                 {
                     textTotalAddRankLevel.gameObject.SetActive(true);
+                    countAudioSource = SoundManager.PlaySE(1004);
+                    animTime = 0.5f;
+                    animStep = 2;
                 }
-                animTime = 0.5f;
-                animStep = 2;
-                countAudioSource = SoundManager.PlaySE(1004);
+                else
+                {
+                    animStep = 30;
+                }
+                
                 break;
             case 2:
                 if (response.GainRankLevel > 0)
                 {
-                    textTotalAddRankLevel.text = "+" + (int)Mathf.Lerp(response.GainRankLevel, 0f,  animTime * 2f);
+                    textTotalAddRankLevel.text = "+" + (int)Mathf.Lerp(response.GainRankLevel, 0f, animTime * 2f);
+                }
+                else
+                {
+                    textTotalAddRankLevel.text = ((int)Mathf.Lerp(response.GainRankLevel, 0f, animTime * 2f)).ToString();
                 }
                 if (animTime <= 0f) 
                 {
@@ -255,7 +264,10 @@ public class BattleResult : UIBase
                 {
                     animTime = 0.5f;
                     animStep = 10;
-                    countAudioSource = SoundManager.PlaySE(1004);
+                    if (response.GainRankLevel > 0)
+                    {
+                        countAudioSource = SoundManager.PlaySE(1004);
+                    }
                 }
                 break;
             case 10:// 加算经验条
@@ -281,7 +293,10 @@ public class BattleResult : UIBase
                     // 显示金币明细（战斗排名）
                     textBattleRankingReward.text = "0";
                     goAddGoldBattleRanking.SetActive(true);
-                    countAudioSource = SoundManager.PlaySE(1002);
+                    if (response.GainGold > 0)
+                    {
+                        countAudioSource = SoundManager.PlaySE(1002);
+                    }
                     animTime = 0.5f;
                     animStep = 15;
                 }

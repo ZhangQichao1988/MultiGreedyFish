@@ -54,9 +54,19 @@ public class PlayerBase : FishBase
 		}
 		fishBasesInRange = BattleManagerGroup.GetInstance().fishManager.GetEnemiesInRange(this, transform.position, BattleConst.instance.RobotVision);
 	}
-	public override bool Damage(int dmg, Transform hitmanTrans)
+	public override bool Damage(int dmg, Transform hitmanTrans, AttackerType attackerType)
 	{
-		bool ret = base.Damage(dmg, hitmanTrans);
+		// 为了在教学模式不死
+		if (fishType == FishType.Player &&  
+			!BattleManagerGroup.GetInstance().IsTutorialStep(BattleManagerGroup.TutorialStep.None))
+		{
+			if (data.life - dmg <= 0)
+			{
+				dmg = data.life - 1;
+			}
+		}
+
+		bool ret = base.Damage(dmg, hitmanTrans, attackerType);
 		if (ret)
 		{
 			if (fishType == FishType.Player)
@@ -223,7 +233,7 @@ public class PlayerBase : FishBase
 		//actionStep = ActionType.Eatting;
 		//canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
 
-		if (fish.Damage(data.atk, colliderMouth.transform))
+		if (fish.Damage(data.atk, colliderMouth.transform, fishType == FishType.Player ? AttackerType.Player : fishType == FishType.PlayerRobot ? AttackerType.Robot : AttackerType.Boss))
 		{
 			if (fishType == FishType.Player)
 			{
@@ -234,6 +244,10 @@ public class PlayerBase : FishBase
 		if (fish.fishType == FishType.Boss)
 		{
 			Eat(BattleConst.instance.AtkSharkExp);
+			if (isShield)
+			{
+				BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.TortoiseMissionChecking);
+			}
 		}
 		if (fish.life <= 0)
 		{
@@ -244,11 +258,11 @@ public class PlayerBase : FishBase
 				int actionId = 0;
 				switch (fish.originalData.fishId)
 				{
-					case 0: actionId = 1; break;
+					case 0: actionId = 1; BattleManagerGroup.GetInstance().AddTutorialCnt( BattleManagerGroup.TutorialStep.BadyFishMissionChecking); break;
 					case 1: actionId = 30; break;
-					case 2: actionId = 11; break;
+					case 2: actionId = 11; BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.KillSharkMissionChecking); break;
 					case 3: actionId = 25; break;
-					case 4: actionId = 8; break;
+					case 4: actionId = 8; BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.JellyFishMissionChecking); break;
 					case 5: actionId = 7; break;
 					case 6: actionId = 31; break;
 					case 7: actionId = 32; break;
@@ -260,10 +274,6 @@ public class PlayerBase : FishBase
 				PlayerModel.Instance.MissionActionTriggerAdd(actionId, 1);
 				if (fish.fishType == FishType.PlayerRobot)
 				{
-					FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventPostScore,
-												new Parameter(FirebaseAnalytics.ParameterContentType, 0),
-												new Parameter(FirebaseAnalytics.ParameterValue, 1));
-
 					BattleManagerGroup.GetInstance().AddPlayerKilledCnt();
 					if (isShield)
 					{
@@ -275,12 +285,7 @@ public class PlayerBase : FishBase
 					}
 				}
 			}
-			else if (fish.fishType == FishType.PlayerRobot)
-			{
-				FirebaseAnalytics.LogEvent(	FirebaseAnalytics.EventPostScore,
-															new Parameter(FirebaseAnalytics.ParameterContentType, 0),
-															new Parameter(FirebaseAnalytics.ParameterValue, 0));
-			}
+
 			Eat(fish.battleLevel);
 		}
 
@@ -338,7 +343,10 @@ public class PlayerBase : FishBase
 		this.eatFishTrans = eatFishTrans;
 
 		// 战斗结果检测
-		BattleManagerGroup.GetInstance().inGameUIPanel.CheckBattleEnd();
+		if (BattleManagerGroup.GetInstance().IsTutorialStep(BattleManagerGroup.TutorialStep.None))
+		{
+			BattleManagerGroup.GetInstance().inGameUIPanel.CheckBattleEnd();
+		}
 	}
 	protected override void AquaticCheck()
 	{

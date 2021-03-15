@@ -6,6 +6,7 @@ using System;
 using IFix.Core;
 using System.IO;
 using UnityEngine.Audio;
+using Firebase.Analytics;
 
 public class Intro : MonoBehaviour
 {
@@ -62,6 +63,10 @@ public class Intro : MonoBehaviour
         AppConst.SeValue = PlayerPrefs.GetFloat(AppConst.PlayerPrefabsOptionSeValue, AppConst.SeValue);
         AppConst.IsEco = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionIsEco, AppConst.IsEco);
         AppConst.NotShowAdvert = PlayerPrefs.GetInt(AppConst.PlayerPrefabsOptionIsShowAdvert, AppConst.NotShowAdvert);
+
+        // 读取教学阶段
+        TutorialControl.currStep = (TutorialControl.Step)PlayerPrefs.GetInt(AppConst.PlayerPrefabsTutorialStep, (int)TutorialControl.Step.GotoTutorialBattle);
+        //TutorialControl.currStep = TutorialControl.Step.Completed;
 
         DontDestroyOnLoad(gameObject);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -139,8 +144,20 @@ public class Intro : MonoBehaviour
                     Destroy(repairBtn);
                     repairBtn = null;
                 }
+            if (TutorialControl.IsStep(TutorialControl.Step.GotoTutorialBattle))
+            {
+                PlayerModel.Instance.BattleStart();
+                P4_Response realResponse = new P4_Response();
+                realResponse.BattleId = "tutorial_1";
+                StageModel.Instance.SetStartBattleRes(realResponse);
+                BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
+                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventTutorialBegin);
+            }
+            else
+            {
                 BlSceneManager.LoadSceneByClass(SceneId.HOME_SCENE, typeof(HomeScene));
-            });
+            }
+        });
     }
 
     string GetPlatformName()

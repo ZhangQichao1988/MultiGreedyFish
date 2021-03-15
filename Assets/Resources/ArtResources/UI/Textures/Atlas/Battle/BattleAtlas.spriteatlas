@@ -34,6 +34,7 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 971d0503b01b5a44aa38f9bb3d257f3f, type: 3}
   - {fileID: 21300000, guid: cc93db530d5bac9469277596b3409a89, type: 3}
   - {fileID: 21300000, guid: e47afd93c07d9f946b16cfffab89ccda, type: 3}
   - {fileID: 21300000, guid: bf9909e42aa4e2543984ffb8cb54674d, type: 3}
@@ -46,6 +47,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 59b8d46e455232b4facf8a6c1f25e1ff, type: 3}
   - {fileID: 21300000, guid: 53a8dd5fe9ca358499a3d5600f73986a, type: 3}
   m_PackedSpriteNamesToIndex:
+  - ui_target_icon
   - UI_Skillbutton
   - UIRankingPlayerNameBgMe
   - Joy

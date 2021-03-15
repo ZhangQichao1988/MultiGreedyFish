@@ -67,8 +67,19 @@ public class FishSkillSwelling : FishSkillBase
 							// 被弹开SE
 							SoundManager.PlaySE(13, playerBase.audioSource);
 							// 伤害
-							listFish[i].Damage((int)(playerBase.data.atk * listParam[2]), null);
+							listFish[i].Damage((int)(playerBase.data.atk * listParam[2]), null, playerBase.fishType == FishBase.FishType.Player ? FishBase.AttackerType.Player : FishBase.AttackerType.Robot);
+							if (listFish[i].fishType == FishBase.FishType.Boss && listFish[i].life <= 0)
+							{
+								BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.KillSharkMissionChecking);
+							}
 							if (listFish[i].fishType == FishBase.FishType.PlayerRobot) { ++cnt; }
+							else if (listFish[i].fishType == FishBase.FishType.Boss)
+							{
+								if (playerBase.fishType == FishBase.FishType.Player)
+								{
+									BattleManagerGroup.GetInstance().AddTutorialCnt(BattleManagerGroup.TutorialStep.SkillMissionChecking);
+								}
+							}
 						}
 					}
 				}

@@ -37,48 +37,35 @@ public class FishManager : MonoBehaviour
 		}
 		listFish.Clear();
 	}
-		public void CreateEnemy()
+	public void Clean(FishBase.FishType fishType)
 	{
-		
-		GameObject goEnemy;
-		PlayerRobotBase prb = null;
-		RobotAiDataInfo playerRobotAiBaseData;
-		PBRobotDataInfo pBRobotDataInfo;
-		// 机器人
-		var aryRobotDataInfo = StageModel.Instance.aryRobotDataInfo;
-		int robotCount = aryRobotDataInfo.Length;
-		var listName = RobotNameDataTableProxy.Instance.GetAllRobotNames();
-
-		FishRankLevelDataInfo currentRankData, nextRankData;
-		FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel, out currentRankData, out nextRankData);
-
-
-		for (int i = 0; i < robotCount; ++i)
+		for (int i = listFish.Count - 1; i >= 0; --i)
 		{
-			pBRobotDataInfo = aryRobotDataInfo[i];
-			goEnemy = Wrapper.CreateEmptyGameObject(transform);
-			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
-			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-
-			int rankId = Mathf.Clamp( currentRankData.ID + Wrapper.GetRandom(-2, 2), 1, 20);
-			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level, FishRankLevelDataTableProxy.Instance.GetDataById(rankId).rankIcon);
-			prb.SetRobot(playerRobotAiBaseData, pBRobotDataInfo.Growth/100f);
-			listFish.Add(prb);
+			if (listFish[i].fishType == fishType)
+			{
+				Destroy(listFish[i].gameObject);
+				listFish.RemoveAt(i);
+			}
 		}
-
-		// Boss
-		goEnemy = Wrapper.CreateEmptyGameObject(transform);
-		playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
-		boss = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
-		boss.Init(2, "BOSS", 1);
-		boss.SetRobot(playerRobotAiBaseData, 0f);
-		listFish.Add(boss);
-
+	}
+	public void SetShine(FishBase.FishType fishType)
+	{
+		for (int i = listFish.Count - 1; i >= 0; --i)
+		{
+			if (listFish[i].fishType == fishType)
+			{
+				listFish[i].SetShine(true);
+			}
+		}
+	}
+	public void CreateEnemy(PBEnemyDataInfo[] aryEnemyDataInfo)
+	{
+		GameObject goEnemy;
 		List<FishBase> listEnemy = new List<FishBase>();
 		FishBase fb = null;
 		PBEnemyDataInfo enemyGroup;
-		// 杂鱼
-		var aryEnemyDataInfo = StageModel.Instance.aryEnemyDataInfo;
+
+
 		int EnemyNumMax = aryEnemyDataInfo.Length;
 		for (int i = 0; i < EnemyNumMax; ++i)
 		{
@@ -100,6 +87,56 @@ public class FishManager : MonoBehaviour
 		// 打乱敌人列表
 		listEnemy = Wrapper.RandomSortList<FishBase>(listEnemy);
 		listFish.AddRange(listEnemy);
+
+	}
+	public void CreateBoss()
+	{
+		GameObject goEnemy;
+		goEnemy = Wrapper.CreateEmptyGameObject(transform);
+		var playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(3);
+		boss = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
+		boss.Init(2, "BOSS", 1);
+		boss.SetRobot(playerRobotAiBaseData, 0f);
+		listFish.Add(boss);
+	}
+	public void CreateRobot(PBRobotDataInfo[] aryRobotDataInfo)
+	{
+		GameObject goEnemy;
+		PlayerRobotBase prb = null;
+		RobotAiDataInfo playerRobotAiBaseData;
+		PBRobotDataInfo pBRobotDataInfo;
+
+		int robotCount = aryRobotDataInfo.Length;
+		var listName = RobotNameDataTableProxy.Instance.GetAllRobotNames();
+
+		FishRankLevelDataInfo currentRankData, nextRankData;
+		FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(PlayerModel.Instance.GetCurrentPlayerFishLevelInfo().RankLevel, out currentRankData, out nextRankData);
+
+
+		for (int i = 0; i < robotCount; ++i)
+		{
+			pBRobotDataInfo = aryRobotDataInfo[i];
+			goEnemy = Wrapper.CreateEmptyGameObject(transform);
+			playerRobotAiBaseData = RobotAiDataTableProxy.Instance.GetDataById(pBRobotDataInfo.AiId);
+			prb = (PlayerRobotBase)goEnemy.AddComponent(System.Type.GetType(playerRobotAiBaseData.aiType));
+
+			int rankId = Mathf.Clamp(currentRankData.ID + Wrapper.GetRandom(-2, 2), 1, 20);
+			prb.Init(pBRobotDataInfo.FishId, listName[i], pBRobotDataInfo.Level, FishRankLevelDataTableProxy.Instance.GetDataById(rankId).rankIcon);
+			prb.SetRobot(playerRobotAiBaseData, pBRobotDataInfo.Growth / 100f);
+			listFish.Add(prb);
+		}
+	}
+	public void CreateOtherFish()
+	{
+		// 机器人
+		CreateRobot(StageModel.Instance.aryRobotDataInfo);
+
+		// Boss
+		CreateBoss();
+
+		// 杂鱼
+		CreateEnemy(StageModel.Instance.aryEnemyDataInfo);
+
 	}
 	public void CustomUpdate()
 	{

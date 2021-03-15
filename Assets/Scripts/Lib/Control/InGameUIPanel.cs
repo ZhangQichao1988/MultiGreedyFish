@@ -129,7 +129,7 @@ public class InGameUIPanel : MonoBehaviour
             {
                 if (note.fishType == FishBase.FishType.PlayerRobot)
                 {
-                    if (note.Damage(999999, null))
+                    if (note.Damage(999999, null, FishBase.AttackerType.Debug))
                     {
                         break;
                     }
@@ -139,7 +139,7 @@ public class InGameUIPanel : MonoBehaviour
     }
     public void KillSelf()
     {
-        Player.Damage(999999, null);
+        Player.Damage(999999, null, FishBase.AttackerType.Debug);
     }
 #endif
 
@@ -156,6 +156,12 @@ public class InGameUIPanel : MonoBehaviour
         {
             KillEnemy();
         }
+        // 进入下一个阶段教程
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            BattleManagerGroup.GetInstance().GotoTutorialNext();
+        }
+        
 #endif
 
         ApplyMiniMap();

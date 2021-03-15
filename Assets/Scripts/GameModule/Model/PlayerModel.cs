@@ -35,6 +35,7 @@ public class PlayerModel : BaseModel<PlayerModel>
     }
     public void MissionActionTrigger(int actionId, int value)
     {
+        if (pBMissions == null) { return; }
         int maxWin = PlayerModel.Instance.GetMissionActionTrigger(actionId);
         if (value > maxWin)
         {
@@ -43,6 +44,7 @@ public class PlayerModel : BaseModel<PlayerModel>
     }
     public void MissionActionTriggerAdd(int actionId, int addValue)
     {
+        if (pBMissions == null) { return; }
         if (!dicBattleMissionActionAddTrigger.ContainsKey(actionId))
         {
             dicBattleMissionActionAddTrigger.Add(actionId, addValue);
@@ -62,7 +64,7 @@ public class PlayerModel : BaseModel<PlayerModel>
                 {
                     UIPopupMissionComplete.Instance.AddCompleteMission(note);
 
-                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventUnlockAchievement, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId) );
+                    FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventUnlockAchievement, new Parameter( FirebaseAnalytics.ParameterAchievementId, note.MissionId.ToString()) );
                 }
             }
         }
@@ -106,7 +108,7 @@ public class PlayerModel : BaseModel<PlayerModel>
     /// <summary>
     /// 资产更新
     /// </summary>
-    public void UpdateAssets(ShopItemVo itemVo, RewardMapVo rewardVo)
+    public void UpdateAssets(ShopItemVo itemVo, RewardMapVo rewardVo, string channel)
     {
         if (itemVo.Paytype == PayType.Diamond)
         {
@@ -121,25 +123,26 @@ public class PlayerModel : BaseModel<PlayerModel>
         FirebaseAnalytics.LogEvent(
               FirebaseAnalytics.EventSpendVirtualCurrency,
               new Parameter( FirebaseAnalytics.ParameterValue, itemVo.Price),
-              new Parameter( FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()));
+              new Parameter( FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()),
+              new Parameter(FirebaseAnalytics.ParameterItemCategory, "shop"));
 
-        UpdateAssets(rewardVo);
+        UpdateAssets(rewardVo, channel);
 
         
     }
-    public void UpdateAssets(RewardMapVo rewardVo)
+    public void UpdateAssets(RewardMapVo rewardVo, string channel)
     {
         if (rewardVo.Content != null && rewardVo.Content.Count > 0)
         {
-            ProcessReward(rewardVo.Content);
+            ProcessReward(rewardVo.Content, channel);
         }
 
         if (rewardVo.IsTreasure)
         {
-            ProcessReward(rewardVo.TreasureContent);
+            ProcessReward(rewardVo.TreasureContent, channel);
         }
     }
-    public void ProcessReward(List<RewardItemVo> rewards)
+    public void ProcessReward(List<RewardItemVo> rewards, string channel)
     {
         foreach (RewardItemVo vo in rewards)
         {
@@ -149,7 +152,8 @@ public class PlayerModel : BaseModel<PlayerModel>
 
                 FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
                                                 new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
-                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Diamond"),
+                                                new Parameter(FirebaseAnalytics.ParameterItemCategory, channel));
             }
             else if (vo.masterDataItem.type == FishItemType.Gold)
             {
@@ -158,7 +162,8 @@ public class PlayerModel : BaseModel<PlayerModel>
 
                 FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
                                                 new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
-                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()));
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Gold"),
+                                                new Parameter(FirebaseAnalytics.ParameterItemCategory, channel));
             }
             else if (vo.masterDataItem.type == FishItemType.Piece)
             {
@@ -176,9 +181,10 @@ public class PlayerModel : BaseModel<PlayerModel>
                 fishItem.FishChip += vo.Amount;
 
                 FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventEarnVirtualCurrency,
-                                                new Parameter(FirebaseAnalytics.ParameterValue, vo.Amount),
-                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, vo.masterDataItem.type.ToString()),
-                                                new Parameter(FirebaseAnalytics.ParameterItemId, fishItem.FishId) );
+                                                new Parameter(FirebaseAnalytics.ParameterValue, (long)vo.Amount),
+                                                new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Piece"),
+                                                new Parameter(FirebaseAnalytics.ParameterItemId, fishItem.FishId.ToString()),
+                                                new Parameter(FirebaseAnalytics.ParameterItemCategory, channel));
             }
             
 

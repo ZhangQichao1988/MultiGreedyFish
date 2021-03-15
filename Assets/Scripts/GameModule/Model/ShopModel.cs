@@ -82,7 +82,7 @@ public class ShopModel : BaseModel<ShopModel>
         payItem.UpdateBuyNum(1);
         
         //update player assets
-        PlayerModel.Instance.UpdateAssets(payItem, rewardVO);
+        PlayerModel.Instance.UpdateAssets(payItem, rewardVO, "shop");
         Dispatch(ShopEvent.ON_GETTED_ITEM, rewardVO);
     }
 
@@ -98,13 +98,12 @@ public class ShopModel : BaseModel<ShopModel>
             var rewardVO = RewardMapVo.From(response);
 
             //update player assets
-            PlayerModel.Instance.UpdateAssets(reqItem, rewardVO);
+            PlayerModel.Instance.UpdateAssets(reqItem, rewardVO, "shop");
             Dispatch(ShopEvent.ON_GETTED_ITEM, rewardVO);
 
             FirebaseAnalytics.LogEvent(
-              FirebaseAnalytics.EventSelectContent,
-              new Parameter( FirebaseAnalytics.ParameterContentType, 0),
-              new Parameter(FirebaseAnalytics.ParameterItemId, request.ShopItemId));
+              "buy_shop_item",
+              new Parameter(FirebaseAnalytics.ParameterItemId, request.ShopItemId.ToString()));
         }
         else
         {

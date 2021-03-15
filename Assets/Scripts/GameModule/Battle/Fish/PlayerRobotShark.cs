@@ -13,6 +13,10 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 		base.Init(fishId, playerName, level);
 		battleLevel = ConfigTableProxy.Instance.GetDataById(36).floatValue;
+		if (TutorialControl.IsStep(TutorialControl.Step.GotoTutorialBattle))
+		{
+			life = (int)(lifeMax * ConfigTableProxy.Instance.GetDataById(40).floatValue);
+		}
 	}
 	protected override Vector3 GetBornPosition()
 	{
@@ -22,9 +26,17 @@ public class PlayerRobotShark : PlayerRobotBase
 	{
 		transform.localScale = Vector3.one * (0.5f + 2.5f * lifeRate);
 	}
-	public override bool Damage(int dmg, Transform hitmanTrans)
+	public override bool Damage(int dmg, Transform hitmanTrans, AttackerType attackerType)
 	{
-        bool ret = base.Damage(dmg, hitmanTrans);
+		// 为了在击杀鲨鱼教学模式以外无法击杀鲨鱼
+		if (!BattleManagerGroup.GetInstance().IsTutorialStep(BattleManagerGroup.TutorialStep.None) && !BattleManagerGroup.GetInstance().IsTutorialStep(BattleManagerGroup.TutorialStep.KillSharkMissionChecking))
+		{
+			if (data.life - dmg <= 0)
+			{
+				dmg = data.life - 1;
+			}
+		}
+        bool ret = base.Damage(dmg, hitmanTrans, attackerType);
         if (ret)
         {
             canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
@@ -99,6 +111,10 @@ public class PlayerRobotShark : PlayerRobotBase
 		targetCntTimeLimit = aryParam[0];
 		targetCntTime = targetCntTimeLimit;
 
+	}
+	public override void Atk(FishBase fish)
+	{
+		base.Atk(fish);
 	}
 	public override void CustomUpdate()
 	{

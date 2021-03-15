@@ -25,7 +25,7 @@ public class UIPlayerRankingGetRewardDialog : UIBase
         string rankStr = RankingRewardDataTableProxy.Instance.GetRankingStr(batchData.groupId, rankReward.Rank, rankReward.RankRate);
         textTitle.text = string.Format( LanguageDataTableProxy.GetText(630), rankStr);
         var items = RewardItemVo.FromList(rankReward.Content);
-        PlayerModel.Instance.ProcessReward(items);
+        PlayerModel.Instance.ProcessReward(items, "get_ranking_bonus");
         UIHomeResource.Instance.UpdateAssets();
         uiRewardCell.UpdateData(items[0]);
         //var uiObjs = scrollingView.Fill(items.Count);

@@ -75,7 +75,7 @@ public class UIShopCellAdvert : UIShopCell
             Refresh();
             var rewardVO = RewardMapVo.From(res.Content);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-            PlayerModel.Instance.UpdateAssets(rewardVO);
+            PlayerModel.Instance.UpdateAssets(rewardVO, "get_free_diamond");
             homeScene.OnGettedItemNormal(rewardVO);
             AdsController.RewardHttpRetryTimes = 0;
         }

@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.46666667}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_RaycastTarget: 1
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -450,8 +450,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnDouble
+      - m_Target: {fileID: 278583423840028745}
+        m_MethodName: OnBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 6566370109368393610}
   - component: {fileID: 3985349376691186641}
   - component: {fileID: 1346686078918379844}
+  - component: {fileID: 4758913668460233792}
   m_Layer: 0
   m_Name: shop_content
   m_TagString: Untagged
@@ -710,6 +711,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4758913668460233792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242119712107706370}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0c6417c9b02ddd41aac29252fd3f19d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5422335013876507824
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,12 +856,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb36a1788209e594dafaefdaf31288d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageReward: {fileID: 0}
-  textReward: {fileID: 0}
-  imageRewardDouble: {fileID: 0}
-  textRewardDouble: {fileID: 0}
-  isShowAdvert: {fileID: 0}
-  customData: 
+  imageFishIcon: {fileID: 6256473167939641938}
+  textFishLv: {fileID: 895248552454931686}
+  imageFishIconAfter: {fileID: 1289410177195139091}
+  textFishLvAfter: {fileID: 7685833949886872512}
 --- !u!1 &7147112243537906665
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +982,7 @@ GameObject:
   - component: {fileID: 2049684252245710174}
   - component: {fileID: 1289410177195139091}
   m_Layer: 5
-  m_Name: iconDouble
+  m_Name: iconAfter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

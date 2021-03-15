@@ -9,26 +9,27 @@ using TimerModule;
 
 public class UIPopupGotoLevelUp : UIBase
 {
-    public Image imageReward;
-    public Text textReward;
+    public Image imageFishIcon;
+    public Text textFishLv;
 
-    public Image imageRewardDouble;
-    public Text textRewardDouble;
+    public Image imageFishIconAfter;
+    public Text textFishLvAfter;
 
-
+    PBPlayerFishLevelInfo levelInfo;
     static public void Open()
     {
         var ui = UIBase.Open<UIPopupGotoLevelUp>("ArtResources/UI/Prefabs/PopupGotoLevelUp", UILayers.POPUP);
         ui.Setup();
+        
     }
     public void Setup()
     {
-        var fishLvInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
-        //imageReward.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + resIcon).Asset;
-        //imageRewardDouble.sprite = ResourceManager.LoadSync<Sprite>(AssetPathConst.itemIconPath + resIcon).Asset;
+        levelInfo = PlayerModel.Instance.GetCurrentPlayerFishLevelInfo();
+        imageFishIcon.sprite = ResourceManager.LoadSync<Sprite>(string.Format(AssetPathConst.fishIconPath, levelInfo.FishId)).Asset;
+        imageFishIconAfter.sprite = imageFishIcon.sprite;
 
-        //textReward.text = "x" + rewardData.amount;
-        //textRewardDouble.text = "x" + rewardData.amount * 2;
+        textFishLv.text = string.Format(LanguageDataTableProxy.GetText(800), levelInfo.FishLevel);
+        textFishLvAfter.text = string.Format(LanguageDataTableProxy.GetText(800), levelInfo.FishLevel + 1);
         //isShowAdvert.isOn = false;
         //isShowAdvert.onValueChanged.AddListener(isOn =>
         //{
@@ -37,18 +38,11 @@ public class UIPopupGotoLevelUp : UIBase
         //});
     }
 
-    public void OnNormal()
+    public void OnBtn()
     {
-        this.Close();
-    }
-    public void OnDouble()
-    {
-        Intro.Instance.AdsController.OnAdRewardGetted = ()=>{
-            LoadingMgr.Show(LoadingMgr.LoadingType.Repeat);
-            TimerManager.AddTimer((int)eTimerType.RealTime, AdsController.RewardWaitTime, (obj)=>{
-                LoadingMgr.Hide(LoadingMgr.LoadingType.Repeat);
-                this.Close();
-            }, null);
-        };
+        var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
+        var ui = homeScene.GotoSceneUI("FishStatus") as UIFishStatus;
+        ui.Setup(levelInfo);
+        Close();
     }
 }

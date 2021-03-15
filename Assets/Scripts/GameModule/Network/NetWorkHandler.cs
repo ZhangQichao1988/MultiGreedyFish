@@ -6,7 +6,7 @@ using UnityEngine;
 using NetWorkModule;
 using Google.Protobuf;
 using Jackpot.Billing;
-
+using Firebase.Analytics;
 
 /// <summary>
 /// 网络分发处理
@@ -301,7 +301,7 @@ public class NetWorkHandler
         var request = new P8_Request();
         request.BattleId = battleId;
         request.IsDouble = isDouble;
-        
+        FirebaseAnalytics.LogEvent("get_battle_bonus", FirebaseAnalytics.ParameterValue, isDouble ? 1 : 0);
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P8_Request", requestByteData);
 
@@ -398,6 +398,9 @@ public class NetWorkHandler
         request.RankBoundsId = rankBonusDataId;
         request.IsDouble = isDouble;
 
+        FirebaseAnalytics.LogEvent( "get_score_bonus", 
+                                                        new Parameter(FirebaseAnalytics.ParameterItemId, rankBonusDataId.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterValue, isDouble ? 1 : 0));
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P16_Request", requestByteData);
     }
@@ -435,7 +438,9 @@ public class NetWorkHandler
         var request = new P21_Request();
         request.MissionId = missionId;
         request.IsDouble = isDouble;
-
+        FirebaseAnalytics.LogEvent(     "get_mission_reward", 
+                                                        new Parameter(FirebaseAnalytics.ParameterItemId, missionId.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterValue, isDouble ? 1 : 0));
         byte[] requestByteData = GetStreamBytes(request);
         NetWorkManager.Request("P21_Request", requestByteData);
     }
@@ -445,6 +450,7 @@ public class NetWorkHandler
     /// </summary>
     public static void RequestGetAdvertRemainingCnt()
     {
+        FirebaseAnalytics.LogEvent("get_free_diamond");
         NetWorkManager.Request("P22_Request", null);
     }
 

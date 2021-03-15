@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using Firebase.Analytics;
 
 public class UIFishLevelUp : UIBase
 {
@@ -105,6 +106,9 @@ public class UIFishLevelUp : UIBase
         var realResponse = response as P7_Response;
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelUp, 
+                                                        new Parameter(FirebaseAnalytics.ParameterCharacter, realResponse.FishInfo.FishId.ToString()),
+                                                        new Parameter(FirebaseAnalytics.ParameterLevel, realResponse.FishInfo.FishLevel.ToString()));
             if (realResponse.FishInfo.FishLevel == 1)
             {   // 解锁
                 PlayerModel.Instance.MissionActionTriggerAdd(16, 1);

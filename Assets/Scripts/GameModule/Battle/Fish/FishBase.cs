@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,18 @@ using UnityEngine.UI;
 
 public class FishBase : MonoBehaviour
 {
-
+    /// <summary>
+    /// 攻击者类型
+    /// </summary>
+    public enum AttackerType
+    { 
+        Player,
+        Robot,
+        Boss,
+        Poison,
+        Shell,
+        Debug,
+    };
 
     public enum FishType
     { 
@@ -57,6 +69,7 @@ public class FishBase : MonoBehaviour
     public Data data;
     public Data originalData;
     protected Animator animator = null;
+    protected bool isShine = false;
     public Transform transModel = null;
     protected Renderer[] renderers = null;
     protected List<MaterialPropertyBlock> mpbs;
@@ -103,6 +116,7 @@ public class FishBase : MonoBehaviour
 
     // 水泡粒子
     protected ParticleSystem particleBlister;
+    protected GameObject goTargetIcon;
     protected virtual bool showLifeGauge { get { return false; } }
     public virtual FishType fishType { get { return FishType.None; } }
 
@@ -124,9 +138,13 @@ public class FishBase : MonoBehaviour
         int _life = Mathf.Clamp(life + value, 0, lifeMax );
         life = _life;
         if (lifeGauge) lifeGauge.ShowNumber(new LifeGauge.NumberData(LifeGauge.NumberType.Life, value));
+        if (lifeRate >= 1)
+        {
+            BattleManagerGroup.GetInstance().AddTutorialCnt( BattleManagerGroup.TutorialStep.AquaticMissionChecking);
+        }
         return true;
     }
-    public virtual bool Damage(int dmg, Transform hitmanTrans)
+    public virtual bool Damage(int dmg, Transform hitmanTrans, AttackerType attackerType)
     {
         if (dmgTime > 0) { return false; }
         if (isShield) 
@@ -145,6 +163,9 @@ public class FishBase : MonoBehaviour
         if (life <= 0)
         {
             Die(hitmanTrans);
+            FirebaseAnalytics.LogEvent(   "battle_die", 
+                                                            new Parameter( FirebaseAnalytics.ParameterItemCategory, fishType.ToString()), 
+                                                            new Parameter("cause", attackerType.ToString()));
         }
         dmgTime = 0.5f;
         canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
@@ -228,7 +249,11 @@ public class FishBase : MonoBehaviour
             lifeGauge.slider.maxValue = data.lifeMax;
             lifeGauge.slider.value = data.life;
         }
-        
+        if (!TutorialControl.IsStep(TutorialControl.Step.Completed))
+        {
+            go = ResourceManager.LoadSync(AssetPathConst.targetIconPath, typeof(GameObject)).Asset as GameObject;
+            goTargetIcon = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
+        }
         this.lifeMax = data.lifeMax;
         this.life = data.life;
     }
@@ -280,6 +305,15 @@ public class FishBase : MonoBehaviour
         pos.z = Mathf.Clamp(pos.z, -BattleConst.instance.BgBound, BattleConst.instance.BgBound);
 
         transform.position = pos;
+    }
+    public virtual void SetShine(bool enable)
+    {
+        isShine = enable;
+        //animator.SetBool("Shine", isShine);
+        if (goTargetIcon != null)
+        {
+            goTargetIcon.SetActive(enable);
+        }
     }
     public virtual void CustomUpdate()
     {
@@ -360,7 +394,7 @@ public class FishBase : MonoBehaviour
         if (ContainsBuff(0) || ContainsBuff(7)) { return false; }
         //float dis = BoundsBody.SqrDistance(mouthPos);
         //range = (float)Math.Pow(range, 2);
-        if (transModel.gameObject.activeSelf)
+        if (transModel != null && transModel.gameObject.activeSelf)
         {
             return colliderBody.bounds.Intersects(atkCollider.bounds);
         }
@@ -376,13 +410,13 @@ public class FishBase : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 生命条
+    /// </summary>
     protected void CreateLifeGuage()
     {
-        // 生命条
-        //UnityEngine.Object obj = Resources.Load(AssetPathConst.lifeGaugePath);
         GameObject go = ResourceManager.LoadSync(AssetPathConst.lifeGaugePath, typeof(GameObject)).Asset as GameObject;
         go = GameObjectUtil.InstantiatePrefab(go,  gameObject, false);
-        //GameObject go = Wrapper.CreateGameObject(obj, transform) as GameObject;
         lifeGauge = go.GetComponentInChildren<LifeGauge>();
         Debug.Assert(lifeGauge, "lifeGauge is not found.");
 
@@ -404,6 +438,11 @@ public class FishBase : MonoBehaviour
         {
             GameObjectUtil.SetActive(lifeGauge.gameObject, isActive);
         }
+        if (goTargetIcon)
+        {
+            GameObjectUtil.SetActive(goTargetIcon.gameObject, isActive);
+        }
+        
         if (!isActive) { return 0f; }
         alpha = Mathf.Clamp(alpha, 0f, 1f);
         //SetCastShadowMode(alpha > 0.8f);
@@ -465,7 +504,7 @@ public class FishBase : MonoBehaviour
 
         if (beforeInPoisonRing && inPoisonRingTime >= inPoisonRingDmgCnt * BattleConst.instance.PoisonRingDmgCoolTime)
         {
-            if (Damage(Math.Max(1,(int)(BattleConst.instance.PoisonRingDmg * lifeMax * inPoisonRingDmgCnt)), null))
+            if (Damage(Math.Max(1,(int)(BattleConst.instance.PoisonRingDmg * lifeMax * inPoisonRingDmgCnt)), null, AttackerType.Poison))
             {
                 inPoisonRingDmgCnt++;
             }

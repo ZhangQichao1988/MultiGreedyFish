@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TimerModule;
+using Firebase.Analytics;
 
 public class RankBonusItem : MonoBehaviour
 {
@@ -137,11 +138,12 @@ public class RankBonusItem : MonoBehaviour
         var res = response as P16_Response;
         if (res.Result.Code == NetWorkResponseCode.SUCEED)
         {
+            
             PlayerModel.Instance.player.GettedBoundsId.Clear();
             PlayerModel.Instance.player.GettedBoundsId.AddRange( res.GettedBoundsId );
             var rewardVO = RewardMapVo.From(res);
             var homeScene = BlSceneManager.GetCurrentScene() as HomeScene;
-            PlayerModel.Instance.UpdateAssets(rewardVO);
+            PlayerModel.Instance.UpdateAssets(rewardVO, "get_score_bonus");
             homeScene.OnGettedItemNormal(rewardVO);
             Refash(Status.Getted);
             AdsController.RewardHttpRetryTimes = 0;
