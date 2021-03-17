@@ -226,8 +226,9 @@ public class UIHome : UIBase
         }
 
         // 升级诱导
-        if (StageModel.Instance.battleRanking > 4)
+        if (StageModel.Instance.battleRanking > 4 && PlayerModel.Instance.GetFishLevelMax() < ConfigTableProxy.Instance.GetDataById(1008).intValue)
         {
+            
             UIPopupGotoLevelUp.Open();
             StageModel.Instance.battleRanking = 0;
         }

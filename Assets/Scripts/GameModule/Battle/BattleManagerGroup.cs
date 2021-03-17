@@ -68,10 +68,13 @@ public class BattleManagerGroup : MonoBehaviour
     public Animator animTutorialMission;
     public Text textMission1;
     public Image imgMissionComplete1;
+    public GameObject goFingerMove;
+    public GameObject goFingerSkill;
     private TutorialStep tutorialStep = TutorialStep.None;
     private float tutorialTime = 0f;
     private int tutorialCntTarget = 0;
     private int tutorialCntCurrent = 0;
+    private bool playerIsShield = false;
     private void Awake()
 	{
         instance = this;
@@ -84,6 +87,8 @@ public class BattleManagerGroup : MonoBehaviour
         else
         {
             GotoBattle();
+            goFingerMove.SetActive(false);
+            goFingerSkill.SetActive(false);
         }
     }
     static public BattleManagerGroup GetInstance()
@@ -198,6 +203,10 @@ public class BattleManagerGroup : MonoBehaviour
                 cameraFollow.Init();
                 fishManager.Clean();
                 inGameUIPanel.Init();
+                inGameUIPanel.SetSkillBtnDisplay(false);
+                goFingerMove.SetActive(true);
+                shellManager.ShowTargetIcon(false);
+                aquaticManager.ShowTargetIcon(false);
                 this.isPause = true;
                 tutorialTime = 0.5f;
                 tutorialStep = TutorialStep.BabyFishCreateWaiting;
@@ -205,9 +214,9 @@ public class BattleManagerGroup : MonoBehaviour
             case TutorialStep.BabyFishCreateWaiting: // 稍等一下再布置宝宝鱼
                 if (tutorialTime < 0f)
                 {
-                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 0, FishLevel = 1, FishCountMax = 150, FishCountMin = 150 } };
+                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 0, FishLevel = 1, FishCountMax = 50, FishCountMin = 50 } };
                     fishManager.CreateEnemy(pBEnemyDataInfos);
-                    fishManager.SetShine( FishBase.FishType.Enemy);
+                    fishManager.SetShine( FishBase.FishType.Enemy, true);
                     this.isPause = false;
                     tutorialTime = 1f;
                     tutorialStep = TutorialStep.BadyFishTips;
@@ -227,13 +236,17 @@ public class BattleManagerGroup : MonoBehaviour
                     OpenTips();
                 }
                 break;
+            case TutorialStep.BadyFishMissionChecking:
+                goFingerMove.SetActive(!inGameUIPanel.IsMove());
+                break;
             case TutorialStep.BadyFishMissionCompleted:
                 if (tutorialTime < 0f)
                 {
+                    goFingerMove.SetActive(false);
                     fishManager.Clean(FishBase.FishType.Enemy);
-                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 4, FishLevel = 5, FishCountMax = 50, FishCountMin = 50 } };
+                    PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 4, FishLevel = 5, FishCountMax = 30, FishCountMin = 30 } };
                     fishManager.CreateEnemy(pBEnemyDataInfos);
-
+                    fishManager.SetShine(FishBase.FishType.Enemy, true);
                     tutorialCntTarget = 2;
                     tutorialCntCurrent = 0;
                     textMission1.text = string.Format(LanguageDataTableProxy.GetText(901), tutorialCntCurrent, tutorialCntTarget);
@@ -248,6 +261,7 @@ public class BattleManagerGroup : MonoBehaviour
                 if (tutorialTime < 0f)
                 {
                     fishManager.Clean(FishBase.FishType.Enemy);
+                    shellManager.ShowTargetIcon(true);
                     this.isPause = true;
                     animTutorialMission.SetBool("Show", true);
                     tutorialStep = TutorialStep.ShellMissionChecking;
@@ -261,6 +275,8 @@ public class BattleManagerGroup : MonoBehaviour
             case TutorialStep.ShellMissionCompleted:
                 if (tutorialTime < 0f)
                 {
+                    shellManager.ShowTargetIcon(false);
+                    playerIsShield = true;
                     this.isPause = true;
                     PBEnemyDataInfo[] pBEnemyDataInfos = new PBEnemyDataInfo[] { new PBEnemyDataInfo() { FishId = 5, FishLevel = 5, FishCountMax = 20, FishCountMin = 20 } };
                     fishManager.CreateEnemy(pBEnemyDataInfos);
@@ -275,13 +291,23 @@ public class BattleManagerGroup : MonoBehaviour
                     OpenTips();
                 }
                 break;
-
+            case TutorialStep.TortoiseMissionChecking:
+                if (inGameUIPanel.Player.isShield != playerIsShield)
+                {
+                    playerIsShield = inGameUIPanel.Player.isShield;
+                    fishManager.SetShine(FishBase.FishType.Enemy, !inGameUIPanel.Player.isShield);
+                    fishManager.SetShine(FishBase.FishType.Boss, inGameUIPanel.Player.isShield);
+                }
+                break;
+            
             case TutorialStep.TortoiseMissionCompleted:
                 if (tutorialTime < 0f)
                 {
                     this.isPause = true;
+                    goFingerSkill.SetActive(true);
                     animTutorialMission.SetBool("Show", true);
                     tutorialStep = TutorialStep.SkillMissionChecking;
+                    inGameUIPanel.SetSkillBtnDisplay(true);
                     tutorialCntTarget = 1;
                     tutorialCntCurrent = 0;
                     textMission1.text = string.Format(LanguageDataTableProxy.GetText(906), tutorialCntCurrent, tutorialCntTarget);
@@ -293,6 +319,7 @@ public class BattleManagerGroup : MonoBehaviour
             case TutorialStep.SkillMissionCompleted:
                 if (tutorialTime < 0f)
                 {
+                    goFingerSkill.SetActive(false);
                     animTutorialMission.SetBool("Show", true);
                     tutorialStep = TutorialStep.KillSharkMissionChecking;
                     tutorialCntTarget = 1;
@@ -303,9 +330,17 @@ public class BattleManagerGroup : MonoBehaviour
                     //OpenTips();
                 }
                 break;
+            case TutorialStep.SkillMissionChecking:
+                // 一直可以发动技能
+                if (inGameUIPanel.Player.fishSkill.currentGauge < 1f)
+                {
+                    inGameUIPanel.Player.fishSkill.currentGauge = 1f;
+                }
+                break;
             case TutorialStep.KillSharkMissionCompleted:
                 if (tutorialTime < 0f)
                 {
+                    aquaticManager.ShowTargetIcon(true);
                     this.isPause = true;
                     animTutorialMission.SetBool("Show", true);
                     tutorialStep = TutorialStep.AquaticMissionChecking;
@@ -320,6 +355,7 @@ public class BattleManagerGroup : MonoBehaviour
             case TutorialStep.AquaticMissionCompleted:
                 if (tutorialTime < 0f)
                 {
+                    aquaticManager.ShowTargetIcon(false);
                     tutorialStep = TutorialStep.CompletedAll;
                     TutorialControl.NextStep();
                     this.isPause = true;
@@ -359,6 +395,7 @@ public class BattleManagerGroup : MonoBehaviour
         {
             animTutorialMission.SetBool("Show", false);
             imgMissionComplete1.gameObject.SetActive(true);
+            FirebaseAnalytics.SetCurrentScreen("tutorial", this.tutorialStep.ToString());
             ++this.tutorialStep;
             tutorialTime = 1f;
         }

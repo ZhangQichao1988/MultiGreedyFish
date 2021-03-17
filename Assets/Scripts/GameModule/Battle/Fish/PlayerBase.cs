@@ -162,8 +162,9 @@ public class PlayerBase : FishBase
 		remainingTime -= Time.deltaTime;
 		if (remainingTime <= 0)
 		{
-			BattleManagerGroup.GetInstance().fishManager.listFish.Remove(this);
-			Destroy(gameObject);
+			actionStep = ActionType.Died;
+			//BattleManagerGroup.GetInstance().fishManager.listFish.Remove(this);
+			//Destroy(gameObject);
 		}
 		else
 		{
@@ -203,7 +204,14 @@ public class PlayerBase : FishBase
 
 	protected override Vector3 GetBornPosition()
 	{
-		return Quaternion.AngleAxis(uid * 36f, Vector3.up) * Vector3.right * (BattleConst.instance.BgBound - 5f);
+		if (TutorialControl.IsCompleted())
+		{
+			return Quaternion.AngleAxis(uid * 36f, Vector3.up) * Vector3.right * (BattleConst.instance.BgBound - 5f);
+		}
+		else
+		{
+			return Vector3.zero;
+		}
 	}
 
 	protected void EatPearlCheck()

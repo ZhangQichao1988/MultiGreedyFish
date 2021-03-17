@@ -108,8 +108,14 @@ public class UIGoldPoolLevelUp : UIBase
         if (realResponse.Result.Code == NetworkConst.CODE_OK)
         {
             FirebaseAnalytics.LogEvent("gold_pool_level_up", new Parameter(FirebaseAnalytics.ParameterLevel, (PlayerModel.Instance.goldPoolLevel + 1).ToString()));
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventSpendVirtualCurrency,
+                                                       new Parameter(FirebaseAnalytics.ParameterValue, nowLvData.useDiamond),
+                                                       new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Diamond"),
+                                                       new Parameter(FirebaseAnalytics.ParameterItemCategory, "gold_pool_level_up"));
+
             UIHome.Instance.FetchGoldPool();
             PlayerModel.Instance.player.Diamond -= nowLvData.useDiamond;
+            
             UIHomeResource.Instance.UpdateAssets();
             Close();
         }

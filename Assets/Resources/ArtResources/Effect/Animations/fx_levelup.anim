@@ -29,7 +29,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.8333333
-        value: {x: 7.82, y: 4.56, z: 0}
+        value: {x: 6.43, y: 4.56, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -482,7 +482,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -510,7 +510,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -538,7 +538,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -566,7 +566,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -648,7 +648,7 @@ AnimationClip:
       customType: 28
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 370014621
+      path: 84383649
       attribute: 1008482913
       script: {fileID: 0}
       typeID: 23
@@ -662,21 +662,21 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 370014621
+      path: 84383649
       attribute: 203176545
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 370014621
+      path: 84383649
       attribute: 471612001
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 370014621
+      path: 84383649
       attribute: 740047457
       script: {fileID: 0}
       typeID: 23
@@ -857,7 +857,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.8333333
-        value: 7.82
+        value: 6.43
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1477,7 +1477,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.x
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1505,7 +1505,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.y
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1533,7 +1533,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.z
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1561,7 +1561,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._BaseMap_ST.w
-    path: fx_uvlopp/plane_01
+    path: Canvas/UI/Status/TextFishLevel/fx_uvlopp/plane_01
     classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves: []

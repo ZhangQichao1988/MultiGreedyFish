@@ -10,13 +10,15 @@ public class GaugeLevel : MonoBehaviour
 
     public Slider sliderFishLevel;
 
+    FishLevelUpDataInfo fishLevelUpData;
     private void Awake()
     {
         sliderFishLevel = GetComponent<Slider>();
     }
+    public bool IsMaxLv() { return fishLevelUpData.useChip < 0; }
     public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {
-        var fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
+        fishLevelUpData = FishLevelUpDataTableProxy.Instance.GetDataById(pBPlayerFishLevelInfo.FishLevel);
         
         if (fishLevelUpData.useChip < 0)
         {

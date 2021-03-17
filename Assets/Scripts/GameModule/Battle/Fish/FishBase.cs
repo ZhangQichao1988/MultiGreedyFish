@@ -38,6 +38,7 @@ public class FishBase : MonoBehaviour
         Runaway,
         Eatting,
         Die,
+        Died,
     }
 
     public struct Data
@@ -163,9 +164,12 @@ public class FishBase : MonoBehaviour
         if (life <= 0)
         {
             Die(hitmanTrans);
-            FirebaseAnalytics.LogEvent(   "battle_die", 
-                                                            new Parameter( FirebaseAnalytics.ParameterItemCategory, fishType.ToString()), 
-                                                            new Parameter("cause", attackerType.ToString()));
+            if(fishType == FishType.Player || fishType == FishType.PlayerRobot || fishType == FishType.Boss)
+            {
+                FirebaseAnalytics.LogEvent("battle_die",
+                                                                new Parameter(FirebaseAnalytics.ParameterItemCategory, fishType.ToString()),
+                                                                new Parameter("cause", attackerType.ToString()));
+            }
         }
         dmgTime = 0.5f;
         canStealthRemainingTime = BattleConst.instance.CanStealthTimeFromDmg;
@@ -249,7 +253,7 @@ public class FishBase : MonoBehaviour
             lifeGauge.slider.maxValue = data.lifeMax;
             lifeGauge.slider.value = data.life;
         }
-        if (!TutorialControl.IsStep(TutorialControl.Step.Completed))
+        if (!TutorialControl.IsStep(TutorialControl.Step.Completed) && fishType != FishType.Player)
         {
             go = ResourceManager.LoadSync(AssetPathConst.targetIconPath, typeof(GameObject)).Asset as GameObject;
             goTargetIcon = GameObjectUtil.InstantiatePrefab(go, gameObject, false);

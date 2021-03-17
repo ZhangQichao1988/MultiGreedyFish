@@ -69,7 +69,7 @@ public class FishEditorItem : MonoBehaviour
                 ui.Setup(pBPlayerFishLevelInfo);
             });
 
-        goNew.SetActive(gaugeLevel.sliderFishLevel.value >= 1);
+        goNew.SetActive(!gaugeLevel.IsMaxLv() && gaugeLevel.sliderFishLevel.value >= 1);
     }
     public void Init(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
     {

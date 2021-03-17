@@ -48,13 +48,13 @@ public class FishManager : MonoBehaviour
 			}
 		}
 	}
-	public void SetShine(FishBase.FishType fishType)
+	public void SetShine(FishBase.FishType fishType, bool enable)
 	{
 		for (int i = listFish.Count - 1; i >= 0; --i)
 		{
 			if (listFish[i].fishType == fishType)
 			{
-				listFish[i].SetShine(true);
+				listFish[i].SetShine(enable);
 			}
 		}
 	}
@@ -153,6 +153,14 @@ public class FishManager : MonoBehaviour
 			}
 			else if(listFish[i].fishType == FishBase.FishType.Enemy)
 			{ ++aliveEnemyNum; }
+		}
+		for (int i = listFish.Count - 1; i >= 0; --i)
+		{
+			if (listFish[i].actionStep == FishBase.ActionType.Died)
+			{
+				Destroy(listFish[i].gameObject);
+				listFish.RemoveAt(i);
+			}
 		}
 
 		bornWaittingEnemies = Wrapper.RandomSortList<EnemyBase>(bornWaittingEnemies);

@@ -14,6 +14,8 @@ public class ShellControl : MonoBehaviour
 
     AudioSource audioSource;
     Animator animator;
+    GameObject goTargetIcon;
+    bool isTargeting = false;
     public ShellStatus shellStatus = ShellStatus.Closed;
     float openReminingTime;
     float openReminingTimedefault;
@@ -27,8 +29,17 @@ public class ShellControl : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Assert(animator != null, "ShellControl.Awake()_1");
         audioSource = GetComponent<AudioSource>();
-    }
 
+        if (!TutorialControl.IsStep(TutorialControl.Step.Completed))
+        {
+            var go = ResourceManager.LoadSync(AssetPathConst.targetIconShellPath, typeof(GameObject)).Asset as GameObject;
+            goTargetIcon = GameObjectUtil.InstantiatePrefab(go, gameObject, false);
+        }
+    }
+    public void ShowTargetIcon(bool enable)
+    {
+        isTargeting = enable;
+    }
     void Update()
     {
         openReminingTime -= Time.deltaTime;
@@ -53,6 +64,7 @@ public class ShellControl : MonoBehaviour
             }
             
         }
+        GameObjectUtil.SetActive(goTargetIcon, isTargeting && CanEatPearl());
     }
 
     void Closed()

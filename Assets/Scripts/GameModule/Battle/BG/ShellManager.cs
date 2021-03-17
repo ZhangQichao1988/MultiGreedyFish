@@ -19,7 +19,10 @@ public class ShellManager : MonoBehaviour
 			}
 		}
 	}
-
+	public void ShowTargetIcon(bool enable)
+	{
+		listShell.ForEach((a) => a.ShowTargetIcon(enable));
+	}
     private void Update()
     {
 

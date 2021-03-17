@@ -97,6 +97,16 @@ public class UIFishLevelUp : UIBase
         {
             NetWorkHandler.GetDispatch().AddListener<P7_Response>(GameEvent.RECIEVE_P7_RESPONSE, OnRecvFishLevelUp);
             NetWorkHandler.RequesFishLevelUp(playerFishLevelInfo.FishId);
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventSpendVirtualCurrency,
+                                                      new Parameter(FirebaseAnalytics.ParameterValue, dataInfo.useGold),
+                                                      new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Gold"),
+                                                      new Parameter(FirebaseAnalytics.ParameterItemCategory, "level_up")); 
+
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventSpendVirtualCurrency,
+                                                       new Parameter(FirebaseAnalytics.ParameterValue, dataInfo.useChip),
+                                                       new Parameter(FirebaseAnalytics.ParameterVirtualCurrencyName, "Price"),
+                                                       new Parameter(FirebaseAnalytics.ParameterItemCategory, "level_up"),
+                                                       new Parameter(FirebaseAnalytics.ParameterCharacter, playerFishLevelInfo.FishId.ToString()));
         }
     }
 

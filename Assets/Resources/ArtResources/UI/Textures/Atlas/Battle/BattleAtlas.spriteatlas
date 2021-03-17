@@ -42,6 +42,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa60eed8b05aaa74f8d0360ee338ed2a, type: 3}
   - {fileID: 21300000, guid: 29e1f2e8910582e43a09264621d67640, type: 3}
   - {fileID: 21300000, guid: dc4f592a9a5c6254999be647cfbfe05c, type: 3}
+  - {fileID: 21300000, guid: 02fe586a56edbd8488af88a3cdacbedd, type: 3}
   - {fileID: 21300000, guid: 364be80cc5c5e0e478c54944a20864d0, type: 3}
   - {fileID: 21300000, guid: cf888b5ebd0a9104f927749b22bb8bb4, type: 3}
   - {fileID: 21300000, guid: 59b8d46e455232b4facf8a6c1f25e1ff, type: 3}
@@ -55,6 +56,7 @@ SpriteAtlas:
   - UIRanking3
   - JoyBack
   - UIRankingFrame
+  - UI_tutorial_finger_left
   - UI_SkillbuttonBack
   - UI_MinMapFrame
   - UIRanking2

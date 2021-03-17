@@ -36,7 +36,7 @@ public class EnemyJellyfish : EnemyBase
         Dir = Quaternion.AngleAxis(Wrapper.GetRandom(0, 360), Vector3.up) * Vector3.right;
 
         // 为了不要一起动
-        changeStatusRemainingTime = Wrapper.GetRandom(0f, 5f);
+        changeStatusRemainingTime = Wrapper.GetRandom(0f, 10f);
         statusChangeStep = Status.Cloud;
 
     }
@@ -44,12 +44,9 @@ public class EnemyJellyfish : EnemyBase
     public override void SetShine(bool enable)
     {
         isShine = enable;
-        //if (isShine && !goCloud.gameObject.activeSelf)
-        //{
-        //    animator.SetBool("Shine", isShine);
-        //}
+        if (goTargetIcon) { goTargetIcon.SetActive(false); }
     }
-protected override void Idle()
+    protected override void Idle()
     {
         StatusUpdate();
 
@@ -66,7 +63,7 @@ protected override void Idle()
                 SetBrightness(0.5f);
                 statusChangeStep = Status.DarkCloud;
                 //animator.SetBool("Shine", false);
-                if (goTargetIcon) { GameObjectUtil.SetActive(goTargetIcon, false); }
+                if (goTargetIcon) { goTargetIcon.SetActive(false); }
                 changeStatusRemainingTime = BattleConst.instance.JellyDarkTime;
                 break;
             case Status.DarkCloud: // 乌云状态阶段
@@ -85,7 +82,7 @@ protected override void Idle()
                     if (isShine)
                     {
                         //animator.SetBool("Shine", true);
-                        if (goTargetIcon) { GameObjectUtil.SetActive(goTargetIcon, isShine); }
+                        if (goTargetIcon) { goTargetIcon.SetActive(isShine); }
                     }
                     statusChangeStep = Status.Cloud;
                 }

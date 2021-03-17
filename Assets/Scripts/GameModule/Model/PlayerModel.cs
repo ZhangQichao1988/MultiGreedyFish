@@ -74,6 +74,15 @@ public class PlayerModel : BaseModel<PlayerModel>
     {
         return GetPlayerFishLevelInfo(player.FightFish);
     }
+    public int GetFishLevelMax()
+    {
+        int maxLv = 0;
+        foreach (var note in player.AryPlayerFishInfo)
+        {
+            if (note.FishLevel > maxLv) { maxLv = note.FishLevel; }
+        }
+        return maxLv;
+    }
     public PBPlayerFishLevelInfo GetPlayerFishLevelInfo(int fishId)
     {
         foreach (var note in player.AryPlayerFishInfo)
@@ -120,11 +129,10 @@ public class PlayerModel : BaseModel<PlayerModel>
             MissionActionTriggerAdd(5, itemVo.Price);
         }
 
-        FirebaseAnalytics.LogEvent(
-              FirebaseAnalytics.EventSpendVirtualCurrency,
-              new Parameter( FirebaseAnalytics.ParameterValue, itemVo.Price),
-              new Parameter( FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()),
-              new Parameter(FirebaseAnalytics.ParameterItemCategory, "shop"));
+        FirebaseAnalytics.LogEvent( FirebaseAnalytics.EventSpendVirtualCurrency,
+                                                      new Parameter( FirebaseAnalytics.ParameterValue, itemVo.Price),
+                                                      new Parameter( FirebaseAnalytics.ParameterVirtualCurrencyName, itemVo.Paytype.ToString()),
+                                                      new Parameter(FirebaseAnalytics.ParameterItemCategory, "shop"));
 
         UpdateAssets(rewardVo, channel);
 

@@ -13,6 +13,7 @@ public class InGameUIPanel : MonoBehaviour
     public Transform TouchStickTF;
     public CameraFollow cameraFollow;
     public Image skillGauge;
+    public GameObject[] goSkillBtns;
 
     static readonly float miniMapPointSize = 5f;
     public RectTransform transMiniMap, transPlayerPoint, transBossPoint;
@@ -21,7 +22,7 @@ public class InGameUIPanel : MonoBehaviour
     //public GameObject goSkillBtnEnable;
 
     public int alivePlayerNum;
-    private Animator animator;
+    public Animator animator;
     public PlayerBase Player;
     private PlayerRobotShark Boss;
     private RectTransform SelfRectTF;
@@ -45,6 +46,13 @@ public class InGameUIPanel : MonoBehaviour
         Player = BattleManagerGroup.GetInstance().fishManager.CreatePlayer();
         cameraFollow.Target = Player.transform;
         ApplyMiniMap();
+    }
+    public void SetSkillBtnDisplay(bool enable)
+    {
+        foreach (var note in goSkillBtns)
+        {
+            note.SetActive(enable);
+        }
     }
     private void ApplyMiniMap()
     {
@@ -76,6 +84,10 @@ public class InGameUIPanel : MonoBehaviour
         {
             Player.TouchDown(data);
         }
+    }
+    public bool IsMove()
+    {
+        return TouchStickTF.localPosition != Vector3.zero;
     }
     public void TouchUp(BaseEventData data)
     {
