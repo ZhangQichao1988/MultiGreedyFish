@@ -1,10 +1,11 @@
 
+using NetWorkModule;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIShopCell : SimpleScrollingCell
 {
-    public Text text;
+    public Text textName;
     public Text textReward;
 
     public Image buyIcon;
@@ -18,8 +19,9 @@ public class UIShopCell : SimpleScrollingCell
     public Image images;
 
     public GameObject banObject;
+    public Text textBan;
 
-
+    long remainingTime = long.MaxValue;
     ShopItemVo shopData;
 
 
@@ -71,6 +73,9 @@ public class UIShopCell : SimpleScrollingCell
         Debug.LogWarning("can buy item " + shopData.CanBuy);
         Debug.LogWarningFormat("pb info {0} {1} {2}", shopData.pbItems.Id, shopData.pbItems.PlatformProductId, shopData.pbItems.LimitDetail != null ? shopData.pbItems.LimitDetail.LimitedRemainingAmount.ToString() : "null");
 
+
+        
+
         Refresh();
 
     }
@@ -81,14 +86,19 @@ public class UIShopCell : SimpleScrollingCell
         {
             if (shopData.pbItems.LimitDetail != null)
             {
-                text.text = string.Format(shopData.Name, shopData.pbItems.LimitDetail.LimitedRemainingAmount);
+                textName.text = string.Format(shopData.Name, shopData.pbItems.LimitDetail.LimitedRemainingAmount);
             }
             else
             {
-                text.text = shopData.Name;
+                textName.text = shopData.Name;
             }
             buyBtn.interactable = shopData.CanBuy;
             banObject.SetActive(!shopData.CanBuy);
+            if (!shopData.CanBuy)
+            {   // 购买上限
+                textBan.text = LanguageDataTableProxy.GetText(202);
+            }
+            
         }
     }
 
@@ -121,6 +131,39 @@ public class UIShopCell : SimpleScrollingCell
         else
         {
             UIPopupGotoResGet.Open(resType, null, false);
+        }
+    }
+    private void Update()
+    {
+        if (shopData != null && shopData.pbItems.IsRad && shopData.pbItems.RefreshType != "NONE")
+        {
+            long tmp = 0;
+            switch (shopData.pbItems.RefreshType)
+            {
+                case "DAY":
+                    tmp = Clock.GetRemaingingTimeWithDaily();
+                    break;
+                case "WEEK":
+                    tmp = Clock.GetRemaingingTimeWithWeekly();
+                    break;
+                default:
+                    tmp = 0;
+                    break;
+            }
+
+            if (remainingTime >= tmp)
+            {
+                remainingTime = tmp;
+                textName.text = string.Format(shopData.Name, Clock.GetRemainingTimeStr(remainingTime));
+
+            }
+            else
+            {
+                buyBtn.interactable = false;
+                banObject.SetActive(true);
+                textBan.text = LanguageDataTableProxy.GetText(207);
+                textName.text = "";
+            }
         }
     }
 }

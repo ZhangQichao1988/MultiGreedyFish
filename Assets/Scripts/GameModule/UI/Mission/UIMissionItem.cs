@@ -30,7 +30,6 @@ public class UIMissionItem : SimpleScrollingCell
         textProcess.text = string.Format(LanguageDataTableProxy.GetText(700), pBMission.CurrTrigger, pBMission.Trigger);
         backupTime = Time.realtimeSinceStartup;
         //remainingTime = (float)Clock.Timestamp % 86400;
-        long secTime = 0;
         switch (pBMission.Type)
         {
             case MissionType.MissionDaily:

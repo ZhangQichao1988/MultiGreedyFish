@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c070bda2513c430e9c6cea4fb094940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 5447384967233306792}
+  textName: {fileID: 5447384967233306792}
   textReward: {fileID: 3840006129360531292}
   buyIcon: {fileID: 8434829778728809440}
   buyBtn: {fileID: 6626520037907750063}
@@ -628,6 +628,7 @@ MonoBehaviour:
   offText: {fileID: 3329330611864284529}
   images: {fileID: 2023467716894381780}
   banObject: {fileID: 8237884870629765680}
+  textBan: {fileID: 4046059676488342188}
 --- !u!1 &4969104696605359298
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +640,6 @@ GameObject:
   - component: {fileID: 7775748282652895678}
   - component: {fileID: 1169115641942550155}
   - component: {fileID: 4046059676488342188}
-  - component: {fileID: 604584136658159319}
   - component: {fileID: 4229916197750476313}
   m_Layer: 5
   m_Name: Text
@@ -708,19 +708,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u8D2D\u4E70\u4E0A\u9650"
---- !u!114 &604584136658159319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4969104696605359298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08f7f0fd3d4d22f4897ea0ac33baf596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 202
 --- !u!114 &4229916197750476313
 MonoBehaviour:
   m_ObjectHideFlags: 0

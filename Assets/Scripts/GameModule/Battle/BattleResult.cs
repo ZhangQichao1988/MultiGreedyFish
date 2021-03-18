@@ -49,7 +49,7 @@ public class BattleResult : UIBase
     // 演出相关
     int animStep = 0;
     float animTime = 0f;
-    bool animEnd = false;
+    bool animEnd = true;
     public Text textStreakAddRankLevel;
     public Text textTotalAddRankLevel;
     public GameObject goAddGoldBattleRanking;

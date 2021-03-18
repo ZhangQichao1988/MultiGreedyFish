@@ -25,10 +25,11 @@ public class UIShopCellAdvert : UIShopCell
 
     public override void Refresh()
     {
-        text.text = string.Format(LanguageDataTableProxy.GetText(205), AdvertRewardLimitCnt - PlayerModel.Instance.player.AdvertRewardRemainingCnt);
+        textName.text = string.Format(LanguageDataTableProxy.GetText(205), AdvertRewardLimitCnt - PlayerModel.Instance.player.AdvertRewardRemainingCnt);
         buyBtn.interactable = PlayerModel.Instance.player.AdvertRewardRemainingCnt < AdvertRewardLimitCnt;
         banObject.SetActive(!buyBtn.interactable);
         goNew.SetActive(buyBtn.interactable);
+        textBan.text = LanguageDataTableProxy.GetText(202);
     }
 
     public override void OnCellClick()

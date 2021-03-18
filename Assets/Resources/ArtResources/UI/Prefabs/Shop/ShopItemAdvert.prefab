@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047e7b04edda6b4478c5140c55152dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 7374128430866972487}
+  textName: {fileID: 7374128430866972487}
   textReward: {fileID: 1766717559031910579}
   buyIcon: {fileID: 0}
   buyBtn: {fileID: 8518828785451033408}
@@ -1176,6 +1176,7 @@ MonoBehaviour:
   offText: {fileID: 0}
   images: {fileID: 0}
   banObject: {fileID: 6889396768801426911}
+  textBan: {fileID: 1578697136454706499}
   goNew: {fileID: 3269717264244284388}
 --- !u!1 &8551683697552206677
 GameObject:
