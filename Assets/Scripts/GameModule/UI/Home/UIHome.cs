@@ -445,8 +445,11 @@ public class UIHome : UIBase
             {   // 进入战斗
                 Close();
                 BlSceneManager.LoadSceneByClass(SceneId.BATTLE_SCENE, typeof(BattleScene));
-                TutorialControl.IsStep(TutorialControl.Step.GotoTestBattle, true);
-                FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventTutorialComplete);
+                if (TutorialControl.IsStep(TutorialControl.Step.GotoTestBattle, true))
+                {
+                    FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventTutorialComplete);
+                }
+                
             }
         }
     }

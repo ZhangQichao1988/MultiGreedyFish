@@ -193,6 +193,19 @@ public class BattleManagerGroup : MonoBehaviour
         poisonRing.CustomUpdate();
     }
 
+    private void OnApplicationPause(bool focus)
+    {
+        //进入程序状态更改为前台
+        if (focus)
+        {
+            isPause = true;
+            UIPopupBattleToHome.Open();
+        }
+        //else
+        //{
+        //    //离开程序进入到后台状态
+        //}
+    }
     private void TutorialUpdate()
     {
         if (tutorialStep == TutorialStep.None) { return; }

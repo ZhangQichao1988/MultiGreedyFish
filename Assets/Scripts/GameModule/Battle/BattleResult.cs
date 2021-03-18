@@ -49,11 +49,14 @@ public class BattleResult : UIBase
     // 演出相关
     int animStep = 0;
     float animTime = 0f;
+    bool animEnd = false;
     public Text textStreakAddRankLevel;
     public Text textTotalAddRankLevel;
     public GameObject goAddGoldBattleRanking;
     public GameObject goAddGoldRankUp;
     public GameObject goAddGoldStreak;
+    public Image imageRankIconClone;
+
 
 
     protected override string uiName { get { return "BattleResult"; } }
@@ -297,10 +300,9 @@ public class BattleResult : UIBase
                     {
                         countAudioSource = SoundManager.PlaySE(1002);
                     }
-                    animTime = 0.5f;
-                    animStep = 15;
+                    animStep = 14;
                 }
-                gaugeRank.Refash(levelInfo);
+                gaugeRank.Refash(levelInfo, false);
                 if (response.GainRankLevel > 0 && preRankGaugeRate > gaugeRank.sliderRankLevel.value)
                 {
                     if (gaugeRank.rankId >= 16)
@@ -316,6 +318,14 @@ public class BattleResult : UIBase
                         PlayerModel.Instance.MissionActionTrigger(33, 1);
                     }
                     animator.SetTrigger("RankUp");
+                    animEnd = false;
+                }
+                break;
+            case 14:
+                if (animEnd)
+                {
+                    animTime = 0.5f;
+                    animStep = 15;
                 }
                 break;
             case 15: // 显示金币明细（战斗排名）
@@ -409,5 +419,14 @@ public class BattleResult : UIBase
         textRewardGoldAdvert.text = string.Format(LanguageDataTableProxy.GetText(8), totalGold * ConfigTableProxy.Instance.GetDataById(1001).intValue);
 
         //}
+    }
+    public void RefreshRankGauge()
+    {
+        gaugeRank.Refash(levelInfo);
+        imageRankIconClone.sprite = gaugeRank.rankIcon.sprite;
+    }
+    public void AnimEnd()
+    {
+        animEnd = true;
     }
 }

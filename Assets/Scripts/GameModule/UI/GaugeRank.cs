@@ -17,7 +17,7 @@ public class GaugeRank : MonoBehaviour
     {
         sliderRankLevel = GetComponent<Slider>();
     }
-    public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo)
+    public void Refash(PBPlayerFishLevelInfo pBPlayerFishLevelInfo, bool applyIcon = true)
     {
         FishRankLevelDataInfo currentRankData, nextRankData;
         FishRankLevelDataTableProxy.Instance.GetFishRankLevelData(pBPlayerFishLevelInfo.RankLevel, out currentRankData, out nextRankData);
@@ -26,7 +26,7 @@ public class GaugeRank : MonoBehaviour
         textRank.text = currentRankData.ID.ToString();
         rankId = currentRankData.ID;
         rankIcon.gameObject.SetActive(pBPlayerFishLevelInfo.FishLevel > 0);
-        if (rankIcon.IsActive())
+        if (rankIcon.IsActive() && applyIcon)
         {
             rankIcon.sprite = ResourceManager.LoadSync<Sprite>(Path.Combine(AssetPathConst.texCommonPath, currentRankData.rankIcon)).Asset;
         }

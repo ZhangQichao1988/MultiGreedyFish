@@ -173,7 +173,12 @@ public class InGameUIPanel : MonoBehaviour
         {
             BattleManagerGroup.GetInstance().GotoTutorialNext();
         }
-        
+        // 
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    UIPopupBattleToHome.Open();
+        //}
+
 #endif
 
         ApplyMiniMap();

@@ -167,8 +167,8 @@ public class FishBase : MonoBehaviour
             if(fishType == FishType.Player || fishType == FishType.PlayerRobot || fishType == FishType.Boss)
             {
                 FirebaseAnalytics.LogEvent("battle_die",
-                                                                new Parameter(FirebaseAnalytics.ParameterItemCategory, fishType.ToString()),
-                                                                new Parameter("cause", attackerType.ToString()));
+                                                                new Parameter("category", fishType.ToString()),
+                                                                new Parameter("kill_from", attackerType.ToString()));
             }
         }
         dmgTime = 0.5f;

@@ -64,7 +64,10 @@ public class ShellControl : MonoBehaviour
             }
             
         }
-        GameObjectUtil.SetActive(goTargetIcon, isTargeting && CanEatPearl());
+        if (goTargetIcon)
+        {
+            GameObjectUtil.SetActive(goTargetIcon, isTargeting && CanEatPearl());
+        }
     }
 
     void Closed()
