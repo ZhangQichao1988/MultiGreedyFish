@@ -44,6 +44,11 @@ elif [[ ${BUILD_TYPE} == "development" ]]; then
     MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-963ef757-97f7-407a-8780-61ba8d8a4e45}
     CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Developer"}
     BUNDLE_METHOD=${BUNDLE_METHOD:-development}
+elif [[ ${BUILD_TYPE} == "appstore" ]]; then
+    DEV_TEAM=${DEV_TEAM:-LQ497AGR75}
+    MOBILE_PROVISION_UUID=${MOBILE_PROVISION_UUID:-7bcdecd7-199e-4dc9-ab8b-0b49572f7d17}
+    CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY:-"iPhone Distribution"}
+    BUNDLE_METHOD=${BUNDLE_METHOD:-app-store}
 else
     # 企业 用kc
     BUNDLE_IDENTIFIER="com.klab.crazyfish"

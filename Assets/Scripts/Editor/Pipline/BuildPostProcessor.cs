@@ -59,6 +59,7 @@ namespace MultiGreedyFish.Pipline
                 proj.AddFrameworkToProject (target, "UIKit.framework", false);
                 proj.AddFrameworkToProject (target, "libresolv.tbd", false);
                 proj.AddFrameworkToProject (target, "UserNotifications.framework", false);
+                proj.AddFrameworkToProject (target, "AppTrackingTransparency.framework", true);
 
 
                 proj.AddCapability(target, PBXCapabilityType.PushNotifications);
@@ -132,6 +133,7 @@ namespace MultiGreedyFish.Pipline
                 rootDict.SetString("NSPhotoLibraryUsageDescription", "是否允许此游戏使用系统相册？");
                 rootDict.SetString("NSPhotoLibraryAddUsageDescription", "是否允许此游戏使用系统相册附加功能？");
                 rootDict.SetString("NSCameraUsageDescription", "允许访问相机");
+                rootDict.SetString("NSUserTrackingUsageDescription", "あなたのデータは、パーソナライズされた広告を表示するために利用されます。");
 
                 // if (!isDevMode)
                 // {
